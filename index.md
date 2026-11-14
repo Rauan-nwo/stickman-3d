@@ -16,7 +16,13 @@ _(пока нет)_
 
 ## Ремесло
 - [[style-bible]] — библия стиля: 2D-персонажи в 3D-мире, монтаж, субтитры, звук, формула сценария
-- [[anim-skills-catalog]] — 9 анимационных скиллов: русские названия, оценки, что берём
+- [[anim-skills-catalog]] — 9 анимационных скиллов: оценки, тесты, решение по стеку
+- [[skill-anidoodle]] — 3D-киностудия на коде: камера, свет, QA
+- [[skill-javascript-webgl-animation]] — рендер draw(frame) + WebGL-атмосфера, частицы, VFX
+- [[skill-huashu-art-motion]] — мультяшка toon.js, разбор референса, QA
+- [[skill-clawd-animation]] — эмоции персонажа; наш богач на Canvas2D
+- [[skill-handdraw-and-drawing]] — edge-tts с таймкодами слов, пословные титры, головы палочников
+- [[skill-motion-manim]] — шпаргалка тайминга; Manim и motion-skill не берём
 
 ## Аналитика
 _(пока нет)_

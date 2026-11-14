@@ -11,3 +11,6 @@ touched: wiki/craft/anim-skills-catalog.md, wiki/craft/style-bible.md, wiki/vide
 
 ## [2026-11-14 22:50] ingest | пересмотр: стиль канала = 3D + 2D кодом; переоценка 9 скиллов, разбор анимации персонажей
 touched: wiki/craft/anim-skills-catalog.md, wiki/craft/style-bible.md, wiki/analyses/reproduction-pipeline.md
+
+## [2026-11-14 23:59] ingest | глубокое изучение 9 репо (+webgl-animation-skills) с тестовыми рендерами; решение по стеку
+touched: wiki/craft/skill-anidoodle.md, wiki/craft/skill-javascript-webgl-animation.md, wiki/craft/skill-huashu-art-motion.md, wiki/craft/skill-clawd-animation.md, wiki/craft/skill-handdraw-and-drawing.md, wiki/craft/skill-motion-manim.md, wiki/craft/anim-skills-catalog.md, index.md

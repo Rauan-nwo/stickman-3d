@@ -41,81 +41,36 @@ sources: [2026-11-14-animatsiya-skills-links.md]
 4. **Пословные субтитры 1–2 слова** по таймингу whisper (у anidoodle — только фразы 2–6 слов).
 5. **Липфлап по словам**, а не только по громкости.
 
-## Карточки
+## Подробные страницы и результаты тестов (2026-11-14)
+Каждый репозиторий изучен целиком и проверен рендером 720×1280 30 fps на этой машине
+(RTX 5050 Laptop, i7-13650HX). Подробности — на отдельных страницах.
 
-### ИИ-клип по картинке — `motion-skill` (`/motion`) — к стилю «всё кодом» не относится
-- **Что даёт:** 5–10 с клип: референс/текст → кадр в Nano Banana (Gemini) → image-to-video
-  Kling 3.0 turbo или Seedance 2.0 через Higgsfield MCP → апскейл. 9:16 по умолчанию.
-- **Установка:** `git clone https://github.com/LunaAI519/motion-skill ~/.claude/skills/motion`.
-  Нужны MCP nanobanana (платный ключ Gemini) и Higgsfield (кредиты: Kling ~7.5/клип, Seedance ×3, тариф Pro+).
-- **Шаги:** кадр (`aspect_ratio 9:16`, референсы) → подтверждение → `media_upload` →
-  `generate_video` (`start_image`, опц. `end_image`, сначала `get_cost`) → `upscale_video`.
-- **Минусы:** пресет «ретро-газетный коллаж» надо заменить на наш; нет голоса, субтитров, монтажа;
-  один клип за раз; документация китайская.
-- **Вердикт:** единственный подходящий по технологии. Но наш `seedance-studio` покрывает то же
-  глубже — берём как сверку, не устанавливаем. Лицензия MIT.
+| Страница | Что проверено | Скорость | Главный результат |
+|---|---|---|---|
+| [[skill-anidoodle]] | Шахта, 5 ламп, прожектор, пыль, 2D-шахтёр billboard, `pushIn`+handheld, пословные титры | 37 мс/кадр GPU (2.6 с CPU) | Лучшая композиция и камера-кит; `gate` 15/15; запрет GLTF/сети и правило «титр ≥0.7 с» мешают нашему стилю |
+| [[skill-javascript-webgl-animation]] | Шахта с шейдерами камня/дерева, bloom, god-ray, 4000 пылинок, удар самородка (900 частиц), DOF, трекинг | ~10 с на 4 с ролика | Лучшая атмосфера и VFX, самый быстрый и простой конвейер |
+| [[skill-huashu-art-motion]] | Шахта three.js + `TOON.bean`-шахтёр, рот по огибающей голоса, `qa.py`, `film_gate` | 0.09 с/кадр GPU | Мимика/позы `toon.js`, разбор референса, QA; нужен флаг `--use-angle=d3d11` |
+| [[skill-clawd-animation]] | Наш богач на Canvas2D: 6 эмоций, 9 ртов, смех со squash, PNG с альфой | 20–50 мс/кадр | Ближе всех к эталону (~75 %); модуль `stick.js` — основа персонажей |
+| [[skill-handdraw-and-drawing]] | HandDraw-рендер; edge-tts с таймкодами слов; ASS-титры; головы палочников `cartoon.py` | 12.7 с на 5 с | Бесплатный черновой голос 225–234 сл/мин + рецепт пословных титров |
+| [[skill-motion-manim]] | Manim 3D-балки + палочник; шпаргалка тайминга | ~4× реального времени | Только тайминг-шпаргалка; Manim и motion-skill в стек не идут |
 
-### Разбор референса — `huashu-art-motion`
-- **Что даёт:** 36 художественных стилей и 9 «грамматик» эксплейнеров кодом (Kurzgesagt, Vox,
-  whiteboard, 3b1b…), вертикаль 1080×1920, safe-зона под субтитры, QA-гейты.
-- **Установка:** `npx skills add alchaincyf/huashu-art-motion`; нужны uv, ffmpeg, Playwright Chromium.
-  Голос — китайский Volcengine TTS или свой WAV.
-- **Разбор референса** (`references/01-拆解.md`, `scripts/analyze/breakdown.py`):
-  ffprobe → контактный лист 4 fps + коллаж ключевых кадров + спектрограмма → поиск склеек
-  по разнице кадров → подгонка BPM-сетки → контактные листы переходов → тепловая карта движения
-  → `分镜表.md` + `spec.json`. Запуск: `uv run scripts/analyze/breakdown.py --video ref.mp4 --out out/`.
-  Сравнение копии с оригиналом: `side_by_side.py`, `compare.py`.
-- **Правила камеры** (`镜头语言.md`): камера — пунктуация; медленный push-in на переходы,
-  быстрый — только акцент; после push-in нужен откат; один приём во всех шотах = «PPT».
-- **Персонажи** (`references/10-角色.md`): людей кодом не рисовать — только ИИ-спрайты на
-  зелёном фоне + композитинг. Совпадает с нашим подходом.
-- **Вердикт:** лучший источник методики. Брать `breakdown.py`, `compare.py`, `film_gate.py`.
-  Лицензия MIT (кроме образа автора, шрифтов, `strokes.js`).
+## Решение по стеку
+Свой лёгкий движок из лучших частей, а не один скилл целиком:
 
-### Дудл-студия — `anidoodle`
-- **Что даёт:** картинки, фильмы, эксплейнеры в 32 рисованных стилях, музыка кодом, вертикаль
-  `--format 9x16`, озвучка (Kokoro бесплатно / ElevenLabs / OpenAI / Gemini), тайминг по словам
-  через whisper.cpp, прожиг субтитров, `framecheck.mjs` (текст вне зон интерфейса Shorts).
-- **Установка:** плагин Claude Code (`.claude-plugin/`), Node 20+, ffmpeg, Playwright.
-- **Минусы:** принцип «no generated image assets» — наши ИИ-клипы не принимает без доработки;
-  субтитры фразовые, не пословные; тяжёлый.
-- **Вердикт:** знания (`camera.md`, `motion-grammar.md`, `storytelling.md`) и идея проверки safe-зон.
-  Лицензия Apache-2.0.
+| Слой | Берём | Откуда |
+|---|---|---|
+| Рендер | Одна HTML-страница, three.js через esbuild, чистая `draw(frame)`, Playwright + GPU (ANGLE/D3D11) → ffmpeg | javascript-animation `render.mjs` |
+| 3D-окружение, атмосфера, VFX | Шейдеры камня/дерева, bloom, god-ray, пыль, удар/искры/взрыв, DOF | webgl-animation-skills (рецепты), тест `anim-tests/jsanim/mine` |
+| Камера | `pushIn`, `dolly`+`path`, `orbit`, `crane`, `whipPan`, `handheld`, `matchCut` | anidoodle `three-core/camera.ts` (Apache-2.0) |
+| Персонажи | Canvas2D-модуль на каждого героя → `CanvasTexture` на плоскости в 3D + тень силуэта на полу | `stick.js` (по образцу clawd `EMO`) + тайминги `toon.js` |
+| Голос (черновой) | edge-tts GuyNeural/ChristopherNeural +35 %, таймкоды слов | HandDraw `.venv` |
+| Субтитры | ASS 1–2 слова, Montserrat ExtraBold, центр (360, 900) | рецепт `anim-tests/handdraw/tts` |
+| QA и сравнение | `breakdown.py`, `qa.py`, `film_gate.py`; метрики [[reproduction-pipeline]] | huashu |
+| Тайминг | Шпаргалка кадров/easing | [[skill-motion-manim]] |
+| 3D-модели | Процедурка в three.js; позже GLTF из Blender (при необходимости) | — |
 
-### Мульт-персонаж кистью — `ClaudeAnimationBase`
-- **Что даёт:** акварельная 2D-анимация p5.brush, персонаж Clawd с 31 эмоцией, MP4.
-  Холст 1920×1080 жёстко (`src/core.js`), вертикаль — правкой кода.
-- **Установка:** `npm install` → `node render.mjs --clip --out=out/video.mp4`.
-- **Минусы:** правила запрещают текст и 3D; нет голоса и липсинка.
-- **Вердикт:** `ANIMATION_GUIDE.md` как справочник мимики и тайминга эмоций для промптов. MIT.
-
-### Мульт на canvas — `javascript-animation-skills`
-- **Что даёт:** фильм, где каждый кадр рисуется кодом в одном HTML, + синтезированная музыка,
-  склейки на сильную долю, MP4 через headless Chrome. Любой размер, 720×1280 подходит.
-- **Установка:** `npx skills add iart-ai/javascript-animation-skills`; Node 18+, playwright-core, ffmpeg.
-- **Минусы:** запрещены внешние ассеты (нельзя ИИ-фон), звук — только синтез, без голоса.
-- **Вердикт:** `soundtrack/scripts/sync-check.mjs` для проверки синхрона склеек и музыки. MIT.
-
-### Принципы моушна — `motion-design-skill`
-- **Что даёт:** только документация: таблицы длительностей и easing, 12 принципов Диснея для UI,
-  эмоция → движение, хореография элементов. Без рендера.
-- **Установка:** `npx skills add LottieFiles/motion-design-skill`.
-- **Вердикт:** для анимации надписей и вставок. На монтаж ролика ложится слабо. MIT.
-
-### Рисованная доска — `HandDraw-Skill`
-- **Что даёт:** whiteboard-видео (рука рисует SVG), JSON-DSL → Remotion → MP4, Edge TTS бесплатно.
-- **Установка:** `npm install && npm run build`, `node scripts/handdraw.mjs render project.json --output out.mp4`.
-- **Минусы:** только векторные линии, растр и text-to-video запрещены.
-- **Вердикт:** не наш стиль. MIT.
-
-### Математическая анимация — `manim_skill`
-- **Что даёт:** правила Manim (Community и 3b1b-версия), планировщик сцен в стиле 3Blue1Brown.
-- **Установка:** `npx skills add adithya-s-k/manim_skill`, Python, LaTeX, `pip install manim`.
-- **Вердикт:** только графики/формулы. ManimGL-часть — CC BY-NC-SA (некоммерческая), остальное MIT.
-
-### Рисунок кодом — `claude-drawing-skill`
-- **Что даёт:** PNG-иллюстрации в 83 стилях на Python + GIF процесса рисования. Видео нет.
-- **Вердикт:** к стилю канала не подходит. MIT.
+Почему не anidoodle целиком: его контракт запрещает внешние файлы (GLTF-модели), а `framecheck`
+валит пословные титры. Его камеру и идеи QA переносим в свой движок.
 
 ## Установка (сделано 2026-11-14)
 Все 9 репозиториев установлены как скиллы в `~/.claude/skills/` (12 скиллов: у manim 3, у
@@ -129,11 +84,11 @@ javascript-animation 2). Клоны-исходники — `C:\dev	oolsnim-skil
 | `clawd-animation` | clawd-animation | своя обёртка SKILL.md; `npm install` в рабочей копии | да |
 | `javascript-animation`, `soundtrack` | javascript-animation, soundtrack | playwright-core, Chrome | да |
 | `motion-design` | motion-design | нет | да |
-| `handdraw-skill` | handdraw-skill | npm build, edge-tts в `.venv`, env `HANDDRAW_PYTHON` | да |
+| `handdraw-skill` | handdraw-skill | npm build, edge-tts в `.venv` | да, через `packages/cli/dist/index.js` |
 | `manim-composer`, `manimce-best-practices`, `manimgl-best-practices` | manim-* | `pip install manim` (v0.22.1) | да, без LaTeX (формулы MathTex не будут) |
 | `claude-drawing` (claude绘图) | claude-drawing | numpy, Pillow | да |
 
-Нюансы Windows: HandDraw ищет Python в `.venv/bin` — исправлено переменной `HANDDRAW_PYTHON`.
+Нюансы Windows: HandDraw ищет Python в `.venv/bin`; переменная `HANDDRAW_PYTHON` НЕ помогает (`scripts/handdraw.mjs` подменяет её на `python3`) — запускать `node packages/cli/dist/index.js render ...`. Подробно — [[skill-handdraw-and-drawing]].
 Риск подборки: 12 скиллов одновременно могут путать автовыбор — вызывать по имени.
 
 ## Sources
