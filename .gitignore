@@ -1,0 +1,14 @@
+raw/_secrets/
+.env
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.wav
+*.mp3
+*.m4a
+*.aep
+*.prproj
+production/**/renders/
+production/**/media/
+.obsidian/workspace*
