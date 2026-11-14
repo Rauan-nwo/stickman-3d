@@ -34,3 +34,6 @@ touched: raw/analytics/2026-11-15-channel-shorts.tsv, raw/research/2026-11-15-ch
 touched: wiki/analytics/report-2026-11.md, wiki/analyses/channel-formula.md, wiki/craft/script-craft.md, wiki/channel/channel.md, raw/analytics/2026-11-15-channel-top18-meta.tsv, index.md
 ## [2026-11-15 03:40] video | V002: идея, факт-чек, сценарий и черновой голос (status: scripting)
 touched: wiki/videos/V002-why-soldiers-never-march-across-bridges.md, wiki/ideas/I001-break-step-on-bridges.md, wiki/ideas/I002-lightning-rod-and-bell-ringers.md, wiki/ideas/I003-crumple-zone.md, wiki/ideas/I004-davy-safety-lamp.md, production/V002/script.md, production/V002/narration.txt, raw/research/2026-11-15-break-step-bridges.md, wiki/_todo.md
+
+## [2026-11-15 05:10] setup | движок «Стикман 3D» в engine/: ядро, камера, 2 локации, 4 героя, эффекты, инструменты; хук V001 перенесён на движок
+touched: engine/, production/V001/film.js

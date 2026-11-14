@@ -1,0 +1,18 @@
+{
+  "name": "stickman3d-engine",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Движок роликов «Стикман 3D»: three.js-декорации + плоские 2D-человечки, кадр = чистая функция номера кадра",
+  "type": "module",
+  "scripts": {
+    "v001": "node tools/make.mjs ../production/V001",
+    "demo": "node tools/make.mjs films/demo --min-dur 4 --max-dur 5 --max-epm 200",
+    "kit": "node tools/build.mjs films/kit && node tools/render.mjs out/kit/film.html out/kit/sheet.jpg --sheet 0.2",
+    "chars": "node tools/charsheet.mjs"
+  },
+  "dependencies": {
+    "esbuild": "0.28.2",
+    "playwright-core": "1.65.1",
+    "three": "0.187.0"
+  }
+}

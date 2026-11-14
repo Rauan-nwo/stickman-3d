@@ -1,0 +1,6 @@
+{
+  "voice": false,
+  "captions": { "cues": "captions.json" },
+  "audio": { "voice": "C:/Users/velar/Downloads/How Mine Salting Worked.mp4", "voice-ss": 0.0333, "loudnorm": false },
+  "qa": { "min-dur": 3.6, "max-dur": 3.8, "max-epm": 400, "lufs-tol": 4 }
+}
