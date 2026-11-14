@@ -13,28 +13,37 @@ sources: [2026-11-14-animatsiya-skills-links.md]
 `C:\dev\tools\anim-skills\` (вне репо, не установлены). Оценка — насколько скилл помогает
 делать ролики в стиле [[style-bible]] (0 — никак, 5 — закрывает весь визуал).
 
-**Главный вывод.** 8 из 9 рисуют кадры **кодом** (canvas, SVG, Python, Manim) и прямо запрещают
-ИИ-картинки или фотореал. Наш стиль — 2D-персонажи в объёмном 3D-мире — так не получить.
-Визуал делается связкой «ИИ-кадр → image-to-video», которая уже есть в наших локальных скиллах
-(`seedance-studio`, `character-sheet`, `gpt-image`, `higgsfield-studio`). Из подборки берём
-**методики**: разбор референса, шотлист, правила камеры, QA готового MP4.
+**Главный вывод (пересмотрен 2026-11-14).** Рауан подтвердил: ролики канала пишутся **кодом** —
+3D-окружение + 2D-анимированные человечки. Первая оценка (под ИИ-видео) была неверной, ниже —
+оценка под код. Готового стыка «3D-мир + плоский 2D-персонаж внутри» нет ни в одном репо,
+но все детали для него есть по частям.
 
-## Сводная таблица
+## Сводная таблица (под стиль «3D + 2D кодом»)
 | Наше название | Репозиторий | Оценка | Что берём в пайплайн |
 |---|---|---|---|
-| **ИИ-клип по картинке** | LunaAI519/motion-skill | 4 | Схема «ключевой кадр Nano Banana → Kling/Seedance через Higgsfield», 9:16 по умолчанию. Как референс конвейера, не ставить |
-| **Разбор референса** | alchaincyf/huashu-art-motion | 2.5 | `breakdown.py` (склейки, BPM, карта движения), шотлист + `storyboard_lint`, правила камеры, `film_gate`/`qa` против «слайдшоу», `compare.py` бок о бок |
-| **Дудл-студия** | alexgreensh/anidoodle | 2 | Тайминг по словам (whisper), проверка safe-зон 9:16, `camera.md`, `motion-grammar.md` |
-| **Мульт-персонаж кистью** | JohnHeibel/ClaudeAnimationBase | 1.5 | `ANIMATION_GUIDE.md`: тайминг эмоций, «в каждой сцене что-то происходит» |
-| **Мульт на canvas** | iart-ai/javascript-animation-skills | 1.5 | `sync-check.mjs` — проверка склеек под музыку на любом MP4 |
-| **Принципы моушна** | LottieFiles/motion-design-skill | 1 | Easing и тайминг вставок/надписей (например «10 FT») |
-| **Рисованная доска** | ToBeWin/HandDraw-Skill | 1 | Идея синхронизации текста с TTS |
-| **Математическая анимация** | adithya-s-k/manim_skill | 0.5 | Только инфографика-вставка, если понадобится |
-| **Рисунок кодом** | cloveric/claude-drawing-skill | 0.5 | Статичные иллюстрации, к стилю не подходит |
+| **3D-киностудия на коде** | alexgreensh/anidoodle | 4.5 | Движок: three.js 0.170 (`engine/src/three-core`): камера (`pushIn`, `dolly`, `orbit`, `crane`, `whipPan`, `handheld`, `rackFocus`, `matchCut`), свет `interior`/`sunset`, материалы `toon`/`matte`/`satin`, `outline`, `contactShadow`; таймлайн по словам; озвучка `narrate.mjs` + проверка каждого слова; дакинг музыки; SFX `filmSfx`; рендер 9:16; `gate`/`framecheck`/`ship` |
+| **Мультяшка и разбор референса** | alchaincyf/huashu-art-motion | 4 | `lib/toon.js` — `TOON.bean` (круглая голова, обводка, тело-боб, руки-макаронины, шляпа, брови-эмоции), `poseAt`, `blinkAt`, `alive`, рот по громкости голоса `TOON.mouth`; стык three.js → 2D-canvas (`scenes/53_pixar.js`); `render.py` (Playwright → ffmpeg, любой размер); `qa.py`; `breakdown.py`/`compare.py` |
+| **Эмоции персонажа** | JohnHeibel/ClaudeAnimationBase | 3 | `src/clawd.js`: таблица `EMO` (28 эмоций: глаза, рот, тело(t)), `emotions()` с переходом-прищуром и overshoot, ~25 глаз, 16 ртов, моргание, повороты, «кипящая» линия `boilSeed` |
+| **Мульт на canvas** | iart-ai/javascript-animation-skills | 2 | `references/character.md` (персонаж-функция, лист выражений), `layout-check.mjs` (текст не на лице), `sync-check.mjs`; ссылка на соседний пакет `iart-ai/webgl-animation-skills` (three.js, не изучен) |
+| **Рисунок кодом** | cloveric/claude-drawing-skill | 1 | Рецепты «плёнки»: дымка, bloom, DOF-слои, тон-кривая (`lib/soft3d.py`), cel-тени и линии скорости (`lib/cartoon.py`) — как ТЗ для шейдеров three.js |
+| **Рисованная доска** | ToBeWin/HandDraw-Skill | 1 | edge-tts (бесплатный голос; умеет границы слов для пословных субтитров) |
+| **Принципы моушна** | LottieFiles/motion-design-skill | 1 | Тайминг и easing реакций, вторичное движение |
+| **Математическая анимация** | adithya-s-k/manim_skill | 0.5 | Только инфографика |
+| **ИИ-клип по картинке** | LunaAI519/motion-skill | 0 | Не код, а генерация (Nano Banana → Kling/Seedance) — к нашему стилю не относится |
+
+## Что придётся написать самим
+1. **Персонаж-палочник канала**: внешность из [[style-bible]] на основе `TOON.bean` + таблица эмоций
+   по образцу `EMO` из clawd.js + набор ртов эталона (решётка зубов, «O», дуга, черта, смех).
+2. **2D-персонаж внутри 3D**: рисуем в 2D-canvas → `CanvasTexture` → плоскость-billboard в three.js
+   (паттерн `textPlane` из anidoodle), с сортировкой по глубине и контактной тенью.
+3. **Окружение уровня эталона**: туман, DOF (BokehPass), объёмные лучи, пыль/искры/взрыв (Points),
+   модели и PBR-текстуры — в репо этого нет.
+4. **Пословные субтитры 1–2 слова** по таймингу whisper (у anidoodle — только фразы 2–6 слов).
+5. **Липфлап по словам**, а не только по громкости.
 
 ## Карточки
 
-### ИИ-клип по картинке — `motion-skill` (`/motion`)
+### ИИ-клип по картинке — `motion-skill` (`/motion`) — к стилю «всё кодом» не относится
 - **Что даёт:** 5–10 с клип: референс/текст → кадр в Nano Banana (Gemini) → image-to-video
   Kling 3.0 turbo или Seedance 2.0 через Higgsfield MCP → апскейл. 9:16 по умолчанию.
 - **Установка:** `git clone https://github.com/LunaAI519/motion-skill ~/.claude/skills/motion`.
