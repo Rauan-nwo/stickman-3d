@@ -37,3 +37,6 @@ touched: wiki/videos/V002-why-soldiers-never-march-across-bridges.md, wiki/ideas
 
 ## [2026-11-15 05:10] setup | движок «Стикман 3D» в engine/: ядро, камера, 2 локации, 4 героя, эффекты, инструменты; хук V001 перенесён на движок
 touched: engine/, production/V001/film.js
+
+## [2026-11-15 05:30] lint | ружьё на средних планах: сравнение 2D и 3D, правило в библии стиля
+touched: wiki/craft/style-bible.md
