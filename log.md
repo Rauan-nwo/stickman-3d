@@ -26,3 +26,6 @@ touched: wiki/analyses/reproduction-pipeline.md
 
 ## [2026-11-15 01:40] setup | упаковка стиля «Стикман 3D»: сценарий, постановка, продакшн, шаблоны, скилл stickman-3d, память
 touched: wiki/craft/stickman-3d.md, wiki/craft/script-craft.md, wiki/craft/staging-and-camera.md, wiki/craft/production-workflow.md, wiki/craft/style-bible.md, wiki/channel/channel.md, wiki/_todo.md, templates/script.md, templates/beatsheet.md, CLAUDE.md, index.md, .gitignore
+
+## [2026-11-15 02:20] ingest | выгрузка канала @RicksClips3000: 151 ролик с просмотрами, тексты 30 новых роликов (разбор не сделан)
+touched: raw/analytics/2026-11-15-channel-shorts.tsv, raw/research/2026-11-15-channel-transcripts.jsonl
