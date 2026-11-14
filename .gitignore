@@ -12,3 +12,12 @@ raw/_secrets/
 production/**/renders/
 production/**/media/
 .obsidian/workspace*
+
+# движок и сборки
+node_modules/
+engine/out/
+engine/**/tmp/
+production/**/out/
+production/**/tmp/
+*.gray
+*.rgb

@@ -23,3 +23,6 @@ touched: wiki/videos/V001-how-mine-salting-worked.md, wiki/craft/style-bible.md,
 
 ## [2026-11-15 00:30] video | тест 2: хук V001 кодом, ~60 % сходства (тест 1 — ~50–55 %)
 touched: wiki/analyses/reproduction-pipeline.md
+
+## [2026-11-15 01:40] setup | упаковка стиля «Стикман 3D»: сценарий, постановка, продакшн, шаблоны, скилл stickman-3d, память
+touched: wiki/craft/stickman-3d.md, wiki/craft/script-craft.md, wiki/craft/staging-and-camera.md, wiki/craft/production-workflow.md, wiki/craft/style-bible.md, wiki/channel/channel.md, wiki/_todo.md, templates/script.md, templates/beatsheet.md, CLAUDE.md, index.md, .gitignore

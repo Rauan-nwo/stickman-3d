@@ -9,6 +9,9 @@ sources: [2026-11-14-how-mine-salting-worked-transcript.json]
 
 # Библия стиля канала
 
+Измеренная часть стиля [[stickman-3d]]. Сценарий — в [[script-craft]], постановка — в
+[[staging-and-camera]], порядок производства — в [[production-workflow]].
+
 Снято с эталона [[V001-how-mine-salting-worked]]. Всё, что ниже помечено «измерено», получено
 ffprobe/ffmpeg/whisper. Пометка «гипотеза» — вывод по картинке, требует подтверждения у Рауана.
 
