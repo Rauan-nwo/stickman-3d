@@ -108,9 +108,24 @@ sources: [2026-11-14-animatsiya-skills-links.md]
 - **Что даёт:** PNG-иллюстрации в 83 стилях на Python + GIF процесса рисования. Видео нет.
 - **Вердикт:** к стилю канала не подходит. MIT.
 
-## Как ставить (если решим)
-Правило подборки: ставить по одному, тестировать на 5–10 с клипе. Для нашего пайплайна
-кандидат на установку один — **huashu-art-motion** (ради разбора и сравнения). Решение — за Рауаном.
+## Установка (сделано 2026-11-14)
+Все 9 репозиториев установлены как скиллы в `~/.claude/skills/` (12 скиллов: у manim 3, у
+javascript-animation 2). Клоны-исходники — `C:\dev	oolsnim-skills\`.
+
+| Скилл (вызов) | Папка | Зависимости | Готов |
+|---|---|---|---|
+| `motion` | motion | MCP nanobanana (ключ Gemini) + Higgsfield MCP | нет ключа Gemini, Higgsfield не авторизован |
+| `huashu-art-motion` | huashu-art-motion | uv, Playwright Chromium | да, `breakdown.py` проверен на V001 |
+| `anidoodle` | anidoodle | Node 24, ffmpeg; npm/Chromium ставятся при первом рендере | да |
+| `clawd-animation` | clawd-animation | своя обёртка SKILL.md; `npm install` в рабочей копии | да |
+| `javascript-animation`, `soundtrack` | javascript-animation, soundtrack | playwright-core, Chrome | да |
+| `motion-design` | motion-design | нет | да |
+| `handdraw-skill` | handdraw-skill | npm build, edge-tts в `.venv`, env `HANDDRAW_PYTHON` | да |
+| `manim-composer`, `manimce-best-practices`, `manimgl-best-practices` | manim-* | `pip install manim` (v0.22.1) | да, без LaTeX (формулы MathTex не будут) |
+| `claude-drawing` (claude绘图) | claude-drawing | numpy, Pillow | да |
+
+Нюансы Windows: HandDraw ищет Python в `.venv/bin` — исправлено переменной `HANDDRAW_PYTHON`.
+Риск подборки: 12 скиллов одновременно могут путать автовыбор — вызывать по имени.
 
 ## Sources
 - `raw/research/2026-11-14-animatsiya-skills-links.md`
