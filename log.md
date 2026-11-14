@@ -20,3 +20,6 @@ touched: wiki/analyses/reproduction-pipeline.md
 
 ## [2026-11-15 02:10] lint | полная перепроверка: замеры V001, монтаж, установка скиллов, wiki, тест хука
 touched: wiki/videos/V001-how-mine-salting-worked.md, wiki/craft/style-bible.md, wiki/analyses/reproduction-pipeline.md, wiki/craft/anim-skills-catalog.md
+
+## [2026-11-15 00:30] video | тест 2: хук V001 кодом, ~60 % сходства (тест 1 — ~50–55 %)
+touched: wiki/analyses/reproduction-pipeline.md
