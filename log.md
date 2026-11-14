@@ -14,3 +14,6 @@ touched: wiki/craft/anim-skills-catalog.md, wiki/craft/style-bible.md, wiki/anal
 
 ## [2026-11-14 23:59] ingest | глубокое изучение 9 репо (+webgl-animation-skills) с тестовыми рендерами; решение по стеку
 touched: wiki/craft/skill-anidoodle.md, wiki/craft/skill-javascript-webgl-animation.md, wiki/craft/skill-huashu-art-motion.md, wiki/craft/skill-clawd-animation.md, wiki/craft/skill-handdraw-and-drawing.md, wiki/craft/skill-motion-manim.md, wiki/craft/anim-skills-catalog.md, index.md
+
+## [2026-11-15 00:40] video | тест 1: хук V001 кодом (three.js + 2D billboard), ~65 % сходства
+touched: wiki/analyses/reproduction-pipeline.md
