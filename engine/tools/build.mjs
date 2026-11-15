@@ -14,7 +14,7 @@ export async function buildFilm(arg, { out, minify = true } = {}) {
   const r = await build({
     stdin: { contents: entry, resolveDir: p.dir, sourcefile: 'entry.js', loader: 'js' },
     bundle: true, format: 'iife', minify, write: false, target: 'chrome120', legalComments: 'none',
-    alias: { engine: join(ENGINE, 'src') }, nodePaths: [join(ENGINE, 'node_modules')], loader: { '.json': 'json' },
+    alias: { engine: join(ENGINE, 'src') }, nodePaths: [join(ENGINE, 'node_modules')], loader: { '.json': 'json', '.png': 'dataurl', '.jpg': 'dataurl' },
     logLevel: 'warning',
   });
   const js = r.outputFiles[0].text.replace(/<\/script/gi, '<\\/script');
