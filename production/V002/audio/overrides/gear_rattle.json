@@ -1,0 +1,23 @@
+{
+ "anchor": 0.3259,
+ "origin": "recording",
+ "trim": [
+  3.06,
+  10.19
+ ],
+ "process": {
+  "fi": 0.1,
+  "fo": 0.3,
+  "gain_flat": 0.4
+ },
+ "source": {
+  "title": "Belt buckle - leather jacket",
+  "creator": "Vrymaa",
+  "url": "https://freesound.org/people/Vrymaa/sounds/734599",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/734/734599_13973196-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "45e39415-a649-4e7a-8494-8d165c433c2c"
+ }
+}

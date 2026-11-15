@@ -1,0 +1,22 @@
+{
+ "anchor": 0.0031,
+ "origin": "recording",
+ "trim": [
+  0.0,
+  1.0
+ ],
+ "process": {
+  "fi": 0.005,
+  "fo": 0.2
+ },
+ "source": {
+  "title": "Man Laugh",
+  "creator": "NinjaSharkStudios",
+  "url": "https://freesound.org/people/NinjaSharkStudios/sounds/649082",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/649/649082_4067-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "07e41743-0230-41a9-ab15-ed935c558d4a"
+ }
+}

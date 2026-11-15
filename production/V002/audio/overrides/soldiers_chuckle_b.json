@@ -1,19 +1,19 @@
 {
- "anchor": 0.0099,
+ "anchor": 0.0145,
  "origin": "recording",
  "trim": [
-  2.41,
-  3.13
+  7.9,
+  8.61
  ],
  "process": {},
  "source": {
-  "title": "Chuckles.mp3",
-  "creator": "se2001",
-  "url": "https://freesound.org/people/se2001/sounds/463814",
+  "title": "Male Dark/Evil Chuckle",
+  "creator": "cacti225",
+  "url": "https://freesound.org/people/cacti225/sounds/405613",
   "licence": "CC0 1.0",
   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-  "file_url": "https://cdn.freesound.org/previews/463/463814_8472935-hq.mp3",
+  "file_url": "https://cdn.freesound.org/previews/405/405613_5666031-hq.mp3",
   "via": "Openverse API (freesound)",
-  "openverse_id": "c3b99410-c288-48cf-8485-516553b56215"
+  "openverse_id": "9dc4903f-0baa-48c2-a07b-e6070c6c83da"
  }
 }

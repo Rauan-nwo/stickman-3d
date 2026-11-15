@@ -1,0 +1,22 @@
+{
+ "anchor": 2.7402,
+ "origin": "recording",
+ "trim": [
+  20.0,
+  28.0
+ ],
+ "process": {
+  "fi": 0.3,
+  "fo": 0.4
+ },
+ "source": {
+  "title": "summer meadow near village in the morning",
+  "creator": "Garuda1982",
+  "url": "https://freesound.org/people/Garuda1982/sounds/692048",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/692/692048_2061858-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "63bebe4b-1147-47a3-9be2-397203190d33"
+ }
+}

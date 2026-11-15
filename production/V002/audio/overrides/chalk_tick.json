@@ -1,0 +1,21 @@
+{
+ "anchor": 0.1202,
+ "origin": "recording",
+ "trim": [
+  0.51,
+  0.86
+ ],
+ "process": {
+  "fo": 0.05
+ },
+ "source": {
+  "title": "Chalk writing on board.mp3",
+  "creator": "mrrap4food",
+  "url": "https://freesound.org/people/mrrap4food/sounds/619018",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/619/619018_781461-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "83fbf696-d250-4f91-9e37-c87cf03a21a0"
+ }
+}

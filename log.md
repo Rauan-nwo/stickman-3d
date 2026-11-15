@@ -46,3 +46,6 @@ touched: production/V002/film.js, production/V002/ROUNDS.md, wiki/videos/V002-wh
 
 ## [2026-11-15 14:05] video | V002: правки Рауана (наложения, голоса героев, темп, звук), уроки прогона и памятка для продолжения
 touched: production/V002/HANDOFF.md, wiki/craft/production-workflow.md, engine/tools/voice_cast.py
+
+## [2026-11-15 15:10] setup | скилл stickman-3d переписан по итогам прогона и упакован: tools/skill/, tools/pack_skill.py, dist/stickman-3d.skill
+touched: tools/skill/SKILL.md, tools/skill/references/quality-gates.md, tools/skill/references/sound-design.md, tools/skill/scripts/setup.mjs, tools/pack_skill.py, .gitignore

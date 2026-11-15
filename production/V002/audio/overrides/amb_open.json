@@ -1,0 +1,23 @@
+{
+ "anchor": 0.219,
+ "origin": "recording",
+ "trim": [
+  10.0,
+  50.0
+ ],
+ "process": {
+  "lp": 3500,
+  "fi": 0.5,
+  "fo": 0.5
+ },
+ "source": {
+  "title": "Meadow field summer insects birds NOTL 190716.flac",
+  "creator": "TRP",
+  "url": "https://freesound.org/people/TRP/sounds/574105",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/574/574105_97550-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "0b1b3f20-ee09-4806-be4e-2b623d87fe47"
+ }
+}

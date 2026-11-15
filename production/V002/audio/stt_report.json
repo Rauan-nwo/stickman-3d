@@ -1,0 +1,25 @@
+{
+ "model": "small.en",
+ "script_words": 242,
+ "mix": {
+  "text": "He threw his army's only drum into the river  with the enemy an hour behind them.  His colonel grabs him by the collar.  That drum keeps 600 idiots in step.  But in step is the last thing he wants.  The only way out is a chain bridge over a gorge,  and he orders every man to cross  like he's never marched a day in his life.  So they shuffle across like 600 guys  looking for a bathroom.  On the ridge, the enemy general is crying, laughing.  That's not an army, that's a bag of spilled marbles.  His men are the finest marching army in the world.  2,000 boots that land as one.  So they march onto the bridge in perfect rows.  Left, right, left, right.  A few steps in, the bridge starts to bounce,  and the soldiers love it.  Some whistle and stomp harder.  By the middle, it's bouncing up to their knees.  You see, real armies have an order just for bridges.  Break step.  Ever pushed a kid on a swing?  Tiny pushes, but always at the same moment.  And soon he's over your head.  A bridge swings too.  And 2,000 boots landing together are one giant push.  His men hit it like rain, so the bridge never noticed.  But the finest marching army in the world  gives it 40 perfect pushes.  And on the 41st, the bridge bucks like a horse  and throws every one of them into the gorge.",
+  "words_not_returned": 0,
+  "diffs": []
+ },
+ "voice_only": {
+  "text": "He threw his army's only drum into the river, with the enemy an hour behind them.  His colonel grabs him by the collar.  That drum keeps 600 idiots in step!  But in step is the last thing he wants.  The only way out is a chain bridge over a gorge, and he orders every man to cross like  he's never marched a day in his life.  So they shuffle across like 600 guys looking for a bathroom.  On the ridge, the enemy general is crying, laughing.  That's not an army, that's a bag of spilled marbles.  These men are the finest marching army in the world, 2,000 boots that land as one.  So they march onto the bridge in perfect rows.  Left right left right.  A few steps in, the bridge starts to bounce, and the soldiers love it.  Some whistle and stomp harder.  By the middle, it's bouncing up to their knees.  You see, real armies have an order just for bridges.  Break step.  Ever pushed a kid on a swing?  Tiny pushes, but always at the same moment.  And soon he's over your head.  A bridge swings two, and 2,000 boots landing together are one giant push.  His men hit it like rain, so the bridge never noticed.  But the finest marching army in the world gives it 40 perfect pushes.  And on the 41st, the bridge bucks like a horse and throws every one of them into the gorge.",
+  "words_not_returned": 2,
+  "diffs": [
+   {
+    "sentence": 7,
+    "script": "his",
+    "heard": "these"
+   },
+   {
+    "sentence": 14,
+    "script": "too",
+    "heard": "two"
+   }
+  ]
+ }
+}

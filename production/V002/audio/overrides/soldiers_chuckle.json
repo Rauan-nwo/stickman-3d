@@ -1,19 +1,19 @@
 {
- "anchor": 0.0724,
+ "anchor": 0.0099,
  "origin": "recording",
  "trim": [
-  7.05,
-  7.92
+  2.41,
+  3.13
  ],
  "process": {},
  "source": {
-  "title": "Various Chuckles_Male.mp3",
-  "creator": "SnowFightStudios",
-  "url": "https://freesound.org/people/SnowFightStudios/sounds/643665",
+  "title": "Chuckles.mp3",
+  "creator": "se2001",
+  "url": "https://freesound.org/people/se2001/sounds/463814",
   "licence": "CC0 1.0",
   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-  "file_url": "https://cdn.freesound.org/previews/643/643665_12064174-hq.mp3",
+  "file_url": "https://cdn.freesound.org/previews/463/463814_8472935-hq.mp3",
   "via": "Openverse API (freesound)",
-  "openverse_id": "f75c4b5b-2ce8-4930-8ff5-13013b51f196"
+  "openverse_id": "c3b99410-c288-48cf-8485-516553b56215"
  }
 }

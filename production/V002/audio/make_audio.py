@@ -44,7 +44,9 @@ DUCK_MUSIC = -8.0  # how far mix.py pulls the music down under the voice
 DUCK_SFX = -3.0    # ...and the non-featured effects
 # effect levels that were tuned against the reference film (dB re voice, loudest 20 ms): its transition swishes
 # peak about 6 dB under the voice's median level in the 1.5-8 kHz band (see NOTES.md)
-LV_FX = {"throw": -3.0, "tumble": -8.0, "splash": -7.0, "whip": 1.0, "push": -3.0}
+import os
+FIFE_OCT = float(os.environ.get("FIFE_OCT", "-12"))   # register of the sampled flute line, semitones re the written tune
+LV_FX = {"throw": -3.0, "tumble": -8.0, "splash": -7.0, "whip": 7.0, "push": 1.0}
 DUCK_LINE_MUSIC = -12.0  # under the colonel's and the general's own lines: deeper, and featured cues are not exempt
 DUCK_LINE_SFX = -8.0
 
@@ -468,6 +470,8 @@ def make_grids(sc):
     g["t_you"] = sc.t(12, "You")
     g["B_post"] = [st[3] + k * P for k in range(1, 600) if st[3] + k * P <= g["t_you"] - 0.45 * P]       # on the bridge
     g["t_cut"] = sc.t(17, "forty-first")
+    # film.js T_CUT41: the cut to boot 41 hanging in the air (confirmed by the frame difference of out/raw.mp4)
+    g["t_drop"] = min(g["t_cut"] - 0.09, sc.start(17)) - 0.17
     g["F"] = [g["t_cut"] - j * P for j in range(1, 600) if g["t_cut"] - j * P >= sc.start(16) - 0.55 * P][::-1]
     g["t_bucks"] = sc.t(17, "bucks")
     # swing: the figure is pinned to four words and speeds up between them
@@ -808,7 +812,7 @@ class Session:
     def has(self, name):
         return (self.out / "overrides" / (name + ".wav")).exists()
 
-    def stem(self, name, audio, anchor=0.0, mode="peak20", measure="onset", maxlen=None):
+    def stem(self, name, audio, anchor=0.0, mode="peak20", measure="onset", maxlen=None, minlen=None):
         """Register a sound. `anchor` = seconds from the file start to the instant that must land on the cue.
         mode: how its level is defined ('peak20' loudest 20 ms for one-shots, 'rms' for textures)."""
         a = np.asarray(audio, dtype=float)
@@ -826,6 +830,14 @@ class Session:
                 side = json.load(open(jf, encoding="utf-8"))
                 anchor = float(side.get("anchor", anchor))
                 src = str(side.get("origin", src))            # 'recording' (Openverse) or 'earshot-bank'
+            if minlen is not None and len(a) < nsamp(minlen):  # a bed shorter than the film: loop it with crossfades
+                xf = min(nsamp(0.5), len(a) // 4)
+                body, out_ = a.copy(), a[:len(a) - xf].copy()
+                ramp = np.linspace(0, 1, xf)[:, None]
+                while len(out_) < nsamp(minlen):
+                    seam = a[len(a) - xf:] * (1 - ramp) + body[:xf] * ramp
+                    out_ = np.concatenate([out_, seam, body[xf:len(body) - xf]])
+                a = out_
             if maxlen is not None and len(a) > nsamp(maxlen):  # a recording longer than its slot: cut + fade
                 a = fade(a[:nsamp(maxlen)], 0.0, min(0.25, maxlen * 0.3))
         a = a * (lin(-3.0) / (np.max(np.abs(a)) + 1e-12))  # every stem file peaks at -3 dBFS
@@ -834,12 +846,14 @@ class Session:
         return name
 
     def place(self, name, cue, lvl, t=None, featured=False, key=False, note="", beat=None, length=None,
-              fin=0.0, fout=0.0, win=None):
+              fin=0.0, fout=0.0, win=None, skip=0.0):
         """Put stem `name` so that its anchor lands on `cue` (or on explicit time t derived from a cue + beats),
         at `lvl` dB re voice."""
         st = self.stems[name]
         time = self.sc.at(cue) if t is None else float(t)
         a = st["audio"]
+        if skip:
+            a = a[nsamp(skip) % max(1, len(a) - nsamp(length or 0.1)):]
         if length is not None:
             a = a[:nsamp(length)]
         if fin or fout:
@@ -858,11 +872,12 @@ class Session:
                           "featured": bool(featured), "window": round(win if win else min(len(a) / SR, 0.45), 3),
                           "key": bool(key), "measure": st["measure"], "source": st["src"], "note": note})
 
-    def real(self, name, cue, lvl, maxlen=None, mode="rms", **kw):
+    def real(self, name, cue, lvl, maxlen=None, mode="rms", minlen=None, **kw):
         """A sound that exists only as a recording (voices): placed when overrides/<name>.wav is there."""
         if not self.has(name):
             return False
-        self.stem(name, np.zeros(8), 0.0, mode=mode, measure="onset", maxlen=maxlen)
+        if name not in self.stems:
+            self.stem(name, np.zeros(8), 0.0, mode=mode, measure="onset", maxlen=maxlen, minlen=minlen)
         self.place(name, cue, lvl, **kw)
         return True
 
@@ -914,7 +929,7 @@ LV = {  # music levels, dB re voice, before ducking (loudest 20 ms of a full-vel
     "snare": -12.0, "bd": -9.0, "fife": -17.0, "fife2": -21.0,
     "step_bd": 1.0, "step_snare": -3.0, "land": 2.0,
     "you_hit": -7.0, "pizz": -8.0, "pizz_hi": -10.0, "wood": -15.0, "slide": -15.0,
-    "roll14": -8.0, "push": 1.0, "rain_pizz": -12.0, "bucks": 5.0,
+    "roll14": -8.0, "push": -1.0, "rain_pizz": -12.0, "bucks": 7.0,
 }
 
 
@@ -940,7 +955,26 @@ def build_music(sc, ses):
     sn_smp = [x / (np.max(np.abs(x)) + 1e-12) for x in sn_smp]
     sn_gain = [k_for(x) for x in sn_smp]
     roll_smp = read_wav(ovd / "snare_roll.wav").mean(axis=1) if (ovd / "snare_roll.wav").exists() else None
-    ses.music_src = {"snare": "recording" if sn_smp else "synth", "roll": "recording" if roll_smp is not None else "synth"}
+    fl_smp = []                                        # sustained flute notes (overrides/flute_note_*.wav + .json: midi)
+    for f in sorted(ovd.glob("flute_note_*.wav")):
+        jf = f.with_suffix(".json")
+        if jf.exists():
+            x_ = read_wav(f).mean(axis=1)
+            fl_smp.append((float(json.load(open(jf, encoding="utf-8"))["process"]["midi"]), x_ / (np.max(np.abs(x_)) + 1e-12)))
+    ses.music_src = {"snare": "recording" if sn_smp else "synth", "roll": "recording" if roll_smp is not None else "synth",
+                     "fife": "recording (two flute notes, sequenced)" if fl_smp else "synth"}
+
+    def sample_line(notes, total):
+        """The tune played on the recorded flute notes: each note is the nearest sample resampled to pitch,
+        an octave under the written line (a real flute's comfortable register, and out of the consonants' way)."""
+        y = np.zeros(nsamp(total))
+        for t0, d, midi, vel in notes:
+            m_ = midi + FIFE_OCT
+            sm, x_ = min(fl_smp, key=lambda q: abs(m_ - q[0]))
+            idx = np.arange(nsamp(d + 0.03)) * 2.0 ** ((m_ - sm) / 12.0)
+            idx = idx[idx < len(x_) - 1]
+            put(y, fade(np.interp(idx, np.arange(len(x_)), x_), 0.004, 0.05) * vel, t0, 1.0)
+        return y
 
     def snare(t, vel, lvl, far=False, head=0.85, flam=False, dur=0.40):
         cnt[0] += 1
@@ -1046,7 +1080,7 @@ def build_music(sc, ses):
             return
         a, b = notes[0][0] - 0.05, notes[-1][0] + notes[-1][1] + 0.1
         rel = [(t0 - a, d, m, v) for t0, d, m, v in notes]
-        y = flute_line(rel, b - a, rng_for("fife:" + name, int(a * 1000)))
+        y = sample_line(rel, b - a) if fl_smp else flute_line(rel, b - a, rng_for("fife:" + name, int(a * 1000)))
         i0 = int(a * SR)
         gcurve = lin(np.array([lvl_fn(a + j / SR) for j in range(0, len(y), 2205)]))
         y *= np.interp(np.arange(len(y)), np.arange(0, len(y), 2205), gcurve)
@@ -1054,7 +1088,8 @@ def build_music(sc, ses):
         return i0
 
     # reference level for the fife: a held note at full velocity
-    g_ff = float(lin(V_REF) / (rms(flute_line([(0.02, 0.6, A5, 1.0)], 0.7, rng_for("ref:ff"))[2000:24000]) * 0.7071))
+    g_ff = float(lin(V_REF) / (rms((sample_line([(0.02, 0.6, A5, 1.0)], 0.7) if fl_smp else
+                                    flute_line([(0.02, 0.6, A5, 1.0)], 0.7, rng_for("ref:ff")))[2000:24000]) * 0.7071))
 
     S, E = sc.start, sc.end
     t_he = sc.t(1, "He")
@@ -1228,12 +1263,13 @@ def build_music(sc, ses):
             return float(np.interp(t, [F[0], t_cut], [1.5, 4.0]))
         roll(max(E(15) + 0.2, F[0] - 1.3 * P), F[0], 0.15, 0.7, LV["snare"])
         i_dn = len(F) % 2
-        cadence(F, i_dn, i_dn, lv16, ["I", "J", "I", "A"], t_stop=t_cut)
-        tune(F, i_dn, THEME[13:] + THEME, lv16, tr["fife1"], transpose=5, t_stop=t_cut - 0.02, name="g1", bars=len(F) // 2 + 2)
-        tune(F, i_dn, HARM[13:] + HARM, lv16, tr["fife2"], transpose=5, t_stop=t_cut - 0.02, name="g2", bars=len(F) // 2 + 2)
+        cadence(F, i_dn, i_dn, lv16, ["I", "J", "I", "A"], t_stop=g["t_drop"])
+        tune(F, i_dn, THEME[13:] + THEME, lv16, tr["fife1"], transpose=(-7 if fl_smp else 5), t_stop=g["t_drop"] - 0.02, name="g1", bars=len(F) // 2 + 2)
+        tune(F, i_dn, HARM[13:] + HARM, lv16, tr["fife2"], transpose=(-7 if fl_smp else 5), t_stop=g["t_drop"] - 0.02, name="g2", bars=len(F) // 2 + 2)
         ses.mark("stems/mus_snare.wav", C(16, "But"), LV["snare"] + 3, t=F[0],
                  note="march at the limit, in G; the grid is counted back from 'forty-first' so the last beat is step 40")
-    ses.mark("music.wav", C(17, "forty-first"), -120.0, key=True, note="music cuts dead (8 ms)")
+    ses.mark("music.wav", C(17, "And", off=-0.17), -120.0, t=g["t_drop"], key=True,
+             note="silence-drop: music cuts dead (8 ms) on the cut to the hanging boot, before 'And on the forty-first'")
 
     # ---- 12. one huge hit on "bucks" ---------------------------------------------------------
     h = big_hit(rng_for("hit:bucks"), 1.0)
@@ -1297,7 +1333,7 @@ def build_music(sc, ses):
         v[:min(L_, len(parts[k_]))] = parts[k_][:L_]
         parts[k_] = v
     # the cut: everything that was playing dies in 8 ms on "forty-first"
-    i_cut = int(t_cut * SR)
+    i_cut = int(g["t_drop"] * SR)
     gate = np.ones(L_)
     ramp = nsamp(0.008)
     gate[i_cut - ramp:i_cut] = np.linspace(1, 0, ramp)
@@ -1358,13 +1394,19 @@ def build_sfx(sc, ses):
             t = taxis(0.3)
             hd = np.sin(TAU * np.cumsum(140 + 60 * np.exp(-t / 0.02)) / SR) * np.exp(-t / 0.085)
             hd += 0.3 * bp(r.standard_normal(len(t)), 1200, 5000, 1) * np.exp(-t / 0.06)
-        hd = lp(hd, 900 + 7000 * (1 - u) ** 2, 1)             # it recedes into the gorge
+        rate_ = 1.0 - 0.38 * u                                # falling away: each knock lower (Doppler-like), ...
+        hd = np.interp(np.arange(0, len(hd) - 1, rate_), np.arange(len(hd)), hd)
+        hd = lp(hd, 900 + 7000 * (1 - u) ** 2, 1)             # ... darker: it recedes into the gorge
         gk = lin(-17.0 * u)                                   # ... and gets quieter as it falls
         put(dry, hd, tk, gk)
         put(wet, hd, tk, gk * (0.3 + 0.5 * u))
         if i_ < 4:                                            # the sticks fly off
             sk = stick[:nsamp(0.12)] / (np.max(np.abs(stick)) + 1e-12) if stick is not None else woodblock(r.uniform(1700, 2600), r, 1.0)
             put(dry, sk, tk + 0.05 + r.uniform(0, 0.03), 0.4 * gk)
+    nfa = len(dry)                                            # the air it falls through: a soft rush that drops in pitch and fades
+    ufa = np.arange(nfa) / nfa
+    air = nbnoise(nfa, 1400 * (350 / 1400.0) ** np.clip(ufa * 1.3, 0, 1), 500, r) * np.sin(np.pi * np.clip(ufa * 1.25, 0, 1)) ** 2 * (1 - 0.7 * ufa)
+    dry += 0.16 * air
     tm = pan_move(dry, 0.1, -0.2)
     tw = reverb(wet, R["gorge"], -8.0)
     full = np.zeros((len(tw), 2))
@@ -1405,7 +1447,7 @@ def build_sfx(sc, ses):
 
     y, a = cloth(1.0)
     ses.stem("cloth_grab", room(y, R["field"], -18.0, 0.15), a)
-    ses.place("cloth_grab", C(2, "His"), -8, key=True, note="hand flies in (short whoosh before the word) and grabs the collar")
+    ses.place("cloth_grab", C(2, "colonel"), -8, key=True, note="hand flies in (short whoosh before the word) and grabs the collar")
     y, a = cloth(0.6)
     ses.stem("cloth_yank", room(lp(y, 3500, 1), R["field"], -18.0, -0.1), a)
     ses.place("cloth_yank", C(2, "collar"), -11, note="the yank towards camera")
@@ -1451,6 +1493,9 @@ def build_sfx(sc, ses):
         put(y, metal_tick(r, r.uniform(0.6, 0.9), 0.06), t0, 0.25 * np.max(np.abs(y)))
     ses.stem("chain_creak", room(lp(y, 5500, 1), R["gorge"], -14.0, -0.2), 0.047)
     ses.place("chain_creak", C(3, "last"), -8, key=True, note="iron link under load (stick-slip through metal resonances)")
+    for cue_, lv_ in ((C(9, "the"), -14), (C(10, "Some"), -12.5), (C(11, "By"), -11), (C(11, "bouncing"), -9.5),
+                      (C(14, "A", off=0.5), -13), (C(16, "But"), -11), (C(16, "gives"), -9)):
+        ses.place("chain_creak", cue_, lv_, note="chain load creak, louder as the wave grows")
 
     r = rng_for("wind")
     wn = nsamp(t_end + 1.0)
@@ -1464,11 +1509,29 @@ def build_sfx(sc, ses):
     w2 = nbnoise(wn, 930 + 380 * smooth_rand(wn, 0.4, r), 60, r) * gust ** 2.5 * 0.6
     wind += 0.35 * (pan(w1, -0.3) + pan(w2, 0.35))
     river = np.stack([bp(rng_for("river", c).standard_normal(wn), 250, 1400, 1) for c in range(2)], axis=1)
-    ses.stem("amb_gorge", wind + 0.25 * river, 0.0, mode="rms")
-    ses.place("amb_gorge", C(1, "He", off=0.15), -18, length=t_you - sc.t(1, "He") - 0.15, fin=0.4, fout=0.25,
-              note="location A/B ambience: wind over the gorge + the river far below")
-    ses.place("amb_gorge", C(12, "You"), -21, length=E(12) - t_you + 0.4, fin=0.25, fout=0.4, note="the same bridge on a calm day")
-    ses.place("amb_gorge", C(13, frac=1.0), -18, length=t_end - E(13), fin=0.3, fout=0.0, note="back at the gorge")
+    ses.stem("amb_gorge", wind + 0.25 * river, 0.0, mode="rms", minlen=t_end + 1.0)
+    amb_g = ses.stems["amb_gorge"]["audio"]
+    ses.stem("amb_lens", lp(amb_g, 900, 2), 0.0, mode="rms", measure="none")          # the gorge heard from the ridge
+    ses.stem("amb_under", lp(amb_g, 420, 2) + 0.5 * bp(amb_g, 90, 180, 2), 0.0, mode="rms", measure="none")   # under the deck
+    opn = np.zeros((wn, 2))
+    for ch in range(2):
+        r2 = rng_for("open:ch", ch)
+        opn[:, ch] = (0.5 + 0.5 * smooth_rand(wn, 0.25, r2)) * bp(r2.standard_normal(wn), 180, 1500, 1) \
+            + 0.08 * bp(r2.standard_normal(wn), 2500, 6000, 1)
+    ses.stem("amb_open", opn, 0.0, mode="rms", measure="none", minlen=t_end + 1.0)       # open valley air
+    ses.stems["amb_gorge"]["audio"] = ses.stems["amb_gorge"]["audio"]
+    AMB = [("amb_gorge", C(1, "He", off=0.15), S(6), -18, "location A: windy gorge, river far below"),
+           ("amb_open", C(6, "On"), sc.t(6, "That's"), -20, "location B: the ridge, open air"),
+           ("amb_lens", C(6, "That's"), S(7), -21, "through the spyglass: the gorge from far away"),
+           ("amb_open", C(7, "His"), S(8), -19, "location B: the valley, open air (distant drums are in the music)"),
+           ("amb_gorge", C(8, "So"), S(11), -18, "back on the bridge"),
+           ("amb_under", C(11, "By"), sc.t(11, "bouncing"), -15, "under the deck: the gorge through the planks, low resonance"),
+           ("amb_gorge", C(11, "bouncing"), S(12), -18, "on the deck"),
+           ("amb_gorge", C(12, "You"), S(13), -20, "the bridge head on a calm day"),
+           ("amb_gorge", C(14, "A"), t_end + 0.2, -18, "back at the gorge")]
+    for nm, cue_, t1_, lv_, note_ in AMB:
+        t0_ = sc.at(cue_)
+        ses.place(nm, cue_, lv_, length=t1_ - t0_ + 0.05, fin=0.05, fout=0.07, skip=t0_, note="AMBIENCE " + note_)
 
     r = rng_for("gust")
     gn = nsamp(2.6)
@@ -1504,6 +1567,7 @@ def build_sfx(sc, ses):
     full[:len(pb)] += pb
     full += pw
     ses.stem("pebble_fall", full, 0.0)
+    ses.place("pebble_fall", C(1, "threw", off=0.55), -16, length=1.1, fout=0.3, note="loose rocks rattling down the cliff beside the drum")
     ses.place("pebble_fall", C(4, "gorge"), -10, note="pebble ticks off the rock, each tick fainter and wetter, tiny plip 1.45 s later")
 
     # ---------- the blue army shuffles ----------
@@ -1524,6 +1588,32 @@ def build_sfx(sc, ses):
     ses.stem("soft_bump", room(bump, R["field"], -18.0, 0.0), 0.0)
     ses.place("soft_bump", C(6, "spilled", frac=0.5), -12, note="soft bump: two of them walk into each other")
     ses.place("soft_bump", C(6, "marbles", frac=0.6), -14, note="soft bump")
+    ses.place("stumble_steps", C(4, "cross"), -13, fout=0.2, note="the captain shows the walk: four wobbly steps on the planks")
+    ses.real("drum_plop", C(2, "drum", off=0.12), -11, mode="peak20", note="rings on the river where the drum went in: a small plop")
+    ses.real("adjutant_laugh", C(6, "crying", off=0.22), -16, maxlen=max(0.4, sc.t(6, "That's") - sc.t(6, "crying") - 0.3),
+             note="the adjutant laughs along")
+    ses.place("cloth_yank", C(4, "orders"), -17, note="the captain's arm goes up: sleeve")
+    ses.place("cloth_yank", C(12, "real", off=0.3), -17, note="the officer's arm goes up at the sign: sleeve")
+    r = rng_for("pat")
+    t = taxis(0.09)
+    pat = bp(r.standard_normal(len(t)), 700, 3500, 1) * np.exp(-t / 0.012)
+    ses.stem("hand_pat", room(pat, R["field"], -18.0, 0.0), 0.0)
+    for off_ in (-1.0, -0.74):
+        ses.place("hand_pat", C(2, "His", off=off_), -15, note="the captain dusts his hands after the throw (timing approximate)")
+    for off_ in (0.12, 0.36):
+        ses.place("hand_pat", C(17, "gorge", off=off_), -13, note="far bank: the captain dusts his hands")
+
+    # the red army on sand: unison steps (soft thud + grit), every second one lighter; gear and drums rattle
+    Rg_ = [tb for tb in g["R"] if sc.t(7, "finest") - 0.02 <= tb < g["t_land"] - 0.05]
+    t = taxis(0.22)
+    snd = lp(rng_for("sand").standard_normal(len(t)), 420, 2) * np.exp(-t / 0.03) * 3 + 0.5 * bp(rng_for("sand2").standard_normal(len(t)), 1500, 5000, 1) * np.exp(-t / 0.05) * (1 - np.exp(-t / 0.004))
+    ses.stem("sand_step", room(snd, R["field"], -16.0, 0.0), 0.0)
+    for k_, tb in enumerate(Rg_):
+        down = (len(g["R"]) - 1 - g["R"].index(tb)) % 2 == 0
+        ses.place("sand_step", C(7, "land"), -13 if down else -17, t=tb, beat=g["R"].index(tb) - (len(g["R"]) - 1), note="red army on sand, in unison")
+    for cue_, t1_, lv_ in ((C(7, "finest"), g["t_land"], -21), (C(8, "So"), g["t_you"], -20), (C(16, "But"), g["t_drop"], -19)):
+        ses.real("gear_rattle", cue_, lv_, minlen=t_end + 1.0, length=t1_ - sc.at(cue_), fin=0.15, fout=0.12, skip=sc.at(cue_),
+                 note="belts, muskets and drums rattling on the march")
 
     # ---------- voices (recordings only; nothing is placed when the file is missing) ----------
     t_l0, t_l1 = sc.t(6, "crying"), sc.t(6, "That's")
@@ -1567,6 +1657,8 @@ def build_sfx(sc, ses):
     boot(4, "L", C(14, "two"), -3, note="'two thousand boots landing together'")
     F = g["F"]
     for j, tb in enumerate(F):                              # forty perfect pushes
+        if tb >= g["t_drop"] - 0.01:                        # after the cut to boot 41 only the chalk counts
+            continue
         u = j / max(1, len(F) - 1)
         no = 41 - (len(F) - j)
         offb = (j - len(F) % 2) % 2 == 1
@@ -1575,7 +1667,16 @@ def build_sfx(sc, ses):
     r = rng_for("boot41")
     b41 = slowmo(boots(r, 1.0, nmen=10, spread=0.004), 0.55)
     ses.stem("boot_41_slowmo", room(b41, R["gorge"], -12.0, 0.0), 0.0)
-    ses.place("boot_41_slowmo", C(17, "forty-first"), 2, featured=True, key=True, win=0.5, note="push 41, slow motion: the same boots at 0.55 speed")
+    ses.place("boot_41_slowmo", C(17, "forty-first", off=0.5), 2, featured=True, key=True, win=0.5,
+              note="push 41 lands (film.js T_STOMP = forty-first + 0.5 s): the same boots at 0.55 speed")
+    r = rng_for("chalk")
+    t = taxis(0.16)
+    ck = bp(r.standard_normal(len(t)), 2200, 7000, 1) * (0.5 + 0.5 * smooth_rand(len(t), 90, r)) * np.sin(np.pi * t / 0.16) ** 0.5
+    ses.stem("chalk_tick", room(ck, R["field"], -20.0, -0.3), 0.0)
+    for i_, n_ in enumerate((38, 39, 40)):
+        ses.place("chalk_tick", C(17, "forty-first"), -11, t=g["t_cut"] + (i_ - 3) * P - 0.03, beat=i_ - 3, note="chalk tally: %d" % n_)
+    ses.place("chalk_tick", C(17, "forty-first", off=-0.03), -8, note="chalk: 41, underlined")
+    ses.place("chalk_tick", C(17, "forty-first", off=0.12), -9, note="chalk: the underline")
 
     # ---------- the deck starts to move ----------
     r = rng_for("plank")
@@ -1650,7 +1751,7 @@ def build_sfx(sc, ses):
         put(md, pan(bird(r, int(r.integers(0, 2))), r.uniform(-0.7, 0.7)), t0, r.uniform(0.3, 0.6))
         t0 += r.uniform(0.7, 1.4)
     ses.stem("amb_meadow", fade(md, 0.2, 0.3), 0.0, mode="rms", measure="none", maxlen=d13)
-    ses.place("amb_meadow", C(13, "Ever", off=-0.25), -17, note="the tree with the swing: air and far birds")
+    ses.place("amb_meadow", C(13, "Ever"), -17, fin=0.05, note="AMBIENCE location C: the meadow with the swing, air and far birds")
     r = rng_for("bird1")
     ses.stem("bird_meadow", room(bird(r, 1), R["field"], -14.0, -0.4), 0.0, maxlen=d13 - 0.3)
     ses.place("bird_meadow", C(13, "Ever"), -13, note="birds")
@@ -1665,19 +1766,18 @@ def build_sfx(sc, ses):
     tk = lp(strike(modal_ir(0.2, [(180, 0.03, 0.8), (820, 0.02, 1.0), (1340, 0.012, 0.5)]), r, 2.0), 3000, 1)
     ses.stem("push_tick", room(tk, R["field"], -18.0, 0.0), 0.0)
     sw, seg = g["swing"], g["swing_seg"]
-    for i_, tb in enumerate(sw):
-        ses.place("swing_creak_" + ("fwd" if i_ % 2 == 0 else "back"), C(13, "Ever"), -14 + 3.0 * i_ / max(1, len(sw) - 1),
-                  t=tb + 0.04, beat=i_, note="rope creak, one per swing")
-    first_push = True
-    n_push = 0
-    for i_, tb in enumerate(sw):
-        if (seg[i_] == 1 and first_push) or seg[i_] == 2:
-            cue = C(13, "Tiny") if seg[i_] == 1 else C(13, "always")
-            b0 = seg.index(seg[i_])
-            ses.place("push_tick", cue, -8, t=tb, beat=i_ - b0, key=(i_ == b0), note="push %d: always at the same moment" % (n_push + 1))
-            n_push += 1
-            if seg[i_] == 1:
-                first_push = False
+    t_at, t_mo = sc.t(13, "at"), sc.t(13, "moment")
+    PUSH = [(C(13, "Tiny"), None), (C(13, "always"), None), (C(13, "at"), None), (C(13, "moment"), None),
+            (C(13, "moment"), t_mo + (t_mo - t_at))]
+    pt_ = [sc.at(c_) if t_ is None else t_ for c_, t_ in PUSH]
+    for i_, (cue_, t_) in enumerate(PUSH):
+        ses.place("push_tick", cue_, -8, t=t_, beat=None, key=(i_ < 2), note="push %d of 5 (film.js PUSH)" % (i_ + 1))
+        ses.place("swing_creak_fwd", cue_, -13 + 0.7 * i_, t=pt_[i_] + 0.05, note="rope creaks as the seat goes out")
+        nxt = pt_[i_ + 1] if i_ + 1 < len(pt_) else pt_[i_] + (pt_[i_] - pt_[i_ - 1])
+        if nxt < S(14) - 0.2:
+            ses.place("swing_creak_back", cue_, -15 + 0.7 * i_, t=(pt_[i_] + nxt) / 2, note="rope creaks on the way back")
+    for tb in (sc.t(13, "Ever") + 0.25, sc.t(13, "kid"), sc.t(13, "swing")):
+        ses.place("swing_creak_back", C(13, "Ever"), -16, t=tb, note="the swing at rest sways: soft rope creak")
 
     # ---------- a bridge swings too ----------
     r = rng_for("bridge:creak")
@@ -1698,17 +1798,31 @@ def build_sfx(sc, ses):
     gr = creak(r, 0.8, [30, 26, 21], [(150, 18, 1.0), (290, 22, 0.9), (520, 25, 0.5)], noise=0.1)
     put(pt, gr[:nsamp(0.8)] * np.sin(np.pi * taxis(0.8) / 0.8), 0.18, 0.12 * np.max(np.abs(pt)) / (np.max(np.abs(gr)) + 1e-9))
     ses.stem("push_thump", room(pt, R["gorge"], -16.0, 0.0), 0.0)
-    ses.place("push_thump", C(14, "one"), 4, featured=True, key=True, win=0.45, note="ONE giant push: sub thump 82 -> 36 Hz, the deck groans after it")
+    ses.real("thump_real", C(14, "one"), -3, mode="peak20", featured=True, win=0.45, note="recorded heavy thud under the synthetic sub")
+    ses.place("push_thump", C(14, "one"), 2, featured=True, key=True, win=0.45, note="ONE giant push: sub thump 82 -> 36 Hz, the deck groans after it")
 
     # ---------- like rain ----------
     r = rng_for("rain")
     d15 = sc.t(15, "rain", frac=1.0) - S(15) + 0.5
     y = rain_steps(r, d15)
+    singles = [read_wav(f).mean(axis=1) for f in sorted((ses.out / "overrides").glob("step_single_*.wav"))]
+    if singles:                                             # the same shower of feet, made of recorded steps on wood
+        y = np.zeros((nsamp(d15 + 0.4), 2))
+        tt_ = 0.0
+        while tt_ < d15:
+            u = tt_ / d15
+            x_ = singles[int(r.integers(0, len(singles)))]
+            x_ = x_[int(np.argmax(np.abs(x_) >= 0.25 * np.max(np.abs(x_)))):]      # start on the step itself
+            x_ = fade(x_[:nsamp(0.22)] / (np.max(np.abs(x_)) + 1e-12), 0.0, 0.08)
+            put(y, pan(hp(x_, 250, 1), r.uniform(-0.9, 0.9)), tt_, lin(0.0 if tt_ == 0.0 else r.uniform(-12, 0)))
+            tt_ += r.exponential(1.0 / (7 + 14 * np.sin(np.pi * min(u * 1.15, 1.0)) ** 2))
     ses.stem("rain_steps", fade(y + reverb(y, R["field"], -15.0)[:len(y)], 0.0, 0.3), 0.0, mode="rms", measure="onset")
+    if singles:
+        ses.stems["rain_steps"]["src"] = "recording (assembled in code)"
     ses.place("rain_steps", C(15, "His"), -12, key=True, note="light dry taps at random times, thickening and thinning like a shower")
     r = rng_for("bird2")
     ses.stem("bird_chirp", room(bird(r, 0), R["field"], -13.0, 0.35), 0.0)
-    ses.place("bird_chirp", C(15, "bridge"), -8, key=True, note="the bird on the chain did not even move")
+    ses.place("bird_chirp", C(15, "never", off=0.15), -8, key=True, note="the bird on the chain did not even move")
 
     # ---------- forty perfect pushes ----------
     r = rng_for("bolt")
@@ -1730,12 +1844,12 @@ def build_sfx(sc, ses):
 
     # ---------- the forty-first ----------
     r = rng_for("subdrop")
-    d = max(0.5, min(1.4, t_bucks - t_cut + 0.25))
+    d = max(0.5, min(2.2, t_bucks - g["t_drop"] + 0.25))
     t = taxis(d)
     ph = TAU * np.cumsum(30 + 85 * np.exp(-t / 0.28)) / SR
     sd = (np.sin(ph) + 0.3 * np.sin(2 * ph) * np.exp(-t / 0.2)) * (1 - np.exp(-t / 0.008)) * np.exp(-t / 0.55)
     ses.stem("slowmo_subdrop", fade(pan(sd, 0.0), 0.0, 0.12), 0.0)
-    ses.place("slowmo_subdrop", C(17, "forty-first"), -2, key=True, note="slow motion: a tone falling 115 -> 30 Hz in the hole the music left")
+    ses.place("slowmo_subdrop", C(17, "And", off=-0.17), -4, t=g["t_drop"], key=True, note="slow motion: a tone falling 115 -> 30 Hz in the hole the music left")
     r = rng_for("riser")
     d = max(0.25, min(0.75, t_bucks - t_cut - 0.1))
     m = nsamp(d)
@@ -1768,9 +1882,9 @@ def build_sfx(sc, ses):
     full[:len(sn)] += sn
     full += snw
     ses.stem("bridge_snap", full, 0.0)
-    ses.real("bridge_crack", C(17, "bucks"), 1, mode="peak20", featured=True, win=0.6,
+    ses.real("bridge_crack", C(17, "bucks"), 4, mode="peak20", featured=True, win=0.6,
              note="recorded timber crack layered over the synthetic boom")
-    ses.place("bridge_snap", C(17, "bucks"), 5, featured=True, key=True, win=0.6, note="timber cracks, a chain parts and whips, sub boom, planks")
+    ses.place("bridge_snap", C(17, "bucks"), 7, featured=True, key=True, win=0.6, note="timber cracks, a chain parts and whips, sub boom, planks")
 
     r = rng_for("fall")
     d = max(0.4, t_end - sc.t(17, "throws") + 0.05)
@@ -1801,7 +1915,6 @@ def build_sfx(sc, ses):
                   note="one of many small splashes")
     ses.stem("splash_final", room(splash(rng_for("splash:final"), 1.0, 0.45), R["gorge"], -8.0, 0.0), 0.0)
     ses.place("splash_final", C(17, "gorge"), -4, key=True, note="the last one; everything stops with the word")
-    ses.real("drum_plop", C(17, "gorge", frac=0.62), -9, mode="peak20", note="the drum floating on the river bobs: a small plop")
 
     # ---------- camera whooshes: every whip between shots and every crash push ----------
     # The list mirrors film.js (shots that carry in:/out: whips, from = the same cue words) and its rule:

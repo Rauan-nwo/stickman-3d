@@ -1,11 +1,14 @@
 {
- "anchor": 0.0005,
+ "anchor": 0.0006,
  "origin": "recording",
  "trim": [
   0.01,
   0.47
  ],
- "process": {},
+ "process": {
+  "lp": 3500,
+  "gorge": -10
+ },
  "source": {
   "title": "Small Water Splash 1_1",
   "creator": "Joao_Janz",

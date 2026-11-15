@@ -47,6 +47,17 @@ SLOTS = {   # slot: (queries, min s, max s)
     # second batch: effects the listening check did not recognise either
     "wood_break": (["wood cracking breaking", "branch snap"], 0.3, 20),
     "steps_wood": (["footsteps on wooden floor", "crowd footsteps"], 1.0, 40),
+    # third batch: the full design pass (ambiences, missing foley, re-picks of weak sounds)
+    "amb_wind": (["wind canyon ambience", "wind howling"], 6.0, 120),
+    "amb_river": (["river stream ambience"], 6.0, 120),
+    "amb_field": (["open field ambience", "meadow summer ambience"], 6.0, 120),
+    "chalk": (["chalk writing"], 0.3, 30),
+    "flute_note": (["flute single note", "piccolo note", "recorder note"], 0.3, 12),
+    "swing_rope": (["rope swing tree creak", "swing set creak"], 0.5, 40),
+    "chuckle2": (["man chuckling", "short laugh male"], 0.4, 20),
+    "steps_sand": (["footsteps sand", "marching footsteps"], 1.0, 40),
+    "hand_pat": (["dusting hands", "hand claps brushing"], 0.2, 15),
+    "gear": (["leather creak belt", "backpack rattle"], 0.5, 30),
 }
 
 

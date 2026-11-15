@@ -88,10 +88,22 @@ def main():
         src = next((DL / slot).glob(id8 + ".*"))
         r = by_id[id8]
         x = decode(src)
-        x = process(x[int(t0 * SR):int(t1 * SR)] if t1 else x[int(t0 * SR):], o)
+        x = x[int(t0 * SR):int(t1 * SR)] if t1 else x[int(t0 * SR):]
+        extra = []
+        if o.get("mix"):                                     # a second recording under the first (river under the wind)
+            sl2, id2, a2, b2, g2, lp2 = o["mix"]
+            y2 = lp(decode(next((DL / sl2).glob(id2 + ".*")))[int(a2 * SR):int(b2 * SR)], lp2, 1)
+            m_ = min(len(x), len(y2))
+            x = x[:m_] * (lin(-3.0) / (np.sqrt(np.mean(x[:m_] ** 2)) * 8 + 1e-12))
+            x = x + y2[:m_] * (lin(g2) * np.sqrt(np.mean(x ** 2)) / (np.sqrt(np.mean(y2[:m_] ** 2)) + 1e-12))
+            extra.append((by_id[id2], a2, b2))
+        x = process(x, {k_: v_ for k_, v_ in o.items() if k_ != "mix"})
         write_wav(OV / (stem + ".wav"), x)
+        for r2, a2, b2 in extra:
+            lic2 = {"cc0": "CC0 1.0", "pdm": "Public Domain Mark 1.0"}[r2["licence"]]
+            credits.setdefault(r2["id"], (r2, lic2, []))[2].append("%s (%.2f–%.2f с, слой)" % (stem, a2, b2))
         lic = {"cc0": "CC0 1.0", "pdm": "Public Domain Mark 1.0"}[r["licence"]]
-        meta = {"anchor": round(anchor_of(x, o), 4), "origin": "recording", "trim": [t0, t1], "process": o,
+        meta = {"anchor": round(anchor_of(x, o), 4), "origin": "recording", "trim": [t0, t1], "process": {k_: (list(v_) if isinstance(v_, tuple) else v_) for k_, v_ in o.items()},
                 "source": {"title": r["title"], "creator": r["creator"], "url": r["landing"], "licence": lic,
                            "licence_url": r.get("licence_url"), "file_url": r["url"], "via": "Openverse API (%s)" % r.get("source"),
                            "openverse_id": r["id"]}}

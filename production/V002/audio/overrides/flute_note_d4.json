@@ -1,0 +1,24 @@
+{
+ "anchor": 0.0426,
+ "origin": "recording",
+ "trim": [
+  0.105,
+  1.6
+ ],
+ "process": {
+  "midi": 62,
+  "fi": 0.0,
+  "fo": 0.05,
+  "hp": 150
+ },
+ "source": {
+  "title": "overall quality of single note - flute - D4",
+  "creator": "sastesty",
+  "url": "https://freesound.org/people/sastesty/sounds/258199",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/258/258199_4783743-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "fd50a370-689e-443d-8c40-e2651e451db3"
+ }
+}

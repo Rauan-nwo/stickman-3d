@@ -1,0 +1,21 @@
+{
+ "anchor": 0.0127,
+ "origin": "recording",
+ "trim": [
+  9.25,
+  9.79
+ ],
+ "process": {
+  "fo": 0.06
+ },
+ "source": {
+  "title": "Walking On A Wooden Floor",
+  "creator": "ralph.whitehead",
+  "url": "https://freesound.org/people/ralph.whitehead/sounds/331447",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/331/331447_1971023-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "b1ef049e-3781-49bb-b014-011d5530030e"
+ }
+}

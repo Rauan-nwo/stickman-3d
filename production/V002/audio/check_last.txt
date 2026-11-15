@@ -1,0 +1,55 @@
+tempo 175.9 bpm (beat 341.0 ms), duration 68.447 s
+TIMING (stem onset vs cue word, ms; tolerance +-20):
+  boots_h3_L         8:left           cue  33.016  onset  33.016    +0.0 ms  [onset]
+  boots_h3_R         8:right          cue  33.398  onset  33.398    +0.0 ms  [onset]
+  boots_h3_L         8:left#2         cue  33.739  onset  33.739    +0.0 ms  [onset]
+  boots_h3_R         8:right#2        cue  34.039  onset  34.039    +0.0 ms  [onset]
+  throw_whoosh       1:threw          cue   0.247  onset   0.244    -3.4 ms  [peak]
+  splash_distant     1:river          cue   1.806  onset   1.806    -0.0 ms  [onset]
+  soldiers_clatter   2:six            cue   6.365  onset   6.365    +0.3 ms  [onset]
+  chain_creak        3:last           cue   9.153  onset   9.152    -0.8 ms  [onset]
+  stumble_steps      6:bag            cue  23.997  onset  23.997    +0.2 ms  [onset]
+  boots_h4_L         7:land           cue  29.506  onset  29.506    +0.2 ms  [onset]
+  sign_ding          12:You           cue  42.889  onset  42.890    +0.6 ms  [onset]
+  push_thump         14:one           cue  56.466  onset  56.466    +0.0 ms  [onset]
+  bolt_ping          16:forty         cue  62.607  onset  62.608    +0.6 ms  [onset]
+  bridge_snap        17:bucks         cue  65.716  onset  65.716    +0.0 ms  [onset]
+  other key cues: cloth_grab -0.0, cam_whoosh_0 -1.4, shuffle_steps -1.6, general_laugh -0.1, plank_creak_0 -4.9, soldiers_chuckle +0.0, whistle_march -5.9, push_tick +0.5, push_tick +0.5, kid_squeal +0.0, rain_steps +0.0, bird_chirp -0.1, slowmo_subdrop +5.2, boot_41_slowmo +0.6, falling_whistle -13.0, splash_final -14.1
+  max |error|: steps 0.0 ms, top-10 3.4 ms, all key cues 14.1 ms -> OK
+  music: the drum's last hit: bass drum + field drum flam, canyon r 1:He                 +0.0 ms
+  music: full march: tune enters one beat after the 4th step word a 8:right+1beat       +34.5 ms
+  music: the march is gone: one soft drum, then only a pad          12:You               +0.5 ms
+  music: swing figure: 7 beats pinned to Ever/Tiny/always/and, beat 13:Ever              +1.2 ms
+  music: silence-drop: music cuts dead (8 ms) on the cut to the han 17:And               -0.1 ms
+  music: bass drum + tom + field drum + dark crash, canyon reverb   17:bucks             +0.3 ms
+  hard stop music.wav last audible 68.4462 s, end of last word 68.4470 s
+  hard stop sfx.wav   last audible 68.4468 s, end of last word 68.4470 s
+CLIPPING: 90 files, hottest peak -1.00 dBFS, clipped: none
+MIX: -14.0 LUFS, LRA 1.6, TP -1.9 dBFS | m4a -14.0 LUFS, LRA 1.7, TP -1.6
+  longest below -40 dB: 0.000 s (quietest 50 ms: -39.6 dB at 23.48 s); below -35 dB: 0.220 s
+  gaps: 18, mean level median -19.7 dB (min -28.8, max -17.5), inside -20..-28: 6
+    after S1  them | his             t=  3.58 dur 0.23  mean  -24.2 dB  min50 -29.8
+    after S2  step | but             t=  7.99 dur 0.22  mean  -28.3 dB  min50 -32.8
+    after S3  wants | the            t= 10.22 dur 0.23  mean  -28.8 dB  min50 -35.6
+    after S4  life | so              t= 16.16 dur 0.23  mean  -23.2 dB  min50 -32.8
+    after S5  bathroom | on          t= 19.32 dur 0.23  mean  -20.0 dB  min50 -31.3
+    after S6  marbles | his          t= 25.47 dur 0.22  mean  -18.2 dB  min50 -35.0
+    after S7  one | so               t= 30.23 dur 0.23  mean  -21.5 dB  min50 -32.8
+    after S8  rows | left            t= 32.56 dur 0.46  mean  -20.1 dB  min50 -31.1
+    after S8  right | a              t= 34.39 dur 0.23  mean  -19.1 dB  min50 -27.5
+    after S9  it | some              t= 38.46 dur 0.23  mean  -19.3 dB  min50 -28.2
+    after S10 harder | by            t= 40.22 dur 0.23  mean  -19.2 dB  min50 -30.4
+    after S11 knees | you            t= 42.52 dur 0.37  mean  -17.5 dB  min50 -27.1
+    after S12 step | ever            t= 46.56 dur 0.23  mean  -19.0 dB  min50 -31.7
+    after S13 swing | tiny           t= 48.12 dur 0.73  mean  -27.5 dB  min50 -39.0
+    after S13 head | a               t= 52.75 dur 0.23  mean  -19.3 dB  min50 -33.7
+    after S14 push | his             t= 57.46 dur 0.23  mean  -19.4 dB  min50 -30.4
+    after S15 noticed | but          t= 60.30 dur 0.23  mean  -19.6 dB  min50 -32.2
+    after S16 pushes | and           t= 63.76 dur 0.41  mean  -19.8 dB  min50 -29.4
+  level under words -17.1 dB | L/R corr 0.960 | centroid 1080 Hz
+  bands: {'0-60': -32.3, '60-120': -27.7, '120-250': -23.5, '250-500': -25.1, '500-1000': -25.9, '1000-2000': -26.8, '2000-4000': -31.0, '4000-8000': -32.0, '8000-16000': -32.5}
+  step 1 in the mix (35-130 Hz): word 33.016, LF onset 33.014, -2.0 ms, LF peak -9.4 dB
+  step 2 in the mix (35-130 Hz): word 33.398, LF onset 33.397, -0.7 ms, LF peak -10.5 dB
+  step 3 in the mix (35-130 Hz): word 33.739, LF onset 33.737, -1.6 ms, LF peak -8.9 dB
+  step 4 in the mix (35-130 Hz): word 34.039, LF onset 34.037, -1.9 ms, LF peak -10.5 dB
+report: C:\dev\projects\youtube-video\production\V002\audio\check_report.json

@@ -1,0 +1,24 @@
+{
+ "anchor": 0.0,
+ "origin": "recording",
+ "trim": [
+  0.12,
+  3.5
+ ],
+ "process": {
+  "midi": 60,
+  "fi": 0.0,
+  "fo": 0.05,
+  "hp": 150
+ },
+ "source": {
+  "title": "overall quality of single note - flute - C4",
+  "creator": "yano1",
+  "url": "https://freesound.org/people/yano1/sounds/257363",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/257/257363_4755274-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "0f462f47-f6aa-45d8-a6cc-39403120695e"
+ }
+}

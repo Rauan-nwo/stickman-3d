@@ -1,0 +1,1062 @@
+{
+ "events": 103,
+ "with_cue": 103,
+ "new_in_this_pass": 29,
+ "rows": [
+  {
+   "t": 0.0,
+   "layer": "удар/акцент",
+   "seen": "барабан уже летит из рук капитана",
+   "sound": "последний удар барабана (музыка)",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 0.15,
+   "layer": "амбиенс",
+   "seen": "локация A: мост над ущельем",
+   "sound": "ветер ущелья, далёкая река",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": null,
+   "frame_ms": "—"
+  },
+  {
+   "t": 0.247,
+   "layer": "переход",
+   "seen": "бросок, камера летит за барабаном",
+   "sound": "свист броска",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 0.487,
+   "layer": "фоли",
+   "seen": "барабан кувыркается вдоль скалы вниз",
+   "sound": "удары барабана всё тише и ниже, палочки, воздух",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 0.747,
+   "layer": "фоли",
+   "seen": "рядом сыплются камни",
+   "sound": "стук камней",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": -0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 1.806,
+   "layer": "удар/акцент",
+   "seen": "всплеск, круги на воде",
+   "sound": "далёкий всплеск с хвостом (запись)",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 2.81,
+   "layer": "фоли",
+   "seen": "капитан отряхивает руки, ухмыляется",
+   "sound": "два хлопка ладоней",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 4.007,
+   "layer": "фоли",
+   "seen": "рука полковника хватает воротник",
+   "sound": "ткань: хватка",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 4.876,
+   "layer": "фоли",
+   "seen": "рывок капитана к полковнику, тряска",
+   "sound": "ткань: рывок",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 5.548,
+   "layer": "удар/акцент",
+   "seen": "полковник орёт (реплика)",
+   "sound": "отзвук барабана из ущелья",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 5.937,
+   "layer": "переход",
+   "seen": "переброс вниз: круги на реке",
+   "sound": "свист камеры",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+30"
+  },
+  {
+   "t": 5.937,
+   "layer": "фоли",
+   "seen": "круги там, где утонул барабан",
+   "sound": "бульк",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 6.365,
+   "seen": "переброс на колонну",
+   "plain_cut": true
+  },
+  {
+   "t": 6.365,
+   "layer": "фоли",
+   "seen": "синие налетают друг на друга",
+   "sound": "амуниция + тела",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 7.264,
+   "layer": "переход",
+   "seen": "переброс + наезд на рот полковника",
+   "sound": "свист камеры",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+69"
+  },
+  {
+   "t": 9.153,
+   "layer": "переход",
+   "seen": "переброс на цепь",
+   "sound": "свист камеры",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+14"
+  },
+  {
+   "t": 9.153,
+   "layer": "фоли",
+   "seen": "звено цепи под нагрузкой",
+   "sound": "скрип цепи (запись)",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 10.449,
+   "layer": "амбиенс",
+   "seen": "общий план ущелья",
+   "sound": "порыв ветра",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 11.308,
+   "layer": "переход",
+   "seen": "переброс + наезд на звено и доски",
+   "sound": "свист камеры",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+25"
+  },
+  {
+   "t": 11.308,
+   "layer": "фоли",
+   "seen": "звено цепи крупно",
+   "sound": "звяканье цепи",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 12.177,
+   "seen": "переброс вниз в ущелье",
+   "plain_cut": true
+  },
+  {
+   "t": 12.177,
+   "layer": "фоли",
+   "seen": "камень падает к реке",
+   "sound": "стук камня, плеск",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 13.036,
+   "layer": "фоли",
+   "seen": "капитан поднимает руку",
+   "sound": "рукав",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 13.967,
+   "layer": "переход",
+   "seen": "переброс: капитан идёт «как не маршировал»",
+   "sound": "свист камеры",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+33"
+  },
+  {
+   "t": 13.967,
+   "layer": "фоли",
+   "seen": "четыре ватных шага по доскам",
+   "sound": "спотыкающиеся шаги (запись)",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 15.331,
+   "layer": "переход",
+   "seen": "переброс на лица солдат",
+   "sound": "свист камеры",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+202"
+  },
+  {
+   "t": 16.391,
+   "layer": "фоли",
+   "seen": "синие вразнобой идут по мосту",
+   "sound": "шарканье многих ног по дереву",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 17.57,
+   "layer": "переход",
+   "seen": "переброс: кран над мостом",
+   "sound": "свист камеры",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "-37"
+  },
+  {
+   "t": 18.418,
+   "seen": "переброс на «ищущего туалет»",
+   "plain_cut": true
+  },
+  {
+   "t": 19.55,
+   "layer": "амбиенс",
+   "seen": "локация B: гребень холма",
+   "sound": "открытый воздух",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": null,
+   "frame_ms": "—"
+  },
+  {
+   "t": 19.55,
+   "layer": "музыка",
+   "seen": "красные далеко в долине",
+   "sound": "далёкая дробь",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 20.419,
+   "layer": "переход",
+   "seen": "переброс на лицо генерала",
+   "sound": "свист камеры",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+81"
+  },
+  {
+   "t": 21.277,
+   "layer": "фоли",
+   "seen": "генерал хохочет до слёз",
+   "sound": "смех (запись)",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 21.497,
+   "layer": "фоли",
+   "seen": "адъютант смеётся рядом",
+   "sound": "второй смех (запись)",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 22.57,
+   "layer": "переход",
+   "seen": "труба к глазу, пролёт сквозь линзу",
+   "sound": "свист наезда",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "-70"
+  },
+  {
+   "t": 22.57,
+   "layer": "амбиенс",
+   "seen": "в трубе: мост издалека",
+   "sound": "приглушённое ущелье",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": null,
+   "frame_ms": "—"
+  },
+  {
+   "t": 23.997,
+   "layer": "фоли",
+   "seen": "синие мечутся и спотыкаются (вместо шариков)",
+   "sound": "сбивчивые шаги",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 24.494,
+   "layer": "фоли",
+   "seen": "двое сталкиваются",
+   "sound": "мягкий толчок",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 25.689,
+   "layer": "амбиенс",
+   "seen": "локация B: долина, ряды красных",
+   "sound": "открытый воздух",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": null,
+   "frame_ms": "—"
+  },
+  {
+   "t": 25.689,
+   "layer": "музыка",
+   "seen": "барабанщики в строю",
+   "sound": "марш вблизи: малый барабан (запись)",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 26.433,
+   "layer": "переход",
+   "seen": "переброс в строй",
+   "sound": "свист камеры",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "нет всплеска"
+  },
+  {
+   "t": 26.433,
+   "layer": "фоли",
+   "seen": "красные шагают по песку в ногу",
+   "sound": "шаги по песку в унисон + амуниция",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": null,
+   "frame_ms": "—"
+  },
+  {
+   "t": 28.42,
+   "layer": "переход",
+   "seen": "переброс на сапоги",
+   "sound": "свист камеры",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+13"
+  },
+  {
+   "t": 29.506,
+   "layer": "удар/акцент",
+   "seen": "сапоги разом в песок, пыль, тряска",
+   "sound": "удар сапог + общий удар",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "-6"
+  },
+  {
+   "t": 30.461,
+   "layer": "амбиенс",
+   "seen": "локация A: красные входят на мост",
+   "sound": "ветер ущелья",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": null,
+   "frame_ms": "—"
+  },
+  {
+   "t": 30.461,
+   "layer": "фоли",
+   "seen": "строй идёт по доскам",
+   "sound": "сапоги по дереву в ногу + амуниция",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": null,
+   "frame_ms": "—"
+  },
+  {
+   "t": 31.598,
+   "layer": "переход",
+   "seen": "переброс: вид сверху на ряды",
+   "sound": "свист камеры",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+2"
+  },
+  {
+   "t": 33.016,
+   "layer": "удар/акцент",
+   "seen": "шаг 1: сапоги крупно, склейка на слово",
+   "sound": "сапоги + удар барабана",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 33.398,
+   "layer": "удар/акцент",
+   "seen": "шаг 2: сапоги крупно, склейка на слово",
+   "sound": "сапоги + удар барабана",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 33.739,
+   "layer": "удар/акцент",
+   "seen": "шаг 3: сапоги крупно, склейка на слово",
+   "sound": "сапоги + удар барабана",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "-39"
+  },
+  {
+   "t": 34.039,
+   "layer": "удар/акцент",
+   "seen": "шаг 4: сапоги крупно, склейка на слово",
+   "sound": "сапоги + удар барабана",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "-39"
+  },
+  {
+   "t": 34.089,
+   "layer": "фоли",
+   "seen": "звено цепи над ними вздрагивает",
+   "sound": "звяканье цепи",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 34.623,
+   "layer": "фоли",
+   "seen": "настил начинает играть",
+   "sound": "скрип досок",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 34.623,
+   "layer": "фоли",
+   "seen": "строй идёт, мост качает",
+   "sound": "сапоги в ногу, скрип досок каждые 4 шага",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": null,
+   "frame_ms": "—"
+  },
+  {
+   "t": 35.688,
+   "layer": "фоли",
+   "seen": "волна по цепям растёт",
+   "sound": "скрип цепи, громче с волной",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 36.536,
+   "layer": "переход",
+   "seen": "переброс на подпрыгивающих",
+   "sound": "свист камеры",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+64"
+  },
+  {
+   "t": 37.488,
+   "seen": "переброс на довольных солдат",
+   "plain_cut": true
+  },
+  {
+   "t": 37.488,
+   "layer": "фоли",
+   "seen": "солдаты улыбаются, один прыгает нарочно",
+   "sound": "смешки (запись)",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 38.692,
+   "layer": "фоли",
+   "seen": "цепи ходят сильнее",
+   "sound": "скрип цепи",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 38.941,
+   "layer": "фоли",
+   "seen": "солдат свистит, нотки",
+   "sound": "насвистывание (запись)",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 39.448,
+   "layer": "переход",
+   "seen": "переброс на сапоги",
+   "sound": "свист камеры",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+19"
+  },
+  {
+   "t": 39.448,
+   "layer": "удар/акцент",
+   "seen": "топают сильнее, пыль, тряска",
+   "sound": "тяжёлые сапоги",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": null,
+   "frame_ms": "—"
+  },
+  {
+   "t": 40.455,
+   "layer": "амбиенс",
+   "seen": "вид из-под моста",
+   "sound": "гул под настилом",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": null,
+   "frame_ms": "—"
+  },
+  {
+   "t": 40.455,
+   "layer": "фоли",
+   "seen": "настил ходит волной",
+   "sound": "скрип цепи",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 41.427,
+   "layer": "переход",
+   "seen": "переброс: качает до колен, генерал держит шляпу",
+   "sound": "свист камеры",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+73"
+  },
+  {
+   "t": 41.427,
+   "layer": "фоли",
+   "seen": "цепи на пределе",
+   "sound": "скрип цепи",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 42.869,
+   "layer": "переход",
+   "seen": "наезд на табличку ALL TROOPS MUST BREAK STEP",
+   "sound": "свист наезда",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+31"
+  },
+  {
+   "t": 42.889,
+   "layer": "удар/акцент",
+   "seen": "табличка",
+   "sound": "«динь» + мягкий удар",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 42.889,
+   "layer": "амбиенс",
+   "seen": "у въезда на мост, тихий день",
+   "sound": "ущелье тише",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": null,
+   "frame_ms": "—"
+  },
+  {
+   "t": 43.54,
+   "layer": "фоли",
+   "seen": "офицер перед колонной",
+   "sound": "свисток",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 43.84,
+   "layer": "фоли",
+   "seen": "офицер поднимает руку",
+   "sound": "рукав",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 45.918,
+   "layer": "переход",
+   "seen": "переброс на колонну",
+   "sound": "свист камеры",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+49"
+  },
+  {
+   "t": 45.918,
+   "layer": "фоли",
+   "seen": "колонна сбивает шаг",
+   "sound": "шаги вразнобой",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 46.792,
+   "layer": "амбиенс",
+   "seen": "локация C: луг, дерево, качели",
+   "sound": "луг, птицы (запись)",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": null,
+   "frame_ms": "—"
+  },
+  {
+   "t": 47.042,
+   "layer": "фоли",
+   "seen": "качели покачиваются",
+   "sound": "скрип верёвки",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": null,
+   "frame_ms": "—"
+  },
+  {
+   "t": 48.85,
+   "layer": "фоли",
+   "seen": "рука толкает качели, толчок 1",
+   "sound": "тычок + скрип верёвки",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 50.122,
+   "layer": "фоли",
+   "seen": "рука толкает качели, толчок 2",
+   "sound": "тычок + скрип верёвки",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 50.484,
+   "layer": "фоли",
+   "seen": "рука толкает качели, толчок 3",
+   "sound": "тычок + скрип верёвки",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 50.898,
+   "layer": "фоли",
+   "seen": "рука толкает качели, толчок 4",
+   "sound": "тычок + скрип верёвки",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 51.312,
+   "layer": "фоли",
+   "seen": "рука толкает качели, толчок 5",
+   "sound": "тычок + скрип верёвки",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": -0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 52.087,
+   "layer": "фоли",
+   "seen": "ребёнок улетает выше ветки, ботинки слетают",
+   "sound": "визг восторга (запись)",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 52.981,
+   "layer": "амбиенс",
+   "seen": "локация A: пустой мост качается",
+   "sound": "ветер ущелья",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": null,
+   "frame_ms": "—"
+  },
+  {
+   "t": 52.981,
+   "layer": "фоли",
+   "seen": "мост качается как качели",
+   "sound": "большой скрип дерева (запись)",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 54.666,
+   "layer": "удар/акцент",
+   "seen": "сапоги разом, пыль, тряска",
+   "sound": "удар сапог",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "-66"
+  },
+  {
+   "t": 55.394,
+   "layer": "переход",
+   "seen": "переброс на ряды сбоку",
+   "sound": "свист камеры",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+6"
+  },
+  {
+   "t": 56.466,
+   "layer": "удар/акцент",
+   "seen": "один гигантский толчок, настил проседает, тряска",
+   "sound": "низкий толчок + запись удара + барабан",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+34"
+  },
+  {
+   "t": 57.691,
+   "layer": "фоли",
+   "seen": "ноги синих вразнобой по доскам",
+   "sound": "шаги «как дождь» (из записей шагов)",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 59.118,
+   "layer": "переход",
+   "seen": "переброс: ровный мост сбоку",
+   "sound": "свист камеры",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+15"
+  },
+  {
+   "t": 59.625,
+   "seen": "переброс на птицу на цепи",
+   "plain_cut": true
+  },
+  {
+   "t": 59.775,
+   "layer": "фоли",
+   "seen": "птица на цепи не шелохнулась",
+   "sound": "чириканье (запись)",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 60.528,
+   "layer": "фоли",
+   "seen": "красные маршируют, мост ходит ходуном",
+   "sound": "сапоги, амуниция, скрип цепи",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": null,
+   "frame_ms": "—"
+  },
+  {
+   "t": 62.286,
+   "layer": "фоли",
+   "seen": "цепи растягиваются",
+   "sound": "скрип цепи",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 62.607,
+   "layer": "переход",
+   "seen": "переброс: общий план волны",
+   "sound": "свист камеры",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+26"
+  },
+  {
+   "t": 62.607,
+   "layer": "удар/акцент",
+   "seen": "болт вылетает",
+   "sound": "звон болта",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 62.667,
+   "layer": "фоли",
+   "seen": "звенья тянутся",
+   "sound": "стон металла (запись)",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 63.494,
+   "layer": "фоли",
+   "seen": "мел: 38",
+   "sound": "чирк мела",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 63.835,
+   "layer": "фоли",
+   "seen": "мел: 39",
+   "sound": "чирк мела",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 63.995,
+   "layer": "удар/акцент",
+   "seen": "склейка: сапог 41 висит в воздухе",
+   "sound": "ОБРЫВ музыки, остаётся ветер + суб-тон вниз",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": -0.0,
+   "frame_ms": "+5"
+  },
+  {
+   "t": 64.176,
+   "layer": "фоли",
+   "seen": "мел: 40",
+   "sound": "чирк мела",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 64.517,
+   "layer": "фоли",
+   "seen": "мел: 41, подчёркнуто",
+   "sound": "чирк мела",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 65.047,
+   "layer": "удар/акцент",
+   "seen": "сапог 41 опускается на доску, тряска",
+   "sound": "замедленный удар сапога",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "нет всплеска"
+  },
+  {
+   "t": 65.686,
+   "layer": "переход",
+   "seen": "мост встаёт на дыбы",
+   "sound": "свист + всасывание воздуха",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+47"
+  },
+  {
+   "t": 65.716,
+   "layer": "удар/акцент",
+   "seen": "мост подбрасывает всех (самый громкий момент)",
+   "sound": "треск дерева (запись) + удар + барабаны",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+17"
+  },
+  {
+   "t": 66.605,
+   "layer": "фоли",
+   "seen": "небо в фигурках, шляпах и барабанах",
+   "sound": "падающий свист",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 67.567,
+   "layer": "переход",
+   "seen": "переброс: вид сверху на реку",
+   "sound": "свист камеры",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+66"
+  },
+  {
+   "t": 67.567,
+   "layer": "фоли",
+   "seen": "фигурки сыплются в реку",
+   "sound": "много мелких всплесков (записи)",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": null,
+   "frame_ms": "—"
+  },
+  {
+   "t": 67.867,
+   "layer": "удар/акцент",
+   "seen": "дальний берег: у полковника отвисла челюсть",
+   "sound": "последний большой всплеск за кадром (запись)",
+   "has_cue": true,
+   "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "+33"
+  },
+  {
+   "t": 67.987,
+   "layer": "фоли",
+   "seen": "капитан отряхивает руки",
+   "sound": "два хлопка ладоней",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": -0.0,
+   "frame_ms": "—"
+  }
+ ]
+}

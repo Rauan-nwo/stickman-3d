@@ -25,8 +25,8 @@ PICKS = {
     "plank_creak_2": ("wood_creak", "2eb447ed", 0.00, 0.53, {}),
     "plank_creak_3": ("wood_creak", "84658657", 0.68, 0.89, {}),
     "bridge_creak": ("wood_creak", "05ee6729", 1.58, 3.29, {"gorge": -14, "fi": 0.03, "fo": 0.3}),
-    "swing_creak_fwd": ("chain", "5eee8fd9", 10.54, 11.20, {"fo": 0.2}),
-    "swing_creak_back": ("chain", "5eee8fd9", 12.98, 13.60, {"fo": 0.2}),
+    "swing_creak_fwd": ("rope_creak", "6ae1e276", 2.62, 3.45, {"fi": 0.01, "fo": 0.25}),      # a rope under load, not the metal swing set
+    "swing_creak_back": ("rope_creak", "6ae1e276", 20.82, 21.60, {"fi": 0.01, "fo": 0.25}),
     "metal_groan": ("metal_groan", "4669386e", 0.00, 1.34, {"gorge": -13, "pan": -0.2, "fi": 0.02}),
     "bridge_crack": ("wood_break", "93438db4", 0.75, 2.74, {"gorge": -12}),
     # people
@@ -36,15 +36,32 @@ PICKS = {
     "soldiers_bodies": ("collide", "80894069", 0.48, 0.97, {}),
     "soft_bump": ("collide", "e5cabe55", 0.28, 0.61, {"lp": 1800}),
     "general_laugh": ("laugh_man", "69e07131", 9.31, 10.74, {"fi": 0.005}),
-    "soldiers_chuckle": ("chuckle", "f75c4b5b", 7.05, 7.92, {}),
-    "soldiers_chuckle_b": ("chuckle", "c3b99410", 2.41, 3.13, {}),
+    "soldiers_chuckle": ("chuckle", "c3b99410", 2.41, 3.13, {}),          # AudioSet: Snicker / Chuckle (the first pick read as throat clearing)
+    "soldiers_chuckle_b": ("chuckle", "9dc4903f", 7.90, 8.61, {}),
+    "adjutant_laugh": ("laugh_man", "07e41743", 0.00, 1.00, {"fi": 0.005, "fo": 0.2}),
     "kid_squeal": ("kid", "9e08858d", 4.18, 4.81, {}),
     # feet
     "shuffle_steps": ("steps_wood", "f2a9b40e", 5.43, 9.05, {"fi": 0.01, "fo": 0.35}),
     "shuffle_steps_b": ("steps_wood", "6400bcb9", 9.98, 13.97, {"fi": 0.05, "fo": 0.35}),
     "stumble_steps": ("steps_wood", "010335f8", 0.50, 1.90, {"fi": 0.005, "fo": 0.25}),
     "breakstep_steps": ("steps_wood", "6400bcb9", 3.99, 7.00, {"fi": 0.03, "fo": 0.3}),
-    "drum_plop": ("splash_small", "c6e56f1c", 0.01, 0.47, {}),
+    "drum_plop": ("splash_small", "c6e56f1c", 0.01, 0.47, {"lp": 3500, "gorge": -10}),
+    "step_single_1": ("steps_wood", "010335f8", 3.87, 4.15, {"fo": 0.06}),    # single steps: the "rain" of feet is scattered from these
+    "step_single_2": ("steps_wood", "010335f8", 3.40, 3.85, {"fo": 0.06}),
+    "step_single_3": ("steps_wood", "010335f8", 0.55, 0.76, {"fo": 0.05}),
+    "step_single_4": ("steps_wood", "b1ef049e", 9.25, 9.79, {"fo": 0.06}),
+    "sand_step": ("steps_sand", "e43ccf34", 6.77, 7.08, {"fo": 0.08}),
+    "gear_rattle": ("gear", "45e39415", 3.06, 10.19, {"fi": 0.1, "fo": 0.3, "gain_flat": 0.4}),
+    "chalk_tick": ("chalk", "83fbf696", 0.51, 0.86, {"fo": 0.05}),
+    "thump_real": ("collide", "e2f533b4", 0.00, 1.00, {"lp": 420, "gorge": -16}),
+    # the fife: two sustained flute notes, sequenced as a sampler (make_audio.py), an octave under the old synth line
+    "flute_note_c4": ("flute_note", "0f462f47", 0.12, 3.50, {"midi": 60, "fi": 0.0, "fo": 0.05, "hp": 150}),
+    "flute_note_d4": ("flute_note", "fd50a370", 0.105, 1.60, {"midi": 62, "fi": 0.0, "fo": 0.05, "hp": 150}),
+    # ambiences (looped by make_audio.py when shorter than the film)
+    "amb_gorge": ("amb_wind", "257c9326", 4.0, 44.0, {"lp": 1600, "fi": 0.5, "fo": 0.5, "gain_flat": 2.0,
+                                                      "mix": ("amb_river", "6793c93d", 4.0, 44.0, -7.0, 2200)}),
+    "amb_open": ("amb_field", "0b1b3f20", 10.0, 50.0, {"lp": 3500, "fi": 0.5, "fo": 0.5}),
+    "amb_meadow": ("amb_field", "63bebe4b", 20.0, 28.0, {"fi": 0.3, "fo": 0.4}),
     # birds
     "bird_chirp": ("bird", "5e6e5327", 2.23, 3.62, {}),
     "bird_meadow": ("bird", "71d69c05", 1.17, 7.00, {"fi": 0.2, "fo": 0.4}),

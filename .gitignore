@@ -21,3 +21,4 @@ production/**/out/
 production/**/tmp/
 *.gray
 *.rgb
+dist/

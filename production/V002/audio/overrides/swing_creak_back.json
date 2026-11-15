@@ -1,21 +1,22 @@
 {
- "anchor": 0.0297,
+ "anchor": 0.0161,
  "origin": "recording",
  "trim": [
-  12.98,
-  13.6
+  20.82,
+  21.6
  ],
  "process": {
-  "fo": 0.2
+  "fi": 0.01,
+  "fo": 0.25
  },
  "source": {
-  "title": "sfx_swing_hojdacka.wav",
-  "creator": "bajko",
-  "url": "https://freesound.org/people/bajko/sounds/387896",
+  "title": "hanging3.wav",
+  "creator": "jameswrowles",
+  "url": "https://freesound.org/people/jameswrowles/sounds/274799",
   "licence": "CC0 1.0",
   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-  "file_url": "https://cdn.freesound.org/previews/387/387896_2341984-hq.mp3",
+  "file_url": "https://cdn.freesound.org/previews/274/274799_3874107-hq.mp3",
   "via": "Openverse API (freesound)",
-  "openverse_id": "5eee8fd9-2424-45cd-b011-0f0cd0a86dec"
+  "openverse_id": "6ae1e276-6af4-4338-b9c8-53d937ccbef0"
  }
 }
