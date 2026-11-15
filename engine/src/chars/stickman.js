@@ -563,12 +563,40 @@ function drawHead(x, S, p, VW) {
   // шляпа: подлетает от испуга (hatDy), догоняет голову после «тейка» (hatLag), приподнимается при подмигивании (hatTip)
   // + hatDx / hatRot: шляпа съезжает набок (рывок за воротник), hatOff — шляпы нет (слетела). Шляпа получает вид и позу.
   const hd = (p.hatDy || 0) * fs + (p.hatLag || 0) * -10 * fs, hr = (p.hatLag || 0) * .06 - (p.hatTip || 0) * .16 + (p.hatRot || 0), hx = (p.hatDx || 0) * fs;
-  if (S.shade && S.shade.head && S.shade.head.after) {                       // тень головы ПОСЛЕ лица и причёски: как в раунде 3 ложится и на волосы
-    const k = S.shade.head.clipK ?? 1.02; shadePart(x, sub => { if (!sub) x.beginPath(); x.moveTo(h.rx * k, 0); x.ellipse(0, 0, h.rx * k, h.ry * k, 0, 0, TAU); }, Math.max(h.rx, h.ry), S.shade, 'head');
-  }
   if (!p.hatOff) { if (hd || hr || hx) { x.save(); x.translate(hx, hd); x.rotate(hr); HATS[S.hat.type](x, h, S, VW, p); x.restore(); } else HATS[S.hat.type](x, h, S, VW, p); }
+  if (S.shade && S.shade.head && S.shade.head.after) headShade(x, S, h, VW, p, hd, hr, hx);
   x.restore();
 }
+
+// лонги: тень и тёплый свет на голове ВМЕСТЕ с причёской/шляпой — по общему силуэту (голова ∪ волосы ∪ шляпа).
+// Тень: силуэт минус он же, сдвинутый к свету, — серп с чётким краем по силуэту, multiply (волосы темнеют в своём тоне).
+// Свет: мягкое тёплое свечение (радиальный градиент со стороны источника), только внутри силуэта.
+const _hs = [];
+function headShade(x, S, h, VW, p, hd, hr, hx) {
+  const H = S.shade.head, d = Math.hypot(S.shade.dir[0], S.shade.dir[1]) || 1, dx = S.shade.dir[0] / d, dy = S.shade.dir[1] / d, R = Math.max(h.rx, h.ry);
+  const c = x.canvas, W = c.width, Hh = c.height, T = x.getTransform();
+  const buf = i => { let b = _hs[i]; if (!b || b.width !== W || b.height !== Hh) { b = _hs[i] = document.createElement('canvas'); b.width = W; b.height = Hh; } const o = b.getContext('2d'); o.setTransform(1, 0, 0, 1, 0, 0); o.globalAlpha = 1; o.globalCompositeOperation = 'source-over'; o.filter = 'none'; o.clearRect(0, 0, W, Hh); return [b, o]; };
+  const sil = (o, sx = 0, sy = 0) => { o.save(); o.setTransform(T); o.translate(sx, sy); o.lineCap = 'round'; o.lineJoin = 'round';
+    ell(o, 0, 0, h.rx + S.lw / 2, h.ry + S.lw / 2, '#000', null);
+    if (!p.hatOff) { o.save(); if (hd || hr || hx) { o.translate(hx, hd); o.rotate(hr); } HATS[S.hat.type](o, h, S, VW, p); o.restore(); }
+    o.restore(); };
+  const [A, a] = buf(0); sil(a);                                                   // силуэт
+  if ((H.k ?? .4) > 0) {
+    const [B, b] = buf(1); b.drawImage(A, 0, 0); b.globalCompositeOperation = 'destination-out';
+    const sh = H.shiftU ?? R * .42; sil(b, dx * sh, dy * sh);                                     // минус сдвинутый к свету
+    b.globalCompositeOperation = 'source-in'; b.fillStyle = H.color || '#55507e'; b.fillRect(0, 0, W, Hh);
+    x.save(); x.setTransform(1, 0, 0, 1, 0, 0); x.globalAlpha = H.k ?? .4; x.globalCompositeOperation = 'multiply'; x.drawImage(B, 0, 0); x.restore();
+  }
+  const G = H.glow;
+  if (G && G.k > 0) {
+    const [B, b] = buf(1); b.drawImage(A, 0, 0); b.globalCompositeOperation = 'source-in'; b.setTransform(T);
+    const gx = dx * R * 1.1, gy = dy * R * 1.1, gc = [1, 3, 5].map(i => parseInt(G.color.slice(i, i + 2), 16)).join(',');
+    const gr = b.createRadialGradient(gx, gy, R * .3, gx, gy, R * 1.6); gr.addColorStop(0, `rgba(${gc},1)`); gr.addColorStop(.45, `rgba(${gc},.55)`); gr.addColorStop(1, `rgba(${gc},0)`);
+    b.fillStyle = gr; b.fillRect(-R * 4, -R * 4, R * 8, R * 8);
+    x.save(); x.setTransform(1, 0, 0, 1, 0, 0); x.globalAlpha = G.k; x.drawImage(B, 0, 0); x.restore();
+  }
+}
+
 // шляпа отдельно от героя (слетела и летит): начало координат — центр головы
 export function drawHat(x, S, { view, facing = 1 } = {}, p = {}) { x.save(); x.lineCap = 'round'; x.lineJoin = 'round'; HATS[S.hat.type](x, S.head, S, view && view !== 'front' ? { view, facing } : null, p); x.restore(); }
 
