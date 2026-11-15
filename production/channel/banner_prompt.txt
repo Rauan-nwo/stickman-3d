@@ -1,0 +1,19 @@
+YouTube channel banner, exact size 2560x1440 pixels, landscape 16:9.
+
+STYLE: flat 2D cartoon stick-figure characters (perfectly round pure-white heads, thick dark-brown outline of constant weight, stick limbs that bend in soft arcs, bean-shaped bodies with flat-colour clothes and a soft gradient shade, simple dot eyes, expressive brows and mouths, each character identified by a distinctive hat) placed INSIDE a warm, stylized, Pixar/game-like 3D world with soft sun, gentle haze and slight depth of field. The characters are never lit or tinted by the scene: their heads stay pure white. Match the drawing style of the attached character sheet and the look of the attached reference frame exactly.
+
+COMPOSITION (important — YouTube crops banners on phones and TVs):
+- The SAFE AREA is the central 1546x423 px strip. Everything essential — the title and the main characters' faces — must sit inside that central strip, horizontally centred.
+- Outside the safe area only continuous scenery that can be cropped.
+
+SCENE: a wide panorama of a "world of clever inventions and weird history", read left to right: on the left a warm gold-mine tunnel entrance with wooden beams, rails and a mine cart full of gold, a hanging lamp; in the centre a sunny sandstone canyon with a wooden chain suspension bridge; on the right a western town street and a little hill with a small red-coated army and banners in the far distance. Blue sky gradient, a few soft clouds, pine trees, pale rocks.
+
+CHARACTERS (all from the attached sheet, same proportions and outline, standing in the central safe strip, on the bridge deck, interacting):
+1. the miner (brown wide-brim hat with round lamp badge, red plaid shirt, suspenders) winking and holding up a gold nugget;
+2. the buddy (yellow knit beanie, black hair fringe, teal sweater) looking amazed, mouth open "O";
+3. the rich guy (white top hat, white suit with red rose, handlebar moustache) laughing;
+4. the expert (black bowler hat, round glasses, burgundy coat) inspecting something with a magnifying glass.
+
+TITLE: in the centre of the safe strip, large bold text "RICK'S CLIPS" in a chunky rounded white typeface with a thick dark-brown outline and a soft drop shadow (the same feel as the characters' outlines), and below it a smaller line "weird history · clever tricks · how things worked" in white with dark outline. Spell the text exactly; no other text anywhere.
+
+MOOD: warm, playful, curious; palette of ochre, amber, warm brown and sky blue; clean, uncluttered, high readability at small size.

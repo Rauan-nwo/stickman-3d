@@ -23,3 +23,8 @@ production/**/tmp/
 *.rgb
 dist/
 vendor/
+
+# баннеры: исходники в git не кладём
+production/channel/*.png
+production/channel/*.jpg
+production/channel/refs/

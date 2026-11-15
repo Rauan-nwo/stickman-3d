@@ -1,0 +1,20 @@
+YouTube channel banner, exact size 2560x1440 pixels, landscape 16:9.
+
+STYLE: flat 2D cartoon stick-figure characters (perfectly round pure-white heads, thick dark-brown outline of constant weight, stick limbs that bend in soft arcs, bean-shaped bodies with flat-colour clothes and a soft gradient shade, simple dot eyes, expressive brows and mouths, each character identified by a distinctive hat) placed INSIDE a warm, stylized, Pixar/game-like 3D world with soft sun, gentle haze and slight depth of field. The characters are never lit or tinted by the scene: their heads stay pure white. Match the drawing style of the attached character sheet and the look of the attached reference frame exactly.
+
+COMPOSITION (critical — YouTube shows only the middle on phones):
+- Think of the image as 2560x1440. The SAFE BAND is x 507–2053, y 508–931: a horizontal strip in the vertical middle, from 35% to 65% of the height, centred.
+- EVERYTHING essential must fit inside that band: all four characters drawn SMALLER, from the hat tops down to the waist, with hat tops no higher than 36% of the image height; the title and the tagline to the RIGHT of the characters or as a compact block between them, all text between 40% and 62% of the height. Nothing important above 35% or below 65% of the height.
+- Above and below the band only continuous cropable scenery: sky and clouds at the top, the bridge deck, canyon and river at the bottom.
+
+SCENE: a wide panorama of a "world of clever inventions and weird history", read left to right: on the left a warm gold-mine tunnel entrance with wooden beams, rails and a mine cart full of gold, a hanging lamp; in the centre a sunny sandstone canyon with a wooden chain suspension bridge; on the right a western town street and a little hill with a small red-coated army and banners in the far distance. Blue sky gradient, a few soft clouds, pine trees, pale rocks.
+
+CHARACTERS (all from the attached sheet, same proportions and outline, standing in the central safe strip, on the bridge deck, interacting):
+1. the miner (brown wide-brim hat with round lamp badge, red plaid shirt, suspenders) winking and holding up a gold nugget;
+2. the buddy (yellow knit beanie, black hair fringe, teal sweater) looking amazed, mouth open "O";
+3. the rich guy (white top hat, white suit with red rose, handlebar moustache) laughing;
+4. the expert (black bowler hat, round glasses, burgundy coat) inspecting something with a magnifying glass.
+
+TITLE: in the centre of the safe strip, large bold text "RICK'S CLIPS" in a chunky rounded white typeface with a thick dark-brown outline and a soft drop shadow (the same feel as the characters' outlines), and below it a smaller line "weird history · clever tricks · how things worked" in white with dark outline. Spell the text exactly; no other text anywhere.
+
+MOOD: warm, playful, curious; palette of ochre, amber, warm brown and sky blue; clean, uncluttered, high readability at small size.

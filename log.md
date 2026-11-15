@@ -49,3 +49,6 @@ touched: production/V002/HANDOFF.md, wiki/craft/production-workflow.md, engine/t
 
 ## [2026-11-15 15:10] setup | скилл stickman-3d переписан по итогам прогона и упакован: tools/skill/, tools/pack_skill.py, dist/stickman-3d.skill
 touched: tools/skill/SKILL.md, tools/skill/references/quality-gates.md, tools/skill/references/sound-design.md, tools/skill/scripts/setup.mjs, tools/pack_skill.py, .gitignore
+
+## [2026-11-15 17:00] setup | SEO канала, данные загрузки V002, баннер (GPT Image, 2 варианта)
+touched: wiki/channel/seo.md, production/V002/upload.md, production/channel/banner_prompt*.txt, index.md
