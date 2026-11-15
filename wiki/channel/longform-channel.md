@@ -9,6 +9,8 @@ sources: [2026-11-15-paperbillions-transcripts.jsonl]
 
 # Новый канал лонгов: решения
 
+Стиль канала — **«Стикман Нуар»**, полное описание: [[stickman-noir]].
+
 Разбор конкурента — [[paperbillionstv]], стратегия и варианты — [[longform-hybrid-style]].
 
 ## Решения Рауана (2026-11-15)

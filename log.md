@@ -61,3 +61,6 @@ touched: wiki/channel/longform-channel.md, production/longform/style-test/bg_pro
 
 ## [2026-11-15 20:30] lint | чек-лист слоёв и движений; ведущий лонгов — moneyman; свет на героях в лонгах
 touched: wiki/craft/layering-and-motion.md, wiki/channel/longform-channel.md, tools/skill/references/quality-gates.md, tools/skill/SKILL.md, tools/pack_skill.py, index.md
+
+## [2026-11-16 12:00] setup | стиль «Стикман Нуар» утверждён и записан
+touched: wiki/craft/stickman-noir.md, wiki/channel/longform-channel.md, index.md
