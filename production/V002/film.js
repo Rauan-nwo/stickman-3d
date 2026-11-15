@@ -86,7 +86,7 @@ export default {
       out.copy(deckP(s, v)); out.y += R.hop * hopH(bph(t, s)) + (R.jump && R.jump(i, t) || 0); return out;
     };
     const red = new Crowd(stage, {
-      count: NR, shadow: { parent: g.group }, haze: .35, maxNear: 70, box: { x0: -500, x1: 500 }, cell: [214, 264],
+      count: NR, shadow: { parent: g.group }, haze: .35, maxNear: 70,
       clips: [{ char: redCh, gait: 'march', opt: { musket: true } },
         { char: drummer(), pose: (ch, ph, vw) => ACT.drumming(ch, 0, { phase: ph, ...vw }) },
         { char: redCh, pose: (ch, ph, vw) => { const P = ACT.bounce(ch, ph * .5, { period: .5, amp: 150, lift: false, face: 'grin', ...vw }); P.hatDy = -hatGap(ph) * 60; return P; } },
@@ -108,16 +108,19 @@ export default {
     const NHAT = 64;
     function flyers2D(ctx, t) {
       if (t >= R.fallT) return;
-      const pxs = stage.pxs();
+      const pxs = stage.pxs(), items = [];
       for (let i = 0; i < NHAT; i++) {
         const k = (i * 5) % NR, row = k >> 2, s = R.front - 1.6 - row * 1.15, a = t - R.buckT - rdel(k) - .03; if (a <= 0) continue;
         const p = launch(k, s, ((k & 3) - 1.5) * .42), q = rvel(k), isDrum = i % 13 === 5;
         p.x += q[0] * .7 * a + (hash(i * 6.6) - .5) * 4 * a; p.y += 1.5 + (q[1] * 1.12 + 2) * a - .5 * (GF - 3) * a * a; p.z += q[2] * 1.2 * a;
         const [x, y, d] = stage.project(p); if (d < .5) continue; const sc = pxs / d * U;
-        ctx.save(); ctx.translate(x, y); ctx.rotate(a * (4 + 6 * hash(i * 1.3)) * (i % 2 ? 1 : -1)); ctx.scale(sc, sc);
-        if (isDrum) drum2D(ctx, { x: 0, y: 0, s: 1.25, tilt: .5, col: '#D8402F', hoop: '#F2C530' }); else drawHat(ctx, redCh.spec, {}, {});
-        ctx.restore();
+        items.push({ p, d, draw: c2 => { c2.save(); c2.translate(x, y); c2.rotate(a * (4 + 6 * hash(i * 1.3)) * (i % 2 ? 1 : -1)); c2.scale(sc, sc);
+          if (isDrum) drum2D(c2, { x: 0, y: 0, s: 1.25, tilt: .5, col: '#D8402F', hoop: '#F2C530' }); else drawHat(c2, redCh.spec, {}, {}); c2.restore(); } });
       }
+      // перекрытие декорацией — пачками по глубине (от дальних к ближним): шляпа за цепью остаётся за цепью
+      items.sort((q1, q2) => q2.d - q1.d); const NBIN = 8;
+      for (let b0 = 0; b0 < items.length; b0 += Math.ceil(items.length / NBIN) || 1) { const grp = items.slice(b0, b0 + (Math.ceil(items.length / NBIN) || 1)); if (!grp.length) break;
+        stage.drawOccluded(grp[grp.length >> 1].p, c2 => { for (const it of grp) it.draw(c2); }, 0); }
     }
 
     // ---------- синие ----------
@@ -132,7 +135,7 @@ export default {
     const lurch = (t, row) => .34 * Math.max(0, Math.sin(TAU * (t - M.t0 - row * .12) / 1.05)) * smooth(seg(t, M.t0, M.t0 + .2));
     const HB = 37, HA = 38;                                           // «ищет туалет» и тот, кто расспрашивает соседей
     const blue = new Crowd(stage, {
-      count: NB, shadow: { parent: g.group }, haze: .35, maxNear: 70, seed: 4, box: { x0: -500, x1: 500 }, cell: [214, 264],
+      count: NB, shadow: { parent: g.group }, haze: .35, maxNear: 70, seed: 4,
       clips: [...SHUFFLES.map((gt, k) => ({ char: soldierBlue(k), gait: gt })),
         { char: soldierBlue(0), gait: 'stand' }, { char: soldierBlue(2), gait: 'stand' }, { char: soldierBlue(4), gait: 'stand' },
         { char: soldierBlue(1), gait: 'walk' }, { char: soldierBlue(3), gait: 'stumble' }, { char: soldierBlue(5), gait: 'walk' }, { char: soldierBlue(2), gait: 'run', opt: { panic: true } }],
@@ -152,6 +155,7 @@ export default {
       },
       state(i, t, m) {
         const o = blue.offsets[i];
+        if (M.mode === 'shuffle' && M.heroS != null && i !== HB && i !== HA && (m.pos.distanceTo(camera.position) < 2.6 || m.pos.x > -20 + M.heroS + .7)) m.hide = true;      // никого вплотную к объективу
         if (M.mode === 'shuffle') { m.clip = i === HB ? 4 : i === HA ? 9 : Math.floor(hash(i * 5.3 + 2) * 6); m.phase = t * 1.25 + o;
           if (i === HA && M.heroS != null) m.pose = p => ({ ...p, ...face('question'), turn: .2, mouth: 'o', look: [1, 0], tilt: .08 * Math.sin(t * 6) }); }
         else if (M.mode === 'mess') { m.phase = t * 1.5 + o; m.clip = Math.floor(hash(i * 5.3 + 2) * 6);
@@ -160,7 +164,9 @@ export default {
             if (i === PAIR[0] || i === PAIR[1]) { const sd = i === PAIR[0] ? -1 : 1, u = fract((t - M.t1) / 1.3), away = u < .5; m.heading = (sd < 0 ? 1 : -1) * PI / 2; m.clip = away ? 10 : 12; m.rot = away ? sd * -.5 * Math.exp(-u * 7) * Math.cos(u * 22) - sd * .25 * Math.exp(-u * 5) : 0; m.pos.y += away ? .35 * Math.sin(PI * clamp(u / .28)) : 0; } } }
         else if (M.mode === 'bump') { const row = Math.floor(i / 5), d = lurch(t, row), hit = lurch(t, row + 1) - d;            // hit > 0: сзади налетели
           m.clip = 9 + (i % 2) * 2; m.phase = t * 1.5 + o; m.rot = -.1 * d / .34;
-          m.pose = (p, mm) => ({ ...p, ...(hit > .12 ? face('yanked') : d > .2 ? { eyes: 'wide', mouth: 'o' } : face('annoyed')), hatLag: 1.6 * (d / .34) - 1.2 * Math.max(0, hit) / .34, hatDy: -22 * Math.max(0, hit) / .34 }); }
+          const F = hit > .12 ? [face('yanked'), { eyes: 'closed', mouth: 'wavy', brows: [14, .5] }, face('annoyed'), { eyes: 'wide', mouth: 'O' }][i % 4]
+            : [face('annoyed'), face('confused'), face('calm'), face('question'), { eyes: 'dot', mouth: 'flatS' }, { eyes: 'lid', mouth: 'smirkS', look: [-1, 0] }, face('worried')][(i * 3 + row) % 7];
+          m.pose = (p, mm) => ({ ...p, ...F, hatLag: 1.6 * (d / .34) - 1.2 * Math.max(0, hit) / .34, hatDy: -22 * Math.max(0, hit) / .34 }); }
         else if (M.mode === 'march') { m.clip = 9 + (i % 2) * 2; m.phase = t < M.breakT ? t * 1.58 : t * (1.1 + .8 * hash(i * 1.3)) + o; if (t >= M.breakT) { m.clip = Math.floor(hash(i * 5.3 + 2) * 6); } }
         else { m.clip = 6 + i % 3; m.phase = t * .5 + o;
           if (M.listen) m.pose = (p, mm) => { const f = i % 5, row = Math.floor(i / 5); if (row === 0 && f === 3) { const P = ACT.raiseHand(mm.c.char, t - M.listen, { view: mm.vw, facing: mm.fc }), a = P.arms[1]; if (a) { a.to = [a.to[0] + 120, a.to[1] - 30]; a.hand = 36; a.L *= 1.1; } return P; }
@@ -264,6 +270,7 @@ export default {
       let pc, collar;
       if (a < 0) { pc = ACT.dustHands(cap.char, t - c('2') + 1.2, {}); collar = [b.x - b.rx * .42, b.y - b.ry * .95]; }
       else { pc = ACT.yanked(cap.char, y > 0 ? .012 + y : .012 * reach, { dir: -1 }); const ex = -300 * yank; pc.dx = (pc.dx || 0) + ex; collar = [pc.collar[0] + ex + 14, pc.collar[1] - 22];
+        Object.assign(pc, face('annoyed'), { brows: [4, -.3], blink: a < .12, headDx: (pc.headDx || 0) * .5 });          // его дёргают, а он невозмутим: лёгкая досада, он знает, что делает
         pc.arms.forEach((ar, i) => { if (ar) { ar.to = [ar.from[0] + 50 + 110 * yank * (1 - .5 * seg(y, .2, .6)) + (i ? 50 : 0), ar.from[1] + 205 - 40 * yank]; ar.L = 262; ar.bend = 1; } }); }
       // полковник: одна рука, кисть — на воротнике у шеи капитана (экранная точка воротника -> координаты фигуры полковника).
       // Пока говорит рассказчик, рот сжат (зубы), лицо багровеет; кричит только на своих словах
@@ -360,7 +367,7 @@ export default {
     });
     const heroS = t => 21 + 1.0 * (t - c('5:looking'));
     shot('bathroom', c('5:looking'), {
-      camera: t => { const s = heroS(t), k = seg(t, c('5:looking'), c('6')); return look(dk(s + lerp(2.9, 2.5, k), 1.25, 3.5), dk(s - .3, .98, 1.0), 44); }, in: [-.7, 0],
+      camera: t => { const s = heroS(t), k = seg(t, c('5:looking'), c('6')); return look(dk(s + lerp(3.9, 3.4, k), 1.3, .15), dk(s - .4, 1.02, 1.0), 44); }, in: [-.7, 0],
       update(t, f) { M.mode = 'shuffle'; M.t0 = SHUF_T0; M.heroS = heroS(t); blue.update(t); f.look.focus = 3.6; f.look.aperture = .0025; },
       chars: t => blue.draw(t),
     });
@@ -386,7 +393,7 @@ export default {
         const ang = lerp(PI - .95 + .1 * Math.sin(t * 16), -PI / 2, raise), len = 310 * (1 - .9 * raise);
         pg.held = [{ layer: 'front', draw: x => { if (raise < .9) spyglass2D(x, { x: hand[0] - Math.cos(ang) * len * .3, y: hand[1] - Math.sin(ang) * len * .3, ang, len }); else lensFront(x, eye[0], eye[1]); } }];
         pa = { ...ACT.laughCry(ad.char, t + .2, va), tears: 0 }; }
-      const list = [[gen, pg], [ad, pa]].sort((p, q) => q[0].xf().d - p[0].xf().d); for (const [ac, p] of list) ac.draw(p);
+      const list = (mode === 'spy' ? [[gen, pg]] : [[gen, pg], [ad, pa]]).sort((p, q) => q[0].xf().d - p[0].xf().d); for (const [ac, p] of list) ac.draw(p);
     };
     const ridgeWorld = (t, f, name) => { g.focusOn(f.look, name); B.setMotion(); M.mode = 'shuffle'; M.t0 = SHUF_T0; M.s0 = 6; blue.update(t); g.enemyDust.set(null); };
     shot('ridge', c('6'), {
@@ -475,7 +482,7 @@ export default {
       chars: t => drawGen(genMarch(t), red, t),
     });
     shot('bounce', c('9:bounce'), {
-      camera: t => { const s = redFront(t) - 1.6 - 4 * 1.15; return look(dk(s + .9, .95, 4.3), dk(s + .1, 1.05, .9), 42); }, in: [0, .6], out: [-.8, 0],
+      camera: t => { const s = redFront(t) - 1.6 - 4 * 1.15; return look(dk(s + .9, 1.1, 5.2), dk(s + .1, 1.45, .9), 42); }, in: [0, .6], out: [-.8, 0],
       update(t, f) { redWorld(t, { hop: .28, amp: .22 }); f.look.focus = 3.5; f.look.aperture = .003; },
       chars: t => red.draw(t),
     });
@@ -654,7 +661,7 @@ export default {
     });
 
     // ============================== 17. Сорок первый ==============================
-    const T_CUT41 = Math.min(T41 - .09, c('17')), T_STOMP = T41 + .5;      // сапог 41 висит всю паузу перед «And on the forty-first», потом медленно идёт вниз
+    const T_CUT41 = Math.min(T41 - .09, c('17')) - .17, T_STOMP = T41 + .5;      // сапог 41 висит всю паузу перед «And on the forty-first», потом медленно идёт вниз
     shot('boot41', T_CUT41, {
       camera: keyed([[T_CUT41, look(dk(19.6, .22, 1.7), dk(18, .3, .1), 44)], [TB, look(dk(19.45, .2, 1.55), dk(18, .3, .1), 42), E.linear]]), hh: .1, mods: [shake(T_STOMP, 1.8, 2.6, 20)],
       update(t, f) { const a = t - T_STOMP; B.setMotion({ ...wave(T_CUT41 + (t - T_CUT41) * .25, .25), dips: a > 0 ? [{ u: .455, depth: .5 * (1 - Math.exp(-a * 5)), width: 3 }] : [] }); f.look.focus = 2; f.look.aperture = .004; },

@@ -1,0 +1,15 @@
+{
+ "anchor": 0.0018,
+ "origin": "earshot-bank",
+ "process": {},
+ "source": {
+  "bank_id": "fit/bell/small_bell",
+  "bank": "earshot 0.4.1 (MIT), rendered from code",
+  "fitted_from": {
+   "title": "Small Bell #2",
+   "creator": "steffcaffrey",
+   "url": "https://freesound.org/people/steffcaffrey/sounds/452379/",
+   "licence": "CC0 1.0"
+  }
+ }
+}

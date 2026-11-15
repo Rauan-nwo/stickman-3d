@@ -1,0 +1,22 @@
+{
+ "anchor": 0.6037,
+ "origin": "recording",
+ "trim": [
+  11.75,
+  15.45
+ ],
+ "process": {
+  "fi": 0.01,
+  "fo": 0.15
+ },
+ "source": {
+  "title": "Whistling_Tunes.wav",
+  "creator": "georgisound",
+  "url": "https://freesound.org/people/georgisound/sounds/369296",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/369/369296_6790631-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "5e776b1c-adf4-4d88-b709-6ade4663bef0"
+ }
+}

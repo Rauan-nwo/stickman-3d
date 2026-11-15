@@ -1,0 +1,37 @@
+splash_distant    z +3.45 strong    | like: an object plunging into water +3.5; a big drum hit +3.0 | AS: Sound effect 0.18, Bang 0.1 | p_real 0.84
+splash_final      z +3.46 strong    | like: an object plunging into water +3.2; ocean waves +2.7 | AS: Ocean 0.39, Waves, surf 0.38 | p_real 0.79
+splash_small_0    z +3.61 strong    | like: an object plunging into water +3.7; a water drop +3.1 | AS: Sound effect 0.11, Percussion 0.07 | p_real 0.96
+whistle_march     z +6.51 strong    | like: a kettle whistling +3.7; a balloon squeak +2.8 | AS: Whistling 0.88 | p_real 0.81
+chain_creak       z +3.50 strong    | like: a creaking door +3.0; a cinematic hit with a long tail +2.9 | AS: Music 0.47, Squeak 0.21 | p_real 0.91
+chain_clink       z +4.60 strong    | like: coins dropping +4.2; a bicycle bell +3.3 | AS: Sound effect 0.23, Music 0.08 | p_real 0.73
+plank_creak_0     z +4.19 strong    | like: a wood creak +3.6; a creaking door +3.5 | AS: Hum 0.08, Static 0.08 | p_real 0.95
+swing_creak_fwd   z +2.00 weak      | like: a creaking door +3.7; a finger squeaking on glass +3.0 | AS: Door 0.17, Cash register 0.07 | p_real 0.97
+bridge_creak      z +3.28 strong    | like: a plastic object falling on a table +3.0; a drawer closing +2.9 | AS: Crack 0.1, Music 0.06 | p_real 0.92
+metal_groan       z +3.31 strong    | like: a creaking door +2.5; a cinematic hit with a long tail +2.4 | AS: Sound effect 0.26, Scrape 0.16 | p_real 0.97
+cloth_grab        z +3.16 strong    | like: a body falling on the ground +3.2; cloth whipping through the air +2.9 | AS: Speech 0.03 | p_real 0.95
+soldiers_clatter  z +3.61 strong    | like: ice cubes in a glass +3.7; digging in soil +3.4 | AS: Gears 0.18, Mechanisms 0.15 | p_real 0.95
+bird_chirp        z +3.42 strong    | like: a record scratch +2.8; a bird chirping +2.8 | AS: Bird 0.67, Chirp, tweet 0.54 | p_real 0.95
+bird_meadow       z +3.54 strong    | like: skylarks over a meadow +3.9; birds singing in the morning +3.6 | AS: Bird vocalization, bird call, bird song 0.67, Chirp, tweet 0.64 | p_real 0.90
+general_laugh     z +4.85 strong    | like: a rooster crowing +2.1; ice cubes in a glass +2.1 | AS: Snicker 0.36, Chuckle, chortle 0.22 | p_real 0.99
+soldiers_chuckle  z +4.29 strong    | like: a punchy impact hit +2.2; keys jingling +1.9 | AS: Throat clearing 0.31, Sound effect 0.05 | p_real 1.00
+kid_squeal        z +5.46 strong    | like: a rooster crowing +2.8; a cow mooing +2.4 | AS: Giggle 0.37, Baby laughter 0.26 | p_real 0.98
+throw_whoosh      z +5.22 strong    | like: a fast whoosh +4.8; a stick swung fast through the air +3.4 | AS: Whoosh, swoosh, swish 0.3, Zipper (clothing) 0.24 | p_real 0.93
+drum_tumble       z +1.52 no match  | like: a snare hit +5.3; a box lid closing +2.7 | AS: Drum 0.38, Music 0.35 | p_real 0.16
+stumble_steps     z +4.79 strong    | like: footsteps on wood +4.2; a body falling on the ground +3.6 | AS: Knock 0.67, Tap 0.06 | p_real 0.96
+soft_bump         z +1.32 no match  | like: a body falling on the ground +3.1; a door slam +2.9 | AS: Slam 0.3, Door 0.2 | p_real 0.93
+bridge_crack      z +4.16 strong    | like: a plastic object falling on a table +2.9; dominoes falling +2.9 | AS: Tap 0.26, Sound effect 0.06 | p_real 0.88
+cam_whoosh_0      z +5.32 strong    | like: a fast whoosh +4.7; a whip pan transition +3.7 | AS: Zipper (clothing) 0.15, Sound effect 0.1 | p_real 0.85
+cam_push          z +4.86 strong    | like: a fast whoosh +4.9; a stick swung fast through the air +3.7 | AS: Slam 0.08, Door 0.08 | p_real 0.70
+drum_plop         z +3.11 strong    | like: an object plunging into water +3.5; pouring water +3.1 | AS: Dishes, pots, and pans 0.08, Breaking 0.06 | p_real 0.99
+shuffle_steps     z +3.49 strong    | like: digging in soil +3.7; footsteps on gravel +3.4 | AS: Scrape 0.42, Zipper (clothing) 0.24 | p_real 0.95
+boots_h4_L        z +2.54 plausible | like: a punchy impact hit +3.1; a kick drum +3.0 | AS: Sound effect 0.16, Music 0.14 | p_real 0.31
+sign_ding         z +3.34 strong    | like: a triangle hit +4.6; a bicycle bell +3.5 | AS: Bicycle bell 0.24, Ding 0.12 | p_real 0.99
+officer_whistle   z +2.51 plausible | like: an error buzz +3.5; a triangle hit +2.8 | AS: Buzzer 0.22, Whistle 0.12 | p_real 0.06
+push_thump        z +2.68 plausible | like: a deep cinematic boom +3.1; a sub bass drop +3.1 | AS: Sound effect 0.44, Music 0.24 | p_real 0.18
+rain_steps        z +0.74 no match  | like: bubbles underwater +3.5; a wooden block hit +3.2 | AS: Music 0.77, Sound effect 0.15 | p_real 0.21
+bolt_ping         z +3.43 strong    | like: a triangle hit +4.5; a glass ting +3.8 | AS: Ding 0.38, Bicycle bell 0.17 | p_real 0.86
+bridge_snap       z +1.91 no match  | like: a cinematic hit with a long tail +3.4; a notification ding +2.6 | AS: Music 0.6, Sound effect 0.23 | p_real 0.52
+falling_whistle   z +4.94 strong    | like: a downlifter falling sweep +3.7; a police siren +2.9 | AS: Sound effect 0.12, Explosion 0.05 | p_real 0.01
+boot_41_slowmo    z +1.94 no match  | like: a cinematic hit with a long tail +3.5; a deep cinematic boom +3.2 | AS: Music 0.57, Explosion 0.26 | p_real 0.79
+mus_snare         z +4.99 strong    | like: a snare hit +4.2; a rising riser building tension +2.3 | AS: Drum 0.79, Snare drum 0.69 | p_real 0.38
+mus_fife          z +3.68 strong    | like: a success chime +2.0; a bee flying by +1.8 | AS: Flute 0.89, Music 0.74 | p_real 0.26

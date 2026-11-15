@@ -1,0 +1,15 @@
+{
+ "anchor": 0.1606,
+ "origin": "earshot-bank",
+ "process": {
+  "dir": "cam",
+  "anchor": "peak",
+  "fo": 0.05,
+  "hp": 350
+ },
+ "source": {
+  "bank_id": "whoosh_fast/heavy",
+  "bank": "earshot 0.4.1 (MIT), rendered from code",
+  "fitted_from": null
+ }
+}

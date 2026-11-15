@@ -1,0 +1,21 @@
+{
+ "anchor": 0.0498,
+ "origin": "recording",
+ "trim": [
+  0.1,
+  1.02
+ ],
+ "process": {
+  "lp": 5000
+ },
+ "source": {
+  "title": "Cloth Grab",
+  "creator": "alegemaate",
+  "url": "https://freesound.org/people/alegemaate/sounds/667271",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/667/667271_2531187-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "d64194ff-4786-437c-a1c5-456fe1d36e44"
+ }
+}

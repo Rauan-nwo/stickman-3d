@@ -37,12 +37,12 @@ import { clamp, lerp, smooth, seg, E } from '../core/ease.js';
 import { hash } from '../core/rng.js';
 
 const VIEWS = ['front', 'threeQuarter', 'side', 'back'], TAU = Math.PI * 2, PI = Math.PI, fract = v => v - Math.floor(v);
-const BOX = { x0: -350, x1: 350, y0: -1190, y1: 44 };                       // область фигуры в ячейке, единицы рисунка
+const BOX = globalThis.__CROWD_LEGACY ? { x0: -350, x1: 350, y0: -1190, y1: 44 } : { x0: -560, x1: 560, y0: -1460, y1: 60 };                       // область фигуры в ячейке, единицы рисунка
 const N_TOP = 4, N_MARBLE = 12;
 
 const VS = `
 attribute vec3 iPos; attribute vec4 iUv; attribute vec4 iSize; attribute vec4 iA; attribute vec2 iB;
-uniform vec2 uRes; uniform float uPx, uBias;
+uniform vec2 uRes; uniform float uPx, uBias, uLegacy;
 varying vec2 vUv, vScr; varying float vLod, vAlpha, vDepth;
 void main() {
   vec2 q = position.xy; vUv = iUv.xy + q * iUv.zw; vLod = iA.y; vAlpha = iA.w;
@@ -58,18 +58,43 @@ void main() {
   vec2 ndc = n0 + (vec2(up.y, -up.x) * off.x + up * off.y) * (uPx / c0.w) * 2. / uRes;
   vec4 mvz = viewMatrix * vec4(iPos + vec3(0., clamp(off.y, 0., 3.), 0.), 1.); mvz.z += uBias;     // глубина — как у вертикальной плоскости
   vec4 cz = projectionMatrix * mvz;
-  gl_Position = vec4(ndc * cz.w, cz.z, cz.w); vDepth = -mv0.z; vScr = ndc * .5 + .5;
+  // w одна на весь прямоугольник (c0.w): иначе uv и экранная координата интерполируются с перспективой между верхом и низом
+  // (у них разная глубина) и рисунок внутри прямоугольника съезжает — «разрезанные» и удвоенные фигуры
+  gl_Position = uLegacy > .5 ? vec4(ndc * cz.w, cz.z, cz.w) : vec4(ndc * c0.w, cz.z / cz.w * c0.w, c0.w); vDepth = -mv0.z; vScr = ndc * .5 + .5;
 }`;
 const FS = `
-uniform sampler2D tMain, tFar, tNear; uniform vec3 uFog; uniform float uFogD, uHaze;
+uniform sampler2D tMain, tFar, tNear; uniform vec3 uFog; uniform float uFogD, uHaze, uLegacy; uniform vec2 uRes;
 varying vec2 vUv, vScr; varying float vLod, vAlpha, vDepth;
 void main() {
-  vec4 c = vLod > 1.5 ? texture2D(tNear, vScr) : mix(texture2D(tMain, vUv), texture2D(tFar, vUv), clamp(vLod, 0., 1.));
+  // ближний слой берётся строго по координате пикселя; дальний и подробный атласы — переключением, без смешения двух рисунков
+  vec4 c = vLod > 1.5 ? texture2D(tNear, uLegacy > .5 ? vScr : gl_FragCoord.xy / uRes) : (uLegacy > .5 ? mix(texture2D(tMain, vUv), texture2D(tFar, vUv), clamp(vLod, 0., 1.)) : (vLod > .5 ? texture2D(tFar, vUv) : texture2D(tMain, vUv)));
   if (c.a < .004) discard;
   float f = uHaze * (1. - exp(-uFogD * uFogD * vDepth * vDepth));
   c.rgb = mix(c.rgb, uFog * c.a, f);
   gl_FragColor = c * vAlpha;
 }`;
+
+// Ближний слой (не legacy): все ближние участники рисуются вектором в один экранный слой строго от дальних к ближним и выводятся
+// ОДНИМ полноэкранным проходом. Рядом с цветом рисуется «карта владельца»: силуэт каждого участника, залитый его удалением
+// (горизонтальная дистанция от камеры, 8 бит в диапазоне группы). Шейдер по ней восстанавливает глубину вертикальной плоскости
+// участника в этом пикселе и пишет её в gl_FragDepth — декорация перекрывает каждого участника по его собственной глубине,
+// каждый пиксель выводится один раз (полупрозрачные края не уплотняются), прямоугольников, которые могли бы резать фигуру, нет.
+const NEAR_VS = `void main() { gl_Position = vec4(position.xy, 0., 1.); }`;
+const NEAR_FS = `
+uniform sampler2D tNear, tOwner; uniform vec2 uRes, uTan, uC; uniform vec3 uNV, uFog; uniform float uP10, uP14, uBias, uFogD, uHaze;
+void main() {
+  vec2 uv = gl_FragCoord.xy / uRes; vec4 c = texture2D(tNear, uv); if (c.a < .004) discard;
+  vec4 o = texture2D(tOwner, uv); float cv = mix(uC.x, uC.y, o.a > .05 ? clamp(o.r / o.a, 0., 1.) : 0.);
+  vec2 nd = uv * 2. - 1.; vec3 dir = vec3(nd.x * uTan.x, nd.y * uTan.y, -1.);
+  float den = dot(uNV, dir), tz = max((den > .05 ? cv / den : cv) - uBias, .05);
+  gl_FragDepth = clamp((uP10 * (-tz) + uP14) / tz * .5 + .5, 0., 1.);
+  float f = uHaze * (1. - exp(-uFogD * uFogD * tz * tz)); c.rgb = mix(c.rgb, uFog * c.a, f);
+  gl_FragColor = c;
+}`;
+// обёртка над 2D-контекстом: рисует те же контуры, но одним цветом (для карты владельца)
+const flatCtx = (ctx, col) => { ctx.fillStyle = col; ctx.strokeStyle = col; return new Proxy(ctx, {
+  get(t, k) { const v = t[k]; return typeof v === 'function' ? v.bind(t) : v; },
+  set(t, k, v) { if (k === 'fillStyle' || k === 'strokeStyle') t[k] = col; else if (k === 'globalAlpha') t[k] = v > .3 ? 1 : 0; else t[k] = v; return true; } }); };
 
 export class Crowd {
   constructor(stage, o) {
@@ -82,7 +107,7 @@ export class Crowd {
     for (let i = 0; i < this.n; i++) this.offsets[i] = off === 'random' ? hash(i * 3.71 + (o.seed ?? 1) * 17.3) : typeof off === 'function' ? off(i) : off;
     this._v = new THREE.Vector3(); this._m = []; for (let i = 0; i < this.n; i++) this._m.push({ i, pos: new THREE.Vector3() });
     this.stats = { drawn: 0, near: 0, ms: 0 };
-    this._atlas(o.cell || [144, 264]); this._mesh();
+    this._atlas(o.cell || (globalThis.__CROWD_LEGACY ? [144, 264] : [200, 272])); this._mesh();
     if (o.shadow) this._shadows(o.shadow);
   }
   // ---------- атлас: клипы x (4 вида x P фаз + N_TOP видов сверху), затем шарик ----------
@@ -128,8 +153,15 @@ export class Crowd {
     this.mat = new THREE.ShaderMaterial({ vertexShader: VS, fragmentShader: FS, transparent: true, depthWrite: false, depthTest: true, side: THREE.DoubleSide,
       blending: THREE.CustomBlending, blendSrc: THREE.OneFactor, blendDst: THREE.OneMinusSrcAlphaFactor, blendSrcAlpha: THREE.OneFactor, blendDstAlpha: THREE.OneMinusSrcAlphaFactor,
       uniforms: { tMain: { value: this.tMain }, tFar: { value: this.tFar }, tNear: { value: this.tNear }, uRes: { value: new THREE.Vector2(this.stage.W, this.stage.H) }, uPx: { value: 1000 }, uBias: { value: this.bias },
-        uFog: { value: new THREE.Vector3(1, 1, 1) }, uFogD: { value: 0 }, uHaze: { value: 0 } } });
+        uFog: { value: new THREE.Vector3(1, 1, 1) }, uFogD: { value: 0 }, uHaze: { value: 0 }, uLegacy: { value: globalThis.__CROWD_LEGACY ? 1 : 0 } } });
     this.mesh = new THREE.Mesh(g, this.mat); this.mesh.frustumCulled = false; this.scene = new THREE.Scene(); this.scene.add(this.mesh); this.geo = g; this.cap = cap;
+    const st = this.stage, oc = document.createElement('canvas'); oc.width = st.W >> 1; oc.height = st.H >> 1; this.ownerCtx = oc.getContext('2d');
+    this.tOwner = new THREE.CanvasTexture(oc); this.tOwner.colorSpace = THREE.NoColorSpace; this.tOwner.premultiplyAlpha = true; this.tOwner.generateMipmaps = false; this.tOwner.minFilter = this.tOwner.magFilter = THREE.LinearFilter;
+    this.nearMat = new THREE.ShaderMaterial({ vertexShader: NEAR_VS, fragmentShader: NEAR_FS, transparent: true, depthWrite: false, depthTest: true,
+      blending: THREE.CustomBlending, blendSrc: THREE.OneFactor, blendDst: THREE.OneMinusSrcAlphaFactor, blendSrcAlpha: THREE.OneFactor, blendDstAlpha: THREE.OneMinusSrcAlphaFactor,
+      uniforms: { tNear: { value: this.tNear }, tOwner: { value: this.tOwner }, uRes: { value: new THREE.Vector2(st.W, st.H) }, uTan: { value: new THREE.Vector2(1, 1) }, uC: { value: new THREE.Vector2(0, 1) },
+        uNV: { value: new THREE.Vector3(0, 0, -1) }, uP10: { value: -1 }, uP14: { value: -1 }, uBias: { value: this.bias }, uFog: { value: new THREE.Vector3(1, 1, 1) }, uFogD: { value: 0 }, uHaze: { value: 0 } } });
+    this.nearMesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), this.nearMat); this.nearMesh.frustumCulled = false; this.nearMesh.renderOrder = 2; this.nearMesh.visible = false; this.scene.add(this.nearMesh);
   }
   _shadows({ parent, size = [.62, .26], opacity = .34, y = .012 }) {
     const m = new THREE.InstancedMesh(new THREE.PlaneGeometry(1, 1).rotateX(-PI / 2), new THREE.MeshBasicMaterial({ map: softTex(), color: 0x000000, transparent: true, opacity, depthWrite: false }), this.n);
@@ -180,9 +212,14 @@ export class Crowd {
     // ближние — всегда сплошная группа самых близких по глубине: если между двумя «векторными» участниками окажется участник
     // из атласа, прямоугольник более близкого перерисует поверх него дальнего соседа (шов по краю прямоугольника, «лицо из двух половин»)
     let near = list.filter(m => m.px > this.nearPx && (m.noTop || m.elev < 1.0));
-    if (near.length) { const dFar = near[0].d; near = list.filter(m => m.d <= dFar && (m.noTop || m.elev < 1.0)); }
+    if (near.length && !globalThis.__CROWD_LEGACY) { const dFar = near[0].d; near = list.filter(m => m.d <= dFar && (m.noTop || m.elev < 1.0)); }
     if (near.length > this.maxNear) near = near.slice(near.length - this.maxNear);
-    const isNear = new Set(near), nx = this.nearCtx;
+    const isNear = new Set(near), nx = this.nearCtx, LEG = !!globalThis.__CROWD_LEGACY, ox = this.ownerCtx;
+    // удаление участника вдоль горизонтального направления взгляда: по нему шейдер восстанавливает глубину его вертикальной плоскости
+    const fw = cam.getWorldDirection(new THREE.Vector3()), fh = new THREE.Vector3(fw.x, 0, fw.z); if (fh.lengthSq() < 1e-6) fh.set(0, 0, -1); fh.normalize();
+    let c0 = 0, c1 = 1;
+    if (near.length && !LEG) { c0 = Infinity; c1 = -Infinity; for (const m of near) { m.cv = fh.x * (m.pos.x - cp.x) + fh.z * (m.pos.z - cp.z); c0 = Math.min(c0, m.cv); c1 = Math.max(c1, m.cv); } c1 = Math.max(c1, c0 + .01);
+      ox.setTransform(1, 0, 0, 1, 0, 0); ox.globalAlpha = 1; ox.clearRect(0, 0, st.W >> 1, st.H >> 1); }
     if (near.length) {
       nx.setTransform(1, 0, 0, 1, 0, 0); nx.clearRect(0, 0, st.W, st.H);
       for (const m of near) {
@@ -194,10 +231,13 @@ export class Crowd {
           nx.scale(k * (1 + mk * .5), k * (m.noTop ? 1 : squashOf(m.elev)) * (1 - mk * 1.3)); if (m.air) nx.translate(0, -S.body.y);
           let pose = this.poseOf(c, m.phase, m.vw, m.fc); if (m.rot) pose = { ...pose, rot: m.rot }; if (m.pose) pose = m.pose(pose, m) || pose;
           drawStickman(nx, S, pose);
+          if (!LEG) { const g8 = Math.round(255 * (m.cv - c0) / (c1 - c0)), fx = flatCtx(ox, `rgb(${g8},${g8},${g8})`);
+            ox.save(); ox.scale(.5, .5); ox.translate(x0, y0); ox.rotate(Math.atan2(x1 - x0, -(y1 - y0))); ox.scale(k * (1 + mk * .5), k * (m.noTop ? 1 : squashOf(m.elev)) * (1 - mk * 1.3)); if (m.air) ox.translate(0, -S.body.y);
+            drawStickman(fx, S, pose); ox.restore(); ox.globalAlpha = 1; }
         }
         nx.restore();
       }
-      this.tNear.needsUpdate = true;
+      this.tNear.needsUpdate = true; if (!LEG) this.tOwner.needsUpdate = true;
     }
     // буферы экземпляров (дальние первыми)
     const A = this.a; let n = 0;
@@ -207,17 +247,24 @@ export class Crowd {
     };
     for (const m of list) {
       const c = m.c, un = c.unit * m.scale, wM = cw / s * un, hM = ch / s * un, mk = m.marble || 0, lod = clamp((62 - m.px * (this.BOX.y1 - this.BOX.y0) * s / ch) / 26);
-      if (isNear.has(m)) { put(m, 0, 2, 2, wM * 1.5, hM * 1.25, .5, m.air ? .5 : ay / 1.25 + .06, 0, 1, false, 1); continue; }
+      if (isNear.has(m)) { if (LEG) put(m, 0, 2, 2, wM * 1.5, hM * 1.25, .5, m.air ? .5 : ay / 1.25 + .06, 0, 1, false, 1); continue; }      // не legacy: ближние идут отдельным полноэкранным проходом
       if (mk >= .5) { const k = E.outBack(clamp((mk - .5) * 2)), r = wM * k * (this.o.marbleSize ?? .5); put(m, this.marbleBase + (Math.floor(fract(m.phase * .8) * N_MARBLE) % N_MARBLE), 0, lod, r, r, .5, .08, 0, m.alpha, false, 1, true); continue; }
       const top = !m.noTop && m.elev > .95 ? 1 : 0;                         // жёсткая смена: полупрозрачное наложение двух видов даёт муар
       if (top < 1) {
         const ph = Math.floor(fract(m.phase) * P) % P, idx = c.base + VIEWS.indexOf(m.vw) * P + ph, flip = m.fc < 0 && m.vw !== 'front' && m.vw !== 'back';
-        put(m, idx, 0, lod, wM * (1 + mk * .5), hM * (1 - mk * 1.3), ax, m.air ? ay + (-c.char.spec.body.y * s / ch) : ay, m.rot, m.alpha * (1 - top), flip, m.noTop ? 1 : squashOf(m.elev));
+        // поворот — как у ближних (по часовой, вокруг центра тела): у стоящего на земле якорь переносится в центр тела
+        const rotG = !LEG && m.rot && !m.air, by = -c.char.spec.body.y * un; if (rotG) m.pos.y += by;
+        put(m, idx, 0, lod, wM * (1 + mk * .5), hM * (1 - mk * 1.3), ax, (m.air || rotG) ? ay + (-c.char.spec.body.y * s / ch) : ay, LEG ? m.rot : -m.rot, m.alpha * (1 - top), flip, m.noTop ? 1 : squashOf(m.elev));
+        if (rotG) m.pos.y -= by;
       }
       if (top > 0) put(m, c.base + 4 * P + (Math.floor(fract(m.phase) * N_TOP) % N_TOP), 1, lod, wM, wM, .5, .5, 0, m.alpha * top, false, 1, true);
     }
     for (const k in A) A[k].needsUpdate = true; this.geo.instanceCount = n;
-    if (n) {
+    const hasNear = near.length > 0 && !LEG; this.mesh.visible = n > 0; this.nearMesh.visible = hasNear;
+    if (hasNear) { const q = this.nearMat.uniforms, pe = cam.projectionMatrix.elements, ty = Math.tan(cam.fov * PI / 360);
+      q.uTan.value.set(ty * cam.aspect, ty); q.uC.value.set(c0, c1); q.uNV.value.copy(fh).transformDirection(cam.matrixWorldInverse); q.uP10.value = pe[10]; q.uP14.value = pe[14]; q.uBias.value = this.bias;
+      q.uHaze.value = this.haze; if (this.haze > 0) { const col = new THREE.Color(this.o.hazeColor ?? st.look.fogColor); if (this.o.hazeColor == null) col.convertLinearToSRGB(); q.uFog.value.set(col.r, col.g, col.b); q.uFogD.value = this.o.hazeDensity ?? st.look.fogDensity; } }
+    if (n || hasNear) {
       const r = st.renderer, u = this.mat.uniforms, ac = r.autoClear;
       st.occlusionMask(cp, 0);                                             // глубина декорации уже лежит в буфере (или кладётся сейчас)
       u.uPx.value = pxs; u.uHaze.value = this.haze;
@@ -226,6 +273,7 @@ export class Crowd {
       cam.layers.set(0); r.render(this.scene, cam); r.autoClear = ac;
       st.resetCtx(); st.ctx.drawImage(st.gl, 0, 0);
     }
+    if (globalThis.__CROWD_AUDIT) crowdAudit(this, list, isNear, t);
     this.stats = { drawn: n, near: near.length, ms: performance.now() - t0 };
     return this.stats;
   }
@@ -239,3 +287,48 @@ export class Crowd {
 }
 // камера смотрит сверху — фигура укорачивается (частично: шляпа должна остаться читаемой)
 const squashOf = elev => lerp(1, Math.cos(Math.min(elev, 1.3)), .45 * smooth(seg(elev, .3, 1.0)));
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Проверка слоя толпы (tools/audit.mjs, страница открыта с ?audit=1): для каждого вызова draw() сравниваются два силуэта
+// в половинном размере — «как нарисовал конвейер» (атлас + ближний слой, без перекрытия декорацией) и «как должно быть»
+// (каждый участник целиком, вектором, строго от дальних к ближним, та же поза/фаза/вид). Чего нет в первом — обрезано
+// краем ячейки или прямоугольника; чего нет во втором — лишняя копия. Плюс счёт нарушений порядка: участник из атласа
+// ближе, чем кто-то из «векторных» ближних (тогда прямоугольник ближнего перерисовывает поверх него дальнего соседа).
+let _aud = null;
+function crowdAudit(cr, list, isNear, t) {
+  const st = cr.stage, W = st.W >> 1, H = st.H >> 1, A = globalThis.__CROWD_AUDIT, P = cr.P, pxs = st.pxs();
+  if (!_aud) { const mk = () => { const c = document.createElement('canvas'); c.width = W; c.height = H; return c.getContext('2d', { willReadFrequently: true }); }; _aud = { act: mk(), ref: mk() }; }
+  const r = st.renderer, u = cr.mat.uniforms, ac = r.autoClear, hz = u.uHaze.value;
+  // 1) конвейер без перекрытия декорацией
+  cr.mat.depthTest = false; cr.nearMat.depthTest = false; const hz2 = cr.nearMat.uniforms.uHaze.value; cr.nearMat.uniforms.uHaze.value = 0; u.uHaze.value = 0; r.autoClear = false; r.setRenderTarget(null); r.setClearColor(0x000000, 0); r.clear(true, true, false);
+  st.camera.layers.set(0); r.render(cr.scene, st.camera); r.autoClear = ac; cr.mat.depthTest = true; cr.nearMat.depthTest = true; cr.nearMat.uniforms.uHaze.value = hz2; u.uHaze.value = hz;
+  const xa = _aud.act; xa.setTransform(1, 0, 0, 1, 0, 0); xa.clearRect(0, 0, W, H); xa.drawImage(st.gl, 0, 0, W, H);
+  // 2) эталон: каждый участник целиком
+  const xr = _aud.ref; xr.setTransform(1, 0, 0, 1, 0, 0); xr.clearRect(0, 0, W, H); const v = new THREE.Vector3(), skip = [];
+  let order = 0, dNear = -1; for (const m of list) if (isNear.has(m)) { dNear = m.d; break; }
+  for (const m of list) {
+    const c = m.c, S = c.char.spec, near = isNear.has(m), mk = m.marble || 0;
+    if (!near && dNear > 0 && m.d < dNear - 1e-6) order++;
+    const [x0, y0] = st.project(m.pos), [x1, y1] = st.project(v.copy(m.pos).setY(m.pos.y + .2)), k = pxs / m.d * c.unit * m.scale;
+    if ((!near && m.elev > .95 && !m.noTop) || mk >= .5) { skip.push([x0 / 2, y0 / 2, k * 1300]); continue; }       // вид сверху и «шарик» — другой рисунок, не сравниваем
+    xr.save(); xr.scale(.5, .5); xr.translate(x0, y0); xr.rotate(Math.atan2(x1 - x0, -(y1 - y0)));
+    const sq = m.noTop ? 1 : squashOf(m.elev);
+    if (near) { xr.scale(k * (1 + mk * .5), k * sq * (1 - mk * 1.3)); if (m.air) xr.translate(0, -S.body.y);
+      let pose = cr.poseOf(c, m.phase, m.vw, m.fc); if (m.rot) pose = { ...pose, rot: m.rot }; if (m.pose) pose = m.pose(pose, m) || pose; drawStickman(xr, S, pose); }
+    else { const ph = (Math.floor(fract(m.phase) * P) % P + .5) / P, flip = m.fc < 0 && m.vw !== 'front' && m.vw !== 'back';
+      xr.scale(k * (1 + mk * .5) * (flip ? -1 : 1), k * sq * (1 - mk * 1.3)); if (m.air) xr.translate(0, -S.body.y);
+      let pose = cr.poseOf(c, ph, m.vw, 1); if (m.rot) pose = { ...pose, rot: flip ? -m.rot : m.rot }; drawStickman(xr, S, pose); }
+    xr.restore();
+  }
+  // 3) сравнение масок с допуском 3 px (половинный размер): толщина контура дальнего атласа и сглаживание не считаются
+  const a = xa.getImageData(0, 0, W, H).data, b = xr.getImageData(0, 0, W, H).data, N = W * H, ma = new Uint8Array(N), mb = new Uint8Array(N);
+  for (let i = 0; i < N; i++) { ma[i] = a[i * 4 + 3] > 90 ? 1 : 0; mb[i] = b[i * 4 + 3] > 90 ? 1 : 0; }
+  for (const [sx, sy, rr] of skip) { const R = Math.max(6, rr / 2); for (let y = Math.max(0, sy - R | 0); y < Math.min(H, sy + R); y++) for (let x = Math.max(0, sx - R | 0); x < Math.min(W, sx + R); x++) { ma[y * W + x] = 2; mb[y * W + x] = 2; } }
+  const dil = (src, R) => { const t1 = new Uint8Array(N), o = new Uint8Array(N);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { let q = 0; for (let d = -R; d <= R && !q; d++) { const xx = x + d; if (xx >= 0 && xx < W && src[y * W + xx]) q = 1; } t1[y * W + x] = q; }
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { let q = 0; for (let d = -R; d <= R && !q; d++) { const yy = y + d; if (yy >= 0 && yy < H && t1[yy * W + x]) q = 1; } o[y * W + x] = q; } return o; };
+  const da = dil(ma, 3), db = dil(mb, 3); let missing = 0, extra = 0;
+  for (let i = 0; i < N; i++) { if (mb[i] === 1 && !da[i]) missing++; if (ma[i] === 1 && !db[i]) extra++; }
+  A.push({ f: Math.round(t * st.FPS), n: list.length, near: isNear.size, missing, extra, order });
+  if (globalThis.__CROWD_AUDIT_DUMP) { const o = xa.createImageData(W, H); for (let i = 0; i < N; i++) { const mi = mb[i] === 1 && !da[i], ex = ma[i] === 1 && !db[i]; o.data[i * 4] = ex ? 255 : ma[i] === 1 ? 90 : 0; o.data[i * 4 + 1] = mi ? 255 : mb[i] === 1 ? 90 : 0; o.data[i * 4 + 2] = ma[i] === 2 ? 120 : 0; o.data[i * 4 + 3] = 255; } xa.putImageData(o, 0, 0); (globalThis.__CROWD_AUDIT_IMG = globalThis.__CROWD_AUDIT_IMG || []).push(xa.canvas.toDataURL('image/png')); }
+}

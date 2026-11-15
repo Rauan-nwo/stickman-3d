@@ -1,0 +1,19 @@
+{
+ "anchor": 0.0084,
+ "origin": "recording",
+ "trim": [
+  0.0,
+  0.53
+ ],
+ "process": {},
+ "source": {
+  "title": "wood creaks",
+  "creator": "seth-m",
+  "url": "https://freesound.org/people/seth-m/sounds/269722",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/269/269722_3366749-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "2eb447ed-b9cc-4438-98dc-1ea6411ac6ae"
+ }
+}

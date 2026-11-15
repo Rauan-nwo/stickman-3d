@@ -1,0 +1,23 @@
+{
+ "anchor": 0.0689,
+ "origin": "recording",
+ "trim": [
+  0.24,
+  1.78
+ ],
+ "process": {
+  "lp": 4500,
+  "gorge": -9,
+  "pan": 0.6
+ },
+ "source": {
+  "title": "small splash on water",
+  "creator": "ssierra1202",
+  "url": "https://freesound.org/people/ssierra1202/sounds/391966",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/391/391966_6450069-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "34db007b-5c73-4957-bd4f-50e23df423c3"
+ }
+}

@@ -1,0 +1,21 @@
+{
+ "anchor": 0.0187,
+ "origin": "recording",
+ "trim": [
+  0.68,
+  2.54
+ ],
+ "process": {
+  "gorge": -14
+ },
+ "source": {
+  "title": "5 meters dive.wav",
+  "creator": "bruno.auzet",
+  "url": "https://freesound.org/people/bruno.auzet/sounds/529794",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/529/529794_11519060-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "fce993b0-38b5-476e-9c8e-0aa8946650a3"
+ }
+}

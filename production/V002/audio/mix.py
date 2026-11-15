@@ -261,7 +261,7 @@ def main(argv=None):
     for attempt in range(5):
         final, rep_m, m4a_tp = master_once(pre, m0, out, tp_goal, a.no_m4a)
         tries.append({"wav_tp_target": round(tp_goal, 2), "wav_tp": final["TP"], "m4a_tp": m4a_tp})
-        if m4a_tp is None or m4a_tp <= TARGET_TP:
+        if m4a_tp is None or m4a_tp <= TARGET_TP - 0.1:      # the meter prints 0.1 dB steps: keep a step of margin
             break
         tp_goal -= (m4a_tp - TARGET_TP) + 0.1              # the AAC encoder overshoots: master lower and encode again
     gain, ceil, lim_gr, m1, p1, p2 = rep_m

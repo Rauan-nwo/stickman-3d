@@ -32,7 +32,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 from make_audio import SR, Script, read_wav, dbv  # noqa: E402
 
-TOP10 = ["throw_whoosh", "splash_distant", "soldiers_clatter", "chain_creak", "marbles", "boots_h4_L", "sign_ding",
+TOP10 = ["throw_whoosh", "splash_distant", "soldiers_clatter", "chain_creak", "stumble_steps", "boots_h4_L", "sign_ding",
          "push_thump", "bolt_ping", "bridge_snap"]
 
 

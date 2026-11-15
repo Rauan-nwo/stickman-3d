@@ -1,0 +1,24 @@
+{
+ "anchor": 0.0024,
+ "origin": "recording",
+ "trim": [
+  2.36,
+  3.48
+ ],
+ "process": {
+  "gorge": -16,
+  "pan": -0.2,
+  "fi": 0.003,
+  "fo": 0.2
+ },
+ "source": {
+  "title": "Boat_Chain_Creaking.wav",
+  "creator": "suonidigenova",
+  "url": "https://freesound.org/people/suonidigenova/sounds/55034",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/55/55034_680310-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "2155381d-a69f-4744-b84d-df9d023f1fea"
+ }
+}

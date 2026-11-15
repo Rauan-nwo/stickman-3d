@@ -385,6 +385,7 @@ const VIEWS = { threeQuarter: { turn: .3, comp: .86, hair: .2 }, side: { turn: .
 function viewHair(x, S, VW) {
   const h = S.head, C = S.colors, r = h.rx, ry = h.ry, fc = VW.facing, o = h.back || {};
   if (h.back === false) return;
+  if (VW.view !== 'back' && !globalThis.__CROWD_LEGACY) return;                 // «шлем» волос на затылке — только в виде со спины: в 3/4 и в профиль он читался как чёрная клякса поверх лица
   x.save(); x.beginPath(); x.ellipse(0, 0, h.rx - 3, h.ry - 3, 0, 0, TAU); x.clip(); x.fillStyle = o.col || C.hair || C.ink; x.beginPath();
   if (VW.view === 'back') {
     const y0 = ry * (o.y ?? .08), n = o.n ?? 4, w = r * 2.3 / n;

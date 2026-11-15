@@ -1,0 +1,15 @@
+{
+ "anchor": 0.0793,
+ "origin": "earshot-bank",
+ "process": {
+  "dir": "cam",
+  "anchor": "peak",
+  "fo": 0.03,
+  "hp": 700
+ },
+ "source": {
+  "bank_id": "swish/cane",
+  "bank": "earshot 0.4.1 (MIT), rendered from code",
+  "fitted_from": null
+ }
+}

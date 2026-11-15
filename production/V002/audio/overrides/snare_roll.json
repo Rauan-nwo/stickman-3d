@@ -1,0 +1,23 @@
+{
+ "anchor": 0.0027,
+ "origin": "recording",
+ "trim": [
+  0.15,
+  7.8
+ ],
+ "process": {
+  "gain_flat": 0.2,
+  "fi": 0.01,
+  "fo": 0.05
+ },
+ "source": {
+  "title": "snare roll hit crash.flac",
+  "creator": "zemidlo",
+  "url": "https://freesound.org/people/zemidlo/sounds/165523",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/165/165523_1080202-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "9cc5ec07-af69-45b6-bb87-0b7299b17d0d"
+ }
+}

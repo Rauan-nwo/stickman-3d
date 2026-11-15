@@ -43,3 +43,6 @@ touched: wiki/craft/style-bible.md
 
 ## [2026-11-15 10:55] video | V002: первая полная сборка (картинка, голос Liam, звук, субтитры), status: production
 touched: production/V002/film.js, production/V002/ROUNDS.md, wiki/videos/V002-why-soldiers-never-march-across-bridges.md, engine/
+
+## [2026-11-15 14:05] video | V002: правки Рауана (наложения, голоса героев, темп, звук), уроки прогона и памятка для продолжения
+touched: production/V002/HANDOFF.md, wiki/craft/production-workflow.md, engine/tools/voice_cast.py

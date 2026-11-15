@@ -26,7 +26,7 @@ from make_audio import SR, fade, hp, lp, irs, room, write_wav, lin, nsamp  # noq
 DL, BANK, OV = HERE / "sourcing" / "dl", HERE / "sourcing" / "bank", HERE / "overrides"
 
 # stem: (slot, id8, start s, end s, options)
-#   options: fi / fo fades (s), lp (Hz), gorge (wet dB: far away in the canyon), gain_flat (level the envelope),
+#   options: fi / fo fades (s), hp / lp (Hz), gorge (wet dB: far away in the canyon), gain_flat (level the envelope),
 #            anchor ("peak" | seconds | None = first sample over 10 % of the peak)
 PICKS = {}
 # stem: (bank id as rendered in sourcing/bank/<stem>/, options)
@@ -48,7 +48,7 @@ def env(x, win=0.005):
 
 
 def process(x, o):
-    x = hp(x, 50.0, 2)
+    x = hp(x, o.get("hp", 50.0), 2)                          # "hp": thin a whoosh down to its air (tight, clear of the voice's body)
     if o.get("gain_flat"):                                   # steady level: divide by a slow envelope
         e = np.maximum(env(x, o["gain_flat"]), 1e-4)
         x = x / (e / np.median(e))[:, None]
@@ -66,8 +66,8 @@ def anchor_of(x, o):
         return float(np.argmax(env(x))) / SR
     if isinstance(a, (int, float)):
         return float(a)
-    thr = 0.1 * np.max(np.abs(x))
-    return float(np.argmax(np.max(np.abs(x), axis=1) >= thr)) / SR
+    e = env(x, 0.003)                                        # the same onset rule check.py measures with
+    return float(np.argmax(e >= 0.25 * e.max())) / SR + o.get("anchor_shift", 0.0)
 
 
 def main():

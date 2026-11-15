@@ -1,0 +1,23 @@
+{
+ "anchor": 0.1288,
+ "origin": "recording",
+ "trim": [
+  0.0,
+  1.34
+ ],
+ "process": {
+  "gorge": -13,
+  "pan": -0.2,
+  "fi": 0.02
+ },
+ "source": {
+  "title": "Metallic groan long.wav",
+  "creator": "Crinkem",
+  "url": "https://freesound.org/people/Crinkem/sounds/481787",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/481/481787_3544425-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "4669386e-5f8a-4c24-bd9a-6fa0abb77b4b"
+ }
+}

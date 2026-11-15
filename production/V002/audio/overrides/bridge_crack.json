@@ -1,0 +1,21 @@
+{
+ "anchor": 0.1032,
+ "origin": "recording",
+ "trim": [
+  0.75,
+  2.74
+ ],
+ "process": {
+  "gorge": -12
+ },
+ "source": {
+  "title": "Crack and Crunch",
+  "creator": "Aurelon",
+  "url": "https://freesound.org/people/Aurelon/sounds/422623",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/422/422623_8455865-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "93438db4-ac2d-4ec0-9c3d-ecf8fa0dbb02"
+ }
+}

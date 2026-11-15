@@ -1,0 +1,17 @@
+{
+ "anchor": 0.0081,
+ "origin": "earshot-bank",
+ "process": {
+  "dir": "cam"
+ },
+ "source": {
+  "bank_id": "fit/hit/bamboo_tok",
+  "bank": "earshot 0.4.1 (MIT), rendered from code",
+  "fitted_from": {
+   "title": "Bamboo hit",
+   "creator": "michorvath",
+   "url": "https://freesound.org/people/michorvath/sounds/386888/",
+   "licence": "CC0 1.0"
+  }
+ }
+}

@@ -1,0 +1,21 @@
+{
+ "anchor": 0.0227,
+ "origin": "recording",
+ "trim": [
+  0.28,
+  0.61
+ ],
+ "process": {
+  "lp": 1800
+ },
+ "source": {
+  "title": "Body fall_01.wav",
+  "creator": "deleted_user_2104797",
+  "url": "https://freesound.org/people/deleted_user_2104797/sounds/346695",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/346/346695_2104797-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "e5cabe55-c35a-48d1-8ff8-1b8e8244630e"
+ }
+}

@@ -1,0 +1,19 @@
+{
+ "anchor": 0.0252,
+ "origin": "recording",
+ "trim": [
+  0.36,
+  0.68
+ ],
+ "process": {},
+ "source": {
+  "title": "Wood Creak Single V6",
+  "creator": "Rudmer_Rotteveel",
+  "url": "https://freesound.org/people/Rudmer_Rotteveel/sounds/506661",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/506/506661_4921277-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "84658657-2af5-45af-a303-56e503956fad"
+ }
+}

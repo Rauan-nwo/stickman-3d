@@ -1,0 +1,19 @@
+{
+ "anchor": 0.0104,
+ "origin": "recording",
+ "trim": [
+  15.3,
+  16.79
+ ],
+ "process": {},
+ "source": {
+  "title": "Metal rattling",
+  "creator": "dynamique",
+  "url": "https://freesound.org/people/dynamique/sounds/617023",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/617/617023_456862-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "aee67877-60c9-4b80-86fd-1ab1bd0f287e"
+ }
+}

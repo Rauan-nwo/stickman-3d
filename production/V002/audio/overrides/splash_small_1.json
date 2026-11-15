@@ -1,0 +1,23 @@
+{
+ "anchor": 0.0006,
+ "origin": "recording",
+ "trim": [
+  0.01,
+  0.47
+ ],
+ "process": {
+  "lp": 4500,
+  "gorge": -9,
+  "pan": 0.4
+ },
+ "source": {
+  "title": "Small Water Splash 1_1",
+  "creator": "Joao_Janz",
+  "url": "https://freesound.org/people/Joao_Janz/sounds/478705",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/478/478705_9961300-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "c6e56f1c-d583-48d8-baea-cb85fe49e2a4"
+ }
+}

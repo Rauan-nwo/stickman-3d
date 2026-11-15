@@ -1,0 +1,22 @@
+{
+ "anchor": 0.0529,
+ "origin": "recording",
+ "trim": [
+  0.5,
+  1.9
+ ],
+ "process": {
+  "fi": 0.005,
+  "fo": 0.25
+ },
+ "source": {
+  "title": "Footsteps on Wooden Floor.aif",
+  "creator": "ftpalad",
+  "url": "https://freesound.org/people/ftpalad/sounds/119914",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/119/119914_1990698-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "010335f8-d647-4542-bac4-daf54d0feb04"
+ }
+}

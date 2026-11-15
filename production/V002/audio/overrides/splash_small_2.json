@@ -1,0 +1,23 @@
+{
+ "anchor": 0.1005,
+ "origin": "recording",
+ "trim": [
+  0.16,
+  1.56
+ ],
+ "process": {
+  "lp": 4500,
+  "gorge": -9,
+  "pan": -0.2
+ },
+ "source": {
+  "title": "Tiny Splash",
+  "creator": "dslrguide",
+  "url": "https://freesound.org/people/dslrguide/sounds/321490",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/321/321490_5485024-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "d34abd9e-8740-4dc1-a11f-089d108ec165"
+ }
+}

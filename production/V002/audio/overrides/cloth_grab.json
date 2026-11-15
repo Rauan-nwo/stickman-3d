@@ -1,0 +1,19 @@
+{
+ "anchor": 0.0648,
+ "origin": "recording",
+ "trim": [
+  8.23,
+  8.64
+ ],
+ "process": {},
+ "source": {
+  "title": "Shirt Grab",
+  "creator": "bakiri",
+  "url": "https://freesound.org/people/bakiri/sounds/761202",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/761/761202_16399708-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "ed150ae8-683e-49e0-964a-b18fe38111bd"
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "anchor": 0.0123,
+ "origin": "recording",
+ "trim": [
+  1.58,
+  3.29
+ ],
+ "process": {
+  "gorge": -14,
+  "fi": 0.03,
+  "fo": 0.3
+ },
+ "source": {
+  "title": "Objects_WoodCreak_1.wav",
+  "creator": "SilentStrikeZ",
+  "url": "https://freesound.org/people/SilentStrikeZ/sounds/389645",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/389/389645_4103633-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "05ee6729-f65a-4e6b-8330-0e4b2ea14209"
+ }
+}

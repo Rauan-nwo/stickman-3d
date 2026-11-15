@@ -1,0 +1,22 @@
+{
+ "anchor": 0.9422,
+ "origin": "recording",
+ "trim": [
+  1.17,
+  7.0
+ ],
+ "process": {
+  "fi": 0.2,
+  "fo": 0.4
+ },
+ "source": {
+  "title": "Birds Chirping 01 - Down small park lane",
+  "creator": "swiftoid",
+  "url": "https://freesound.org/people/swiftoid/sounds/182503",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/182/182503_854782-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "71d69c05-73b8-4676-ae47-c421f0ac6711"
+ }
+}

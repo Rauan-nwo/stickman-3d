@@ -1,0 +1,12 @@
+{
+ "anchor": 0.16,
+ "origin": "earshot-bank",
+ "process": {
+  "anchor": "peak"
+ },
+ "source": {
+  "bank_id": "whoosh_fast/tight",
+  "bank": "earshot 0.4.1 (MIT), rendered from code",
+  "fitted_from": null
+ }
+}

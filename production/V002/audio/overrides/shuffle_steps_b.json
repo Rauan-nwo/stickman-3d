@@ -1,0 +1,22 @@
+{
+ "anchor": 0.3034,
+ "origin": "recording",
+ "trim": [
+  9.98,
+  13.97
+ ],
+ "process": {
+  "fi": 0.05,
+  "fo": 0.35
+ },
+ "source": {
+  "title": "07-Man walking wooden floor.wav",
+  "creator": "14GPanskaHonc_Petr",
+  "url": "https://freesound.org/people/14GPanskaHonc_Petr/sounds/419168",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/419/419168_8353567-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "6400bcb9-1a92-4419-ba25-e4686da5906e"
+ }
+}

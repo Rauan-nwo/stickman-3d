@@ -1,0 +1,22 @@
+{
+ "anchor": 0.1768,
+ "origin": "recording",
+ "trim": [
+  6.418,
+  6.883
+ ],
+ "process": {
+  "fi": 0.002,
+  "fo": 0.12
+ },
+ "source": {
+  "title": "marching_snare_with_reverb.wav",
+  "creator": "waldschrat1510",
+  "url": "https://freesound.org/people/waldschrat1510/sounds/561814",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/561/561814_12610918-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "e43b2b3d-18f3-4610-acbd-ff23bb87251d"
+ }
+}

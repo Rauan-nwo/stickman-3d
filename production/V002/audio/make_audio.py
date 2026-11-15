@@ -42,6 +42,9 @@ V_REF = -20.0      # dBFS. mix.py normalises the voice's active RMS to this; all
 FILE_TRIM = 6.0    # music.wav / sfx.wav are written this much hotter than their mix level (mix.py undoes it)
 DUCK_MUSIC = -8.0  # how far mix.py pulls the music down under the voice
 DUCK_SFX = -3.0    # ...and the non-featured effects
+# effect levels that were tuned against the reference film (dB re voice, loudest 20 ms): its transition swishes
+# peak about 6 dB under the voice's median level in the 1.5-8 kHz band (see NOTES.md)
+LV_FX = {"throw": -3.0, "tumble": -8.0, "splash": -7.0, "whip": 1.0, "push": -3.0}
 DUCK_LINE_MUSIC = -12.0  # under the colonel's and the general's own lines: deeper, and featured cues are not exempt
 DUCK_LINE_SFX = -8.0
 
@@ -908,7 +911,7 @@ PAT = {  # (sixteenth 0..7 in a two-beat bar, velocity, kind)
 LV = {  # music levels, dB re voice, before ducking (loudest 20 ms of a full-velocity stroke / RMS for sustained parts)
     "first_hit": 3.0, "pulse": -4.0, "drone": -6.0, "calm": -9.0,
     "far_snare": -11.0, "far_bd": -9.0,
-    "snare": -9.0, "bd": -8.0, "fife": -15.0, "fife2": -19.0,
+    "snare": -12.0, "bd": -9.0, "fife": -17.0, "fife2": -21.0,
     "step_bd": 1.0, "step_snare": -3.0, "land": 2.0,
     "you_hit": -7.0, "pizz": -8.0, "pizz_hi": -10.0, "wood": -15.0, "slide": -15.0,
     "roll14": -8.0, "push": 1.0, "rain_pizz": -12.0, "bucks": 5.0,
@@ -1331,39 +1334,53 @@ def build_sfx(sc, ses):
     r = rng_for("whoosh")
     y, a = whoosh(r, 0.44, 0.45, 320, 2300)
     ses.stem("throw_whoosh", room(pan_move(y, -0.45, 0.4), R["field"], -16.0), a, measure="peak")
-    ses.place("throw_whoosh", C(1, "threw"), -7, key=True, note="arm swing; the peak of the whoosh is on the word")
+    t_throw, t_spl = sc.t(1, "threw") + 0.05, sc.t(1, "river") + 0.12      # the film's T_THROW and T_SPLASH
+    ses.place("throw_whoosh", C(1, "threw", off=0.05), LV_FX["throw"], key=True, note="arm swing; the peak of the whoosh is on the throw")
 
+    # the drum tumbles down the gorge between the throw and the splash: knocks of the drum itself (the recorded
+    # field-drum strokes when they are installed), each one quieter, darker and wetter, the sticks clattering off;
+    # it ends early enough to leave a pause of air before the splash
     r = rng_for("tumble")
-    y = np.zeros(nsamp(1.1))
-    knocks = [(0.00, 1.0, "head"), (0.12, 0.8, "shell"), (0.21, 0.65, "head"), (0.33, 0.7, "shell"), (0.47, 0.45, "head"),
-              (0.62, 0.3, "shell")]
-    wet = np.zeros(nsamp(1.1))
-    for i_, (t0, v, kind) in enumerate(knocks):
-        if kind == "head":
+    ovd = ses.out / "overrides"
+    hits = [read_wav(f).mean(axis=1) for f in sorted(ovd.glob("snare_hit_*.wav"))]
+    stick = read_wav(ovd / "stick_tok.wav").mean(axis=1) if (ovd / "stick_tok.wav").exists() else None
+    t0_, t1_ = t_throw + 0.24, t_spl - 0.34
+    span = max(0.45, t1_ - t0_)
+    nk = int(np.clip(round(span / 0.16), 4, 8))
+    dry, wet = np.zeros(nsamp(span + 0.6)), np.zeros(nsamp(span + 0.6))
+    for i_ in range(nk):
+        u = i_ / (nk - 1)
+        tk = span * (u ** 0.85) * 0.92 + (0 if i_ == 0 else r.uniform(-0.02, 0.02))
+        if hits:
+            hd = hits[i_ % len(hits)][:nsamp(0.22)] / (np.max(np.abs(hits[i_ % len(hits)])) + 1e-12)
+            hd = fade(hd * r.uniform(0.8, 1.0), 0.0, 0.08)
+        else:
             t = taxis(0.3)
             hd = np.sin(TAU * np.cumsum(140 + 60 * np.exp(-t / 0.02)) / SR) * np.exp(-t / 0.085)
             hd += 0.3 * bp(r.standard_normal(len(t)), 1200, 5000, 1) * np.exp(-t / 0.06)
-            put(hd, strike(modal_ir(0.2, [(430, .03, 1), (690, .025, .6)]), r, 1.5), 0.0, 0.4)
-        else:
-            hd = strike(modal_ir(0.25, [(430, .035, 1), (690, .03, .6), (1130, .02, .4), (1900, .012, .25)], r.uniform(0.9, 1.15)), r, 1.5)
-            hd[:nsamp(0.1)] += 0.15 * (bp(r.standard_normal(nsamp(0.1)), 1500, 5000, 1) * np.exp(-taxis(0.1) / 0.04))
-        hd = lp(hd, 800 + 7000 * 0.72 ** i_, 1)            # it recedes into the gorge
-        put(y, hd, t0, v)
-        put(wet, hd, t0, v * (0.3 + 0.25 * i_))
-    for t0 in (0.05, 0.17, 0.29):                          # the sticks fly off
-        put(y, woodblock(r.uniform(1700, 2600), r, 1.0), t0, 0.35)
-    put(y, metal_tick(r, 0.9, 0.08), 0.15, 0.3)             # it grazes a chain
-    tm = pan_move(y, 0.1, -0.2)
+        hd = lp(hd, 900 + 7000 * (1 - u) ** 2, 1)             # it recedes into the gorge
+        gk = lin(-17.0 * u)                                   # ... and gets quieter as it falls
+        put(dry, hd, tk, gk)
+        put(wet, hd, tk, gk * (0.3 + 0.5 * u))
+        if i_ < 4:                                            # the sticks fly off
+            sk = stick[:nsamp(0.12)] / (np.max(np.abs(stick)) + 1e-12) if stick is not None else woodblock(r.uniform(1700, 2600), r, 1.0)
+            put(dry, sk, tk + 0.05 + r.uniform(0, 0.03), 0.4 * gk)
+    tm = pan_move(dry, 0.1, -0.2)
     tw = reverb(wet, R["gorge"], -8.0)
     full = np.zeros((len(tw), 2))
     full[:len(tm)] += tm
     full += tw
+    full = fade(full[:nsamp(span + 0.45)], 0.0, 0.4)          # the pause of air before the splash
     ses.stem("drum_tumble", full, 0.0)
-    ses.place("drum_tumble", C(1, "only"), -8, note="hollow drum knocks past chains and deck edge, sticks, receding")
+    if hits:
+        ses.stems["drum_tumble"]["src"] = "recording (assembled in code)"
+    ses.place("drum_tumble", C(1, "threw", off=0.05 + 0.24), LV_FX["tumble"],
+              note="the drum tumbling down: %d knocks, each quieter and darker, sticks clatter; ends %.2f s before the splash" % (nk, 0.34 - 0.08))
 
     r = rng_for("splash:far")
     ses.stem("splash_distant", room(splash(r, 0.9, 1.0), R["gorge"], -5.0, -0.1), 0.0)
-    ses.place("splash_distant", C(1, "river", frac=0.75), -11, key=True, note="far below: dark, mostly reverb")
+    ses.place("splash_distant", C(1, "river", off=0.12), LV_FX["splash"], key=True, win=0.5,
+              note="far below, on the film's splash frame: the splash with its watery tail")
 
     # ---------- the colonel ----------
     r = rng_for("cloth")
@@ -1423,6 +1440,7 @@ def build_sfx(sc, ses):
             put(cl, pan(metal_tick(r, 0.7, 0.07), 0.35), t0 + 0.008, 0.25)
     ses.stem("soldiers_clatter", cl + reverb(cl, R["field"], -15.0)[:len(cl)], 0.0)
     ses.place("soldiers_clatter", C(2, "six"), -7, key=True, note="bodies, musket stocks, buckles; one musket dropped")
+    ses.real("soldiers_bodies", C(2, "six"), -9, mode="peak20", note="the bodies under the gear (recording)")
 
     # ---------- the bridge ----------
     r = rng_for("chain:creak")
@@ -1492,34 +1510,27 @@ def build_sfx(sc, ses):
     r = rng_for("shuffle")
     d5 = E(5) - S(5) + 0.45
     y = steps_texture(r, d5, 12.0)
-    ses.stem("shuffle_steps", fade(y + reverb(y, R["field"], -16.0)[:len(y)], 0.0, 0.35), 0.0, mode="rms", measure="onset")
+    ses.stem("shuffle_steps", fade(y + reverb(y, R["field"], -16.0)[:len(y)], 0.0, 0.35), 0.0, mode="rms", measure="onset", maxlen=d5)
+    ses.real("shuffle_steps_b", C(5, "So", off=0.12), -16, maxlen=d5 - 0.12, note="a second layer of feet (another recording)")
     ses.place("shuffle_steps", C(5, "So"), -13, key=True, note="six hundred men with no common beat (Poisson timing), thumps + scuffs")
 
-    r = rng_for("marbles")
-    mb = np.zeros((nsamp(1.6), 2))
-    for i_ in range(9):
-        t0 = r.uniform(0.0, 0.42) if i_ else 0.0
-        f = r.uniform(2300, 5200)
-        gap = r.uniform(0.07, 0.14)
-        p_ = r.uniform(-0.7, 0.7)
-        amp = r.uniform(0.5, 1.0)
-        for b_ in range(9):
-            tk = strike(modal_ir(0.12, [(f, r.uniform(0.012, 0.025), 1.0), (f * 1.47, 0.012, 0.5), (f * 2.09, 0.008, 0.3)]), r, 0.3)
-            put(mb, pan(tk, p_), t0, amp)
-            t0 += gap
-            gap *= 0.72
-            amp *= 0.8
-    m = len(mb)
-    t = np.arange(m) / SR
-    rl = bp(r.standard_normal(m), 1500, 4200, 1) * (0.3 + 0.7 * smooth_rand(m, 30, r)) * np.exp(-t / 0.5) * (1 - np.exp(-t / 0.05))
-    mb += 0.05 * pan_move(rl, -0.5, 0.5)
-    ses.stem("marbles", mb + reverb(mb, R["field"], -17.0)[:m], 0.0)
-    ses.place("marbles", C(6, "bag"), -9, key=True, note="glass marbles spill, bounce (each bounce 0.72 of the last) and roll")
+    # the marbles gag left the film: under "a bag of spilled marbles" the blue column just stumbles along
+    r = rng_for("stumble")
+    y = steps_texture(r, 1.1, 5.0, weight=(0.2, 0.6), scuff=(0.5, 1.0))
+    ses.stem("stumble_steps", fade(y + reverb(y, R["field"], -16.0)[:len(y)], 0.0, 0.3), 0.0, mode="rms", measure="onset", maxlen=1.6)
+    ses.place("stumble_steps", C(6, "bag"), -12, key=True, note="scattered stumbling footsteps (replaces the marbles rattle)")
+    t = taxis(0.25)
+    bump = lp(r.standard_normal(len(t)), 220, 2) * np.exp(-t / 0.04) * 3 + np.sin(TAU * 80 * t) * np.exp(-t / 0.06)
+    ses.stem("soft_bump", room(bump, R["field"], -18.0, 0.0), 0.0)
+    ses.place("soft_bump", C(6, "spilled", frac=0.5), -12, note="soft bump: two of them walk into each other")
+    ses.place("soft_bump", C(6, "marbles", frac=0.6), -14, note="soft bump")
 
     # ---------- voices (recordings only; nothing is placed when the file is missing) ----------
     t_l0, t_l1 = sc.t(6, "crying"), sc.t(6, "That's")
-    ses.real("general_laugh", C(6, "crying"), -9, maxlen=max(0.4, t_l1 - t_l0 - 0.06), key=True,
+    ses.real("general_laugh", C(6, "crying"), -13, maxlen=max(0.4, t_l1 - t_l0 - 0.06), key=True,
              note="the general's laughter; stops before he speaks")
+    ses.real("soldiers_chuckle_b", C(9, "soldiers", off=0.22), -13, maxlen=max(0.4, S(10) - sc.t(9, "soldiers") - 0.3),
+             note="a second soldier chuckles")
     ses.real("soldiers_chuckle", C(9, "soldiers"), -11, maxlen=max(0.4, S(10) - sc.t(9, "soldiers") - 0.05), key=True,
              note="the red soldiers enjoy the bounce")
     ses.real("kid_squeal", C(13, "over"), -9, maxlen=max(0.4, S(14) - sc.t(13, "over") - 0.05), key=True,
@@ -1626,7 +1637,7 @@ def build_sfx(sc, ses):
     r = rng_for("breakstep")
     d12 = E(12) - sc.t(12, "break") + 0.55
     y = steps_texture(r, d12, 9.0, weight=(0.1, 0.5), scuff=(0.2, 0.6))
-    ses.stem("breakstep_steps", fade(y + reverb(y, R["field"], -16.0)[:len(y)], 0.03, 0.3), 0.0, mode="rms", measure="none")
+    ses.stem("breakstep_steps", fade(y + reverb(y, R["field"], -16.0)[:len(y)], 0.03, 0.3), 0.0, mode="rms", measure="none", maxlen=d12)
     ses.place("breakstep_steps", C(12, "break"), -14, note="the column scatters its step")
 
     # ---------- the swing ----------
@@ -1757,6 +1768,8 @@ def build_sfx(sc, ses):
     full[:len(sn)] += sn
     full += snw
     ses.stem("bridge_snap", full, 0.0)
+    ses.real("bridge_crack", C(17, "bucks"), 1, mode="peak20", featured=True, win=0.6,
+             note="recorded timber crack layered over the synthetic boom")
     ses.place("bridge_snap", C(17, "bucks"), 5, featured=True, key=True, win=0.6, note="timber cracks, a chain parts and whips, sub boom, planks")
 
     r = rng_for("fall")
@@ -1788,6 +1801,31 @@ def build_sfx(sc, ses):
                   note="one of many small splashes")
     ses.stem("splash_final", room(splash(rng_for("splash:final"), 1.0, 0.45), R["gorge"], -8.0, 0.0), 0.0)
     ses.place("splash_final", C(17, "gorge"), -4, key=True, note="the last one; everything stops with the word")
+    ses.real("drum_plop", C(17, "gorge", frac=0.62), -9, mode="peak20", note="the drum floating on the river bobs: a small plop")
+
+    # ---------- camera whooshes: every whip between shots and every crash push ----------
+    # The list mirrors film.js (shots that carry in:/out: whips, from = the same cue words) and its rule:
+    # a whip survives only if it comes at least 1 s after the previous one, counted from the hook's horizon shot.
+    WHIPS = [C(2, "drum", off=0.12), C(2, "six"), C(2, "in"), C(3, "last"), C(4, "chain"), C(4, "gorge"), C(4, "cross"),
+             C(4, "a", 3), C(5, "six"), C(5, "looking"), C(6, "the", 2), C(7, "finest"), C(7, "two"), C(8, "in"),
+             C(9, "bounce"), C(9, "soldiers"), C(10, "stomp"), C(11, "bouncing"), C(12, "break"), C(14, "landing", off=-0.1),
+             C(15, "so"), C(15, "never"), C(16, "forty"), C(17, "into")]
+    for i_ in range(4):
+        y, a = whoosh(rng_for("camwhoosh", i_), 0.30 + 0.03 * i_, 0.4, 420 + 60 * i_, 2600, body=0.25, air=0.2)
+        ses.stem("cam_whoosh_%d" % i_, pan_move(y, -0.5 if i_ % 2 == 0 else 0.5, 0.5 if i_ % 2 == 0 else -0.5), a, measure="peak")
+    y, a = whoosh(rng_for("campush"), 0.45, 0.4, 260, 1700, body=0.5, air=0.15)
+    ses.stem("cam_push", pan(y, 0.0), a, measure="peak")
+    last, nw = sc.t(1, "river") + 0.12 + 0.62, 0
+    for cue in WHIPS:
+        tw_ = sc.at(cue)
+        if tw_ - last < 1.0:
+            continue
+        last = tw_
+        ses.place("cam_whoosh_%d" % (nw % 4), cue, LV_FX["whip"], key=(nw == 0), win=0.2, note="whip between shots")
+        nw += 1
+    ses.place("cam_push", C(6, "That's"), LV_FX["push"], note="through the spyglass lens")
+    ses.place("cam_push", C(12, "You", off=-0.02), LV_FX["push"], note="crash push onto the sign")
+    ses.place("cam_push", C(17, "bucks", off=-0.03), LV_FX["push"] + 1, note="the buck: air before the crack")
 
 
 # =====================================================================================
