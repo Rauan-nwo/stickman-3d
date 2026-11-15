@@ -396,7 +396,26 @@ function shadePart(x, pathFn, R, Sh, part) {
     x.globalCompositeOperation = op || 'source-over'; x.globalAlpha = k; x.fillStyle = fill; x.fill('evenodd'); x.restore();
   };
   const sh = P.shiftU ?? R * (P.shift ?? .35);
+  if (P.radial) {                                                             // мягкий серп: радиальный градиент, смещённый к свету (аэрограф)
+    x.save(); pathFn(); x.clip();
+    const cx = dx * R * P.radial, cy = dy * R * P.radial, g = x.createRadialGradient(cx, cy, 0, cx, cy, R * (1 + P.radial));
+    const c = P.color || 'rgb(30,16,40)', a = P.k ?? .3, rgb = c.startsWith('#') ? [1, 3, 5].map(i => parseInt(c.slice(i, i + 2), 16)).join(',') : '30,16,40';
+    g.addColorStop(0, `rgba(${rgb},0)`); g.addColorStop(P.inner ?? .62, `rgba(${rgb},0)`); g.addColorStop(1, `rgba(${rgb},${a})`);
+    x.fillStyle = g; x.fillRect(-R * 3, -R * 3, R * 6, R * 6);
+    if (P.top > 0) { const t = x.createLinearGradient(0, -R, 0, -R * .2); t.addColorStop(0, `rgba(${rgb},${P.top * a})`); t.addColorStop(1, `rgba(${rgb},0)`); x.fillStyle = t; x.fillRect(-R * 3, -R * 3, R * 6, R * 2.8); }
+    x.restore();
+    const RIM2 = P.rim ?? Sh.rim;
+    if (RIM2 && RIM2.k > 0) { x.save(); pathFn(); x.clip(); const rx2 = -dx * R * .35, ry2 = -dy * R * .35, gr = x.createRadialGradient(-rx2, -ry2, 0, -rx2, -ry2, R * 1.35), rc = RIM2.color, rr = [1, 3, 5].map(i => parseInt(rc.slice(i, i + 2), 16)).join(',');
+      gr.addColorStop(0, `rgba(${rr},0)`); gr.addColorStop(.75, `rgba(${rr},0)`); gr.addColorStop(1, `rgba(${rr},${RIM2.k})`); x.fillStyle = gr; x.fillRect(-R * 3, -R * 3, R * 6, R * 6); x.restore(); }
+    return;
+  }
   if ((P.k ?? .13) > 0) band(dx * sh, dy * sh, P.color || 'rgb(30,16,40)', P.k ?? .13, R * (P.soft ?? .3), P.op);   // тень на дальней от света стороне
+  if (P.top > 0) band(0, R * (P.topShift ?? .3), P.color || 'rgb(30,16,40)', P.top, R * (P.topSoft ?? .22), P.op);   // мягкая тень под линией волос
+  if (P.glow && P.glow.k > 0) {                                                // очень мягкое тёплое свечение со стороны света (ретушь, без линии)
+    x.save(); pathFn(); x.clip(); const gx = -dx * R * .55, gy = -dy * R * .55, G = P.glow, gc = [1, 3, 5].map(i => parseInt(G.color.slice(i, i + 2), 16)).join(',');
+    const gr = x.createRadialGradient(-gx, -gy, R * .2, -gx, -gy, R * 1.55); gr.addColorStop(0, `rgba(${gc},0)`); gr.addColorStop(.55, `rgba(${gc},0)`); gr.addColorStop(1, `rgba(${gc},${G.k})`);
+    x.fillStyle = gr; x.fillRect(-R * 3, -R * 3, R * 6, R * 6); x.restore();
+  }
   const RIM = P.rim ?? Sh.rim;                                                                                    // край: свой у части или общий
   if (RIM && RIM.k > 0) { const w = RIM.wU ?? R * .08; band(-dx * w, -dy * w, RIM.color, RIM.k, RIM.softU ?? R * .05); }   // тёплый край со стороны света (под контуром — половина толщины линии)
 }
@@ -498,7 +517,7 @@ function drawHead(x, S, p, VW) {
   g.addColorStop(0, h.fill); g.addColorStop(h.grad[4], h.fill); g.addColorStop(1, h.shade);
   ell(x, 0, 0, h.rx, h.ry, g, ink, LW);
   if (p.flush && p.flush.k > .01) { x.save(); x.beginPath(); x.ellipse(0, 0, h.rx, h.ry, 0, 0, TAU); x.clip(); x.globalAlpha = clamp(p.flush.k); x.fillStyle = p.flush.color || '#E0483C'; x.fillRect(-h.rx, -h.ry, h.rx * 2, h.ry * 2); x.restore(); ell(x, 0, 0, h.rx, h.ry, null, ink, LW); }
-  if (S.shade) { shadePart(x, sub => { if (!sub) x.beginPath(); x.moveTo(h.rx, 0); x.ellipse(0, 0, h.rx, h.ry, 0, 0, TAU); }, Math.max(h.rx, h.ry), S.shade, 'head'); ell(x, 0, 0, h.rx, h.ry, null, ink, LW); }
+  if (S.shade && !(S.shade.head && S.shade.head.after)) { shadePart(x, sub => { if (!sub) x.beginPath(); x.moveTo(h.rx, 0); x.ellipse(0, 0, h.rx, h.ry, 0, 0, TAU); }, Math.max(h.rx, h.ry), S.shade, 'head'); ell(x, 0, 0, h.rx, h.ry, null, ink, LW); }
   if (h.ear && !back) { const e = h.ear; ell(x, e.x - 2, e.y, e.rx - 4, e.ry - 4, h.fill, null); x.beginPath(); x.arc(e.x + 1, e.y, 9, Math.PI * .9, Math.PI * 1.9); x.lineWidth = 4; x.strokeStyle = e.line || '#A99A94'; x.stroke(); }
   if (h.hair && !back) {
     x.save(); x.beginPath(); const ins = h.hair.inset ?? 4; if (h.rx === h.ry) x.arc(0, 0, h.rx - ins, 0, TAU); else x.ellipse(0, 0, h.rx - ins, h.ry - ins, 0, 0, TAU); x.clip();
@@ -544,6 +563,9 @@ function drawHead(x, S, p, VW) {
   // шляпа: подлетает от испуга (hatDy), догоняет голову после «тейка» (hatLag), приподнимается при подмигивании (hatTip)
   // + hatDx / hatRot: шляпа съезжает набок (рывок за воротник), hatOff — шляпы нет (слетела). Шляпа получает вид и позу.
   const hd = (p.hatDy || 0) * fs + (p.hatLag || 0) * -10 * fs, hr = (p.hatLag || 0) * .06 - (p.hatTip || 0) * .16 + (p.hatRot || 0), hx = (p.hatDx || 0) * fs;
+  if (S.shade && S.shade.head && S.shade.head.after) {                       // тень головы ПОСЛЕ лица и причёски: как в раунде 3 ложится и на волосы
+    const k = S.shade.head.clipK ?? 1.02; shadePart(x, sub => { if (!sub) x.beginPath(); x.moveTo(h.rx * k, 0); x.ellipse(0, 0, h.rx * k, h.ry * k, 0, 0, TAU); }, Math.max(h.rx, h.ry), S.shade, 'head');
+  }
   if (!p.hatOff) { if (hd || hr || hx) { x.save(); x.translate(hx, hd); x.rotate(hr); HATS[S.hat.type](x, h, S, VW, p); x.restore(); } else HATS[S.hat.type](x, h, S, VW, p); }
   x.restore();
 }
