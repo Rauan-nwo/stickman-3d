@@ -1,0 +1,625 @@
+{
+ "cloth_grab": {
+  "meant": "рывок за воротник",
+  "rows": [
+   {
+    "id": "swipe/paper",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\cloth_grab\\swipe__paper.wav",
+    "z": 2.02,
+    "verdict": "weak",
+    "query": "fabric rustling quickly",
+    "p_real": 0.937
+   },
+   {
+    "id": "swipe/flick",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\cloth_grab\\swipe__flick.wav",
+    "z": 2.0,
+    "verdict": "weak",
+    "query": "a hand grabbing cloth",
+    "p_real": 0.913
+   },
+   {
+    "id": "swipe/cloth",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\cloth_grab\\swipe__cloth.wav",
+    "z": 1.88,
+    "verdict": "no match",
+    "query": "fabric rustling quickly",
+    "p_real": 0.982
+   },
+   {
+    "id": "swipe/glide",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\cloth_grab\\swipe__glide.wav",
+    "z": 1.87,
+    "verdict": "no match",
+    "query": "fabric rustling quickly",
+    "p_real": 0.948
+   },
+   {
+    "id": "swish/soft",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\cloth_grab\\swish__soft.wav",
+    "z": 1.25,
+    "verdict": "no match",
+    "query": "fabric rustling quickly",
+    "p_real": 0.775
+   },
+   {
+    "id": "synth (current)",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\before_stems\\cloth_grab.wav",
+    "z": 1.18,
+    "verdict": "no match",
+    "query": "a hand grabbing cloth",
+    "p_real": 0.177
+   },
+   {
+    "id": "swipe/velvet",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\cloth_grab\\swipe__velvet.wav",
+    "z": 0.98,
+    "verdict": "no match",
+    "query": "fabric rustling quickly",
+    "p_real": 0.974
+   },
+   {
+    "id": "whoosh_fast/sleeve",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\cloth_grab\\whoosh_fast__sleeve.wav",
+    "z": 0.76,
+    "verdict": "no match",
+    "query": "a hand grabbing cloth",
+    "p_real": 0.782
+   }
+  ]
+ },
+ "throw_whoosh": {
+  "meant": "свист броска",
+  "rows": [
+   {
+    "id": "swish/cane",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\throw_whoosh\\swish__cane.wav",
+    "z": 5.22,
+    "verdict": "strong",
+    "query": "a fast whoosh through the air",
+    "p_real": 0.961
+   },
+   {
+    "id": "swish/stick",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\throw_whoosh\\swish__stick.wav",
+    "z": 5.2,
+    "verdict": "strong",
+    "query": "a fast whoosh through the air",
+    "p_real": 0.943
+   },
+   {
+    "id": "whoosh_fast/tight",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\throw_whoosh\\whoosh_fast__tight.wav",
+    "z": 5.15,
+    "verdict": "strong",
+    "query": "a fast whoosh through the air",
+    "p_real": 0.942
+   },
+   {
+    "id": "whoosh_fast/heavy",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\throw_whoosh\\whoosh_fast__heavy.wav",
+    "z": 4.75,
+    "verdict": "strong",
+    "query": "a fast whoosh through the air",
+    "p_real": 0.75
+   },
+   {
+    "id": "fit/whoosh.short/bamboo_swish",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\throw_whoosh\\fit__whoosh.short__bamboo_swish.wav",
+    "z": 4.68,
+    "verdict": "strong",
+    "query": "a fast whoosh through the air",
+    "p_real": 0.974
+   },
+   {
+    "id": "whoosh_fast/crisp",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\throw_whoosh\\whoosh_fast__crisp.wav",
+    "z": 4.27,
+    "verdict": "strong",
+    "query": "a fast whoosh through the air",
+    "p_real": 0.802
+   },
+   {
+    "id": "synth (current)",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\before_stems\\throw_whoosh.wav",
+    "z": 3.86,
+    "verdict": "strong",
+    "query": "a fast whoosh through the air",
+    "p_real": 0.123
+   },
+   {
+    "id": "whoosh_fast/sleeve",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\throw_whoosh\\whoosh_fast__sleeve.wav",
+    "z": 3.86,
+    "verdict": "strong",
+    "query": "a fast whoosh through the air",
+    "p_real": 0.782
+   },
+   {
+    "id": "whoosh_fast/whip",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\throw_whoosh\\whoosh_fast__whip.wav",
+    "z": 1.89,
+    "verdict": "no match",
+    "query": "a fast whoosh through the air",
+    "p_real": 0.2
+   }
+  ]
+ },
+ "sign_ding": {
+  "meant": "динь таблички",
+  "rows": [
+   {
+    "id": "fit/bell/small_bell",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\sign_ding\\fit__bell__small_bell.wav",
+    "z": 3.34,
+    "verdict": "strong",
+    "query": "a small bell ding",
+    "p_real": 0.988
+   },
+   {
+    "id": "notify/m1",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\sign_ding\\notify__m1.wav",
+    "z": 2.89,
+    "verdict": "plausible",
+    "query": "a desk bell",
+    "p_real": 0.279
+   },
+   {
+    "id": "synth (current)",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\before_stems\\sign_ding.wav",
+    "z": 2.82,
+    "verdict": "plausible",
+    "query": "a desk bell",
+    "p_real": 0.049
+   },
+   {
+    "id": "mallet/glock",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\sign_ding\\mallet__glock.wav",
+    "z": 2.66,
+    "verdict": "plausible",
+    "query": "a desk bell",
+    "p_real": 0.023
+   },
+   {
+    "id": "notify/m2",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\sign_ding\\notify__m2.wav",
+    "z": 2.58,
+    "verdict": "plausible",
+    "query": "a desk bell",
+    "p_real": 0.198
+   },
+   {
+    "id": "notify/m5",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\sign_ding\\notify__m5.wav",
+    "z": 2.46,
+    "verdict": "weak",
+    "query": "a small bell ding",
+    "p_real": 0.078
+   },
+   {
+    "id": "pro_notify/ding_2045",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\sign_ding\\pro_notify__ding_2045.wav",
+    "z": 2.3,
+    "verdict": "weak",
+    "query": "a desk bell",
+    "p_real": 0.043
+   },
+   {
+    "id": "notify/m0",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\sign_ding\\notify__m0.wav",
+    "z": 1.95,
+    "verdict": "no match",
+    "query": "a small bell ding",
+    "p_real": 0.148
+   },
+   {
+    "id": "notify/m4",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\sign_ding\\notify__m4.wav",
+    "z": 1.87,
+    "verdict": "no match",
+    "query": "a single bell chime",
+    "p_real": 0.117
+   }
+  ]
+ },
+ "push_thump": {
+  "meant": "низкий толчок",
+  "rows": [
+   {
+    "id": "synth (current)",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\before_stems\\push_thump.wav",
+    "z": 2.68,
+    "verdict": "plausible",
+    "query": "a deep boom",
+    "p_real": 0.176
+   },
+   {
+    "id": "pro_impact/deep",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\push_thump\\pro_impact__deep.wav",
+    "z": 2.42,
+    "verdict": "weak",
+    "query": "a heavy low impact",
+    "p_real": 0.45
+   },
+   {
+    "id": "impact/punch",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\push_thump\\impact__punch.wav",
+    "z": 2.28,
+    "verdict": "weak",
+    "query": "a deep boom",
+    "p_real": 0.633
+   },
+   {
+    "id": "sub_drop/punch",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\push_thump\\sub_drop__punch.wav",
+    "z": 2.12,
+    "verdict": "weak",
+    "query": "a deep boom",
+    "p_real": 0.409
+   },
+   {
+    "id": "pro_impact/short",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\push_thump\\pro_impact__short.wav",
+    "z": 1.81,
+    "verdict": "no match",
+    "query": "a heavy low impact",
+    "p_real": 0.553
+   },
+   {
+    "id": "cut_hit/punch",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\push_thump\\cut_hit__punch.wav",
+    "z": 1.62,
+    "verdict": "no match",
+    "query": "a heavy low impact",
+    "p_real": 0.127
+   },
+   {
+    "id": "cut_hit/rumble",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\push_thump\\cut_hit__rumble.wav",
+    "z": 1.55,
+    "verdict": "no match",
+    "query": "a heavy low impact",
+    "p_real": 0.084
+   }
+  ]
+ },
+ "bolt_ping": {
+  "meant": "болт",
+  "rows": [
+   {
+    "id": "fit/bell/small_bell",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\bolt_ping\\fit__bell__small_bell.wav",
+    "z": 3.13,
+    "verdict": "strong",
+    "query": "a metallic ting",
+    "p_real": 0.988
+   },
+   {
+    "id": "synth (current)",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\before_stems\\bolt_ping.wav",
+    "z": 2.09,
+    "verdict": "weak",
+    "query": "a metallic ting",
+    "p_real": 0.113
+   },
+   {
+    "id": "notify/m5",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\bolt_ping\\notify__m5.wav",
+    "z": 1.77,
+    "verdict": "no match",
+    "query": "a metallic ting",
+    "p_real": 0.078
+   },
+   {
+    "id": "pro_click/tink",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\bolt_ping\\pro_click__tink.wav",
+    "z": 1.06,
+    "verdict": "no match",
+    "query": "a metallic ting",
+    "p_real": 0.185
+   },
+   {
+    "id": "knock/snap",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\bolt_ping\\knock__snap.wav",
+    "z": 0.64,
+    "verdict": "no match",
+    "query": "a metallic ting",
+    "p_real": 0.679
+   },
+   {
+    "id": "shutter/snap",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\bolt_ping\\shutter__snap.wav",
+    "z": 0.54,
+    "verdict": "no match",
+    "query": "a metallic ting",
+    "p_real": 0.82
+   }
+  ]
+ },
+ "splash_small_0": {
+  "meant": "мелкий всплеск",
+  "rows": [
+   {
+    "id": "drip/bubble",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\splash_small_0\\drip__bubble.wav",
+    "z": 1.51,
+    "verdict": "no match",
+    "query": "a water plop",
+    "p_real": 0.15
+   },
+   {
+    "id": "drip/drop",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\splash_small_0\\drip__drop.wav",
+    "z": 1.36,
+    "verdict": "no match",
+    "query": "a water plop",
+    "p_real": 0.191
+   },
+   {
+    "id": "synth (current)",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\before_stems\\splash_small_0.wav",
+    "z": 1.33,
+    "verdict": "no match",
+    "query": "a water plop",
+    "p_real": 0.124
+   },
+   {
+    "id": "drip/plink",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\splash_small_0\\drip__plink.wav",
+    "z": 0.71,
+    "verdict": "no match",
+    "query": "a water plop",
+    "p_real": 0.123
+   },
+   {
+    "id": "drip/bloop",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\splash_small_0\\drip__bloop.wav",
+    "z": 0.66,
+    "verdict": "no match",
+    "query": "a water plop",
+    "p_real": 0.122
+   }
+  ]
+ },
+ "push_tick": {
+  "meant": "толчок качелей",
+  "rows": [
+   {
+    "id": "knock/wood",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\push_tick\\knock__wood.wav",
+    "z": 2.04,
+    "verdict": "weak",
+    "query": "a soft wooden tap",
+    "p_real": 0.549
+   },
+   {
+    "id": "tap/knuckle",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\push_tick\\tap__knuckle.wav",
+    "z": 1.61,
+    "verdict": "no match",
+    "query": "a soft wooden tap",
+    "p_real": 0.755
+   },
+   {
+    "id": "fit/land.light/finger_wood",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\push_tick\\fit__land.light__finger_wood.wav",
+    "z": 1.49,
+    "verdict": "no match",
+    "query": "a hand tapping a wooden seat",
+    "p_real": 0.66
+   },
+   {
+    "id": "fit/hit/bamboo_tok",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\push_tick\\fit__hit__bamboo_tok.wav",
+    "z": 1.33,
+    "verdict": "no match",
+    "query": "a soft wooden tap",
+    "p_real": 0.926
+   },
+   {
+    "id": "synth (current)",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\before_stems\\push_tick.wav",
+    "z": 1.13,
+    "verdict": "no match",
+    "query": "a soft wooden tap",
+    "p_real": 0.166
+   },
+   {
+    "id": "knock/desk",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\push_tick\\knock__desk.wav",
+    "z": 0.27,
+    "verdict": "no match",
+    "query": "a hand tapping a wooden seat",
+    "p_real": 0.188
+   }
+  ]
+ },
+ "slowmo_subdrop": {
+  "meant": "суб-спад",
+  "rows": [
+   {
+    "id": "synth (current)",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\before_stems\\slowmo_subdrop.wav",
+    "z": 4.54,
+    "verdict": "strong",
+    "query": "a sub bass drop",
+    "p_real": 0.071
+   },
+   {
+    "id": "sub_drop/long",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\slowmo_subdrop\\sub_drop__long.wav",
+    "z": 4.49,
+    "verdict": "strong",
+    "query": "a sub bass drop",
+    "p_real": 0.054
+   },
+   {
+    "id": "pro_sub_drop/low",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\slowmo_subdrop\\pro_sub_drop__low.wav",
+    "z": 3.22,
+    "verdict": "strong",
+    "query": "a deep falling bass tone",
+    "p_real": 0.341
+   },
+   {
+    "id": "downlifter/sub_sink",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\slowmo_subdrop\\downlifter__sub_sink.wav",
+    "z": 3.08,
+    "verdict": "strong",
+    "query": "a sub bass drop",
+    "p_real": 0.187
+   },
+   {
+    "id": "pro_sub_drop/ref",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\slowmo_subdrop\\pro_sub_drop__ref.wav",
+    "z": 2.53,
+    "verdict": "plausible",
+    "query": "a deep falling bass tone",
+    "p_real": 0.268
+   }
+  ]
+ },
+ "riser_into_bucks": {
+  "meant": "вдох перед ударом",
+  "rows": [
+   {
+    "id": "synth (current)",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\before_stems\\riser_into_bucks.wav",
+    "z": 3.64,
+    "verdict": "strong",
+    "query": "a reverse swell",
+    "p_real": 0.169
+   },
+   {
+    "id": "reverse_swell/dark",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\riser_into_bucks\\reverse_swell__dark.wav",
+    "z": 3.0,
+    "verdict": "strong",
+    "query": "a reverse swell",
+    "p_real": 0.475
+   },
+   {
+    "id": "reverse_swell/breath",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\riser_into_bucks\\reverse_swell__breath.wav",
+    "z": 2.9,
+    "verdict": "plausible",
+    "query": "a reverse swell",
+    "p_real": 0.141
+   },
+   {
+    "id": "riser/dark",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\riser_into_bucks\\riser__dark.wav",
+    "z": 2.85,
+    "verdict": "plausible",
+    "query": "a reverse swell",
+    "p_real": 0.762
+   },
+   {
+    "id": "riser/snatch",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\riser_into_bucks\\riser__snatch.wav",
+    "z": 2.82,
+    "verdict": "plausible",
+    "query": "air being sucked in",
+    "p_real": 0.93
+   },
+   {
+    "id": "reverse_swell/short",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\riser_into_bucks\\reverse_swell__short.wav",
+    "z": 1.21,
+    "verdict": "no match",
+    "query": "a reverse swell",
+    "p_real": 0.662
+   }
+  ]
+ },
+ "bridge_snap": {
+  "meant": "мост ломается",
+  "rows": [
+   {
+    "id": "impact/blast",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\bridge_snap\\impact__blast.wav",
+    "z": 2.62,
+    "verdict": "plausible",
+    "query": "a wooden structure collapsing",
+    "p_real": 0.938
+   },
+   {
+    "id": "pro_impact/rumble",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\bridge_snap\\pro_impact__rumble.wav",
+    "z": 2.14,
+    "verdict": "weak",
+    "query": "a wooden structure collapsing",
+    "p_real": 0.299
+   },
+   {
+    "id": "synth (current)",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\before_stems\\bridge_snap.wav",
+    "z": 1.91,
+    "verdict": "no match",
+    "query": "a wooden structure collapsing",
+    "p_real": 0.515
+   },
+   {
+    "id": "impact/metal",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\bridge_snap\\impact__metal.wav",
+    "z": 1.84,
+    "verdict": "no match",
+    "query": "a loud wooden crack",
+    "p_real": 0.816
+   },
+   {
+    "id": "impact/classic",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\bridge_snap\\impact__classic.wav",
+    "z": 0.74,
+    "verdict": "no match",
+    "query": "a loud wooden crack",
+    "p_real": 0.753
+   }
+  ]
+ },
+ "boots_h4_L": {
+  "meant": "сапоги разом",
+  "rows": [
+   {
+    "id": "synth (current)",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\before_stems\\boots_h4_L.wav",
+    "z": 2.54,
+    "verdict": "plausible",
+    "query": "a heavy stomp on wooden planks",
+    "p_real": 0.31
+   },
+   {
+    "id": "pro_pop_in/deep",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\boots_h4_L\\pro_pop_in__deep.wav",
+    "z": 1.81,
+    "verdict": "no match",
+    "query": "a heavy stomp on wooden planks",
+    "p_real": 0.684
+   },
+   {
+    "id": "impact/punch",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\boots_h4_L\\impact__punch.wav",
+    "z": 1.55,
+    "verdict": "no match",
+    "query": "a heavy stomp on wooden planks",
+    "p_real": 0.633
+   },
+   {
+    "id": "cut_hit/punch",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\boots_h4_L\\cut_hit__punch.wav",
+    "z": 1.4,
+    "verdict": "no match",
+    "query": "a heavy stomp on wooden planks",
+    "p_real": 0.127
+   },
+   {
+    "id": "knock/desk",
+    "file": "C:\\dev\\projects\\youtube-video\\production\\V002\\audio\\sourcing\\bank\\boots_h4_L\\knock__desk.wav",
+    "z": 0.19,
+    "verdict": "no match",
+    "query": "soldiers marching one step",
+    "p_real": 0.188
+   }
+  ]
+ }
+}

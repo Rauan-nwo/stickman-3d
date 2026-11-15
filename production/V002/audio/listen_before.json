@@ -1,0 +1,1233 @@
+{
+ "splash_distant": {
+  "meant": "далёкий всплеск",
+  "query": "a splash of something falling into water",
+  "z": 0.93,
+  "verdict": "no match",
+  "p_vs_alts": 0.0,
+  "all_z": {
+   "a splash of something falling into water": 0.93,
+   "an object plunging into a river": 0.76,
+   "a distant water splash": 0.59
+  },
+  "sounds_like": [
+   [
+    "an explosion",
+    3.62
+   ],
+   [
+    "a cinematic hit with a long tail",
+    3.48
+   ],
+   [
+    "a deep cinematic boom",
+    3.07
+   ]
+  ],
+  "audioset": [
+   [
+    "Explosion",
+    0.52
+   ],
+   [
+    "Burst, pop",
+    0.28
+   ],
+   [
+    "Sound effect",
+    0.12
+   ]
+  ],
+  "p_real": 0.232,
+  "real_verdict": "uncertain",
+  "duration": 4.145
+ },
+ "splash_final": {
+  "meant": "финальный всплеск",
+  "query": "a person falling into water",
+  "z": 1.36,
+  "verdict": "no match",
+  "p_vs_alts": 0.009,
+  "all_z": {
+   "a person falling into water": 1.36,
+   "a big water splash": 1.32,
+   "a splash of something falling into water": 1.26
+  },
+  "sounds_like": [
+   [
+    "a cinematic hit with a long tail",
+    3.51
+   ],
+   [
+    "a snare hit",
+    2.94
+   ],
+   [
+    "a downlifter falling sweep",
+    2.54
+   ]
+  ],
+  "audioset": [
+   [
+    "Explosion",
+    0.38
+   ],
+   [
+    "Burst, pop",
+    0.27
+   ],
+   [
+    "Sound effect",
+    0.15
+   ]
+  ],
+  "p_real": 0.124,
+  "real_verdict": "likely code-synthesized",
+  "duration": 4.225
+ },
+ "splash_small_0": {
+  "meant": "мелкий всплеск",
+  "query": "a water plop",
+  "z": 1.33,
+  "verdict": "no match",
+  "p_vs_alts": 0.337,
+  "all_z": {
+   "a water plop": 1.33,
+   "a small water splash": 1.01,
+   "something small dropping into water": 0.34
+  },
+  "sounds_like": [
+   [
+    "a cinematic hit with a long tail",
+    3.29
+   ],
+   [
+    "a snare hit",
+    3.13
+   ],
+   [
+    "a whip pan transition",
+    2.35
+   ]
+  ],
+  "audioset": [
+   [
+    "Sound effect",
+    0.24
+   ],
+   [
+    "Whip",
+    0.12
+   ],
+   [
+    "Bang",
+    0.12
+   ]
+  ],
+  "p_real": 0.124,
+  "real_verdict": "likely code-synthesized",
+  "duration": 3.665
+ },
+ "whistle_march": {
+  "meant": "насвистывание",
+  "query": "human whistling",
+  "z": 4.78,
+  "verdict": "strong",
+  "p_vs_alts": 0.701,
+  "all_z": {
+   "human whistling": 4.78,
+   "a man whistling a melody": 3.48,
+   "a person whistling a tune": 3.23
+  },
+  "sounds_like": [
+   [
+    "a kettle whistling",
+    3.43
+   ],
+   [
+    "a balloon squeak",
+    3.22
+   ],
+   [
+    "a downlifter falling sweep",
+    2.17
+   ]
+  ],
+  "audioset": [
+   [
+    "Whistling",
+    0.69
+   ],
+   [
+    "Whistle",
+    0.28
+   ]
+  ],
+  "p_real": 0.25,
+  "real_verdict": "uncertain",
+  "duration": 2.813
+ },
+ "chain_creak": {
+  "meant": "скрип цепи",
+  "query": "a metal chain creaking under tension",
+  "z": 0.22,
+  "verdict": "no match",
+  "p_vs_alts": 0.698,
+  "all_z": {
+   "a metal chain creaking under tension": 0.22,
+   "a metal squeak": 0.1,
+   "rusty metal creaking": -0.45
+  },
+  "sounds_like": [
+   [
+    "a success chime",
+    2.69
+   ],
+   [
+    "a notification ding",
+    2.46
+   ],
+   [
+    "an error buzz",
+    2.39
+   ]
+  ],
+  "audioset": [
+   [
+    "Sound effect",
+    0.36
+   ],
+   [
+    "Music",
+    0.12
+   ],
+   [
+    "Ding",
+    0.09
+   ]
+  ],
+  "p_real": 0.027,
+  "real_verdict": "likely code-synthesized",
+  "duration": 3.725
+ },
+ "chain_clink": {
+  "meant": "звяканье цепи",
+  "query": "a metal chain clinking",
+  "z": 0.34,
+  "verdict": "no match",
+  "p_vs_alts": 0.0,
+  "all_z": {
+   "a metal chain clinking": 0.34,
+   "a chain rattle": 0.34,
+   "metal links rattling": -0.18
+  },
+  "sounds_like": [
+   [
+    "a success chime",
+    4.52
+   ],
+   [
+    "a notification ding",
+    3.24
+   ],
+   [
+    "a magic sparkle chime",
+    2.59
+   ]
+  ],
+  "audioset": [
+   [
+    "Ding",
+    0.48
+   ],
+   [
+    "Ding-dong",
+    0.18
+   ],
+   [
+    "Music",
+    0.12
+   ]
+  ],
+  "p_real": 0.124,
+  "real_verdict": "likely code-synthesized",
+  "duration": 3.525
+ },
+ "plank_creak_0": {
+  "meant": "скрип доски",
+  "query": "a wooden plank creaking",
+  "z": 1.96,
+  "verdict": "no match",
+  "p_vs_alts": 0.484,
+  "all_z": {
+   "a wooden plank creaking": 1.96,
+   "wood creaking": 1.58,
+   "a creaking wooden floorboard": 1.36
+  },
+  "sounds_like": [
+   [
+    "an error buzz",
+    4.08
+   ],
+   [
+    "a digital glitch",
+    3.45
+   ],
+   [
+    "a stutter glitch transition",
+    2.92
+   ]
+  ],
+  "audioset": [
+   [
+    "Sound effect",
+    0.38
+   ]
+  ],
+  "p_real": 0.018,
+  "real_verdict": "likely code-synthesized",
+  "duration": 0.876
+ },
+ "swing_creak_fwd": {
+  "meant": "скрип качелей",
+  "query": "a swing creaking back and forth",
+  "z": 0.87,
+  "verdict": "no match",
+  "p_vs_alts": 0.021,
+  "all_z": {
+   "a swing creaking back and forth": 0.87,
+   "a rope swing creaking": 0.63,
+   "a creaking rope": 0.53
+  },
+  "sounds_like": [
+   [
+    "an error buzz",
+    4.19
+   ],
+   [
+    "a digital glitch",
+    3.21
+   ],
+   [
+    "a phone vibration buzz",
+    2.15
+   ]
+  ],
+  "audioset": [
+   [
+    "Fart",
+    0.31
+   ],
+   [
+    "Boing",
+    0.21
+   ],
+   [
+    "Sound effect",
+    0.15
+   ]
+  ],
+  "p_real": 0.085,
+  "real_verdict": "likely code-synthesized",
+  "duration": 0.756
+ },
+ "bridge_creak": {
+  "meant": "скрип моста",
+  "query": "a large wooden structure creaking",
+  "z": 1.51,
+  "verdict": "no match",
+  "p_vs_alts": 0.967,
+  "all_z": {
+   "a large wooden structure creaking": 1.51,
+   "a ship hull creaking": 1.22,
+   "heavy wood and metal creaking": 1.08
+  },
+  "sounds_like": [
+   [
+    "an error buzz",
+    2.85
+   ],
+   [
+    "a cinematic hit with a long tail",
+    2.69
+   ],
+   [
+    "a digital glitch",
+    2.54
+   ]
+  ],
+  "audioset": [
+   [
+    "Sound effect",
+    0.57
+   ],
+   [
+    "Music",
+    0.1
+   ]
+  ],
+  "p_real": 0.013,
+  "real_verdict": "likely code-synthesized",
+  "duration": 3.925
+ },
+ "metal_groan": {
+  "meant": "стон металла",
+  "query": "a large metal structure groaning",
+  "z": 1.56,
+  "verdict": "no match",
+  "p_vs_alts": 0.864,
+  "all_z": {
+   "a large metal structure groaning": 1.56,
+   "metal groaning under stress": 1.18,
+   "metal creaking and straining": 0.53
+  },
+  "sounds_like": [
+   [
+    "a cinematic hit with a long tail",
+    2.66
+   ],
+   [
+    "a success chime",
+    2.36
+   ],
+   [
+    "a notification ding",
+    2.27
+   ]
+  ],
+  "audioset": [
+   [
+    "Music",
+    0.66
+   ],
+   [
+    "Sound effect",
+    0.54
+   ],
+   [
+    "Percussion",
+    0.16
+   ]
+  ],
+  "p_real": 0.063,
+  "real_verdict": "likely code-synthesized",
+  "duration": 3.975
+ },
+ "cloth_grab": {
+  "meant": "рывок за воротник",
+  "query": "a hand grabbing cloth",
+  "z": 1.18,
+  "verdict": "no match",
+  "p_vs_alts": 0.001,
+  "all_z": {
+   "a hand grabbing cloth": 1.18,
+   "clothing being grabbed and pulled": 0.5,
+   "fabric rustling quickly": 0.09
+  },
+  "sounds_like": [
+   [
+    "a snare hit",
+    3.61
+   ],
+   [
+    "a fast whoosh",
+    3.02
+   ],
+   [
+    "a punchy impact hit",
+    2.82
+   ]
+  ],
+  "audioset": [
+   [
+    "Sound effect",
+    0.17
+   ],
+   [
+    "Bang",
+    0.17
+   ],
+   [
+    "Whoosh, swoosh, swish",
+    0.16
+   ]
+  ],
+  "p_real": 0.177,
+  "real_verdict": "uncertain",
+  "duration": 1.006
+ },
+ "soldiers_clatter": {
+  "meant": "столкновение солдат",
+  "query": "people bumping into each other with gear clattering",
+  "z": 1.71,
+  "verdict": "no match",
+  "p_vs_alts": 0.001,
+  "all_z": {
+   "people bumping into each other with gear clattering": 1.71,
+   "a clatter of wooden and metal objects": 1.57,
+   "equipment rattling and falling": 0.85
+  },
+  "sounds_like": [
+   [
+    "a kalimba note",
+    2.75
+   ],
+   [
+    "a success chime",
+    2.53
+   ],
+   [
+    "a wooden block hit",
+    2.24
+   ]
+  ],
+  "audioset": [
+   [
+    "Music",
+    0.55
+   ],
+   [
+    "Sound effect",
+    0.07
+   ]
+  ],
+  "p_real": 0.123,
+  "real_verdict": "likely code-synthesized",
+  "duration": 1.4
+ },
+ "bird_chirp": {
+  "meant": "птица на цепи",
+  "query": "a bird tweet",
+  "z": 3.65,
+  "verdict": "strong",
+  "p_vs_alts": 0.636,
+  "all_z": {
+   "a bird tweet": 3.65,
+   "a songbird singing": 3.41,
+   "a small bird chirping": 3.34
+  },
+  "sounds_like": [
+   [
+    "a balloon squeak",
+    3.69
+   ],
+   [
+    "a bird chirping",
+    3.28
+   ],
+   [
+    "a finger squeaking on glass",
+    3.23
+   ]
+  ],
+  "audioset": [
+   [
+    "Chirp, tweet",
+    0.53
+   ],
+   [
+    "Bird",
+    0.51
+   ],
+   [
+    "Bird vocalization, bird call, bird song",
+    0.31
+   ]
+  ],
+  "p_real": 0.386,
+  "real_verdict": "uncertain",
+  "duration": 0.842
+ },
+ "bird_meadow": {
+  "meant": "птицы у качелей",
+  "query": "a songbird singing",
+  "z": 3.11,
+  "verdict": "strong",
+  "p_vs_alts": 0.351,
+  "all_z": {
+   "a songbird singing": 3.11,
+   "a small bird chirping": 2.65,
+   "birds singing in a meadow": 1.82
+  },
+  "sounds_like": [
+   [
+    "a balloon squeak",
+    3.92
+   ],
+   [
+    "a finger squeaking on glass",
+    3.04
+   ],
+   [
+    "a record scratch",
+    2.89
+   ]
+  ],
+  "audioset": [
+   [
+    "Chirp, tweet",
+    0.67
+   ],
+   [
+    "Bird",
+    0.61
+   ],
+   [
+    "Bird vocalization, bird call, bird song",
+    0.41
+   ]
+  ],
+  "p_real": 0.557,
+  "real_verdict": "uncertain",
+  "duration": 1.046
+ },
+ "general_laugh": {
+  "meant": "смех генерала",
+  "missing": true
+ },
+ "soldiers_chuckle": {
+  "meant": "смешки солдат",
+  "missing": true
+ },
+ "kid_squeal": {
+  "meant": "визг восторга ребёнка",
+  "missing": true
+ },
+ "throw_whoosh": {
+  "meant": "свист броска",
+  "query": "a fast whoosh through the air",
+  "z": 3.86,
+  "verdict": "strong",
+  "p_vs_alts": 0.985,
+  "all_z": {
+   "a fast whoosh through the air": 3.86,
+   "a quick swoosh": 3.1,
+   "something thrown through the air": 2.48
+  },
+  "sounds_like": [
+   [
+    "a fast whoosh",
+    3.95
+   ],
+   [
+    "a quick swipe",
+    3.38
+   ],
+   [
+    "a downlifter falling sweep",
+    3.01
+   ]
+  ],
+  "audioset": [
+   [
+    "Whoosh, swoosh, swish",
+    0.56
+   ],
+   [
+    "Sound effect",
+    0.41
+   ],
+   [
+    "Bang",
+    0.05
+   ]
+  ],
+  "p_real": 0.123,
+  "real_verdict": "likely code-synthesized",
+  "duration": 0.896
+ },
+ "drum_tumble": {
+  "meant": "барабан катится",
+  "query": "a wooden object tumbling",
+  "z": 1.17,
+  "verdict": "no match",
+  "p_vs_alts": 0.001,
+  "all_z": {
+   "a wooden object tumbling": 1.17,
+   "a hollow drum tumbling and knocking": 1.13,
+   "hollow knocks": 0.31
+  },
+  "sounds_like": [
+   [
+    "a notification ding",
+    2.66
+   ],
+   [
+    "a success chime",
+    2.53
+   ],
+   [
+    "a snare hit",
+    2.46
+   ]
+  ],
+  "audioset": [
+   [
+    "Music",
+    0.52
+   ],
+   [
+    "Ding",
+    0.18
+   ],
+   [
+    "Sound effect",
+    0.15
+   ]
+  ],
+  "p_real": 0.052,
+  "real_verdict": "likely code-synthesized",
+  "duration": 4.025
+ },
+ "marbles": {
+  "meant": "шарики",
+  "query": "small glass balls bouncing",
+  "z": 3.0,
+  "verdict": "strong",
+  "p_vs_alts": 0.641,
+  "all_z": {
+   "small glass balls bouncing": 3.0,
+   "glass marbles spilling and bouncing": 2.15,
+   "marbles rolling on a hard floor": 1.05
+  },
+  "sounds_like": [
+   [
+    "a magic sparkle chime",
+    3.62
+   ],
+   [
+    "a glissando on bar chimes",
+    3.21
+   ],
+   [
+    "a success chime",
+    3.08
+   ]
+  ],
+  "audioset": [
+   [
+    "Breaking",
+    0.18
+   ],
+   [
+    "Chink, clink",
+    0.16
+   ],
+   [
+    "Glass",
+    0.11
+   ]
+  ],
+  "p_real": 0.013,
+  "real_verdict": "likely code-synthesized",
+  "duration": 1.6
+ },
+ "shuffle_steps": {
+  "meant": "шарканье",
+  "query": "footsteps on wooden planks",
+  "z": 2.34,
+  "verdict": "weak",
+  "p_vs_alts": 0.033,
+  "all_z": {
+   "footsteps on wooden planks": 2.34,
+   "a crowd walking on a wooden floor": 2.24,
+   "many footsteps shuffling on wood": 1.56
+  },
+  "sounds_like": [
+   [
+    "a wooden block hit",
+    2.77
+   ],
+   [
+    "a horse galloping",
+    2.73
+   ],
+   [
+    "a snare hit",
+    2.37
+   ]
+  ],
+  "audioset": [
+   [
+    "Music",
+    0.65
+   ],
+   [
+    "Percussion",
+    0.24
+   ],
+   [
+    "Wood block",
+    0.23
+   ]
+  ],
+  "p_real": 0.094,
+  "real_verdict": "likely code-synthesized",
+  "duration": 3.571
+ },
+ "boots_h4_L": {
+  "meant": "сапоги разом",
+  "query": "a heavy stomp on wooden planks",
+  "z": 2.54,
+  "verdict": "plausible",
+  "p_vs_alts": 0.088,
+  "all_z": {
+   "a heavy stomp on wooden planks": 2.54,
+   "many boots stomping at once": 0.9,
+   "soldiers marching one step": 0.88
+  },
+  "sounds_like": [
+   [
+    "a punchy impact hit",
+    3.07
+   ],
+   [
+    "a kick drum",
+    2.95
+   ],
+   [
+    "a sub bass drop",
+    2.92
+   ]
+  ],
+  "audioset": [
+   [
+    "Sound effect",
+    0.16
+   ],
+   [
+    "Music",
+    0.14
+   ],
+   [
+    "Ding",
+    0.1
+   ]
+  ],
+  "p_real": 0.31,
+  "real_verdict": "uncertain",
+  "duration": 1.306
+ },
+ "sign_ding": {
+  "meant": "динь таблички",
+  "query": "a desk bell",
+  "z": 2.82,
+  "verdict": "plausible",
+  "p_vs_alts": 0.112,
+  "all_z": {
+   "a desk bell": 2.82,
+   "a small bell ding": 2.23,
+   "a single bell chime": 1.97
+  },
+  "sounds_like": [
+   [
+    "a triangle hit",
+    3.14
+   ],
+   [
+    "a success chime",
+    2.91
+   ],
+   [
+    "a bicycle bell",
+    2.9
+   ]
+  ],
+  "audioset": [
+   [
+    "Ding",
+    0.7
+   ],
+   [
+    "Clang",
+    0.11
+   ],
+   [
+    "Sound effect",
+    0.06
+   ]
+  ],
+  "p_real": 0.049,
+  "real_verdict": "likely code-synthesized",
+  "duration": 2.144
+ },
+ "officer_whistle": {
+  "meant": "свисток офицера",
+  "query": "a pea whistle blowing",
+  "z": 2.51,
+  "verdict": "plausible",
+  "p_vs_alts": 0.037,
+  "all_z": {
+   "a pea whistle blowing": 2.51,
+   "a police whistle": 2.36,
+   "a referee whistle": 2.12
+  },
+  "sounds_like": [
+   [
+    "an error buzz",
+    3.46
+   ],
+   [
+    "a triangle hit",
+    2.76
+   ],
+   [
+    "a spray can hissing",
+    2.73
+   ]
+  ],
+  "audioset": [
+   [
+    "Buzzer",
+    0.22
+   ],
+   [
+    "Whistle",
+    0.12
+   ],
+   [
+    "Sound effect",
+    0.09
+   ]
+  ],
+  "p_real": 0.055,
+  "real_verdict": "likely code-synthesized",
+  "duration": 0.756
+ },
+ "push_thump": {
+  "meant": "низкий толчок",
+  "query": "a deep boom",
+  "z": 2.68,
+  "verdict": "plausible",
+  "p_vs_alts": 0.266,
+  "all_z": {
+   "a deep boom": 2.68,
+   "a heavy low impact": 2.41,
+   "a deep low thump": 2.26
+  },
+  "sounds_like": [
+   [
+    "a deep cinematic boom",
+    3.11
+   ],
+   [
+    "a sub bass drop",
+    3.08
+   ],
+   [
+    "a big drum hit",
+    2.98
+   ]
+  ],
+  "audioset": [
+   [
+    "Sound effect",
+    0.44
+   ],
+   [
+    "Music",
+    0.24
+   ],
+   [
+    "Bang",
+    0.23
+   ]
+  ],
+  "p_real": 0.176,
+  "real_verdict": "uncertain",
+  "duration": 4.225
+ },
+ "rain_steps": {
+  "meant": "шаги-дождь",
+  "query": "many light taps on wood",
+  "z": 0.58,
+  "verdict": "no match",
+  "p_vs_alts": 0.002,
+  "all_z": {
+   "many light taps on wood": 0.58,
+   "rain drops on a wooden surface": 0.22,
+   "light footsteps pattering on wood": -0.04
+  },
+  "sounds_like": [
+   [
+    "bubbles underwater",
+    3.84
+   ],
+   [
+    "a wooden block hit",
+    3.08
+   ],
+   [
+    "a liquid bloop",
+    2.55
+   ]
+  ],
+  "audioset": [
+   [
+    "Music",
+    0.78
+   ],
+   [
+    "Sound effect",
+    0.14
+   ],
+   [
+    "Percussion",
+    0.13
+   ]
+  ],
+  "p_real": 0.233,
+  "real_verdict": "uncertain",
+  "duration": 1.954
+ },
+ "bolt_ping": {
+  "meant": "болт",
+  "query": "a metallic ting",
+  "z": 2.09,
+  "verdict": "weak",
+  "p_vs_alts": 0.159,
+  "all_z": {
+   "a metallic ting": 2.09,
+   "a metal ping": 1.91,
+   "a small metal object snapping and ringing": 1.75
+  },
+  "sounds_like": [
+   [
+    "a magic sparkle chime",
+    3.48
+   ],
+   [
+    "a success chime",
+    3.19
+   ],
+   [
+    "a notification ding",
+    2.69
+   ]
+  ],
+  "audioset": [
+   [
+    "Ding",
+    0.48
+   ],
+   [
+    "Sound effect",
+    0.09
+   ],
+   [
+    "Clang",
+    0.05
+   ]
+  ],
+  "p_real": 0.113,
+  "real_verdict": "likely code-synthesized",
+  "duration": 3.825
+ },
+ "bridge_snap": {
+  "meant": "мост ломается",
+  "query": "a wooden structure collapsing",
+  "z": 1.91,
+  "verdict": "no match",
+  "p_vs_alts": 0.002,
+  "all_z": {
+   "a wooden structure collapsing": 1.91,
+   "a loud wooden crack": 1.52,
+   "wood cracking and breaking": 0.72
+  },
+  "sounds_like": [
+   [
+    "a cinematic hit with a long tail",
+    3.43
+   ],
+   [
+    "a notification ding",
+    2.56
+   ],
+   [
+    "a success chime",
+    2.16
+   ]
+  ],
+  "audioset": [
+   [
+    "Music",
+    0.6
+   ],
+   [
+    "Sound effect",
+    0.23
+   ],
+   [
+    "Ding",
+    0.08
+   ]
+  ],
+  "p_real": 0.515,
+  "real_verdict": "uncertain",
+  "duration": 5.325
+ },
+ "falling_whistle": {
+  "meant": "свист падения",
+  "query": "a cartoon falling sound",
+  "z": 5.17,
+  "verdict": "strong",
+  "p_vs_alts": 0.99,
+  "all_z": {
+   "a cartoon falling sound": 5.17,
+   "a falling whistle with descending pitch": 4.05,
+   "something falling through the air whistling": 3.57
+  },
+  "sounds_like": [
+   [
+    "a downlifter falling sweep",
+    3.71
+   ],
+   [
+    "a police siren",
+    3.13
+   ],
+   [
+    "a balloon squeak",
+    2.81
+   ]
+  ],
+  "audioset": [
+   [
+    "Sound effect",
+    0.14
+   ]
+  ],
+  "p_real": 0.007,
+  "real_verdict": "likely code-synthesized",
+  "duration": 1.762
+ },
+ "boot_41_slowmo": {
+  "meant": "сапог 41, замедление",
+  "query": "a heavy slow stomp",
+  "z": 1.94,
+  "verdict": "no match",
+  "p_vs_alts": 0.207,
+  "all_z": {
+   "a heavy slow stomp": 1.94,
+   "a heavy boot stomp on wood": 1.78,
+   "a deep low thud": 1.51
+  },
+  "sounds_like": [
+   [
+    "a cinematic hit with a long tail",
+    3.54
+   ],
+   [
+    "a deep cinematic boom",
+    3.19
+   ],
+   [
+    "a big drum hit",
+    2.97
+   ]
+  ],
+  "audioset": [
+   [
+    "Music",
+    0.57
+   ],
+   [
+    "Explosion",
+    0.26
+   ],
+   [
+    "Bang",
+    0.19
+   ]
+  ],
+  "p_real": 0.787,
+  "real_verdict": "real or pro-produced",
+  "duration": 4.652
+ },
+ "mus_snare": {
+  "meant": "малый барабан, марш",
+  "query": "a military snare drum",
+  "z": 4.69,
+  "verdict": "strong",
+  "p_vs_alts": 0.315,
+  "all_z": {
+   "a military snare drum": 4.69,
+   "a snare drum playing a march cadence": 4.4,
+   "a marching drum beat": 3.32
+  },
+  "sounds_like": [
+   [
+    "a snare hit",
+    3.92
+   ],
+   [
+    "a downlifter falling sweep",
+    2.37
+   ],
+   [
+    "a motorcycle revving",
+    2.15
+   ]
+  ],
+  "audioset": [
+   [
+    "Timpani",
+    0.88
+   ],
+   [
+    "Music",
+    0.75
+   ],
+   [
+    "Drum",
+    0.72
+   ]
+  ],
+  "p_real": 0.112,
+  "real_verdict": "likely code-synthesized",
+  "duration": 62.967
+ },
+ "mus_fife": {
+  "meant": "флейта-пикколо, тема",
+  "query": "a flute melody",
+  "z": 3.67,
+  "verdict": "strong",
+  "p_vs_alts": 0.205,
+  "all_z": {
+   "a flute melody": 3.67,
+   "a fife playing a march tune": 2.86,
+   "a piccolo playing": 1.14
+  },
+  "sounds_like": [
+   [
+    "a success chime",
+    2.03
+   ],
+   [
+    "a rooster crowing",
+    1.61
+   ],
+   [
+    "a bee flying by",
+    1.26
+   ]
+  ],
+  "audioset": [
+   [
+    "Music",
+    0.73
+   ],
+   [
+    "Silence",
+    0.61
+   ],
+   [
+    "Flute",
+    0.43
+   ]
+  ],
+  "p_real": 0.375,
+  "real_verdict": "likely code-synthesized",
+  "duration": 62.967
+ }
+}

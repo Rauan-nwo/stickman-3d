@@ -24,7 +24,7 @@
 //   pos задаёт центр тела, а не ступни: полёт), m.clip, m.phase, m.heading, m.view/m.facing (жёстко), m.hide, m.marble (0..1), m.noTop (не подменять видом сверху и не сплющивать: падающие фигурки),
 //   m.pose(p) — правка позы ближнего участника (эмоции);
 //   marbles — 0..1 | (i, t) => 0..1: гэг «шарики» (фигура схлопывается в катящийся синий шарик и обратно);
-//   cell [ширина, высота] ячейки атласа, phases, nearPx, maxNear, haze (0..1 — подмешать туман сцены вдали), bias.
+//   cell [ширина, высота] ячейки атласа, box { x0, x1, y0, y1 } — область фигуры в ячейке (ед. рисунка), phases, nearPx, maxNear, haze (0..1 — подмешать туман сцены вдали), bias.
 // Методы: update(t) — тени (вызывать в update сцены), draw(t, { nearer, farther }) — отрисовка (диапазон глубин в метрах —
 // чтобы вставить героя между рядами), drawWith(t, [[actor, pose], ...]) — толпа и актёры в общем порядке глубины,
 // stats — { drawn, near, ms } последнего кадра.
@@ -74,6 +74,7 @@ void main() {
 export class Crowd {
   constructor(stage, o) {
     this.stage = stage; this.n = o.count; this.o = o;
+    this.BOX = { ...BOX, ...(o.box || {}) };                                  // o.box = { x0, x1 } — шире ячейка для поз с сильным наклоном (спотыкается, летит): иначе голову режет край ячейки
     this.clips = o.clips.map(c => ({ gait: 'march', opt: {}, ...c, yaw: c.yaw ?? GAIT_YAW[c.gait] ?? 0 }));
     this.P = o.phases ?? 12; this.nearPx = o.nearPx ?? null; this.maxNear = o.maxNear ?? 40; this.haze = o.haze ?? 0; this.bias = o.bias ?? .12;
     this.rate = o.rate ?? 1.9; this.marbles = o.marbles ?? 0;
@@ -92,22 +93,22 @@ export class Crowd {
     const cols = Math.floor(max / cw), rows = Math.ceil(total / cols), W = cols * cw, H = rows * ch, FK = .25;
     const mk = (w, h) => { const c = document.createElement('canvas'); c.width = w; c.height = h; return c; };
     const main = mk(W, H), far = mk(Math.ceil(W * FK), Math.ceil(H * FK)), xm = main.getContext('2d'), xf = far.getContext('2d');
-    const s = Math.min(cw / (BOX.x1 - BOX.x0), ch / (BOX.y1 - BOX.y0));       // пикселей на единицу рисунка
-    this.cell = { cw, ch, cols, rows, W, H, s, per, ax: .5, ay: BOX.y1 * s / ch };
+    const s = Math.min(cw / (this.BOX.x1 - this.BOX.x0), ch / (this.BOX.y1 - this.BOX.y0));       // пикселей на единицу рисунка
+    this.cell = { cw, ch, cols, rows, W, H, s, per, ax: .5, ay: this.BOX.y1 * s / ch };
     const cellAt = idx => [(idx % cols) * cw, Math.floor(idx / cols) * ch];
-    const into = (x, kk, idx, fn) => { const [cx, cy] = cellAt(idx); x.save(); x.scale(kk, kk); x.beginPath(); x.rect(cx, cy, cw, ch); x.clip(); x.translate(cx + cw / 2, cy + ch - BOX.y1 * s); x.scale(s, s); fn(x); x.restore(); };
+    const into = (x, kk, idx, fn) => { const [cx, cy] = cellAt(idx); x.save(); x.scale(kk, kk); x.beginPath(); x.rect(cx, cy, cw, ch); x.clip(); x.translate(cx + cw / 2, cy + ch - this.BOX.y1 * s); x.scale(s, s); fn(x); x.restore(); };
     this.clips.forEach((c, ci) => {
       const S = c.char.spec, fat = { ...S, lw: S.lw * 2.3, limbW: S.limbW * 2.0 }; c.base = ci * per; c.unit = S.unit ?? .00202;
       VIEWS.forEach((view, vi) => { for (let p = 0; p < this.P; p++) {
         const pose = this.poseOf(c, (p + .5) / this.P, view, 1);
         into(xm, 1, c.base + vi * this.P + p, x => drawStickman(x, S, pose)); into(xf, FK, c.base + vi * this.P + p, x => drawStickman(x, fat, pose));
       } });
-      for (let p = 0; p < N_TOP; p++) { const draw = x => { x.translate(0, -cw / 2 / s + BOX.y1); if (c.char.top) c.char.top(x, p / N_TOP, { marching: c.gait !== 'stand' }); };
+      for (let p = 0; p < N_TOP; p++) { const draw = x => { x.translate(0, -cw / 2 / s + this.BOX.y1); if (c.char.top) c.char.top(x, p / N_TOP, { marching: c.gait !== 'stand' }); };
         into(xm, 1, c.base + 4 * this.P + p, draw); into(xf, FK, c.base + 4 * this.P + p, draw); }
     });
     this.marbleBase = this.clips.length * per;
-    for (let p = 0; p < N_MARBLE; p++) { const r = cw * .42 / s, draw = x => marble2D(x, 0, BOX.y1 - cw / 2 / s, r, p / N_MARBLE * TAU, this.o.marbleStyle || {});
-      into(xm, 1, this.marbleBase + p, draw); into(xf, FK, this.marbleBase + p, x => marble2D(x, 0, BOX.y1 - cw / 2 / s, r, p / N_MARBLE * TAU, { ...(this.o.marbleStyle || {}), lw: r * .3 })); }
+    for (let p = 0; p < N_MARBLE; p++) { const r = cw * .42 / s, draw = x => marble2D(x, 0, this.BOX.y1 - cw / 2 / s, r, p / N_MARBLE * TAU, this.o.marbleStyle || {});
+      into(xm, 1, this.marbleBase + p, draw); into(xf, FK, this.marbleBase + p, x => marble2D(x, 0, this.BOX.y1 - cw / 2 / s, r, p / N_MARBLE * TAU, { ...(this.o.marbleStyle || {}), lw: r * .3 })); }
     const tex = c => { const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.NoColorSpace; t.premultiplyAlpha = true; t.generateMipmaps = true; t.minFilter = THREE.LinearMipmapLinearFilter; t.magFilter = THREE.LinearFilter; t.anisotropy = 4; return t; };
     this.canvasMain = main; this.canvasFar = far; this.tMain = tex(main); this.tFar = tex(far);
     const st = this.stage; this.nearCanvas = mk(st.W, st.H); this.nearCtx = this.nearCanvas.getContext('2d');
@@ -163,7 +164,7 @@ export class Crowd {
     for (let i = 0; i < this.n; i++) {
       const m = this._m[i]; if (m.hide || m.alpha <= 0) continue;
       const p = m.pos, d = -(me[2] * p.x + me[6] * p.y + me[10] * p.z + me[14]); if (d < .15 || d < nearer || d >= farther) continue;
-      const c = this.clips[m.clip], hM = (BOX.y1 - BOX.y0) * c.unit * m.scale, px = hM * pxs / d;                 // высота ячейки на экране
+      const c = this.clips[m.clip], hM = (this.BOX.y1 - this.BOX.y0) * c.unit * m.scale, px = hM * pxs / d;                 // высота ячейки на экране
       const sx = st.W / 2 + (me[0] * p.x + me[4] * p.y + me[8] * p.z + me[12]) / d * pxs, sy = st.H / 2 - (me[1] * p.x + me[5] * p.y + me[9] * p.z + me[13]) / d * pxs;
       if (sx < -px || sx > st.W + px || sy < -px * 1.2 || sy > st.H + px * 1.2) continue;
       m.d = d; m.px = px; m.c = c;
@@ -176,7 +177,11 @@ export class Crowd {
     }
     list.sort((a, b) => b.d - a.d);
     // ближние — вектором в слой nearCanvas (не больше maxNear самых крупных)
-    let near = list.filter(m => m.px > this.nearPx && (m.noTop || m.elev < 1.0)); if (near.length > this.maxNear) near = near.slice(near.length - this.maxNear);
+    // ближние — всегда сплошная группа самых близких по глубине: если между двумя «векторными» участниками окажется участник
+    // из атласа, прямоугольник более близкого перерисует поверх него дальнего соседа (шов по краю прямоугольника, «лицо из двух половин»)
+    let near = list.filter(m => m.px > this.nearPx && (m.noTop || m.elev < 1.0));
+    if (near.length) { const dFar = near[0].d; near = list.filter(m => m.d <= dFar && (m.noTop || m.elev < 1.0)); }
+    if (near.length > this.maxNear) near = near.slice(near.length - this.maxNear);
     const isNear = new Set(near), nx = this.nearCtx;
     if (near.length) {
       nx.setTransform(1, 0, 0, 1, 0, 0); nx.clearRect(0, 0, st.W, st.H);
@@ -201,7 +206,7 @@ export class Crowd {
       A.pos.setXYZ(n, p.x, p.y, p.z); A.uv.setXYZW(n, flip ? u0 + du : u0, v0, flip ? -du : du, dv); A.size.setXYZW(n, wM, hM, anx, any); A.A.setXYZW(n, rot, lod, mode, alpha); A.B.setXY(n, m.heading + m.c.yaw, squash); n++;
     };
     for (const m of list) {
-      const c = m.c, un = c.unit * m.scale, wM = cw / s * un, hM = ch / s * un, mk = m.marble || 0, lod = clamp((62 - m.px * (BOX.y1 - BOX.y0) * s / ch) / 26);
+      const c = m.c, un = c.unit * m.scale, wM = cw / s * un, hM = ch / s * un, mk = m.marble || 0, lod = clamp((62 - m.px * (this.BOX.y1 - this.BOX.y0) * s / ch) / 26);
       if (isNear.has(m)) { put(m, 0, 2, 2, wM * 1.5, hM * 1.25, .5, m.air ? .5 : ay / 1.25 + .06, 0, 1, false, 1); continue; }
       if (mk >= .5) { const k = E.outBack(clamp((mk - .5) * 2)), r = wM * k * (this.o.marbleSize ?? .5); put(m, this.marbleBase + (Math.floor(fract(m.phase * .8) * N_MARBLE) % N_MARBLE), 0, lod, r, r, .5, .08, 0, m.alpha, false, 1, true); continue; }
       const top = !m.noTop && m.elev > .95 ? 1 : 0;                         // жёсткая смена: полупрозрачное наложение двух видов даёт муар

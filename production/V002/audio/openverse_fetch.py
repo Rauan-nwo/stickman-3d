@@ -44,6 +44,9 @@ SLOTS = {   # slot: (queries, min s, max s)
     "laugh_man": (["man laughing", "hearty laugh"], 0.8, 40),
     "chuckle": (["men chuckle", "male chuckle", "group laughing"], 0.5, 40),
     "kid": (["child squeal", "kid laughing", "child giggle"], 0.5, 40),
+    # second batch: effects the listening check did not recognise either
+    "wood_break": (["wood cracking breaking", "branch snap"], 0.3, 20),
+    "steps_wood": (["footsteps on wooden floor", "crowd footsteps"], 1.0, 40),
 }
 
 

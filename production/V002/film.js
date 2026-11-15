@@ -32,6 +32,10 @@ export default {
     const RT = g.spots.general.y;
 
     // ---------- сетка шагов: темп = средний интервал слов «Left, right, left, right»; финальная сетка отсчитана от «forty-first» ----------
+    // рот героя двигается ТОЛЬКО на словах, помеченных в words.json как voice: "char" (его реплика); смена каждые 3–4 кадра,
+    // в паузах между словами и пока говорит рассказчик — rest (рот закрыт)
+    const WORDS = Array.isArray(words) ? words : words.words;
+    const charMouth = (t, line, set, rest) => { for (const w of WORDS) if (w.voice === 'char' && w.line === line && t >= w.start - .02 && t < w.end + .02) return set[Math.floor(t * 30 / 3.5) % set.length]; return rest; };
     const BEAT = (c('8:right#2') - c('8:Left')) / 3, T41 = c('17:forty-first'), TB = c('17:bucks'), T12 = c('12');
     const stepPh = t => (t < T12 ? (t - c('8:right#2')) / BEAT : (t - T41) / BEAT);       // целое значение = удар сапога
 
@@ -82,7 +86,7 @@ export default {
       out.copy(deckP(s, v)); out.y += R.hop * hopH(bph(t, s)) + (R.jump && R.jump(i, t) || 0); return out;
     };
     const red = new Crowd(stage, {
-      count: NR, shadow: { parent: g.group }, haze: .35, maxNear: 30,
+      count: NR, shadow: { parent: g.group }, haze: .35, maxNear: 70, box: { x0: -500, x1: 500 }, cell: [214, 264],
       clips: [{ char: redCh, gait: 'march', opt: { musket: true } },
         { char: drummer(), pose: (ch, ph, vw) => ACT.drumming(ch, 0, { phase: ph, ...vw }) },
         { char: redCh, pose: (ch, ph, vw) => { const P = ACT.bounce(ch, ph * .5, { period: .5, amp: 150, lift: false, face: 'grin', ...vw }); P.hatDy = -hatGap(ph) * 60; return P; } },
@@ -118,29 +122,45 @@ export default {
 
     // ---------- синие ----------
     const NB = 150, M = {};
-    const sh = []; { const r = rng(41); for (let i = 0; i < NB; i++) sh.push({ s: r() * 46 - 10, z: (r() - .5) * 1.6, v: .7 + .6 * r(), w: 1 + r() * 2 }); }
+    // на мосту синие идут четырьмя дорожками с шагом ~1.3 м (в дорожке никто никого не обгоняет): фигуры не слипаются в кучу
+    const sh = []; { const r = rng(41); for (let i = 0; i < NB; i++) { const lane = i % 4, j = Math.floor(i / 4); sh.push({ s: -10 + j * 1.3 + lane * .33 + (r() - .5) * .45, z: (lane - 1.5) * .5 + (r() - .5) * .1, v: [.95, .82, 1.04, .9][lane], w: 1 + r() * 2 }); } }
+    const NMESS = 27, PAIR = [12, 13], SPIN = 4;                       // суматоха в трубе: 27 солдат на сетке 1.6 м, двое сталкиваются, один крутится
+    const messS = (i, t) => { const s0 = 10.2 + (i % 9) * 1.6 + .4 * (hash(i * 3.3) - .5), w = .8 + .5 * hash(i * 1.9);
+      if (i === PAIR[0] || i === PAIR[1]) { const sd = i === PAIR[0] ? -1 : 1, u = fract((t - M.t1) / 1.3), d = .34 + 1.25 * Math.abs(Math.sin(PI * u)); return 10.2 + 3.5 * 1.6 + sd * d; }
+      return i === SPIN ? s0 : s0 + .52 * Math.sin(t * 2.1 * w + i * 2.4); };
+    const messV = (i, t) => { const v0 = [-.68, 0, .68][Math.floor(i / 9) % 3] + .1 * (hash(i * 7.1) - .5); return (i === PAIR[0] || i === PAIR[1] || i === SPIN) ? v0 : v0 + .17 * Math.sin(t * 2.7 * (.8 + .5 * hash(i * 2.2)) + i); };
+    const lurch = (t, row) => .34 * Math.max(0, Math.sin(TAU * (t - M.t0 - row * .12) / 1.05)) * smooth(seg(t, M.t0, M.t0 + .2));
     const HB = 37, HA = 38;                                           // «ищет туалет» и тот, кто расспрашивает соседей
     const blue = new Crowd(stage, {
-      count: NB, shadow: { parent: g.group }, haze: .35, maxNear: 30, seed: 4, marbleSize: .3,
+      count: NB, shadow: { parent: g.group }, haze: .35, maxNear: 70, seed: 4, box: { x0: -500, x1: 500 }, cell: [214, 264],
       clips: [...SHUFFLES.map((gt, k) => ({ char: soldierBlue(k), gait: gt })),
         { char: soldierBlue(0), gait: 'stand' }, { char: soldierBlue(2), gait: 'stand' }, { char: soldierBlue(4), gait: 'stand' },
-        { char: soldierBlue(1), gait: 'walk' }, { char: soldierBlue(3), gait: 'stumble' }, { char: soldierBlue(5), gait: 'walk' }],
+        { char: soldierBlue(1), gait: 'walk' }, { char: soldierBlue(3), gait: 'stumble' }, { char: soldierBlue(5), gait: 'walk' }, { char: soldierBlue(2), gait: 'run', opt: { panic: true } }],
       clip: 0, heading: PI / 2,
-      marbles: (i, t) => { if (M.marbT == null) return 0; const a = M.marbT + hash(i * 2.9) * .14; return smooth(seg(t, a, a + .1)) * (1 - smooth(seg(t, M.marbT + .78, M.marbT + .9))); },
       pos(i, t, out) {
-        if (M.mode === 'shuffle') { const q = sh[i]; let s = M.s0 + q.s + q.v * (t - M.t0), v = q.z + .1 * Math.sin(t * q.w + i);
-          if (i === HB && M.heroS != null) { s = M.heroS; v = .55; } if (i === HA && M.heroS != null) { s = M.heroS - .95; v = .1; }
+        if (M.mode === 'mess' && i < NMESS) return out.copy(deckP(messS(i, t), messV(i, t)));
+        if (M.mode === 'shuffle' || M.mode === 'mess') { const q = sh[i]; let s = M.s0 + q.s + q.v * (t - M.t0), v = q.z + .05 * Math.sin(t * q.w + i);
+          if (M.mode === 'mess') s = s > 20 ? s + 14 : s - 16;                    // остальные — за кадром трубы
+          if (i === HB && M.heroS != null) { s = M.heroS; v = .55; } else if (i === HA && M.heroS != null) { s = M.heroS - 1.25; v = -.05; }
+          else if (M.heroS != null && Math.abs(s - M.heroS + .4) < 1.9 && v > -.45) s += s > M.heroS - .4 ? 2.4 : -2.4;      // вокруг героя плана свободно: лицо ничем не перекрыто
           return out.copy(deckP(s, v)); }
         const row = Math.floor(i / 5), f = i % 5; let x = -23.5 - (row + (M.rowOff || 0)) * .95 + (M.adv || 0), z = (f - 2) * .86;
         if (M.listen && i === 3) x += .6 * E.outBack(seg(t, M.listen, M.listen + .22));
-        if (M.mode === 'bump') { const e = smooth(seg(t, M.t0, M.t0 + .25)); x += e * (.42 * Math.sin((t - M.t0) * 9 - row * 1.1) + .2 * (hash(i * 3.1) - .5)) + (t - M.t0) * .5; z += e * .22 * Math.sin((t - M.t0) * 7 + i); }
+        // колонна без барабана: ряды в шахматном порядке с шагом 1.3 м; задний ряд налетает на передний (зазор не меньше 0.9 м), тот отлетает вперёд
+        if (M.mode === 'bump') { x = -24.4 - row * 1.3 + lurch(t, row); z = (f - 2) * 1.0 + (row % 2 ? .5 : 0); }
         return out.set(x, 0, z);
       },
       state(i, t, m) {
         const o = blue.offsets[i];
-        if (M.mode === 'shuffle') { m.clip = i === HB ? 4 : i === HA ? 9 : Math.floor(hash(i * 5.3 + 2) * 6); m.phase = t * 1.25 + o; if (m.marble > .5) m.pos.x += (t - M.marbT) * 1.6 * hash(i * 6.1);
-          if (i === HA && M.heroS != null) m.pose = p => ({ ...p, ...face('question'), turn: .2, mouth: ['o', 'open', 'flatS', 'O'][Math.floor(t * 9) % 4], look: [1, 0] }); }
-        else if (M.mode === 'bump') { m.clip = 9 + i % 3; m.phase = t * 1.7 + o; m.rot = .28 * Math.sin((t - M.t0) * 9 - Math.floor(i / 5) * 1.1 + i) * smooth(seg(t, M.t0, M.t0 + .3)); }
+        if (M.mode === 'shuffle') { m.clip = i === HB ? 4 : i === HA ? 9 : Math.floor(hash(i * 5.3 + 2) * 6); m.phase = t * 1.25 + o;
+          if (i === HA && M.heroS != null) m.pose = p => ({ ...p, ...face('question'), turn: .2, mouth: 'o', look: [1, 0], tilt: .08 * Math.sin(t * 6) }); }
+        else if (M.mode === 'mess') { m.phase = t * 1.5 + o; m.clip = Math.floor(hash(i * 5.3 + 2) * 6);
+          if (i < NMESS) { const e = .03, vx = (messS(i, t + e) - messS(i, t - e)), vz = (messV(i, t + e) - messV(i, t - e)) * 2.3; m.heading = Math.atan2(vx, vz); m.clip = [10, 5, 12, 0, 3, 10, 12][i % 7];
+            if (i === SPIN) { m.heading = t * 7; m.clip = 12; m.phase = t * 2; }
+            if (i === PAIR[0] || i === PAIR[1]) { const sd = i === PAIR[0] ? -1 : 1, u = fract((t - M.t1) / 1.3), away = u < .5; m.heading = (sd < 0 ? 1 : -1) * PI / 2; m.clip = away ? 10 : 12; m.rot = away ? sd * -.5 * Math.exp(-u * 7) * Math.cos(u * 22) - sd * .25 * Math.exp(-u * 5) : 0; m.pos.y += away ? .35 * Math.sin(PI * clamp(u / .28)) : 0; } } }
+        else if (M.mode === 'bump') { const row = Math.floor(i / 5), d = lurch(t, row), hit = lurch(t, row + 1) - d;            // hit > 0: сзади налетели
+          m.clip = 9 + (i % 2) * 2; m.phase = t * 1.5 + o; m.rot = -.1 * d / .34;
+          m.pose = (p, mm) => ({ ...p, ...(hit > .12 ? face('yanked') : d > .2 ? { eyes: 'wide', mouth: 'o' } : face('annoyed')), hatLag: 1.6 * (d / .34) - 1.2 * Math.max(0, hit) / .34, hatDy: -22 * Math.max(0, hit) / .34 }); }
         else if (M.mode === 'march') { m.clip = 9 + (i % 2) * 2; m.phase = t < M.breakT ? t * 1.58 : t * (1.1 + .8 * hash(i * 1.3)) + o; if (t >= M.breakT) { m.clip = Math.floor(hash(i * 5.3 + 2) * 6); } }
         else { m.clip = 6 + i % 3; m.phase = t * .5 + o;
           if (M.listen) m.pose = (p, mm) => { const f = i % 5, row = Math.floor(i / 5); if (row === 0 && f === 3) { const P = ACT.raiseHand(mm.c.char, t - M.listen, { view: mm.vw, facing: mm.fc }), a = P.arms[1]; if (a) { a.to = [a.to[0] + 120, a.to[1] - 30]; a.hand = 36; a.L *= 1.1; } return P; }
@@ -239,12 +259,22 @@ export default {
     const capHead = CAP.clone().add(V(0, 1.56, 0)), colHead = COL.clone().add(V(0, 1.62, 0)), T_GRAB = c('2:colonel'), T_YANK = c('2:collar');
     const bankActors = (t, mode) => {
       cap.at(CAP); col.at(COL); blob(CAP); blob(COL, 1.1);
-      const a = t - T_GRAB, y = t - T_YANK, shove = y > 0 ? E.outBack(seg(y, 0, .16)) : 0;
-      let pc = a < .1 ? ACT.dustHands(cap.char, t - c('2') + 1.2, {}) : ACT.yanked(cap.char, Math.max(a - .1, y > 0 ? y + .02 : 0), { dir: -1 });
-      if (a >= .1) pc.dx = (pc.dx || 0) - 150 * shove;
-      const pg = mode === 'point' ? ACT.pointDown(col.char, t, { dir: 1, rage: .9 }) : ACT.grab(col.char, Math.max(a, -.01), { dir: 1, reach: 520 - 150 * shove, rage: seg(t, T_GRAB, T_YANK + .6) });
-      if (a < 0) { pg.dx = (pg.dx || 0) - 700 * (1 - E.outExpo(seg(t, T_GRAB - .16, T_GRAB))); }
-      const list = [[cap, pc], [col, pg]].sort((p, q) => q[0].xf().d - p[0].xf().d); for (const [ac, p] of list) ac.draw(p);
+      const a = t - T_GRAB, y = t - T_YANK, reach = E.outBack(seg(t, T_GRAB - .04, T_GRAB + .12), 1.3), yank = y > 0 ? E.outBack(seg(y, 0, .18), 2.2) : 0, b = cap.char.spec.body;
+      // капитан: на хватке вздрагивает, на «collar» его рывком тянут к полковнику; его руки отстают и висят с дальней стороны
+      let pc, collar;
+      if (a < 0) { pc = ACT.dustHands(cap.char, t - c('2') + 1.2, {}); collar = [b.x - b.rx * .42, b.y - b.ry * .95]; }
+      else { pc = ACT.yanked(cap.char, y > 0 ? .012 + y : .012 * reach, { dir: -1 }); const ex = -300 * yank; pc.dx = (pc.dx || 0) + ex; collar = [pc.collar[0] + ex + 14, pc.collar[1] - 22];
+        pc.arms.forEach((ar, i) => { if (ar) { ar.to = [ar.from[0] + 50 + 110 * yank * (1 - .5 * seg(y, .2, .6)) + (i ? 50 : 0), ar.from[1] + 205 - 40 * yank]; ar.L = 262; ar.bend = 1; } }); }
+      // полковник: одна рука, кисть — на воротнике у шеи капитана (экранная точка воротника -> координаты фигуры полковника).
+      // Пока говорит рассказчик, рот сжат (зубы), лицо багровеет; кричит только на своих словах
+      const lineOn = mode === 'point', pg = lineOn ? ACT.pointDown(col.char, t, { dir: 1, rage: 1 }) : ACT.grab(col.char, Math.max(a, -.01), { dir: 1, reach: 300, rage: seg(t, T_GRAB, c('2:That')) });
+      if (a < 0) pg.dx = (pg.dx || 0) - 700 * (1 - E.outExpo(seg(t, T_GRAB - .16, T_GRAB)));
+      if (!lineOn) { pg.dx = (pg.dx || 0) - 30 * yank; const xc = cap.xf(), xg = col.xf(), tgt = [(xc.x + collar[0] * xc.s - xg.x) / xg.s - (pg.dx || 0), (xc.y + collar[1] * xc.s - xg.y) / xg.s - (pg.dy || 0)];
+        const ar = pg.arms[1], rest = [ar.from[0] + 60, ar.from[1] + 160], k = clamp(reach, 0, 1.08);
+        ar.to = [lerp(rest[0], tgt[0], k), lerp(rest[1], tgt[1], k)]; ar.L = Math.max(250, Math.hypot(ar.to[0] - ar.from[0], ar.to[1] - ar.from[1]) * 1.03); ar.layer = 'front'; ar.hand = 36; ar.sag = .12; ar.bend = -1; pg.hands[1] = ar.to;
+        const o = pg.arms[0]; if (o) { o.to = [o.from[0] - 40, o.from[1] + 170]; o.hand = 30; } }
+      pg.mouth = charMouth(t, 2, ['roar', 'teethOpen', 'open', 'roar'], 'teeth');
+      col.draw(pg, { only: 'base' }); cap.draw(pc); col.draw(pg, { only: 'front' });
     };
     shot('grab', c('2'), {
       camera: keyed([[c('2'), headShot(capHead, NBD.toArray(), 4.6, 44, 500, 400)], [c('2') + .3, headShot(capHead, NBD.toArray(), 3.25, 44, 475, 480), E.linear], [T_GRAB + .45, headShot(capHead, NBD.toArray(), 2.9, 44, 470, 500), E.linear], [T_YANK, headShot(capHead, NBD.toArray(), 2.85, 44, 470, 500), E.linear],
@@ -259,8 +289,8 @@ export default {
       update(t, f) { splash.setAge(.5 + (t - c('2:drum')) * .8); drum.group.visible = true; drum.body.scale.setScalar(3); drum.sticks(-1); floatBob(drum.body, t, { pos: V(SP.x + .5, SP.y, SP.z + 3), speed: 1.2 }); f.look.focus = 60; f.look.aperture = .00004; },
     });
     shot('column', c('2:six'), {
-      camera: keyed([[c('2:six'), look([-21.6, 2.5, 4.4], [-32, 1.0, 0], 46)], [c('2:in'), look([-22.4, 2.2, 3.8], [-32, 1.1, 0], 42), E.outCubic]]), in: [1.2, -.3], out: [.9, 0],
-      update(t, f) { M.mode = 'bump'; M.t0 = c('2:six') - .1; M.rowOff = -1; blue.update(t); f.look.focus = 6; f.look.aperture = .0008; },
+      camera: keyed([[c('2:six'), look([-20.6, 3.5, 5.6], [-27.6, .9, .2], 44)], [c('2:six') + .3, look([-21.3, 3.3, 5.1], [-27.4, .95, .2], 42), E.outCubic], [c('2:in'), look([-21.5, 3.25, 5.0], [-27.4, .95, .2], 42), E.linear]]), in: [1.2, -.3], out: [.9, 0],
+      update(t, f) { M.mode = 'bump'; M.t0 = c('2:six') - .15; blue.update(t); f.look.focus = 7; f.look.aperture = .0006; },
       chars(t, f) { blue.draw(t);
         const a = t - c('2:hundred'), p = V(-25.6 + a * .5, Math.max(.08, 1.5 + 1.2 * a - 9 * a * a), 1.0); if (a > 0) { const [x, y, d] = stage.project(p), s = stage.pxs() / d * U; f.ctx.save(); f.ctx.translate(x, y); f.ctx.scale(s, s); musket2D(f.ctx, [0, 0], -PI / 2 + Math.min(1.45, a * 5), 640); f.ctx.restore(); } },
     });
@@ -268,7 +298,7 @@ export default {
       camera: keyed([[c('2:in'), headShot(colHead, [.9, 0, .45], 1.5, 44, 430)], [c('2:in') + .14, headShot(colHead, [.9, -.05, .45], .98, 44, 400), E.outExpo], [c('3'), headShot(colHead, [.9, -.05, .45], .9, 44, 400), E.linear]]), in: [-.9, 0],
       mods: [shake(c('2:step'), .7, 5, 26)],
       update(t, f) { f.look.aperture = .006; },
-      chars(t) { col.at(COL); const P = ACT.pointDown(col.char, t, { dir: 1, rage: 1 }); P.held = null; col.draw(P); },
+      chars(t) { col.at(COL); const P = ACT.pointDown(col.char, t, { dir: 1, rage: 1 }); P.held = null; P.mouth = charMouth(t, 2, ['roar', 'teethOpen', 'open', 'roar'], 'teeth'); col.draw(P); },
     });
 
     // ============================== 3. «Но в ногу — последнее, что ему нужно» ==============================
@@ -300,7 +330,7 @@ export default {
     shot('gate', c('4:he'), {
       camera: keyed([[c('4:he'), look([-25.2, .5, .8], [-21.6, 1.75, 0], 46)], [c('4:cross'), look([-24.3, .5, .7], [-21.6, 1.55, 0], 46), E.outCubic]]),
       update(t, f) { M.rowOff = 5.2; blue.update(t); f.look.focus = 4.5; f.look.aperture = .0012; },
-      chars(t) { cap.at(GATE); blob(GATE); blue.drawWith(t, [[cap, ACT.order(cap.char, t - c('4:orders') + .1, vwOf(GATE, -PI / 2))]]); },
+      chars(t) { cap.at(GATE); blob(GATE); blue.drawWith(t, [[cap, ACT.order(cap.char, t - c('4:orders') + .1, { ...vwOf(GATE, -PI / 2), talk: false })]]); },
     });
     shot('wobble', c('4:cross'), {
       camera: keyed([[c('4:cross'), look([-24.9, 1.2, 1.5], [-21.9, 1.15, .1], 42)], [c('4:a#3'), look([-24.5, 1.2, 1.2], [-21.9, 1.15, -.1], 42), E.linear]]), in: [.6, 0], out: [-.9, 0],
@@ -319,7 +349,7 @@ export default {
     // ============================== 5. Вразнобой ==============================
     const SHUF_T0 = c('5');
     shot('shuffle', c('5'), {
-      camera: keyed([[c('5'), look([-8.2, 1.6, 9.2], [-6.6, 1.0, 0], 42)], [c('5') + .35, look([-7.2, 1.6, 8.6], [-6.0, 1.0, 0], 42), E.outCubic], [c('5:six'), look([-7.0, 1.6, 8.5], [-5.9, 1.0, 0], 42), E.linear]]), out: [0, .7],
+      camera: keyed([[c('5'), look([-9.2, 1.6, 8.6], [-8.0, 1.0, 0], 42)], [c('5:six'), look([-5.4, 1.6, 8.6], [-4.4, 1.0, 0], 42), E.linear]]), out: [0, .7],      // ровный проезд вдоль настила
       update(t, f) { M.mode = 'shuffle'; M.t0 = SHUF_T0; blue.update(t); f.look.focus = 5.6; f.look.aperture = .0012; },
       chars: t => blue.draw(t),
     });
@@ -378,8 +408,9 @@ export default {
       over(t, f) { const k = seg(t, T_SPY - .3, T_SPY + .3); if (k <= 0) return; const xf = gen.xf(), e = genEye(gen.char.spec); spyglassThrough(f.ctx, stage, k, { cx: xf.x + e[0] * xf.s, cy: xf.y + e[1] * xf.s, r0: 31 * xf.s }); },
     });
     shot('spy', T_SPY, {
-      camera: t => { const k = seg(t, T_SPY, c('7')); return look(A.spyglass.pos, [lerp(-7, 1, k), .9, 0], A.spyglass.fov * lensZoom(seg(t, T_SPY - .3, T_SPY + .3))); }, hh: .1, cut: 'soft',
-      update(t, f) { g.focusOn(f.look, 'spyglass'); M.mode = 'shuffle'; M.t0 = SHUF_T0; M.s0 = 4; M.marbT = c('6:bag'); B.setMotion(); blue.update(t); blue.shadow.material.opacity = .62; g.shadowFit(V(0, 0, 0), 70); },
+      camera: t => { const k = seg(t, T_SPY, c('7')); return look(A.spyglass.pos, [lerp(-5.5, -1.5, k), .9, 0], A.spyglass.fov * lensZoom(seg(t, T_SPY - .3, T_SPY + .3))); }, hh: .1, cut: 'soft',
+      // в трубе — сами синие: мечутся по настилу во все стороны, спотыкаются, один крутится на месте, двое сталкиваются и отлетают
+      update(t, f) { g.focusOn(f.look, 'spyglass'); M.mode = 'mess'; M.t0 = SHUF_T0; M.s0 = 4; M.t1 = c('6:bag') - .65; B.setMotion(); blue.update(t); blue.shadow.material.opacity = .5; g.shadowFit(V(0, 0, 0), 70); },
       chars: t => blue.draw(t),
       over(t, f) { spyglassThrough(f.ctx, stage, seg(t, T_SPY - .3, T_SPY + .3), {}); },
     });
@@ -490,7 +521,7 @@ export default {
     shot('signWide', c('12:real'), {
       camera: keyed([[c('12:real'), cam('sign', { fov: 36 })], [c('12:real') + .45, look([-29.2, 2.7, 5.9], [-24.6, 1.25, .9], 46), E.outCubic], [c('12:break'), look([-28.8, 2.6, 5.6], [-24.6, 1.25, .9], 44), E.linear]]), out: [.8, 0],
       update(t, f) { signWorld(t, f); g.focusOn(f.look, 'signWide'); },
-      chars(t) { off.at(OFF); blob(OFF); blue.drawWith(t, [[off, ACT.order(off.char, t - c('12:order') + .15, { view: 'front' })]]); },
+      chars(t) { off.at(OFF); blob(OFF); blue.drawWith(t, [[off, ACT.order(off.char, t - c('12:order') + .15, { view: 'front', talk: false })]]); },
     });
     shot('breakStep', c('12:break'), {
       camera: keyed([[c('12:break'), look([-22.6, 2.3, 4.2], [-29.5, .9, 0], 46)], [c('13'), look([-22.9, 2.0, 3.9], [-29.5, 1.0, 0], 44), E.outCubic]]), in: [-.8, 0],
