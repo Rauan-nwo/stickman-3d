@@ -9,12 +9,14 @@
 //   blobShadow(set.group, { pos, size })             — мягкая тень-пятно на полу (часть слоя окружения)
 import * as THREE from 'three';
 import { softTex } from '../core/textures.js';
+import { drawLit } from './light.js';
 
 const V = (x, y, z) => new THREE.Vector3(x, y, z);
 
 export class Actor {
   // pin: имя точки из spec.pins ('feet' | 'chest' | 'seat') или [x, y] в координатах фигуры — она садится на 3D-якорь
-  constructor(stage, char, { unit, pin = 'feet', occlude = false, bias = .12, shadow = null } = {}) {
+  constructor(stage, char, { unit, pin = 'feet', occlude = false, bias = .12, shadow = null, light = null } = {}) {
+    this.light = light;                                          // необязательный свет сцены (light.js); null — как раньше
     this.stage = stage; this.char = char; this.unit = unit ?? char.spec.unit ?? .002;
     this.pin = Array.isArray(pin) ? pin : (char.spec.pins && char.spec.pins[pin]) || [0, 0];
     this.occlude = occlude; this.bias = bias; this.pos = V(0, 0, 0); this.shadow = shadow; this.visible = true;
@@ -40,6 +42,12 @@ export class Actor {
   // нарисовать героя в позе; opt.only = 'base' | 'front' — отдельные проходы (например, руки поверх 3D-пропса не нужны, а поверх 2D — нужны)
   draw(pose, opt, xf = this.xf()) {
     if (!this.visible || xf.d <= 0.05) return xf;
+    const L = (opt && opt.light) || this.light;
+    if (L && !this.occlude) {                                    // свет сцены: фигура рисуется во внеэкранный слой и подсвечивается
+      const st = this.stage;
+      drawLit(st.ctx, st.W, st.H, xf.s, x => { x.save(); x.translate(xf.x, xf.y); x.rotate(xf.rot); x.scale(xf.s, xf.s); x.translate(-this.pin[0], -this.pin[1]); this.char.draw(x, pose, opt); x.restore(); }, L);
+      return xf;
+    }
     return this.with(ctx => this.char.draw(ctx, pose, opt), xf);
   }
 }
