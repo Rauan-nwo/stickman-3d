@@ -48,7 +48,7 @@ AGENT: Not tonight.
 
 So how did China get someone into the seat next to the man who controls the world's AI chips? It starts with a decision in Washington. But first, meet the man at the table. His first job in America was scrubbing toilets in Kentucky.
 
-## 2. The Man With the Key (1:00–4:00)
+## 2. The Man With the Key (1:00–3:20)
 
 [SCENE: T map, Taiwan to Kentucky, a plane icon crossing the Pacific; then A: airport, a small boy with a suitcase beside his older brother.]
 
@@ -61,9 +61,6 @@ UNCLE: Strict sounds perfect.
 
 It was strict, all right. It was a school for troubled kids, and the family had chosen it by mistake. The older boys were sent out to do farm work. Jensen, one of the youngest, got the bathrooms. Every bathroom in the dorm. Every single day.
 
-YOUNG JENSEN: Who made this mess?
-BOYS: All of us!
-
 [SCENE: dorm room, A. A huge tattooed teenager with a taped-up hand holds a book upside down; young Jensen turns it the right way. Then a barbell.]
 
 His roommate was seventeen, covered in tattoos and knife scars, and he couldn't read. So they made a trade.
@@ -74,17 +71,9 @@ ROOMMATE: Deal. Reading first.
 
 Decades later he'd put it simply: he used to clean bathrooms, and now he runs a company.
 
-[SCENE: Denny's kitchen, A. Steam, a stack of plates, teenage Jensen at the sink, a manager with a clipboard.]
-
-As a teenager, he found work at Denny's. He started as a dishwasher and worked his way up to busboy.
-
-MANAGER: Dishes first. Then tables.
-YOUNG JENSEN: And after tables?
-MANAGER: More dishes.
-
 [SCENE: Denny's booth, A. Night, 1993 caption, three young engineers with coffee cups and a napkin sketch of a chip.]
 
-Then, in 1993, he walked back into a Denny's, this time as a customer. In a booth in San Jose, he and two engineer friends, Chris Malachowsky and Curtis Priem, planned a company that would build chips for 3D graphics.
+As a teenager he washed dishes at Denny's. In 1993 he walked back into one, this time as a customer. In a booth in San Jose, he and two engineer friends, Chris Malachowsky and Curtis Priem, planned a company that would build chips for 3D graphics.
 
 WAITRESS: What can I get you?
 JENSEN: Coffee, and a new industry.
@@ -109,12 +98,10 @@ In 2006, Jensen made his biggest bet. He released software called CUDA, so scien
 
 INVESTOR: Who exactly is this for?
 JENSEN: People who don't know yet.
-INVESTOR: Can they pay now?
-JENSEN: Later. Much later.
 
 [SCENE: T board. A neural-network web lights up; then a long line of lab coats stretching out of a door marked NVIDIA.]
 
-For years it looked like an expensive hobby. Then researchers found out that artificial intelligence needs exactly that kind of math: millions of small sums, all at once. Almost overnight, every AI lab on Earth wanted Nvidia chips, and there were never enough.
+For years it looked like an expensive hobby. Then AI turned out to need exactly that math, and every AI lab on Earth wanted Nvidia chips.
 
 CUSTOMER: How soon can you deliver?
 SALESMAN: How patient are you?
@@ -170,7 +157,7 @@ OFFICER 2: Then become his customer.
 
 And for that, you would need a company.
 
-## 4. The Cloud (5:30–6:45)
+## 4. The Cover (5:30–6:45)
 
 [SCENE: Singapore business tower, B. A sign above an office door swaps from "7ROAD" to "MEGASPEED". A clerk with a form at a counter.]
 

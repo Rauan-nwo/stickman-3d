@@ -32,20 +32,14 @@ The older boys were sent out to do farm work.
 Jensen, one of the youngest, got the bathrooms.
 Every bathroom in the dorm.
 Every single day.
-[YOUNG JENSEN] Who made this mess?
-[BOYS] All of us!
 His roommate was seventeen, covered in tattoos and knife scars, and he couldn't read.
 So they made a trade.
 [ROOMMATE] You teach me to read.
 [YOUNG JENSEN] You teach me the bench press.
 [ROOMMATE] Deal. Reading first.
 Decades later he'd put it simply: he used to clean bathrooms, and now he runs a company.
-As a teenager, he found work at Denny's.
-He started as a dishwasher and worked his way up to busboy.
-[MANAGER] Dishes first. Then tables.
-[YOUNG JENSEN] And after tables?
-[MANAGER] More dishes.
-Then, in 1993, he walked back into a Denny's, this time as a customer.
+As a teenager he washed dishes at Denny's.
+In 1993 he walked back into one, this time as a customer.
 In a booth in San Jose, he and two engineer friends, Chris Malachowsky and Curtis Priem, planned a company that would build chips for 3D graphics.
 [WAITRESS] What can I get you?
 [JENSEN] Coffee, and a new industry.
@@ -65,11 +59,8 @@ He released software called CUDA, so scientists could put all those cooks to wor
 Wall Street didn't get it.
 [INVESTOR] Who exactly is this for?
 [JENSEN] People who don't know yet.
-[INVESTOR] Can they pay now?
-[JENSEN] Later. Much later.
 For years it looked like an expensive hobby.
-Then researchers found out that artificial intelligence needs exactly that kind of math: millions of small sums, all at once.
-Almost overnight, every AI lab on Earth wanted Nvidia chips, and there were never enough.
+Then AI turned out to need exactly that math, and every AI lab on Earth wanted Nvidia chips.
 [CUSTOMER] How soon can you deliver?
 [SALESMAN] How patient are you?
 Nvidia became the most valuable company in the world, and Jensen became the man with the key.
@@ -288,3 +279,4 @@ So the next time someone friendly pulls up a chair beside the people building Am
 [HOST] Some keys are too heavy to carry.
 [HOST] So this one goes in the safe.
 [HOST] The question is who opens it next.
+<!-- SCRIPT END -->
