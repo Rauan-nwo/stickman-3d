@@ -64,3 +64,6 @@ touched: wiki/craft/layering-and-motion.md, wiki/channel/longform-channel.md, to
 
 ## [2026-11-16 12:00] setup | стиль «Стикман Нуар» утверждён и записан
 touched: wiki/craft/stickman-noir.md, wiki/channel/longform-channel.md, index.md
+
+## [2026-11-16 13:00] video | L001 пилот лонга: факт-чек истории Nvidia/Хуанг, структура и типы сцен на утверждение
+touched: raw/research/2026-11-16-nvidia-huang-spy-story.md, production/L001/outline.md, wiki/craft/stickman-noir.md
