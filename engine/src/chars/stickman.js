@@ -396,7 +396,8 @@ function shadePart(x, pathFn, R, Sh, part) {
   };
   const sh = P.shiftU ?? R * (P.shift ?? .35);
   if ((P.k ?? .13) > 0) band(dx * sh, dy * sh, P.color || 'rgb(30,16,40)', P.k ?? .13, R * (P.soft ?? .3), P.op);   // тень на дальней от света стороне
-  if (Sh.rim && Sh.rim.k > 0) { const w = Sh.rim.wU ?? R * .08; band(-dx * w, -dy * w, Sh.rim.color, Sh.rim.k, Sh.rim.softU ?? R * .05); }   // тёплый край со стороны света (под контуром — половина толщины линии)
+  const RIM = P.rim ?? Sh.rim;                                                                                    // край: свой у части или общий
+  if (RIM && RIM.k > 0) { const w = RIM.wU ?? R * .08; band(-dx * w, -dy * w, RIM.color, RIM.k, RIM.softU ?? R * .05); }   // тёплый край со стороны света (под контуром — половина толщины линии)
 }
 
 // фигура
