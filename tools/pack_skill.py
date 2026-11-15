@@ -36,7 +36,8 @@ copy_tree(os.path.join(SRC, 'scripts'), os.path.join(DIST, 'scripts'))
 # правила из wiki -> references (ссылки [[page]] превращаются в имена файлов)
 WIKI = {'craft/stickman-3d.md': 'stickman-3d.md', 'craft/script-craft.md': 'script-craft.md',
         'craft/staging-and-camera.md': 'staging-and-camera.md', 'craft/style-bible.md': 'style-bible.md',
-        'craft/production-workflow.md': 'production-workflow.md', 'analyses/channel-formula.md': 'channel-formula.md'}
+        'craft/production-workflow.md': 'production-workflow.md', 'analyses/channel-formula.md': 'channel-formula.md',
+        'craft/layering-and-motion.md': 'layering-and-motion.md'}
 for rel, name in WIKI.items():
     s = open(os.path.join(ROOT, 'wiki', rel), encoding='utf-8').read()
     s = re.sub(r'^---\n.*?\n---\n', '', s, count=1, flags=re.S)            # front-matter wiki не нужен

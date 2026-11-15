@@ -58,3 +58,6 @@ touched: wiki/donors/paperbillionstv.md, wiki/analyses/longform-hybrid-style.md,
 
 ## [2026-11-15 19:20] setup | канал лонгов: решения, подбор голоса (13 вариантов), проба нуарного фона GPT Image
 touched: wiki/channel/longform-channel.md, production/longform/style-test/bg_prompt.txt, index.md
+
+## [2026-11-15 20:30] lint | чек-лист слоёв и движений; ведущий лонгов — moneyman; свет на героях в лонгах
+touched: wiki/craft/layering-and-motion.md, wiki/channel/longform-channel.md, tools/skill/references/quality-gates.md, tools/skill/SKILL.md, tools/pack_skill.py, index.md
