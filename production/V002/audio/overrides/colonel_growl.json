@@ -1,0 +1,20 @@
+{
+ "anchor": 0.0223,
+ "origin": "elevenlabs",
+ "trim": [
+  0.0,
+  1.62
+ ],
+ "process": {
+  "rise_db": 9,
+  "fi": 0.03,
+  "fo": 0.06
+ },
+ "source": {
+  "generator": "ElevenLabs Sound Effects API",
+  "prompt": "A furious middle-aged man: sharp angry inhale through the nose, then a low growl rising in anger through clenched teeth, getting louder. Cartoonish but not goofy, male, no words.",
+  "duration_seconds": 2.0,
+  "file": "gen/rage_build_a_655c18bd.wav",
+  "date": "2026-11-15 15:44"
+ }
+}

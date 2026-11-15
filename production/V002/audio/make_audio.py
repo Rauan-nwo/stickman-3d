@@ -1425,7 +1425,7 @@ def build_sfx(sc, ses):
     r = rng_for("splash:far")
     ses.stem("splash_distant", room(splash(r, 0.9, 1.0), R["gorge"], -5.0, -0.1), 0.0)
     # the splash is the point of the hook: it is not ducked, and mix.py pulls the music down under it (spot_ducks)
-    ses.spot_ducks = [{"t0": round(t_spl - 0.15, 3), "t1": round(t_spl + 1.1, 3), "music_db": -10.0, "what": "the splash in the hook"}]
+    ses.spot_ducks = getattr(ses, "spot_ducks", []) + [{"t0": round(t_spl - 0.15, 3), "t1": round(t_spl + 1.1, 3), "music_db": -10.0, "what": "the splash in the hook"}]
     ses.place("splash_distant", C(1, "river", off=0.12), LV_FX["splash"], key=True, featured=True, win=0.9,
               note="far below, on the film's splash frame: the splash with its watery tail")
 
@@ -1452,7 +1452,7 @@ def build_sfx(sc, ses):
 
     y, a = cloth(1.0)
     ses.stem("cloth_grab", room(y, R["field"], -18.0, 0.15), a)
-    ses.place("cloth_grab", C(2, "colonel"), -8, key=True, note="hand flies in (short whoosh before the word) and grabs the collar")
+    ses.place("cloth_grab", C(2, "colonel"), -4, featured=True, win=0.3, key=True, note="hand flies in (short whoosh before the word) and grabs the collar")
     y, a = cloth(0.6)
     ses.stem("cloth_yank", room(lp(y, 3500, 1), R["field"], -18.0, -0.1), a)
     ses.place("cloth_yank", C(2, "collar"), -11, note="the yank towards camera")
@@ -1613,14 +1613,29 @@ def build_sfx(sc, ses):
 
     # ---------- the figures' own voices: short, non-verbal, under the narrator ----------
     ses.real("captain_hm", C(1, "them", frac=0.9), -11, mode="peak20", note="the captain, pleased with himself: 'hm' in the gap after the hook")
-    ses.real("colonel_grunt", C(2, "colonel", off=0.1), -11, mode="peak20", note="the colonel snarls as he grabs")
+    # the colonel's rage must read on its own: snort in the gap before the sentence, a growl that rises under
+    # "His colonel grabs him by the collar" and tops out on the grab's yank, (his shouted line), a furious huff after it.
+    # Not ducked by the narrator; mix.py steps the music down under them (spot_ducks).
+    LVC = -6.5                                              # loudest 20 ms, dB re the narrator: "4-6 dB under the voice"
+    ses.real("colonel_snort", C(2, "His", off=-0.2), LVC - 1, mode="peak20", featured=True, win=0.5, key=True,
+             note="the colonel: angry snort / inhale in the gap before the sentence")
+    ses.real("colonel_growl", C(2, "His", off=0.12), LVC, mode="peak20", featured=True, win=1.6,
+             maxlen=max(0.6, sc.t(2, "That") - sc.t(2, "His") - 0.14), note="the colonel: low growl rising to the grab")
+    ses.real("colonel_huff", C(2, "step", frac=1.0, off=-0.02), LVC, mode="peak20", featured=True, win=0.8, key=True,
+             note="the colonel: furious huff right after 'in step!'")
+    ses.real("general_gasp", C(16, "gives"), -7, mode="peak20", featured=True, win=0.6, note="the enemy general: alarmed gasp as the deck heaves")
+    ses.real("general_yell", C(17, "bucks", off=0.03), -4, mode="peak20", featured=True, win=1.0, key=True,
+             note="the enemy general: panicked, angry yell that cuts through before the collective scream")
+    ses.spot_ducks = getattr(ses, "spot_ducks", []) + [
+        {"t0": round(sc.t(2, "His") - 0.25, 3), "t1": round(sc.span(2, "collar")[1] - 0.25, 3), "music_db": -8.0, "what": "the colonel's rage build"},
+        {"t0": round(sc.end(2) - 0.05, 3), "t1": round(sc.end(2) + 0.9, 3), "music_db": -8.0, "what": "the colonel's huff"}]
     ses.real("murmur", C(2, "six", off=0.15), -17, maxlen=max(0.5, sc.t(2, "in") - sc.t(2, "six") - 0.2), note="the column mutters as it piles up")
     ses.real("murmur", C(5, "they"), -17, maxlen=1.6, note="blue soldiers mutter on the bridge")
     ses.real("shuffle_gen", C(5, "So", off=0.05), -19, maxlen=d5 - 0.1, note="a third layer of uneven feet, scuffs and gear (generated)")
     ses.real("murmur", C(6, "bag", off=0.2), -18, maxlen=1.2, note="confused voices in the spyglass")
     ses.real("gasp", C(9, "bounce", off=0.05), -12, mode="peak20", note="the row gasps as the deck bounces")
     ses.real("kid_giggle", C(13, "pushes"), -14, maxlen=max(0.6, sc.t(13, "always") - sc.t(13, "pushes")), note="the kid giggles on the swing")
-    ses.real("crowd_scream", C(17, "bucks", off=0.18), -13, maxlen=max(0.8, sc.t(17, "into") - t_bucks - 0.1), note="collective scream as they are thrown")
+    ses.real("crowd_scream", C(17, "bucks", off=0.5), -13, maxlen=max(0.8, sc.t(17, "into") - t_bucks - 0.1), note="collective scream as they are thrown")
     # ---------- everything visible moves audibly ----------
     ses.real("flag_flap", C(6, "On", off=0.1), -17, maxlen=max(0.5, sc.t(6, "the", 2) - S(6)), note="banners flapping on the ridge")
     ses.real("spyglass_click", C(6, "That's", off=-0.22), -12, mode="peak20", note="the spyglass snaps up to the eye")

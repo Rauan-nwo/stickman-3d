@@ -55,6 +55,8 @@ def process(x, o):
         x = x / (e / np.median(e))[:, None]
     if o.get("lp"):
         x = lp(x, o["lp"], 1)
+    if o.get("rise_db"):                                     # a build: starts this many dB down and rises to full
+        x = x * lin(-o["rise_db"] * (1 - np.linspace(0, 1, len(x)) ** 0.8))[:, None]
     if o.get("ramp_db"):                                     # falling away: level and brightness drop along the sound
         u = np.linspace(0, 1, len(x))[:, None]
         dark = lp(x, o.get("lp_end", 1500), 1)

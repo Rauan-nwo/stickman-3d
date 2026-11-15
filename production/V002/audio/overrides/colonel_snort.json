@@ -1,0 +1,19 @@
+{
+ "anchor": 0.089,
+ "origin": "elevenlabs",
+ "trim": [
+  0.0,
+  0.6
+ ],
+ "process": {
+  "fi": 0.01,
+  "fo": 0.12
+ },
+ "source": {
+  "generator": "ElevenLabs Sound Effects API",
+  "prompt": "Enraged man snorts and growls with rising fury, deep male voice, teeth clenched, building up to an outburst, no words, close microphone.",
+  "duration_seconds": 2.0,
+  "file": "gen/rage_build_b_41061491.wav",
+  "date": "2026-11-15 15:44"
+ }
+}

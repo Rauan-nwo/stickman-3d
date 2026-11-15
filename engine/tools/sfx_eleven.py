@@ -13,9 +13,8 @@ sfx_eleven.py: звуковой эффект по текстовому опис�
 описание, длительность, оценка расхода кредитов, файл, дата.
 Кеш: ключ = sha1(описание | длительность | влияние). То же описание второй раз НЕ отправляется — берётся файл.
 Бюджет: сумма оценок по журналу + новый запрос не должна превышать --budget (по умолчанию 2500), иначе отказ.
-Расход: оценка 40 кредитов за секунду заказанной длительности — по ней считается бюджет. Заголовок сервера
-`character-cost` пишется в журнал рядом (на первом запросе он показал 40 за 4 с — возможно, это другая единица;
-фактический остаток смотреть в кабинете ElevenLabs).
+Расход: 10 кредитов за секунду заказанной длительности (проверено по остатку в аккаунте и по заголовку ответа
+`character-cost`); по этой цифре считается бюджет. Остаток: `--account`.
 Ключ: переменная ELEVENLABS_API_KEY или файл raw/_secrets/voice-api-key.txt в корне проекта. Ключ не печатается.
 В запросе уходит только текст описания звука — ничего о проекте и авторе.
 """
@@ -31,7 +30,7 @@ import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 URL = "https://api.elevenlabs.io/v1/sound-generation"
-PER_SECOND = 40
+PER_SECOND = 10        # кредитов за секунду: подтверждено остатком в аккаунте (62.2 с = 622 кредита), а не 40, как ожидалось
 
 
 def api_key():
@@ -55,8 +54,7 @@ def save_log(gen, log):
 
 
 def spent(log):
-    """Бюджет считается по осторожной оценке (40 кредитов за секунду), а не по заголовку сервера."""
-    return sum(e.get("credits_estimate", e.get("credits", 0)) for e in log)
+    return sum(e.get("credits_server_header") or e.get("credits_estimate", 0) for e in log)
 
 
 def generate(film, name, prompt, dur, influence=0.5, budget=2500, dry=False):
@@ -91,7 +89,7 @@ def generate(film, name, prompt, dur, influence=0.5, budget=2500, dry=False):
                 "credits_estimate": est, "credits_server_header": int(cost) if (cost and str(cost).isdigit()) else None,
                 "mp3": base + ".mp3", "wav": base + ".wav", "date": time.strftime("%Y-%m-%d %H:%M")})
     save_log(gen, log)
-    print("ok: %s, %.1f s, estimate %d credits (header: %s); log total estimate %d" % (base + ".wav", dur, est, cost, spent(log)))
+    print("ok: %s, %.1f s, %d credits (header: %s); log total %d" % (base + ".wav", dur, est, cost, spent(log)))
     return wav
 
 
@@ -106,8 +104,15 @@ def main():
     ap.add_argument("--batch")
     ap.add_argument("--dry", action="store_true")
     ap.add_argument("--report", action="store_true")
+    ap.add_argument("--account", action="store_true", help="остаток кредитов в аккаунте (ключ не печатается)")
     a = ap.parse_args()
     film = a.film if os.path.isabs(a.film) else os.path.join(os.getcwd(), a.film)
+    if a.account:
+        r = urllib.request.urlopen(urllib.request.Request("https://api.elevenlabs.io/v1/user/subscription", headers={"xi-api-key": api_key()}), timeout=30)
+        d = json.load(r)
+        print("tier %s: used %s of %s, left %s" % (d.get("tier"), d.get("character_count"), d.get("character_limit"),
+                                                   (d.get("character_limit") or 0) - (d.get("character_count") or 0)))
+        return
     if a.report:
         log = load_log(os.path.join(film, "audio", "gen"))
         print("запросов %d, секунд %.1f, кредитов %d" % (len(log), sum(e["duration_seconds"] for e in log), spent(log)))

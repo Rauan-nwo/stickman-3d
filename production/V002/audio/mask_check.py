@@ -96,6 +96,19 @@ def main():
                               "music_under_it_db": round(mus, 1), "music_minus_splash_db": round(mus - pk, 1)}
         print("hook splash: peak %+.1f dB re voice RMS (%+.1f re voice median), music under it %.1f dB = %.1f dB below the splash"
               % (rep["hook_splash"]["splash_peak50_minus_voice_rms_db"], rep["hook_splash"]["splash_peak50_minus_voice_median20_db"], mus, pk - mus))
+    # character sounds that must cut through: loudest 50 ms of the effects layer during each one, against the voice's RMS
+    vact_ = db(v[act[:n]])
+    rep["character_sounds"] = []
+    for c_ in cues["cues"]:
+        nm_ = Path(c_["file"]).stem
+        if nm_ in ("colonel_snort", "colonel_growl", "colonel_huff", "general_gasp", "general_yell", "cloth_grab"):
+            t0_, t1_ = max(0.0, c_["start"]), c_["start"] + c_.get("length", 0.5)
+            pk_ = max(db(s[int(q * SR):int((q + 0.05) * SR)]) for q in np.arange(t0_, t1_, 0.01))
+            mu_ = db(m[int(t0_ * SR):int(t1_ * SR)])
+            rep["character_sounds"].append({"stem": nm_, "t": round(c_["time"], 2), "level_set_db_re_voice": c_["level_re_voice_db"],
+                                            "peak50_minus_voice_rms_db": round(pk_ - vact_, 1), "music_minus_voice_rms_db": round(mu_ - vact_, 1)})
+    print("character sounds (peak 50 ms re voice RMS; music re voice): " + " | ".join(
+        "%s %.1f (music %.0f)" % (q["stem"], q["peak50_minus_voice_rms_db"], q["music_minus_voice_rms_db"]) for q in rep["character_sounds"]))
     rep["voice_median_20ms_db"] = round(vmed, 1)
     wv = [w["hi50_minus_voice_median_db"] for w in rep["whooshes"]]
     rep["whoosh_median_db"] = round(float(np.median(wv)), 1) if wv else None

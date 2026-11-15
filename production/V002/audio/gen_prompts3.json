@@ -1,0 +1,9 @@
+[
+ {"name": "rage_build_a", "dur": 2.0, "influence": 0.6, "prompt": "A furious middle-aged man: sharp angry inhale through the nose, then a low growl rising in anger through clenched teeth, getting louder. Cartoonish but not goofy, male, no words."},
+ {"name": "rage_build_b", "dur": 2.0, "influence": 0.4, "prompt": "Enraged man snorts and growls with rising fury, deep male voice, teeth clenched, building up to an outburst, no words, close microphone."},
+ {"name": "rage_huff_a", "dur": 1.0, "influence": 0.6, "prompt": "A furious man exhales sharply in anger after shouting, one hard angry huff through the nose, male, no words."},
+ {"name": "rage_huff_b", "dur": 1.2, "influence": 0.4, "prompt": "Angry frustrated male grunt and forceful exhale, seething, short, no words."},
+ {"name": "general_gasp", "dur": 1.0, "influence": 0.6, "prompt": "An old pompous man gasps in sudden alarm, one sharp frightened intake of breath, male, no words."},
+ {"name": "general_yell_a", "dur": 1.5, "influence": 0.6, "prompt": "An old pompous man yells in angry panic, a short loud outraged shout turning into a scream, male, cartoonish but not goofy, no words."},
+ {"name": "general_yell_b", "dur": 1.5, "influence": 0.4, "prompt": "Elderly male commander shouts in panic and fury, one loud alarmed yell, no words."}
+]

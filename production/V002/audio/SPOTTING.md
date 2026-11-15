@@ -18,8 +18,9 @@
 | 1.81 | удар/акцент | всплеск, круги на воде | далёкий всплеск с хвостом (запись) | splash_distant | +0 | да | — |
 | 2.81 | фоли | капитан отряхивает руки, ухмыляется | два хлопка ладоней | hand_pat | +0 | нет | — |
 | 3.55 | голоса фигурок | капитан доволен собой | спокойное «хм» | captain_hm | +0 | нет | — |
+| 3.61 | голоса фигурок | полковник багровеет | злой вдох-фырк | colonel_snort | +0 | нет | — |
+| 3.93 | голоса фигурок | полковник хватает за воротник, скалится | рык, нарастающий к рывку | colonel_growl | +0 | нет | — |
 | 4.01 | фоли | рука полковника хватает воротник | ткань: хватка | cloth_grab | +0 | нет | — |
-| 4.11 | голоса фигурок | полковник хватает за воротник, скалится | злой рык сквозь зубы | colonel_grunt | +0 | нет | — |
 | 4.88 | фоли | рывок капитана к полковнику, тряска | ткань: рывок | cloth_yank | +0 | да | — |
 | 5.55 | удар/акцент | полковник орёт (реплика) | отзвук барабана из ущелья | gorge_echo_drum | +0 | да | — |
 | 5.94 | переход | переброс вниз: круги на реке | свист камеры | cam_whoosh_0 | -40 | да | +30 |
@@ -28,6 +29,7 @@
 | 6.37 | фоли | синие налетают друг на друга | амуниция + тела | soldiers_bodies, soldiers_clatter | +0 | да | — |
 | 6.52 | голоса фигурок | колонна в куче | растерянный гул голосов | murmur | -0 | нет | — |
 | 7.26 | переход | переброс + наезд на рот полковника | свист камеры | cam_whoosh_1 | -40 | да | +69 |
+| 7.97 | голоса фигурок | полковник после крика | яростный выдох | colonel_huff | +0 | нет | — |
 | 9.15 | переход | переброс на цепь | свист камеры | cam_whoosh_2 | -40 | да | +14 |
 | 9.15 | фоли | звено цепи под нагрузкой | скрип цепи (запись) | chain_creak | +0 | да | — |
 | 10.45 | амбиенс | общий план ущелья | порыв ветра | wind_gust | +0 | да | — |
@@ -115,6 +117,7 @@
 | 60.53 | фоли | красные маршируют, мост ходит ходуном | сапоги, амуниция, скрип цепи | boots_h3_R, boots_h4_R, boots_h5_L, boots_h6_L, chain_creak, gear_rattle | span | да | — |
 | 60.83 | фоли | мост на пределе | стон дерева + скрип цепи + металлические щелчки | bridge_groan, metal_ping | span | нет | — |
 | 62.29 | фоли | цепи растягиваются | скрип цепи | chain_creak | +0 | нет | — |
+| 62.29 | голоса фигурок | генерал в поту, мост ходит ходуном | испуганный вдох | general_gasp | +0 | нет | — |
 | 62.61 | переход | переброс: общий план волны | свист камеры | cam_whoosh_1 | -40 | да | +26 |
 | 62.61 | удар/акцент | болт вылетает | звон болта | bolt_ping | +0 | да | — |
 | 62.67 | фоли | звенья тянутся | стон металла (запись) | metal_groan | +0 | да | — |
@@ -126,7 +129,8 @@
 | 65.05 | удар/акцент | сапог 41 опускается на доску, тряска | замедленный удар сапога | boot_41_slowmo | +0 | нет | нет всплеска |
 | 65.69 | переход | мост встаёт на дыбы | свист + всасывание воздуха | cam_push, riser_into_bucks | +0 | да | +47 |
 | 65.72 | удар/акцент | мост подбрасывает всех (самый громкий момент) | треск дерева (запись) + удар + барабаны | bridge_crack, bridge_snap, mus_hits | +0 | да | +17 |
-| 65.90 | голоса фигурок | всех подбрасывает | общий крик | crowd_scream | +0 | нет | — |
+| 65.75 | голоса фигурок | генерала подбрасывает | крик паники и злости | general_yell | +0 | нет | — |
+| 66.22 | голоса фигурок | всех подбрасывает | общий крик | crowd_scream | +0 | нет | — |
 | 66.61 | фоли | небо в фигурках, шляпах и барабанах | падающий свист | falling_whistle | +0 | да | — |
 | 66.61 | фоли | тела, шляпы и барабаны в воздухе | шум воздуха, вопли | bodies_fall | +0 | нет | — |
 | 67.57 | переход | переброс: вид сверху на реку | свист камеры | cam_whoosh_2 | -40 | да | +66 |
@@ -136,7 +140,7 @@
 | 67.99 | фоли | капитан отряхивает руки | два хлопка ладоней | hand_pat | -0 | нет | — |
 | 68.45 | удар/акцент | конец последнего слова | жёсткий стоп всего звука | music.wav, sfx.wav | см. check.py | да | — |
 
-Итого: событий со звуком **119**, из них со звуком в допуске **119**, не было звука до этого прохода: **45**. Стыков без переброса (обычные склейки): 5.
+Итого: событий со звуком **123**, из них со звуком в допуске **123**, не было звука до этого прохода: **49**. Стыков без переброса (обычные склейки): 5.
 
 ## Планы: звук в каждом
 
@@ -144,12 +148,12 @@
 
 | План, с | Эффектов | Какие |
 |---|---|---|
-| 0.00–3.81 | 6 | captain_hm, drum_tumble, hand_pat, pebble_fall, splash_distant, throw_whoosh |
-| 3.81–5.94 | 7 | cam_whoosh_0, captain_hm, cloth_grab, cloth_yank, colonel_grunt, gorge_echo_drum, splash_distant |
+| 0.00–3.81 | 7 | captain_hm, colonel_snort, drum_tumble, hand_pat, pebble_fall, splash_distant, throw_whoosh |
+| 3.81–5.94 | 8 | cam_whoosh_0, captain_hm, cloth_grab, cloth_yank, colonel_growl, colonel_snort, gorge_echo_drum, splash_distant |
 | 5.94–6.37 | 3 | cam_whoosh_0, drum_plop, gorge_echo_drum |
 | 6.37–7.26 | 6 | cam_whoosh_1, drum_plop, gorge_echo_drum, murmur, soldiers_bodies, soldiers_clatter |
-| 7.26–8.21 | 4 | cam_whoosh_1, drum_plop, gorge_echo_drum, soldiers_clatter |
-| 8.21–9.15 | 3 | cam_whoosh_2, drum_plop, gorge_echo_drum |
+| 7.26–8.21 | 5 | cam_whoosh_1, colonel_huff, drum_plop, gorge_echo_drum, soldiers_clatter |
+| 8.21–9.15 | 4 | cam_whoosh_2, colonel_huff, drum_plop, gorge_echo_drum |
 | 9.15–10.45 | 4 | cam_whoosh_2, chain_creak, drum_plop, gorge_echo_drum |
 | 10.45–11.31 | 3 | cam_whoosh_3, chain_creak, wind_gust |
 | 11.31–12.18 | 4 | cam_whoosh_3, chain_clink, chain_creak, wind_gust |
@@ -193,11 +197,11 @@
 | 57.69–59.12 | 5 | cam_whoosh_0, chain_tick, push_thump, rain_steps, thump_real |
 | 59.12–59.62 | 4 | cam_whoosh_0, push_thump, rain_steps, thump_real |
 | 59.62–60.53 | 6 | bird_chirp, boot_wood_1, boots_h5_L, push_thump, rain_steps, thump_real |
-| 60.53–62.61 | 16 | bird_chirp, boot_wood_0, boot_wood_1, boot_wood_2, boot_wood_3, boot_wood_4, boot_wood_5, boots_h3_R, boots_h5_L … |
-| 62.61–64.00 | 18 | bolt_ping, boot_wood_1, boot_wood_2, boot_wood_3, boot_wood_4, boot_wood_5, boots_h3_R, boots_h4_R, boots_h5_L … |
+| 60.53–62.61 | 17 | bird_chirp, boot_wood_0, boot_wood_1, boot_wood_2, boot_wood_3, boot_wood_4, boot_wood_5, boots_h3_R, boots_h5_L … |
+| 62.61–64.00 | 19 | bolt_ping, boot_wood_1, boot_wood_2, boot_wood_3, boot_wood_4, boot_wood_5, boots_h3_R, boots_h4_R, boots_h5_L … |
 | 64.00–65.72 | 13 | bolt_ping, boot_41_slowmo, boot_wood_5, boots_h4_R, boots_h6_L, bridge_groan, cam_push, chain_creak, chain_tick … |
-| 65.72–67.57 | 16 | bodies_fall, bolt_ping, boot_41_slowmo, bridge_crack, bridge_groan, bridge_snap, cam_push, cam_whoosh_2, chain_creak … |
+| 65.72–67.57 | 17 | bodies_fall, bolt_ping, boot_41_slowmo, bridge_crack, bridge_groan, bridge_snap, cam_push, cam_whoosh_2, chain_creak … |
 | 67.57–67.87 | 11 | boot_41_slowmo, bridge_snap, cam_whoosh_2, crowd_scream, falling_whistle, splash_many, splash_small_0, splash_small_1, splash_small_2 … |
-| 67.87–68.45 | 11 | boot_41_slowmo, bridge_snap, falling_whistle, hand_pat, splash_final, splash_many, splash_small_0, splash_small_1, splash_small_2 … |
+| 67.87–68.45 | 12 | boot_41_slowmo, bridge_snap, crowd_scream, falling_whistle, hand_pat, splash_final, splash_many, splash_small_0, splash_small_1 … |
 
 Планов без эффектов: **0**.

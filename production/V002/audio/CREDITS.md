@@ -92,7 +92,11 @@ ElevenLabs — не подтверждено (см. `SFX_SOURCES.md`); до пу
 | boot_wood_5 | `gen/march_wood_2f66ac0d.wav` (2.55–2.98 с) | A large company of soldiers marching in perfect unison across a wooden bridge: heavy boots hitting hollow planks together in a steady beat, leather and gear rattling, wood flexing. Close, weighty, no music, no voices. |
 | shuffle_gen | `gen/shuffle_wood_420f6e6c.wav` (0.00–3.00 с) | A crowd of men walking out of step across a wooden bridge: many uneven footsteps and scuffs on planks, bumping into each other, gear clinking, low confused muttering. Disorderly, no music. |
 | murmur | `gen/murmur_0ead159a.wav` (0.20–1.90 с) | A group of soldiers murmuring in confusion, puzzled low voices, no clear words, short. |
-| colonel_grunt | `gen/colonel_grunt_e8af4f1b.wav` (0.18–0.85 с) | An angry older man gives one short furious growl, snarling grunt through clenched teeth, no words. |
+| colonel_snort | `gen/rage_build_b_41061491.wav` (0.00–0.60 с) | Enraged man snorts and growls with rising fury, deep male voice, teeth clenched, building up to an outburst, no words, close microphone. |
+| colonel_growl | `gen/rage_build_a_655c18bd.wav` (0.00–1.62 с) | A furious middle-aged man: sharp angry inhale through the nose, then a low growl rising in anger through clenched teeth, getting louder. Cartoonish but not goofy, male, no words. |
+| colonel_huff | `gen/rage_huff_a_b788c141.wav` (0.00–0.90 с) | A furious man exhales sharply in anger after shouting, one hard angry huff through the nose, male, no words. |
+| general_gasp | `gen/general_gasp_a335358e.wav` (0.00–0.78 с) | An old pompous man gasps in sudden alarm, one sharp frightened intake of breath, male, no words. |
+| general_yell | `gen/general_yell_b_85c38b33.wav` (0.00–1.32 с) | Elderly male commander shouts in panic and fury, one loud alarmed yell, no words. |
 | captain_hm | `gen/captain_hm_a91ed050.wav` (0.00–0.50 с) | A calm young man says a short smug hm, closed mouth, satisfied. |
 | gasp | `gen/gasp_44572bc4.wav` (0.00–0.60 с) | Several men gasp in surprise at once, a short collective sharp intake of breath, no words. |
 | adjutant_laugh | `gen/aide_giggle_93e23aa9.wav` (0.20–1.20 с) | A young man giggling nervously in a high voice, short snickering laugh, no words. |

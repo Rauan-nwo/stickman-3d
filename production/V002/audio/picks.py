@@ -98,7 +98,13 @@ GENS = {
     "shuffle_gen": ("shuffle_wood", 0.00, 3.00, {"fi": 0.02, "fo": 0.4}),
     "murmur": ("murmur", 0.20, 1.90, {"fi": 0.1, "fo": 0.4}),
     # the figures' own voices (non-verbal)
-    "colonel_grunt": ("colonel_grunt", 0.18, 0.85, {"fi": 0.005, "fo": 0.1}),
+    # the colonel's rage as a build: snort -> growl that rises under "His colonel grabs him by the collar" -> (his line) -> huff
+    "colonel_snort": ("rage_build_b", 0.00, 0.60, {"fi": 0.01, "fo": 0.12}),
+    "colonel_growl": ("rage_build_a", 0.00, 1.62, {"rise_db": 9, "fi": 0.03, "fo": 0.06}),
+    "colonel_huff": ("rage_huff_a", 0.00, 0.90, {"fi": 0.005, "fo": 0.15}),
+    # the enemy general when the bridge turns on them
+    "general_gasp": ("general_gasp", 0.00, 0.78, {"fi": 0.005, "fo": 0.1}),
+    "general_yell": ("general_yell_b", 0.00, 1.32, {"fi": 0.005, "fo": 0.15}),
     "captain_hm": ("captain_hm", 0.00, 0.50, {"fi": 0.005, "fo": 0.08}),
     "gasp": ("gasp", 0.00, 0.60, {"fi": 0.003, "fo": 0.15}),
     "adjutant_laugh": ("aide_giggle", 0.20, 1.20, {"fi": 0.01, "fo": 0.15}),

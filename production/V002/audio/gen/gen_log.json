@@ -8,8 +8,8 @@
   "mp3": "drum_fall_a_39024f86.mp3",
   "wav": "drum_fall_a_39024f86.wav",
   "date": "2026-11-15 15:10",
-  "credits_estimate": 160,
-  "credits_server_header": 40
+  "credits_server_header": 40,
+  "credits_estimate_at_40_per_s": 160
  },
  {
   "name": "drum_fall_b",
@@ -17,11 +17,11 @@
   "prompt": "Hollow wooden drum falling into a canyon, bouncing and clattering off rock, fading with distance, silence for a moment, then one large deep water splash with echo. Foley, close perspective, no music.",
   "duration_seconds": 4.0,
   "prompt_influence": 0.4,
-  "credits_estimate": 160,
   "credits_server_header": 40,
   "mp3": "drum_fall_b_06e1ce85.mp3",
   "wav": "drum_fall_b_06e1ce85.wav",
-  "date": "2026-11-15 15:10"
+  "date": "2026-11-15 15:10",
+  "credits_estimate_at_40_per_s": 160
  },
  {
   "name": "splash_big_a",
@@ -29,11 +29,11 @@
   "prompt": "One big heavy object plunging into deep river water: a loud clear splash, spray falling back, bubbling watery tail. Single event, no music, no voices.",
   "duration_seconds": 3.0,
   "prompt_influence": 0.6,
-  "credits_estimate": 120,
   "credits_server_header": 30,
   "mp3": "splash_big_a_25938ea0.mp3",
   "wav": "splash_big_a_25938ea0.wav",
-  "date": "2026-11-15 15:11"
+  "date": "2026-11-15 15:11",
+  "credits_estimate_at_40_per_s": 120
  },
  {
   "name": "splash_big_b",
@@ -41,11 +41,11 @@
   "prompt": "Large rock dropped into a lake from height, huge deep splash with water spray and ripples settling. Single clean sound effect.",
   "duration_seconds": 2.5,
   "prompt_influence": 0.4,
-  "credits_estimate": 100,
   "credits_server_header": 25,
   "mp3": "splash_big_b_595d10b8.mp3",
   "wav": "splash_big_b_595d10b8.wav",
-  "date": "2026-11-15 15:11"
+  "date": "2026-11-15 15:11",
+  "credits_estimate_at_40_per_s": 100
  },
  {
   "name": "drum_tumble_only",
@@ -53,11 +53,11 @@
   "prompt": "A hollow wooden drum tumbling and bouncing down a rocky slope, wooden knocks and rattling drumsticks, getting quieter as it falls away. No splash, no music.",
   "duration_seconds": 2.0,
   "prompt_influence": 0.6,
-  "credits_estimate": 80,
   "credits_server_header": 20,
   "mp3": "drum_tumble_only_c951de52.mp3",
   "wav": "drum_tumble_only_c951de52.wav",
-  "date": "2026-11-15 15:11"
+  "date": "2026-11-15 15:11",
+  "credits_estimate_at_40_per_s": 80
  },
  {
   "name": "swing_rope",
@@ -65,11 +65,11 @@
   "prompt": "A child's rope swing hanging from a tree branch creaking slowly back and forth, rope and wood creak, outdoors, rhythmic, no voices.",
   "duration_seconds": 3.0,
   "prompt_influence": 0.6,
-  "credits_estimate": 120,
   "credits_server_header": 30,
   "mp3": "swing_rope_89f9bf72.mp3",
   "wav": "swing_rope_89f9bf72.wav",
-  "date": "2026-11-15 15:11"
+  "date": "2026-11-15 15:11",
+  "credits_estimate_at_40_per_s": 120
  },
  {
   "name": "chuckles",
@@ -77,11 +77,11 @@
   "prompt": "Three or four young men chuckling and snickering together, amused, short, close, no words.",
   "duration_seconds": 2.0,
   "prompt_influence": 0.5,
-  "credits_estimate": 80,
   "credits_server_header": 20,
   "mp3": "chuckles_ffdcff70.mp3",
   "wav": "chuckles_ffdcff70.wav",
-  "date": "2026-11-15 15:11"
+  "date": "2026-11-15 15:11",
+  "credits_estimate_at_40_per_s": 80
  },
  {
   "name": "general_laugh",
@@ -89,11 +89,11 @@
   "prompt": "An old pompous man laughing out loud heartily, belly laugh, wheezing with tears, comic, no words.",
   "duration_seconds": 2.5,
   "prompt_influence": 0.5,
-  "credits_estimate": 100,
   "credits_server_header": 25,
   "mp3": "general_laugh_32e9ee9c.mp3",
   "wav": "general_laugh_32e9ee9c.wav",
-  "date": "2026-11-15 15:11"
+  "date": "2026-11-15 15:11",
+  "credits_estimate_at_40_per_s": 100
  },
  {
   "name": "fife_march",
@@ -101,11 +101,11 @@
   "prompt": "Solo military fife playing a cheerful simple 18th century marching tune in D major at 88 beats per minute, dry recording, no drums, no other instruments.",
   "duration_seconds": 6.0,
   "prompt_influence": 0.6,
-  "credits_estimate": 240,
   "credits_server_header": 60,
   "mp3": "fife_march_a349128b.mp3",
   "wav": "fife_march_a349128b.wav",
-  "date": "2026-11-15 15:11"
+  "date": "2026-11-15 15:11",
+  "credits_estimate_at_40_per_s": 240
  },
  {
   "name": "bridge_groan",
@@ -113,11 +113,11 @@
   "prompt": "An old wooden suspension bridge groaning and creaking under heavy rhythmic load, timber stress, iron chains straining, slow pulses, no footsteps, no voices.",
   "duration_seconds": 4.0,
   "prompt_influence": 0.6,
-  "credits_estimate": 160,
   "credits_server_header": 40,
   "mp3": "bridge_groan_26b8cc4d.mp3",
   "wav": "bridge_groan_26b8cc4d.wav",
-  "date": "2026-11-15 15:11"
+  "date": "2026-11-15 15:11",
+  "credits_estimate_at_40_per_s": 160
  },
  {
   "name": "bridge_snap_a",
@@ -125,11 +125,11 @@
   "prompt": "A huge wooden bridge suddenly snapping and bucking: one massive timber crack, chains breaking with a metallic clang, deep boom, planks and debris flying. Cinematic impact, single event.",
   "duration_seconds": 3.0,
   "prompt_influence": 0.6,
-  "credits_estimate": 120,
   "credits_server_header": 30,
   "mp3": "bridge_snap_a_05dc7d66.mp3",
   "wav": "bridge_snap_a_05dc7d66.wav",
-  "date": "2026-11-15 15:11"
+  "date": "2026-11-15 15:11",
+  "credits_estimate_at_40_per_s": 120
  },
  {
   "name": "bridge_snap_b",
@@ -137,11 +137,11 @@
   "prompt": "Massive wooden structure collapse: loud splintering wood crack, heavy low impact, breaking chain, debris. Powerful, punchy, no music.",
   "duration_seconds": 3.0,
   "prompt_influence": 0.4,
-  "credits_estimate": 120,
   "credits_server_header": 30,
   "mp3": "bridge_snap_b_7ed64692.mp3",
   "wav": "bridge_snap_b_7ed64692.wav",
-  "date": "2026-11-15 15:11"
+  "date": "2026-11-15 15:11",
+  "credits_estimate_at_40_per_s": 120
  },
  {
   "name": "bodies_splashes",
@@ -149,11 +149,11 @@
   "prompt": "Dozens of people falling from the sky into a river: comic falling yells and wind rush, then many splashes one after another, big and small, ending with one large splash.",
   "duration_seconds": 4.0,
   "prompt_influence": 0.6,
-  "credits_estimate": 160,
   "credits_server_header": 40,
   "mp3": "bodies_splashes_2229d03d.mp3",
   "wav": "bodies_splashes_2229d03d.wav",
-  "date": "2026-11-15 15:11"
+  "date": "2026-11-15 15:11",
+  "credits_estimate_at_40_per_s": 160
  },
  {
   "name": "whoosh_tight_a",
@@ -161,11 +161,11 @@
   "prompt": "Short tight airy whoosh, fast camera whip pan transition, soft high air, no low rumble, very brief.",
   "duration_seconds": 0.6,
   "prompt_influence": 0.7,
-  "credits_estimate": 24,
   "credits_server_header": 6,
   "mp3": "whoosh_tight_a_759786c8.mp3",
   "wav": "whoosh_tight_a_759786c8.wav",
-  "date": "2026-11-15 15:11"
+  "date": "2026-11-15 15:11",
+  "credits_estimate_at_40_per_s": 24
  },
  {
   "name": "whoosh_tight_b",
@@ -173,11 +173,11 @@
   "prompt": "Quick light swish of air passing left to right, thin and clean, cinematic transition, under half a second.",
   "duration_seconds": 0.6,
   "prompt_influence": 0.7,
-  "credits_estimate": 24,
   "credits_server_header": 6,
   "mp3": "whoosh_tight_b_980518ec.mp3",
   "wav": "whoosh_tight_b_980518ec.wav",
-  "date": "2026-11-15 15:11"
+  "date": "2026-11-15 15:11",
+  "credits_estimate_at_40_per_s": 24
  },
  {
   "name": "whoosh_tight_c",
@@ -185,11 +185,11 @@
   "prompt": "Fast soft swoosh, cloth-like air movement, short, dry, no impact, no tail.",
   "duration_seconds": 0.7,
   "prompt_influence": 0.7,
-  "credits_estimate": 28,
   "credits_server_header": 7,
   "mp3": "whoosh_tight_c_b9d5d912.mp3",
   "wav": "whoosh_tight_c_b9d5d912.wav",
-  "date": "2026-11-15 15:11"
+  "date": "2026-11-15 15:11",
+  "credits_estimate_at_40_per_s": 28
  },
  {
   "name": "march_wood",
@@ -197,11 +197,11 @@
   "prompt": "A large company of soldiers marching in perfect unison across a wooden bridge: heavy boots hitting hollow planks together in a steady beat, leather and gear rattling, wood flexing. Close, weighty, no music, no voices.",
   "duration_seconds": 3.0,
   "prompt_influence": 0.6,
-  "credits_estimate": 120,
   "credits_server_header": 30,
   "mp3": "march_wood_2f66ac0d.mp3",
   "wav": "march_wood_2f66ac0d.wav",
-  "date": "2026-11-15 15:16"
+  "date": "2026-11-15 15:16",
+  "credits_estimate_at_40_per_s": 120
  },
  {
   "name": "march_sand",
@@ -209,11 +209,11 @@
   "prompt": "Hundreds of soldiers marching in step on dry sandy ground: deep unison thuds of boots, grit crunching, belts and muskets rattling, steady rhythm, outdoors, no music, no voices.",
   "duration_seconds": 2.5,
   "prompt_influence": 0.6,
-  "credits_estimate": 100,
   "credits_server_header": 25,
   "mp3": "march_sand_8d6be70b.mp3",
   "wav": "march_sand_8d6be70b.wav",
-  "date": "2026-11-15 15:16"
+  "date": "2026-11-15 15:16",
+  "credits_estimate_at_40_per_s": 100
  },
  {
   "name": "shuffle_wood",
@@ -221,11 +221,11 @@
   "prompt": "A crowd of men walking out of step across a wooden bridge: many uneven footsteps and scuffs on planks, bumping into each other, gear clinking, low confused muttering. Disorderly, no music.",
   "duration_seconds": 3.0,
   "prompt_influence": 0.6,
-  "credits_estimate": 120,
   "credits_server_header": 30,
   "mp3": "shuffle_wood_420f6e6c.mp3",
   "wav": "shuffle_wood_420f6e6c.wav",
-  "date": "2026-11-15 15:16"
+  "date": "2026-11-15 15:16",
+  "credits_estimate_at_40_per_s": 120
  },
  {
   "name": "crowd_scream",
@@ -233,11 +233,11 @@
   "prompt": "A large group of men screaming in panic as they are thrown high into the air, comic collective yell fading as they fly away. No music.",
   "duration_seconds": 2.0,
   "prompt_influence": 0.5,
-  "credits_estimate": 80,
   "credits_server_header": 20,
   "mp3": "crowd_scream_0d2eb1bd.mp3",
   "wav": "crowd_scream_0d2eb1bd.wav",
-  "date": "2026-11-15 15:16"
+  "date": "2026-11-15 15:16",
+  "credits_estimate_at_40_per_s": 80
  },
  {
   "name": "murmur",
@@ -245,11 +245,11 @@
   "prompt": "A group of soldiers murmuring in confusion, puzzled low voices, no clear words, short.",
   "duration_seconds": 2.0,
   "prompt_influence": 0.5,
-  "credits_estimate": 80,
   "credits_server_header": 20,
   "mp3": "murmur_0ead159a.mp3",
   "wav": "murmur_0ead159a.wav",
-  "date": "2026-11-15 15:16"
+  "date": "2026-11-15 15:16",
+  "credits_estimate_at_40_per_s": 80
  },
  {
   "name": "colonel_grunt",
@@ -257,11 +257,11 @@
   "prompt": "An angry older man gives one short furious growl, snarling grunt through clenched teeth, no words.",
   "duration_seconds": 1.0,
   "prompt_influence": 0.6,
-  "credits_estimate": 40,
   "credits_server_header": 10,
   "mp3": "colonel_grunt_e8af4f1b.mp3",
   "wav": "colonel_grunt_e8af4f1b.wav",
-  "date": "2026-11-15 15:16"
+  "date": "2026-11-15 15:16",
+  "credits_estimate_at_40_per_s": 40
  },
  {
   "name": "gasp",
@@ -269,11 +269,11 @@
   "prompt": "Several men gasp in surprise at once, a short collective sharp intake of breath, no words.",
   "duration_seconds": 1.0,
   "prompt_influence": 0.5,
-  "credits_estimate": 40,
   "credits_server_header": 10,
   "mp3": "gasp_44572bc4.mp3",
   "wav": "gasp_44572bc4.wav",
-  "date": "2026-11-15 15:16"
+  "date": "2026-11-15 15:16",
+  "credits_estimate_at_40_per_s": 40
  },
  {
   "name": "captain_hm",
@@ -281,11 +281,11 @@
   "prompt": "A calm young man says a short smug hm, closed mouth, satisfied.",
   "duration_seconds": 0.6,
   "prompt_influence": 0.6,
-  "credits_estimate": 24,
   "credits_server_header": 6,
   "mp3": "captain_hm_a91ed050.mp3",
   "wav": "captain_hm_a91ed050.wav",
-  "date": "2026-11-15 15:17"
+  "date": "2026-11-15 15:17",
+  "credits_estimate_at_40_per_s": 24
  },
  {
   "name": "aide_giggle",
@@ -293,11 +293,11 @@
   "prompt": "A young man giggling nervously in a high voice, short snickering laugh, no words.",
   "duration_seconds": 1.2,
   "prompt_influence": 0.5,
-  "credits_estimate": 48,
   "credits_server_header": 12,
   "mp3": "aide_giggle_93e23aa9.mp3",
   "wav": "aide_giggle_93e23aa9.wav",
-  "date": "2026-11-15 15:17"
+  "date": "2026-11-15 15:17",
+  "credits_estimate_at_40_per_s": 48
  },
  {
   "name": "metal_ping",
@@ -305,10 +305,94 @@
   "prompt": "A stressed iron chain link gives one sharp metallic ping and tick under tension, short ringing, no music.",
   "duration_seconds": 1.0,
   "prompt_influence": 0.6,
-  "credits_estimate": 40,
   "credits_server_header": 10,
   "mp3": "metal_ping_1e101fd2.mp3",
   "wav": "metal_ping_1e101fd2.wav",
-  "date": "2026-11-15 15:17"
+  "date": "2026-11-15 15:17",
+  "credits_estimate_at_40_per_s": 40
+ },
+ {
+  "name": "rage_build_a",
+  "hash": "655c18bdd1c633996c1f15c6b84e1db60f39e549",
+  "prompt": "A furious middle-aged man: sharp angry inhale through the nose, then a low growl rising in anger through clenched teeth, getting louder. Cartoonish but not goofy, male, no words.",
+  "duration_seconds": 2.0,
+  "prompt_influence": 0.6,
+  "credits_estimate": 20,
+  "credits_server_header": 20,
+  "mp3": "rage_build_a_655c18bd.mp3",
+  "wav": "rage_build_a_655c18bd.wav",
+  "date": "2026-11-15 15:44"
+ },
+ {
+  "name": "rage_build_b",
+  "hash": "41061491459d7d4f7eed47c2cd361c3cf4abc6d4",
+  "prompt": "Enraged man snorts and growls with rising fury, deep male voice, teeth clenched, building up to an outburst, no words, close microphone.",
+  "duration_seconds": 2.0,
+  "prompt_influence": 0.4,
+  "credits_estimate": 20,
+  "credits_server_header": 20,
+  "mp3": "rage_build_b_41061491.mp3",
+  "wav": "rage_build_b_41061491.wav",
+  "date": "2026-11-15 15:44"
+ },
+ {
+  "name": "rage_huff_a",
+  "hash": "b788c14192e28f3b1d26bf4112f31d8c4ce0d5ca",
+  "prompt": "A furious man exhales sharply in anger after shouting, one hard angry huff through the nose, male, no words.",
+  "duration_seconds": 1.0,
+  "prompt_influence": 0.6,
+  "credits_estimate": 10,
+  "credits_server_header": 10,
+  "mp3": "rage_huff_a_b788c141.mp3",
+  "wav": "rage_huff_a_b788c141.wav",
+  "date": "2026-11-15 15:44"
+ },
+ {
+  "name": "rage_huff_b",
+  "hash": "2ed22e290615fb7d6124f79b1be3bd5d613d14df",
+  "prompt": "Angry frustrated male grunt and forceful exhale, seething, short, no words.",
+  "duration_seconds": 1.2,
+  "prompt_influence": 0.4,
+  "credits_estimate": 12,
+  "credits_server_header": 12,
+  "mp3": "rage_huff_b_2ed22e29.mp3",
+  "wav": "rage_huff_b_2ed22e29.wav",
+  "date": "2026-11-15 15:44"
+ },
+ {
+  "name": "general_gasp",
+  "hash": "a335358ec4c9ba77acb6ec2b9f2512e4e5ef171d",
+  "prompt": "An old pompous man gasps in sudden alarm, one sharp frightened intake of breath, male, no words.",
+  "duration_seconds": 1.0,
+  "prompt_influence": 0.6,
+  "credits_estimate": 10,
+  "credits_server_header": 10,
+  "mp3": "general_gasp_a335358e.mp3",
+  "wav": "general_gasp_a335358e.wav",
+  "date": "2026-11-15 15:44"
+ },
+ {
+  "name": "general_yell_a",
+  "hash": "23c6a1d647ee255ff651a464bff551aedab0e5c3",
+  "prompt": "An old pompous man yells in angry panic, a short loud outraged shout turning into a scream, male, cartoonish but not goofy, no words.",
+  "duration_seconds": 1.5,
+  "prompt_influence": 0.6,
+  "credits_estimate": 15,
+  "credits_server_header": 15,
+  "mp3": "general_yell_a_23c6a1d6.mp3",
+  "wav": "general_yell_a_23c6a1d6.wav",
+  "date": "2026-11-15 15:44"
+ },
+ {
+  "name": "general_yell_b",
+  "hash": "85c38b339106230557210394b3795203bda88dec",
+  "prompt": "Elderly male commander shouts in panic and fury, one loud alarmed yell, no words.",
+  "duration_seconds": 1.5,
+  "prompt_influence": 0.4,
+  "credits_estimate": 15,
+  "credits_server_header": 15,
+  "mp3": "general_yell_b_85c38b33.mp3",
+  "wav": "general_yell_b_85c38b33.wav",
+  "date": "2026-11-15 15:44"
  }
 ]

@@ -1,0 +1,19 @@
+{
+ "anchor": 0.0604,
+ "origin": "elevenlabs",
+ "trim": [
+  0.0,
+  0.78
+ ],
+ "process": {
+  "fi": 0.005,
+  "fo": 0.1
+ },
+ "source": {
+  "generator": "ElevenLabs Sound Effects API",
+  "prompt": "An old pompous man gasps in sudden alarm, one sharp frightened intake of breath, male, no words.",
+  "duration_seconds": 1.0,
+  "file": "gen/general_gasp_a335358e.wav",
+  "date": "2026-11-15 15:44"
+ }
+}

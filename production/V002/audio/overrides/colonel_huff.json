@@ -1,0 +1,19 @@
+{
+ "anchor": 0.002,
+ "origin": "elevenlabs",
+ "trim": [
+  0.0,
+  0.9
+ ],
+ "process": {
+  "fi": 0.005,
+  "fo": 0.15
+ },
+ "source": {
+  "generator": "ElevenLabs Sound Effects API",
+  "prompt": "A furious man exhales sharply in anger after shouting, one hard angry huff through the nose, male, no words.",
+  "duration_seconds": 1.0,
+  "file": "gen/rage_huff_a_b788c141.wav",
+  "date": "2026-11-15 15:44"
+ }
+}

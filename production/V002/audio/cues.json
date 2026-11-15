@@ -100,6 +100,18 @@
    "t1": 2.906,
    "music_db": -10.0,
    "what": "the splash in the hook"
+  },
+  {
+   "t0": 3.56,
+   "t1": 5.102,
+   "music_db": -8.0,
+   "what": "the colonel's rage build"
+  },
+  {
+   "t0": 7.939,
+   "t1": 8.889,
+   "music_db": -8.0,
+   "what": "the colonel's huff"
   }
  ],
  "music_sources": {
@@ -133,7 +145,11 @@
   "adjutant_laugh": "elevenlabs",
   "hand_pat": "synth",
   "captain_hm": "elevenlabs",
-  "colonel_grunt": "elevenlabs",
+  "colonel_snort": "elevenlabs",
+  "colonel_growl": "elevenlabs",
+  "colonel_huff": "elevenlabs",
+  "general_gasp": "elevenlabs",
+  "general_yell": "elevenlabs",
   "murmur": "elevenlabs",
   "shuffle_gen": "elevenlabs",
   "gasp": "elevenlabs",
@@ -535,6 +551,60 @@
    "note": "the captain, pleased with himself: 'hm' in the gap after the hook"
   },
   {
+   "id": "colonel_snort@69",
+   "track": "sfx",
+   "file": "stems/colonel_snort.wav",
+   "cue": {
+    "sentence": 2,
+    "word": "His",
+    "occ": 1,
+    "frac": 0.0,
+    "offset": -0.2
+   },
+   "time": 3.61,
+   "start": 3.521,
+   "anchor": 0.089,
+   "gain_db": -16.72,
+   "level_re_voice_db": -7.5,
+   "level_mode": "peak20",
+   "length": 0.6,
+   "fade_in": 0.0,
+   "fade_out": 0.0,
+   "featured": true,
+   "window": 0.5,
+   "key": true,
+   "measure": "onset",
+   "source": "elevenlabs",
+   "note": "the colonel: angry snort / inhale in the gap before the sentence"
+  },
+  {
+   "id": "colonel_growl@70",
+   "track": "sfx",
+   "file": "stems/colonel_growl.wav",
+   "cue": {
+    "sentence": 2,
+    "word": "His",
+    "occ": 1,
+    "frac": 0.0,
+    "offset": 0.12
+   },
+   "time": 3.93,
+   "start": 3.9077,
+   "anchor": 0.0223,
+   "gain_db": -15.91,
+   "level_re_voice_db": -6.5,
+   "level_mode": "peak20",
+   "length": 1.62,
+   "fade_in": 0.0,
+   "fade_out": 0.25,
+   "featured": true,
+   "window": 1.6,
+   "key": false,
+   "measure": "onset",
+   "source": "elevenlabs",
+   "note": "the colonel: low growl rising to the grab"
+  },
+  {
    "id": "cloth_grab@22",
    "track": "sfx",
    "file": "stems/cloth_grab.wav",
@@ -548,45 +618,18 @@
    "time": 4.007,
    "start": 3.9422,
    "anchor": 0.0648,
-   "gain_db": -9.04,
-   "level_re_voice_db": -8,
+   "gain_db": -5.04,
+   "level_re_voice_db": -4,
    "level_mode": "peak20",
    "length": 0.41,
    "fade_in": 0.0,
    "fade_out": 0.0,
-   "featured": false,
-   "window": 0.41,
+   "featured": true,
+   "window": 0.3,
    "key": true,
    "measure": "onset",
    "source": "recording",
    "note": "hand flies in (short whoosh before the word) and grabs the collar"
-  },
-  {
-   "id": "colonel_grunt@69",
-   "track": "sfx",
-   "file": "stems/colonel_grunt.wav",
-   "cue": {
-    "sentence": 2,
-    "word": "colonel",
-    "occ": 1,
-    "frac": 0.0,
-    "offset": 0.1
-   },
-   "time": 4.107,
-   "start": 4.1053,
-   "anchor": 0.0017,
-   "gain_db": -20.44,
-   "level_re_voice_db": -11,
-   "level_mode": "peak20",
-   "length": 0.67,
-   "fade_in": 0.0,
-   "fade_out": 0.0,
-   "featured": false,
-   "window": 0.45,
-   "key": false,
-   "measure": "onset",
-   "source": "elevenlabs",
-   "note": "the colonel snarls as he grabs"
   },
   {
    "id": "cloth_yank@23",
@@ -643,7 +686,7 @@
    "note": "'That drum': the hit from the first word answers from the gorge, wet only"
   },
   {
-   "id": "cam_whoosh_0@298",
+   "id": "cam_whoosh_0@302",
    "track": "sfx",
    "file": "stems/cam_whoosh_0.wav",
    "cue": {
@@ -751,7 +794,7 @@
    "note": "bodies, musket stocks, buckles; one musket dropped"
   },
   {
-   "id": "murmur@70",
+   "id": "murmur@74",
    "track": "sfx",
    "file": "stems/murmur.wav",
    "cue": {
@@ -778,7 +821,7 @@
    "note": "the column mutters as it piles up"
   },
   {
-   "id": "cam_whoosh_1@299",
+   "id": "cam_whoosh_1@303",
    "track": "sfx",
    "file": "stems/cam_whoosh_1.wav",
    "cue": {
@@ -805,7 +848,34 @@
    "note": "whip between shots; the peak leads the cut by 40 ms, into the gap before the word"
   },
   {
-   "id": "cam_whoosh_2@300",
+   "id": "colonel_huff@71",
+   "track": "sfx",
+   "file": "stems/colonel_huff.wav",
+   "cue": {
+    "sentence": 2,
+    "word": "step",
+    "occ": 1,
+    "frac": 1.0,
+    "offset": -0.02
+   },
+   "time": 7.969,
+   "start": 7.967,
+   "anchor": 0.002,
+   "gain_db": -17.57,
+   "level_re_voice_db": -6.5,
+   "level_mode": "peak20",
+   "length": 0.9,
+   "fade_in": 0.0,
+   "fade_out": 0.0,
+   "featured": true,
+   "window": 0.8,
+   "key": true,
+   "measure": "onset",
+   "source": "elevenlabs",
+   "note": "the colonel: furious huff right after 'in step!'"
+  },
+  {
+   "id": "cam_whoosh_2@304",
    "track": "sfx",
    "file": "stems/cam_whoosh_2.wav",
    "cue": {
@@ -886,7 +956,7 @@
    "note": "wide shot of the gorge: one gust swells and whistles"
   },
   {
-   "id": "cam_whoosh_3@301",
+   "id": "cam_whoosh_3@305",
    "track": "sfx",
    "file": "stems/cam_whoosh_3.wav",
    "cue": {
@@ -994,7 +1064,7 @@
    "note": "the captain's arm goes up: sleeve"
   },
   {
-   "id": "cam_whoosh_0@302",
+   "id": "cam_whoosh_0@306",
    "track": "sfx",
    "file": "stems/cam_whoosh_0.wav",
    "cue": {
@@ -1048,7 +1118,7 @@
    "note": "the captain shows the walk: four wobbly steps on the planks"
   },
   {
-   "id": "cam_whoosh_1@303",
+   "id": "cam_whoosh_1@307",
    "track": "sfx",
    "file": "stems/cam_whoosh_1.wav",
    "cue": {
@@ -1126,7 +1196,7 @@
    "note": "six hundred men with no common beat (Poisson timing), thumps + scuffs"
   },
   {
-   "id": "shuffle_gen@72",
+   "id": "shuffle_gen@76",
    "track": "sfx",
    "file": "stems/shuffle_gen.wav",
    "cue": {
@@ -1180,7 +1250,7 @@
    "note": "a second layer of feet (another recording)"
   },
   {
-   "id": "murmur@71",
+   "id": "murmur@75",
    "track": "sfx",
    "file": "stems/murmur.wav",
    "cue": {
@@ -1207,7 +1277,7 @@
    "note": "blue soldiers mutter on the bridge"
   },
   {
-   "id": "cam_whoosh_2@304",
+   "id": "cam_whoosh_2@308",
    "track": "sfx",
    "file": "stems/cam_whoosh_2.wav",
    "cue": {
@@ -1234,7 +1304,7 @@
    "note": "whip between shots; the peak leads the cut by 40 ms, into the gap before the word"
   },
   {
-   "id": "wind_gust@79",
+   "id": "wind_gust@83",
    "track": "sfx",
    "file": "stems/wind_gust.wav",
    "cue": {
@@ -1312,7 +1382,7 @@
    "note": "distant cadence (low-passed, wet) on the ridge"
   },
   {
-   "id": "flag_flap@77",
+   "id": "flag_flap@81",
    "track": "sfx",
    "file": "stems/flag_flap.wav",
    "cue": {
@@ -1339,7 +1409,7 @@
    "note": "banners flapping on the ridge"
   },
   {
-   "id": "cam_whoosh_3@305",
+   "id": "cam_whoosh_3@309",
    "track": "sfx",
    "file": "stems/cam_whoosh_3.wav",
    "cue": {
@@ -1366,7 +1436,7 @@
    "note": "whip between shots; the peak leads the cut by 40 ms, into the gap before the word"
   },
   {
-   "id": "general_laugh@101",
+   "id": "general_laugh@105",
    "track": "sfx",
    "file": "stems/general_laugh.wav",
    "cue": {
@@ -1420,7 +1490,7 @@
    "note": "the adjutant laughs along"
   },
   {
-   "id": "spyglass_click@78",
+   "id": "spyglass_click@82",
    "track": "sfx",
    "file": "stems/spyglass_click.wav",
    "cue": {
@@ -1474,7 +1544,7 @@
    "note": "AMBIENCE through the spyglass: the gorge from far away"
   },
   {
-   "id": "cam_push@317",
+   "id": "cam_push@321",
    "track": "sfx",
    "file": "stems/cam_push.wav",
    "cue": {
@@ -1528,7 +1598,7 @@
    "note": "scattered stumbling footsteps (replaces the marbles rattle)"
   },
   {
-   "id": "murmur@73",
+   "id": "murmur@77",
    "track": "sfx",
    "file": "stems/murmur.wav",
    "cue": {
@@ -1660,7 +1730,7 @@
    "note": "the march enters: field drum + bass drum, close"
   },
   {
-   "id": "cam_whoosh_0@306",
+   "id": "cam_whoosh_0@310",
    "track": "sfx",
    "file": "stems/cam_whoosh_0.wav",
    "cue": {
@@ -1687,7 +1757,7 @@
    "note": "whip between shots; the peak leads the cut by 40 ms, into the gap before the word"
   },
   {
-   "id": "gear_rattle@98",
+   "id": "gear_rattle@102",
    "track": "sfx",
    "file": "stems/gear_rattle.wav",
    "cue": {
@@ -1714,7 +1784,7 @@
    "note": "belts, muskets and drums rattling on the march"
   },
   {
-   "id": "sand_step_0@89",
+   "id": "sand_step_0@93",
    "track": "sfx",
    "file": "stems/sand_step_0.wav",
    "cue": {
@@ -1743,7 +1813,7 @@
    "note": "red army on sand, in unison: a mass of boots, grit, gear"
   },
   {
-   "id": "sand_step_1@90",
+   "id": "sand_step_1@94",
    "track": "sfx",
    "file": "stems/sand_step_1.wav",
    "cue": {
@@ -1772,7 +1842,7 @@
    "note": "red army on sand, in unison: a mass of boots, grit, gear"
   },
   {
-   "id": "sand_step_2@91",
+   "id": "sand_step_2@95",
    "track": "sfx",
    "file": "stems/sand_step_2.wav",
    "cue": {
@@ -1801,7 +1871,7 @@
    "note": "red army on sand, in unison: a mass of boots, grit, gear"
   },
   {
-   "id": "sand_step_3@92",
+   "id": "sand_step_3@96",
    "track": "sfx",
    "file": "stems/sand_step_3.wav",
    "cue": {
@@ -1830,7 +1900,7 @@
    "note": "red army on sand, in unison: a mass of boots, grit, gear"
   },
   {
-   "id": "sand_step_4@93",
+   "id": "sand_step_4@97",
    "track": "sfx",
    "file": "stems/sand_step_4.wav",
    "cue": {
@@ -1859,7 +1929,7 @@
    "note": "red army on sand, in unison: a mass of boots, grit, gear"
   },
   {
-   "id": "sand_step_0@94",
+   "id": "sand_step_0@98",
    "track": "sfx",
    "file": "stems/sand_step_0.wav",
    "cue": {
@@ -1888,7 +1958,7 @@
    "note": "red army on sand, in unison: a mass of boots, grit, gear"
   },
   {
-   "id": "cam_whoosh_1@307",
+   "id": "cam_whoosh_1@311",
    "track": "sfx",
    "file": "stems/cam_whoosh_1.wav",
    "cue": {
@@ -1915,7 +1985,7 @@
    "note": "whip between shots; the peak leads the cut by 40 ms, into the gap before the word"
   },
   {
-   "id": "sand_step_1@95",
+   "id": "sand_step_1@99",
    "track": "sfx",
    "file": "stems/sand_step_1.wav",
    "cue": {
@@ -1944,7 +2014,7 @@
    "note": "red army on sand, in unison: a mass of boots, grit, gear"
   },
   {
-   "id": "sand_step_2@96",
+   "id": "sand_step_2@100",
    "track": "sfx",
    "file": "stems/sand_step_2.wav",
    "cue": {
@@ -1973,7 +2043,7 @@
    "note": "red army on sand, in unison: a mass of boots, grit, gear"
   },
   {
-   "id": "sand_step_3@97",
+   "id": "sand_step_3@101",
    "track": "sfx",
    "file": "stems/sand_step_3.wav",
    "cue": {
@@ -2002,7 +2072,7 @@
    "note": "red army on sand, in unison: a mass of boots, grit, gear"
   },
   {
-   "id": "boots_h4_L@105",
+   "id": "boots_h4_L@109",
    "track": "sfx",
    "file": "stems/boots_h4_L.wav",
    "cue": {
@@ -2107,7 +2177,7 @@
    "note": "AMBIENCE the river far below (recording)"
   },
   {
-   "id": "gear_rattle@99",
+   "id": "gear_rattle@103",
    "track": "sfx",
    "file": "stems/gear_rattle.wav",
    "cue": {
@@ -2134,7 +2204,7 @@
    "note": "belts, muskets and drums rattling on the march"
   },
   {
-   "id": "boot_wood_0@107",
+   "id": "boot_wood_0@111",
    "track": "sfx",
    "file": "stems/boot_wood_0.wav",
    "cue": {
@@ -2163,7 +2233,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h0_R@106",
+   "id": "boots_h0_R@110",
    "track": "sfx",
    "file": "stems/boots_h0_R.wav",
    "cue": {
@@ -2192,7 +2262,7 @@
    "note": "approaching step (light)"
   },
   {
-   "id": "boot_wood_1@109",
+   "id": "boot_wood_1@113",
    "track": "sfx",
    "file": "stems/boot_wood_1.wav",
    "cue": {
@@ -2221,7 +2291,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h0_L@108",
+   "id": "boots_h0_L@112",
    "track": "sfx",
    "file": "stems/boots_h0_L.wav",
    "cue": {
@@ -2250,7 +2320,7 @@
    "note": "approaching step"
   },
   {
-   "id": "boot_wood_2@111",
+   "id": "boot_wood_2@115",
    "track": "sfx",
    "file": "stems/boot_wood_2.wav",
    "cue": {
@@ -2279,7 +2349,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h0_R@110",
+   "id": "boots_h0_R@114",
    "track": "sfx",
    "file": "stems/boots_h0_R.wav",
    "cue": {
@@ -2308,7 +2378,7 @@
    "note": "approaching step (light)"
   },
   {
-   "id": "cam_whoosh_2@308",
+   "id": "cam_whoosh_2@312",
    "track": "sfx",
    "file": "stems/cam_whoosh_2.wav",
    "cue": {
@@ -2335,7 +2405,7 @@
    "note": "whip between shots; the peak leads the cut by 40 ms, into the gap before the word"
   },
   {
-   "id": "wind_gust@80",
+   "id": "wind_gust@84",
    "track": "sfx",
    "file": "stems/wind_gust.wav",
    "cue": {
@@ -2362,7 +2432,7 @@
    "note": "the camera goes high: the wind rises"
   },
   {
-   "id": "boot_wood_3@113",
+   "id": "boot_wood_3@117",
    "track": "sfx",
    "file": "stems/boot_wood_3.wav",
    "cue": {
@@ -2391,7 +2461,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h0_L@112",
+   "id": "boots_h0_L@116",
    "track": "sfx",
    "file": "stems/boots_h0_L.wav",
    "cue": {
@@ -2420,7 +2490,7 @@
    "note": "approaching step"
   },
   {
-   "id": "boot_wood_4@115",
+   "id": "boot_wood_4@119",
    "track": "sfx",
    "file": "stems/boot_wood_4.wav",
    "cue": {
@@ -2449,7 +2519,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h0_R@114",
+   "id": "boots_h0_R@118",
    "track": "sfx",
    "file": "stems/boots_h0_R.wav",
    "cue": {
@@ -2478,7 +2548,7 @@
    "note": "approaching step (light)"
   },
   {
-   "id": "boot_wood_5@117",
+   "id": "boot_wood_5@121",
    "track": "sfx",
    "file": "stems/boot_wood_5.wav",
    "cue": {
@@ -2507,7 +2577,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h1_L@116",
+   "id": "boots_h1_L@120",
    "track": "sfx",
    "file": "stems/boots_h1_L.wav",
    "cue": {
@@ -2536,7 +2606,7 @@
    "note": "approaching step"
   },
   {
-   "id": "boot_wood_0@119",
+   "id": "boot_wood_0@123",
    "track": "sfx",
    "file": "stems/boot_wood_0.wav",
    "cue": {
@@ -2565,7 +2635,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h0_R@118",
+   "id": "boots_h0_R@122",
    "track": "sfx",
    "file": "stems/boots_h0_R.wav",
    "cue": {
@@ -2594,7 +2664,7 @@
    "note": "approaching step (light)"
   },
   {
-   "id": "boot_wood_1@121",
+   "id": "boot_wood_1@125",
    "track": "sfx",
    "file": "stems/boot_wood_1.wav",
    "cue": {
@@ -2621,7 +2691,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h3_L@120",
+   "id": "boots_h3_L@124",
    "track": "sfx",
    "file": "stems/boots_h3_L.wav",
    "cue": {
@@ -2672,7 +2742,7 @@
    "note": "stop-time: one drum stroke per step word"
   },
   {
-   "id": "chain_tick@122",
+   "id": "chain_tick@126",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -2699,7 +2769,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "boot_wood_2@124",
+   "id": "boot_wood_2@128",
    "track": "sfx",
    "file": "stems/boot_wood_2.wav",
    "cue": {
@@ -2726,7 +2796,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h3_R@123",
+   "id": "boots_h3_R@127",
    "track": "sfx",
    "file": "stems/boots_h3_R.wav",
    "cue": {
@@ -2777,7 +2847,7 @@
    "note": "stop-time: one drum stroke per step word"
   },
   {
-   "id": "chain_tick@125",
+   "id": "chain_tick@129",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -2804,7 +2874,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "boot_wood_3@127",
+   "id": "boot_wood_3@131",
    "track": "sfx",
    "file": "stems/boot_wood_3.wav",
    "cue": {
@@ -2831,7 +2901,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h3_L@126",
+   "id": "boots_h3_L@130",
    "track": "sfx",
    "file": "stems/boots_h3_L.wav",
    "cue": {
@@ -2882,7 +2952,7 @@
    "note": "stop-time: one drum stroke per step word"
   },
   {
-   "id": "chain_tick@128",
+   "id": "chain_tick@132",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -2909,7 +2979,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "boot_wood_4@130",
+   "id": "boot_wood_4@134",
    "track": "sfx",
    "file": "stems/boot_wood_4.wav",
    "cue": {
@@ -2936,7 +3006,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h3_R@129",
+   "id": "boots_h3_R@133",
    "track": "sfx",
    "file": "stems/boots_h3_R.wav",
    "cue": {
@@ -3014,7 +3084,7 @@
    "note": "4th step: the link above them shudders"
   },
   {
-   "id": "chain_tick@131",
+   "id": "chain_tick@135",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -3041,7 +3111,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "boot_wood_5@133",
+   "id": "boot_wood_5@137",
    "track": "sfx",
    "file": "stems/boot_wood_5.wav",
    "cue": {
@@ -3070,7 +3140,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h1_L@132",
+   "id": "boots_h1_L@136",
    "track": "sfx",
    "file": "stems/boots_h1_L.wav",
    "cue": {
@@ -3125,7 +3195,7 @@
    "note": "full march: tune enters one beat after the 4th step word and keeps that tempo"
   },
   {
-   "id": "plank_creak_0@236",
+   "id": "plank_creak_0@240",
    "track": "sfx",
    "file": "stems/plank_creak_0.wav",
    "cue": {
@@ -3152,7 +3222,7 @@
    "note": "'A few steps in': the deck flexes"
   },
   {
-   "id": "boot_wood_0@135",
+   "id": "boot_wood_0@139",
    "track": "sfx",
    "file": "stems/boot_wood_0.wav",
    "cue": {
@@ -3181,7 +3251,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h0_R@134",
+   "id": "boots_h0_R@138",
    "track": "sfx",
    "file": "stems/boots_h0_R.wav",
    "cue": {
@@ -3210,7 +3280,7 @@
    "note": "step 6 on the bridge (light)"
   },
   {
-   "id": "boot_wood_1@137",
+   "id": "boot_wood_1@141",
    "track": "sfx",
    "file": "stems/boot_wood_1.wav",
    "cue": {
@@ -3239,7 +3309,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h1_L@136",
+   "id": "boots_h1_L@140",
    "track": "sfx",
    "file": "stems/boots_h1_L.wav",
    "cue": {
@@ -3268,7 +3338,7 @@
    "note": "step 7 on the bridge"
   },
   {
-   "id": "boot_wood_2@139",
+   "id": "boot_wood_2@143",
    "track": "sfx",
    "file": "stems/boot_wood_2.wav",
    "cue": {
@@ -3297,7 +3367,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h0_R@138",
+   "id": "boots_h0_R@142",
    "track": "sfx",
    "file": "stems/boots_h0_R.wav",
    "cue": {
@@ -3326,7 +3396,7 @@
    "note": "step 8 on the bridge (light)"
   },
   {
-   "id": "plank_creak_1@237",
+   "id": "plank_creak_1@241",
    "track": "sfx",
    "file": "stems/plank_creak_1.wav",
    "cue": {
@@ -3382,7 +3452,7 @@
    "note": "chain load creak, louder as the wave grows"
   },
   {
-   "id": "boot_wood_3@141",
+   "id": "boot_wood_3@145",
    "track": "sfx",
    "file": "stems/boot_wood_3.wav",
    "cue": {
@@ -3411,7 +3481,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h2_L@140",
+   "id": "boots_h2_L@144",
    "track": "sfx",
    "file": "stems/boots_h2_L.wav",
    "cue": {
@@ -3440,7 +3510,7 @@
    "note": "step 9 on the bridge"
   },
   {
-   "id": "boot_wood_4@143",
+   "id": "boot_wood_4@147",
    "track": "sfx",
    "file": "stems/boot_wood_4.wav",
    "cue": {
@@ -3469,7 +3539,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h0_R@142",
+   "id": "boots_h0_R@146",
    "track": "sfx",
    "file": "stems/boots_h0_R.wav",
    "cue": {
@@ -3498,7 +3568,7 @@
    "note": "step 10 on the bridge (light)"
   },
   {
-   "id": "boot_wood_5@145",
+   "id": "boot_wood_5@149",
    "track": "sfx",
    "file": "stems/boot_wood_5.wav",
    "cue": {
@@ -3527,7 +3597,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h2_L@144",
+   "id": "boots_h2_L@148",
    "track": "sfx",
    "file": "stems/boots_h2_L.wav",
    "cue": {
@@ -3556,7 +3626,7 @@
    "note": "step 11 on the bridge"
   },
   {
-   "id": "cam_whoosh_3@309",
+   "id": "cam_whoosh_3@313",
    "track": "sfx",
    "file": "stems/cam_whoosh_3.wav",
    "cue": {
@@ -3583,7 +3653,7 @@
    "note": "whip between shots; the peak leads the cut by 40 ms, into the gap before the word"
   },
   {
-   "id": "gasp@74",
+   "id": "gasp@78",
    "track": "sfx",
    "file": "stems/gasp.wav",
    "cue": {
@@ -3610,7 +3680,7 @@
    "note": "the row gasps as the deck bounces"
   },
   {
-   "id": "boot_wood_0@147",
+   "id": "boot_wood_0@151",
    "track": "sfx",
    "file": "stems/boot_wood_0.wav",
    "cue": {
@@ -3639,7 +3709,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h1_R@146",
+   "id": "boots_h1_R@150",
    "track": "sfx",
    "file": "stems/boots_h1_R.wav",
    "cue": {
@@ -3668,7 +3738,7 @@
    "note": "step 12 on the bridge (light)"
   },
   {
-   "id": "plank_creak_3@238",
+   "id": "plank_creak_3@242",
    "track": "sfx",
    "file": "stems/plank_creak_3.wav",
    "cue": {
@@ -3697,7 +3767,7 @@
    "note": "deck creak between steps"
   },
   {
-   "id": "boot_wood_1@149",
+   "id": "boot_wood_1@153",
    "track": "sfx",
    "file": "stems/boot_wood_1.wav",
    "cue": {
@@ -3726,7 +3796,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h2_L@148",
+   "id": "boots_h2_L@152",
    "track": "sfx",
    "file": "stems/boots_h2_L.wav",
    "cue": {
@@ -3755,7 +3825,7 @@
    "note": "step 13 on the bridge"
   },
   {
-   "id": "boot_wood_2@151",
+   "id": "boot_wood_2@155",
    "track": "sfx",
    "file": "stems/boot_wood_2.wav",
    "cue": {
@@ -3784,7 +3854,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h1_R@150",
+   "id": "boots_h1_R@154",
    "track": "sfx",
    "file": "stems/boots_h1_R.wav",
    "cue": {
@@ -3813,7 +3883,7 @@
    "note": "step 14 on the bridge (light)"
   },
   {
-   "id": "soldiers_chuckle@103",
+   "id": "soldiers_chuckle@107",
    "track": "sfx",
    "file": "stems/soldiers_chuckle.wav",
    "cue": {
@@ -3840,7 +3910,7 @@
    "note": "the red soldiers enjoy the bounce"
   },
   {
-   "id": "boot_wood_3@153",
+   "id": "boot_wood_3@157",
    "track": "sfx",
    "file": "stems/boot_wood_3.wav",
    "cue": {
@@ -3869,7 +3939,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h2_L@152",
+   "id": "boots_h2_L@156",
    "track": "sfx",
    "file": "stems/boots_h2_L.wav",
    "cue": {
@@ -3898,7 +3968,7 @@
    "note": "step 15 on the bridge"
   },
   {
-   "id": "soldiers_chuckle_b@102",
+   "id": "soldiers_chuckle_b@106",
    "track": "sfx",
    "file": "stems/soldiers_chuckle_b.wav",
    "cue": {
@@ -3925,7 +3995,7 @@
    "note": "a second soldier chuckles"
   },
   {
-   "id": "boot_wood_4@155",
+   "id": "boot_wood_4@159",
    "track": "sfx",
    "file": "stems/boot_wood_4.wav",
    "cue": {
@@ -3954,7 +4024,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h1_R@154",
+   "id": "boots_h1_R@158",
    "track": "sfx",
    "file": "stems/boots_h1_R.wav",
    "cue": {
@@ -3983,7 +4053,7 @@
    "note": "step 16 on the bridge (light)"
   },
   {
-   "id": "plank_creak_1@239",
+   "id": "plank_creak_1@243",
    "track": "sfx",
    "file": "stems/plank_creak_1.wav",
    "cue": {
@@ -4012,7 +4082,7 @@
    "note": "deck creak between steps"
   },
   {
-   "id": "boot_wood_5@157",
+   "id": "boot_wood_5@161",
    "track": "sfx",
    "file": "stems/boot_wood_5.wav",
    "cue": {
@@ -4041,7 +4111,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h3_L@156",
+   "id": "boots_h3_L@160",
    "track": "sfx",
    "file": "stems/boots_h3_L.wav",
    "cue": {
@@ -4070,7 +4140,7 @@
    "note": "step 17 on the bridge"
   },
   {
-   "id": "chain_tick@158",
+   "id": "chain_tick@162",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -4097,7 +4167,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "bridge_groan@82",
+   "id": "bridge_groan@86",
    "track": "sfx",
    "file": "stems/bridge_groan.wav",
    "cue": {
@@ -4151,7 +4221,7 @@
    "note": "chain load creak, louder as the wave grows"
   },
   {
-   "id": "boot_wood_0@160",
+   "id": "boot_wood_0@164",
    "track": "sfx",
    "file": "stems/boot_wood_0.wav",
    "cue": {
@@ -4180,7 +4250,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h1_R@159",
+   "id": "boots_h1_R@163",
    "track": "sfx",
    "file": "stems/boots_h1_R.wav",
    "cue": {
@@ -4209,7 +4279,7 @@
    "note": "step 18 on the bridge (light)"
   },
   {
-   "id": "whistle_march@243",
+   "id": "whistle_march@247",
    "track": "sfx",
    "file": "stems/whistle_march.wav",
    "cue": {
@@ -4236,7 +4306,7 @@
    "note": "two soldiers whistle the march tune an octave up, loosely together"
   },
   {
-   "id": "boot_wood_1@162",
+   "id": "boot_wood_1@166",
    "track": "sfx",
    "file": "stems/boot_wood_1.wav",
    "cue": {
@@ -4265,7 +4335,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h3_L@161",
+   "id": "boots_h3_L@165",
    "track": "sfx",
    "file": "stems/boots_h3_L.wav",
    "cue": {
@@ -4294,7 +4364,7 @@
    "note": "step 19 on the bridge"
   },
   {
-   "id": "chain_tick@163",
+   "id": "chain_tick@167",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -4321,7 +4391,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "cam_whoosh_0@310",
+   "id": "cam_whoosh_0@314",
    "track": "sfx",
    "file": "stems/cam_whoosh_0.wav",
    "cue": {
@@ -4348,7 +4418,7 @@
    "note": "whip between shots; the peak leads the cut by 40 ms, into the gap before the word"
   },
   {
-   "id": "boot_wood_2@165",
+   "id": "boot_wood_2@169",
    "track": "sfx",
    "file": "stems/boot_wood_2.wav",
    "cue": {
@@ -4377,7 +4447,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h3_R@164",
+   "id": "boots_h3_R@168",
    "track": "sfx",
    "file": "stems/boots_h3_R.wav",
    "cue": {
@@ -4406,7 +4476,7 @@
    "note": "step 20 on the bridge (light)"
   },
   {
-   "id": "chain_tick@166",
+   "id": "chain_tick@170",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -4433,7 +4503,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "plank_creak_3@240",
+   "id": "plank_creak_3@244",
    "track": "sfx",
    "file": "stems/plank_creak_3.wav",
    "cue": {
@@ -4462,7 +4532,7 @@
    "note": "deck creak between steps"
   },
   {
-   "id": "boot_wood_3@168",
+   "id": "boot_wood_3@172",
    "track": "sfx",
    "file": "stems/boot_wood_3.wav",
    "cue": {
@@ -4491,7 +4561,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h4_L@167",
+   "id": "boots_h4_L@171",
    "track": "sfx",
    "file": "stems/boots_h4_L.wav",
    "cue": {
@@ -4520,7 +4590,7 @@
    "note": "step 21 on the bridge"
   },
   {
-   "id": "chain_tick@169",
+   "id": "chain_tick@173",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -4547,7 +4617,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "boot_wood_4@171",
+   "id": "boot_wood_4@175",
    "track": "sfx",
    "file": "stems/boot_wood_4.wav",
    "cue": {
@@ -4576,7 +4646,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h3_R@170",
+   "id": "boots_h3_R@174",
    "track": "sfx",
    "file": "stems/boots_h3_R.wav",
    "cue": {
@@ -4605,7 +4675,7 @@
    "note": "step 22 on the bridge (light)"
   },
   {
-   "id": "chain_tick@172",
+   "id": "chain_tick@176",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -4659,7 +4729,7 @@
    "note": "AMBIENCE under the deck: the gorge through the planks, low resonance"
   },
   {
-   "id": "bridge_rumble@244",
+   "id": "bridge_rumble@248",
    "track": "sfx",
    "file": "stems/bridge_rumble.wav",
    "cue": {
@@ -4713,7 +4783,7 @@
    "note": "chain load creak, louder as the wave grows"
   },
   {
-   "id": "boot_wood_5@174",
+   "id": "boot_wood_5@178",
    "track": "sfx",
    "file": "stems/boot_wood_5.wav",
    "cue": {
@@ -4742,7 +4812,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h4_L@173",
+   "id": "boots_h4_L@177",
    "track": "sfx",
    "file": "stems/boots_h4_L.wav",
    "cue": {
@@ -4771,7 +4841,7 @@
    "note": "step 23 on the bridge"
   },
   {
-   "id": "chain_tick@175",
+   "id": "chain_tick@179",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -4798,7 +4868,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "bridge_groan@83",
+   "id": "bridge_groan@87",
    "track": "sfx",
    "file": "stems/bridge_groan.wav",
    "cue": {
@@ -4825,7 +4895,7 @@
    "note": "the wooden deck groans under the rhythmic load, deeper as the wave grows"
   },
   {
-   "id": "boot_wood_0@177",
+   "id": "boot_wood_0@181",
    "track": "sfx",
    "file": "stems/boot_wood_0.wav",
    "cue": {
@@ -4854,7 +4924,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h3_R@176",
+   "id": "boots_h3_R@180",
    "track": "sfx",
    "file": "stems/boots_h3_R.wav",
    "cue": {
@@ -4883,7 +4953,7 @@
    "note": "step 24 on the bridge (light)"
   },
   {
-   "id": "chain_tick@178",
+   "id": "chain_tick@182",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -4910,7 +4980,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "plank_creak_1@241",
+   "id": "plank_creak_1@245",
    "track": "sfx",
    "file": "stems/plank_creak_1.wav",
    "cue": {
@@ -4939,7 +5009,7 @@
    "note": "deck creak between steps"
   },
   {
-   "id": "boot_wood_1@180",
+   "id": "boot_wood_1@184",
    "track": "sfx",
    "file": "stems/boot_wood_1.wav",
    "cue": {
@@ -4968,7 +5038,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h5_L@179",
+   "id": "boots_h5_L@183",
    "track": "sfx",
    "file": "stems/boots_h5_L.wav",
    "cue": {
@@ -4997,7 +5067,7 @@
    "note": "step 25 on the bridge"
   },
   {
-   "id": "chain_tick@181",
+   "id": "chain_tick@185",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -5024,7 +5094,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "cam_whoosh_1@311",
+   "id": "cam_whoosh_1@315",
    "track": "sfx",
    "file": "stems/cam_whoosh_1.wav",
    "cue": {
@@ -5132,7 +5202,7 @@
    "note": "chain load creak, louder as the wave grows"
   },
   {
-   "id": "boot_wood_2@183",
+   "id": "boot_wood_2@187",
    "track": "sfx",
    "file": "stems/boot_wood_2.wav",
    "cue": {
@@ -5161,7 +5231,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h3_R@182",
+   "id": "boots_h3_R@186",
    "track": "sfx",
    "file": "stems/boots_h3_R.wav",
    "cue": {
@@ -5190,7 +5260,7 @@
    "note": "step 26 on the bridge (light)"
   },
   {
-   "id": "chain_tick@184",
+   "id": "chain_tick@188",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -5217,7 +5287,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "boot_wood_3@186",
+   "id": "boot_wood_3@190",
    "track": "sfx",
    "file": "stems/boot_wood_3.wav",
    "cue": {
@@ -5246,7 +5316,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h5_L@185",
+   "id": "boots_h5_L@189",
    "track": "sfx",
    "file": "stems/boots_h5_L.wav",
    "cue": {
@@ -5275,7 +5345,7 @@
    "note": "step 27 on the bridge"
   },
   {
-   "id": "chain_tick@187",
+   "id": "chain_tick@191",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -5302,7 +5372,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "boot_wood_4@189",
+   "id": "boot_wood_4@193",
    "track": "sfx",
    "file": "stems/boot_wood_4.wav",
    "cue": {
@@ -5331,7 +5401,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h4_R@188",
+   "id": "boots_h4_R@192",
    "track": "sfx",
    "file": "stems/boots_h4_R.wav",
    "cue": {
@@ -5360,7 +5430,7 @@
    "note": "step 28 on the bridge (light)"
   },
   {
-   "id": "chain_tick@190",
+   "id": "chain_tick@194",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -5387,7 +5457,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "plank_creak_3@242",
+   "id": "plank_creak_3@246",
    "track": "sfx",
    "file": "stems/plank_creak_3.wav",
    "cue": {
@@ -5416,7 +5486,7 @@
    "note": "deck creak between steps"
   },
   {
-   "id": "boot_wood_5@192",
+   "id": "boot_wood_5@196",
    "track": "sfx",
    "file": "stems/boot_wood_5.wav",
    "cue": {
@@ -5445,7 +5515,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h5_L@191",
+   "id": "boots_h5_L@195",
    "track": "sfx",
    "file": "stems/boots_h5_L.wav",
    "cue": {
@@ -5474,7 +5544,7 @@
    "note": "step 29 on the bridge"
   },
   {
-   "id": "chain_tick@193",
+   "id": "chain_tick@197",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -5501,7 +5571,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "cam_push@318",
+   "id": "cam_push@322",
    "track": "sfx",
    "file": "stems/cam_push.wav",
    "cue": {
@@ -5606,7 +5676,7 @@
    "note": "the march is gone: one soft drum, then only a pad"
   },
   {
-   "id": "sign_ding@245",
+   "id": "sign_ding@249",
    "track": "sfx",
    "file": "stems/sign_ding.wav",
    "cue": {
@@ -5633,7 +5703,7 @@
    "note": "ALL TROOPS MUST BREAK STEP"
   },
   {
-   "id": "officer_whistle@246",
+   "id": "officer_whistle@250",
    "track": "sfx",
    "file": "stems/officer_whistle.wav",
    "cue": {
@@ -5687,7 +5757,7 @@
    "note": "the officer's arm goes up at the sign: sleeve"
   },
   {
-   "id": "cam_whoosh_2@312",
+   "id": "cam_whoosh_2@316",
    "track": "sfx",
    "file": "stems/cam_whoosh_2.wav",
    "cue": {
@@ -5714,7 +5784,7 @@
    "note": "whip between shots; the peak leads the cut by 40 ms, into the gap before the word"
   },
   {
-   "id": "breakstep_steps@247",
+   "id": "breakstep_steps@251",
    "track": "sfx",
    "file": "stems/breakstep_steps.wav",
    "cue": {
@@ -5741,7 +5811,7 @@
    "note": "the column scatters its step"
   },
   {
-   "id": "amb_meadow@248",
+   "id": "amb_meadow@252",
    "track": "sfx",
    "file": "stems/amb_meadow.wav",
    "cue": {
@@ -5768,7 +5838,7 @@
    "note": "AMBIENCE location C: the meadow with the swing, air and far birds"
   },
   {
-   "id": "bird_meadow@249",
+   "id": "bird_meadow@253",
    "track": "sfx",
    "file": "stems/bird_meadow.wav",
    "cue": {
@@ -5819,7 +5889,7 @@
    "note": "swing figure: 7 beats pinned to Ever/Tiny/always/and, beat 1029 -> 574 ms"
   },
   {
-   "id": "swing_creak_back@265",
+   "id": "swing_creak_back@269",
    "track": "sfx",
    "file": "stems/swing_creak_back.wav",
    "cue": {
@@ -5846,7 +5916,7 @@
    "note": "the swing at rest sways: soft rope creak"
   },
   {
-   "id": "swing_creak_back@266",
+   "id": "swing_creak_back@270",
    "track": "sfx",
    "file": "stems/swing_creak_back.wav",
    "cue": {
@@ -5873,7 +5943,7 @@
    "note": "the swing at rest sways: soft rope creak"
   },
   {
-   "id": "swing_creak_back@267",
+   "id": "swing_creak_back@271",
    "track": "sfx",
    "file": "stems/swing_creak_back.wav",
    "cue": {
@@ -5900,7 +5970,7 @@
    "note": "the swing at rest sways: soft rope creak"
   },
   {
-   "id": "push_tick@250",
+   "id": "push_tick@254",
    "track": "sfx",
    "file": "stems/push_tick.wav",
    "cue": {
@@ -5927,7 +5997,7 @@
    "note": "push 1 of 5 (film.js PUSH)"
   },
   {
-   "id": "swing_creak_fwd@251",
+   "id": "swing_creak_fwd@255",
    "track": "sfx",
    "file": "stems/swing_creak_fwd.wav",
    "cue": {
@@ -5954,7 +6024,7 @@
    "note": "rope creaks as the seat goes out"
   },
   {
-   "id": "kid_giggle@75",
+   "id": "kid_giggle@79",
    "track": "sfx",
    "file": "stems/kid_giggle.wav",
    "cue": {
@@ -5981,7 +6051,7 @@
    "note": "the kid giggles on the swing"
   },
   {
-   "id": "swing_creak_back@252",
+   "id": "swing_creak_back@256",
    "track": "sfx",
    "file": "stems/swing_creak_back.wav",
    "cue": {
@@ -6008,7 +6078,7 @@
    "note": "rope creaks on the way back"
   },
   {
-   "id": "push_tick@253",
+   "id": "push_tick@257",
    "track": "sfx",
    "file": "stems/push_tick.wav",
    "cue": {
@@ -6035,7 +6105,7 @@
    "note": "push 2 of 5 (film.js PUSH)"
   },
   {
-   "id": "swing_creak_fwd@254",
+   "id": "swing_creak_fwd@258",
    "track": "sfx",
    "file": "stems/swing_creak_fwd.wav",
    "cue": {
@@ -6062,7 +6132,7 @@
    "note": "rope creaks as the seat goes out"
   },
   {
-   "id": "swing_creak_back@255",
+   "id": "swing_creak_back@259",
    "track": "sfx",
    "file": "stems/swing_creak_back.wav",
    "cue": {
@@ -6089,7 +6159,7 @@
    "note": "rope creaks on the way back"
   },
   {
-   "id": "push_tick@256",
+   "id": "push_tick@260",
    "track": "sfx",
    "file": "stems/push_tick.wav",
    "cue": {
@@ -6116,7 +6186,7 @@
    "note": "push 3 of 5 (film.js PUSH)"
   },
   {
-   "id": "swing_creak_fwd@257",
+   "id": "swing_creak_fwd@261",
    "track": "sfx",
    "file": "stems/swing_creak_fwd.wav",
    "cue": {
@@ -6143,7 +6213,7 @@
    "note": "rope creaks as the seat goes out"
   },
   {
-   "id": "swing_creak_back@258",
+   "id": "swing_creak_back@262",
    "track": "sfx",
    "file": "stems/swing_creak_back.wav",
    "cue": {
@@ -6170,7 +6240,7 @@
    "note": "rope creaks on the way back"
   },
   {
-   "id": "push_tick@259",
+   "id": "push_tick@263",
    "track": "sfx",
    "file": "stems/push_tick.wav",
    "cue": {
@@ -6197,7 +6267,7 @@
    "note": "push 4 of 5 (film.js PUSH)"
   },
   {
-   "id": "swing_creak_fwd@260",
+   "id": "swing_creak_fwd@264",
    "track": "sfx",
    "file": "stems/swing_creak_fwd.wav",
    "cue": {
@@ -6224,7 +6294,7 @@
    "note": "rope creaks as the seat goes out"
   },
   {
-   "id": "swing_creak_back@261",
+   "id": "swing_creak_back@265",
    "track": "sfx",
    "file": "stems/swing_creak_back.wav",
    "cue": {
@@ -6251,7 +6321,7 @@
    "note": "rope creaks on the way back"
   },
   {
-   "id": "push_tick@262",
+   "id": "push_tick@266",
    "track": "sfx",
    "file": "stems/push_tick.wav",
    "cue": {
@@ -6278,7 +6348,7 @@
    "note": "push 5 of 5 (film.js PUSH)"
   },
   {
-   "id": "swing_creak_fwd@263",
+   "id": "swing_creak_fwd@267",
    "track": "sfx",
    "file": "stems/swing_creak_fwd.wav",
    "cue": {
@@ -6305,7 +6375,7 @@
    "note": "rope creaks as the seat goes out"
   },
   {
-   "id": "swing_creak_back@264",
+   "id": "swing_creak_back@268",
    "track": "sfx",
    "file": "stems/swing_creak_back.wav",
    "cue": {
@@ -6332,7 +6402,7 @@
    "note": "rope creaks on the way back"
   },
   {
-   "id": "kid_squeal@104",
+   "id": "kid_squeal@108",
    "track": "sfx",
    "file": "stems/kid_squeal.wav",
    "cue": {
@@ -6413,7 +6483,7 @@
    "note": "AMBIENCE the river far below (recording)"
   },
   {
-   "id": "bridge_creak@268",
+   "id": "bridge_creak@272",
    "track": "sfx",
    "file": "stems/bridge_creak.wav",
    "cue": {
@@ -6491,7 +6561,7 @@
    "note": "crescendo roll into the push"
   },
   {
-   "id": "boot_wood_0@195",
+   "id": "boot_wood_0@199",
    "track": "sfx",
    "file": "stems/boot_wood_0.wav",
    "cue": {
@@ -6518,7 +6588,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h4_L@194",
+   "id": "boots_h4_L@198",
    "track": "sfx",
    "file": "stems/boots_h4_L.wav",
    "cue": {
@@ -6545,7 +6615,7 @@
    "note": "'two thousand boots landing together'"
   },
   {
-   "id": "chain_tick@196",
+   "id": "chain_tick@200",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -6572,7 +6642,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "cam_whoosh_3@313",
+   "id": "cam_whoosh_3@317",
    "track": "sfx",
    "file": "stems/cam_whoosh_3.wav",
    "cue": {
@@ -6623,7 +6693,7 @@
    "note": "tutti with the low push thump"
   },
   {
-   "id": "push_thump@270",
+   "id": "push_thump@274",
    "track": "sfx",
    "file": "stems/push_thump.wav",
    "cue": {
@@ -6650,7 +6720,7 @@
    "note": "ONE giant push: sub thump 82 -> 36 Hz, the deck groans after it"
   },
   {
-   "id": "thump_real@269",
+   "id": "thump_real@273",
    "track": "sfx",
    "file": "stems/thump_real.wav",
    "cue": {
@@ -6701,7 +6771,7 @@
    "note": "scattered high pizzicato = footsteps like rain"
   },
   {
-   "id": "rain_steps@271",
+   "id": "rain_steps@275",
    "track": "sfx",
    "file": "stems/rain_steps.wav",
    "cue": {
@@ -6728,7 +6798,7 @@
    "note": "light dry taps at random times, thickening and thinning like a shower"
   },
   {
-   "id": "cam_whoosh_0@314",
+   "id": "cam_whoosh_0@318",
    "track": "sfx",
    "file": "stems/cam_whoosh_0.wav",
    "cue": {
@@ -6755,7 +6825,7 @@
    "note": "whip between shots; the peak leads the cut by 40 ms, into the gap before the word"
   },
   {
-   "id": "bird_chirp@272",
+   "id": "bird_chirp@276",
    "track": "sfx",
    "file": "stems/bird_chirp.wav",
    "cue": {
@@ -6782,7 +6852,7 @@
    "note": "the bird on the chain did not even move"
   },
   {
-   "id": "boot_wood_1@198",
+   "id": "boot_wood_1@202",
    "track": "sfx",
    "file": "stems/boot_wood_1.wav",
    "cue": {
@@ -6811,7 +6881,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h5_L@197",
+   "id": "boots_h5_L@201",
    "track": "sfx",
    "file": "stems/boots_h5_L.wav",
    "cue": {
@@ -6864,7 +6934,7 @@
    "note": "march at the limit, in G; the grid is counted back from 'forty-first' so the last beat is step 40"
   },
   {
-   "id": "chain_tick@199",
+   "id": "chain_tick@203",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -6918,7 +6988,7 @@
    "note": "chain load creak, louder as the wave grows"
   },
   {
-   "id": "gear_rattle@100",
+   "id": "gear_rattle@104",
    "track": "sfx",
    "file": "stems/gear_rattle.wav",
    "cue": {
@@ -6945,7 +7015,7 @@
    "note": "belts, muskets and drums rattling on the march"
   },
   {
-   "id": "boot_wood_2@201",
+   "id": "boot_wood_2@205",
    "track": "sfx",
    "file": "stems/boot_wood_2.wav",
    "cue": {
@@ -6974,7 +7044,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h3_R@200",
+   "id": "boots_h3_R@204",
    "track": "sfx",
    "file": "stems/boots_h3_R.wav",
    "cue": {
@@ -7003,7 +7073,7 @@
    "note": "push 30 (light)"
   },
   {
-   "id": "bridge_groan@84",
+   "id": "bridge_groan@88",
    "track": "sfx",
    "file": "stems/bridge_groan.wav",
    "cue": {
@@ -7030,7 +7100,7 @@
    "note": "the wooden deck groans under the rhythmic load, deeper as the wave grows"
   },
   {
-   "id": "chain_tick@202",
+   "id": "chain_tick@206",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -7057,7 +7127,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "boot_wood_3@204",
+   "id": "boot_wood_3@208",
    "track": "sfx",
    "file": "stems/boot_wood_3.wav",
    "cue": {
@@ -7086,7 +7156,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h5_L@203",
+   "id": "boots_h5_L@207",
    "track": "sfx",
    "file": "stems/boots_h5_L.wav",
    "cue": {
@@ -7115,7 +7185,7 @@
    "note": "push 31"
   },
   {
-   "id": "chain_tick@205",
+   "id": "chain_tick@209",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -7142,7 +7212,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "boot_wood_4@207",
+   "id": "boot_wood_4@211",
    "track": "sfx",
    "file": "stems/boot_wood_4.wav",
    "cue": {
@@ -7171,7 +7241,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h3_R@206",
+   "id": "boots_h3_R@210",
    "track": "sfx",
    "file": "stems/boots_h3_R.wav",
    "cue": {
@@ -7200,7 +7270,7 @@
    "note": "push 32 (light)"
   },
   {
-   "id": "chain_tick@208",
+   "id": "chain_tick@212",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -7227,7 +7297,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "boot_wood_5@210",
+   "id": "boot_wood_5@214",
    "track": "sfx",
    "file": "stems/boot_wood_5.wav",
    "cue": {
@@ -7256,7 +7326,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h5_L@209",
+   "id": "boots_h5_L@213",
    "track": "sfx",
    "file": "stems/boots_h5_L.wav",
    "cue": {
@@ -7285,7 +7355,7 @@
    "note": "push 33"
   },
   {
-   "id": "chain_tick@211",
+   "id": "chain_tick@215",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -7312,7 +7382,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "boot_wood_0@213",
+   "id": "boot_wood_0@217",
    "track": "sfx",
    "file": "stems/boot_wood_0.wav",
    "cue": {
@@ -7341,7 +7411,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h3_R@212",
+   "id": "boots_h3_R@216",
    "track": "sfx",
    "file": "stems/boots_h3_R.wav",
    "cue": {
@@ -7370,7 +7440,7 @@
    "note": "push 34 (light)"
   },
   {
-   "id": "chain_tick@214",
+   "id": "chain_tick@218",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -7424,7 +7494,34 @@
    "note": "chain load creak, louder as the wave grows"
   },
   {
-   "id": "boot_wood_1@216",
+   "id": "general_gasp@72",
+   "track": "sfx",
+   "file": "stems/general_gasp.wav",
+   "cue": {
+    "sentence": 16,
+    "word": "gives",
+    "occ": 1,
+    "frac": 0.0,
+    "offset": 0.0
+   },
+   "time": 62.286,
+   "start": 62.2256,
+   "anchor": 0.0604,
+   "gain_db": -18.02,
+   "level_re_voice_db": -7,
+   "level_mode": "peak20",
+   "length": 0.78,
+   "fade_in": 0.0,
+   "fade_out": 0.0,
+   "featured": true,
+   "window": 0.6,
+   "key": false,
+   "measure": "onset",
+   "source": "elevenlabs",
+   "note": "the enemy general: alarmed gasp as the deck heaves"
+  },
+  {
+   "id": "boot_wood_1@220",
    "track": "sfx",
    "file": "stems/boot_wood_1.wav",
    "cue": {
@@ -7453,7 +7550,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h6_L@215",
+   "id": "boots_h6_L@219",
    "track": "sfx",
    "file": "stems/boots_h6_L.wav",
    "cue": {
@@ -7482,7 +7579,7 @@
    "note": "push 35"
   },
   {
-   "id": "chain_tick@217",
+   "id": "chain_tick@221",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -7509,7 +7606,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "cam_whoosh_1@315",
+   "id": "cam_whoosh_1@319",
    "track": "sfx",
    "file": "stems/cam_whoosh_1.wav",
    "cue": {
@@ -7536,7 +7633,7 @@
    "note": "whip between shots; the peak leads the cut by 40 ms, into the gap before the word"
   },
   {
-   "id": "bolt_ping@273",
+   "id": "bolt_ping@277",
    "track": "sfx",
    "file": "stems/bolt_ping.wav",
    "cue": {
@@ -7563,7 +7660,7 @@
    "note": "a bolt lets go"
   },
   {
-   "id": "metal_groan@274",
+   "id": "metal_groan@278",
    "track": "sfx",
    "file": "stems/metal_groan.wav",
    "cue": {
@@ -7590,7 +7687,7 @@
    "note": "the links stretch"
   },
   {
-   "id": "boot_wood_2@219",
+   "id": "boot_wood_2@223",
    "track": "sfx",
    "file": "stems/boot_wood_2.wav",
    "cue": {
@@ -7619,7 +7716,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h4_R@218",
+   "id": "boots_h4_R@222",
    "track": "sfx",
    "file": "stems/boots_h4_R.wav",
    "cue": {
@@ -7648,7 +7745,7 @@
    "note": "push 36 (light)"
   },
   {
-   "id": "chain_tick@220",
+   "id": "chain_tick@224",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -7675,7 +7772,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "bridge_groan@85",
+   "id": "bridge_groan@89",
    "track": "sfx",
    "file": "stems/bridge_groan.wav",
    "cue": {
@@ -7702,7 +7799,7 @@
    "note": "the wooden deck groans under the rhythmic load, deeper as the wave grows"
   },
   {
-   "id": "metal_ping@86",
+   "id": "metal_ping@90",
    "track": "sfx",
    "file": "stems/metal_ping.wav",
    "cue": {
@@ -7729,7 +7826,7 @@
    "note": "metal stress ping before the buck"
   },
   {
-   "id": "boot_wood_3@222",
+   "id": "boot_wood_3@226",
    "track": "sfx",
    "file": "stems/boot_wood_3.wav",
    "cue": {
@@ -7758,7 +7855,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h6_L@221",
+   "id": "boots_h6_L@225",
    "track": "sfx",
    "file": "stems/boots_h6_L.wav",
    "cue": {
@@ -7787,7 +7884,7 @@
    "note": "push 37"
   },
   {
-   "id": "chain_tick@223",
+   "id": "chain_tick@227",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -7814,7 +7911,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "metal_ping@87",
+   "id": "metal_ping@91",
    "track": "sfx",
    "file": "stems/metal_ping.wav",
    "cue": {
@@ -7841,7 +7938,7 @@
    "note": "metal stress ping before the buck"
   },
   {
-   "id": "chalk_tick@231",
+   "id": "chalk_tick@235",
    "track": "sfx",
    "file": "stems/chalk_tick.wav",
    "cue": {
@@ -7870,7 +7967,7 @@
    "note": "chalk tally: 38"
   },
   {
-   "id": "boot_wood_4@225",
+   "id": "boot_wood_4@229",
    "track": "sfx",
    "file": "stems/boot_wood_4.wav",
    "cue": {
@@ -7899,7 +7996,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h4_R@224",
+   "id": "boots_h4_R@228",
    "track": "sfx",
    "file": "stems/boots_h4_R.wav",
    "cue": {
@@ -7928,7 +8025,7 @@
    "note": "push 38 (light)"
   },
   {
-   "id": "chain_tick@226",
+   "id": "chain_tick@230",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -7955,7 +8052,7 @@
    "note": "chain ticks after the step"
   },
   {
-   "id": "chalk_tick@232",
+   "id": "chalk_tick@236",
    "track": "sfx",
    "file": "stems/chalk_tick.wav",
    "cue": {
@@ -7984,7 +8081,7 @@
    "note": "chalk tally: 39"
   },
   {
-   "id": "boot_wood_5@228",
+   "id": "boot_wood_5@232",
    "track": "sfx",
    "file": "stems/boot_wood_5.wav",
    "cue": {
@@ -8013,7 +8110,7 @@
    "note": "the mass of boots on hollow planks (generated), under the synthetic weight"
   },
   {
-   "id": "boots_h6_L@227",
+   "id": "boots_h6_L@231",
    "track": "sfx",
    "file": "stems/boots_h6_L.wav",
    "cue": {
@@ -8042,7 +8139,7 @@
    "note": "push 39"
   },
   {
-   "id": "chain_tick@229",
+   "id": "chain_tick@233",
    "track": "sfx",
    "file": "stems/chain_tick.wav",
    "cue": {
@@ -8093,7 +8190,7 @@
    "note": "silence-drop: music cuts dead (8 ms) on the cut to the hanging boot, before 'And on the forty-first'"
   },
   {
-   "id": "metal_ping@88",
+   "id": "metal_ping@92",
    "track": "sfx",
    "file": "stems/metal_ping.wav",
    "cue": {
@@ -8120,7 +8217,7 @@
    "note": "metal stress ping before the buck"
   },
   {
-   "id": "chalk_tick@233",
+   "id": "chalk_tick@237",
    "track": "sfx",
    "file": "stems/chalk_tick.wav",
    "cue": {
@@ -8149,7 +8246,7 @@
    "note": "chalk tally: 40"
   },
   {
-   "id": "slowmo_subdrop@275",
+   "id": "slowmo_subdrop@279",
    "track": "sfx",
    "file": "stems/slowmo_subdrop.wav",
    "cue": {
@@ -8176,7 +8273,7 @@
    "note": "slow motion: a tone falling 115 -> 30 Hz in the hole the music left"
   },
   {
-   "id": "chalk_tick@234",
+   "id": "chalk_tick@238",
    "track": "sfx",
    "file": "stems/chalk_tick.wav",
    "cue": {
@@ -8203,7 +8300,7 @@
    "note": "chalk: 41, underlined"
   },
   {
-   "id": "chalk_tick@235",
+   "id": "chalk_tick@239",
    "track": "sfx",
    "file": "stems/chalk_tick.wav",
    "cue": {
@@ -8230,7 +8327,7 @@
    "note": "chalk: the underline"
   },
   {
-   "id": "boot_41_slowmo@230",
+   "id": "boot_41_slowmo@234",
    "track": "sfx",
    "file": "stems/boot_41_slowmo.wav",
    "cue": {
@@ -8257,7 +8354,7 @@
    "note": "push 41 lands (film.js T_STOMP = forty-first + 0.5 s): the same boots at 0.55 speed"
   },
   {
-   "id": "cam_push@319",
+   "id": "cam_push@323",
    "track": "sfx",
    "file": "stems/cam_push.wav",
    "cue": {
@@ -8284,7 +8381,7 @@
    "note": "the buck: air before the crack"
   },
   {
-   "id": "bridge_crack@277",
+   "id": "bridge_crack@281",
    "track": "sfx",
    "file": "stems/bridge_crack.wav",
    "cue": {
@@ -8311,7 +8408,7 @@
    "note": "the snap itself: splintering timber, chain, debris (generated); the synthetic boom is the weight under it"
   },
   {
-   "id": "bridge_snap@280",
+   "id": "bridge_snap@284",
    "track": "sfx",
    "file": "stems/bridge_snap.wav",
    "cue": {
@@ -8362,7 +8459,7 @@
    "note": "bass drum + tom + field drum + dark crash, canyon reverb"
   },
   {
-   "id": "riser_into_bucks@276",
+   "id": "riser_into_bucks@280",
    "track": "sfx",
    "file": "stems/riser_into_bucks.wav",
    "cue": {
@@ -8389,7 +8486,34 @@
    "note": "air sucked in, ends exactly on 'bucks'"
   },
   {
-   "id": "crowd_scream@76",
+   "id": "general_yell@73",
+   "track": "sfx",
+   "file": "stems/general_yell.wav",
+   "cue": {
+    "sentence": 17,
+    "word": "bucks",
+    "occ": 1,
+    "frac": 0.0,
+    "offset": 0.03
+   },
+   "time": 65.746,
+   "start": 65.743,
+   "anchor": 0.003,
+   "gain_db": -15.8,
+   "level_re_voice_db": -4,
+   "level_mode": "peak20",
+   "length": 1.32,
+   "fade_in": 0.0,
+   "fade_out": 0.0,
+   "featured": true,
+   "window": 1.0,
+   "key": true,
+   "measure": "onset",
+   "source": "elevenlabs",
+   "note": "the enemy general: panicked, angry yell that cuts through before the collective scream"
+  },
+  {
+   "id": "crowd_scream@80",
    "track": "sfx",
    "file": "stems/crowd_scream.wav",
    "cue": {
@@ -8397,10 +8521,10 @@
     "word": "bucks",
     "occ": 1,
     "frac": 0.0,
-    "offset": 0.18
+    "offset": 0.5
    },
-   "time": 65.896,
-   "start": 65.8782,
+   "time": 66.216,
+   "start": 66.1982,
    "anchor": 0.0178,
    "gain_db": -16.44,
    "level_re_voice_db": -13,
@@ -8416,7 +8540,7 @@
    "note": "collective scream as they are thrown"
   },
   {
-   "id": "bodies_fall@278",
+   "id": "bodies_fall@282",
    "track": "sfx",
    "file": "stems/bodies_fall.wav",
    "cue": {
@@ -8443,7 +8567,7 @@
    "note": "bodies in the air: rush and yells"
   },
   {
-   "id": "falling_whistle@281",
+   "id": "falling_whistle@285",
    "track": "sfx",
    "file": "stems/falling_whistle.wav",
    "cue": {
@@ -8470,7 +8594,7 @@
    "note": "three falling whistles + air rush, into the gorge"
   },
   {
-   "id": "cam_whoosh_2@316",
+   "id": "cam_whoosh_2@320",
    "track": "sfx",
    "file": "stems/cam_whoosh_2.wav",
    "cue": {
@@ -8497,7 +8621,7 @@
    "note": "whip between shots; the peak leads the cut by 40 ms, into the gap before the word"
   },
   {
-   "id": "wind_gust@81",
+   "id": "wind_gust@85",
    "track": "sfx",
    "file": "stems/wind_gust.wav",
    "cue": {
@@ -8524,7 +8648,7 @@
    "note": "the camera goes high: the wind rises"
   },
   {
-   "id": "splash_small_0@282",
+   "id": "splash_small_0@286",
    "track": "sfx",
    "file": "stems/splash_small_0.wav",
    "cue": {
@@ -8551,7 +8675,7 @@
    "note": "one of many small splashes"
   },
   {
-   "id": "splash_many@279",
+   "id": "splash_many@283",
    "track": "sfx",
    "file": "stems/splash_many.wav",
    "cue": {
@@ -8578,7 +8702,7 @@
    "note": "many splashes at once (generated)"
   },
   {
-   "id": "splash_small_1@283",
+   "id": "splash_small_1@287",
    "track": "sfx",
    "file": "stems/splash_small_1.wav",
    "cue": {
@@ -8605,7 +8729,7 @@
    "note": "one of many small splashes"
   },
   {
-   "id": "splash_small_2@284",
+   "id": "splash_small_2@288",
    "track": "sfx",
    "file": "stems/splash_small_2.wav",
    "cue": {
@@ -8632,7 +8756,7 @@
    "note": "one of many small splashes"
   },
   {
-   "id": "splash_small_3@285",
+   "id": "splash_small_3@289",
    "track": "sfx",
    "file": "stems/splash_small_3.wav",
    "cue": {
@@ -8659,7 +8783,7 @@
    "note": "one of many small splashes"
   },
   {
-   "id": "splash_small_0@286",
+   "id": "splash_small_0@290",
    "track": "sfx",
    "file": "stems/splash_small_0.wav",
    "cue": {
@@ -8686,7 +8810,7 @@
    "note": "one of many small splashes"
   },
   {
-   "id": "splash_final@297",
+   "id": "splash_final@301",
    "track": "sfx",
    "file": "stems/splash_final.wav",
    "cue": {
@@ -8713,7 +8837,7 @@
    "note": "the last one; everything stops with the word"
   },
   {
-   "id": "splash_small_1@287",
+   "id": "splash_small_1@291",
    "track": "sfx",
    "file": "stems/splash_small_1.wav",
    "cue": {
@@ -8740,7 +8864,7 @@
    "note": "one of many small splashes"
   },
   {
-   "id": "splash_small_2@288",
+   "id": "splash_small_2@292",
    "track": "sfx",
    "file": "stems/splash_small_2.wav",
    "cue": {
@@ -8794,7 +8918,7 @@
    "note": "far bank: the captain dusts his hands"
   },
   {
-   "id": "splash_small_3@289",
+   "id": "splash_small_3@293",
    "track": "sfx",
    "file": "stems/splash_small_3.wav",
    "cue": {
@@ -8821,7 +8945,7 @@
    "note": "one of many small splashes"
   },
   {
-   "id": "splash_small_0@290",
+   "id": "splash_small_0@294",
    "track": "sfx",
    "file": "stems/splash_small_0.wav",
    "cue": {
@@ -8848,7 +8972,7 @@
    "note": "one of many small splashes"
   },
   {
-   "id": "splash_small_1@291",
+   "id": "splash_small_1@295",
    "track": "sfx",
    "file": "stems/splash_small_1.wav",
    "cue": {
@@ -8875,7 +8999,7 @@
    "note": "one of many small splashes"
   },
   {
-   "id": "splash_small_2@292",
+   "id": "splash_small_2@296",
    "track": "sfx",
    "file": "stems/splash_small_2.wav",
    "cue": {
@@ -8902,7 +9026,7 @@
    "note": "one of many small splashes"
   },
   {
-   "id": "splash_small_3@293",
+   "id": "splash_small_3@297",
    "track": "sfx",
    "file": "stems/splash_small_3.wav",
    "cue": {
@@ -8956,7 +9080,7 @@
    "note": "far bank: the captain dusts his hands"
   },
   {
-   "id": "splash_small_0@294",
+   "id": "splash_small_0@298",
    "track": "sfx",
    "file": "stems/splash_small_0.wav",
    "cue": {
@@ -8983,7 +9107,7 @@
    "note": "one of many small splashes"
   },
   {
-   "id": "splash_small_1@295",
+   "id": "splash_small_1@299",
    "track": "sfx",
    "file": "stems/splash_small_1.wav",
    "cue": {
@@ -9010,7 +9134,7 @@
    "note": "one of many small splashes"
   },
   {
-   "id": "splash_small_2@296",
+   "id": "splash_small_2@300",
    "track": "sfx",
    "file": "stems/splash_small_2.wav",
    "cue": {
