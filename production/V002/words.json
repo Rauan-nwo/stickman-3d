@@ -2,1740 +2,1740 @@
 {
 "word": "He",
 "start": 0.0,
-"end": 0.135,
+"end": 0.145,
 "line": 1,
 "text": "He"
 },
 {
 "word": "threw",
-"start": 0.183,
-"end": 0.355,
+"start": 0.197,
+"end": 0.383,
 "line": 1,
 "text": "threw"
 },
 {
 "word": "his",
-"start": 0.403,
-"end": 0.489,
+"start": 0.435,
+"end": 0.527,
 "line": 1,
 "text": "his"
 },
 {
 "word": "army's",
-"start": 0.537,
-"end": 0.796,
+"start": 0.579,
+"end": 0.859,
 "line": 1,
 "text": "army's"
 },
 {
 "word": "only",
-"start": 0.863,
-"end": 1.055,
+"start": 0.931,
+"end": 1.138,
 "line": 1,
 "text": "only"
 },
 {
 "word": "drum",
-"start": 1.102,
-"end": 1.285,
+"start": 1.189,
+"end": 1.386,
 "line": 1,
 "text": "drum"
 },
 {
 "word": "into",
-"start": 1.323,
-"end": 1.429,
+"start": 1.427,
+"end": 1.541,
 "line": 1,
 "text": "into"
 },
 {
 "word": "the",
-"start": 1.467,
-"end": 1.524,
+"start": 1.582,
+"end": 1.645,
 "line": 1,
 "text": "the"
 },
 {
 "word": "river",
-"start": 1.562,
-"end": 1.86,
+"start": 1.686,
+"end": 2.006,
 "line": 1,
 "text": "river,"
 },
 {
 "word": "with",
-"start": 1.908,
-"end": 2.032,
+"start": 2.058,
+"end": 2.192,
 "line": 1,
 "text": "with"
 },
 {
 "word": "the",
-"start": 2.061,
-"end": 2.119,
+"start": 2.224,
+"end": 2.286,
 "line": 1,
 "text": "the"
 },
 {
 "word": "enemy",
-"start": 2.176,
-"end": 2.378,
+"start": 2.348,
+"end": 2.565,
 "line": 1,
 "text": "enemy"
 },
 {
 "word": "an",
-"start": 2.425,
-"end": 2.493,
+"start": 2.617,
+"end": 2.69,
 "line": 1,
 "text": "an"
 },
 {
 "word": "hour",
-"start": 2.55,
-"end": 2.733,
+"start": 2.751,
+"end": 2.948,
 "line": 1,
 "text": "hour"
 },
 {
 "word": "behind",
-"start": 2.781,
-"end": 3.02,
+"start": 3.0,
+"end": 3.258,
 "line": 1,
 "text": "behind"
 },
 {
 "word": "them",
-"start": 3.059,
-"end": 3.317,
+"start": 3.3,
+"end": 3.579,
 "line": 1,
 "text": "them."
 },
 {
 "word": "His",
-"start": 3.606,
-"end": 3.741,
+"start": 3.81,
+"end": 3.956,
 "line": 2,
 "text": "His"
 },
 {
 "word": "colonel",
-"start": 3.789,
-"end": 3.999,
+"start": 4.007,
+"end": 4.234,
 "line": 2,
 "text": "colonel"
 },
 {
 "word": "grabs",
-"start": 4.047,
-"end": 4.297,
+"start": 4.286,
+"end": 4.555,
 "line": 2,
 "text": "grabs"
 },
 {
 "word": "him",
-"start": 4.316,
-"end": 4.374,
+"start": 4.576,
+"end": 4.638,
 "line": 2,
 "text": "him"
 },
 {
 "word": "by",
-"start": 4.402,
-"end": 4.459,
+"start": 4.669,
+"end": 4.731,
 "line": 2,
 "text": "by"
 },
 {
 "word": "the",
-"start": 4.498,
-"end": 4.556,
+"start": 4.773,
+"end": 4.835,
 "line": 2,
 "text": "the"
 },
 {
 "word": "collar",
-"start": 4.594,
-"end": 5.035,
+"start": 4.876,
+"end": 5.352,
 "line": 2,
 "text": "collar."
 },
 {
 "word": "That",
-"start": 5.291,
-"end": 5.493,
+"start": 5.548,
+"end": 5.765,
 "line": 2,
 "text": "\"That",
 "voice": "char"
 },
 {
 "word": "drum",
-"start": 5.54,
-"end": 5.77,
+"start": 5.817,
+"end": 6.064,
 "line": 2,
 "text": "drum",
 "voice": "char"
 },
 {
 "word": "keeps",
-"start": 5.819,
-"end": 6.019,
+"start": 6.117,
+"end": 6.333,
 "line": 2,
 "text": "keeps",
 "voice": "char"
 },
 {
 "word": "six",
-"start": 6.048,
-"end": 6.212,
+"start": 6.365,
+"end": 6.541,
 "line": 2,
 "text": "six",
 "voice": "char"
 },
 {
 "word": "hundred",
-"start": 6.269,
-"end": 6.489,
+"start": 6.602,
+"end": 6.84,
 "line": 2,
 "text": "hundred",
 "voice": "char"
 },
 {
 "word": "idiots",
-"start": 6.537,
-"end": 6.844,
+"start": 6.892,
+"end": 7.223,
 "line": 2,
 "text": "idiots",
 "voice": "char"
 },
 {
 "word": "in",
-"start": 6.882,
-"end": 6.93,
+"start": 7.264,
+"end": 7.316,
 "line": 2,
 "text": "in",
 "voice": "char"
 },
 {
 "word": "step",
-"start": 6.998,
-"end": 7.554,
+"start": 7.389,
+"end": 7.989,
 "line": 2,
 "text": "step!\"",
 "voice": "char"
 },
 {
 "word": "But",
-"start": 7.835,
-"end": 7.969,
+"start": 8.211,
+"end": 8.357,
 "line": 3,
 "text": "But"
 },
 {
 "word": "in",
-"start": 8.007,
-"end": 8.065,
+"start": 8.398,
+"end": 8.46,
 "line": 3,
 "text": "in"
 },
 {
 "word": "step",
-"start": 8.132,
-"end": 8.41,
+"start": 8.532,
+"end": 8.832,
 "line": 3,
 "text": "step"
 },
 {
 "word": "is",
-"start": 8.467,
-"end": 8.544,
+"start": 8.894,
+"end": 8.977,
 "line": 3,
 "text": "is"
 },
 {
 "word": "the",
-"start": 8.583,
-"end": 8.64,
+"start": 9.019,
+"end": 9.08,
 "line": 3,
 "text": "the"
 },
 {
 "word": "last",
-"start": 8.708,
-"end": 8.937,
+"start": 9.153,
+"end": 9.401,
 "line": 3,
 "text": "last"
 },
 {
 "word": "thing",
-"start": 8.966,
-"end": 9.081,
+"start": 9.432,
+"end": 9.556,
 "line": 3,
 "text": "thing"
 },
 {
 "word": "he",
-"start": 9.12,
-"end": 9.168,
+"start": 9.598,
+"end": 9.649,
 "line": 3,
 "text": "he"
 },
 {
 "word": "wants",
-"start": 9.234,
-"end": 9.694,
+"start": 9.721,
+"end": 10.218,
 "line": 3,
 "text": "wants."
 },
 {
 "word": "The",
-"start": 9.983,
-"end": 10.099,
+"start": 10.449,
+"end": 10.574,
 "line": 4,
 "text": "The"
 },
 {
 "word": "only",
-"start": 10.156,
-"end": 10.281,
+"start": 10.636,
+"end": 10.77,
 "line": 4,
 "text": "only"
 },
 {
 "word": "way",
-"start": 10.32,
-"end": 10.425,
+"start": 10.812,
+"end": 10.926,
 "line": 4,
 "text": "way"
 },
 {
 "word": "out",
-"start": 10.473,
-"end": 10.578,
+"start": 10.978,
+"end": 11.091,
 "line": 4,
 "text": "out"
 },
 {
 "word": "is",
-"start": 10.607,
-"end": 10.665,
+"start": 11.122,
+"end": 11.184,
 "line": 4,
 "text": "is"
 },
 {
 "word": "a",
-"start": 10.703,
-"end": 10.732,
+"start": 11.225,
+"end": 11.256,
 "line": 4,
 "text": "a"
 },
 {
 "word": "chain",
-"start": 10.78,
-"end": 11.01,
+"start": 11.308,
+"end": 11.557,
 "line": 4,
 "text": "chain"
 },
 {
 "word": "bridge",
-"start": 11.058,
-"end": 11.287,
+"start": 11.608,
+"end": 11.856,
 "line": 4,
 "text": "bridge"
 },
 {
 "word": "over",
-"start": 11.316,
-"end": 11.47,
+"start": 11.887,
+"end": 12.053,
 "line": 4,
 "text": "over"
 },
 {
 "word": "a",
-"start": 11.518,
-"end": 11.537,
+"start": 12.105,
+"end": 12.125,
 "line": 4,
 "text": "a"
 },
 {
 "word": "gorge",
-"start": 11.585,
-"end": 11.949,
+"start": 12.177,
+"end": 12.57,
 "line": 4,
 "text": "gorge,"
 },
 {
 "word": "and",
-"start": 12.121,
-"end": 12.237,
+"start": 12.756,
+"end": 12.881,
 "line": 4,
 "text": "and"
 },
 {
 "word": "he",
-"start": 12.275,
-"end": 12.323,
+"start": 12.922,
+"end": 12.973,
 "line": 4,
 "text": "he"
 },
 {
 "word": "orders",
-"start": 12.381,
-"end": 12.611,
+"start": 13.036,
+"end": 13.284,
 "line": 4,
 "text": "orders"
 },
 {
 "word": "every",
-"start": 12.707,
-"end": 12.937,
+"start": 13.387,
+"end": 13.635,
 "line": 4,
 "text": "every"
 },
 {
 "word": "man",
-"start": 12.984,
-"end": 13.109,
+"start": 13.687,
+"end": 13.821,
 "line": 4,
 "text": "man"
 },
 {
 "word": "to",
-"start": 13.148,
-"end": 13.186,
+"start": 13.863,
+"end": 13.904,
 "line": 4,
 "text": "to"
 },
 {
 "word": "cross",
-"start": 13.244,
-"end": 13.493,
+"start": 13.967,
+"end": 14.236,
 "line": 4,
 "text": "cross"
 },
 {
 "word": "like",
-"start": 13.522,
-"end": 13.637,
+"start": 14.267,
+"end": 14.391,
 "line": 4,
 "text": "like"
 },
 {
 "word": "he's",
-"start": 13.685,
-"end": 13.847,
+"start": 14.442,
+"end": 14.618,
 "line": 4,
 "text": "he's"
 },
 {
 "word": "never",
-"start": 13.972,
-"end": 14.193,
+"start": 14.752,
+"end": 14.99,
 "line": 4,
 "text": "never"
 },
 {
 "word": "marched",
-"start": 14.241,
-"end": 14.481,
+"start": 15.042,
+"end": 15.301,
 "line": 4,
 "text": "marched"
 },
 {
 "word": "a",
-"start": 14.509,
-"end": 14.529,
+"start": 15.331,
+"end": 15.353,
 "line": 4,
 "text": "a"
 },
 {
 "word": "day",
-"start": 14.567,
-"end": 14.682,
+"start": 15.394,
+"end": 15.518,
 "line": 4,
 "text": "day"
 },
 {
 "word": "in",
-"start": 14.71,
-"end": 14.749,
+"start": 15.549,
+"end": 15.591,
 "line": 4,
 "text": "in"
 },
 {
 "word": "his",
-"start": 14.777,
-"end": 14.864,
+"start": 15.621,
+"end": 15.714,
 "line": 4,
 "text": "his"
 },
 {
 "word": "life",
-"start": 14.912,
-"end": 15.276,
+"start": 15.766,
+"end": 16.159,
 "line": 4,
 "text": "life."
 },
 {
 "word": "So",
-"start": 15.565,
-"end": 15.681,
+"start": 16.391,
+"end": 16.515,
 "line": 5,
 "text": "So"
 },
 {
 "word": "they",
-"start": 15.719,
-"end": 15.815,
+"start": 16.556,
+"end": 16.66,
 "line": 5,
 "text": "they"
 },
 {
 "word": "shuffle",
-"start": 15.872,
-"end": 16.141,
+"start": 16.722,
+"end": 17.012,
 "line": 5,
 "text": "shuffle"
 },
 {
 "word": "across",
-"start": 16.17,
-"end": 16.438,
+"start": 17.043,
+"end": 17.332,
 "line": 5,
 "text": "across"
 },
 {
 "word": "like",
-"start": 16.476,
-"end": 16.611,
+"start": 17.373,
+"end": 17.519,
 "line": 5,
 "text": "like"
 },
 {
 "word": "six",
-"start": 16.659,
-"end": 16.86,
+"start": 17.57,
+"end": 17.788,
 "line": 5,
 "text": "six"
 },
 {
 "word": "hundred",
-"start": 16.908,
-"end": 17.119,
+"start": 17.839,
+"end": 18.066,
 "line": 5,
 "text": "hundred"
 },
 {
 "word": "guys",
-"start": 17.166,
-"end": 17.406,
+"start": 18.118,
+"end": 18.376,
 "line": 5,
 "text": "guys"
 },
 {
 "word": "looking",
-"start": 17.445,
-"end": 17.636,
+"start": 18.418,
+"end": 18.625,
 "line": 5,
 "text": "looking"
 },
 {
 "word": "for",
-"start": 17.674,
-"end": 17.761,
+"start": 18.666,
+"end": 18.76,
 "line": 5,
 "text": "for"
 },
 {
 "word": "a",
-"start": 17.79,
-"end": 17.809,
+"start": 18.791,
+"end": 18.811,
 "line": 5,
 "text": "a"
 },
 {
 "word": "bathroom",
-"start": 17.847,
-"end": 18.279,
+"start": 18.852,
+"end": 19.318,
 "line": 5,
 "text": "bathroom."
 },
 {
 "word": "On",
-"start": 18.568,
-"end": 18.712,
+"start": 19.55,
+"end": 19.706,
 "line": 6,
 "text": "On"
 },
 {
 "word": "the",
-"start": 18.75,
-"end": 18.808,
+"start": 19.747,
+"end": 19.809,
 "line": 6,
 "text": "the"
 },
 {
 "word": "ridge",
-"start": 18.865,
-"end": 19.23,
+"start": 19.871,
+"end": 20.264,
 "line": 6,
 "text": "ridge,"
 },
 {
 "word": "the",
-"start": 19.374,
-"end": 19.46,
+"start": 20.419,
+"end": 20.512,
 "line": 6,
 "text": "the"
 },
 {
 "word": "enemy",
-"start": 19.508,
-"end": 19.69,
+"start": 20.564,
+"end": 20.761,
 "line": 6,
 "text": "enemy"
 },
 {
 "word": "general",
-"start": 19.748,
-"end": 20.006,
+"start": 20.823,
+"end": 21.102,
 "line": 6,
 "text": "general"
 },
 {
 "word": "is",
-"start": 20.054,
-"end": 20.121,
+"start": 21.153,
+"end": 21.226,
 "line": 6,
 "text": "is"
 },
 {
 "word": "crying",
-"start": 20.169,
-"end": 20.543,
+"start": 21.277,
+"end": 21.681,
 "line": 6,
 "text": "crying"
 },
 {
 "word": "laughing",
-"start": 20.745,
-"end": 21.186,
+"start": 21.898,
+"end": 22.374,
 "line": 6,
 "text": "laughing."
 },
 {
 "word": "That's",
-"start": 21.442,
-"end": 21.7,
+"start": 22.57,
+"end": 22.849,
 "line": 6,
 "text": "\"That's",
 "voice": "char"
 },
 {
 "word": "not",
-"start": 21.749,
-"end": 21.873,
+"start": 22.901,
+"end": 23.035,
 "line": 6,
 "text": "not",
 "voice": "char"
 },
 {
 "word": "an",
-"start": 21.912,
-"end": 21.96,
+"start": 23.077,
+"end": 23.129,
 "line": 6,
 "text": "an",
 "voice": "char"
 },
 {
 "word": "army",
-"start": 21.998,
-"end": 22.363,
+"start": 23.169,
+"end": 23.563,
 "line": 6,
 "text": "army.",
 "voice": "char"
 },
 {
 "word": "That's",
-"start": 22.477,
-"end": 22.669,
+"start": 23.687,
+"end": 23.894,
 "line": 6,
 "text": "That's",
 "voice": "char"
 },
 {
 "word": "a",
-"start": 22.698,
-"end": 22.717,
+"start": 23.925,
+"end": 23.945,
 "line": 6,
 "text": "a",
 "voice": "char"
 },
 {
 "word": "bag",
-"start": 22.765,
-"end": 22.947,
+"start": 23.997,
+"end": 24.194,
 "line": 6,
 "text": "bag",
 "voice": "char"
 },
 {
 "word": "of",
-"start": 22.985,
-"end": 23.033,
+"start": 24.235,
+"end": 24.287,
 "line": 6,
 "text": "of",
 "voice": "char"
 },
 {
 "word": "spilled",
-"start": 23.081,
-"end": 23.369,
+"start": 24.338,
+"end": 24.649,
 "line": 6,
 "text": "spilled",
 "voice": "char"
 },
 {
 "word": "marbles",
-"start": 23.417,
-"end": 24.127,
+"start": 24.701,
+"end": 25.466,
 "line": 6,
 "text": "marbles.\"",
 "voice": "char"
 },
 {
 "word": "His",
-"start": 24.407,
-"end": 24.58,
+"start": 25.689,
+"end": 25.875,
 "line": 7,
 "text": "His"
 },
 {
 "word": "men",
-"start": 24.647,
-"end": 24.8,
+"start": 25.947,
+"end": 26.113,
 "line": 7,
 "text": "men"
 },
 {
 "word": "are",
-"start": 24.848,
-"end": 24.953,
+"start": 26.165,
+"end": 26.278,
 "line": 7,
 "text": "are"
 },
 {
 "word": "the",
-"start": 24.973,
-"end": 25.03,
+"start": 26.299,
+"end": 26.361,
 "line": 7,
 "text": "the"
 },
 {
 "word": "finest",
-"start": 25.097,
-"end": 25.433,
+"start": 26.433,
+"end": 26.795,
 "line": 7,
 "text": "finest"
 },
 {
 "word": "marching",
-"start": 25.5,
-"end": 25.768,
+"start": 26.868,
+"end": 27.157,
 "line": 7,
 "text": "marching"
 },
 {
 "word": "army",
-"start": 25.816,
-"end": 26.018,
+"start": 27.209,
+"end": 27.426,
 "line": 7,
 "text": "army"
 },
 {
 "word": "in",
-"start": 26.075,
-"end": 26.142,
+"start": 27.489,
+"end": 27.561,
 "line": 7,
 "text": "in"
 },
 {
 "word": "the",
-"start": 26.19,
-"end": 26.248,
+"start": 27.612,
+"end": 27.675,
 "line": 7,
 "text": "the"
 },
 {
 "word": "world",
-"start": 26.296,
-"end": 26.708,
+"start": 27.726,
+"end": 28.171,
 "line": 7,
 "text": "world,"
 },
 {
 "word": "two",
-"start": 26.938,
-"end": 27.111,
+"start": 28.42,
+"end": 28.606,
 "line": 7,
 "text": "two"
 },
 {
 "word": "thousand",
-"start": 27.178,
-"end": 27.494,
+"start": 28.678,
+"end": 29.019,
 "line": 7,
 "text": "thousand"
 },
 {
 "word": "boots",
-"start": 27.542,
-"end": 27.753,
+"start": 29.071,
+"end": 29.298,
 "line": 7,
 "text": "boots"
 },
 {
 "word": "that",
-"start": 27.782,
-"end": 27.887,
+"start": 29.329,
+"end": 29.443,
 "line": 7,
 "text": "that"
 },
 {
 "word": "land",
-"start": 27.945,
-"end": 28.118,
+"start": 29.506,
+"end": 29.692,
 "line": 7,
 "text": "land"
 },
 {
 "word": "as",
-"start": 28.166,
-"end": 28.223,
+"start": 29.743,
+"end": 29.805,
 "line": 7,
 "text": "as"
 },
 {
 "word": "one",
-"start": 28.29,
-"end": 28.616,
+"start": 29.878,
+"end": 30.229,
 "line": 7,
 "text": "one."
 },
 {
 "word": "So",
-"start": 28.905,
-"end": 29.02,
+"start": 30.461,
+"end": 30.584,
 "line": 8,
 "text": "So"
 },
 {
 "word": "they",
-"start": 29.067,
-"end": 29.163,
+"start": 30.636,
+"end": 30.739,
 "line": 8,
 "text": "they"
 },
 {
 "word": "march",
-"start": 29.221,
-"end": 29.423,
+"start": 30.802,
+"end": 31.019,
 "line": 8,
 "text": "march"
 },
 {
 "word": "onto",
-"start": 29.47,
-"end": 29.585,
+"start": 31.071,
+"end": 31.195,
 "line": 8,
 "text": "onto"
 },
 {
 "word": "the",
-"start": 29.624,
-"end": 29.681,
+"start": 31.237,
+"end": 31.298,
 "line": 8,
 "text": "the"
 },
 {
 "word": "bridge",
-"start": 29.72,
-"end": 29.94,
+"start": 31.34,
+"end": 31.578,
 "line": 8,
 "text": "bridge"
 },
 {
 "word": "in",
-"start": 29.959,
-"end": 30.007,
+"start": 31.598,
+"end": 31.65,
 "line": 8,
 "text": "in"
 },
 {
 "word": "perfect",
-"start": 30.074,
-"end": 30.39,
+"start": 31.722,
+"end": 32.063,
 "line": 8,
 "text": "perfect"
 },
 {
 "word": "rows",
-"start": 30.448,
-"end": 30.851,
+"start": 32.126,
+"end": 32.56,
 "line": 8,
 "text": "rows."
 },
 {
 "word": "Left",
-"start": 31.273,
-"end": 31.58,
+"start": 33.016,
+"end": 33.346,
 "line": 8,
 "text": "Left,"
 },
 {
 "word": "right",
-"start": 31.628,
-"end": 31.906,
+"start": 33.398,
+"end": 33.698,
 "line": 8,
 "text": "right,"
 },
 {
 "word": "left",
-"start": 31.944,
-"end": 32.184,
+"start": 33.739,
+"end": 33.998,
 "line": 8,
 "text": "left,"
 },
 {
 "word": "right",
-"start": 32.222,
-"end": 32.548,
+"start": 34.039,
+"end": 34.391,
 "line": 8,
 "text": "right."
 },
 {
 "word": "A",
-"start": 32.837,
-"end": 32.914,
+"start": 34.623,
+"end": 34.706,
 "line": 9,
 "text": "A"
 },
 {
 "word": "few",
-"start": 32.981,
-"end": 33.116,
+"start": 34.778,
+"end": 34.923,
 "line": 9,
 "text": "few"
 },
 {
 "word": "steps",
-"start": 33.154,
-"end": 33.384,
+"start": 34.964,
+"end": 35.213,
 "line": 9,
 "text": "steps"
 },
 {
 "word": "in",
-"start": 33.432,
-"end": 33.729,
+"start": 35.264,
+"end": 35.585,
 "line": 9,
 "text": "in,"
 },
 {
 "word": "the",
-"start": 33.825,
-"end": 33.912,
+"start": 35.688,
+"end": 35.782,
 "line": 9,
 "text": "the"
 },
 {
 "word": "bridge",
-"start": 33.96,
-"end": 34.189,
+"start": 35.834,
+"end": 36.081,
 "line": 9,
 "text": "bridge"
 },
 {
 "word": "starts",
-"start": 34.218,
-"end": 34.429,
+"start": 36.112,
+"end": 36.34,
 "line": 9,
 "text": "starts"
 },
 {
 "word": "to",
-"start": 34.458,
-"end": 34.515,
+"start": 36.371,
+"end": 36.433,
 "line": 9,
 "text": "to"
 },
 {
 "word": "bounce",
-"start": 34.611,
-"end": 35.052,
+"start": 36.536,
+"end": 37.012,
 "line": 9,
 "text": "bounce,"
 },
 {
 "word": "and",
-"start": 35.225,
-"end": 35.34,
+"start": 37.198,
+"end": 37.322,
 "line": 9,
 "text": "and"
 },
 {
 "word": "the",
-"start": 35.378,
-"end": 35.436,
+"start": 37.364,
+"end": 37.426,
 "line": 9,
 "text": "the"
 },
 {
 "word": "soldiers",
-"start": 35.493,
-"end": 35.848,
+"start": 37.488,
+"end": 37.871,
 "line": 9,
 "text": "soldiers"
 },
 {
 "word": "love",
-"start": 35.925,
-"end": 36.117,
+"start": 37.954,
+"end": 38.161,
 "line": 9,
 "text": "love"
 },
 {
 "word": "it",
-"start": 36.146,
-"end": 36.395,
+"start": 38.192,
+"end": 38.461,
 "line": 9,
 "text": "it."
 },
 {
 "word": "Some",
-"start": 36.684,
-"end": 36.876,
+"start": 38.692,
+"end": 38.899,
 "line": 10,
 "text": "Some"
 },
 {
 "word": "whistle",
-"start": 36.914,
-"end": 37.221,
+"start": 38.941,
+"end": 39.272,
 "line": 10,
 "text": "whistle"
 },
 {
 "word": "and",
-"start": 37.25,
-"end": 37.317,
+"start": 39.303,
+"end": 39.375,
 "line": 10,
 "text": "and"
 },
 {
 "word": "stomp",
-"start": 37.384,
-"end": 37.653,
+"start": 39.448,
+"end": 39.737,
 "line": 10,
 "text": "stomp"
 },
 {
 "word": "harder",
-"start": 37.701,
-"end": 38.103,
+"start": 39.789,
+"end": 40.223,
 "line": 10,
 "text": "harder."
 },
 {
 "word": "By",
-"start": 38.392,
-"end": 38.517,
+"start": 40.455,
+"end": 40.589,
 "line": 11,
 "text": "By"
 },
 {
 "word": "the",
-"start": 38.555,
-"end": 38.612,
+"start": 40.631,
+"end": 40.693,
 "line": 11,
 "text": "the"
 },
 {
 "word": "middle",
-"start": 38.651,
-"end": 38.996,
+"start": 40.734,
+"end": 41.107,
 "line": 11,
 "text": "middle,"
 },
 {
 "word": "it's",
-"start": 39.101,
-"end": 39.245,
+"start": 41.22,
+"end": 41.375,
 "line": 11,
 "text": "it's"
 },
 {
 "word": "bouncing",
-"start": 39.294,
-"end": 39.571,
+"start": 41.427,
+"end": 41.727,
 "line": 11,
 "text": "bouncing"
 },
 {
 "word": "up",
-"start": 39.6,
-"end": 39.658,
+"start": 41.758,
+"end": 41.82,
 "line": 11,
 "text": "up"
 },
 {
 "word": "to",
-"start": 39.687,
-"end": 39.725,
+"start": 41.852,
+"end": 41.893,
 "line": 11,
 "text": "to"
 },
 {
 "word": "their",
-"start": 39.763,
-"end": 39.868,
+"start": 41.934,
+"end": 42.048,
 "line": 11,
 "text": "their"
 },
 {
 "word": "knees",
-"start": 39.897,
-"end": 40.309,
+"start": 42.079,
+"end": 42.523,
 "line": 11,
 "text": "knees."
 },
 {
 "word": "You",
-"start": 40.805,
-"end": 40.901,
+"start": 42.889,
+"end": 42.992,
 "line": 12,
 "text": "You"
 },
 {
 "word": "see",
-"start": 40.949,
-"end": 41.207,
+"start": 43.044,
+"end": 43.322,
 "line": 12,
 "text": "see,"
 },
 {
 "word": "real",
-"start": 41.409,
-"end": 41.62,
+"start": 43.54,
+"end": 43.768,
 "line": 12,
 "text": "real"
 },
 {
 "word": "armies",
-"start": 41.687,
-"end": 41.936,
+"start": 43.84,
+"end": 44.109,
 "line": 12,
 "text": "armies"
 },
 {
 "word": "have",
-"start": 41.974,
-"end": 42.08,
+"start": 44.15,
+"end": 44.264,
 "line": 12,
 "text": "have"
 },
 {
 "word": "an",
-"start": 42.099,
-"end": 42.147,
+"start": 44.285,
+"end": 44.336,
 "line": 12,
 "text": "an"
 },
 {
 "word": "order",
-"start": 42.214,
-"end": 42.463,
+"start": 44.408,
+"end": 44.677,
 "line": 12,
 "text": "order"
 },
 {
 "word": "just",
-"start": 42.521,
-"end": 42.684,
+"start": 44.74,
+"end": 44.915,
 "line": 12,
 "text": "just"
 },
 {
 "word": "for",
-"start": 42.732,
-"end": 42.818,
+"start": 44.967,
+"end": 45.061,
 "line": 12,
 "text": "for"
 },
 {
 "word": "bridges",
-"start": 42.866,
-"end": 43.384,
+"start": 45.112,
+"end": 45.671,
 "line": 12,
 "text": "bridges:"
 },
 {
 "word": "break",
-"start": 43.614,
-"end": 43.806,
+"start": 45.918,
+"end": 46.126,
 "line": 12,
 "text": "break"
 },
 {
 "word": "step",
-"start": 43.854,
-"end": 44.208,
+"start": 46.178,
+"end": 46.56,
 "line": 12,
 "text": "step."
 },
 {
 "word": "Ever",
-"start": 44.497,
-"end": 44.689,
+"start": 46.792,
+"end": 46.998,
 "line": 13,
 "text": "Ever"
 },
 {
 "word": "pushed",
-"start": 44.728,
-"end": 44.928,
+"start": 47.04,
+"end": 47.257,
 "line": 13,
 "text": "pushed"
 },
 {
 "word": "a",
-"start": 44.957,
-"end": 44.976,
+"start": 47.288,
+"end": 47.308,
 "line": 13,
 "text": "a"
 },
 {
 "word": "kid",
-"start": 45.015,
-"end": 45.149,
+"start": 47.35,
+"end": 47.494,
 "line": 13,
 "text": "kid"
 },
 {
 "word": "on",
-"start": 45.178,
-"end": 45.226,
+"start": 47.526,
+"end": 47.577,
 "line": 13,
 "text": "on"
 },
 {
 "word": "a",
-"start": 45.254,
-"end": 45.283,
+"start": 47.609,
+"end": 47.64,
 "line": 13,
 "text": "a"
 },
 {
 "word": "swing",
-"start": 45.321,
-"end": 45.733,
+"start": 47.681,
+"end": 48.125,
 "line": 13,
 "text": "swing?"
 },
 {
 "word": "Tiny",
-"start": 46.405,
-"end": 46.692,
+"start": 48.85,
+"end": 49.16,
 "line": 13,
 "text": "Tiny"
 },
 {
 "word": "pushes",
-"start": 46.741,
-"end": 47.278,
+"start": 49.212,
+"end": 49.791,
 "line": 13,
 "text": "pushes,"
 },
 {
 "word": "but",
-"start": 47.402,
-"end": 47.546,
+"start": 49.926,
+"end": 50.081,
 "line": 13,
 "text": "but"
 },
 {
 "word": "always",
-"start": 47.584,
-"end": 47.891,
+"start": 50.122,
+"end": 50.453,
 "line": 13,
 "text": "always"
 },
 {
 "word": "at",
-"start": 47.92,
-"end": 47.977,
+"start": 50.484,
+"end": 50.546,
 "line": 13,
 "text": "at"
 },
 {
 "word": "the",
-"start": 47.996,
-"end": 48.054,
+"start": 50.566,
+"end": 50.629,
 "line": 13,
 "text": "the"
 },
 {
 "word": "same",
-"start": 48.093,
-"end": 48.275,
+"start": 50.671,
+"end": 50.867,
 "line": 13,
 "text": "same"
 },
 {
 "word": "moment",
-"start": 48.303,
-"end": 48.687,
+"start": 50.898,
+"end": 51.311,
 "line": 13,
 "text": "moment,"
 },
 {
 "word": "and",
-"start": 48.955,
-"end": 49.071,
+"start": 51.601,
+"end": 51.725,
 "line": 13,
 "text": "and"
 },
 {
 "word": "soon",
-"start": 49.119,
-"end": 49.262,
+"start": 51.777,
+"end": 51.932,
 "line": 13,
 "text": "soon"
 },
 {
 "word": "he's",
-"start": 49.281,
-"end": 49.377,
+"start": 51.953,
+"end": 52.056,
 "line": 13,
 "text": "he's"
 },
 {
 "word": "over",
-"start": 49.406,
-"end": 49.531,
+"start": 52.087,
+"end": 52.222,
 "line": 13,
 "text": "over"
 },
 {
 "word": "your",
-"start": 49.579,
-"end": 49.674,
+"start": 52.273,
+"end": 52.377,
 "line": 13,
 "text": "your"
 },
 {
 "word": "head",
-"start": 49.713,
-"end": 50.02,
+"start": 52.418,
+"end": 52.749,
 "line": 13,
 "text": "head."
 },
 {
 "word": "A",
-"start": 50.309,
-"end": 50.385,
+"start": 52.981,
+"end": 53.063,
 "line": 14,
 "text": "A"
 },
 {
 "word": "bridge",
-"start": 50.452,
-"end": 50.75,
+"start": 53.136,
+"end": 53.456,
 "line": 14,
 "text": "bridge"
 },
 {
 "word": "swings",
-"start": 50.778,
-"end": 51.047,
+"start": 53.488,
+"end": 53.777,
 "line": 14,
 "text": "swings"
 },
 {
 "word": "too",
-"start": 51.085,
-"end": 51.478,
+"start": 53.818,
+"end": 54.242,
 "line": 14,
 "text": "too,"
 },
 {
 "word": "and",
-"start": 51.708,
-"end": 51.823,
+"start": 54.491,
+"end": 54.615,
 "line": 14,
 "text": "and"
 },
 {
 "word": "two",
-"start": 51.871,
-"end": 52.006,
+"start": 54.666,
+"end": 54.811,
 "line": 14,
 "text": "two"
 },
 {
 "word": "thousand",
-"start": 52.054,
-"end": 52.322,
+"start": 54.863,
+"end": 55.153,
 "line": 14,
 "text": "thousand"
 },
 {
 "word": "boots",
-"start": 52.37,
-"end": 52.58,
+"start": 55.204,
+"end": 55.431,
 "line": 14,
 "text": "boots"
 },
 {
 "word": "landing",
-"start": 52.638,
-"end": 52.907,
+"start": 55.494,
+"end": 55.783,
 "line": 14,
 "text": "landing"
 },
 {
 "word": "together",
-"start": 52.954,
-"end": 53.281,
+"start": 55.835,
+"end": 56.187,
 "line": 14,
 "text": "together"
 },
 {
 "word": "are",
-"start": 53.348,
-"end": 53.491,
+"start": 56.259,
+"end": 56.414,
 "line": 14,
 "text": "are"
 },
 {
 "word": "one",
-"start": 53.539,
-"end": 53.751,
+"start": 56.466,
+"end": 56.694,
 "line": 14,
 "text": "one"
 },
 {
 "word": "giant",
-"start": 53.798,
-"end": 54.057,
+"start": 56.746,
+"end": 57.024,
 "line": 14,
 "text": "giant"
 },
 {
 "word": "push",
-"start": 54.096,
-"end": 54.46,
+"start": 57.066,
+"end": 57.459,
 "line": 14,
 "text": "push."
 },
 {
 "word": "His",
-"start": 54.749,
-"end": 54.883,
+"start": 57.691,
+"end": 57.835,
 "line": 15,
 "text": "His"
 },
 {
 "word": "men",
-"start": 54.931,
-"end": 55.046,
+"start": 57.887,
+"end": 58.011,
 "line": 15,
 "text": "men"
 },
 {
 "word": "hit",
-"start": 55.094,
-"end": 55.19,
+"start": 58.063,
+"end": 58.167,
 "line": 15,
 "text": "hit"
 },
 {
 "word": "it",
-"start": 55.219,
-"end": 55.267,
+"start": 58.198,
+"end": 58.249,
 "line": 15,
 "text": "it"
 },
 {
 "word": "like",
-"start": 55.295,
-"end": 55.42,
+"start": 58.28,
+"end": 58.414,
 "line": 15,
 "text": "like"
 },
 {
 "word": "rain",
-"start": 55.477,
-"end": 55.899,
+"start": 58.477,
+"end": 58.932,
 "line": 15,
 "text": "rain,"
 },
 {
 "word": "so",
-"start": 56.072,
-"end": 56.168,
+"start": 59.118,
+"end": 59.221,
 "line": 15,
 "text": "so"
 },
 {
 "word": "the",
-"start": 56.216,
-"end": 56.273,
+"start": 59.273,
+"end": 59.335,
 "line": 15,
 "text": "the"
 },
 {
 "word": "bridge",
-"start": 56.302,
-"end": 56.503,
+"start": 59.367,
+"end": 59.583,
 "line": 15,
 "text": "bridge"
 },
 {
 "word": "never",
-"start": 56.542,
-"end": 56.686,
+"start": 59.625,
+"end": 59.78,
 "line": 15,
 "text": "never"
 },
 {
 "word": "noticed",
-"start": 56.733,
-"end": 57.165,
+"start": 59.832,
+"end": 60.297,
 "line": 15,
 "text": "noticed."
 },
 {
 "word": "But",
-"start": 57.454,
-"end": 57.578,
+"start": 60.528,
+"end": 60.663,
 "line": 16,
 "text": "But"
 },
 {
 "word": "the",
-"start": 57.597,
-"end": 57.654,
+"start": 60.683,
+"end": 60.745,
 "line": 16,
 "text": "the"
 },
 {
 "word": "finest",
-"start": 57.712,
-"end": 58.009,
+"start": 60.807,
+"end": 61.128,
 "line": 16,
 "text": "finest"
 },
 {
 "word": "marching",
-"start": 58.057,
-"end": 58.317,
+"start": 61.18,
+"end": 61.459,
 "line": 16,
 "text": "marching"
 },
 {
 "word": "army",
-"start": 58.364,
-"end": 58.546,
+"start": 61.511,
+"end": 61.707,
 "line": 16,
 "text": "army"
 },
 {
 "word": "in",
-"start": 58.585,
-"end": 58.633,
+"start": 61.749,
+"end": 61.8,
 "line": 16,
 "text": "in"
 },
 {
 "word": "the",
-"start": 58.661,
-"end": 58.719,
+"start": 61.831,
+"end": 61.893,
 "line": 16,
 "text": "the"
 },
 {
 "word": "world",
-"start": 58.767,
-"end": 59.026,
+"start": 61.945,
+"end": 62.225,
 "line": 16,
 "text": "world"
 },
 {
 "word": "gives",
-"start": 59.083,
-"end": 59.237,
+"start": 62.286,
+"end": 62.452,
 "line": 16,
 "text": "gives"
 },
 {
 "word": "it",
-"start": 59.265,
-"end": 59.323,
+"start": 62.483,
+"end": 62.545,
 "line": 16,
 "text": "it"
 },
 {
 "word": "forty",
-"start": 59.38,
-"end": 59.63,
+"start": 62.607,
+"end": 62.876,
 "line": 16,
 "text": "forty"
 },
 {
 "word": "perfect",
-"start": 59.687,
-"end": 59.965,
+"start": 62.938,
+"end": 63.237,
 "line": 16,
 "text": "perfect"
 },
 {
 "word": "pushes",
-"start": 60.004,
-"end": 60.445,
+"start": 63.279,
+"end": 63.755,
 "line": 16,
 "text": "pushes."
 },
 {
 "word": "And",
-"start": 60.982,
-"end": 61.115,
+"start": 64.165,
+"end": 64.309,
 "line": 17,
 "text": "And"
 },
 {
 "word": "on",
-"start": 61.163,
-"end": 61.211,
+"start": 64.361,
+"end": 64.413,
 "line": 17,
 "text": "on"
 },
 {
 "word": "the",
-"start": 61.24,
-"end": 61.298,
+"start": 64.444,
+"end": 64.506,
 "line": 17,
 "text": "the"
 },
 {
 "word": "forty-first",
-"start": 61.336,
-"end": 61.92,
+"start": 64.547,
+"end": 65.178,
 "line": 17,
 "text": "forty-first,"
 },
 {
 "word": "the",
-"start": 62.016,
-"end": 62.103,
+"start": 65.281,
+"end": 65.375,
 "line": 17,
 "text": "the"
 },
 {
 "word": "bridge",
-"start": 62.151,
-"end": 62.371,
+"start": 65.426,
+"end": 65.664,
 "line": 17,
 "text": "bridge"
 },
 {
 "word": "bucks",
-"start": 62.419,
-"end": 62.64,
+"start": 65.716,
+"end": 65.954,
 "line": 17,
 "text": "bucks"
 },
 {
 "word": "like",
-"start": 62.669,
-"end": 62.793,
+"start": 65.985,
+"end": 66.12,
 "line": 17,
 "text": "like"
 },
 {
 "word": "a",
-"start": 62.822,
-"end": 62.841,
+"start": 66.151,
+"end": 66.171,
 "line": 17,
 "text": "a"
 },
 {
 "word": "horse",
-"start": 62.899,
-"end": 63.11,
+"start": 66.234,
+"end": 66.461,
 "line": 17,
 "text": "horse"
 },
 {
 "word": "and",
-"start": 63.139,
-"end": 63.205,
+"start": 66.492,
+"end": 66.564,
 "line": 17,
 "text": "and"
 },
 {
 "word": "throws",
-"start": 63.243,
-"end": 63.455,
+"start": 66.605,
+"end": 66.833,
 "line": 17,
 "text": "throws"
 },
 {
 "word": "every",
-"start": 63.532,
-"end": 63.733,
+"start": 66.916,
+"end": 67.133,
 "line": 17,
 "text": "every"
 },
 {
 "word": "one",
-"start": 63.781,
-"end": 63.877,
+"start": 67.185,
+"end": 67.288,
 "line": 17,
 "text": "one"
 },
 {
 "word": "of",
-"start": 63.906,
-"end": 63.944,
+"start": 67.32,
+"end": 67.361,
 "line": 17,
 "text": "of"
 },
 {
 "word": "them",
-"start": 63.982,
-"end": 64.078,
+"start": 67.402,
+"end": 67.506,
 "line": 17,
 "text": "them"
 },
 {
 "word": "into",
-"start": 64.135,
-"end": 64.27,
+"start": 67.567,
+"end": 67.712,
 "line": 17,
 "text": "into"
 },
 {
 "word": "the",
-"start": 64.318,
-"end": 64.375,
+"start": 67.764,
+"end": 67.826,
 "line": 17,
 "text": "the"
 },
 {
 "word": "gorge",
-"start": 64.414,
-"end": 64.95,
+"start": 67.867,
+"end": 68.447,
 "line": 17,
 "text": "gorge."
 }
