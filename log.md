@@ -55,3 +55,6 @@ touched: wiki/channel/seo.md, production/V002/upload.md, production/channel/bann
 
 ## [2026-11-15 18:30] ingest | разбор конкурента Paper Billions (5 лонгов) и черновик стратегии канала лонгов
 touched: wiki/donors/paperbillionstv.md, wiki/analyses/longform-hybrid-style.md, raw/donors/2026-11-15-paperbillions-*, index.md
+
+## [2026-11-15 19:20] setup | канал лонгов: решения, подбор голоса (13 вариантов), проба нуарного фона GPT Image
+touched: wiki/channel/longform-channel.md, production/longform/style-test/bg_prompt.txt, index.md
