@@ -8,6 +8,10 @@
 - **Знания** `wiki/` — формула канала, правила сценария и постановки, библия стиля, порядок производства.
 - **Ролики** `production/` — V001 (хук эталона на движке), V002 (полный ролик: текст, постановка, фильм, звук).
 
+## Установка одной командой
+
+Открой папку в Claude Code и напиши: «Прочитай INSTALL.md и установи всё по нему». Либо сам: Windows — `powershell -ExecutionPolicy Bypass -File install.ps1`, macOS и Linux — `bash install.sh`.
+
 ## Быстрый старт
 
 Нужны: Node.js 18+, ffmpeg, Python 3.10+, Chrome; для чернового голоса — `pip install edge-tts`.
