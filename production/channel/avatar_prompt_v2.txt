@@ -1,0 +1,9 @@
+YouTube channel avatar, square 1:1, shown as a small circle (down to 48 px) — must read instantly.
+
+A single plain white stick figure in the drawing style of the attached character sheet: perfectly round pure-white head, thick dark-brown outline of constant weight, simple dot eyes and a small friendly smile, white bean-shaped body, stick arms and legs bending in soft arcs, one arm raised in a friendly wave. NO hat, NO clothes, NO props, NO accessories — just a clean white stickman.
+
+Full figure from head to feet, centred, filling about 75% of the frame height, nothing touching the edges, everything inside the central circle.
+
+BACKGROUND: one flat solid bright red (#E53935), no gradient, no texture, no scenery, no text, no letters, no logo.
+
+Bold, minimal, high contrast.
