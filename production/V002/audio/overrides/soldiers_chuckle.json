@@ -1,19 +1,19 @@
 {
- "anchor": 0.0099,
- "origin": "recording",
+ "anchor": 0.0106,
+ "origin": "elevenlabs",
  "trim": [
-  2.41,
-  3.13
+  0.0,
+  1.72
  ],
- "process": {},
+ "process": {
+  "fi": 0.005,
+  "fo": 0.2
+ },
  "source": {
-  "title": "Chuckles.mp3",
-  "creator": "se2001",
-  "url": "https://freesound.org/people/se2001/sounds/463814",
-  "licence": "CC0 1.0",
-  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-  "file_url": "https://cdn.freesound.org/previews/463/463814_8472935-hq.mp3",
-  "via": "Openverse API (freesound)",
-  "openverse_id": "c3b99410-c288-48cf-8485-516553b56215"
+  "generator": "ElevenLabs Sound Effects API",
+  "prompt": "Three or four young men chuckling and snickering together, amused, short, close, no words.",
+  "duration_seconds": 2.0,
+  "file": "gen/chuckles_ffdcff70.wav",
+  "date": "2026-11-15 15:11"
  }
 }

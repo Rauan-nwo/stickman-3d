@@ -1,15 +1,21 @@
 {
- "anchor": 0.1046,
- "origin": "earshot-bank",
+ "anchor": 0.0841,
+ "origin": "elevenlabs",
+ "trim": [
+  0.12,
+  0.42
+ ],
  "process": {
-  "dir": "cam",
   "anchor": "peak",
-  "fo": 0.03,
-  "hp": 700
+  "hp": 400,
+  "fi": 0.02,
+  "fo": 0.06
  },
  "source": {
-  "bank_id": "swish/stick",
-  "bank": "earshot 0.4.1 (MIT), rendered from code",
-  "fitted_from": null
+  "generator": "ElevenLabs Sound Effects API",
+  "prompt": "Quick light swish of air passing left to right, thin and clean, cinematic transition, under half a second.",
+  "duration_seconds": 0.6,
+  "file": "gen/whoosh_tight_b_980518ec.wav",
+  "date": "2026-11-15 15:11"
  }
 }

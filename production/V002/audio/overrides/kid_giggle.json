@@ -1,0 +1,22 @@
+{
+ "anchor": 0.0198,
+ "origin": "recording",
+ "trim": [
+  2.02,
+  3.83
+ ],
+ "process": {
+  "fi": 0.01,
+  "fo": 0.2
+ },
+ "source": {
+  "title": "Boy or Young Child Laughing",
+  "creator": "OBXJohn",
+  "url": "https://freesound.org/people/OBXJohn/sounds/365632",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/365/365632_3719168-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "9e08858d-a7d0-41ab-890c-849473c7f685"
+ }
+}

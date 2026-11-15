@@ -1,16 +1,21 @@
 {
- "anchor": 0.0808,
- "origin": "earshot-bank",
+ "anchor": 0.0926,
+ "origin": "elevenlabs",
+ "trim": [
+  0.04,
+  0.34
+ ],
  "process": {
-  "dir": "cam",
-  "suffix": "_b",
   "anchor": "peak",
-  "fo": 0.03,
-  "hp": 700
+  "hp": 700,
+  "fi": 0.01,
+  "fo": 0.05
  },
  "source": {
-  "bank_id": "swish/cane",
-  "bank": "earshot 0.4.1 (MIT), rendered from code",
-  "fitted_from": null
+  "generator": "ElevenLabs Sound Effects API",
+  "prompt": "Short tight airy whoosh, fast camera whip pan transition, soft high air, no low rumble, very brief.",
+  "duration_seconds": 0.6,
+  "file": "gen/whoosh_tight_a_759786c8.wav",
+  "date": "2026-11-15 15:11"
  }
 }

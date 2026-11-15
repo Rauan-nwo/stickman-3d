@@ -1,21 +1,19 @@
 {
- "anchor": 0.0113,
- "origin": "recording",
+ "anchor": 0.0742,
+ "origin": "elevenlabs",
  "trim": [
-  9.31,
-  10.74
+  0.4,
+  1.95
  ],
  "process": {
-  "fi": 0.005
+  "fi": 0.01,
+  "fo": 0.15
  },
  "source": {
-  "title": "Five Hearty Laffs.mp3",
-  "creator": "se2001",
-  "url": "https://freesound.org/people/se2001/sounds/463816",
-  "licence": "CC0 1.0",
-  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-  "file_url": "https://cdn.freesound.org/previews/463/463816_8472935-hq.mp3",
-  "via": "Openverse API (freesound)",
-  "openverse_id": "69e07131-eca2-4f39-9f8d-06685b4b3bd3"
+  "generator": "ElevenLabs Sound Effects API",
+  "prompt": "An old pompous man laughing out loud heartily, belly laugh, wheezing with tears, comic, no words.",
+  "duration_seconds": 2.5,
+  "file": "gen/general_laugh_32e9ee9c.wav",
+  "date": "2026-11-15 15:11"
  }
 }

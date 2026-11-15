@@ -1,0 +1,19 @@
+{
+ "anchor": 0.0552,
+ "origin": "elevenlabs",
+ "trim": [
+  0.2,
+  1.9
+ ],
+ "process": {
+  "fi": 0.1,
+  "fo": 0.4
+ },
+ "source": {
+  "generator": "ElevenLabs Sound Effects API",
+  "prompt": "A group of soldiers murmuring in confusion, puzzled low voices, no clear words, short.",
+  "duration_seconds": 2.0,
+  "file": "gen/murmur_0ead159a.wav",
+  "date": "2026-11-15 15:16"
+ }
+}

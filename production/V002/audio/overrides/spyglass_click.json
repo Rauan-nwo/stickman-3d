@@ -1,0 +1,17 @@
+{
+ "anchor": 0.0314,
+ "origin": "earshot-bank",
+ "process": {
+  "dir": "spy"
+ },
+ "source": {
+  "bank_id": "fit/snap/switch_flip",
+  "bank": "earshot 0.4.1 (MIT), rendered from code",
+  "fitted_from": {
+   "title": "Switch Flip #1",
+   "creator": "IanStarGem",
+   "url": "https://freesound.org/people/IanStarGem/sounds/278205/",
+   "licence": "CC0 1.0"
+  }
+ }
+}

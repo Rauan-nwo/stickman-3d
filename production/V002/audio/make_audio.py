@@ -46,7 +46,7 @@ DUCK_SFX = -3.0    # ...and the non-featured effects
 # peak about 6 dB under the voice's median level in the 1.5-8 kHz band (see NOTES.md)
 import os
 FIFE_OCT = float(os.environ.get("FIFE_OCT", "-12"))   # register of the sampled flute line, semitones re the written tune
-LV_FX = {"throw": -3.0, "tumble": -8.0, "splash": -7.0, "whip": 10.0, "push": 3.0}
+LV_FX = {"throw": -3.0, "tumble": -5.0, "splash": 0.0, "whip": -3.0, "push": -3.0}
 DUCK_LINE_MUSIC = -12.0  # under the colonel's and the general's own lines: deeper, and featured cues are not exempt
 DUCK_LINE_SFX = -8.0
 
@@ -877,7 +877,10 @@ class Session:
         if not self.has(name):
             return False
         if name not in self.stems:
-            self.stem(name, np.zeros(8), 0.0, mode=mode, measure="onset", maxlen=maxlen, minlen=minlen)
+            self.stem(name, np.zeros(8), 0.0, mode=mode, measure="onset", minlen=minlen)
+        if maxlen is not None and len(self.stems[name]["audio"]) > nsamp(maxlen) and "length" not in kw:
+            kw["length"] = maxlen + self.stems[name]["anchor"]          # the slot is shorter than the recording: cut + fade here
+            kw.setdefault("fout", min(0.25, maxlen * 0.3))
         self.place(name, cue, lvl, **kw)
         return True
 
@@ -1414,14 +1417,16 @@ def build_sfx(sc, ses):
     full += tw
     full = fade(full[:nsamp(span + 0.45)], 0.0, 0.4)          # the pause of air before the splash
     ses.stem("drum_tumble", full, 0.0)
-    if hits:
+    if hits and not ses.has("drum_tumble"):
         ses.stems["drum_tumble"]["src"] = "recording (assembled in code)"
     ses.place("drum_tumble", C(1, "threw", off=0.05 + 0.24), LV_FX["tumble"],
               note="the drum tumbling down: %d knocks, each quieter and darker, sticks clatter; ends %.2f s before the splash" % (nk, 0.34 - 0.08))
 
     r = rng_for("splash:far")
     ses.stem("splash_distant", room(splash(r, 0.9, 1.0), R["gorge"], -5.0, -0.1), 0.0)
-    ses.place("splash_distant", C(1, "river", off=0.12), LV_FX["splash"], key=True, win=0.5,
+    # the splash is the point of the hook: it is not ducked, and mix.py pulls the music down under it (spot_ducks)
+    ses.spot_ducks = [{"t0": round(t_spl - 0.15, 3), "t1": round(t_spl + 1.1, 3), "music_db": -10.0, "what": "the splash in the hook"}]
+    ses.place("splash_distant", C(1, "river", off=0.12), LV_FX["splash"], key=True, featured=True, win=0.9,
               note="far below, on the film's splash frame: the splash with its watery tail")
 
     # ---------- the colonel ----------
@@ -1606,6 +1611,26 @@ def build_sfx(sc, ses):
     for off_ in (0.12, 0.36):
         ses.place("hand_pat", C(17, "gorge", off=off_), -13, note="far bank: the captain dusts his hands")
 
+    # ---------- the figures' own voices: short, non-verbal, under the narrator ----------
+    ses.real("captain_hm", C(1, "them", frac=0.9), -11, mode="peak20", note="the captain, pleased with himself: 'hm' in the gap after the hook")
+    ses.real("colonel_grunt", C(2, "colonel", off=0.1), -11, mode="peak20", note="the colonel snarls as he grabs")
+    ses.real("murmur", C(2, "six", off=0.15), -17, maxlen=max(0.5, sc.t(2, "in") - sc.t(2, "six") - 0.2), note="the column mutters as it piles up")
+    ses.real("murmur", C(5, "they"), -17, maxlen=1.6, note="blue soldiers mutter on the bridge")
+    ses.real("shuffle_gen", C(5, "So", off=0.05), -19, maxlen=d5 - 0.1, note="a third layer of uneven feet, scuffs and gear (generated)")
+    ses.real("murmur", C(6, "bag", off=0.2), -18, maxlen=1.2, note="confused voices in the spyglass")
+    ses.real("gasp", C(9, "bounce", off=0.05), -12, mode="peak20", note="the row gasps as the deck bounces")
+    ses.real("kid_giggle", C(13, "pushes"), -14, maxlen=max(0.6, sc.t(13, "always") - sc.t(13, "pushes")), note="the kid giggles on the swing")
+    ses.real("crowd_scream", C(17, "bucks", off=0.18), -13, maxlen=max(0.8, sc.t(17, "into") - t_bucks - 0.1), note="collective scream as they are thrown")
+    # ---------- everything visible moves audibly ----------
+    ses.real("flag_flap", C(6, "On", off=0.1), -17, maxlen=max(0.5, sc.t(6, "the", 2) - S(6)), note="banners flapping on the ridge")
+    ses.real("spyglass_click", C(6, "That's", off=-0.22), -12, mode="peak20", note="the spyglass snaps up to the eye")
+    for cue_, lv_ in ((C(5, "six"), -15), (C(8, "in"), -15), (C(17, "into"), -13)):
+        ses.place("wind_gust", cue_, lv_, length=1.6, fin=0.2, fout=0.6, skip=0.2, note="the camera goes high: the wind rises")
+    for cue_, lv_ in ((C(10, "Some"), -15), (C(11, "middle"), -16), (C(16, "But", off=0.3), -14), (C(16, "perfect"), -13)):
+        ses.real("bridge_groan", cue_, lv_, maxlen=3.0, fout=0.5, note="the wooden deck groans under the rhythmic load, deeper as the wave grows")
+    for cue_, lv_ in ((C(16, "perfect"), -13), (C(16, "pushes"), -11), (C(17, "And", off=-0.1), -10)):
+        ses.real("metal_ping", cue_, lv_, mode="peak20", note="metal stress ping before the buck")
+
     # the red army on sand: unison steps (soft thud + grit), every second one lighter; gear and drums rattle
     Rg_ = [tb for tb in g["R"] if sc.t(7, "finest") - 0.02 <= tb < g["t_land"] - 0.05]
     t = taxis(0.22)
@@ -1613,7 +1638,12 @@ def build_sfx(sc, ses):
     ses.stem("sand_step", room(snd, R["field"], -16.0, 0.0), 0.0)
     for k_, tb in enumerate(Rg_):
         down = (len(g["R"]) - 1 - g["R"].index(tb)) % 2 == 0
-        ses.place("sand_step", C(7, "land"), -13 if down else -17, t=tb, beat=g["R"].index(tb) - (len(g["R"]) - 1), note="red army on sand, in unison")
+        near = k_ / max(1, len(Rg_) - 1)                    # they come closer through the shot
+        nm_ = "sand_step_%d" % (k_ % 5) if ses.has("sand_step_0") else "sand_step"
+        if nm_ not in ses.stems:
+            ses.stem(nm_, snd, 0.0)
+        ses.place(nm_, C(7, "land"), (-13 if down else -17) + 4.0 * near, t=tb, beat=g["R"].index(tb) - (len(g["R"]) - 1),
+                  note="red army on sand, in unison: a mass of boots, grit, gear")
     for cue_, t1_, lv_ in ((C(7, "finest"), g["t_land"], -21), (C(8, "So"), g["t_you"], -20), (C(16, "But"), g["t_drop"], -19)):
         ses.real("gear_rattle", cue_, lv_, minlen=t_end + 1.0, length=t1_ - sc.at(cue_), fin=0.15, fout=0.12, skip=sc.at(cue_),
                  note="belts, muskets and drums rattling on the march")
@@ -1622,7 +1652,7 @@ def build_sfx(sc, ses):
     t_l0, t_l1 = sc.t(6, "crying"), sc.t(6, "That's")
     ses.real("general_laugh", C(6, "crying"), -13, maxlen=max(0.4, t_l1 - t_l0 - 0.06), key=True,
              note="the general's laughter; stops before he speaks")
-    ses.real("soldiers_chuckle_b", C(9, "soldiers", off=0.22), -13, maxlen=max(0.4, S(10) - sc.t(9, "soldiers") - 0.3),
+    ses.real("soldiers_chuckle_b", C(9, "soldiers", off=0.45), -14, maxlen=max(0.4, S(10) - sc.t(9, "soldiers") - 0.3),
              note="a second soldier chuckles")
     ses.real("soldiers_chuckle", C(9, "soldiers"), -11, maxlen=max(0.4, S(10) - sc.t(9, "soldiers") - 0.05), key=True,
              note="the red soldiers enjoy the bounce")
@@ -1635,8 +1665,21 @@ def build_sfx(sc, ses):
             r = rng_for("boots:%d%s" % (i_, side))
             ses.stem("boots_h%d_%s" % (i_, side), room(boots(r, hv), R["field"], -17.0 + 4 * hv, -0.08 if side == "L" else 0.08), 0.0)
 
+    nbw = [0]
+
     def boot(i_h, side, cue, lvl, **kw):
         ses.place("boots_h%d_%s" % (int(np.clip(i_h, 0, 6)), side), cue, lvl, **kw)
+        if ses.has("boot_wood_0") and kw.get("note", "") != "two thousand boots land as one":     # that one lands on sand
+            nm_ = "boot_wood_%d" % (nbw[0] % 6)
+            nbw[0] += 1
+            if nm_ not in ses.stems:
+                ses.stem(nm_, np.zeros(8), 0.0)
+            kw2 = {k_: v_ for k_, v_ in kw.items() if k_ in ("t", "beat", "featured", "win")}
+            ses.place(nm_, cue, lvl - 4.0, note="the mass of boots on hollow planks (generated), under the synthetic weight", **kw2)
+            if int(i_h) >= 3 and ses.has("chain_tick"):      # the accented steps make the chains tick
+                if "chain_tick" not in ses.stems:
+                    ses.stem("chain_tick", np.zeros(8), 0.0)
+                ses.place("chain_tick", cue, lvl - 9.0, t=(kw.get("t") if kw.get("t") is not None else sc.at(cue)) + 0.06, note="chain ticks after the step")
 
     boot(4, "L", C(7, "land"), 2, featured=True, key=True, win=0.35, note="two thousand boots land as one")
     for j, tb in enumerate(g["B_pre"]):                     # marching onto the bridge
@@ -1887,9 +1930,11 @@ def build_sfx(sc, ses):
     full[:len(sn)] += sn
     full += snw
     ses.stem("bridge_snap", full, 0.0)
-    ses.real("bridge_crack", C(17, "bucks"), 4, mode="peak20", featured=True, win=0.6,
-             note="recorded timber crack layered over the synthetic boom")
-    ses.place("bridge_snap", C(17, "bucks"), 7, featured=True, key=True, win=0.6, note="timber cracks, a chain parts and whips, sub boom, planks")
+    ses.real("bridge_crack", C(17, "bucks"), 6, mode="peak20", featured=True, win=0.45,
+             note="the snap itself: splintering timber, chain, debris (generated); the synthetic boom is the weight under it")
+    ses.real("bodies_fall", C(17, "throws"), -14, maxlen=max(0.4, sc.t(17, "into") - sc.t(17, "throws")), note="bodies in the air: rush and yells")
+    ses.real("splash_many", C(17, "into", off=0.05), -10, maxlen=max(0.3, t_end - sc.t(17, "into") - 0.05), note="many splashes at once (generated)")
+    ses.place("bridge_snap", C(17, "bucks"), 4, featured=True, key=True, win=0.6, note="timber cracks, a chain parts and whips, sub boom, planks")
 
     r = rng_for("fall")
     d = max(0.4, t_end - sc.t(17, "throws") + 0.05)
@@ -1939,7 +1984,8 @@ def build_sfx(sc, ses):
         if tw_ - last < 1.0:
             continue
         last = tw_
-        ses.place("cam_whoosh_%d" % (nw % 4), cue, LV_FX["whip"], key=(nw == 0), win=0.2, note="whip between shots")
+        ses.place("cam_whoosh_%d" % (nw % 4), dict(cue, offset=cue.get("offset", 0.0) - 0.04), LV_FX["whip"], key=(nw == 0), win=0.2,
+                  note="whip between shots; the peak leads the cut by 40 ms, into the gap before the word")
         nw += 1
     ses.place("cam_push", C(6, "That's"), LV_FX["push"], note="through the spyglass lens")
     ses.place("cam_push", C(12, "You", off=-0.02), LV_FX["push"], note="crash push onto the sign")
@@ -1995,6 +2041,7 @@ def main(argv=None):
             {"sentence": 2, "who": "colonel", "t0": round(sc.t(2, "That"), 4), "t1": round(sc.end(2), 4)},
             {"sentence": 6, "who": "general", "t0": round(sc.t(6, "That's"), 4), "t1": round(sc.end(6), 4)}],
         "duck_lines": {"music_db": DUCK_LINE_MUSIC, "sfx_db": DUCK_LINE_SFX},
+        "spot_ducks": getattr(ses, "spot_ducks", []),
         "music_sources": getattr(ses, "music_src", {}),
         "stem_sources": {k_: v_["src"] for k_, v_ in ses.stems.items()},
         "music_levels_re_voice_db": LV,

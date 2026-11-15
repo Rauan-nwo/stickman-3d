@@ -2,45 +2,45 @@
  "splash_distant": {
   "meant": "далёкий всплеск",
   "query": "an object plunging into a river",
-  "z": 3.45,
+  "z": 4.16,
   "verdict": "strong",
-  "p_vs_alts": 0.998,
+  "p_vs_alts": 0.994,
   "all_z": {
-   "an object plunging into a river": 3.45,
-   "a splash of something falling into water": 2.87,
-   "a distant water splash": 1.17
+   "an object plunging into a river": 4.16,
+   "a splash of something falling into water": 3.43,
+   "a distant water splash": 1.32
   },
   "sounds_like": [
    [
+    "bubbles underwater",
+    3.57
+   ],
+   [
     "an object plunging into water",
-    3.45
+    3.56
    ],
    [
-    "a big drum hit",
-    2.97
-   ],
-   [
-    "a cinematic hit with a long tail",
-    2.8
+    "an explosion",
+    2.94
    ]
   ],
   "audioset": [
    [
-    "Sound effect",
-    0.18
+    "Slosh",
+    0.63
+   ],
+   [
+    "Water",
+    0.42
    ],
    [
     "Bang",
     0.1
-   ],
-   [
-    "Scrape",
-    0.08
    ]
   ],
-  "p_real": 0.843,
+  "p_real": 0.964,
   "real_verdict": "real or pro-produced",
-  "duration": 4.585
+  "duration": 2.25
  },
  "splash_final": {
   "meant": "финальный всплеск",
@@ -576,88 +576,88 @@
  "general_laugh": {
   "meant": "смех генерала",
   "query": "a man laughing heartily",
-  "z": 4.85,
+  "z": 5.83,
   "verdict": "strong",
   "p_vs_alts": 1.0,
   "all_z": {
-   "a man laughing heartily": 4.85,
-   "male laughter": 4.57,
-   "a man laughing out loud": 3.83
+   "a man laughing heartily": 5.83,
+   "male laughter": 5.55,
+   "a man laughing out loud": 5.08
+  },
+  "sounds_like": [
+   [
+    "ice cubes in a glass",
+    2.35
+   ],
+   [
+    "a balloon squeak",
+    2.13
+   ],
+   [
+    "a horse neighing",
+    2.13
+   ]
+  ],
+  "audioset": [
+   [
+    "Snicker",
+    0.5
+   ],
+   [
+    "Chuckle, chortle",
+    0.15
+   ],
+   [
+    "Laughter",
+    0.07
+   ]
+  ],
+  "p_real": 0.999,
+  "real_verdict": "real or pro-produced",
+  "duration": 1.55
+ },
+ "soldiers_chuckle": {
+  "meant": "смешки солдат",
+  "query": "a group of men laughing",
+  "z": 5.03,
+  "verdict": "strong",
+  "p_vs_alts": 0.993,
+  "all_z": {
+   "a group of men laughing": 5.03,
+   "people laughing": 4.34,
+   "several men chuckling": 4.26
   },
   "sounds_like": [
    [
     "a rooster crowing",
-    2.1
+    2.39
    ],
    [
-    "ice cubes in a glass",
-    2.06
+    "a punchy impact hit",
+    2.13
    ],
    [
-    "a snare hit",
+    "a fast whoosh",
     1.87
    ]
   ],
   "audioset": [
    [
     "Snicker",
-    0.36
+    0.34
    ],
    [
     "Chuckle, chortle",
     0.22
    ],
    [
-    "Laughter",
-    0.12
+    "Giggle",
+    0.1
    ]
   ],
-  "p_real": 0.993,
+  "p_real": 0.998,
   "real_verdict": "real or pro-produced",
-  "duration": 1.233
- },
- "soldiers_chuckle": {
-  "meant": "смешки солдат",
-  "query": "a group of men laughing",
-  "z": 3.25,
-  "verdict": "strong",
-  "p_vs_alts": 0.928,
-  "all_z": {
-   "a group of men laughing": 3.25,
-   "several men chuckling": 2.91,
-   "people laughing": 2.86
-  },
-  "sounds_like": [
-   [
-    "a finger squeaking on glass",
-    2.76
-   ],
-   [
-    "a record scratch",
-    2.64
-   ],
-   [
-    "a balloon squeak",
-    2.46
-   ]
-  ],
-  "audioset": [
-   [
-    "Snicker",
-    0.33
-   ],
-   [
-    "Chuckle, chortle",
-    0.2
-   ],
-   [
-    "Laughter",
-    0.12
-   ]
-  ],
-  "p_real": 0.997,
-  "real_verdict": "real or pro-produced",
-  "duration": 0.72
+  "duration": 1.72
  },
  "kid_squeal": {
   "meant": "визг восторга ребёнка",
@@ -747,46 +747,38 @@
  },
  "drum_tumble": {
   "meant": "барабан катится",
-  "query": "a hollow drum tumbling and knocking",
-  "z": 1.87,
-  "verdict": "no match",
-  "p_vs_alts": 0.046,
+  "query": "hollow knocks",
+  "z": 3.5,
+  "verdict": "strong",
+  "p_vs_alts": 0.282,
   "all_z": {
-   "a hollow drum tumbling and knocking": 1.87,
-   "a wooden object tumbling": 1.37,
-   "hollow knocks": 0.4
+   "hollow knocks": 3.5,
+   "a hollow drum tumbling and knocking": 2.71,
+   "a wooden object tumbling": 1.33
   },
   "sounds_like": [
    [
-    "a snare hit",
-    4.52
+    "a knock on a door",
+    3.63
    ],
    [
-    "a wooden block hit",
-    2.47
+    "a wooden knock",
+    3.4
    ],
    [
-    "a box lid closing",
-    2.43
+    "a kick drum",
+    3.23
    ]
   ],
   "audioset": [
    [
-    "Sound effect",
-    0.35
-   ],
-   [
-    "Bang",
-    0.11
-   ],
-   [
-    "Drum",
-    0.11
+    "Knock",
+    0.9
    ]
   ],
-  "p_real": 0.281,
-  "real_verdict": "uncertain",
-  "duration": 1.429
+  "p_real": 0.854,
+  "real_verdict": "real or pro-produced",
+  "duration": 1.07
  },
  "marbles": {
   "meant": "шарики (убраны из фильма)",
@@ -881,131 +873,131 @@
  "bridge_crack": {
   "meant": "треск дерева (запись, слой)",
   "query": "a wooden structure collapsing",
-  "z": 4.16,
+  "z": 5.03,
   "verdict": "strong",
   "p_vs_alts": 0.998,
   "all_z": {
-   "a wooden structure collapsing": 4.16,
-   "a loud wooden crack": 3.77,
-   "wood cracking and breaking": 3.35
+   "a wooden structure collapsing": 5.03,
+   "a loud wooden crack": 3.94,
+   "wood cracking and breaking": 2.48
   },
   "sounds_like": [
    [
-    "a plastic object falling on a table",
-    2.87
+    "a body falling on the ground",
+    3.08
    ],
    [
-    "dominoes falling",
-    2.85
+    "an explosion",
+    2.73
    ],
    [
-    "a plastic case snapping shut",
-    2.45
+    "bubbles underwater",
+    2.28
    ]
   ],
   "audioset": [
    [
-    "Tap",
-    0.26
-   ],
-   [
     "Sound effect",
-    0.06
+    0.1
    ],
    [
-    "Firecracker",
-    0.06
+    "Explosion",
+    0.07
+   ],
+   [
+    "Burst, pop",
+    0.05
    ]
   ],
-  "p_real": 0.878,
+  "p_real": 0.983,
   "real_verdict": "real or pro-produced",
-  "duration": 4.915
+  "duration": 1.7
  },
  "soldiers_chuckle_b": {
   "meant": "смешок второго солдата",
   "query": "a short male laugh",
-  "z": 4.71,
+  "z": 3.28,
   "verdict": "strong",
-  "p_vs_alts": 0.889,
+  "p_vs_alts": 0.126,
   "all_z": {
-   "a short male laugh": 4.71,
-   "a man chuckling": 4.49,
-   "people laughing": 4.33
+   "a short male laugh": 3.28,
+   "a man chuckling": 3.25,
+   "people laughing": 2.86
   },
   "sounds_like": [
    [
-    "a sustained glass harp tone",
-    2.9
-   ],
-   [
-    "a cow mooing",
-    2.88
-   ],
-   [
     "a finger squeaking on glass",
-    2.36
+    2.76
+   ],
+   [
+    "a record scratch",
+    2.64
+   ],
+   [
+    "a balloon squeak",
+    2.46
    ]
   ],
   "audioset": [
    [
-    "Sound effect",
-    0.1
+    "Snicker",
+    0.33
    ],
    [
-    "Oink",
-    0.09
+    "Chuckle, chortle",
+    0.2
    ],
    [
-    "Grunt",
-    0.07
+    "Laughter",
+    0.12
    ]
   ],
-  "p_real": 0.995,
+  "p_real": 0.997,
   "real_verdict": "real or pro-produced",
-  "duration": 0.71
+  "duration": 0.72
  },
  "adjutant_laugh": {
   "meant": "смех адъютанта",
   "query": "male laughter",
-  "z": 5.26,
+  "z": 4.85,
   "verdict": "strong",
-  "p_vs_alts": 0.641,
+  "p_vs_alts": 1.0,
   "all_z": {
-   "male laughter": 5.26,
-   "a man laughing out loud": 4.45,
-   "a man laughing": 4.2
+   "male laughter": 4.85,
+   "a man laughing out loud": 4.63,
+   "a man laughing": 4.09
   },
   "sounds_like": [
    [
-    "a punchy impact hit",
-    2.92
+    "ice cubes in a glass",
+    2.56
    ],
    [
-    "a body falling on the ground",
-    2.15
+    "a balloon squeak",
+    2.46
    ],
    [
-    "an old typewriter",
-    1.99
+    "a finger squeaking on glass",
+    2.38
    ]
   ],
   "audioset": [
    [
-    "Throat clearing",
-    0.1
+    "Snicker",
+    0.23
    ],
    [
-    "Grunt",
-    0.06
+    "Chuckle, chortle",
+    0.13
    ],
    [
-    "Sound effect",
-    0.05
+    "Giggle",
+    0.11
    ]
   ],
-  "p_real": 0.999,
+  "p_real": 0.998,
   "real_verdict": "real or pro-produced",
-  "duration": 0.993
+  "duration": 1.0
  },
  "amb_gorge": {
   "meant": "амбиенс ущелья",
@@ -1138,46 +1130,46 @@
  },
  "sand_step": {
   "meant": "шаг по песку",
-  "query": "a footstep on sand",
-  "z": 1.78,
+  "query": "a boot stepping on sand",
+  "z": 0.37,
   "verdict": "no match",
-  "p_vs_alts": 0.004,
+  "p_vs_alts": 0.0,
   "all_z": {
-   "a footstep on sand": 1.78,
-   "a boot stepping on sand": 1.37,
-   "a soft footstep on dry ground": 0.32
+   "a boot stepping on sand": 0.37,
+   "a footstep on sand": 0.2,
+   "a soft footstep on dry ground": 0.14
   },
   "sounds_like": [
    [
-    "a record scratch",
-    2.98
+    "a snare hit",
+    4.29
    ],
    [
-    "a digital glitch",
-    2.86
+    "a kick drum",
+    3.09
    ],
    [
-    "a quick swipe",
-    2.68
+    "a punchy impact hit",
+    3.04
    ]
   ],
   "audioset": [
    [
-    "Applause",
-    0.41
+    "Bang",
+    0.19
    ],
    [
-    "Clapping",
+    "Slap, smack",
     0.14
    ],
    [
-    "Speech",
-    0.1
+    "Sound effect",
+    0.06
    ]
   ],
-  "p_real": 0.439,
-  "real_verdict": "uncertain",
-  "duration": 0.31
+  "p_real": 0.031,
+  "real_verdict": "likely code-synthesized",
+  "duration": 0.676
  },
  "gear_rattle": {
   "meant": "амуниция на марше",
@@ -1308,48 +1300,587 @@
   "real_verdict": "real or pro-produced",
   "duration": 3.925
  },
- "cam_whoosh_0": {
-  "meant": "свист камеры (переброс)",
-  "query": "a whip pan whoosh transition",
-  "z": 5.32,
+ "captain_hm": {
+  "meant": "«хм» капитана",
+  "query": "a man saying hmm",
+  "z": 4.89,
+  "verdict": "strong",
+  "p_vs_alts": 0.997,
+  "all_z": {
+   "a man saying hmm": 4.89,
+   "a short satisfied hum": 2.69,
+   "a man humming briefly": 1.39
+  },
+  "sounds_like": [
+   [
+    "a cow mooing",
+    3.19
+   ],
+   [
+    "a phone vibration buzz",
+    3.01
+   ],
+   [
+    "a punchy impact hit",
+    2.86
+   ]
+  ],
+  "audioset": [
+   [
+    "Sound effect",
+    0.11
+   ],
+   [
+    "Sigh",
+    0.1
+   ],
+   [
+    "Grunt",
+    0.07
+   ]
+  ],
+  "p_real": 0.985,
+  "real_verdict": "real or pro-produced",
+  "duration": 0.5
+ },
+ "colonel_grunt": {
+  "meant": "рык полковника",
+  "query": "an angry man growling",
+  "z": 3.42,
+  "verdict": "strong",
+  "p_vs_alts": 0.971,
+  "all_z": {
+   "an angry man growling": 3.42,
+   "a man grunting angrily": 3.22,
+   "a snarl": 2.4
+  },
+  "sounds_like": [
+   [
+    "a snare hit",
+    2.76
+   ],
+   [
+    "a punchy impact hit",
+    2.57
+   ],
+   [
+    "a cow mooing",
+    2.49
+   ]
+  ],
+  "audioset": [
+   [
+    "Groan",
+    0.51
+   ],
+   [
+    "Grunt",
+    0.25
+   ],
+   [
+    "Sound effect",
+    0.16
+   ]
+  ],
+  "p_real": 0.956,
+  "real_verdict": "real or pro-produced",
+  "duration": 0.67
+ },
+ "murmur": {
+  "meant": "бормотание солдат",
+  "query": "a group of men murmuring",
+  "z": 2.11,
+  "verdict": "weak",
+  "p_vs_alts": 0.005,
+  "all_z": {
+   "a group of men murmuring": 2.11,
+   "low confused voices": 1.27,
+   "a crowd muttering quietly": 0.7
+  },
+  "sounds_like": [
+   [
+    "a snare hit",
+    3.07
+   ],
+   [
+    "a crowd cheering",
+    2.75
+   ],
+   [
+    "a triangle hit",
+    2.25
+   ]
+  ],
+  "audioset": [
+   [
+    "Yell",
+    0.29
+   ],
+   [
+    "Speech",
+    0.24
+   ],
+   [
+    "Bellow",
+    0.19
+   ]
+  ],
+  "p_real": 0.955,
+  "real_verdict": "real or pro-produced",
+  "duration": 1.7
+ },
+ "gasp": {
+  "meant": "общий «ах»",
+  "query": "a collective gasp",
+  "z": 4.5,
+  "verdict": "strong",
+  "p_vs_alts": 0.909,
+  "all_z": {
+   "a collective gasp": 4.5,
+   "a sharp gasp": 4.29,
+   "people gasping in surprise": 3.01
+  },
+  "sounds_like": [
+   [
+    "a snare hit",
+    3.43
+   ],
+   [
+    "a punchy impact hit",
+    2.54
+   ],
+   [
+    "a cow mooing",
+    2.46
+   ]
+  ],
+  "audioset": [
+   [
+    "Gasp",
+    0.41
+   ],
+   [
+    "Sigh",
+    0.11
+   ],
+   [
+    "Speech",
+    0.07
+   ]
+  ],
+  "p_real": 0.963,
+  "real_verdict": "real or pro-produced",
+  "duration": 0.6
+ },
+ "crowd_scream": {
+  "meant": "общий крик",
+  "query": "a collective yell",
+  "z": 5.94,
   "verdict": "strong",
   "p_vs_alts": 1.0,
   "all_z": {
-   "a whip pan whoosh transition": 5.32,
-   "a short fast whoosh": 4.48,
-   "a quick swish through the air": 4.36
+   "a collective yell": 5.94,
+   "a crowd of men screaming": 5.09,
+   "people screaming in panic": 4.89
+  },
+  "sounds_like": [
+   [
+    "a snare hit",
+    3.47
+   ],
+   [
+    "a crowd cheering",
+    3.36
+   ],
+   [
+    "a triangle hit",
+    2.56
+   ]
+  ],
+  "audioset": [
+   [
+    "Screaming",
+    0.2
+   ],
+   [
+    "Yell",
+    0.19
+   ],
+   [
+    "Whoop",
+    0.11
+   ]
+  ],
+  "p_real": 0.959,
+  "real_verdict": "real or pro-produced",
+  "duration": 2.0
+ },
+ "kid_giggle": {
+  "meant": "хихиканье ребёнка",
+  "query": "a kid giggling happily",
+  "z": 6.34,
+  "verdict": "strong",
+  "p_vs_alts": 0.985,
+  "all_z": {
+   "a kid giggling happily": 6.34,
+   "a child giggling": 5.68,
+   "a child laughing": 5.13
+  },
+  "sounds_like": [
+   [
+    "a rooster crowing",
+    3.14
+   ],
+   [
+    "a cow mooing",
+    2.73
+   ],
+   [
+    "a horse neighing",
+    2.63
+   ]
+  ],
+  "audioset": [
+   [
+    "Giggle",
+    0.29
+   ],
+   [
+    "Laughter",
+    0.06
+   ]
+  ],
+  "p_real": 0.993,
+  "real_verdict": "real or pro-produced",
+  "duration": 1.81
+ },
+ "boot_wood_0": {
+  "meant": "сапоги по доскам, масса",
+  "query": "soldiers marching one step",
+  "z": 2.27,
+  "verdict": "weak",
+  "p_vs_alts": 0.052,
+  "all_z": {
+   "soldiers marching one step": 2.27,
+   "a heavy stomp on a wooden floor": 2.24,
+   "many boots stomping at once on wooden planks": 1.78
+  },
+  "sounds_like": [
+   [
+    "a punchy impact hit",
+    3.67
+   ],
+   [
+    "a body falling on the ground",
+    3.3
+   ],
+   [
+    "cloth whipping through the air",
+    2.97
+   ]
+  ],
+  "audioset": [
+   [
+    "Door",
+    0.22
+   ],
+   [
+    "Slam",
+    0.16
+   ]
+  ],
+  "p_real": 0.988,
+  "real_verdict": "real or pro-produced",
+  "duration": 0.42
+ },
+ "sand_step_0": {
+  "meant": "сапоги по песку, масса",
+  "query": "soldiers marching one step",
+  "z": 3.1,
+  "verdict": "strong",
+  "p_vs_alts": 0.585,
+  "all_z": {
+   "soldiers marching one step": 3.1,
+   "a heavy footstep on sand": 3.02,
+   "many boots stomping at once on dry ground": 2.41
+  },
+  "sounds_like": [
+   [
+    "a punchy impact hit",
+    4.29
+   ],
+   [
+    "a body falling on the ground",
+    2.91
+   ],
+   [
+    "a heavy thud",
+    2.85
+   ]
+  ],
+  "audioset": [
+   [
+    "Sound effect",
+    0.13
+   ],
+   [
+    "Breaking",
+    0.1
+   ],
+   [
+    "Crack",
+    0.09
+   ]
+  ],
+  "p_real": 0.969,
+  "real_verdict": "real or pro-produced",
+  "duration": 0.44
+ },
+ "shuffle_gen": {
+  "meant": "шарканье (генерация)",
+  "query": "many footsteps shuffling on a wooden floor",
+  "z": 4.16,
+  "verdict": "strong",
+  "p_vs_alts": 0.774,
+  "all_z": {
+   "many footsteps shuffling on a wooden floor": 4.16,
+   "footsteps on wood": 3.66,
+   "a crowd walking on wooden planks": 3.35
+  },
+  "sounds_like": [
+   [
+    "high heels walking",
+    4.14
+   ],
+   [
+    "footsteps on wood",
+    3.66
+   ],
+   [
+    "a body falling on the ground",
+    3.5
+   ]
+  ],
+  "audioset": [
+   [
+    "Clip-clop",
+    0.68
+   ],
+   [
+    "Horse",
+    0.54
+   ],
+   [
+    "Animal",
+    0.51
+   ]
+  ],
+  "p_real": 0.945,
+  "real_verdict": "real or pro-produced",
+  "duration": 3.0
+ },
+ "bridge_groan": {
+  "meant": "стон настила",
+  "query": "heavy wood and metal creaking",
+  "z": 2.86,
+  "verdict": "plausible",
+  "p_vs_alts": 1.0,
+  "all_z": {
+   "heavy wood and metal creaking": 2.86,
+   "a large wooden structure creaking": 2.68,
+   "a ship hull creaking": 2.4
+  },
+  "sounds_like": [
+   [
+    "a wood creak",
+    2.29
+   ],
+   [
+    "a snare hit",
+    2.25
+   ],
+   [
+    "an old typewriter",
+    2.21
+   ]
+  ],
+  "audioset": [
+   [
+    "Music",
+    0.17
+   ],
+   [
+    "Knock",
+    0.15
+   ]
+  ],
+  "p_real": 0.908,
+  "real_verdict": "real or pro-produced",
+  "duration": 3.47
+ },
+ "metal_ping": {
+  "meant": "щелчок металла",
+  "query": "a metallic ting",
+  "z": 3.05,
+  "verdict": "strong",
+  "p_vs_alts": 0.148,
+  "all_z": {
+   "a metallic ting": 3.05,
+   "a metal ping": 2.25,
+   "a chain link ticking": 2.05
+  },
+  "sounds_like": [
+   [
+    "coins dropping",
+    3.78
+   ],
+   [
+    "a triangle hit",
+    3.77
+   ],
+   [
+    "a bicycle bell",
+    3.28
+   ]
+  ],
+  "audioset": [
+   [
+    "Sound effect",
+    0.25
+   ],
+   [
+    "Ding",
+    0.16
+   ],
+   [
+    "Music",
+    0.07
+   ]
+  ],
+  "p_real": 0.958,
+  "real_verdict": "real or pro-produced",
+  "duration": 3.375
+ },
+ "flag_flap": {
+  "meant": "знамёна",
+  "query": "cloth flapping",
+  "z": 4.04,
+  "verdict": "strong",
+  "p_vs_alts": 0.999,
+  "all_z": {
+   "cloth flapping": 4.04,
+   "fabric rustling": 2.9,
+   "a flag flapping in the wind": 2.85
+  },
+  "sounds_like": [
+   [
+    "cloth whipping through the air",
+    3.84
+   ],
+   [
+    "cloth rustling",
+    3.64
+   ],
+   [
+    "a body falling on the ground",
+    3.53
+   ]
+  ],
+  "audioset": [
+   [
+    "Scrape",
+    0.07
+   ]
+  ],
+  "p_real": 0.8,
+  "real_verdict": "real or pro-produced",
+  "duration": 1.42
+ },
+ "splash_many": {
+  "meant": "много всплесков",
+  "query": "many water splashes",
+  "z": 3.25,
+  "verdict": "strong",
+  "p_vs_alts": 0.446,
+  "all_z": {
+   "many water splashes": 3.25,
+   "a big water splash": 3.06,
+   "several objects falling into water": 2.35
+  },
+  "sounds_like": [
+   [
+    "a squishy wet squelch",
+    3.7
+   ],
+   [
+    "bubbles underwater",
+    3.65
+   ],
+   [
+    "an object plunging into water",
+    3.21
+   ]
+  ],
+  "audioset": [
+   [
+    "Slosh",
+    0.62
+   ],
+   [
+    "Water",
+    0.29
+   ],
+   [
+    "Gurgling",
+    0.08
+   ]
+  ],
+  "p_real": 0.964,
+  "real_verdict": "real or pro-produced",
+  "duration": 1.1
+ },
+ "cam_whoosh_0": {
+  "meant": "свист камеры (переброс)",
+  "query": "a whip pan whoosh transition",
+  "z": 5.9,
+  "verdict": "strong",
+  "p_vs_alts": 1.0,
+  "all_z": {
+   "a whip pan whoosh transition": 5.9,
+   "a quick swish through the air": 5.11,
+   "a short fast whoosh": 5.08
   },
   "sounds_like": [
    [
     "a fast whoosh",
-    4.69
-   ],
-   [
-    "a whip pan transition",
-    3.66
+    4.99
    ],
    [
     "a stick swung fast through the air",
-    3.42
+    4.14
+   ],
+   [
+    "a quick swipe",
+    3.67
    ]
   ],
   "audioset": [
    [
     "Zipper (clothing)",
-    0.15
+    0.16
    ],
    [
     "Sound effect",
-    0.1
+    0.11
    ],
    [
-    "Whoosh, swoosh, swish",
-    0.09
+    "Scrape",
+    0.06
    ]
   ],
-  "p_real": 0.853,
+  "p_real": 0.975,
   "real_verdict": "real or pro-produced",
-  "duration": 0.34
+  "duration": 0.3
  },
  "cam_push": {
   "meant": "свист наезда",
@@ -1862,32 +2393,32 @@
  "mus_snare": {
   "meant": "малый барабан, марш",
   "query": "a snare drum playing a march cadence",
-  "z": 4.93,
+  "z": 4.88,
   "verdict": "strong",
-  "p_vs_alts": 0.987,
+  "p_vs_alts": 0.985,
   "all_z": {
-   "a snare drum playing a march cadence": 4.93,
-   "a military snare drum": 4.75,
-   "a marching drum beat": 3.18
+   "a snare drum playing a march cadence": 4.88,
+   "a military snare drum": 4.7,
+   "a marching drum beat": 3.15
   },
   "sounds_like": [
    [
     "a snare hit",
-    4.19
+    4.16
    ],
    [
     "a rising riser building tension",
-    2.25
+    2.27
    ],
    [
     "a big braam",
-    2.0
+    2.01
    ]
   ],
   "audioset": [
    [
     "Drum",
-    0.78
+    0.77
    ],
    [
     "Music",
@@ -1895,10 +2426,10 @@
    ],
    [
     "Snare drum",
-    0.67
+    0.64
    ]
   ],
-  "p_real": 0.327,
+  "p_real": 0.326,
   "real_verdict": "likely code-synthesized",
   "duration": 68.447
  },

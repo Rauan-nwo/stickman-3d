@@ -1,0 +1,18 @@
+{
+ "anchor": 0.0575,
+ "origin": "elevenlabs",
+ "trim": [
+  1.17,
+  1.59
+ ],
+ "process": {
+  "fo": 0.1
+ },
+ "source": {
+  "generator": "ElevenLabs Sound Effects API",
+  "prompt": "A large company of soldiers marching in perfect unison across a wooden bridge: heavy boots hitting hollow planks together in a steady beat, leather and gear rattling, wood flexing. Close, weighty, no music, no voices.",
+  "duration_seconds": 3.0,
+  "file": "gen/march_wood_2f66ac0d.wav",
+  "date": "2026-11-15 15:16"
+ }
+}

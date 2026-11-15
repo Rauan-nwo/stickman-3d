@@ -1,0 +1,22 @@
+{
+ "anchor": 0.0395,
+ "origin": "recording",
+ "trim": [
+  2.06,
+  2.41
+ ],
+ "process": {
+  "gorge": -18,
+  "fo": 0.1
+ },
+ "source": {
+  "title": "Chain Rattling - 2",
+  "creator": "Roxis_Boy",
+  "url": "https://freesound.org/people/Roxis_Boy/sounds/401621",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/401/401621_7516983-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "8b05e6f9-6db0-422d-88ac-c406fa8823ff"
+ }
+}

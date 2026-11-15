@@ -1,0 +1,19 @@
+{
+ "anchor": 0.0005,
+ "origin": "elevenlabs",
+ "trim": [
+  0.0,
+  0.6
+ ],
+ "process": {
+  "fi": 0.003,
+  "fo": 0.15
+ },
+ "source": {
+  "generator": "ElevenLabs Sound Effects API",
+  "prompt": "Several men gasp in surprise at once, a short collective sharp intake of breath, no words.",
+  "duration_seconds": 1.0,
+  "file": "gen/gasp_44572bc4.wav",
+  "date": "2026-11-15 15:16"
+ }
+}

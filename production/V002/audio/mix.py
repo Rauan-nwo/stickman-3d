@@ -246,6 +246,8 @@ def main(argv=None):
         dl = meta.get("duck_lines", {"music_db": -12.0, "sfx_db": -8.0})
         dm = np.minimum(dm, duck_curve(n, lines, dl["music_db"], attack=0.06, release=0.15))
         ds = np.minimum(ds, duck_curve(n, lines, dl["sfx_db"], attack=0.06, release=0.15))
+    for sd_ in meta.get("spot_ducks", []):                  # one effect gets the room: the music steps down under it
+        dm = dm + duck_curve(n, [[sd_["t0"], sd_["t1"]]], sd_["music_db"], attack=0.12, release=0.4)
     mus_d, sfx_d = music * lin(dm)[:, None], sfx * lin(ds)[:, None]
     pre = np.stack([v, v], axis=1) + mus_d + sfx_d
     if a.stems:

@@ -31,6 +31,7 @@ DL, BANK, OV = HERE / "sourcing" / "dl", HERE / "sourcing" / "bank", HERE / "ove
 PICKS = {}
 # stem: (bank id as rendered in sourcing/bank/<stem>/, options)
 BANKS = {}
+GENS = {}
 
 exec((HERE / "picks.py").read_text(encoding="utf-8"))       # PICKS / BANKS live in picks.py (our own file)
 
@@ -54,6 +55,10 @@ def process(x, o):
         x = x / (e / np.median(e))[:, None]
     if o.get("lp"):
         x = lp(x, o["lp"], 1)
+    if o.get("ramp_db"):                                     # falling away: level and brightness drop along the sound
+        u = np.linspace(0, 1, len(x))[:, None]
+        dark = lp(x, o.get("lp_end", 1500), 1)
+        x = (x * (1 - u) + dark * u) * lin(o["ramp_db"] * u)
     x = fade(x, o.get("fi", 0.003), o.get("fo", min(0.08, 0.15 * len(x) / SR)))
     if o.get("gorge") is not None:
         x = room(x.mean(axis=1), irs()["gorge"], o["gorge"], o.get("pan", 0.0))
@@ -122,6 +127,21 @@ def main():
         json.dump(meta, open(OV / (stem + ".json"), "w", encoding="utf-8"), indent=1, ensure_ascii=False)
         rows.append((stem, "earshot-bank", bid, len(x) / SR))
 
+    GEN = HERE / "gen"
+    glog = json.load(open(GEN / "gen_log.json", encoding="utf-8")) if (GEN / "gen_log.json").exists() else []
+    gen_rows = []
+    for stem, (pref, t0, t1, o) in GENS.items():
+        e = next(q for q in glog if q["name"] == pref)
+        x = decode(GEN / e["wav"])
+        x = process(x[int(t0 * SR):int(t1 * SR)], o)
+        write_wav(OV / (stem + ".wav"), x)
+        meta = {"anchor": round(anchor_of(x, o), 4), "origin": "elevenlabs", "trim": [t0, t1], "process": o,
+                "source": {"generator": "ElevenLabs Sound Effects API", "prompt": e["prompt"], "duration_seconds": e["duration_seconds"],
+                           "file": "gen/" + e["wav"], "date": e["date"]}}
+        json.dump(meta, open(OV / (stem + ".json"), "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+        rows.append((stem, "elevenlabs", pref, len(x) / SR))
+        gen_rows.append("| %s | `gen/%s` (%.2f–%.2f с) | %s |" % (stem, e["wav"], t0, t1, e["prompt"].replace("|", "/")))
+
     L = ["# V002 — источники звука (CREDITS)", "",
          "Все записи найдены через Openverse API (`https://api.openverse.org/v1/audio/`, фильтр `license=cc0,pdm`) и взяты",
          "только с лицензией **CC0 1.0** или **Public Domain Mark** — без обязательной атрибуции и без запрета на",
@@ -140,6 +160,11 @@ def main():
     for stem, (bid, o) in BANKS.items():
         ft = fits.get(bid)
         L.append("| %s | `%s` | %s |" % (stem, bid, "%s — %s, %s" % (ft["title"], ft["creator"], ft["url"]) if ft else "—"))
+    L += ["", "## Сгенерировано ElevenLabs Sound Effects", "",
+          "Не записи: звук сгенерирован по текстовому описанию (`engine/tools/sfx_eleven.py`, журнал `gen/gen_log.json`).",
+          "**Условия использования**: ключ бесплатного тарифа. Разрешает ли он коммерческое использование без указания",
+          "ElevenLabs — не подтверждено (см. `SFX_SOURCES.md`); до публикации на монетизируемом канале это надо закрыть.", "",
+          "| Стем | Файл и обрезка | Описание (prompt) |", "|---|---|---|"] + gen_rows
     L += ["", "## Голос", "", "Диктор, полковник и генерал — синтез ElevenLabs (см. `cast.json`), не входит в этот список.", ""]
     (HERE / "CREDITS.md").write_text("\n".join(L), encoding="utf-8")
     for r in rows:

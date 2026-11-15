@@ -1,0 +1,19 @@
+{
+ "anchor": 0.0959,
+ "origin": "elevenlabs",
+ "trim": [
+  0.0,
+  0.5
+ ],
+ "process": {
+  "fi": 0.005,
+  "fo": 0.08
+ },
+ "source": {
+  "generator": "ElevenLabs Sound Effects API",
+  "prompt": "A calm young man says a short smug hm, closed mouth, satisfied.",
+  "duration_seconds": 0.6,
+  "file": "gen/captain_hm_a91ed050.wav",
+  "date": "2026-11-15 15:17"
+ }
+}

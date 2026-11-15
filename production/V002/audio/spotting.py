@@ -151,6 +151,24 @@ def rows_for(sc):
     add(t(17, "gorge") + 0.12, F, "капитан отряхивает руки", "два хлопка ладоней", ["hand_pat"])
     add(sc.t_end, H, "конец последнего слова", "жёсткий стоп всего звука", ["__stop__"])
 
+    V_ = "голоса фигурок"
+    add(sc.span(1, "them")[0] + 0.9 * (sc.span(1, "them")[1] - sc.span(1, "them")[0]), V_, "капитан доволен собой", "спокойное «хм»", ["captain_hm"])
+    add(t(2, "colonel") + 0.1, V_, "полковник хватает за воротник, скалится", "злой рык сквозь зубы", ["colonel_grunt"])
+    add(t(2, "six") + 0.15, V_, "колонна в куче", "растерянный гул голосов", ["murmur"])
+    add(t(5, "they"), V_, "синие бредут по мосту", "бормотание + третий слой шагов и амуниции", ["murmur", "shuffle_gen"], span=(t(5, "So"), sc.span(5)[1]))
+    add(t(6, "On") + 0.1, F, "знамёна на гребне", "хлопанье ткани (запись)", ["flag_flap"])
+    add(t(6, "That's") - 0.22, F, "труба вскидывается к глазу", "щелчок трубы", ["spyglass_click"])
+    add(t(6, "bag") + 0.2, V_, "в трубе: синие в замешательстве", "растерянные голоса", ["murmur"])
+    add(t(9, "bounce") + 0.05, V_, "ряд подпрыгивает на настиле", "общий вдох-ах", ["gasp"])
+    add(t(13, "pushes"), V_, "ребёнок на качелях", "хихиканье (запись)", ["kid_giggle"])
+    add(TB + 0.18, V_, "всех подбрасывает", "общий крик", ["crowd_scream"])
+    add(t(17, "throws"), F, "тела, шляпы и барабаны в воздухе", "шум воздуха, вопли", ["bodies_fall"])
+    add(t(10, "Some"), F, "настил стонет под шагом", "стон дерева под ритмичной нагрузкой", ["bridge_groan"], span=(t(10, "Some"), g["t_you"]))
+    add(t(16, "But") + 0.3, F, "мост на пределе", "стон дерева + скрип цепи + металлические щелчки", ["bridge_groan", "metal_ping"], span=(t(16, "But"), t_drop))
+    add(t(5, "six"), A, "камера взлетает над мостом", "ветер усиливается", ["wind_gust"])
+    add(t(8, "in"), A, "вид сверху", "ветер усиливается", ["wind_gust"])
+    add(t(17, "into"), A, "вид сверху на реку", "ветер усиливается", ["wind_gust"])
+
     # film.js rule: a whip survives only if >= 1 s after the previous surviving one (counted from the hook horizon)
     last = t(1, "river") + 0.12 + 0.62
     for r in R:
@@ -180,7 +198,7 @@ def hit(cues, r):
         if r["span"]:
             if r["span"][0] - TOL <= c["time"] <= r["span"][1] + TOL:
                 out.append((0.0, nm))
-        elif abs(c["time"] - r["t"]) <= TOL:
+        elif abs(c["time"] - r["t"]) <= TOL + 0.001:
             out.append((c["time"] - r["t"], nm))
     return out
 
@@ -210,7 +228,7 @@ def main():
          "«Звук» = в `cues.json` есть звук названных стемов в ±40 мс от события (для групп шагов и фонов — внутри отрезка).",
          "«Был» = то же по `sourcing/cues_prepass.json` (состояние до этого прохода). «Кадр» = расстояние от события до",
          "самого сильного всплеска межкадровой разницы рендера в ±0.2 с (для склеек и ударов; всплеск = больше удвоенного движения внутри плана). Кадр = 33 мс, поэтому ±33 мс — это «тот же кадр».", "",
-         "| t, с | Слой | Что в кадре | Звук | Стемы | Звук, мс | Был | Кадр, мс |", "|---|---|---|---|---|---|---|---|"]
+         "| t, с | Слой | Что в кадре | Что оживляет момент (звук) | Стемы | Звук, мс | Был | Кадр, мс |", "|---|---|---|---|---|---|---|---|"]
     rep = []
     for r in rows:
         if r.get("plain_cut"):
@@ -242,8 +260,26 @@ def main():
                     "err_ms": None if (not ok or r["span"]) else round(min(h1, key=lambda x: abs(x[0]))[0] * 1000, 1), "frame_ms": vis})
     L += ["", "Итого: событий со звуком **%d**, из них со звуком в допуске **%d**, не было звука до этого прохода: **%d**. Стыков без переброса (обычные склейки): %d."
           % (n_need, n_ok, n_new, sum(1 for r in rows if r.get("plain_cut"))), ""]
+    # no shot may be carried by the music alone: every shot of the render must hold a non-ambience effect
+    cf = HERE.parent / "out" / "raw.cues.json"
+    bare = []
+    if cf.exists():
+        cuts = [0.0] + sorted(json.load(open(cf, encoding="utf-8"))) + [sc.t_end]
+        L += ["## Планы: звук в каждом", "",
+              "Границы планов — `out/raw.cues.json`. Считаются эффекты (не музыка и не амбиенс), которые звучат внутри плана.", "",
+              "| План, с | Эффектов | Какие |", "|---|---|---|"]
+        for a_, b_ in zip(cuts[:-1], cuts[1:]):
+            if b_ - a_ < 0.05:
+                continue
+            inside = sorted({Path(c["file"]).stem for c in now if c["track"] == "sfx" and not c["note"].startswith("AMBIENCE")
+                             and c["time"] < b_ - 0.02 and c["time"] + c.get("length", 0.3) > a_ + 0.02})
+            if not inside:
+                bare.append((round(a_, 2), round(b_, 2)))
+            L.append("| %.2f–%.2f | %d | %s |" % (a_, b_, len(inside), (", ".join(inside[:9]) + (" …" if len(inside) > 9 else "")) if inside else "**НЕТ**"))
+        L += ["", "Планов без эффектов: **%d**." % len(bare), ""]
     (HERE / "SPOTTING.md").write_text("\n".join(L), encoding="utf-8")
-    json.dump({"events": n_need, "with_cue": n_ok, "new_in_this_pass": n_new, "rows": rep}, open(HERE / "spotting_report.json", "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    json.dump({"events": n_need, "with_cue": n_ok, "new_in_this_pass": n_new, "shots_without_effects": bare, "rows": rep}, open(HERE / "spotting_report.json", "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    print("shots without effects:", bare)
     print("events %d | with cue %d | had none before %d | missing: %s" % (n_need, n_ok, n_new, [(round(r["t"], 2), r["stems"]) for r in rows if not r.get("plain_cut") and r["stems"] != ["__stop__"] and not hit(now, r)]))
 
 

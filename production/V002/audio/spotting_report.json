@@ -1,7 +1,8 @@
 {
- "events": 103,
- "with_cue": 103,
- "new_in_this_pass": 29,
+ "events": 119,
+ "with_cue": 119,
+ "new_in_this_pass": 45,
+ "shots_without_effects": [],
  "rows": [
   {
    "t": 0.0,
@@ -74,10 +75,30 @@
    "frame_ms": "—"
   },
   {
+   "t": 3.551,
+   "layer": "голоса фигурок",
+   "seen": "капитан доволен собой",
+   "sound": "спокойное «хм»",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
    "t": 4.007,
    "layer": "фоли",
    "seen": "рука полковника хватает воротник",
    "sound": "ткань: хватка",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 4.107,
+   "layer": "голоса фигурок",
+   "seen": "полковник хватает за воротник, скалится",
+   "sound": "злой рык сквозь зубы",
    "has_cue": true,
    "had_before": false,
    "err_ms": 0.0,
@@ -110,7 +131,7 @@
    "sound": "свист камеры",
    "has_cue": true,
    "had_before": true,
-   "err_ms": 0.0,
+   "err_ms": -40.0,
    "frame_ms": "+30"
   },
   {
@@ -139,13 +160,23 @@
    "frame_ms": "—"
   },
   {
+   "t": 6.515,
+   "layer": "голоса фигурок",
+   "seen": "колонна в куче",
+   "sound": "растерянный гул голосов",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": -0.0,
+   "frame_ms": "—"
+  },
+  {
    "t": 7.264,
    "layer": "переход",
    "seen": "переброс + наезд на рот полковника",
    "sound": "свист камеры",
    "has_cue": true,
    "had_before": true,
-   "err_ms": 0.0,
+   "err_ms": -40.0,
    "frame_ms": "+69"
   },
   {
@@ -155,7 +186,7 @@
    "sound": "свист камеры",
    "has_cue": true,
    "had_before": true,
-   "err_ms": 0.0,
+   "err_ms": -40.0,
    "frame_ms": "+14"
   },
   {
@@ -185,7 +216,7 @@
    "sound": "свист камеры",
    "has_cue": true,
    "had_before": true,
-   "err_ms": 0.0,
+   "err_ms": -40.0,
    "frame_ms": "+25"
   },
   {
@@ -230,7 +261,7 @@
    "sound": "свист камеры",
    "has_cue": true,
    "had_before": true,
-   "err_ms": 0.0,
+   "err_ms": -40.0,
    "frame_ms": "+33"
   },
   {
@@ -250,7 +281,7 @@
    "sound": "свист камеры",
    "has_cue": true,
    "had_before": true,
-   "err_ms": 0.0,
+   "err_ms": -40.0,
    "frame_ms": "+202"
   },
   {
@@ -264,14 +295,34 @@
    "frame_ms": "—"
   },
   {
+   "t": 16.556,
+   "layer": "голоса фигурок",
+   "seen": "синие бредут по мосту",
+   "sound": "бормотание + третий слой шагов и амуниции",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": null,
+   "frame_ms": "—"
+  },
+  {
    "t": 17.57,
    "layer": "переход",
    "seen": "переброс: кран над мостом",
    "sound": "свист камеры",
    "has_cue": true,
    "had_before": true,
-   "err_ms": 0.0,
+   "err_ms": -40.0,
    "frame_ms": "-37"
+  },
+  {
+   "t": 17.57,
+   "layer": "амбиенс",
+   "seen": "камера взлетает над мостом",
+   "sound": "ветер усиливается",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
   },
   {
    "t": 18.418,
@@ -299,13 +350,23 @@
    "frame_ms": "—"
   },
   {
+   "t": 19.65,
+   "layer": "фоли",
+   "seen": "знамёна на гребне",
+   "sound": "хлопанье ткани (запись)",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": -0.0,
+   "frame_ms": "—"
+  },
+  {
    "t": 20.419,
    "layer": "переход",
    "seen": "переброс на лицо генерала",
    "sound": "свист камеры",
    "has_cue": true,
    "had_before": true,
-   "err_ms": 0.0,
+   "err_ms": -40.0,
    "frame_ms": "+81"
   },
   {
@@ -323,6 +384,16 @@
    "layer": "фоли",
    "seen": "адъютант смеётся рядом",
    "sound": "второй смех (запись)",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 22.35,
+   "layer": "фоли",
+   "seen": "труба вскидывается к глазу",
+   "sound": "щелчок трубы",
    "has_cue": true,
    "had_before": false,
    "err_ms": 0.0,
@@ -355,6 +426,16 @@
    "sound": "сбивчивые шаги",
    "has_cue": true,
    "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 24.197,
+   "layer": "голоса фигурок",
+   "seen": "в трубе: синие в замешательстве",
+   "sound": "растерянные голоса",
+   "has_cue": true,
+   "had_before": false,
    "err_ms": 0.0,
    "frame_ms": "—"
   },
@@ -395,7 +476,7 @@
    "sound": "свист камеры",
    "has_cue": true,
    "had_before": true,
-   "err_ms": 0.0,
+   "err_ms": -40.0,
    "frame_ms": "нет всплеска"
   },
   {
@@ -415,7 +496,7 @@
    "sound": "свист камеры",
    "has_cue": true,
    "had_before": true,
-   "err_ms": 0.0,
+   "err_ms": -40.0,
    "frame_ms": "+13"
   },
   {
@@ -455,8 +536,18 @@
    "sound": "свист камеры",
    "has_cue": true,
    "had_before": true,
-   "err_ms": 0.0,
+   "err_ms": -40.0,
    "frame_ms": "+2"
+  },
+  {
+   "t": 31.598,
+   "layer": "амбиенс",
+   "seen": "вид сверху",
+   "sound": "ветер усиливается",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
   },
   {
    "t": 33.016,
@@ -545,8 +636,18 @@
    "sound": "свист камеры",
    "has_cue": true,
    "had_before": true,
-   "err_ms": 0.0,
+   "err_ms": -40.0,
    "frame_ms": "+64"
+  },
+  {
+   "t": 36.586,
+   "layer": "голоса фигурок",
+   "seen": "ряд подпрыгивает на настиле",
+   "sound": "общий вдох-ах",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
   },
   {
    "t": 37.488,
@@ -574,6 +675,16 @@
    "frame_ms": "—"
   },
   {
+   "t": 38.692,
+   "layer": "фоли",
+   "seen": "настил стонет под шагом",
+   "sound": "стон дерева под ритмичной нагрузкой",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": null,
+   "frame_ms": "—"
+  },
+  {
    "t": 38.941,
    "layer": "фоли",
    "seen": "солдат свистит, нотки",
@@ -590,7 +701,7 @@
    "sound": "свист камеры",
    "has_cue": true,
    "had_before": true,
-   "err_ms": 0.0,
+   "err_ms": -40.0,
    "frame_ms": "+19"
   },
   {
@@ -630,7 +741,7 @@
    "sound": "свист камеры",
    "has_cue": true,
    "had_before": true,
-   "err_ms": 0.0,
+   "err_ms": -40.0,
    "frame_ms": "+73"
   },
   {
@@ -700,7 +811,7 @@
    "sound": "свист камеры",
    "has_cue": true,
    "had_before": true,
-   "err_ms": 0.0,
+   "err_ms": -40.0,
    "frame_ms": "+49"
   },
   {
@@ -740,6 +851,16 @@
    "sound": "тычок + скрип верёвки",
    "has_cue": true,
    "had_before": true,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
+   "t": 49.212,
+   "layer": "голоса фигурок",
+   "seen": "ребёнок на качелях",
+   "sound": "хихиканье (запись)",
+   "has_cue": true,
+   "had_before": false,
    "err_ms": 0.0,
    "frame_ms": "—"
   },
@@ -830,7 +951,7 @@
    "sound": "свист камеры",
    "has_cue": true,
    "had_before": true,
-   "err_ms": 0.0,
+   "err_ms": -40.0,
    "frame_ms": "+6"
   },
   {
@@ -860,7 +981,7 @@
    "sound": "свист камеры",
    "has_cue": true,
    "had_before": true,
-   "err_ms": 0.0,
+   "err_ms": -40.0,
    "frame_ms": "+15"
   },
   {
@@ -889,6 +1010,16 @@
    "frame_ms": "—"
   },
   {
+   "t": 60.828,
+   "layer": "фоли",
+   "seen": "мост на пределе",
+   "sound": "стон дерева + скрип цепи + металлические щелчки",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": null,
+   "frame_ms": "—"
+  },
+  {
    "t": 62.286,
    "layer": "фоли",
    "seen": "цепи растягиваются",
@@ -905,7 +1036,7 @@
    "sound": "свист камеры",
    "has_cue": true,
    "had_before": true,
-   "err_ms": 0.0,
+   "err_ms": -40.0,
    "frame_ms": "+26"
   },
   {
@@ -1009,6 +1140,16 @@
    "frame_ms": "+17"
   },
   {
+   "t": 65.896,
+   "layer": "голоса фигурок",
+   "seen": "всех подбрасывает",
+   "sound": "общий крик",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
    "t": 66.605,
    "layer": "фоли",
    "seen": "небо в фигурках, шляпах и барабанах",
@@ -1019,13 +1160,23 @@
    "frame_ms": "—"
   },
   {
+   "t": 66.605,
+   "layer": "фоли",
+   "seen": "тела, шляпы и барабаны в воздухе",
+   "sound": "шум воздуха, вопли",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
+   "frame_ms": "—"
+  },
+  {
    "t": 67.567,
    "layer": "переход",
    "seen": "переброс: вид сверху на реку",
    "sound": "свист камеры",
    "has_cue": true,
    "had_before": true,
-   "err_ms": 0.0,
+   "err_ms": -40.0,
    "frame_ms": "+66"
   },
   {
@@ -1036,6 +1187,16 @@
    "has_cue": true,
    "had_before": true,
    "err_ms": null,
+   "frame_ms": "—"
+  },
+  {
+   "t": 67.567,
+   "layer": "амбиенс",
+   "seen": "вид сверху на реку",
+   "sound": "ветер усиливается",
+   "has_cue": true,
+   "had_before": false,
+   "err_ms": 0.0,
    "frame_ms": "—"
   },
   {

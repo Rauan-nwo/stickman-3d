@@ -1,0 +1,18 @@
+{
+ "anchor": 0.0551,
+ "origin": "elevenlabs",
+ "trim": [
+  1.01,
+  1.45
+ ],
+ "process": {
+  "fo": 0.1
+ },
+ "source": {
+  "generator": "ElevenLabs Sound Effects API",
+  "prompt": "Hundreds of soldiers marching in step on dry sandy ground: deep unison thuds of boots, grit crunching, belts and muskets rattling, steady rhythm, outdoors, no music, no voices.",
+  "duration_seconds": 2.5,
+  "file": "gen/march_sand_8d6be70b.wav",
+  "date": "2026-11-15 15:16"
+ }
+}

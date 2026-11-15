@@ -1,0 +1,20 @@
+{
+ "anchor": 0.0023,
+ "origin": "elevenlabs",
+ "trim": [
+  0.03,
+  1.1
+ ],
+ "process": {
+  "ramp_db": -10,
+  "lp_end": 2500,
+  "fo": 0.2
+ },
+ "source": {
+  "generator": "ElevenLabs Sound Effects API",
+  "prompt": "A hollow wooden drum tumbling and bouncing down a rocky slope, wooden knocks and rattling drumsticks, getting quieter as it falls away. No splash, no music.",
+  "duration_seconds": 2.0,
+  "file": "gen/drum_tumble_only_c951de52.wav",
+  "date": "2026-11-15 15:11"
+ }
+}

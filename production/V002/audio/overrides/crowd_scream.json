@@ -1,0 +1,19 @@
+{
+ "anchor": 0.0178,
+ "origin": "elevenlabs",
+ "trim": [
+  0.0,
+  2.0
+ ],
+ "process": {
+  "fi": 0.02,
+  "fo": 0.5
+ },
+ "source": {
+  "generator": "ElevenLabs Sound Effects API",
+  "prompt": "A large group of men screaming in panic as they are thrown high into the air, comic collective yell fading as they fly away. No music.",
+  "duration_seconds": 2.0,
+  "file": "gen/crowd_scream_0d2eb1bd.wav",
+  "date": "2026-11-15 15:16"
+ }
+}

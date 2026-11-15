@@ -1,0 +1,23 @@
+{
+ "anchor": 0.2461,
+ "origin": "recording",
+ "trim": [
+  6.42,
+  7.84
+ ],
+ "process": {
+  "hp": 200,
+  "fi": 0.05,
+  "fo": 0.3
+ },
+ "source": {
+  "title": "Clothing rustles",
+  "creator": "trettfilms",
+  "url": "https://freesound.org/people/trettfilms/sounds/128233",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "file_url": "https://cdn.freesound.org/previews/128/128233_151842-hq.mp3",
+  "via": "Openverse API (freesound)",
+  "openverse_id": "e484e2f1-c49e-40b4-a415-a3c1090aa6b5"
+ }
+}

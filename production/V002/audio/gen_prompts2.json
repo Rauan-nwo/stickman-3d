@@ -1,0 +1,12 @@
+[
+ {"name": "march_wood", "dur": 3.0, "influence": 0.6, "prompt": "A large company of soldiers marching in perfect unison across a wooden bridge: heavy boots hitting hollow planks together in a steady beat, leather and gear rattling, wood flexing. Close, weighty, no music, no voices."},
+ {"name": "march_sand", "dur": 2.5, "influence": 0.6, "prompt": "Hundreds of soldiers marching in step on dry sandy ground: deep unison thuds of boots, grit crunching, belts and muskets rattling, steady rhythm, outdoors, no music, no voices."},
+ {"name": "shuffle_wood", "dur": 3.0, "influence": 0.6, "prompt": "A crowd of men walking out of step across a wooden bridge: many uneven footsteps and scuffs on planks, bumping into each other, gear clinking, low confused muttering. Disorderly, no music."},
+ {"name": "crowd_scream", "dur": 2.0, "influence": 0.5, "prompt": "A large group of men screaming in panic as they are thrown high into the air, comic collective yell fading as they fly away. No music."},
+ {"name": "murmur", "dur": 2.0, "influence": 0.5, "prompt": "A group of soldiers murmuring in confusion, puzzled low voices, no clear words, short."},
+ {"name": "colonel_grunt", "dur": 1.0, "influence": 0.6, "prompt": "An angry older man gives one short furious growl, snarling grunt through clenched teeth, no words."},
+ {"name": "gasp", "dur": 1.0, "influence": 0.5, "prompt": "Several men gasp in surprise at once, a short collective sharp intake of breath, no words."},
+ {"name": "captain_hm", "dur": 0.6, "influence": 0.6, "prompt": "A calm young man says a short smug hm, closed mouth, satisfied."},
+ {"name": "aide_giggle", "dur": 1.2, "influence": 0.5, "prompt": "A young man giggling nervously in a high voice, short snickering laugh, no words."},
+ {"name": "metal_ping", "dur": 1.0, "influence": 0.6, "prompt": "A stressed iron chain link gives one sharp metallic ping and tick under tension, short ringing, no music."}
+]

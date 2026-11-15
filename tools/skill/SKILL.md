@@ -32,7 +32,7 @@ description: Полный продакшн YouTube Shorts в стиле «Сти
 | Постановка | `staging-and-camera.md` |
 | Вид героев и мира | `style-bible.md` |
 | Сборка | `engine-README.md`, пример `assets/example-V002/film.js` |
-| Звук | `sound-design.md` |
+| Звук | `sound-design.md`, откуда брать звуки — `sfx-sources.md` |
 | Перед показом — всегда | `quality-gates.md` |
 | Порядок этапов и уроки | `production-workflow.md` |
 

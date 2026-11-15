@@ -1,23 +1,19 @@
 {
- "anchor": 0.1516,
- "origin": "recording",
+ "anchor": 0.0876,
+ "origin": "elevenlabs",
  "trim": [
-  1.01,
-  2.67
+  1.7,
+  3.95
  ],
  "process": {
-  "lp": 6000,
-  "gorge": -9,
-  "pan": -0.1
+  "fi": 0.002,
+  "fo": 0.5
  },
  "source": {
-  "title": "rock splash.wav",
-  "creator": "13GPanska_Kubinova_Karolina",
-  "url": "https://freesound.org/people/13GPanska_Kubinova_Karolina/sounds/378262",
-  "licence": "CC0 1.0",
-  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-  "file_url": "https://cdn.freesound.org/previews/378/378262_7019769-hq.mp3",
-  "via": "Openverse API (freesound)",
-  "openverse_id": "56bb430b-d00b-48e1-bec7-3dcd06881a05"
+  "generator": "ElevenLabs Sound Effects API",
+  "prompt": "A wooden marching drum is thrown off a high cliff: a quick whoosh, then the hollow drum tumbles and rattles down the rocks getting quieter and farther away, a short pause of air, then a big heavy splash into a river far below with spray and a watery tail. No music.",
+  "duration_seconds": 4.0,
+  "file": "gen/drum_fall_a_39024f86.wav",
+  "date": "2026-11-15 15:10"
  }
 }

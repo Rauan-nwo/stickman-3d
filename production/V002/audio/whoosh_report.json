@@ -1,13 +1,13 @@
 {
  "ours_at_whooshes": {
   "n": 23,
-  "median_z": 1.28,
-  "share_z_ge_2": 0.22,
+  "median_z": 1.33,
+  "share_z_ge_2": 0.04,
   "share_z_ge_2.5": 0.0
  },
  "ours_control": {
   "n": 22,
-  "median_z": 0.98,
+  "median_z": 0.94,
   "share_z_ge_2": 0.05,
   "share_z_ge_2.5": 0.0
  },

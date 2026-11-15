@@ -38,6 +38,9 @@ def main():
     hi = signal.butter(4, [1500, 8000], "band", fs=SR, output="sos")
     vb, bb = signal.sosfilt(sp, v), signal.sosfilt(sp, m + s)
     rep = {"sentences": [], "lines": [], "gaps": [], "whooshes": []}
+    act = np.zeros(n, bool)
+    for w in words:
+        act[int(w["start"] * SR):int(w["end"] * SR)] = True
 
     def snr(a, b):
         i, j = int(a * SR), int(b * SR)
@@ -81,6 +84,18 @@ def main():
         t = w_["t"]
         w_["fx_hi50_minus_voice_hi_median_db"] = round(max(db(shs[int((t + d) * SR):int((t + d + 0.05) * SR)]) for d in np.arange(-0.1, 0.1, 0.01)) - vhm, 1)
     rep["whoosh_fx_vs_voice_hi_db"] = round(float(np.median([w_["fx_hi50_minus_voice_hi_median_db"] for w_ in rep["whooshes"]])), 1) if rep["whooshes"] else None
+    # the splash in the hook: loudest 50 ms of the effects layer in the second after the splash cue, against the voice
+    spl = next((c_ for c_ in cues["cues"] if c_["file"].endswith("splash_distant.wav")), None)
+    if spl:
+        t = spl["time"]
+        pk = max(db(s[int((t + d_) * SR):int((t + d_ + 0.05) * SR)]) for d_ in np.arange(0.0, 1.0, 0.01))
+        vact = db(v[act[:n]]) if act[:n].any() else -20.0
+        mus = db(m[int(t * SR):int((t + 0.8) * SR)])
+        rep["hook_splash"] = {"t": round(t, 3), "splash_peak50_minus_voice_rms_db": round(pk - vact, 1),
+                              "splash_peak50_minus_voice_median20_db": round(pk - float(np.median([db(v[i:i + 882]) for i in range(0, n - 882, 882) if act[i]])), 1),
+                              "music_under_it_db": round(mus, 1), "music_minus_splash_db": round(mus - pk, 1)}
+        print("hook splash: peak %+.1f dB re voice RMS (%+.1f re voice median), music under it %.1f dB = %.1f dB below the splash"
+              % (rep["hook_splash"]["splash_peak50_minus_voice_rms_db"], rep["hook_splash"]["splash_peak50_minus_voice_median20_db"], mus, pk - mus))
     rep["voice_median_20ms_db"] = round(vmed, 1)
     wv = [w["hi50_minus_voice_median_db"] for w in rep["whooshes"]]
     rep["whoosh_median_db"] = round(float(np.median(wv)), 1) if wv else None

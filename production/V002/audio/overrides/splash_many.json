@@ -1,0 +1,19 @@
+{
+ "anchor": 0.0277,
+ "origin": "elevenlabs",
+ "trim": [
+  2.2,
+  3.3
+ ],
+ "process": {
+  "fi": 0.01,
+  "fo": 0.2
+ },
+ "source": {
+  "generator": "ElevenLabs Sound Effects API",
+  "prompt": "Dozens of people falling from the sky into a river: comic falling yells and wind rush, then many splashes one after another, big and small, ending with one large splash.",
+  "duration_seconds": 4.0,
+  "file": "gen/bodies_splashes_2229d03d.wav",
+  "date": "2026-11-15 15:11"
+ }
+}

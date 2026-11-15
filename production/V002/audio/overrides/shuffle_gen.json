@@ -1,0 +1,19 @@
+{
+ "anchor": 0.372,
+ "origin": "elevenlabs",
+ "trim": [
+  0.0,
+  3.0
+ ],
+ "process": {
+  "fi": 0.02,
+  "fo": 0.4
+ },
+ "source": {
+  "generator": "ElevenLabs Sound Effects API",
+  "prompt": "A crowd of men walking out of step across a wooden bridge: many uneven footsteps and scuffs on planks, bumping into each other, gear clinking, low confused muttering. Disorderly, no music.",
+  "duration_seconds": 3.0,
+  "file": "gen/shuffle_wood_420f6e6c.wav",
+  "date": "2026-11-15 15:16"
+ }
+}

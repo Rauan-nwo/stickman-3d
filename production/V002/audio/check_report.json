@@ -59,10 +59,10 @@
     "sound": "splash_distant",
     "cue": "1:river",
     "cue_time": 1.806,
-    "onset": 1.806,
-    "error_ms": -0.0,
+    "onset": 1.8062,
+    "error_ms": 0.2,
     "how": "onset",
-    "featured": false
+    "featured": true
    },
    {
     "sound": "soldiers_clatter",
@@ -150,9 +150,9 @@
    {
     "sound": "cam_whoosh_0",
     "cue": "2:drum",
-    "cue_time": 5.937,
-    "onset": 5.9356,
-    "error_ms": -1.4,
+    "cue_time": 5.897,
+    "onset": 5.9064,
+    "error_ms": 9.4,
     "how": "peak",
     "featured": false
    },
@@ -169,8 +169,8 @@
     "sound": "general_laugh",
     "cue": "6:crying",
     "cue_time": 21.277,
-    "onset": 21.2769,
-    "error_ms": -0.1,
+    "onset": 21.2771,
+    "error_ms": 0.1,
     "how": "onset",
     "featured": false
    },
@@ -187,8 +187,8 @@
     "sound": "soldiers_chuckle",
     "cue": "9:soldiers",
     "cue_time": 37.488,
-    "onset": 37.488,
-    "error_ms": 0.0,
+    "onset": 37.4897,
+    "error_ms": 1.7,
     "how": "onset",
     "featured": false
    },
@@ -336,30 +336,30 @@
    {
     "step": 1,
     "word_time": 33.016,
-    "lf_onset": 33.0139,
-    "error_ms": -2.1,
-    "lf_peak_db": -10.0
+    "lf_onset": 33.0136,
+    "error_ms": -2.4,
+    "lf_peak_db": -10.5
    },
    {
     "step": 2,
     "word_time": 33.398,
-    "lf_onset": 33.3974,
-    "error_ms": -0.6,
-    "lf_peak_db": -11.8
+    "lf_onset": 33.3972,
+    "error_ms": -0.8,
+    "lf_peak_db": -12.3
    },
    {
     "step": 3,
     "word_time": 33.739,
-    "lf_onset": 33.7369,
-    "error_ms": -2.1,
-    "lf_peak_db": -9.7
+    "lf_onset": 33.7368,
+    "error_ms": -2.2,
+    "lf_peak_db": -10.4
    },
    {
     "step": 4,
     "word_time": 34.039,
     "lf_onset": 34.0371,
     "error_ms": -1.9,
-    "lf_peak_db": -10.4
+    "lf_peak_db": -10.5
    }
   ]
  },
@@ -371,13 +371,13 @@
   },
   "sfx.wav": {
    "file_length_s": 68.447,
-   "last_audible_sample_s": 68.4468,
+   "last_audible_sample_s": 68.4469,
    "end_of_last_word_s": 68.447
   }
  },
  "clipping": {
-  "files": 91,
-  "max_peak_dbfs": -1.0,
+  "files": 116,
+  "max_peak_dbfs": -1.01,
   "clipped_files": [],
   "list": [
    {
@@ -387,7 +387,7 @@
    },
    {
     "file": "sfx.wav",
-    "peak_dbfs": -1.0,
+    "peak_dbfs": -1.01,
     "samples_at_full_scale": 0
    },
    {
@@ -436,12 +436,47 @@
     "samples_at_full_scale": 0
    },
    {
+    "file": "stems/bodies_fall.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
     "file": "stems/bolt_ping.wav",
     "peak_dbfs": -3.0,
     "samples_at_full_scale": 0
    },
    {
     "file": "stems/boot_41_slowmo.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/boot_wood_0.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/boot_wood_1.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/boot_wood_2.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/boot_wood_3.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/boot_wood_4.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/boot_wood_5.wav",
     "peak_dbfs": -3.0,
     "samples_at_full_scale": 0
    },
@@ -531,6 +566,11 @@
     "samples_at_full_scale": 0
    },
    {
+    "file": "stems/bridge_groan.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
     "file": "stems/bridge_rumble.wav",
     "peak_dbfs": -3.0,
     "samples_at_full_scale": 0
@@ -566,12 +606,22 @@
     "samples_at_full_scale": 0
    },
    {
+    "file": "stems/captain_hm.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
     "file": "stems/chain_clink.wav",
     "peak_dbfs": -3.0,
     "samples_at_full_scale": 0
    },
    {
     "file": "stems/chain_creak.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/chain_tick.wav",
     "peak_dbfs": -3.0,
     "samples_at_full_scale": 0
    },
@@ -591,6 +641,16 @@
     "samples_at_full_scale": 0
    },
    {
+    "file": "stems/colonel_grunt.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/crowd_scream.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
     "file": "stems/drum_plop.wav",
     "peak_dbfs": -3.0,
     "samples_at_full_scale": 0
@@ -602,6 +662,16 @@
    },
    {
     "file": "stems/falling_whistle.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/flag_flap.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/gasp.wav",
     "peak_dbfs": -3.0,
     "samples_at_full_scale": 0
    },
@@ -626,12 +696,27 @@
     "samples_at_full_scale": 0
    },
    {
+    "file": "stems/kid_giggle.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
     "file": "stems/kid_squeal.wav",
     "peak_dbfs": -3.0,
     "samples_at_full_scale": 0
    },
    {
     "file": "stems/metal_groan.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/metal_ping.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/murmur.wav",
     "peak_dbfs": -3.0,
     "samples_at_full_scale": 0
    },
@@ -726,6 +811,36 @@
     "samples_at_full_scale": 0
    },
    {
+    "file": "stems/sand_step_0.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/sand_step_1.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/sand_step_2.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/sand_step_3.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/sand_step_4.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/shuffle_gen.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
     "file": "stems/shuffle_steps.wav",
     "peak_dbfs": -3.0,
     "samples_at_full_scale": 0
@@ -781,6 +896,11 @@
     "samples_at_full_scale": 0
    },
    {
+    "file": "stems/splash_many.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
     "file": "stems/splash_small_0.wav",
     "peak_dbfs": -3.0,
     "samples_at_full_scale": 0
@@ -797,6 +917,11 @@
    },
    {
     "file": "stems/splash_small_3.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/spyglass_click.wav",
     "peak_dbfs": -3.0,
     "samples_at_full_scale": 0
    },
@@ -841,17 +966,17 @@
   "file": "audio/mix_final.wav",
   "duration_s": 68.497,
   "loudness": {
-   "I": -14.0,
-   "LRA": 1.7,
-   "TP": -2.2
-  },
-  "loudness_m4a": {
-   "I": -14.0,
+   "I": -14.1,
    "LRA": 1.7,
    "TP": -2.4
   },
+  "loudness_m4a": {
+   "I": -14.1,
+   "LRA": 1.7,
+   "TP": -2.5
+  },
   "lr_correlation": 0.954,
-  "sample_peak_dbfs": -3.03,
+  "sample_peak_dbfs": -3.21,
   "silence": {
    "window": "50 ms RMS, 10 ms hop, from 0 to the end of the last word",
    "longest_below_-40dB_s": 0.0,
@@ -862,29 +987,29 @@
    "longest_below_-40dB_20ms_window_s": 0.02,
    "percentiles_50ms_db": {
     "1": -36.1,
-    "5": -32.3,
-    "10": -29.8,
-    "25": -24.0,
-    "50": -17.6,
-    "75": -15.2,
-    "90": -13.9,
-    "99": -11.8
+    "5": -32.2,
+    "10": -29.6,
+    "25": -23.8,
+    "50": -17.7,
+    "75": -15.3,
+    "90": -14.0,
+    "99": -11.9
    }
   },
   "gaps": {
    "count": 18,
-   "median_db": -19.9,
-   "min_db": -28.6,
+   "median_db": -20.0,
+   "min_db": -28.7,
    "max_db": -17.2,
-   "inside_-20..-28": 7,
+   "inside_-20..-28": 8,
    "list": [
     {
      "after_sentence": 1,
      "between": "them | his",
      "t0": 3.58,
      "dur_s": 0.23,
-     "mean_db": -24.4,
-     "min_50ms_db": -30.3
+     "mean_db": -23.7,
+     "min_50ms_db": -29.1
     },
     {
      "after_sentence": 2,
@@ -892,14 +1017,14 @@
      "t0": 7.99,
      "dur_s": 0.22,
      "mean_db": -28.4,
-     "min_50ms_db": -33.0
+     "min_50ms_db": -33.1
     },
     {
      "after_sentence": 3,
      "between": "wants | the",
      "t0": 10.22,
      "dur_s": 0.23,
-     "mean_db": -28.6,
+     "mean_db": -28.7,
      "min_50ms_db": -34.4
     },
     {
@@ -907,8 +1032,8 @@
      "between": "life | so",
      "t0": 16.16,
      "dur_s": 0.23,
-     "mean_db": -22.9,
-     "min_50ms_db": -31.7
+     "mean_db": -23.0,
+     "min_50ms_db": -31.9
     },
     {
      "after_sentence": 5,
@@ -916,23 +1041,23 @@
      "t0": 19.32,
      "dur_s": 0.23,
      "mean_db": -20.1,
-     "min_50ms_db": -31.0
+     "min_50ms_db": -31.1
     },
     {
      "after_sentence": 6,
      "between": "marbles | his",
      "t0": 25.47,
      "dur_s": 0.22,
-     "mean_db": -18.3,
-     "min_50ms_db": -35.2
+     "mean_db": -18.4,
+     "min_50ms_db": -35.3
     },
     {
      "after_sentence": 7,
      "between": "one | so",
      "t0": 30.23,
      "dur_s": 0.23,
-     "mean_db": -21.5,
-     "min_50ms_db": -33.4
+     "mean_db": -21.6,
+     "min_50ms_db": -33.5
     },
     {
      "after_sentence": 8,
@@ -940,7 +1065,7 @@
      "t0": 32.56,
      "dur_s": 0.46,
      "mean_db": -20.0,
-     "min_50ms_db": -30.5
+     "min_50ms_db": -30.0
     },
     {
      "after_sentence": 8,
@@ -948,7 +1073,7 @@
      "t0": 34.39,
      "dur_s": 0.23,
      "mean_db": -18.9,
-     "min_50ms_db": -26.0
+     "min_50ms_db": -26.2
     },
     {
      "after_sentence": 9,
@@ -956,7 +1081,7 @@
      "t0": 38.46,
      "dur_s": 0.23,
      "mean_db": -19.3,
-     "min_50ms_db": -28.2
+     "min_50ms_db": -27.8
     },
     {
      "after_sentence": 10,
@@ -964,7 +1089,7 @@
      "t0": 40.22,
      "dur_s": 0.23,
      "mean_db": -19.6,
-     "min_50ms_db": -29.3
+     "min_50ms_db": -28.5
     },
     {
      "after_sentence": 11,
@@ -972,31 +1097,31 @@
      "t0": 42.52,
      "dur_s": 0.37,
      "mean_db": -17.2,
-     "min_50ms_db": -26.8
+     "min_50ms_db": -26.3
     },
     {
      "after_sentence": 12,
      "between": "step | ever",
      "t0": 46.56,
      "dur_s": 0.23,
-     "mean_db": -19.4,
-     "min_50ms_db": -31.5
+     "mean_db": -19.5,
+     "min_50ms_db": -31.6
     },
     {
      "after_sentence": 13,
      "between": "swing | tiny",
      "t0": 48.12,
      "dur_s": 0.73,
-     "mean_db": -27.5,
-     "min_50ms_db": -39.0
+     "mean_db": -27.6,
+     "min_50ms_db": -39.1
     },
     {
      "after_sentence": 13,
      "between": "head | a",
      "t0": 52.75,
      "dur_s": 0.23,
-     "mean_db": -19.8,
-     "min_50ms_db": -35.0
+     "mean_db": -20.0,
+     "min_50ms_db": -35.1
     },
     {
      "after_sentence": 14,
@@ -1011,32 +1136,32 @@
      "between": "noticed | but",
      "t0": 60.3,
      "dur_s": 0.23,
-     "mean_db": -19.6,
-     "min_50ms_db": -31.8
+     "mean_db": -19.5,
+     "min_50ms_db": -31.9
     },
     {
      "after_sentence": 16,
      "between": "pushes | and",
      "t0": 63.76,
      "dur_s": 0.41,
-     "mean_db": -20.4,
-     "min_50ms_db": -29.5
+     "mean_db": -20.0,
+     "min_50ms_db": -28.7
     }
    ]
   },
-  "level_under_words_db": -17.1,
+  "level_under_words_db": -17.2,
   "bands_db": {
-   "0-60": -32.8,
-   "60-120": -27.8,
-   "120-250": -23.5,
-   "250-500": -25.0,
-   "500-1000": -25.8,
-   "1000-2000": -26.8,
-   "2000-4000": -31.1,
+   "0-60": -33.7,
+   "60-120": -27.9,
+   "120-250": -23.6,
+   "250-500": -25.2,
+   "500-1000": -26.0,
+   "1000-2000": -26.7,
+   "2000-4000": -31.0,
    "4000-8000": -32.0,
-   "8000-16000": -32.5
+   "8000-16000": -32.4
   },
-  "centroid_hz": 1084
+  "centroid_hz": 1108
  },
  "reference": {
   "file": "C:/Users/velar/Downloads/How Mine Salting Worked.mp4",

@@ -1,0 +1,18 @@
+[
+ {"name": "drum_fall_a", "dur": 4.0, "influence": 0.6, "prompt": "A wooden marching drum is thrown off a high cliff: a quick whoosh, then the hollow drum tumbles and rattles down the rocks getting quieter and farther away, a short pause of air, then a big heavy splash into a river far below with spray and a watery tail. No music."},
+ {"name": "drum_fall_b", "dur": 4.0, "influence": 0.4, "prompt": "Hollow wooden drum falling into a canyon, bouncing and clattering off rock, fading with distance, silence for a moment, then one large deep water splash with echo. Foley, close perspective, no music."},
+ {"name": "splash_big_a", "dur": 3.0, "influence": 0.6, "prompt": "One big heavy object plunging into deep river water: a loud clear splash, spray falling back, bubbling watery tail. Single event, no music, no voices."},
+ {"name": "splash_big_b", "dur": 2.5, "influence": 0.4, "prompt": "Large rock dropped into a lake from height, huge deep splash with water spray and ripples settling. Single clean sound effect."},
+ {"name": "drum_tumble_only", "dur": 2.0, "influence": 0.6, "prompt": "A hollow wooden drum tumbling and bouncing down a rocky slope, wooden knocks and rattling drumsticks, getting quieter as it falls away. No splash, no music."},
+ {"name": "swing_rope", "dur": 3.0, "influence": 0.6, "prompt": "A child's rope swing hanging from a tree branch creaking slowly back and forth, rope and wood creak, outdoors, rhythmic, no voices."},
+ {"name": "chuckles", "dur": 2.0, "influence": 0.5, "prompt": "Three or four young men chuckling and snickering together, amused, short, close, no words."},
+ {"name": "general_laugh", "dur": 2.5, "influence": 0.5, "prompt": "An old pompous man laughing out loud heartily, belly laugh, wheezing with tears, comic, no words."},
+ {"name": "fife_march", "dur": 6.0, "influence": 0.6, "prompt": "Solo military fife playing a cheerful simple 18th century marching tune in D major at 88 beats per minute, dry recording, no drums, no other instruments."},
+ {"name": "bridge_groan", "dur": 4.0, "influence": 0.6, "prompt": "An old wooden suspension bridge groaning and creaking under heavy rhythmic load, timber stress, iron chains straining, slow pulses, no footsteps, no voices."},
+ {"name": "bridge_snap_a", "dur": 3.0, "influence": 0.6, "prompt": "A huge wooden bridge suddenly snapping and bucking: one massive timber crack, chains breaking with a metallic clang, deep boom, planks and debris flying. Cinematic impact, single event."},
+ {"name": "bridge_snap_b", "dur": 3.0, "influence": 0.4, "prompt": "Massive wooden structure collapse: loud splintering wood crack, heavy low impact, breaking chain, debris. Powerful, punchy, no music."},
+ {"name": "bodies_splashes", "dur": 4.0, "influence": 0.6, "prompt": "Dozens of people falling from the sky into a river: comic falling yells and wind rush, then many splashes one after another, big and small, ending with one large splash."},
+ {"name": "whoosh_tight_a", "dur": 0.6, "influence": 0.7, "prompt": "Short tight airy whoosh, fast camera whip pan transition, soft high air, no low rumble, very brief."},
+ {"name": "whoosh_tight_b", "dur": 0.6, "influence": 0.7, "prompt": "Quick light swish of air passing left to right, thin and clean, cinematic transition, under half a second."},
+ {"name": "whoosh_tight_c", "dur": 0.7, "influence": 0.7, "prompt": "Fast soft swoosh, cloth-like air movement, short, dry, no impact, no tail."}
+]

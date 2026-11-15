@@ -1,0 +1,19 @@
+{
+ "anchor": 0.1541,
+ "origin": "elevenlabs",
+ "trim": [
+  0.09,
+  3.56
+ ],
+ "process": {
+  "fi": 0.05,
+  "fo": 0.5
+ },
+ "source": {
+  "generator": "ElevenLabs Sound Effects API",
+  "prompt": "An old wooden suspension bridge groaning and creaking under heavy rhythmic load, timber stress, iron chains straining, slow pulses, no footsteps, no voices.",
+  "duration_seconds": 4.0,
+  "file": "gen/bridge_groan_26b8cc4d.wav",
+  "date": "2026-11-15 15:11"
+ }
+}
