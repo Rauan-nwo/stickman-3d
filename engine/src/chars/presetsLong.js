@@ -339,3 +339,13 @@ export function reporter(over = {}) {
 
 export const LONG_PRESETS = { jensen, alice, detective, moneyman, reporter };
 export const HOSTS = ['detective', 'moneyman', 'reporter'];
+
+// Стиль «Стикман Нуар» (утверждён 2026-11-16): свет на героях лонгов одной функцией.
+// dir — направление на источник света в плоскости кадра ([+1, .45] — свет справа и ниже, свеча на столе;
+// [-1, -.55] — лампа сзади-слева). Тень головы — cel-серп с чётким краем (ложится и на волосы/шляпу),
+// тёплый свет только на лице и краю волос (мягко), на одежде тёплого света нет (давал полосы).
+// Использование: actor.char.spec.shade = noirShade([1, .45]);
+export const noirShade = (dir, { warm = '#ffc47a' } = {}) => ({
+  dir, body: { k: 0 },
+  head: { k: .42, color: '#55507e', shiftU: 52, after: true, glow: { color: warm, k: .3 } },
+});
