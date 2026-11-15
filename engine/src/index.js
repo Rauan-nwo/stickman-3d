@@ -23,9 +23,13 @@ export { mineShaft } from './sets/mineShaft.js';
 export { mineGallery } from './sets/mineGallery.js';
 
 // персонажи
+export { elbowIK, elbowArm } from './chars/stickman.js';
 export { Stickman, drawStickman, EMO, EMOTIONS, MOUTHS, BIG_MOUTHS, SMALL_MOUTHS, TALK_SET, feel, act, poseSeq, tweenPose, talk, talkMouth, blinkAt, CLOTHES, HATS, ell, line, hose, beanPath, drawHand } from './chars/stickman.js';
 export { miner, buddy, richGuy, expert, PRESETS, MINER, BUDDY, C as CHAR_COLORS } from './chars/presets.js';
 export { Actor, drawActors, blobShadow } from './chars/billboard.js';
+export { drawLit } from './chars/light.js';
+export { unUpper, restHand, shoulder, arcHand, gestureEnv, gesture } from './chars/arms.js';
+export { jensen, alice, detective, moneyman, reporter, LONG_PRESETS, LONG } from './chars/presetsLong.js';
 export { gun2D, gun2DPoint, sandwich, nugget2D } from './chars/props2d.js';
 
 // 3D-пропсы

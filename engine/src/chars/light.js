@@ -4,9 +4,10 @@
 //   new Actor(stage, char, { light: { ... } })   или   actor.draw(pose, { light: { ... } })
 //   light = {
 //     ambient: { color: '#3a4a6a', k: .18 },                       // общий тон: multiply по всей фигуре (k — сила 0..1)
-//     key:  { dir: [1, -.3], color: '#5a3a3a', k: .45, width: 60, soft: 40 },   // форма: тень на стороне ОТ света
-//     rim:  [{ dir: [1, -.2], color: '#ffc27a', k: .7, width: 10, inset: 11 }],  // контровые края со стороны света: краска цвета источника внутри контура (на белой голове — тёплый/холодный ободок)
+//     key:  { dir: [1, -.3], color: '#5a3a3a', k: .45, width: 60, soft: 40, cel: false },   // форма: тень на стороне ОТ света; cel — два тона, чёткая граница
+//     rim:  [{ dir: [1, -.2], color: '#ffc27a', k: .7, width: 10, inset: 11, below: -586 }],   // below — только ниже этой y фигуры  // контровые края со стороны света: краска цвета источника внутри контура (на белой голове — тёплый/холодный ободок)
 //     shadow: { dx: -14, dy: 6, blur: 9, k: .45, color: 'rgb(8,3,6)' }, // падающая тень силуэта на то, что за героем
+//     stripes: { color: '#7fb8ff', k: .2, angle: -.4, period: 60, duty: .45 },  // полосы света сквозь жалюзи (period — в единицах фигуры)
 //   }
 // dir — направление НА источник в экранных координатах (x вправо, y вниз). width / soft — в единицах рисунка фигуры
 // (масштабируются вместе с ней), для силуэта ~1000 ед. Тонкие части (ноги-палки) свет почти не получают: полосы
@@ -40,15 +41,23 @@ export function drawLit(ctx, W, H, s, draw, L) {
   }
   if (L.ambient && L.ambient.k > 0) { ax.save(); ax.globalCompositeOperation = 'source-atop'; ax.globalAlpha = L.ambient.k; ax.fillStyle = L.ambient.color; ax.fillRect(0, 0, W, H); ax.restore(); }
   if (L.key && L.key.k > 0) {                                                     // тень формы: на стороне от света
-    const k = L.key, b = band(S, W, H, [-k.dir[0], -k.dir[1]], (k.width ?? 60) * s, (k.soft ?? 40) * s, k.color || '#2a1a2a', thick);
+    const k = L.key, b = band(S, W, H, [-k.dir[0], -k.dir[1]], (k.width ?? 60) * s, k.cel ? 0 : (k.soft ?? 40) * s, k.color || '#2a1a2a', k.cel ? 0 : thick);   // cel: ступенчатая тень с чёткой границей
     ax.save(); ax.globalCompositeOperation = 'multiply'; ax.globalAlpha = k.k; ax.drawImage(b, 0, 0); ax.restore();
   }
   for (const r of L.rim || []) {                                                  // контровые края
     if (!(r.k > 0)) continue;
     const b = band(S, W, H, r.dir, (r.width ?? 10) * s, (r.soft ?? 2) * s, r.color || '#ffc27a', thick, (r.inset ?? 11) * s);
+    if (r.clipY != null) b.getContext('2d').clearRect(0, 0, W, r.clipY);          // край только ниже линии (например, ниже шеи — без «пластика» на волосах и шляпе)
     ax.save(); ax.globalCompositeOperation = 'source-atop'; ax.globalAlpha = r.k; ax.drawImage(b, 0, 0); ax.restore();
   }
   // multiply/screen по прозрачному фону могут «запачкать» альфу — обрезаем по исходному силуэту
+  if (L.stripes && L.stripes.k > 0) {                                             // полосы света сквозь жалюзи: наклонные полосы цвета источника
+    const st = L.stripes, per = (st.period ?? 60) * s;
+    ax.save(); ax.globalCompositeOperation = 'source-atop'; ax.globalAlpha = st.k; ax.fillStyle = st.color || '#7fb8ff';
+    ax.translate(st.cx ?? W / 2, st.cy ?? H / 2); ax.rotate(st.angle ?? -.4);
+    for (let y = -H * 1.5 + (st.phase ?? 0) * per; y < H * 1.5; y += per) ax.fillRect(-W * 1.5, y, W * 3, per * (st.duty ?? .45));
+    ax.restore();
+  }
   ax.save(); ax.globalCompositeOperation = 'destination-in'; ax.drawImage(S, 0, 0); ax.restore();
   ctx.drawImage(A, 0, 0);
 }

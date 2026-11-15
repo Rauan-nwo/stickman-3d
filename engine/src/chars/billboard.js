@@ -44,8 +44,8 @@ export class Actor {
     if (!this.visible || xf.d <= 0.05) return xf;
     const L = (opt && opt.light) || this.light;
     if (L && !this.occlude) {                                    // свет сцены: фигура рисуется во внеэкранный слой и подсвечивается
-      const st = this.stage;
-      drawLit(st.ctx, st.W, st.H, xf.s, x => { x.save(); x.translate(xf.x, xf.y); x.rotate(xf.rot); x.scale(xf.s, xf.s); x.translate(-this.pin[0], -this.pin[1]); this.char.draw(x, pose, opt); x.restore(); }, L);
+      const st = this.stage, Lr = L.rim && L.rim.some(r => r.below != null) ? { ...L, rim: L.rim.map(r => r.below != null ? { ...r, clipY: xf.y + (r.below - this.pin[1]) * xf.s } : r) } : L;
+      drawLit(st.ctx, st.W, st.H, xf.s, x => { x.save(); x.translate(xf.x, xf.y); x.rotate(xf.rot); x.scale(xf.s, xf.s); x.translate(-this.pin[0], -this.pin[1]); this.char.draw(x, pose, opt); x.restore(); }, Lr);
       return xf;
     }
     return this.with(ctx => this.char.draw(ctx, pose, opt), xf);

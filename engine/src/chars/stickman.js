@@ -56,8 +56,8 @@ export function hose(x, a, b, L, dir, w, col, sag = .5) {
   x.beginPath(); x.moveTo(a[0], a[1]); x.quadraticCurveTo(mx, my, b[0], b[1]); x.stroke();
 }
 // тело-«капля»: суперэллипс, сверху чуть уже (topK)
-export function beanPath(x, cx, cy, rx, ry, n = 2.8, topK = .92) {
-  x.beginPath();
+export function beanPath(x, cx, cy, rx, ry, n = 2.8, topK = .92, cont = false) {
+  if (!cont) x.beginPath();
   for (let i = 0; i <= 72; i++) {
     const a = i / 72 * TAU, c = Math.cos(a), s = Math.sin(a);
     const w = rx * (s < 0 ? lerp(1, topK, -s) : 1);
@@ -65,6 +65,27 @@ export function beanPath(x, cx, cy, rx, ry, n = 2.8, topK = .92) {
     i ? x.lineTo(px, py) : x.moveTo(px, py);
   }
   x.closePath();
+}
+// рука с локтем (двухзвенная IK): плечо и предплечье по L/2, длина постоянна. Кисть дальше вытянутой руки — рука прямая,
+// кисть встаёт на предел. Локоть: из двух решений выбирается то, что ниже и снаружи от тела (side: -1 левая, +1 правая);
+// elbow: +1 / -1 — принудительно по часовой / против. Сгиб — угол со скруглением (а не дуга). Возвращает точку кисти.
+export function elbowIK(a, b, L, side, elbow) {
+  let dx = b[0] - a[0], dy = b[1] - a[1], c = Math.hypot(dx, dy) || 1e-6; const h2 = L / 2;
+  if (c >= L * .999) { const k = L * .999 / c; return { b: [a[0] + dx * k, a[1] + dy * k], e: [a[0] + dx * k / 2, a[1] + dy * k / 2] }; }
+  const m = [a[0] + dx / 2, a[1] + dy / 2], hh = Math.sqrt(Math.max(0, h2 * h2 - c * c / 4)), px = -dy / c, py = dx / c;
+  const e1 = [m[0] + px * hh, m[1] + py * hh], e2 = [m[0] - px * hh, m[1] - py * hh];
+  let e;
+  if (elbow) e = elbow > 0 ? e1 : e2;
+  else { const sc = q => (q[1] - m[1]) * .8 + side * (q[0] - m[0]); e = sc(e1) >= sc(e2) ? e1 : e2; }   // вниз и наружу
+  return { b: [b[0], b[1]], e };
+}
+export function elbowArm(x, a, b, L, side, elbow, w, col, via) {
+  const r = via ? { b: [b[0], b[1]], e: via } : elbowIK(a, b, L, side, elbow), e = r.e;
+  x.lineWidth = w; x.lineCap = 'round'; x.lineJoin = 'round'; x.strokeStyle = col; x.beginPath(); x.moveTo(a[0], a[1]);
+  const ang = Math.abs(Math.atan2((e[0] - a[0]) * (r.b[1] - e[1]) - (e[1] - a[1]) * (r.b[0] - e[0]), (e[0] - a[0]) * (r.b[0] - e[0]) + (e[1] - a[1]) * (r.b[1] - e[1])));
+  if (ang > .05) x.arcTo(e[0], e[1], r.b[0], r.b[1], w * 1.6); else x.lineTo(e[0], e[1]);
+  x.lineTo(r.b[0], r.b[1]); x.stroke();
+  return r.b;
 }
 export function drawHand(x, p, r, col, ink, shine = true) {
   ell(x, p[0], p[1], r, r, col, ink, r * .2);
@@ -331,6 +352,24 @@ function sweatDrop(x, px, py, k, ink) {
 }
 
 // =====================================================================================================
+// НЕОБЯЗАТЕЛЬНЫЙ объём (лонги): spec.shade = { dir:[x,y] на свет, body:{...}, head:{...}, rim: null | { color, k } }.
+// Часть: { k, color, shift (доля радиуса), shiftU (единицы рисунка — важнее shift), soft (доля радиуса; 0 — чёткая граница),
+// op: 'source-over' | 'multiply' }. На каждую часть своя тень формы на стороне от света: часть минус она же, сдвинутая к свету,
+// (размытая) и обрезанная по самой части — граница повторяет форму (круг головы, «капля» тела), а не прямой срез.
+// Непрозрачно; конечности рисуются поверх и свет на тело не бросают.
+function shadePart(x, pathFn, R, Sh, part) {
+  const P = { ...Sh, ...(Sh[part] || {}) }, d = Math.hypot(Sh.dir[0], Sh.dir[1]) || 1, dx = Sh.dir[0] / d, dy = Sh.dir[1] / d, m = x.getTransform(), sc = Math.hypot(m.a, m.b) || 1;
+  const band = (sx, sy, fill, k, blur, op) => {
+    x.save(); pathFn(); x.clip();
+    x.beginPath(); x.rect(-R * 6, -R * 6, R * 12, R * 12); x.translate(sx, sy); pathFn(true); x.translate(-sx, -sy);
+    if (blur > 0) x.filter = `blur(${Math.max(.5, blur * sc).toFixed(2)}px)`;
+    x.globalCompositeOperation = op || 'source-over'; x.globalAlpha = k; x.fillStyle = fill; x.fill('evenodd'); x.restore();
+  };
+  const sh = P.shiftU ?? R * (P.shift ?? .35);
+  if ((P.k ?? .13) > 0) band(dx * sh, dy * sh, P.color || 'rgb(30,16,40)', P.k ?? .13, R * (P.soft ?? .3), P.op);   // тень на дальней от света стороне
+  if (Sh.rim && Sh.rim.k > 0) band(-dx * R * .08, -dy * R * .08, Sh.rim.color, Sh.rim.k, R * .05);                   // едва заметный тёплый край со стороны света
+}
+
 // фигура
 // =====================================================================================================
 function limbsFor(S, p) {
@@ -342,7 +381,7 @@ function limbsFor(S, p) {
       if (A === null) continue;
       const H = i ? p.hR : p.hL, B = (i ? p.bR : p.bL) ?? 1;
       const to = A && A.to ? A.to : H ? [sh[0] + sd * H[0] * u, sh[1] + H[1] * u] : [sh[0] + sd * -15 * u, sh[1] + 215 * u];
-      out.push({ a: A && A.from ? A.from : sh, b: to, L: (A && A.L) ?? rig.armL, bend: (A && A.bend) ?? -B * sd, sag: (A && A.sag) ?? rig.sag, w: A && A.w, layer: (A && A.layer) || rig.armLayer || 'front', hand: A && A.hand !== undefined ? A.hand : S.hand.r });
+      out.push({ a: A && A.from ? A.from : sh, b: to, L: (A && A.L) ?? rig.armL, bend: (A && A.bend) ?? -B * sd, sag: (A && A.sag) ?? rig.sag, w: A && A.w, layer: (A && A.layer) || rig.armLayer || 'front', hand: A && A.hand !== undefined ? A.hand : S.hand.r, ...(S.armStyle === 'elbow' ? { ik: true, side: sd, elbow: A && A.elbow, via: A && A.via } : {}) });
     }
   }
   return out;
@@ -353,6 +392,10 @@ function drawLimbs(x, limbs, layer, S, hipDy) {
     if ((L.layer || 'back') !== layer) continue; any = true;
     const w = L.w ?? S.limbW, col = L.col || ink;
     if (L.pts) line(x, L.hip && hipDy ? [[L.pts[0][0], L.pts[0][1] + hipDy], ...L.pts.slice(1)] : L.pts, w, col);
+    else if (L.ik) { const r = elbowArm(x, L.a, L.b, L.L, L.side, L.elbow, w, col, L.via); L.b = r; }   // via — локоть в заданной точке (предплечье лежит на столе)        // лонги: рука с локтем (spec.armStyle = 'elbow')
+    else if (S.legStyle === 'natural' && layer === 'back') {                                   // лонги: нога бедро + голень с коленом (IK, длина постоянна)
+      const a = L.hip && hipDy ? [L.a[0], L.a[1] + hipDy] : L.a; elbowArm(x, a, L.b, L.L, 0, Math.sign(L.bend ?? 1) || 1, w, col);
+    }
     else { const a = L.hip && hipDy ? [L.a[0], L.a[1] + hipDy] : L.a; hose(x, a, L.b, Math.max(L.L, Math.hypot(L.b[0] - a[0], L.b[1] - a[1]) * (L.min ?? 1.04)), L.bend ?? 1, w, col, L.sag ?? .5); }
   }
   if (any) for (const L of limbs) if ((L.layer || 'back') === layer && L.hand && !L.pts) {
@@ -374,6 +417,7 @@ function drawBody(x, S, VW) {
   const shift = VW && !b.views && VW.view !== 'back' ? VW.facing * rx * (VW.view === 'side' ? .34 : .16) : 0;
   const outside = VW && !b.views && VW.view === 'back' ? [] : b.outside || [];
   if (b.inside && b.inside.length) { x.save(); x.clip(); if (shift) x.translate(shift, 0); for (const fn of b.inside) fn(x, B, S, VW); x.restore(); beanPath(x, b.x, b.y, rx, b.ry, b.n, b.topK); }
+  if (S.shade) { shadePart(x, sub => { if (!sub) x.beginPath(); beanPath(x, b.x, b.y, rx, b.ry, b.n, b.topK, sub); }, Math.max(rx, b.ry), S.shade, 'body'); beanPath(x, b.x, b.y, rx, b.ry, b.n, b.topK); }
   x.lineWidth = S.lw; x.strokeStyle = ink; x.stroke();
   if (shift) { x.save(); x.translate(shift, 0); }
   for (const fn of outside) fn(x, B, S, VW);
@@ -422,6 +466,7 @@ function drawHead(x, S, p, VW) {
   g.addColorStop(0, h.fill); g.addColorStop(h.grad[4], h.fill); g.addColorStop(1, h.shade);
   ell(x, 0, 0, h.rx, h.ry, g, ink, LW);
   if (p.flush && p.flush.k > .01) { x.save(); x.beginPath(); x.ellipse(0, 0, h.rx, h.ry, 0, 0, TAU); x.clip(); x.globalAlpha = clamp(p.flush.k); x.fillStyle = p.flush.color || '#E0483C'; x.fillRect(-h.rx, -h.ry, h.rx * 2, h.ry * 2); x.restore(); ell(x, 0, 0, h.rx, h.ry, null, ink, LW); }
+  if (S.shade) { shadePart(x, sub => { if (!sub) x.beginPath(); x.moveTo(h.rx, 0); x.ellipse(0, 0, h.rx, h.ry, 0, 0, TAU); }, Math.max(h.rx, h.ry), S.shade, 'head'); ell(x, 0, 0, h.rx, h.ry, null, ink, LW); }
   if (h.ear && !back) { const e = h.ear; ell(x, e.x - 2, e.y, e.rx - 4, e.ry - 4, h.fill, null); x.beginPath(); x.arc(e.x + 1, e.y, 9, Math.PI * .9, Math.PI * 1.9); x.lineWidth = 4; x.strokeStyle = e.line || '#A99A94'; x.stroke(); }
   if (h.hair && !back) {
     x.save(); x.beginPath(); const ins = h.hair.inset ?? 4; if (h.rx === h.ry) x.arc(0, 0, h.rx - ins, 0, TAU); else x.ellipse(0, 0, h.rx - ins, h.ry - ins, 0, 0, TAU); x.clip();
