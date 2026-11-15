@@ -1,0 +1,9 @@
+YouTube channel avatar (profile picture), square 1:1, designed to be shown as a small CIRCLE (as small as 48 px), so it must read instantly.
+
+STYLE: exactly the drawing style of the attached character sheet: flat 2D cartoon stick figure, perfectly round pure-white head, thick dark-brown outline of constant weight, simple dot eyes, expressive brow and mouth, soft gradient shading; never tinted by the background.
+
+SUBJECT: one character only, centred, head and shoulders: the miner from the sheet (brown wide-brim hat with a round brass lamp badge, red plaid shirt with suspenders), winking, big confident grin, holding a shiny gold nugget up next to his face. Head and hat fill about 70% of the frame, everything important inside the central circle, nothing touching the edges.
+
+BACKGROUND: a simple warm circular gradient (amber to ochre) with a soft glow behind the head and a few sparkles from the nugget — no scenery details, no text, no letters, no logo.
+
+Clean, bold, high contrast, playful.
