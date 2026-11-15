@@ -1,0 +1,290 @@
+[HOST] Evening. Mind the box, it's expensive.
+[HOST] Inside, the most wanted chips on Earth.
+[HOST] And this key opened every door to them.
+[HOST] Tonight: who sat beside the man holding it.
+Picture a quiet dinner in Singapore.
+On one side sits Jensen Huang, the man in the leather jacket who runs Nvidia, the most valuable company on the planet.
+On the other sits Alice Huang.
+Same last name, no relation.
+Her company is one of his biggest customers in Asia.
+[JENSEN] To the next shipment.
+[ALICE] To good partners.
+Her company buys his chips by the warehouse, the exact kind China is forbidden to have.
+And someone else is listening.
+American intelligence has been tapping her calls for more than a year, and has concluded she works for Beijing.
+[AGENT] She's talking to an American.
+[AGENT 2] Which American?
+[AGENT] The one in the jacket.
+Jensen has no idea.
+[AGENT 2] Do we warn him?
+[AGENT] Not tonight.
+So how did China get someone into the seat next to the man who controls the world's AI chips?
+It starts with a decision in Washington.
+But first, meet the man at the table.
+His first job in America was scrubbing toilets in Kentucky.
+Jensen was born in Taiwan.
+At nine, his parents sent him and his older brother to relatives in America, who picked a boarding school in rural Kentucky.
+[AUNT] Oneida Baptist Institute. Very strict.
+[UNCLE] Strict sounds perfect.
+It was strict, all right.
+It was a school for troubled kids, and the family had chosen it by mistake.
+The older boys were sent out to do farm work.
+Jensen, one of the youngest, got the bathrooms.
+Every bathroom in the dorm.
+Every single day.
+[YOUNG JENSEN] Who made this mess?
+[BOYS] All of us!
+His roommate was seventeen, covered in tattoos and knife scars, and he couldn't read.
+So they made a trade.
+[ROOMMATE] You teach me to read.
+[YOUNG JENSEN] You teach me the bench press.
+[ROOMMATE] Deal. Reading first.
+Decades later he'd put it simply: he used to clean bathrooms, and now he runs a company.
+As a teenager, he found work at Denny's.
+He started as a dishwasher and worked his way up to busboy.
+[MANAGER] Dishes first. Then tables.
+[YOUNG JENSEN] And after tables?
+[MANAGER] More dishes.
+Then, in 1993, he walked back into a Denny's, this time as a customer.
+In a booth in San Jose, he and two engineer friends, Chris Malachowsky and Curtis Priem, planned a company that would build chips for 3D graphics.
+[WAITRESS] What can I get you?
+[JENSEN] Coffee, and a new industry.
+[WAITRESS] Coffee's on the menu.
+They named it Nvidia, and it came very close to dying.
+When its make-or-break chip finally shipped in 1997, the company had cash for about one more month of salaries.
+[CHRIS] How long can we last?
+[JENSEN] One month.
+[CHRIS] And if the chip flops?
+[JENSEN] Then we save on lunch.
+The chip was a hit.
+And the trick inside it changed everything.
+An ordinary processor is like one brilliant cook preparing a banquet plate by plate.
+Nvidia's chip is like a kitchen with thousands of cooks, each doing one tiny job at exactly the same moment.
+In 2006, Jensen made his biggest bet.
+He released software called CUDA, so scientists could put all those cooks to work on any kind of math, not just games.
+Wall Street didn't get it.
+[INVESTOR] Who exactly is this for?
+[JENSEN] People who don't know yet.
+[INVESTOR] Can they pay now?
+[JENSEN] Later. Much later.
+For years it looked like an expensive hobby.
+Then researchers found out that artificial intelligence needs exactly that kind of math: millions of small sums, all at once.
+Almost overnight, every AI lab on Earth wanted Nvidia chips, and there were never enough.
+[CUSTOMER] How soon can you deliver?
+[SALESMAN] How patient are you?
+Nvidia became the most valuable company in the world, and Jensen became the man with the key.
+When he talked about who should be allowed to buy them, Washington picked up the phone.
+So, it turned out, did Beijing.
+[AIDE] Get me Jensen Huang.
+[OFFICER] Find out who else calls him.
+That made him the one man China most wanted to get close to.
+Because in October 2022, Washington slammed a door.
+That autumn, the US government banned sales of Nvidia's most powerful AI chips to China.
+The worry was simple: chips that train AI can also help an army.
+[OFFICIAL] Your best chips can't go to China.
+[JENSEN] Which ones count as best?
+[OFFICIAL] The ones they want.
+Nvidia designed slower versions just for China.
+Washington tightened the rules, and those were blocked too.
+So Nvidia made an even slower one.
+In April 2025, that one was blocked as well.
+[JENSEN] What about this one?
+[OFFICIAL] Absolutely not.
+[JENSEN] It's really slow.
+[OFFICIAL] Still no.
+China had been one of Nvidia's biggest markets.
+In Jensen's own words, Nvidia's share of China's AI chip market went from ninety-five percent to zero.
+[ASSISTANT] Here's our China business.
+[JENSEN] I don't see anything.
+[ASSISTANT] That's the chart.
+Jensen didn't hide how he felt.
+On stage after stage, he argued that the rules were hurting American companies and handing the market to Chinese rivals.
+[JENSEN] Let American chips compete everywhere.
+So here was Beijing's problem.
+China couldn't buy the chips.
+But it could try to get close to the man who made them, the same man arguing with Washington about who gets to buy them.
+Why pick a lock when the locksmith takes meetings?
+[OFFICER] We can't buy his chips.
+[OFFICER 2] Then become his customer.
+And for that, you would need a company.
+In March 2023, a small Singapore company called 7Road International, the overseas arm of a Chinese video game business, got a new name: Megaspeed.
+Its new managing director was Alice Huang.
+[CLERK] Previous business?
+[STAFFER] Video games.
+[CLERK] New business?
+[STAFFER] Now, supercomputers.
+[CLERK] Big change.
+[STAFFER] Bigger electricity bill.
+Megaspeed called itself a cloud company.
+That's the perfect business for buying chips, because a cloud company needs mountains of them and nobody asks why.
+The data centers sat in Malaysia and Indonesia.
+Not one chip had to enter China.
+Chinese customers could simply rent the computing power over the internet.
+Imagine you're not allowed to own a certain book.
+So your neighbor buys it, keeps it in his house, and lets you read it through the window, one page at a time, for a fee.
+The book never leaves his house.
+You still read every word.
+[RENTER] Can we buy your chips?
+[REP] No. You can borrow them.
+[RENTER] For how long?
+[REP] By the hour. Or the year.
+On paper, renting computing power isn't exporting chips, and Megaspeed has always said it follows the law.
+After eight months, Alice Huang stepped down as managing director, but by most accounts she kept a leading role.
+[CLERK] New title for Alice?
+[STAFFER] Same office, though.
+At the end of 2023, the company's filings showed about thirty-three million dollars in assets.
+Not the kind whose people end up in photos next to the boss of Nvidia.
+That was about to change.
+Jensen Huang is not hard to meet.
+He shakes every hand, poses for every selfie, and treats big customers like regulars at a diner.
+Nvidia later said meeting customers is simply part of his job, thousands of them a year.
+[FAN] Can I get a selfie?
+[JENSEN] Of course.
+[FAN 2] Can you sign my laptop?
+[JENSEN] Only if it has our chip.
+Alice Huang was one of those thousands.
+In early 2024, she turned up at an Nvidia event in California, representing Megaspeed.
+In June 2024, Taipei hosted Computex, the giant computer show where Jensen is treated like a rock star.
+That same month, at a party in the city, a camera flashed.
+In the photo, standing right beside Jensen, is Alice Huang.
+[PHOTOGRAPHER] Everyone, squeeze in!
+[JENSEN] Customers in the front!
+[PHOTOGRAPHER] Say "GPU"!
+[CROWD] GPU! GPU!
+A company later posted the picture online.
+To everyone in that room, it was one more snapshot from one more busy night.
+Nobody looked at it twice.
+Later, a lot of people would.
+Because that same month, Megaspeed's sister company in Malaysia started buying.
+A lot.
+[ACCOUNTANT] Another order from Malaysia.
+[ACCOUNTANT 2] Didn't they order yesterday?
+[ACCOUNTANT] That was the small one.
+By the end of 2024, the little company's assets had jumped to about three billion dollars.
+[BANKER] Last year, a small firm.
+[BANKER 2] And this year?
+[BANKER] Ninety times bigger.
+[BANKER 2] Did they sell a hit game?
+If a corner bakery grew like that in a year, the neighbors would start asking about the flour.
+So where was all that hardware coming from?
+Much of it came from a company called Aivres.
+Aivres is the American arm of Inspur, a Chinese server giant that the United States had put on its trade blacklist.
+Inspur couldn't buy Nvidia's best chips.
+Its American branch could, and it built them into servers and shipped them abroad.
+[CLERK] Inspur? You're blacklisted.
+[REP] I'm Aivres. California.
+[CLERK] Then welcome, Aivres.
+Follow one box.
+It's packed in a factory, loaded onto a ship, cleared through customs, and delivered to a data center in Malaysia.
+Every step has paperwork.
+Every step looks legal.
+[CUSTOMS] Destination, please?
+[DRIVER] Malaysia, sir.
+[CUSTOMS] Final destination?
+[DRIVER] Still Malaysia.
+[CUSTOMS] Enjoy your stay.
+One count put the haul at nearly two billion dollars of Nvidia's most advanced chips.
+A later look at trade records found more than four point eight billion dollars of AI equipment with Nvidia inside, all flowing to one company most people had never heard of.
+Late in 2024, inspectors from the US Commerce Department walked into one of those Malaysian data centers.
+A data center is supposed to hum with busy servers.
+What they found were servers still sealed in their packaging.
+[INSPECTOR] Is it switched on?
+[GUIDE] It's still wrapped.
+[INSPECTOR] Since when?
+[GUIDE] Since delivery.
+Still, on paper, nothing was wrong.
+Every sale went to Singapore or Malaysia, never to China.
+Megaspeed said every review found no violations.
+Jensen later said Nvidia had studied all its deployments.
+[JENSEN] We counted every one.
+That's what made it so hard to catch.
+Ordinary smugglers sweat at customs.
+This operation never had to.
+Every box was exactly where the paperwork said it was.
+But in the eyes of American intelligence, the chips were never the real prize.
+Nvidia insists its customers never get anything that matters for national security.
+The prize was influence.
+Because Washington could not make up its mind.
+In April 2025, the China chip was blocked, and Nvidia wrote off billions in chips it suddenly couldn't sell.
+In August came a deal: sales could resume if the government got fifteen percent.
+In December, the president went further and allowed a stronger chip, for twenty-five percent.
+[OFFICIAL] China chip: blocked.
+[JENSEN] Understood. Blocked.
+[OFFICIAL] Now allowed. Fifteen percent, please.
+[JENSEN] Wait. Understood?
+[OFFICIAL] Stronger chip allowed. Bigger cut.
+[JENSEN] Does anyone have a calendar?
+Through every twist, Jensen made the same case, loudly.
+In Taipei that May, he told reporters exactly what he thought of the rules.
+[JENSEN] The export control was a failure.
+He warned that China's AI market was heading toward fifty billion dollars, and American companies were locked out of it.
+Now look at it from Beijing.
+One chip is valuable.
+But one conversation between Jensen and the White House could open or close an entire market.
+Which would you rather sit next to?
+[OFFICER] A chip, or a conversation?
+[OFFICER 2] The conversation. It's cheaper.
+Then Megaspeed suddenly went quiet and stopped placing orders.
+That October, Senator Tom Cotton asked the Commerce Department to investigate it, and Singapore police opened a case of their own.
+Then the Commerce probe was handed over to the Justice Department.
+[SENATOR] Look into Megaspeed.
+[COMMERCE] We're looking.
+[JUSTICE] We'll take it from here.
+And by then, the people listening to Alice Huang's calls had put everything in writing.
+In the spring of 2026, a highly classified memo was written under the watch of Secretary of State Marco Rubio.
+It was built on electronic surveillance of Alice Huang.
+Its conclusion: China's Ministry of State Security had recruited her to gather information on American AI chips, and to nudge Jensen to keep lobbying for looser rules.
+[AIDE] Who gets a copy?
+[AIDE 2] Only the top clearances.
+[AIDE] Does Jensen get one?
+[AIDE 2] He's in it.
+The memo went around before the president's trip to Beijing in May.
+Then, on October 29, 2026, the New York Times broke the story.
+China called it a smear.
+Jensen said his contacts with her were about business.
+[JENSEN] Completely normal and not unusual.
+In early November, the Times got hold of the memo's details.
+And the memo said one more thing: the relationship had gone beyond business.
+[REPORTER] Beyond business?
+[EDITOR] Read page two.
+That left one question that still has no good answer.
+Why did nobody tell Jensen?
+When American spies find a foreign agent getting close to an American, there's a tool for exactly this.
+It's called a defensive briefing.
+Agents quietly explain who your new friend works for.
+[AGENT] Got a minute?
+[CITIZEN] Am I in trouble?
+[AGENT] No. Your new friend is.
+Jensen never got that knock.
+The people who knew listened to the calls, wrote the memo, and briefed the White House.
+Nobody told the man at the table.
+On November 8, Jensen wrote a letter to his staff.
+In it, he admitted he had been unfaithful to his wife.
+He didn't name anyone.
+The press soon did.
+[JENSEN] I was unfaithful to my wife.
+Then everything moved at once.
+[BOARD] We're opening an independent investigation.
+[CONGRESSMAN] We'd like a closed-door briefing.
+[IMMIGRATION] Alice Huang? Entry denied.
+On November 12, Jensen Huang resigned as CEO, president, and board member, effective immediately.
+Thirty-three years at the top, over in one press release.
+Chief financial officer Colette Kress became interim CEO.
+[REPORTER] Any reason given?
+[SPOKESMAN] None at all.
+That day, Nvidia's stock fell as much as thirteen percent.
+[ANALYST] What did the affair cost?
+[ANALYST 2] About thirteen percent.
+[ANALYST] Of him?
+[ANALYST 2] Of your retirement fund.
+Nobody has charged Jensen, Nvidia, or Alice Huang with any crime.
+Where she is now, nobody will say.
+Go back to that dinner in Singapore.
+The candles.
+The toast to good partners.
+Both chairs are empty now.
+America watched that table for more than a year and never said a word to the man sitting at it.
+So the next time someone friendly pulls up a chair beside the people building America's AI, who's going to warn them?
+[HOST] Some keys are too heavy to carry.
+[HOST] So this one goes in the safe.
+[HOST] The question is who opens it next.
