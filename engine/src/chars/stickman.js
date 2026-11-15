@@ -79,12 +79,22 @@ export function elbowIK(a, b, L, side, elbow) {
   else { const sc = q => (q[1] - m[1]) * .8 + side * (q[0] - m[0]); e = sc(e1) >= sc(e2) ? e1 : e2; }   // вниз и наружу
   return { b: [b[0], b[1]], e };
 }
-export function elbowArm(x, a, b, L, side, elbow, w, col, via) {
+export function elbowArm(x, a, b, L, side, elbow, w, col, via, shade) {
   const r = via ? { b: [b[0], b[1]], e: via } : elbowIK(a, b, L, side, elbow), e = r.e;
   x.lineWidth = w; x.lineCap = 'round'; x.lineJoin = 'round'; x.strokeStyle = col; x.beginPath(); x.moveTo(a[0], a[1]);
   const ang = Math.abs(Math.atan2((e[0] - a[0]) * (r.b[1] - e[1]) - (e[1] - a[1]) * (r.b[0] - e[0]), (e[0] - a[0]) * (r.b[0] - e[0]) + (e[1] - a[1]) * (r.b[1] - e[1])));
   if (ang > .05) x.arcTo(e[0], e[1], r.b[0], r.b[1], w * 1.6); else x.lineTo(e[0], e[1]);
   x.lineTo(r.b[0], r.b[1]); x.stroke();
+  if (shade && shade.dir) {                                                   // объём руки: темнее с дальней от света стороны, тёплый край с ближней
+    const d = Math.hypot(shade.dir[0], shade.dir[1]) || 1, lx = shade.dir[0] / d, ly = shade.dir[1] / d, A = shade.arm || {};
+    for (const [p, q] of [[a, e], [e, r.b]]) {
+      const sx = q[0] - p[0], sy = q[1] - p[1], sl = Math.hypot(sx, sy); if (sl < w) continue;
+      let nx = -sy / sl, ny = sx / sl; if (nx * lx + ny * ly < 0) { nx = -nx; ny = -ny; }   // нормаль к свету
+      const cut = Math.min(w * .45, sl * .3), ux = sx / sl * cut, uy = sy / sl * cut;
+      const seg = (o, ww, c, k) => { x.save(); x.globalAlpha = k; x.lineWidth = ww; x.lineCap = 'round'; x.strokeStyle = c; x.beginPath(); x.moveTo(p[0] + ux + nx * o, p[1] + uy + ny * o); x.lineTo(q[0] - ux + nx * o, q[1] - uy + ny * o); x.stroke(); x.restore(); };
+      if (shade.rim && shade.rim.k > 0) seg(w * .24, w * .22, shade.rim.color, (A.rimK ?? shade.rim.k) * .9);
+    }
+  }
   return r.b;
 }
 export function drawHand(x, p, r, col, ink, shine = true) {
@@ -367,7 +377,7 @@ function shadePart(x, pathFn, R, Sh, part) {
   };
   const sh = P.shiftU ?? R * (P.shift ?? .35);
   if ((P.k ?? .13) > 0) band(dx * sh, dy * sh, P.color || 'rgb(30,16,40)', P.k ?? .13, R * (P.soft ?? .3), P.op);   // тень на дальней от света стороне
-  if (Sh.rim && Sh.rim.k > 0) band(-dx * R * .08, -dy * R * .08, Sh.rim.color, Sh.rim.k, R * .05);                   // едва заметный тёплый край со стороны света
+  if (Sh.rim && Sh.rim.k > 0) { const w = Sh.rim.wU ?? R * .08; band(-dx * w, -dy * w, Sh.rim.color, Sh.rim.k, Sh.rim.softU ?? R * .05); }   // тёплый край со стороны света (под контуром — половина толщины линии)
 }
 
 // фигура
@@ -392,7 +402,7 @@ function drawLimbs(x, limbs, layer, S, hipDy) {
     if ((L.layer || 'back') !== layer) continue; any = true;
     const w = L.w ?? S.limbW, col = L.col || ink;
     if (L.pts) line(x, L.hip && hipDy ? [[L.pts[0][0], L.pts[0][1] + hipDy], ...L.pts.slice(1)] : L.pts, w, col);
-    else if (L.ik) { const r = elbowArm(x, L.a, L.b, L.L, L.side, L.elbow, w, col, L.via); L.b = r; }   // via — локоть в заданной точке (предплечье лежит на столе)        // лонги: рука с локтем (spec.armStyle = 'elbow')
+    else if (L.ik) { const r = elbowArm(x, L.a, L.b, L.L, L.side, L.elbow, w, col, L.via, S.shade); L.b = r; }   // via — локоть в заданной точке (предплечье лежит на столе)        // лонги: рука с локтем (spec.armStyle = 'elbow')
     else if (S.legStyle === 'natural' && layer === 'back') {                                   // лонги: нога бедро + голень с коленом (IK, длина постоянна)
       const a = L.hip && hipDy ? [L.a[0], L.a[1] + hipDy] : L.a; elbowArm(x, a, L.b, L.L, 0, Math.sign(L.bend ?? 1) || 1, w, col);
     }
