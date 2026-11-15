@@ -26,6 +26,7 @@ export const DEFAULT_LOOK = {
   grade: null,                                                   // { sat, tint:[r,g,b], lift:[r,g,b], contrast } — только слой [1]
   dark: 0, darkColor: '14,8,6',                                  // затемнение всего кадра (вместе с персонажами), 0..1
   vignette: 1,                                                   // сила виньетки, 0..1
+  near: .03, far: 80,                                            // плоскости отсечения камеры (экстерьерам нужен far в километры)
 };
 // объекты, которые не должны писать глубину для DOF и для перекрытия персонажей: прозрачные, частицы, спрайты, линии
 const noDepth = o => o.isPoints || o.isSprite || o.isLine || (o.isMesh && (o.material.transparent || o.userData.noDepth));
@@ -123,6 +124,7 @@ export function createStage({ canvas, W = 720, H = 1280, FPS = 30 } = {}) {
     applyLook() {
       BG.set(look.bg); fog.color.set(look.fogColor); fog.density = look.fogDensity;
       renderer.toneMappingExposure = look.exposure;
+      if (camera.near !== look.near || camera.far !== look.far) { camera.near = look.near; camera.far = look.far; camera.updateProjectionMatrix(); }
       bloom.enabled = look.bloom > 0; bloom.strength = look.bloom; bloom.radius = look.bloomRadius; bloom.threshold = look.bloomThreshold;
       bokeh.enabled = !!look.dof; bokeh.uniforms.focus.value = look.focus; bokeh.uniforms.aperture.value = look.aperture; bokeh.uniforms.maxblur.value = look.maxblur;
       const g = look.grade, on = !!g && ((g.sat ?? 1) !== 1 || (g.contrast ?? 1) !== 1 || (g.tint || [1, 1, 1]).some(v => v !== 1) || (g.lift || [0, 0, 0]).some(v => v !== 0));

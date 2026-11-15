@@ -1,0 +1,654 @@
+{
+ "words": "audio/retime_test/words_x0.93.json",
+ "duration": 58.559,
+ "tempo": {
+  "beat_period_s": 0.2951,
+  "bpm": 203.32
+ },
+ "timing": {
+  "tolerance_ms": 20,
+  "step_hits_stem": [
+   {
+    "sound": "boots_h3_L",
+    "cue": "8:left",
+    "cue_time": 28.6124,
+    "onset": 28.6124,
+    "error_ms": 0.0,
+    "how": "onset",
+    "featured": true
+   },
+   {
+    "sound": "boots_h3_R",
+    "cue": "8:right",
+    "cue_time": 28.9435,
+    "onset": 28.9435,
+    "error_ms": 0.0,
+    "how": "onset",
+    "featured": true
+   },
+   {
+    "sound": "boots_h3_L",
+    "cue": "8:left#2",
+    "cue_time": 29.2383,
+    "onset": 29.2383,
+    "error_ms": 0.0,
+    "how": "onset",
+    "featured": true
+   },
+   {
+    "sound": "boots_h3_R",
+    "cue": "8:right#2",
+    "cue_time": 29.4977,
+    "onset": 29.4977,
+    "error_ms": 0.0,
+    "how": "onset",
+    "featured": true
+   }
+  ],
+  "top10": [
+   {
+    "sound": "throw_whoosh",
+    "cue": "1:threw",
+    "cue_time": 0.1702,
+    "onset": 0.1707,
+    "error_ms": 0.5,
+    "how": "peak",
+    "featured": false
+   },
+   {
+    "sound": "splash_distant",
+    "cue": "1:river",
+    "cue_time": 1.6652,
+    "onset": 1.6652,
+    "error_ms": 0.0,
+    "how": "onset",
+    "featured": false
+   },
+   {
+    "sound": "soldiers_clatter",
+    "cue": "2:six",
+    "cue_time": 5.6897,
+    "onset": 5.6913,
+    "error_ms": 1.6,
+    "how": "onset",
+    "featured": false
+   },
+   {
+    "sound": "chain_creak",
+    "cue": "3:last",
+    "cue_time": 7.892,
+    "onset": 7.8925,
+    "error_ms": 0.5,
+    "how": "onset",
+    "featured": false
+   },
+   {
+    "sound": "marbles",
+    "cue": "6:bag",
+    "cue_time": 21.0161,
+    "onset": 21.0161,
+    "error_ms": 0.0,
+    "how": "onset",
+    "featured": false
+   },
+   {
+    "sound": "boots_h4_L",
+    "cue": "7:land",
+    "cue_time": 25.6243,
+    "onset": 25.6245,
+    "error_ms": 0.2,
+    "how": "onset",
+    "featured": true
+   },
+   {
+    "sound": "sign_ding",
+    "cue": "12:You",
+    "cue_time": 36.8475,
+    "onset": 36.8475,
+    "error_ms": 0.0,
+    "how": "onset",
+    "featured": false
+   },
+   {
+    "sound": "push_thump",
+    "cue": "14:one",
+    "cue_time": 48.4939,
+    "onset": 48.4939,
+    "error_ms": 0.0,
+    "how": "onset",
+    "featured": true
+   },
+   {
+    "sound": "bolt_ping",
+    "cue": "16:forty",
+    "cue_time": 53.7103,
+    "onset": 53.7103,
+    "error_ms": 0.0,
+    "how": "onset",
+    "featured": false
+   },
+   {
+    "sound": "bridge_snap",
+    "cue": "17:bucks",
+    "cue_time": 56.198,
+    "onset": 56.198,
+    "error_ms": 0.0,
+    "how": "onset",
+    "featured": true
+   }
+  ],
+  "other_key": [
+   {
+    "sound": "cloth_grab",
+    "cue": "2:His",
+    "cue_time": 3.2485,
+    "onset": 3.2478,
+    "error_ms": -0.7,
+    "how": "onset",
+    "featured": false
+   },
+   {
+    "sound": "shuffle_steps",
+    "cue": "5:So",
+    "cue_time": 14.057,
+    "onset": 14.0577,
+    "error_ms": 0.7,
+    "how": "onset",
+    "featured": false
+   },
+   {
+    "sound": "plank_creak_0",
+    "cue": "9:A",
+    "cue_time": 29.9562,
+    "onset": 29.9553,
+    "error_ms": -0.9,
+    "how": "onset",
+    "featured": false
+   },
+   {
+    "sound": "whistle_march",
+    "cue": "10:whistle",
+    "cue_time": 33.6427,
+    "onset": 33.6426,
+    "error_ms": -0.1,
+    "how": "onset",
+    "featured": false
+   },
+   {
+    "sound": "push_tick",
+    "cue": "13:Tiny",
+    "cue_time": 41.9551,
+    "onset": 41.9554,
+    "error_ms": 0.3,
+    "how": "onset",
+    "featured": false
+   },
+   {
+    "sound": "push_tick",
+    "cue": "13:always",
+    "cue_time": 43.0553,
+    "onset": 43.0556,
+    "error_ms": 0.3,
+    "how": "onset",
+    "featured": false
+   },
+   {
+    "sound": "rain_steps",
+    "cue": "15:His",
+    "cue_time": 49.5067,
+    "onset": 49.5067,
+    "error_ms": 0.0,
+    "how": "onset",
+    "featured": false
+   },
+   {
+    "sound": "bird_chirp",
+    "cue": "15:bridge",
+    "cue_time": 50.9556,
+    "onset": 50.9652,
+    "error_ms": 9.6,
+    "how": "onset",
+    "featured": false
+   },
+   {
+    "sound": "boot_41_slowmo",
+    "cue": "17:forty-first",
+    "cue_time": 55.1881,
+    "onset": 55.1887,
+    "error_ms": 0.6,
+    "how": "onset",
+    "featured": true
+   },
+   {
+    "sound": "slowmo_subdrop",
+    "cue": "17:forty-first",
+    "cue_time": 55.1881,
+    "onset": 55.1933,
+    "error_ms": 5.2,
+    "how": "onset",
+    "featured": false
+   },
+   {
+    "sound": "falling_whistle",
+    "cue": "17:throws",
+    "cue_time": 56.9672,
+    "onset": 56.9615,
+    "error_ms": -5.7,
+    "how": "onset",
+    "featured": false
+   },
+   {
+    "sound": "splash_final",
+    "cue": "17:gorge",
+    "cue_time": 58.059,
+    "onset": 58.059,
+    "error_ms": 0.0,
+    "how": "onset",
+    "featured": false
+   }
+  ],
+  "max_abs_error_ms_steps": 0.0,
+  "max_abs_error_ms_top10": 1.6,
+  "max_abs_error_ms_all_key": 9.6,
+  "all_within_tolerance": true,
+  "music_events": [
+   {
+    "event": "the drum's last hit: bass drum + field drum flam, canyon reverb",
+    "cue": "1:He",
+    "cue_time": 0.0,
+    "measured": 0.0,
+    "error_ms": 0.0
+   },
+   {
+    "event": "full march: tune enters one beat after the 4th step word and keeps tha",
+    "cue": "8:right+1beat",
+    "cue_time": 29.7928,
+    "measured": 29.7992,
+    "error_ms": 6.4
+   },
+   {
+    "event": "the march is gone: one soft drum, then only a pad",
+    "cue": "12:You",
+    "cue_time": 36.8475,
+    "measured": 36.848,
+    "error_ms": 0.5
+   },
+   {
+    "event": "swing figure: 14 beats pinned to Ever/Tiny/always/and, beat 445 -> 331",
+    "cue": "13:Ever",
+    "cue_time": 40.176,
+    "measured": 40.1765,
+    "error_ms": 0.5
+   },
+   {
+    "event": "music cuts dead (8 ms)",
+    "cue": "17:forty-first",
+    "cue_time": 55.1881,
+    "measured": 55.1879,
+    "error_ms": -0.2,
+    "silence_after_ms": 900
+   },
+   {
+    "event": "bass drum + tom + field drum + dark crash, canyon reverb",
+    "cue": "17:bucks",
+    "cue_time": 56.198,
+    "measured": 56.1983,
+    "error_ms": 0.3
+   }
+  ]
+ },
+ "hard_stop": {
+  "music.wav": {
+   "file_length_s": 58.5593,
+   "last_audible_sample_s": 58.5588,
+   "end_of_last_word_s": 58.5593
+  },
+  "sfx.wav": {
+   "file_length_s": 58.5593,
+   "last_audible_sample_s": 58.5592,
+   "end_of_last_word_s": 58.5593
+  }
+ },
+ "clipping": {
+  "files": 67,
+  "max_peak_dbfs": -1.31,
+  "clipped_files": [],
+  "list": [
+   {
+    "file": "music.wav",
+    "peak_dbfs": -2.21,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "sfx.wav",
+    "peak_dbfs": -1.31,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/amb_gorge.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/amb_meadow.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/bird_chirp.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/bird_meadow.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/bolt_ping.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/boot_41_slowmo.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/boots_h0_L.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/boots_h0_R.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/boots_h1_L.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/boots_h1_R.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/boots_h2_L.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/boots_h2_R.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/boots_h3_L.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/boots_h3_R.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/boots_h4_L.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/boots_h4_R.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/boots_h5_L.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/boots_h5_R.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/boots_h6_L.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/boots_h6_R.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/breakstep_steps.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/bridge_creak.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/bridge_rumble.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/bridge_snap.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/chain_clink.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/chain_creak.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/cloth_grab.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/cloth_yank.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/drum_tumble.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/falling_whistle.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/gorge_echo_drum.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/marbles.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/metal_groan.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/mus_bassdrum.wav",
+    "peak_dbfs": -6.65,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/mus_drone.wav",
+    "peak_dbfs": -9.82,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/mus_fife.wav",
+    "peak_dbfs": -10.31,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/mus_hits.wav",
+    "peak_dbfs": -2.21,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/mus_pizz.wav",
+    "peak_dbfs": -5.88,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/mus_pulse.wav",
+    "peak_dbfs": -10.15,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/mus_snare.wav",
+    "peak_dbfs": -6.85,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/officer_whistle.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/pebble_fall.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/plank_creak_0.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/plank_creak_1.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/plank_creak_2.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/plank_creak_3.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/push_thump.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/push_tick.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/rain_steps.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/riser_into_bucks.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/shuffle_steps.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/sign_ding.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/slowmo_subdrop.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/soldiers_clatter.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/splash_distant.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/splash_final.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/splash_small_0.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/splash_small_1.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/splash_small_2.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/splash_small_3.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/swing_creak_back.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/swing_creak_fwd.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/throw_whoosh.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/whistle_march.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/wind_gust.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   }
+  ]
+ }
+}

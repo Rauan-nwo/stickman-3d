@@ -21,6 +21,11 @@
 //   hL, hR          цель кисти [наружу, вниз] от плеча (ед. стандартной фигуры), bL/bR — сторона сгиба локтя
 //   arms            [{ to:[x,y], L, bend, hand }, ...] — явные цели кистей в координатах фигуры (например, проекция 3D-ружья)
 //   limbs           полный явный список конечностей (заменяет стойку);  held:[{ layer:'mid'|'front', draw(ctx) }] — 2D-предметы
+//   view            'front' (по умолчанию) | 'back' | 'side' | 'threeQuarter';  facing: +1 — смотрит вправо, -1 — влево
+//                   (лицо съезжает к краю головы, сзади — волосы; шляпа и одежда получают вид 4-м аргументом; см. gaits.js)
+//   legs            явные ноги [{ layer, hip, a, b, L, bend, ... }] вместо ног стойки (руки стойки остаются) — их пишет gaits.js
+//   rot             поворот всей фигуры вокруг центра тела (полёт, падение);  headDx, headDy — сдвиг головы
+//   tears           0..1 фонтаны слёз;  flush: { color, k } — заливка головы цветом (ярость);  eyes ещё: 'shut' (> <), 'wideS' (ужас)
 import { clamp, lerp, seg, E, spring } from '../core/ease.js';
 import { hash } from '../core/rng.js';
 
@@ -216,8 +221,10 @@ export const HATS = {
 // лицо
 // =====================================================================================================
 // глаз. kind: dot | lid (тяжёлое веко — «обычный» взгляд эталона) | closed (дуга ∩: смех, подмигивание) | wide | flat (моргание)
-function eye(x, kind, cx, cy, rx, ry, look, tilt, lw, ink) {
+function eye(x, kind, cx, cy, rx, ry, look, tilt, lw, ink, sd = 1) {
   const lx = (look?.[0] || 0) * rx * .35, ly = (look?.[1] || 0) * ry * .25;
+  if (kind === 'shut') { line(x, [[cx - sd * rx * 1.7, cy - ry * 1.0], [cx + sd * rx * 1.5, cy]], lw, ink); line(x, [[cx + sd * rx * 1.5, cy], [cx - sd * rx * 1.7, cy + ry * 1.0]], lw, ink); return; }   // зажмурен: > <
+  if (kind === 'wideS') { ell(x, cx, cy - ry * .2, rx * 2.9, ry * 2.6, '#FFFFFF', ink, lw * .75); ell(x, cx + lx * 2.6, cy - ry * .2 + ly * 2, rx * .55, ry * .45, ink, null); return; }   // ужас: белок больше, зрачок-точка
   if (kind === 'closed') { line(x, [[cx - rx * 1.7, cy + ry * .25], [cx, cy - ry * 1.15], [cx + rx * 1.7, cy + ry * .25]], lw, ink); return; }
   if (kind === 'flat') { line(x, [[cx - rx * 1.9, cy], [cx + rx * 1.9, cy + rx * .1]], lw, ink); return; }
   if (kind === 'dot') { ell(x, cx + lx, cy + ly, rx, ry, ink, null); return; }
@@ -235,6 +242,8 @@ function brow(x, sx, ex, ey, lift, ang, k, col) {
 export const SMALL_MOUTHS = ['o', 'oSmall', 'flatS', 'smirkS', 'smileS', 'chew'];
 export const BIG_MOUTHS = ['flat', 'smile', 'smirk', 'O', 'open', 'laugh', 'laughBig', 'teeth', 'teethOpen'];
 export const MOUTHS = [...BIG_MOUTHS, ...SMALL_MOUTHS];
+// дополнительные большие рты (армия V002): оскал-улыбка, крик с двумя рядами зубов, отвисшая челюсть, свист, дуга вниз, волна
+export const EXTRA_MOUTHS = ['grin', 'roar', 'jawDrop', 'whistle', 'frown', 'wavy'];
 function smallMouth(x, m, r, cx, cy, C, p) {
   switch (m) {
     case 'o': ell(x, cx, cy, r * .075, r * .05, C.mouth, null, 0, -.25); break;
@@ -269,9 +278,36 @@ function bigMouth(x, m, C, lw) {
       x.stroke(); x.restore();
       x.beginPath(); x.roundRect(x0, y0, w, h, 10); x.lineWidth = lw; x.strokeStyle = C.ink; x.stroke(); break;
     }
+    case 'grin': {                                                                            // широкая улыбка с зубами (эталон: «to buy»)
+      const path = () => { x.beginPath(); x.moveTo(-46, y - 10); x.quadraticCurveTo(0, y + 8, 46, y - 10); x.quadraticCurveTo(30, y + 34, 0, y + 36); x.quadraticCurveTo(-30, y + 34, -46, y - 10); x.closePath(); };
+      path(); x.fillStyle = C.teeth || '#FFFFFF'; x.fill(); x.save(); x.clip(); x.lineWidth = 3.2; x.strokeStyle = C.ink; x.beginPath();
+      x.moveTo(-46, y + 12); x.quadraticCurveTo(0, y + 24, 46, y + 12); for (let k = -2; k <= 2; k++) { x.moveTo(k * 15, y - 12); x.lineTo(k * 14, y + 38); }
+      x.stroke(); x.restore(); path(); x.lineWidth = lw; x.strokeStyle = C.ink; x.lineJoin = 'round'; x.stroke(); break;
+    }
+    case 'roar': {                                                                            // крик: тёмная пасть, ряды зубов сверху и снизу
+      const path = () => { x.beginPath(); x.moveTo(-50, y - 14); x.quadraticCurveTo(0, y - 24, 50, y - 14); x.quadraticCurveTo(56, y + 48, 0, y + 54); x.quadraticCurveTo(-56, y + 48, -50, y - 14); x.closePath(); };
+      path(); x.fillStyle = C.mouthIn || '#5B1E28'; x.fill(); x.save(); x.clip();
+      ell(x, 2, y + 50, 26, 16, C.tongue || '#E8737F', null);
+      x.fillStyle = C.teeth || '#FFFFFF'; x.beginPath(); x.moveTo(-60, y - 30); x.lineTo(60, y - 30); x.lineTo(60, y - 2); x.quadraticCurveTo(0, y + 6, -60, y - 2); x.closePath(); x.fill();
+      x.lineWidth = 3.2; x.strokeStyle = C.ink; x.beginPath(); x.moveTo(-60, y - 2); x.quadraticCurveTo(0, y + 6, 60, y - 2); for (let k = -3; k <= 3; k++) { x.moveTo(k * 14, y - 26); x.lineTo(k * 14, y + 3); } x.stroke();
+      x.restore(); path(); x.lineWidth = lw; x.strokeStyle = C.ink; x.lineJoin = 'round'; x.stroke(); break;
+    }
+    case 'jawDrop': {                                                                         // челюсть отвисла ниже подбородка
+      const path = () => { x.beginPath(); x.moveTo(-30, y - 8); x.quadraticCurveTo(0, y - 14, 30, y - 8); x.bezierCurveTo(42, y + 40, 46, y + 118, 0, y + 124); x.bezierCurveTo(-46, y + 118, -42, y + 40, -30, y - 8); x.closePath(); };
+      path(); x.fillStyle = C.mouthIn || '#5B1E28'; x.fill(); x.save(); x.clip();
+      ell(x, 0, y + 116, 26, 22, C.tongue || '#E8737F', null);
+      x.fillStyle = C.teeth || '#FFFFFF'; x.fillRect(-40, y - 20, 80, 22); x.lineWidth = 3; x.strokeStyle = C.ink; x.beginPath(); x.moveTo(-40, y + 2); x.lineTo(40, y + 2); for (let k = -1; k <= 1; k++) { x.moveTo(k * 14, y - 16); x.lineTo(k * 14, y + 2); } x.stroke();
+      x.restore(); path(); x.lineWidth = lw; x.strokeStyle = C.ink; x.lineJoin = 'round'; x.stroke(); break;
+    }
+    case 'whistle': {                                                                         // губы трубочкой
+      ell(x, 0, y + 6, 11, 13, C.mouthIn || '#5B1E28', C.ink, lw * .8);
+      line(x, [[-22, y - 8], [-15, y + 4], [-22, y + 18]], 4.5, C.ink); line(x, [[22, y - 8], [15, y + 4], [22, y + 18]], 4.5, C.ink); break;
+    }
+    case 'frown': line(x, [[-30, y + 14], [0, y - 8], [30, y + 14]], 6, C.ink); break;
+    case 'wavy': { x.beginPath(); x.moveTo(-32, y + 4); x.bezierCurveTo(-22, y - 12, -12, y - 12, -2, y + 3); x.bezierCurveTo(8, y + 16, 20, y + 16, 32, y - 2); x.lineWidth = 6; x.lineCap = 'round'; x.strokeStyle = C.ink; x.stroke(); break; }
   }
 }
-const OPEN_MOUTHS = ['O', 'open', 'laugh', 'laughBig', 'teethOpen'];
+const OPEN_MOUTHS = ['O', 'open', 'laugh', 'laughBig', 'teethOpen', 'roar', 'jawDrop'];
 function moustache(x, lift, open, C) {
   const y0 = 22 + open * 2, e = lift;                                  // концы усов поднимаются вместе с lift
   x.fillStyle = C.stache; x.strokeStyle = C.ink; x.lineWidth = 3.5; x.lineJoin = 'round';
@@ -299,14 +335,14 @@ function sweatDrop(x, px, py, k, ink) {
 // =====================================================================================================
 function limbsFor(S, p) {
   if (p.limbs) return p.limbs;
-  const st = S.stances[p.stance || S.stance] || {}, out = [...(st.limbs || [])], rig = S.rig, u = S.u ?? 1;
+  const st = S.stances[p.stance || S.stance] || {}, out = p.legs ? [...p.legs] : [...(st.limbs || [])], rig = S.rig, u = S.u ?? 1;
   if (st.arms === 'auto' || p.arms) {
     for (const i of [0, 1]) {
       const sd = i ? 1 : -1, sh = rig.sh[i], A = p.arms && p.arms[i];
       if (A === null) continue;
       const H = i ? p.hR : p.hL, B = (i ? p.bR : p.bL) ?? 1;
       const to = A && A.to ? A.to : H ? [sh[0] + sd * H[0] * u, sh[1] + H[1] * u] : [sh[0] + sd * -15 * u, sh[1] + 215 * u];
-      out.push({ a: A && A.from ? A.from : sh, b: to, L: (A && A.L) ?? rig.armL, bend: (A && A.bend) ?? -B * sd, sag: rig.sag, layer: (A && A.layer) || rig.armLayer || 'front', hand: A && A.hand !== undefined ? A.hand : S.hand.r });
+      out.push({ a: A && A.from ? A.from : sh, b: to, L: (A && A.L) ?? rig.armL, bend: (A && A.bend) ?? -B * sd, sag: (A && A.sag) ?? rig.sag, w: A && A.w, layer: (A && A.layer) || rig.armLayer || 'front', hand: A && A.hand !== undefined ? A.hand : S.hand.r });
     }
   }
   return out;
@@ -324,80 +360,137 @@ function drawLimbs(x, limbs, layer, S, hipDy) {
     if (S.hand.plain) ell(x, L.b[0], L.b[1], h.r, h.r, S.hand.fill, null); else drawHand(x, L.b, h.r, S.hand.fill, ink, S.hand.shine !== false);
   }
 }
-function drawBody(x, S) {
-  const b = S.body, B = { cx: b.x, cy: b.y, rx: b.rx, ry: b.ry }, ink = S.colors.ink;
-  beanPath(x, b.x, b.y, b.rx, b.ry, b.n, b.topK);
-  if (b.fillLR) { const g = x.createLinearGradient(b.x - b.rx, 0, b.x + b.rx, 0); g.addColorStop(0, b.fillLR[0]); g.addColorStop(.5, b.fillLR[1]); g.addColorStop(1, b.fillLR[2]); x.fillStyle = g; }
+// VW = { view, facing } для видов 'side' | 'threeQuarter' | 'back'; null — анфас (прежний рисунок без изменений)
+function drawBody(x, S, VW) {
+  const b = S.body, rx = VW ? b.rx * (VW.view === 'side' ? b.sideK ?? .88 : VW.view === 'threeQuarter' ? b.tqK ?? .96 : 1) : b.rx;
+  const B = { cx: b.x, cy: b.y, rx, ry: b.ry }, ink = S.colors.ink;
+  beanPath(x, b.x, b.y, rx, b.ry, b.n, b.topK);
+  if (b.fillLR) { const g = x.createLinearGradient(b.x - rx, 0, b.x + rx, 0); g.addColorStop(0, b.fillLR[0]); g.addColorStop(.5, b.fillLR[1]); g.addColorStop(1, b.fillLR[2]); x.fillStyle = g; }
   else if (b.fillRadial) { const q = b.fillRadial, g = x.createRadialGradient(b.x + q.at[0], b.y + q.at[1], q.r0, b.x + q.to[0], b.y + q.to[1], q.r1); q.stops.forEach(([o, c]) => g.addColorStop(o, c)); x.fillStyle = g; }
   else x.fillStyle = b.fill;
   x.fill();
-  if (b.inside && b.inside.length) { x.save(); x.clip(); for (const fn of b.inside) fn(x, B, S); x.restore(); beanPath(x, b.x, b.y, b.rx, b.ry, b.n, b.topK); }
+  // одежда получает вид 4-м аргументом. Герой, который видов не знает (нет b.views): сбоку и в 3/4 рисунок съезжает
+  // в сторону взгляда, сзади остаются только слои внутри контура (без пуговиц и значков поверх)
+  const shift = VW && !b.views && VW.view !== 'back' ? VW.facing * rx * (VW.view === 'side' ? .34 : .16) : 0;
+  const outside = VW && !b.views && VW.view === 'back' ? [] : b.outside || [];
+  if (b.inside && b.inside.length) { x.save(); x.clip(); if (shift) x.translate(shift, 0); for (const fn of b.inside) fn(x, B, S, VW); x.restore(); beanPath(x, b.x, b.y, rx, b.ry, b.n, b.topK); }
   x.lineWidth = S.lw; x.strokeStyle = ink; x.stroke();
-  for (const fn of b.outside || []) fn(x, B, S);
+  if (shift) { x.save(); x.translate(shift, 0); }
+  for (const fn of outside) fn(x, B, S, VW);
+  if (shift) x.restore();
 }
-function drawHead(x, S, p) {
-  const h = S.head, f = S.face, C = S.colors, ink = C.ink, LW = S.lw;
-  x.save(); x.translate(h.x, h.y + (h.pivot || 0)); x.rotate(p.tilt || 0); if (h.pivot) x.translate(0, -h.pivot);
-  if (h.ear) ell(x, h.ear.x, h.ear.y, h.ear.rx, h.ear.ry, h.fill, ink, LW);
+// виды головы: сдвиг лица к краю (в радиусах), сжатие расстояния между глазами, доля головы под волосами на затылке
+const VIEWS = { threeQuarter: { turn: .3, comp: .86, hair: .2 }, side: { turn: .5, comp: .6, hair: .4 }, back: { turn: 0, comp: 1, hair: 1 } };
+// волосы на затылке (как у эталона: сбоку — «шлем» на задней части головы, сзади — полоса с фестонами под шляпой)
+function viewHair(x, S, VW) {
+  const h = S.head, C = S.colors, r = h.rx, ry = h.ry, fc = VW.facing, o = h.back || {};
+  if (h.back === false) return;
+  x.save(); x.beginPath(); x.ellipse(0, 0, h.rx - 3, h.ry - 3, 0, 0, TAU); x.clip(); x.fillStyle = o.col || C.hair || C.ink; x.beginPath();
+  if (VW.view === 'back') {
+    const y0 = ry * (o.y ?? .08), n = o.n ?? 4, w = r * 2.3 / n;
+    x.moveTo(-r * 1.2, -ry * 1.2); x.lineTo(r * 1.2, -ry * 1.2); x.lineTo(r * 1.15, y0);
+    for (let k = 0; k < n; k++) { const xa = r * 1.15 - (k + 1) * w; x.quadraticCurveTo(xa + w / 2, y0 + ry * .24, xa, y0); }
+    x.closePath();
+  } else {
+    const xb = -fc * r * (1 - 2 * (o[VW.view] ?? VIEWS[VW.view].hair));
+    x.moveTo(xb + fc * r * .16, -ry * 1.1); x.quadraticCurveTo(xb - fc * r * .03, -ry * .4, xb, ry * .06);
+    x.quadraticCurveTo(xb + fc * r * .17, ry * .17, xb + fc * r * .1, ry * .34);
+    x.quadraticCurveTo(xb - fc * r * .1, ry * .4, xb - fc * r * .2, ry * 1.1);
+    x.lineTo(-fc * r * 1.3, ry * 1.1); x.lineTo(-fc * r * 1.3, -ry * 1.1); x.closePath();
+  }
+  x.fill(); x.restore();
+  ell(x, 0, 0, h.rx, h.ry, null, C.ink, S.lw);
+}
+// фонтаны слёз из внешних уголков глаз (хохот до слёз): капли летят по дуге, k — сила 0..1
+function tearJets(x, f, off, t, k, fs, ink) {
+  for (const sd of [-1, 1]) {
+    const e = f.eyes[sd < 0 ? 0 : 1], ox = e.x + off + sd * e.rx * 2.4, oy = e.y + e.ry * .3;
+    for (let j = 0; j < 5; j++) {
+      const ph = ((t * 2.3 + j / 5 + (sd > 0 ? .1 : 0)) % 1 + 1) % 1, px = ox + sd * (20 + 120 * ph) * fs * k, py = oy + (-95 * ph + 190 * ph * ph) * fs * k;
+      const a = Math.atan2(-95 + 380 * ph, sd * 120);
+      x.save(); x.translate(px, py); x.rotate(a - Math.PI / 2); const q = (.5 + .5 * k) * fs * (1 - .35 * ph); x.scale(q, q);
+      x.beginPath(); x.moveTo(0, -22); x.bezierCurveTo(11, -4, 13, 6, 0, 11); x.bezierCurveTo(-13, 6, -11, -4, 0, -22); x.fillStyle = '#A8DBF5'; x.fill(); x.lineWidth = 3.2; x.strokeStyle = ink; x.stroke(); x.restore();
+    }
+  }
+}
+function drawHead(x, S, p, VW) {
+  const h = S.head, f = S.face, C = S.colors, ink = C.ink, LW = S.lw, back = !!VW && VW.view === 'back';
+  x.save(); x.translate(h.x + (p.headDx || 0), h.y + (h.pivot || 0) + (p.headDy || 0)); x.rotate(p.tilt || 0); if (h.pivot) x.translate(0, -h.pivot);
+  if (h.ear && !back) ell(x, h.ear.x, h.ear.y, h.ear.rx, h.ear.ry, h.fill, ink, LW);
   const g = x.createRadialGradient(h.grad[0], h.grad[1], h.grad[2], 0, 0, h.grad[3]);
   g.addColorStop(0, h.fill); g.addColorStop(h.grad[4], h.fill); g.addColorStop(1, h.shade);
   ell(x, 0, 0, h.rx, h.ry, g, ink, LW);
-  if (h.ear) { const e = h.ear; ell(x, e.x - 2, e.y, e.rx - 4, e.ry - 4, h.fill, null); x.beginPath(); x.arc(e.x + 1, e.y, 9, Math.PI * .9, Math.PI * 1.9); x.lineWidth = 4; x.strokeStyle = e.line || '#A99A94'; x.stroke(); }
-  if (h.hair) {
+  if (p.flush && p.flush.k > .01) { x.save(); x.beginPath(); x.ellipse(0, 0, h.rx, h.ry, 0, 0, TAU); x.clip(); x.globalAlpha = clamp(p.flush.k); x.fillStyle = p.flush.color || '#E0483C'; x.fillRect(-h.rx, -h.ry, h.rx * 2, h.ry * 2); x.restore(); ell(x, 0, 0, h.rx, h.ry, null, ink, LW); }
+  if (h.ear && !back) { const e = h.ear; ell(x, e.x - 2, e.y, e.rx - 4, e.ry - 4, h.fill, null); x.beginPath(); x.arc(e.x + 1, e.y, 9, Math.PI * .9, Math.PI * 1.9); x.lineWidth = 4; x.strokeStyle = e.line || '#A99A94'; x.stroke(); }
+  if (h.hair && !back) {
     x.save(); x.beginPath(); const ins = h.hair.inset ?? 4; if (h.rx === h.ry) x.arc(0, 0, h.rx - ins, 0, TAU); else x.ellipse(0, 0, h.rx - ins, h.ry - ins, 0, 0, TAU); x.clip();
     if (h.hair.fringe) { const t = h.hair.fringe; x.beginPath(); x.moveTo(t[0][0], t[0][1]); for (const q of t.slice(1)) x.lineTo(q[0], q[1]); x.closePath(); x.fillStyle = C.hair; x.fill(); }
     if (h.hair.sideburns) for (const sd of [-1, 1]) { const s = h.hair.sideburns; x.beginPath(); x.ellipse(sd * s[0], s[1], s[2], s[3], sd * .5, 0, TAU); x.fillStyle = C.hair; x.fill(); }
     x.restore();
     ell(x, 0, 0, h.rx, h.ry, null, ink, LW);
   }
+  if (VW) viewHair(x, S, VW);
   const fs = f.fs ?? 1;
-  if (p.blush > .02) for (const sd of [-1, 1]) { const bx = sd * 82 * fs + (f.cx || 0), by = 18 * fs, gb = x.createRadialGradient(bx, by, 2, bx, by, 28 * fs); gb.addColorStop(0, 'rgba(242,120,135,' + (.55 * p.blush) + ')'); gb.addColorStop(1, 'rgba(242,120,135,0)'); x.fillStyle = gb; x.beginPath(); x.ellipse(bx, by, 30 * fs, 20 * fs, 0, 0, TAU); x.fill(); }
+  // вид сбоку и в 3/4: лицо съезжает к краю головы на vfx, глаза сближаются (comp); анфас — vfx = 0, глаза на месте
+  const vfx = VW ? VW.facing * VIEWS[VW.view].turn * (f.mr || h.ry) : 0, ecx = (f.eyes[0].x + f.eyes[1].x) / 2;
+  const ex = e => (VW ? (e.x - ecx) * VIEWS[VW.view].comp + ecx : e.x);
+  if (!back) {
+  if (p.blush > .02) for (const sd of [-1, 1]) { const bx = sd * 82 * fs + (f.cx || 0) + vfx, by = 18 * fs, gb = x.createRadialGradient(bx, by, 2, bx, by, 28 * fs); gb.addColorStop(0, 'rgba(242,120,135,' + (.55 * p.blush) + ')'); gb.addColorStop(1, 'rgba(242,120,135,0)'); x.fillStyle = gb; x.beginPath(); x.ellipse(bx, by, 30 * fs, 20 * fs, 0, 0, TAU); x.fill(); }
   // глаза
   const kinds = Array.isArray(p.eyes) ? p.eyes : [p.eyes || 'rest', p.eyes || 'rest'], look = p.look || f.look || [0, 0];
   const fx = (p.turn || 0) * (f.mr || h.ry), sq = clamp(p.squint || 0);
   f.eyes.forEach((e, i) => {
     let kind = kinds[i] === 'rest' ? (f.restEye || 'dot') : kinds[i];
-    const cx = e.x + (i ? fx * .8 : fx), cy = i ? e.y + Math.abs(fx) * .12 : e.y;
+    const cx = ex(e) + (i ? fx * .8 : fx) + vfx, cy = i ? e.y + Math.abs(fx) * .12 : e.y;
     if (p.blink && kind !== 'closed') { if (e.blink) line(x, e.blink, e.lw, ink); else eye(x, 'flat', cx, cy, e.rx, e.ry, look, 0, e.lw, ink); return; }
     if (sq > .6 && kind !== 'closed') { eye(x, 'flat', cx, cy, e.rx, e.ry, look, 0, e.lw, ink); return; }
     let tilt = p.lid ? p.lid[i] : (e.tilt ?? 0);
     if (!p.lid && !f.brows && kind === 'lid') { const b = (i ? p.browR : p.browL) || p.brows; if (b) tilt = (e.tilt ?? 0) + (i ? 1 : -1) * b[1] * e.rx * 1.3; }
-    eye(x, kind, cx, cy, e.rx, e.ry, look, tilt, e.lw, ink);
+    eye(x, kind, cx, cy, e.rx, e.ry, look, tilt, e.lw, ink, i ? 1 : -1);
   });
-  if (f.glasses) { const gl = f.glasses; x.lineWidth = gl.lw; x.strokeStyle = gl.col || ink; for (const e of f.eyes) { x.beginPath(); x.arc(e.x + fx, e.y + (gl.dy || 0), gl.r, 0, TAU); x.fillStyle = gl.fill || 'rgba(200,225,240,.28)'; x.fill(); x.stroke(); }
-    x.beginPath(); x.moveTo(f.eyes[0].x + gl.r + fx, f.eyes[0].y + (gl.dy || 0)); x.quadraticCurveTo((f.eyes[0].x + f.eyes[1].x) / 2 + fx, f.eyes[0].y + (gl.dy || 0) - gl.r * .35, f.eyes[1].x - gl.r + fx, f.eyes[1].y + (gl.dy || 0)); x.stroke(); }
-  if (f.brows) { const bL = p.browL || p.brows || [0, 0], bR = p.browR || p.brows || [0, 0]; brow(x, -1, f.eyes[0].x + fx, f.eyes[0].y, bL[0], bL[1], fs, C.hair); brow(x, 1, f.eyes[1].x + fx, f.eyes[1].y, bR[0], bR[1], fs, C.hair); }
+  if (p.tears > .02) tearJets(x, f, fx + vfx, p.t || 0, clamp(p.tears), fs, ink);
+  if (f.glasses) { const gl = f.glasses; x.lineWidth = gl.lw; x.strokeStyle = gl.col || ink; for (const e of f.eyes) { x.beginPath(); x.arc(ex(e) + fx + vfx, e.y + (gl.dy || 0), gl.r, 0, TAU); x.fillStyle = gl.fill || 'rgba(200,225,240,.28)'; x.fill(); x.stroke(); }
+    x.beginPath(); x.moveTo(ex(f.eyes[0]) + gl.r + fx + vfx, f.eyes[0].y + (gl.dy || 0)); x.quadraticCurveTo((f.eyes[0].x + f.eyes[1].x) / 2 + fx + vfx, f.eyes[0].y + (gl.dy || 0) - gl.r * .35, ex(f.eyes[1]) - gl.r + fx + vfx, f.eyes[1].y + (gl.dy || 0)); x.stroke(); }
+  if (f.brows) { const bL = p.browL || p.brows || [0, 0], bR = p.browR || p.brows || [0, 0], bc = f.browCol || C.hair; brow(x, -1, ex(f.eyes[0]) + fx + vfx, f.eyes[0].y, bL[0], bL[1], fs, bc); brow(x, 1, ex(f.eyes[1]) + fx + vfx, f.eyes[1].y, bR[0], bR[1], fs, bc); }
   // рот
   const m = p.mouth || f.restMouth || 'smirkS';
   if (SMALL_MOUTHS.includes(m)) {
     const mr = f.mr || h.ry;
-    smallMouth(x, m, mr, (p.mouthAt ? p.mouthAt[0] * mr : f.mouth[0]) + fx, p.mouthAt ? p.mouthAt[1] * mr : f.mouth[1], C, p);
+    smallMouth(x, m, mr, (p.mouthAt ? p.mouthAt[0] * mr : f.mouth[0]) + fx + vfx * 1.1, p.mouthAt ? p.mouthAt[1] * mr : f.mouth[1], C, p);
   } else {
-    const ms = f.ms ?? 1; x.save(); x.translate(f.mouthBig[0] + fx, f.mouthBig[1]); x.scale(ms, ms); bigMouth(x, m, C, LW / ms * (f.mouthLw ?? 1)); x.restore();
+    const ms = f.ms ?? 1; x.save(); x.translate(f.mouthBig[0] + fx + vfx * 1.1, f.mouthBig[1] + (p.mouthDy || 0)); x.scale(ms, ms); bigMouth(x, m, C, LW / ms * (f.mouthLw ?? 1)); x.restore();
   }
-  if (f.moustache) { const ms = f.ms ?? 1; x.save(); x.translate(f.mouthBig[0] + fx, f.mouthBig[1] - 50 * ms); x.scale(ms, ms); moustache(x, p.stache || 0, OPEN_MOUTHS.includes(m) ? 1 : 0, C); x.restore(); }
-  if (p.sweat > .05) sweatDrop(x, h.rx * .86, -h.ry * .25 + (((p.t || 0) * 40) % 30) * fs, p.sweat * fs, ink);
+  if (f.moustache) { const ms = f.ms ?? 1, mk = f.stacheK ?? 1; x.save(); x.translate(f.mouthBig[0] + fx + vfx * 1.1, f.mouthBig[1] - 50 * ms); x.scale(ms * mk, ms * mk); moustache(x, p.stache || 0, OPEN_MOUTHS.includes(m) ? 1 : 0, C); x.restore(); }
+  if (p.sweat > .05) sweatDrop(x, (VW ? -VW.facing : 1) * h.rx * .86, -h.ry * .25 + (((p.t || 0) * 40) % 30) * fs, p.sweat * fs, ink);
+  }
   // шляпа: подлетает от испуга (hatDy), догоняет голову после «тейка» (hatLag), приподнимается при подмигивании (hatTip)
-  const hd = (p.hatDy || 0) * fs + (p.hatLag || 0) * -10 * fs, hr = (p.hatLag || 0) * .06 - (p.hatTip || 0) * .16;
-  if (hd || hr) { x.save(); x.translate(0, hd); x.rotate(hr); HATS[S.hat.type](x, h, S); x.restore(); } else HATS[S.hat.type](x, h, S);
+  // + hatDx / hatRot: шляпа съезжает набок (рывок за воротник), hatOff — шляпы нет (слетела). Шляпа получает вид и позу.
+  const hd = (p.hatDy || 0) * fs + (p.hatLag || 0) * -10 * fs, hr = (p.hatLag || 0) * .06 - (p.hatTip || 0) * .16 + (p.hatRot || 0), hx = (p.hatDx || 0) * fs;
+  if (!p.hatOff) { if (hd || hr || hx) { x.save(); x.translate(hx, hd); x.rotate(hr); HATS[S.hat.type](x, h, S, VW, p); x.restore(); } else HATS[S.hat.type](x, h, S, VW, p); }
   x.restore();
 }
+// шляпа отдельно от героя (слетела и летит): начало координат — центр головы
+export function drawHat(x, S, { view, facing = 1 } = {}, p = {}) { x.save(); x.lineCap = 'round'; x.lineJoin = 'round'; HATS[S.hat.type](x, S.head, S, view && view !== 'front' ? { view, facing } : null, p); x.restore(); }
 
 // only: 'base' (всё, кроме переднего слоя) | 'front' (предметы и руки переднего слоя) | undefined (всё)
 export function drawStickman(x, S, p = {}, { only } = {}) {
   const base = only !== 'front', front = only !== 'base', u = S.u ?? 1;
+  const VW = p.view && p.view !== 'front' ? { view: p.view, facing: p.facing ?? 1 } : null;
   const limbs = limbsFor(S, p), st = S.stances[p.stance || S.stance] || {};
   const held = [...(p.limbs ? [] : st.props || []), ...(p.held || [])];
   x.save(); x.translate(p.dx || 0, p.dy || 0); x.lineCap = 'round'; x.lineJoin = 'round';
+  if (p.rot) { const py = p.rotY ?? S.body.y; x.translate(0, py); x.rotate(p.rot); x.translate(0, -py); }
   const sq = p.sq || 0, bob = p.bob || 0, lean = p.lean || 0, upper = sq || bob || lean, hipDy = bob + sq * 60 * u;
   if (base && S.shadow) { x.fillStyle = 'rgba(30,20,20,.18)'; x.beginPath(); x.ellipse(0, S.shadow.y, S.shadow.rx * (1 + bob / (300 * u)), S.shadow.ry, 0, 0, TAU); x.fill(); }
   if (base) drawLimbs(x, limbs, 'back', S, hipDy);
   if (upper) { x.save(); x.translate(0, S.rig.hipY + hipDy); x.rotate(lean); x.scale(1 + sq * .6, 1 - sq); x.translate(0, -S.rig.hipY); }
   if (base) {
-    drawBody(x, S);
+    drawLimbs(x, limbs, 'behind', S, 0);                           // за телом, но вместе с корпусом: дальняя рука в виде сбоку
+    for (const h of held) if (h.layer === 'behind') h.draw(x, S, p);
+    drawBody(x, S, VW);
     drawLimbs(x, limbs, 'mid', S, 0);
     for (const h of held) if ((h.layer || 'front') === 'mid') h.draw(x, S, p);
-    drawHead(x, S, p);
+    drawHead(x, S, p, VW);
   }
   if (front) {
     for (const h of held) if ((h.layer || 'front') === 'front') h.draw(x, S, p);
