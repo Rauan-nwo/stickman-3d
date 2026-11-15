@@ -42,6 +42,8 @@ V_REF = -20.0      # dBFS. mix.py normalises the voice's active RMS to this; all
 FILE_TRIM = 6.0    # music.wav / sfx.wav are written this much hotter than their mix level (mix.py undoes it)
 DUCK_MUSIC = -8.0  # how far mix.py pulls the music down under the voice
 DUCK_SFX = -3.0    # ...and the non-featured effects
+DUCK_LINE_MUSIC = -12.0  # under the colonel's and the general's own lines: deeper, and featured cues are not exempt
+DUCK_LINE_SFX = -8.0
 
 
 # =====================================================================================
@@ -467,7 +469,7 @@ def make_grids(sc):
     g["t_bucks"] = sc.t(17, "bucks")
     # swing: the figure is pinned to four words and speeds up between them
     anchors = [sc.t(13, "Ever"), sc.t(13, "Tiny"), sc.t(13, "always"), sc.t(13, "and"), sc.end(13)]
-    targets = [0.46, 0.43, 0.36, 0.33]
+    targets = [0.92, 0.86, 0.72, 0.66]        # one beat = one whole swing of the seat (was half of that: too busy)
     sw, seg = [], []
     for i in range(4):
         span = anchors[i + 1] - anchors[i]
@@ -800,7 +802,10 @@ class Session:
         self.g = make_grids(sc)
         self.P = self.g["P"]
 
-    def stem(self, name, audio, anchor=0.0, mode="peak20", measure="onset"):
+    def has(self, name):
+        return (self.out / "overrides" / (name + ".wav")).exists()
+
+    def stem(self, name, audio, anchor=0.0, mode="peak20", measure="onset", maxlen=None):
         """Register a sound. `anchor` = seconds from the file start to the instant that must land on the cue.
         mode: how its level is defined ('peak20' loudest 20 ms for one-shots, 'rms' for textures)."""
         a = np.asarray(audio, dtype=float)
@@ -813,9 +818,13 @@ class Session:
             thr = 0.1 * np.max(np.abs(a))
             anchor = float(np.argmax(np.max(np.abs(a), axis=1) >= thr)) / SR
             jf = ov.with_suffix(".json")
-            if jf.exists():
-                anchor = float(json.load(open(jf, encoding="utf-8")).get("anchor", anchor))
             src = "override"
+            if jf.exists():
+                side = json.load(open(jf, encoding="utf-8"))
+                anchor = float(side.get("anchor", anchor))
+                src = str(side.get("origin", src))            # 'recording' (Openverse) or 'earshot-bank'
+            if maxlen is not None and len(a) > nsamp(maxlen):  # a recording longer than its slot: cut + fade
+                a = fade(a[:nsamp(maxlen)], 0.0, min(0.25, maxlen * 0.3))
         a = a * (lin(-3.0) / (np.max(np.abs(a)) + 1e-12))  # every stem file peaks at -3 dBFS
         self.stems[name] = {"audio": a, "anchor": float(anchor), "mode": mode, "measure": measure, "src": src,
                             "loud": loud20(a) if mode == "peak20" else rms(a)}
@@ -845,6 +854,14 @@ class Session:
                           "length": round(len(a) / SR, 3), "fade_in": fin, "fade_out": fout,
                           "featured": bool(featured), "window": round(win if win else min(len(a) / SR, 0.45), 3),
                           "key": bool(key), "measure": st["measure"], "source": st["src"], "note": note})
+
+    def real(self, name, cue, lvl, maxlen=None, mode="rms", **kw):
+        """A sound that exists only as a recording (voices): placed when overrides/<name>.wav is there."""
+        if not self.has(name):
+            return False
+        self.stem(name, np.zeros(8), 0.0, mode=mode, measure="onset", maxlen=maxlen)
+        self.place(name, cue, lvl, **kw)
+        return True
 
     def mark(self, file, cue, lvl, t=None, featured=False, key=False, note="", win=0.4, beat=None):
         """Log a music event (the music is rendered as full-length parts, not placed one-shots)."""
@@ -876,6 +893,11 @@ HARM = [(.75, D5), (.25, 73), (.5, 69), (.5, Fs5),    (.5, G5), (.5, Fs5), (1.0,
 
 PAT = {  # (sixteenth 0..7 in a two-beat bar, velocity, kind)
     "S": [(0, 1.00, "flam"), (4, .80, "acc")],
+    # the steady set: one bar = two steps, strong stroke on the first, light answer on the second
+    "H": [(0, 1.00, "flam"), (4, .60, "acc")],
+    "I": [(0, 1.00, "flam"), (4, .60, "acc"), (6, .40, "tap")],
+    "J": [(0, 1.00, "flam"), (4, .64, "acc"), (6, .42, "tap"), (7, .48, "tap")],
+    "R": [(0, 1.00, "flam"), (4, .50, "roll")],
     "A": [(0, 1.00, "flam"), (2, .40, "tap"), (3, .46, "tap"), (4, .82, "acc"), (6, .40, "tap"), (7, .46, "tap")],
     "B": [(0, 1.00, "flam"), (2, .42, "tap"), (3, .48, "tap"), (4, .85, "acc"), (5, .38, "tap"), (6, .72, "acc"), (7, .44, "tap")],
     "C": [(0, 1.00, "flam"), (2, .44, "tap"), (3, .50, "tap"), (4, .50, "roll")],
@@ -908,16 +930,43 @@ def build_music(sc, ses):
     g_sn = k_for(snare_hit(1.0, rng_for("ref:sn")))
     g_bd = k_for(bass_drum(1.0, rng_for("ref:bd")))
 
+    # real recordings for the field drum, when present: overrides/snare_hit_<n>.wav (single strokes, used in
+    # rotation) and overrides/snare_roll.wav (a sustained roll that crescendo rolls are cut from)
+    ovd = ses.out / "overrides"
+    sn_smp = [read_wav(f).mean(axis=1) for f in sorted(ovd.glob("snare_hit_*.wav"))]
+    sn_smp = [x / (np.max(np.abs(x)) + 1e-12) for x in sn_smp]
+    sn_gain = [k_for(x) for x in sn_smp]
+    roll_smp = read_wav(ovd / "snare_roll.wav").mean(axis=1) if (ovd / "snare_roll.wav").exists() else None
+    ses.music_src = {"snare": "recording" if sn_smp else "synth", "roll": "recording" if roll_smp is not None else "synth"}
+
     def snare(t, vel, lvl, far=False, head=0.85, flam=False, dur=0.40):
         cnt[0] += 1
         r = rng_for("sn", cnt[0])
         buf = tr["snare_far"] if far else tr["snare"]
+        if sn_smp:                                     # recorded stroke: softer = darker and quieter
+            def smp(v, k):
+                x = sn_smp[k % len(sn_smp)][:nsamp(max(dur, 0.25))]
+                return fade(lp(x, 2300 + 7000 * v, 1) * v ** 1.2, 0.0, 0.04), sn_gain[k % len(sn_smp)]
+            if flam:
+                x, g_ = smp(0.32 * vel, cnt[0] + 1)
+                put(buf, x, t - 0.027, g_ * lin(lvl))
+            x, g_ = smp(vel, cnt[0])
+            put(buf, x, t, g_ * lin(lvl))
+            return
         if flam:
             put(buf, snare_hit(0.32 * vel, r, head=0.5), t - 0.027, g_sn * lin(lvl))
         put(buf, snare_hit(vel, r, head=head, dur=dur), t, g_sn * lin(lvl))
 
     def roll(t0, t1, v0, v1, lvl, far=False):
         r = rng_for("roll", int(t0 * 1000))
+        if roll_smp is not None and t1 - t0 > 0.08:    # a recorded roll, shaped into the crescendo
+            m = nsamp(t1 - t0)
+            i0 = int(r.integers(0, max(1, len(roll_smp) - m)))
+            x = np.resize(roll_smp[i0:i0 + m], m)
+            u = np.arange(m) / m
+            x = fade(x * (v0 + (v1 - v0) * u ** 1.5) ** 1.2, 0.012, 0.02)
+            put(tr["snare_far"] if far else tr["snare"], x, t0, float(lin(V_REF + lvl) / (loud20(roll_smp) * 0.7071)))
+            return
         t = t0
         while t < t1 - 0.012:
             u = (t - t0) / max(t1 - t0, 1e-3)
@@ -936,7 +985,7 @@ def build_music(sc, ses):
         b = B[i + 1] if 0 <= i + 1 < m else (B[-1] + (i + 1 - (m - 1)) * P if i + 1 >= m else B[0] + (i + 1) * P)
         return a + fr * (b - a)
 
-    def cadence(B, i_down, cyc0, lvl_fn, pats, far=False, pick=False, t_stop=None, far_until=None):
+    def cadence(B, i_down, cyc0, lvl_fn, pats, far=False, pick=False, t_stop=None, far_until=None, steady=True):
         """Field-drum street beat over beat grid B. i_down = index of any downbeat; cyc0 = downbeat where
         the pattern cycle starts. Beats on the grid are never humanised (they carry the lock to the voice)."""
         m = len(B)
@@ -969,20 +1018,22 @@ def build_music(sc, ses):
             is_far = far or (far_until is not None and t < far_until)
             down = (bi - first) % 2 == 0
             L = lvl_fn(t) + (LV["far_bd"] if is_far else LV["bd"])
+            if steady and not down:                   # steadier: the bass drum marks every SECOND step
+                continue
             bdrum(t, 1.0 if down else 0.8, L, is_far)
             if pick and not down and not is_far:      # eighth-note pick-up into the next downbeat
                 bdrum(beat_t(B, bi + 0.5), 0.5, L - 2)
 
-    def tune(B, x0, line, lvl_fn, buf, transpose=0, t_stop=None, vel=1.0, name="f", bars=None):
+    def tune(B, x0, line, lvl_fn, buf, transpose=0, t_stop=None, vel=1.0, name="f", bars=None, stretch=2.0):
         """Lay a (duration, midi) line onto beat grid B starting at beat x0 and render it as one fife line."""
-        notes, x = [], float(x0)
+        notes, x = [], 0.0                   # x counts tune beats; one tune beat = `stretch` steps (half-time feel)
         seq = line if bars is None else line * 8
-        total_beats = sum(d for d, _ in line) if bars is None else bars * 2
+        total_beats = sum(d for d, _ in line) if bars is None else bars * 2 / stretch
         used = 0.0
         for d, m in seq:
             if used >= total_beats - 1e-6:
                 break
-            t0, t1 = beat_t(B, x), beat_t(B, x + d)
+            t0, t1 = beat_t(B, x0 + x * stretch), beat_t(B, x0 + (x + d) * stretch)
             if m is not None and (t_stop is None or t0 < t_stop - 0.03):
                 te = min(t1, t_stop) if t_stop else t1
                 notes.append((t0, max(0.04, (te - t0) * 0.93), m + transpose, vel))
@@ -1061,7 +1112,7 @@ def build_music(sc, ses):
     def lv7(t):                                           # close cadence swells towards "land as one"
         return float(np.interp(t, [S(7), t_land], [-3.0, 0.0]))
 
-    cadence(Rg[:-1], i_land, i_land, lv7, ["A", "B", "A", "C"], far_until=S(7) - 0.03, t_stop=t_land)
+    cadence(Rg[:-1], i_land, i_land, lv7, ["H", "H", "H", "I"], far_until=S(7) - 0.03, t_stop=t_land)
     ses.mark("stems/mus_snare.wav", C(6, "On"), LV["far_snare"], note="distant cadence (low-passed, wet) on the ridge")
     ses.mark("stems/mus_snare.wav", C(7, "His"), LV["snare"], note="the march enters: field drum + bass drum, close")
     snare(t_land, 1.0, LV["land"] - 2, flam=True)
@@ -1074,12 +1125,11 @@ def build_music(sc, ses):
         def lv8(t):
             return float(np.interp(t, [Bp[0], steps[0]], [-2.0, 0.5]))
         i_dn = len(Bp) % 2                                  # "Left" is a downbeat, so count back in pairs
-        roll(max(E(7) + 0.06, Bp[0] - 1.6 * P), Bp[0], 0.25, 0.6, LV["snare"])       # pick-up roll in the gap
-        pats8 = ["A", "A", "B", "C"][-max(1, min(4, (len(Bp) + 1) // 2)):]   # the bar before "Left" is always the roll
+        pats8 = ["H", "H", "H", "R"][-max(1, min(4, (len(Bp) + 1) // 2)):]   # the bar before "Left" is always the roll
         cadence(Bp, i_dn, len(Bp) - 2 * len(pats8), lv8, pats8)
-        if len(Bp) >= 6:                                    # fife call: the first two bars of the tune
+        if len(Bp) >= 6:                                    # fife call: the first bar of the tune, half-time
             x0 = len(Bp) - 6
-            tune(Bp, x0, THEME[:7], lambda t: 0.0, tr["fife1"], vel=0.85, name="call")
+            tune(Bp, x0, THEME[:4], lambda t: 0.0, tr["fife1"], vel=0.85, name="call")
     for i_, ts in enumerate(steps):
         bdrum(ts, 1.0, LV["step_bd"], f0=56.0, dur=0.6, damp=0.9)
         snare(ts, 0.95, LV["step_snare"], flam=False)
@@ -1093,14 +1143,14 @@ def build_music(sc, ses):
             return float(np.interp(t, [Bq[0], S(10), S(11), Bq[-1]], [-1.5, 0.0, 1.0, 2.5]))
         m1 = [i for i, t in enumerate(Bq) if t < S(11) - 0.02]
         cut11 = (len(m1) // 2) * 2
-        cadence(Bq[:cut11], 0, 0, lv9, ["A", "B", "A", "C"])
-        cadence(Bq[cut11:], 0, 0, lv9, ["B", "D", "B", "C"], pick=True, t_stop=t_you - 0.02)
+        cadence(Bq[:cut11], 0, 0, lv9, ["H", "I", "H", "J"])
+        cadence(Bq[cut11:], 0, 0, lv9, ["I", "J", "I", "J"], t_stop=t_you - 0.02)
         nb_ = len(Bq)
         tune(Bq, 0, THEME, lambda t: lv9(t), tr["fife1"], t_stop=t_you - 0.04, name="t1", bars=(nb_ + 1) // 2 + 1)
         i10 = next((i for i, t in enumerate(Bq) if t >= S(10) - 0.5 * P), None)
         if i10 is not None:                                 # the second fife joins when they start to enjoy it
-            i10 += i10 % 2
-            off = (i10 // 2) % 8
+            i10 += (-i10) % 4                               # a bar of the half-time tune = four steps
+            off = (i10 // 4) % 8
             line = [x for x in HARM]
             # start the harmony at the bar the tune has reached
             acc, k0 = 0.0, 0
@@ -1134,8 +1184,6 @@ def build_music(sc, ses):
             mnote = scale[min(len(scale) - 1, 2 + i_ + jj)]
             nh = pluck(440 * 2 ** ((mnote - 69) / 12), 0.4, r, bright=0.5, t60=0.28)
             put(st["pizz"], pan(nh, 0.25 + 0.1 * jj), t + fr * d, k_for(nh, LV["pizz_hi"] + up))
-        wb = woodblock(1050.0 if i_ % 2 == 0 else 790.0, r, 0.8)
-        put(st["pizz"], pan(wb, 0.4 if i_ % 2 == 0 else -0.4), t, k_for(wb, LV["wood"] + up))
     ts0, ts1 = sc.t(13, "soon"), sw_end                     # slide whistle: he goes over your head
     tt = taxis(ts1 - ts0 + 0.08)
     u = np.clip(tt / (ts1 - ts0), 0, 1)
@@ -1143,7 +1191,8 @@ def build_music(sc, ses):
     ph = TAU * np.cumsum(fz) / SR
     sl = (np.sin(ph) + 0.12 * np.sin(2 * ph) + 0.05 * nbnoise(len(tt), fz, 500, rng_for("slide")))
     sl = fade(sl * (0.5 + 0.5 * u), 0.04, 0.07)
-    put(tr["slide"], sl, ts0, float(lin(V_REF + LV["slide"]) / (rms(sl) * 0.7071)))
+    if not ses.has("kid_squeal"):                           # the recorded squeal takes this moment when it exists
+        put(tr["slide"], sl, ts0, float(lin(V_REF + LV["slide"]) / (rms(sl) * 0.7071)))
     nh = pluck(440 * 2 ** ((90 - 69) / 12), 0.5, rng_for("sw:end"), bright=0.6, t60=0.35)
     put(st["pizz"], pan(nh, 0.2), sw_end + 0.02, k_for(nh, LV["pizz_hi"] + 2))
     ses.mark("stems/mus_pizz.wav", C(13, "Ever"), LV["pizz"], key=True,
@@ -1176,7 +1225,7 @@ def build_music(sc, ses):
             return float(np.interp(t, [F[0], t_cut], [1.5, 4.0]))
         roll(max(E(15) + 0.2, F[0] - 1.3 * P), F[0], 0.15, 0.7, LV["snare"])
         i_dn = len(F) % 2
-        cadence(F, i_dn, i_dn, lv16, ["D", "B", "D", "D"], pick=True, t_stop=t_cut)
+        cadence(F, i_dn, i_dn, lv16, ["I", "J", "I", "A"], t_stop=t_cut)
         tune(F, i_dn, THEME[13:] + THEME, lv16, tr["fife1"], transpose=5, t_stop=t_cut - 0.02, name="g1", bars=len(F) // 2 + 2)
         tune(F, i_dn, HARM[13:] + HARM, lv16, tr["fife2"], transpose=5, t_stop=t_cut - 0.02, name="g2", bars=len(F) // 2 + 2)
         ses.mark("stems/mus_snare.wav", C(16, "But"), LV["snare"] + 3, t=F[0],
@@ -1467,6 +1516,15 @@ def build_sfx(sc, ses):
     ses.stem("marbles", mb + reverb(mb, R["field"], -17.0)[:m], 0.0)
     ses.place("marbles", C(6, "bag"), -9, key=True, note="glass marbles spill, bounce (each bounce 0.72 of the last) and roll")
 
+    # ---------- voices (recordings only; nothing is placed when the file is missing) ----------
+    t_l0, t_l1 = sc.t(6, "crying"), sc.t(6, "That's")
+    ses.real("general_laugh", C(6, "crying"), -9, maxlen=max(0.4, t_l1 - t_l0 - 0.06), key=True,
+             note="the general's laughter; stops before he speaks")
+    ses.real("soldiers_chuckle", C(9, "soldiers"), -11, maxlen=max(0.4, S(10) - sc.t(9, "soldiers") - 0.05), key=True,
+             note="the red soldiers enjoy the bounce")
+    ses.real("kid_squeal", C(13, "over"), -9, maxlen=max(0.4, S(14) - sc.t(13, "over") - 0.05), key=True,
+             note="the kid on the swing, delighted")
+
     # ---------- unison boots ----------
     for i_, hv in enumerate((0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.0)):
         for side in "LR":
@@ -1480,7 +1538,9 @@ def build_sfx(sc, ses):
     for j, tb in enumerate(g["B_pre"]):                     # marching onto the bridge
         side = "L" if (len(g["B_pre"]) - j) % 2 == 0 else "R"
         u = j / max(1, len(g["B_pre"]) - 1)
-        boot(0 if u < 0.6 else 1, side, C(8, "left", 1), -12 + 3 * u, t=tb, beat=j - len(g["B_pre"]), note="approaching step")
+        offb = (len(g["B_pre"]) - j) % 2 == 1               # "Left" is a downbeat; the steps between are light
+        boot(0 if u < 0.6 or offb else 1, side, C(8, "left", 1), -12 + 3 * u - (5.0 if offb else 0.0), t=tb,
+             beat=j - len(g["B_pre"]), note="approaching step" + (" (light)" if offb else ""))
     for i_, ts in enumerate(steps):
         boot(3, "L" if i_ % 2 == 0 else "R", C(8, "left" if i_ % 2 == 0 else "right", i_ // 2 + 1), 3, featured=True, key=True,
              win=0.22, note="STEP %d: one step word = one beat" % (i_ + 1))
@@ -1488,17 +1548,19 @@ def build_sfx(sc, ses):
     t_stomp = sc.t(10, "stomp")
     for k_, tb in enumerate(Bq):                            # every beat while they are on the bridge, getting heavier
         u = k_ / max(1, len(Bq) - 1)
-        hv = 1 + 3.6 * u + (0.8 if tb >= t_stomp - 0.02 else 0.0)
-        lvl = -11 + 4.0 * u + (1.5 if tb >= t_stomp - 0.02 else 0.0)
-        boot(int(round(hv)), "L" if k_ % 2 == 0 else "R", C(8, "right", 2), lvl, t=tb, beat=k_ + 1,
-             note="step %d on the bridge" % (k_ + 5))
+        offb = k_ % 2 == 1                                  # steadier: every second step carries the accent
+        hv = 1 + 3.6 * u + (0.8 if tb >= t_stomp - 0.02 else 0.0) - (1.5 if offb else 0.0)
+        lvl = -11 + 4.0 * u + (1.5 if tb >= t_stomp - 0.02 else 0.0) - (5.0 if offb else 0.0)
+        boot(int(round(max(0.0, hv))), "L" if k_ % 2 == 0 else "R", C(8, "right", 2), lvl, t=tb, beat=k_ + 1,
+             note="step %d on the bridge%s" % (k_ + 5, " (light)" if offb else ""))
     boot(4, "L", C(14, "two"), -3, note="'two thousand boots landing together'")
     F = g["F"]
     for j, tb in enumerate(F):                              # forty perfect pushes
         u = j / max(1, len(F) - 1)
         no = 41 - (len(F) - j)
-        boot(5 if u < 0.5 else 6, "L" if no % 2 == 1 else "R", C(17, "forty-first"), -7 + 3.0 * u, t=tb, beat=j - len(F),
-             note="push %d" % no)
+        offb = (j - len(F) % 2) % 2 == 1
+        boot((5 if u < 0.5 else 6) - (2 if offb else 0), "L" if no % 2 == 1 else "R", C(17, "forty-first"),
+             -7 + 3.0 * u - (4.0 if offb else 0.0), t=tb, beat=j - len(F), note="push %d%s" % (no, " (light)" if offb else ""))
     r = rng_for("boot41")
     b41 = slowmo(boots(r, 1.0, nmen=10, spread=0.004), 0.55)
     ses.stem("boot_41_slowmo", room(b41, R["gorge"], -12.0, 0.0), 0.0)
@@ -1514,7 +1576,7 @@ def build_sfx(sc, ses):
         ses.stem("plank_creak_%d" % i_, room(lp(y, 4500, 1), R["field"], -15.0, (-0.3, 0.25, -0.1, 0.35)[i_]), 0.065)
     ses.place("plank_creak_0", C(9, "A"), -9, key=True, note="'A few steps in': the deck flexes")
     for k_, tb in enumerate(Bq):
-        if k_ % 2 == 1 and tb > S(9) + 0.3:                  # then on every off-step, a little more each time
+        if k_ % 4 == 3 and tb > S(9) + 0.3:                  # then once every four steps, a little more each time
             u = k_ / max(1, len(Bq) - 1)
             ses.place("plank_creak_%d" % ((k_ // 2) % 4), C(8, "right", 2), -12 + 4 * u, t=tb + 0.5 * P, beat=k_ + 1.5,
                       note="deck creak between steps")
@@ -1526,14 +1588,14 @@ def build_sfx(sc, ses):
     wnotes = [(0.0, min(0.11, base * 0.8), 86, 0.6)]        # a little "fweet" exactly on the word
     x = base
     for d, mnote in THEME[:7] + THEME[7:11]:
-        wnotes.append((x, d * P * 0.92, mnote + 12, 0.9))
-        x += d * P
+        wnotes.append((x, d * 2 * P * 0.92, mnote + 12, 0.9))
+        x += d * 2 * P
     wl = flute_line(wnotes, x + 0.15, r, kind="whistle")
     w2n = [(t0 + 0.03 + 0.01 * (i_ % 3), d, m - 0.22, v * 0.7) for i_, (t0, d, m, v) in enumerate(wnotes[1:])]   # a bit flat, a bit late
     wl2 = flute_line(w2n, x + 0.15, rng_for("whistle2"), kind="whistle")
     wst = room(wl, R["field"], -12.0, 0.3) + room(wl2, R["field"], -12.0, -0.35)
     cutoff = max(0.3, t_you - tw_cue - 0.1)
-    ses.stem("whistle_march", fade(wst[:nsamp(cutoff)], 0.0, 0.08), 0.008, mode="rms", measure="onset")
+    ses.stem("whistle_march", fade(wst[:nsamp(cutoff)], 0.0, 0.08), 0.008, mode="rms", measure="onset", maxlen=cutoff)
     ses.place("whistle_march", C(10, "whistle"), -15, key=True, note="two soldiers whistle the march tune an octave up, loosely together")
 
     r = rng_for("rumble")
@@ -1573,13 +1635,13 @@ def build_sfx(sc, ses):
     m = nsamp(d13)
     md = np.stack([bp(rng_for("meadow:air", c).standard_normal(m), 300, 2600, 1) * 0.25 for c in range(2)], axis=1)
     t0 = 0.9
-    while t0 < d13 - 0.8:
+    while t0 < d13 - 0.8 and not ses.has("bird_meadow"):    # synthetic far birds only while there is no recording
         put(md, pan(bird(r, int(r.integers(0, 2))), r.uniform(-0.7, 0.7)), t0, r.uniform(0.3, 0.6))
         t0 += r.uniform(0.7, 1.4)
-    ses.stem("amb_meadow", fade(md, 0.2, 0.3), 0.0, mode="rms", measure="none")
+    ses.stem("amb_meadow", fade(md, 0.2, 0.3), 0.0, mode="rms", measure="none", maxlen=d13)
     ses.place("amb_meadow", C(13, "Ever", off=-0.25), -17, note="the tree with the swing: air and far birds")
     r = rng_for("bird1")
-    ses.stem("bird_meadow", room(bird(r, 1), R["field"], -14.0, -0.4), 0.0)
+    ses.stem("bird_meadow", room(bird(r, 1), R["field"], -14.0, -0.4), 0.0, maxlen=d13 - 0.3)
     ses.place("bird_meadow", C(13, "Ever"), -13, note="birds")
 
     for i_, (rate, nm) in enumerate((([70, 112, 140], "fwd"), ([132, 96, 64], "back"))):
@@ -1773,6 +1835,12 @@ def main(argv=None):
         "mix": {"voice_ref_rms_db": V_REF, "music_trim_db": -FILE_TRIM, "sfx_trim_db": -FILE_TRIM,
                 "duck_music_db": DUCK_MUSIC, "duck_sfx_db": DUCK_SFX,
                 "note": "levels are dB re the voice's active RMS; featured cues are exempt from ducking for `window` seconds"},
+        "character_lines": [                               # quoted lines in the characters' own voices: mix.py ducks deeper here
+            {"sentence": 2, "who": "colonel", "t0": round(sc.t(2, "That"), 4), "t1": round(sc.end(2), 4)},
+            {"sentence": 6, "who": "general", "t0": round(sc.t(6, "That's"), 4), "t1": round(sc.end(6), 4)}],
+        "duck_lines": {"music_db": DUCK_LINE_MUSIC, "sfx_db": DUCK_LINE_SFX},
+        "music_sources": getattr(ses, "music_src", {}),
+        "stem_sources": {k_: v_["src"] for k_, v_ in ses.stems.items()},
         "music_levels_re_voice_db": LV,
         "cues": sorted(ses.cues, key=lambda c: (c["time"], c["id"])),
     }

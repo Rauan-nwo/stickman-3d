@@ -149,6 +149,45 @@ def limiter(x, ceil_db, look_ms=3.0, rel_db_per_s=150.0):
     return np.clip(y, -c, c), float(-20 * np.log10(gs.min()))
 
 
+def m4a_meter(m4a):
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(m4a), "-f", "f32le", "-ac", "2", "-ar", str(SR), "pipe:1"],
+                         capture_output=True, check=True).stdout
+    return ebur128(np.frombuffer(raw, dtype="<f4").reshape(-1, 2))
+
+
+def master_once(pre, m0, out, tp_goal, no_m4a):
+    """Gain to -14 LUFS, limit, loudnorm (two passes, linear) -> out; AAC next to it. Returns the meters."""
+    gain, ceil = TARGET_I - m0["I"], tp_goal - 0.15
+    for _ in range(6):
+        y, lim_gr = limiter(pre * lin(gain), ceil)
+        m1 = ebur128(y)
+        if abs(m1["I"] - TARGET_I) <= 0.05 and m1["TP"] <= tp_goal - 0.05:
+            break
+        gain += TARGET_I - m1["I"]
+        if m1["TP"] > tp_goal - 0.05:
+            ceil -= (m1["TP"] - (tp_goal - 0.1))
+    with tempfile.TemporaryDirectory() as td:
+        tmp = Path(td) / "premaster.wav"
+        write_wav(tmp, y)
+        spec = "loudnorm=I=%g:TP=%g:LRA=%g" % (TARGET_I, tp_goal, TARGET_LRA)
+        err = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(tmp), "-af", spec + ":print_format=json",
+                              "-f", "null", "-"], capture_output=True, text=True).stderr
+        p1 = json.loads(err[err.rindex("{"):err.rindex("}") + 1])
+        spec2 = (spec + ":measured_I=%s:measured_TP=%s:measured_LRA=%s:measured_thresh=%s:offset=%s:linear=true:print_format=json"
+                 % (p1["input_i"], p1["input_tp"], p1["input_lra"], p1["input_thresh"], p1["target_offset"]))
+        err = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-y", "-i", str(tmp), "-af", spec2, "-ar", str(SR),
+                              "-c:a", "pcm_s24le", str(out)], capture_output=True, text=True).stderr
+        p2 = json.loads(err[err.rindex("{"):err.rindex("}") + 1])
+    final = ebur128(read_wav(out))
+    m4a_tp = None
+    if not no_m4a:
+        m4a = out.with_suffix(".m4a")
+        subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", str(out), "-c:a", "aac", "-b:a", "192k",
+                        "-ar", str(SR), "-ac", "2", "-movflags", "+faststart", str(m4a)], check=True)
+        m4a_tp = m4a_meter(m4a)["TP"]
+    return final, (gain, ceil, lim_gr, m1, p1, p2), m4a_tp
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("voice")
@@ -158,6 +197,8 @@ def main(argv=None):
     ap.add_argument("--music-db", type=float, default=0.0, help="extra gain on the music")
     ap.add_argument("--sfx-db", type=float, default=0.0, help="extra gain on the effects")
     ap.add_argument("--no-m4a", action="store_true")
+    ap.add_argument("--stems", help="folder for the three layers as they enter the master (voice / music / sfx after "
+                                    "ducking, before gain and limiter): for listening checks and masking measurements")
     a = ap.parse_args(argv)
 
     A = Path(a.audio_dir)
@@ -196,36 +237,34 @@ def main(argv=None):
     phr = phrases(words, v, vref)
     dm = duck_curve(n, phr, mx["duck_music_db"]) * (1.0 - exempt(n, meta["cues"], "music"))
     ds = duck_curve(n, phr, mx["duck_sfx_db"]) * (1.0 - exempt(n, meta["cues"], "sfx"))
-    pre = np.stack([v, v], axis=1) + music * lin(dm)[:, None] + sfx * lin(ds)[:, None]
+    # character lines (the colonel's shout, the general's line): everything else goes further down, and the
+    # "featured" exemption does not apply inside them
+    lines = [[c["t0"], c["t1"]] for c in meta.get("character_lines", [])]
+    if lines:
+        dl = meta.get("duck_lines", {"music_db": -12.0, "sfx_db": -8.0})
+        dm = np.minimum(dm, duck_curve(n, lines, dl["music_db"], attack=0.06, release=0.15))
+        ds = np.minimum(ds, duck_curve(n, lines, dl["sfx_db"], attack=0.06, release=0.15))
+    mus_d, sfx_d = music * lin(dm)[:, None], sfx * lin(ds)[:, None]
+    pre = np.stack([v, v], axis=1) + mus_d + sfx_d
+    if a.stems:
+        sd = Path(a.stems)
+        sd.mkdir(parents=True, exist_ok=True)
+        write_wav(sd / "voice.wav", np.stack([v, v], axis=1))
+        write_wav(sd / "music_ducked.wav", mus_d)
+        write_wav(sd / "sfx_ducked.wav", sfx_d)
+        write_wav(sd / "bed_ducked.wav", mus_d + sfx_d)
 
-    # ---- master: gain to -14 LUFS, limit, repeat until both the loudness and the true peak fit ----
-    m0 = ebur128(pre)
-    gain, ceil = TARGET_I - m0["I"], TARGET_TP - 0.15
-    for _ in range(6):
-        y, lim_gr = limiter(pre * lin(gain), ceil)
-        m1 = ebur128(y)
-        if abs(m1["I"] - TARGET_I) <= 0.05 and m1["TP"] <= TARGET_TP - 0.05:
-            break
-        gain += TARGET_I - m1["I"]
-        if m1["TP"] > TARGET_TP - 0.05:
-            ceil -= (m1["TP"] - (TARGET_TP - 0.1))
-
-    # ---- ffmpeg loudnorm, two passes, linear ----
     out = Path(a.out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    with tempfile.TemporaryDirectory() as td:
-        tmp = Path(td) / "premaster.wav"
-        write_wav(tmp, y)
-        spec = "loudnorm=I=%g:TP=%g:LRA=%g" % (TARGET_I, TARGET_TP, TARGET_LRA)
-        err = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(tmp), "-af", spec + ":print_format=json",
-                              "-f", "null", "-"], capture_output=True, text=True).stderr
-        p1 = json.loads(err[err.rindex("{"):err.rindex("}") + 1])
-        spec2 = (spec + ":measured_I=%s:measured_TP=%s:measured_LRA=%s:measured_thresh=%s:offset=%s:linear=true:print_format=json"
-                 % (p1["input_i"], p1["input_tp"], p1["input_lra"], p1["input_thresh"], p1["target_offset"]))
-        err = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-y", "-i", str(tmp), "-af", spec2, "-ar", str(SR),
-                              "-c:a", "pcm_s24le", str(out)], capture_output=True, text=True).stderr
-        p2 = json.loads(err[err.rindex("{"):err.rindex("}") + 1])
-    final = ebur128(read_wav(out))
+    m0 = ebur128(pre)
+    tp_goal, tries = TARGET_TP, []
+    for attempt in range(5):
+        final, rep_m, m4a_tp = master_once(pre, m0, out, tp_goal, a.no_m4a)
+        tries.append({"wav_tp_target": round(tp_goal, 2), "wav_tp": final["TP"], "m4a_tp": m4a_tp})
+        if m4a_tp is None or m4a_tp <= TARGET_TP:
+            break
+        tp_goal -= (m4a_tp - TARGET_TP) + 0.1              # the AAC encoder overshoots: master lower and encode again
+    gain, ceil, lim_gr, m1, p1, p2 = rep_m
     rep = {
         "voice": {"file": str(a.voice), "raw_active_rms_db": round(raw_rms, 1), "raw_peak_db": round(raw_peak, 1),
                   "compressor_max_gr_db": round(gr_max, 1), "crest_after_db": round(voice_crest, 1)},
@@ -237,13 +276,10 @@ def main(argv=None):
         "loudnorm_pass1": p1, "loudnorm_pass2_type": p2.get("normalization_type"),
         "final_wav": final, "duration_s": round(n / SR, 3),
     }
+    rep["true_peak_attempts"] = tries
+    rep["character_lines"] = meta.get("character_lines", [])
     if not a.no_m4a:
-        m4a = out.with_suffix(".m4a")
-        subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", str(out), "-c:a", "aac", "-b:a", "192k",
-                        "-ar", str(SR), "-ac", "2", "-movflags", "+faststart", str(m4a)], check=True)
-        raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(m4a), "-f", "f32le", "-ac", "2", "-ar", str(SR), "pipe:1"],
-                             capture_output=True, check=True).stdout
-        rep["final_m4a"] = ebur128(np.frombuffer(raw, dtype="<f4").reshape(-1, 2))
+        rep["final_m4a"] = m4a_meter(out.with_suffix(".m4a"))
     json.dump(rep, open(out.with_suffix(".report.json"), "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     print("voice: active RMS %.1f dBFS, peak %.1f -> compressed (max GR %.1f dB), crest %.1f dB"
           % (raw_rms, raw_peak, gr_max, voice_crest))
