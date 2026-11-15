@@ -79,8 +79,27 @@ export function elbowIK(a, b, L, side, elbow) {
   else { const sc = q => (q[1] - m[1]) * .8 + side * (q[0] - m[0]); e = sc(e1) >= sc(e2) ? e1 : e2; }   // вниз и наружу
   return { b: [b[0], b[1]], e };
 }
-export function elbowArm(x, a, b, L, side, elbow, w, col, via, shade) {
+// «трубка» (лонги, spec.limbLook = 'tube', как руки раунда 1): тёмный контур, внутри заливка с мягким градиентом вдоль
+// длины (от сустава светлее к концу темнее) и тонкий полупрозрачный блик со стороны света — как блеск кожанки
+function tubePath(x, pts, r) { x.beginPath(); x.moveTo(pts[0][0], pts[0][1]); if (pts.length === 3 && r) x.arcTo(pts[1][0], pts[1][1], pts[2][0], pts[2][1], r); else if (pts.length === 3) x.lineTo(pts[1][0], pts[1][1]); x.lineTo(pts[pts.length - 1][0], pts[pts.length - 1][1]); }
+export function drawTube(x, pts, w, col, ink, light, r = 0) {
+  x.lineCap = 'round'; x.lineJoin = 'round';
+  tubePath(x, pts, r); x.lineWidth = w * 1.2; x.strokeStyle = ink; x.stroke();
+  const a = pts[0], b = pts[pts.length - 1], g = x.createLinearGradient(a[0], a[1], b[0], b[1]);
+  g.addColorStop(0, '#3a313a'); g.addColorStop(.55, col === ink ? '#251e25' : col); g.addColorStop(1, '#171217');
+  tubePath(x, pts, r); x.lineWidth = w * .72; x.strokeStyle = g; x.stroke();
+  const d = light ? Math.hypot(light[0], light[1]) || 1 : 1, lx = light ? light[0] / d : -.7, ly = light ? light[1] / d : -.7;
+  for (let i = 0; i + 1 < pts.length; i++) {
+    const p = pts[i], q = pts[i + 1], sx = q[0] - p[0], sy = q[1] - p[1], sl = Math.hypot(sx, sy); if (sl < w * 1.5) continue;
+    let nx = -sy / sl, ny = sx / sl; if (nx * lx + ny * ly < 0) { nx = -nx; ny = -ny; }
+    const o = w * .2, c = Math.min(w, sl * .25), ux = sx / sl * c, uy = sy / sl * c;
+    x.save(); x.globalAlpha = .24; x.lineWidth = w * .14; x.strokeStyle = '#ffffff'; x.beginPath();
+    x.moveTo(p[0] + ux + nx * o, p[1] + uy + ny * o); x.lineTo(q[0] - ux + nx * o, q[1] - uy + ny * o); x.stroke(); x.restore();
+  }
+}
+export function elbowArm(x, a, b, L, side, elbow, w, col, via, shade, tube) {
   const r = via ? { b: [b[0], b[1]], e: via } : elbowIK(a, b, L, side, elbow), e = r.e;
+  if (tube) { drawTube(x, [a, e, r.b], w, col, tube.ink, shade && shade.dir, w * 1.2); return r.b; }
   x.lineWidth = w; x.lineCap = 'round'; x.lineJoin = 'round'; x.strokeStyle = col; x.beginPath(); x.moveTo(a[0], a[1]);
   const ang = Math.abs(Math.atan2((e[0] - a[0]) * (r.b[1] - e[1]) - (e[1] - a[1]) * (r.b[0] - e[0]), (e[0] - a[0]) * (r.b[0] - e[0]) + (e[1] - a[1]) * (r.b[1] - e[1])));
   if (ang > .05) x.arcTo(e[0], e[1], r.b[0], r.b[1], w * 1.6); else x.lineTo(e[0], e[1]);
@@ -401,10 +420,11 @@ function drawLimbs(x, limbs, layer, S, hipDy) {
   for (const L of limbs) {
     if ((L.layer || 'back') !== layer) continue; any = true;
     const w = L.w ?? S.limbW, col = L.col || ink;
-    if (L.pts) line(x, L.hip && hipDy ? [[L.pts[0][0], L.pts[0][1] + hipDy], ...L.pts.slice(1)] : L.pts, w, col);
-    else if (L.ik) { const r = elbowArm(x, L.a, L.b, L.L, L.side, L.elbow, w, col, L.via, S.shade); L.b = r; }   // via — локоть в заданной точке (предплечье лежит на столе)        // лонги: рука с локтем (spec.armStyle = 'elbow')
+    if (L.pts && S.limbLook === 'tube' && !L.col) drawTube(x, L.hip && hipDy ? [[L.pts[0][0], L.pts[0][1] + hipDy], ...L.pts.slice(1)] : L.pts, w, col, ink, S.shade && S.shade.dir);
+    else if (L.pts) line(x, L.hip && hipDy ? [[L.pts[0][0], L.pts[0][1] + hipDy], ...L.pts.slice(1)] : L.pts, w, col);
+    else if (L.ik) { const r = elbowArm(x, L.a, L.b, L.L, L.side, L.elbow, w, col, L.via, S.shade, S.limbLook === 'tube' ? { ink: S.colors.ink } : null); L.b = r; }   // via — локоть в заданной точке (предплечье лежит на столе)        // лонги: рука с локтем (spec.armStyle = 'elbow')
     else if (S.legStyle === 'natural' && layer === 'back') {                                   // лонги: нога бедро + голень с коленом (IK, длина постоянна)
-      const a = L.hip && hipDy ? [L.a[0], L.a[1] + hipDy] : L.a; elbowArm(x, a, L.b, L.L, 0, Math.sign(L.bend ?? 1) || 1, w, col);
+      const a = L.hip && hipDy ? [L.a[0], L.a[1] + hipDy] : L.a; elbowArm(x, a, L.b, L.L, 0, Math.sign(L.bend ?? 1) || 1, w, col, null, S.shade, S.limbLook === 'tube' ? { ink: S.colors.ink } : null);
     }
     else { const a = L.hip && hipDy ? [L.a[0], L.a[1] + hipDy] : L.a; hose(x, a, L.b, Math.max(L.L, Math.hypot(L.b[0] - a[0], L.b[1] - a[1]) * (L.min ?? 1.04)), L.bend ?? 1, w, col, L.sag ?? .5); }
   }

@@ -69,7 +69,7 @@ function figure({ name, armStyle = 'elbow', legStyle = 'natural', ink = '#1C1418
     { layer: 'mid', pts: [[f * 16, hipY + 4], [f * 152, hipY + 16]] }, { layer: 'mid', pts: [[f * 152, hipY + 16], [f * 164, -6]] }, { layer: 'mid', pts: [[f * 162, -5], [f * 192, -3]], w: 22, col: shoe },
   ] });
   return new Stickman({
-    name, armStyle, legStyle, unit: .00202, u: .96, lw: 7.5, limbW: 11,                      // armStyle 'elbow' — руки с локтем (arms.js), 'hose' — резиновые, как в шортсах
+    name, armStyle, legStyle, limbLook: 'tube', unit: .00202, u: .96, lw: 7.5, limbW: 11,                      // armStyle 'elbow' — руки с локтем (arms.js), 'hose' — резиновые, как в шортсах
     pins: { feet: [0, 0], chest: [0, by], seat: [0, L.seatY], head: [0, L.headY] },
     colors: { ink, hand, mouth: '#2B1520', hair: colors.hair || '#3B2519', stache: colors.stache || '#3B2519', ...FACE_COLORS, ...colors },
     head: { x: 0, y: L.headY, rx: 134, ry: 126, pivot: 110, fill: '#FFFFFF', shade: '#E4DED8', grad: [-38, -42, 30, 146, .72], ...head },
@@ -126,8 +126,8 @@ export function jensen(over = {}) {
         path(x, [[-84, 20], [-50, 52]], 4, '#B9BDC5'); path(x, [[60, 26], [86, 0]], 4, '#B9BDC5');
         poly(x, [[-110, 118], [110, 118], [110, 160], [-110, 160]], '#0E0C10', null); path(x, [[-110, 118], [110, 118]], 4, ink);
         for (let k = -100; k <= 100; k += 14) path(x, [[k, 124], [k, 150]], 1.6, 'rgba(255,255,255,.07)');
-        S.shade || path(x, [[-92, -60], [-98, 0, -88, 70]], 9, 'rgba(255,255,255,.16)'); S.shade || path(x, [[-74, -96], [-82, -70]], 6, 'rgba(255,255,255,.32)');
-        S.shade || path(x, [[86, -40], [94, 20, 84, 80]], 6, 'rgba(255,255,255,.08)');
+        path(x, [[-92, -60], [-98, 0, -88, 70]], 9, 'rgba(255,255,255,.16)'); path(x, [[-74, -96], [-82, -70]], 6, 'rgba(255,255,255,.32)');
+        path(x, [[86, -40], [94, 20, 84, 80]], 6, 'rgba(255,255,255,.08)');
       })],
     },
     ...over,
@@ -168,7 +168,7 @@ export function alice(over = {}) {
         path(x, [[0, -60], [0, 150]], 2.5, 'rgba(60,0,8,.55)');
         for (const y of [-20, 40]) ell(x, 14, y, 7, 7, '#E7B83C', ink, 2.5);
         path(x, [[-104, 70], [-60, 80, 0, 80]], 3, 'rgba(60,0,8,.45)');                                                  // талия
-        S.shade || path(x, [[-86, -70], [-96, -10, -84, 50]], 9, 'rgba(255,220,220,.22)');
+        path(x, [[-86, -70], [-96, -10, -84, 50]], 9, 'rgba(255,220,220,.22)');
       })],
     },
     ...over,
@@ -219,7 +219,7 @@ export function detective(over = {}) {
         x.beginPath(); x.roundRect(-18, 66, 36, 36, 5); x.lineWidth = 5; x.strokeStyle = '#D9B24A'; x.stroke(); path(x, [[0, 70], [0, 98]], 3, '#D9B24A');
         path(x, [[40, -140], [96, -110]], 3, 'rgba(70,45,15,.6)');                                                       // штормовая кокетка
         path(x, [[0, 100], [0, 150]], 3, 'rgba(70,45,15,.5)');
-        S.shade || path(x, [[-90, -60], [-100, 0, -90, 60]], 10, 'rgba(255,245,210,.25)');
+        path(x, [[-90, -60], [-100, 0, -90, 60]], 10, 'rgba(255,245,210,.25)');
       })],
       outside: [cloth((x, S) => {                                                                                       // поднятый воротник
         const ink = S.colors.ink;
@@ -269,7 +269,7 @@ export function moneyman(over = {}) {
         poly(x, [[-110, 112], [0, 132], [110, 112], [110, 160], [-110, 160]], '#3E3A44', null);                           // брюки под мысами жилета
         path(x, [[-110, 112], [0, 134], [110, 112]], 4, ink);
         x.setLineDash([6, 4]); path(x, [[6, -10], [40, 30, 66, 30]], 3.5, '#E8C04A'); x.setLineDash([]);                // цепочка к часам
-        S.shade || path(x, [[-86, -60], [-96, 0, -86, 60]], 9, 'rgba(220,255,230,.18)');
+        path(x, [[-86, -60], [-96, 0, -86, 60]], 9, 'rgba(220,255,230,.18)');
       })],
       outside: [cloth((x, S) => {                                                                                       // карманные часы, наполовину из кармана
         const ink = S.colors.ink;
@@ -320,7 +320,7 @@ export function reporter(over = {}) {
         path(x, [[-50, -150], [0, -50], [50, -150]], 9, '#B98222'); path(x, [[-50, -150], [0, -50], [50, -150]], 3, ink);     // вязаная кромка выреза
         poly(x, [[-110, 116], [110, 116], [110, 160], [-110, 160]], '#B98222', null); path(x, [[-110, 116], [110, 116]], 3.5, ink);
         for (let k = -104; k <= 104; k += 9) path(x, [[k, 120], [k, 150]], 2, 'rgba(110,62,0,.45)');
-        S.shade || path(x, [[-86, -50], [-96, 0, -86, 60]], 10, 'rgba(255,245,210,.25)');
+        path(x, [[-86, -50], [-96, 0, -86, 60]], 10, 'rgba(255,245,210,.25)');
       })],
       outside: [cloth((x, S) => {                                                                                       // блокнот на пружине в кармане
         const ink = S.colors.ink;
