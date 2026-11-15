@@ -83,19 +83,20 @@ export function elbowIK(a, b, L, side, elbow) {
 // длины (от сустава светлее к концу темнее) и тонкий полупрозрачный блик со стороны света — как блеск кожанки
 function tubePath(x, pts, r) { x.beginPath(); x.moveTo(pts[0][0], pts[0][1]); if (pts.length === 3 && r) x.arcTo(pts[1][0], pts[1][1], pts[2][0], pts[2][1], r); else if (pts.length === 3) x.lineTo(pts[1][0], pts[1][1]); x.lineTo(pts[pts.length - 1][0], pts[pts.length - 1][1]); }
 export function drawTube(x, pts, w, col, ink, light, r = 0) {
-  x.lineCap = 'round'; x.lineJoin = 'round';
-  tubePath(x, pts, r); x.lineWidth = w * 1.2; x.strokeStyle = ink; x.stroke();
-  const a = pts[0], b = pts[pts.length - 1], g = x.createLinearGradient(a[0], a[1], b[0], b[1]);
-  g.addColorStop(0, '#3a313a'); g.addColorStop(.55, col === ink ? '#251e25' : col); g.addColorStop(1, '#171217');
-  tubePath(x, pts, r); x.lineWidth = w * .72; x.strokeStyle = g; x.stroke();
+  // как конечности раунда 1: тонкая тёмная «трубка» без отдельного контура — цвет туши, мягкое затенение поперёк
+  // (края темнее, по освещённой стороне мягкая светлая линия), лёгкое сужение к кисти, локоть/колено — плавный изгиб
+  const m = x.getTransform(), sc = Math.hypot(m.a, m.b) || 1, R = r || w * 1.3;
   const d = light ? Math.hypot(light[0], light[1]) || 1 : 1, lx = light ? light[0] / d : -.7, ly = light ? light[1] / d : -.7;
-  for (let i = 0; i + 1 < pts.length; i++) {
-    const p = pts[i], q = pts[i + 1], sx = q[0] - p[0], sy = q[1] - p[1], sl = Math.hypot(sx, sy); if (sl < w * 1.5) continue;
-    let nx = -sy / sl, ny = sx / sl; if (nx * lx + ny * ly < 0) { nx = -nx; ny = -ny; }
-    const o = w * .2, c = Math.min(w, sl * .25), ux = sx / sl * c, uy = sy / sl * c;
-    x.save(); x.globalAlpha = .24; x.lineWidth = w * .14; x.strokeStyle = '#ffffff'; x.beginPath();
-    x.moveTo(p[0] + ux + nx * o, p[1] + uy + ny * o); x.lineTo(q[0] - ux + nx * o, q[1] - uy + ny * o); x.stroke(); x.restore();
-  }
+  const P = pts.length === 3 ? pts : [pts[0], pts[pts.length - 1]];
+  const draw = (dx, dy, ww) => { x.beginPath(); x.moveTo(P[0][0] + dx, P[0][1] + dy); if (P.length === 3) { x.arcTo(P[1][0] + dx, P[1][1] + dy, P[2][0] + dx, P[2][1] + dy, R); } x.lineTo(P[P.length - 1][0] + dx, P[P.length - 1][1] + dy); x.lineWidth = ww; x.stroke(); };
+  x.save(); x.lineCap = 'round'; x.lineJoin = 'round';
+  const base = col === ink ? '#1b151a' : col;
+  x.strokeStyle = base; draw(0, 0, w);                                                        // тело трубки
+  if (P.length === 3) { x.beginPath(); x.moveTo(P[0][0], P[0][1]); x.lineTo((P[0][0] * 2 + P[1][0]) / 3, (P[0][1] * 2 + P[1][1]) / 3); x.lineWidth = w * 1.12; x.stroke(); }   // плечо/бедро чуть толще — сужение к кисти
+  x.filter = `blur(${(w * .16 * sc).toFixed(2)}px)`; x.globalAlpha = .55; x.strokeStyle = '#6b6170';                      // мягкий блик по освещённой стороне
+  x.save(); x.beginPath(); x.rect(-1e5, -1e5, 2e5, 2e5); x.restore();
+  draw(lx * w * .2, ly * w * .2, w * .28);
+  x.restore();
 }
 export function elbowArm(x, a, b, L, side, elbow, w, col, via, shade, tube) {
   const r = via ? { b: [b[0], b[1]], e: via } : elbowIK(a, b, L, side, elbow), e = r.e;
