@@ -52,3 +52,6 @@ touched: tools/skill/SKILL.md, tools/skill/references/quality-gates.md, tools/sk
 
 ## [2026-11-15 17:00] setup | SEO канала, данные загрузки V002, баннер (GPT Image, 2 варианта)
 touched: wiki/channel/seo.md, production/V002/upload.md, production/channel/banner_prompt*.txt, index.md
+
+## [2026-11-15 18:30] ingest | разбор конкурента Paper Billions (5 лонгов) и черновик стратегии канала лонгов
+touched: wiki/donors/paperbillionstv.md, wiki/analyses/longform-hybrid-style.md, raw/donors/2026-11-15-paperbillions-*, index.md
