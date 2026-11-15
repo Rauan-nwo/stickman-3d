@@ -197,6 +197,8 @@ def main(argv=None):
     ap.add_argument("--music-db", type=float, default=0.0, help="extra gain on the music")
     ap.add_argument("--sfx-db", type=float, default=0.0, help="extra gain on the effects")
     ap.add_argument("--no-m4a", action="store_true")
+    ap.add_argument("--tp", type=float, default=TARGET_TP, help="true-peak target of the WAV master (default -1.5); "
+                    "use a lower one when another encoder (the film's AAC track) overshoots more than the .m4a made here")
     ap.add_argument("--stems", help="folder for the three layers as they enter the master (voice / music / sfx after "
                                     "ducking, before gain and limiter): for listening checks and masking measurements")
     a = ap.parse_args(argv)
@@ -257,7 +259,7 @@ def main(argv=None):
     out = Path(a.out)
     out.parent.mkdir(parents=True, exist_ok=True)
     m0 = ebur128(pre)
-    tp_goal, tries = TARGET_TP, []
+    tp_goal, tries = a.tp, []
     for attempt in range(5):
         final, rep_m, m4a_tp = master_once(pre, m0, out, tp_goal, a.no_m4a)
         tries.append({"wav_tp_target": round(tp_goal, 2), "wav_tp": final["TP"], "m4a_tp": m4a_tp})

@@ -54,12 +54,10 @@ PICKS = {
     "gear_rattle": ("gear", "45e39415", 3.06, 10.19, {"fi": 0.1, "fo": 0.3, "gain_flat": 0.4}),
     "chalk_tick": ("chalk", "83fbf696", 0.51, 0.86, {"fo": 0.05}),
     "thump_real": ("collide", "e2f533b4", 0.00, 1.00, {"lp": 420, "gorge": -16}),
-    # the fife: two sustained flute notes, sequenced as a sampler (make_audio.py), an octave under the old synth line
-    "flute_note_c4": ("flute_note", "0f462f47", 0.12, 3.50, {"midi": 60, "fi": 0.0, "fo": 0.05, "hp": 150}),
-    "flute_note_d4": ("flute_note", "fd50a370", 0.105, 1.60, {"midi": 62, "fi": 0.0, "fo": 0.05, "hp": 150}),
-    # ambiences (looped by make_audio.py when shorter than the film)
-    "amb_gorge": ("amb_wind", "257c9326", 4.0, 44.0, {"lp": 1600, "fi": 0.5, "fo": 0.5, "gain_flat": 2.0,
-                                                      "mix": ("amb_river", "6793c93d", 4.0, 44.0, -7.0, 2200)}),
+    # Tried and dropped after listening (NOTES.md): two recorded flute notes sequenced as a sampler (flute_note 0f462f47 C4,
+    # fd50a370 D4) read WORSE as a flute than the synthetic fife (z 1.8-2.5 against 4.1); a recorded wind howl for the gorge
+    # (amb_wind 257c9326) read as "howl / animal" (z 2.5 against the synthetic bed's 3.2). The river is real, as its own layer.
+    "amb_river": ("amb_river", "6793c93d", 4.0, 44.0, {"lp": 1800, "fi": 0.5, "fo": 0.5}),
     "amb_open": ("amb_field", "0b1b3f20", 10.0, 50.0, {"lp": 3500, "fi": 0.5, "fo": 0.5}),
     "amb_meadow": ("amb_field", "63bebe4b", 20.0, 28.0, {"fi": 0.3, "fo": 0.4}),
     # birds

@@ -12,10 +12,9 @@
 | Название | Автор | Источник | Лицензия | Файл-превью | Куда пошло (стем, обрезка) |
 |---|---|---|---|---|---|
 | Man Laugh | NinjaSharkStudios | https://freesound.org/people/NinjaSharkStudios/sounds/649082 | CC0 1.0 | https://cdn.freesound.org/previews/649/649082_4067-hq.mp3 | adjutant_laugh (0.00–1.00 с) |
-| ATM INT Wind Howl Cold Winter 09 (stereo).wav | Takkyi | https://freesound.org/people/Takkyi/sounds/546871 | CC0 1.0 | https://cdn.freesound.org/previews/546/546871_4803028-hq.mp3 | amb_gorge (4.00–44.00 с) |
-| River | Antonio_Lai | https://freesound.org/people/Antonio_Lai/sounds/517419 | CC0 1.0 | https://cdn.freesound.org/previews/517/517419_6891806-hq.mp3 | amb_gorge (4.00–44.00 с, слой) |
 | summer meadow near village in the morning | Garuda1982 | https://freesound.org/people/Garuda1982/sounds/692048 | CC0 1.0 | https://cdn.freesound.org/previews/692/692048_2061858-hq.mp3 | amb_meadow (20.00–28.00 с) |
 | Meadow field summer insects birds NOTL 190716.flac | TRP | https://freesound.org/people/TRP/sounds/574105 | CC0 1.0 | https://cdn.freesound.org/previews/574/574105_97550-hq.mp3 | amb_open (10.00–50.00 с) |
+| River | Antonio_Lai | https://freesound.org/people/Antonio_Lai/sounds/517419 | CC0 1.0 | https://cdn.freesound.org/previews/517/517419_6891806-hq.mp3 | amb_river (4.00–44.00 с) |
 | Bird Chirp | swiftoid | https://freesound.org/people/swiftoid/sounds/182507 | CC0 1.0 | https://cdn.freesound.org/previews/182/182507_854782-hq.mp3 | bird_chirp (2.23–3.62 с) |
 | Birds Chirping 01 - Down small park lane | swiftoid | https://freesound.org/people/swiftoid/sounds/182503 | CC0 1.0 | https://cdn.freesound.org/previews/182/182503_854782-hq.mp3 | bird_meadow (1.17–7.00 с) |
 | Crack and Crunch | Aurelon | https://freesound.org/people/Aurelon/sounds/422623 | CC0 1.0 | https://cdn.freesound.org/previews/422/422623_8455865-hq.mp3 | bridge_crack (0.75–2.74 с) |
@@ -25,8 +24,6 @@
 | Chalk writing on board.mp3 | mrrap4food | https://freesound.org/people/mrrap4food/sounds/619018 | CC0 1.0 | https://cdn.freesound.org/previews/619/619018_781461-hq.mp3 | chalk_tick (0.51–0.86 с) |
 | Shirt Grab | bakiri | https://freesound.org/people/bakiri/sounds/761202 | CC0 1.0 | https://cdn.freesound.org/previews/761/761202_16399708-hq.mp3 | cloth_grab (8.23–8.64 с) |
 | Cloth Grab | alegemaate | https://freesound.org/people/alegemaate/sounds/667271 | CC0 1.0 | https://cdn.freesound.org/previews/667/667271_2531187-hq.mp3 | cloth_yank (0.10–1.02 с) |
-| overall quality of single note - flute - C4 | yano1 | https://freesound.org/people/yano1/sounds/257363 | CC0 1.0 | https://cdn.freesound.org/previews/257/257363_4755274-hq.mp3 | flute_note_c4 (0.12–3.50 с) |
-| overall quality of single note - flute - D4 | sastesty | https://freesound.org/people/sastesty/sounds/258199 | CC0 1.0 | https://cdn.freesound.org/previews/258/258199_4783743-hq.mp3 | flute_note_d4 (0.10–1.60 с) |
 | Belt buckle - leather jacket | Vrymaa | https://freesound.org/people/Vrymaa/sounds/734599 | CC0 1.0 | https://cdn.freesound.org/previews/734/734599_13973196-hq.mp3 | gear_rattle (3.06–10.19 с) |
 | Five Hearty Laffs.mp3 | se2001 | https://freesound.org/people/se2001/sounds/463816 | CC0 1.0 | https://cdn.freesound.org/previews/463/463816_8472935-hq.mp3 | general_laugh (9.31–10.74 с) |
 | Boy or Young Child Laughing | OBXJohn | https://freesound.org/people/OBXJohn/sounds/365632 | CC0 1.0 | https://cdn.freesound.org/previews/365/365632_3719168-hq.mp3 | kid_squeal (4.18–4.81 с) |

@@ -1,0 +1,26 @@
+{
+ "ours_at_whooshes": {
+  "n": 23,
+  "median_z": 1.28,
+  "share_z_ge_2": 0.22,
+  "share_z_ge_2.5": 0.0
+ },
+ "ours_control": {
+  "n": 22,
+  "median_z": 0.98,
+  "share_z_ge_2": 0.05,
+  "share_z_ge_2.5": 0.0
+ },
+ "reference_at_its_tagged_whooshes": {
+  "n": 12,
+  "median_z": 1.48,
+  "share_z_ge_2": 0.17,
+  "share_z_ge_2.5": 0.0
+ },
+ "reference_control": {
+  "n": 8,
+  "median_z": 0.92,
+  "share_z_ge_2": 0.0,
+  "share_z_ge_2.5": 0.0
+ }
+}

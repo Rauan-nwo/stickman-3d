@@ -248,9 +248,9 @@
    },
    {
     "sound": "slowmo_subdrop",
-    "cue": "17:And",
-    "cue_time": 63.995,
-    "onset": 64.0002,
+    "cue": "17:forty-first",
+    "cue_time": 64.447,
+    "onset": 64.4522,
     "error_ms": 5.2,
     "how": "onset",
     "featured": false
@@ -299,8 +299,8 @@
     "event": "full march: tune enters one beat after the 4th step word and keeps tha",
     "cue": "8:right+1beat",
     "cue_time": 34.38,
-    "measured": 34.4145,
-    "error_ms": 34.5
+    "measured": 34.3863,
+    "error_ms": 6.3
    },
    {
     "event": "the march is gone: one soft drum, then only a pad",
@@ -336,37 +336,37 @@
    {
     "step": 1,
     "word_time": 33.016,
-    "lf_onset": 33.014,
-    "error_ms": -2.0,
-    "lf_peak_db": -9.4
+    "lf_onset": 33.0139,
+    "error_ms": -2.1,
+    "lf_peak_db": -10.0
    },
    {
     "step": 2,
     "word_time": 33.398,
-    "lf_onset": 33.3973,
-    "error_ms": -0.7,
-    "lf_peak_db": -10.5
+    "lf_onset": 33.3974,
+    "error_ms": -0.6,
+    "lf_peak_db": -11.8
    },
    {
     "step": 3,
     "word_time": 33.739,
-    "lf_onset": 33.7374,
-    "error_ms": -1.6,
-    "lf_peak_db": -8.9
+    "lf_onset": 33.7369,
+    "error_ms": -2.1,
+    "lf_peak_db": -9.7
    },
    {
     "step": 4,
     "word_time": 34.039,
     "lf_onset": 34.0371,
     "error_ms": -1.9,
-    "lf_peak_db": -10.5
+    "lf_peak_db": -10.4
    }
   ]
  },
  "hard_stop": {
   "music.wav": {
    "file_length_s": 68.447,
-   "last_audible_sample_s": 68.4462,
+   "last_audible_sample_s": 68.4463,
    "end_of_last_word_s": 68.447
   },
   "sfx.wav": {
@@ -376,13 +376,13 @@
   }
  },
  "clipping": {
-  "files": 90,
+  "files": 91,
   "max_peak_dbfs": -1.0,
   "clipped_files": [],
   "list": [
    {
     "file": "music.wav",
-    "peak_dbfs": -2.21,
+    "peak_dbfs": -1.42,
     "samples_at_full_scale": 0
    },
    {
@@ -412,6 +412,11 @@
    },
    {
     "file": "stems/amb_open.wav",
+    "peak_dbfs": -3.0,
+    "samples_at_full_scale": 0
+   },
+   {
+    "file": "stems/amb_river.wav",
     "peak_dbfs": -3.0,
     "samples_at_full_scale": 0
    },
@@ -642,12 +647,12 @@
    },
    {
     "file": "stems/mus_fife.wav",
-    "peak_dbfs": -16.24,
+    "peak_dbfs": -12.28,
     "samples_at_full_scale": 0
    },
    {
     "file": "stems/mus_hits.wav",
-    "peak_dbfs": -2.21,
+    "peak_dbfs": -1.42,
     "samples_at_full_scale": 0
    },
    {
@@ -837,89 +842,89 @@
   "duration_s": 68.497,
   "loudness": {
    "I": -14.0,
-   "LRA": 1.6,
-   "TP": -1.9
+   "LRA": 1.7,
+   "TP": -2.2
   },
   "loudness_m4a": {
    "I": -14.0,
    "LRA": 1.7,
-   "TP": -1.6
+   "TP": -2.4
   },
-  "lr_correlation": 0.96,
-  "sample_peak_dbfs": -2.03,
+  "lr_correlation": 0.954,
+  "sample_peak_dbfs": -3.03,
   "silence": {
    "window": "50 ms RMS, 10 ms hop, from 0 to the end of the last word",
    "longest_below_-40dB_s": 0.0,
    "at_s": null,
-   "quietest_50ms_db": -39.6,
+   "quietest_50ms_db": -39.7,
    "quietest_at_s": 23.48,
    "longest_below_-35dB_s": 0.22,
    "longest_below_-40dB_20ms_window_s": 0.02,
    "percentiles_50ms_db": {
-    "1": -35.9,
-    "5": -32.4,
+    "1": -36.1,
+    "5": -32.3,
     "10": -29.8,
-    "25": -24.1,
+    "25": -24.0,
     "50": -17.6,
     "75": -15.2,
     "90": -13.9,
-    "99": -11.6
+    "99": -11.8
    }
   },
   "gaps": {
    "count": 18,
-   "median_db": -19.7,
-   "min_db": -28.8,
-   "max_db": -17.5,
-   "inside_-20..-28": 6,
+   "median_db": -19.9,
+   "min_db": -28.6,
+   "max_db": -17.2,
+   "inside_-20..-28": 7,
    "list": [
     {
      "after_sentence": 1,
      "between": "them | his",
      "t0": 3.58,
      "dur_s": 0.23,
-     "mean_db": -24.2,
-     "min_50ms_db": -29.8
+     "mean_db": -24.4,
+     "min_50ms_db": -30.3
     },
     {
      "after_sentence": 2,
      "between": "step | but",
      "t0": 7.99,
      "dur_s": 0.22,
-     "mean_db": -28.3,
-     "min_50ms_db": -32.8
+     "mean_db": -28.4,
+     "min_50ms_db": -33.0
     },
     {
      "after_sentence": 3,
      "between": "wants | the",
      "t0": 10.22,
      "dur_s": 0.23,
-     "mean_db": -28.8,
-     "min_50ms_db": -35.6
+     "mean_db": -28.6,
+     "min_50ms_db": -34.4
     },
     {
      "after_sentence": 4,
      "between": "life | so",
      "t0": 16.16,
      "dur_s": 0.23,
-     "mean_db": -23.2,
-     "min_50ms_db": -32.8
+     "mean_db": -22.9,
+     "min_50ms_db": -31.7
     },
     {
      "after_sentence": 5,
      "between": "bathroom | on",
      "t0": 19.32,
      "dur_s": 0.23,
-     "mean_db": -20.0,
-     "min_50ms_db": -31.3
+     "mean_db": -20.1,
+     "min_50ms_db": -31.0
     },
     {
      "after_sentence": 6,
      "between": "marbles | his",
      "t0": 25.47,
      "dur_s": 0.22,
-     "mean_db": -18.2,
-     "min_50ms_db": -35.0
+     "mean_db": -18.3,
+     "min_50ms_db": -35.2
     },
     {
      "after_sentence": 7,
@@ -927,23 +932,23 @@
      "t0": 30.23,
      "dur_s": 0.23,
      "mean_db": -21.5,
-     "min_50ms_db": -32.8
+     "min_50ms_db": -33.4
     },
     {
      "after_sentence": 8,
      "between": "rows | left",
      "t0": 32.56,
      "dur_s": 0.46,
-     "mean_db": -20.1,
-     "min_50ms_db": -31.1
+     "mean_db": -20.0,
+     "min_50ms_db": -30.5
     },
     {
      "after_sentence": 8,
      "between": "right | a",
      "t0": 34.39,
      "dur_s": 0.23,
-     "mean_db": -19.1,
-     "min_50ms_db": -27.5
+     "mean_db": -18.9,
+     "min_50ms_db": -26.0
     },
     {
      "after_sentence": 9,
@@ -958,24 +963,24 @@
      "between": "harder | by",
      "t0": 40.22,
      "dur_s": 0.23,
-     "mean_db": -19.2,
-     "min_50ms_db": -30.4
+     "mean_db": -19.6,
+     "min_50ms_db": -29.3
     },
     {
      "after_sentence": 11,
      "between": "knees | you",
      "t0": 42.52,
      "dur_s": 0.37,
-     "mean_db": -17.5,
-     "min_50ms_db": -27.1
+     "mean_db": -17.2,
+     "min_50ms_db": -26.8
     },
     {
      "after_sentence": 12,
      "between": "step | ever",
      "t0": 46.56,
      "dur_s": 0.23,
-     "mean_db": -19.0,
-     "min_50ms_db": -31.7
+     "mean_db": -19.4,
+     "min_50ms_db": -31.5
     },
     {
      "after_sentence": 13,
@@ -990,16 +995,16 @@
      "between": "head | a",
      "t0": 52.75,
      "dur_s": 0.23,
-     "mean_db": -19.3,
-     "min_50ms_db": -33.7
+     "mean_db": -19.8,
+     "min_50ms_db": -35.0
     },
     {
      "after_sentence": 14,
      "between": "push | his",
      "t0": 57.46,
      "dur_s": 0.23,
-     "mean_db": -19.4,
-     "min_50ms_db": -30.4
+     "mean_db": -19.5,
+     "min_50ms_db": -31.5
     },
     {
      "after_sentence": 15,
@@ -1007,31 +1012,31 @@
      "t0": 60.3,
      "dur_s": 0.23,
      "mean_db": -19.6,
-     "min_50ms_db": -32.2
+     "min_50ms_db": -31.8
     },
     {
      "after_sentence": 16,
      "between": "pushes | and",
      "t0": 63.76,
      "dur_s": 0.41,
-     "mean_db": -19.8,
-     "min_50ms_db": -29.4
+     "mean_db": -20.4,
+     "min_50ms_db": -29.5
     }
    ]
   },
   "level_under_words_db": -17.1,
   "bands_db": {
-   "0-60": -32.3,
-   "60-120": -27.7,
+   "0-60": -32.8,
+   "60-120": -27.8,
    "120-250": -23.5,
-   "250-500": -25.1,
-   "500-1000": -25.9,
+   "250-500": -25.0,
+   "500-1000": -25.8,
    "1000-2000": -26.8,
-   "2000-4000": -31.0,
+   "2000-4000": -31.1,
    "4000-8000": -32.0,
    "8000-16000": -32.5
   },
-  "centroid_hz": 1080
+  "centroid_hz": 1084
  },
  "reference": {
   "file": "C:/Users/velar/Downloads/How Mine Salting Worked.mp4",

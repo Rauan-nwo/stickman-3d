@@ -46,7 +46,7 @@ DUCK_SFX = -3.0    # ...and the non-featured effects
 # peak about 6 dB under the voice's median level in the 1.5-8 kHz band (see NOTES.md)
 import os
 FIFE_OCT = float(os.environ.get("FIFE_OCT", "-12"))   # register of the sampled flute line, semitones re the written tune
-LV_FX = {"throw": -3.0, "tumble": -8.0, "splash": -7.0, "whip": 7.0, "push": 1.0}
+LV_FX = {"throw": -3.0, "tumble": -8.0, "splash": -7.0, "whip": 10.0, "push": 3.0}
 DUCK_LINE_MUSIC = -12.0  # under the colonel's and the general's own lines: deeper, and featured cues are not exempt
 DUCK_LINE_SFX = -8.0
 
@@ -929,7 +929,7 @@ LV = {  # music levels, dB re voice, before ducking (loudest 20 ms of a full-vel
     "snare": -12.0, "bd": -9.0, "fife": -17.0, "fife2": -21.0,
     "step_bd": 1.0, "step_snare": -3.0, "land": 2.0,
     "you_hit": -7.0, "pizz": -8.0, "pizz_hi": -10.0, "wood": -15.0, "slide": -15.0,
-    "roll14": -8.0, "push": -1.0, "rain_pizz": -12.0, "bucks": 7.0,
+    "roll14": -8.0, "push": -4.0, "rain_pizz": -12.0, "bucks": 7.0,
 }
 
 
@@ -1532,6 +1532,9 @@ def build_sfx(sc, ses):
     for nm, cue_, t1_, lv_, note_ in AMB:
         t0_ = sc.at(cue_)
         ses.place(nm, cue_, lv_, length=t1_ - t0_ + 0.05, fin=0.05, fout=0.07, skip=t0_, note="AMBIENCE " + note_)
+        if nm == "amb_gorge":                               # the river far below is a recording, when installed
+            ses.real("amb_river", cue_, lv_ - 5, minlen=t_end + 1.0, length=t1_ - t0_ + 0.05, fin=0.05, fout=0.07, skip=t0_,
+                     note="AMBIENCE the river far below (recording)")
 
     r = rng_for("gust")
     gn = nsamp(2.6)
@@ -1798,8 +1801,8 @@ def build_sfx(sc, ses):
     gr = creak(r, 0.8, [30, 26, 21], [(150, 18, 1.0), (290, 22, 0.9), (520, 25, 0.5)], noise=0.1)
     put(pt, gr[:nsamp(0.8)] * np.sin(np.pi * taxis(0.8) / 0.8), 0.18, 0.12 * np.max(np.abs(pt)) / (np.max(np.abs(gr)) + 1e-9))
     ses.stem("push_thump", room(pt, R["gorge"], -16.0, 0.0), 0.0)
-    ses.real("thump_real", C(14, "one"), -3, mode="peak20", featured=True, win=0.45, note="recorded heavy thud under the synthetic sub")
-    ses.place("push_thump", C(14, "one"), 2, featured=True, key=True, win=0.45, note="ONE giant push: sub thump 82 -> 36 Hz, the deck groans after it")
+    ses.real("thump_real", C(14, "one"), -6, mode="peak20", featured=True, win=0.45, note="recorded heavy thud under the synthetic sub")
+    ses.place("push_thump", C(14, "one"), -1, featured=True, key=True, win=0.45, note="ONE giant push: sub thump 82 -> 36 Hz, the deck groans after it")
 
     # ---------- like rain ----------
     r = rng_for("rain")
@@ -1844,12 +1847,14 @@ def build_sfx(sc, ses):
 
     # ---------- the forty-first ----------
     r = rng_for("subdrop")
-    d = max(0.5, min(2.2, t_bucks - g["t_drop"] + 0.25))
+    d = max(0.5, min(2.2, t_bucks - t_cut + 0.35))
     t = taxis(d)
     ph = TAU * np.cumsum(30 + 85 * np.exp(-t / 0.28)) / SR
     sd = (np.sin(ph) + 0.3 * np.sin(2 * ph) * np.exp(-t / 0.2)) * (1 - np.exp(-t / 0.008)) * np.exp(-t / 0.55)
     ses.stem("slowmo_subdrop", fade(pan(sd, 0.0), 0.0, 0.12), 0.0)
-    ses.place("slowmo_subdrop", C(17, "And", off=-0.17), -4, t=g["t_drop"], key=True, note="slow motion: a tone falling 115 -> 30 Hz in the hole the music left")
+    # the drop itself (cut to the hanging boot .. "forty-first") is left empty: wind and chalk only.
+    # The falling tone starts when the boot starts to come down (film.js: T41 - 0.1).
+    ses.place("slowmo_subdrop", C(17, "forty-first", off=-0.1), -4, key=True, note="slow motion: a tone falling 115 -> 30 Hz in the hole the music left")
     r = rng_for("riser")
     d = max(0.25, min(0.75, t_bucks - t_cut - 0.1))
     m = nsamp(d)

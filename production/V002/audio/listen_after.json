@@ -1010,45 +1010,45 @@
  "amb_gorge": {
   "meant": "амбиенс ущелья",
   "query": "wind blowing through a gorge with a river far below",
-  "z": 2.18,
-  "verdict": "weak",
-  "p_vs_alts": 0.86,
+  "z": 3.39,
+  "verdict": "strong",
+  "p_vs_alts": 0.252,
   "all_z": {
-   "wind blowing through a gorge with a river far below": 2.18,
-   "a windy canyon ambience": 2.13,
-   "wind howling outdoors": 1.69
+   "wind blowing through a gorge with a river far below": 3.39,
+   "a windy canyon ambience": 2.83,
+   "wind howling outdoors": 2.62
   },
   "sounds_like": [
    [
-    "bubbles underwater",
-    3.39
-   ],
-   [
-    "being underwater",
-    3.2
-   ],
-   [
     "a waterfall",
-    2.52
+    3.78
+   ],
+   [
+    "heavy rain",
+    3.06
+   ],
+   [
+    "wind in pine trees",
+    2.46
    ]
   ],
   "audioset": [
    [
-    "Animal",
-    0.5
+    "Pink noise",
+    0.72
    ],
    [
-    "Music",
-    0.48
+    "Waterfall",
+    0.19
    ],
    [
-    "Howl",
-    0.33
+    "Subway, metro, underground",
+    0.14
    ]
   ],
-  "p_real": 0.507,
-  "real_verdict": "uncertain",
-  "duration": 79.0
+  "p_real": 0.166,
+  "real_verdict": "likely code-synthesized",
+  "duration": 69.447
  },
  "amb_open": {
   "meant": "амбиенс долины",
@@ -1862,22 +1862,22 @@
  "mus_snare": {
   "meant": "малый барабан, марш",
   "query": "a snare drum playing a march cadence",
-  "z": 4.95,
+  "z": 4.93,
   "verdict": "strong",
-  "p_vs_alts": 0.988,
+  "p_vs_alts": 0.987,
   "all_z": {
-   "a snare drum playing a march cadence": 4.95,
-   "a military snare drum": 4.78,
-   "a marching drum beat": 3.19
+   "a snare drum playing a march cadence": 4.93,
+   "a military snare drum": 4.75,
+   "a marching drum beat": 3.18
   },
   "sounds_like": [
    [
     "a snare hit",
-    4.22
+    4.19
    ],
    [
     "a rising riser building tension",
-    2.24
+    2.25
    ],
    [
     "a big braam",
@@ -1887,15 +1887,15 @@
   "audioset": [
    [
     "Drum",
-    0.79
-   ],
-   [
-    "Snare drum",
-    0.69
+    0.78
    ],
    [
     "Music",
     0.69
+   ],
+   [
+    "Snare drum",
+    0.67
    ]
   ],
   "p_real": 0.327,
@@ -1904,44 +1904,44 @@
  },
  "mus_fife": {
   "meant": "флейта-пикколо, тема",
-  "query": "a fife playing a march tune",
-  "z": 2.51,
-  "verdict": "plausible",
-  "p_vs_alts": 0.249,
+  "query": "a flute melody",
+  "z": 3.78,
+  "verdict": "strong",
+  "p_vs_alts": 0.252,
   "all_z": {
-   "a fife playing a march tune": 2.51,
-   "a flute melody": 1.31,
-   "a piccolo playing": 0.88
+   "a flute melody": 3.78,
+   "a fife playing a march tune": 3.33,
+   "a piccolo playing": 1.63
   },
   "sounds_like": [
    [
-    "a sub bass drop",
-    2.95
+    "a success chime",
+    1.99
    ],
    [
-    "a deep cinematic boom",
-    2.27
+    "a bee flying by",
+    1.88
    ],
    [
-    "an error buzz",
-    1.69
+    "a music box melody",
+    1.79
    ]
   ],
   "audioset": [
    [
+    "Flute",
+    0.89
+   ],
+   [
     "Music",
-    0.81
+    0.74
    ],
    [
     "Silence",
     0.61
-   ],
-   [
-    "Synthesizer",
-    0.47
    ]
   ],
-  "p_real": 0.212,
+  "p_real": 0.293,
   "real_verdict": "likely code-synthesized",
   "duration": 68.447
  }
