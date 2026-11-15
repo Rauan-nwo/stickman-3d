@@ -1,0 +1,57 @@
+{
+ "voice": {
+  "file": "voice_fast.mp3",
+  "raw_active_rms_db": -22.7,
+  "raw_peak_db": -3.2,
+  "compressor_max_gr_db": 7.2,
+  "crest_after_db": 16.6
+ },
+ "ducking": {
+  "music_db": -8.0,
+  "sfx_db": -3.0,
+  "attack_s": 0.04,
+  "release_s": 0.08,
+  "attack_ends_before_phrase_s": 0.01,
+  "hold_s": 0.01,
+  "min_gap_s": 0.12,
+  "phrases": 31,
+  "featured_exempt": 16
+ },
+ "premaster": {
+  "I": -16.9,
+  "LRA": 1.8,
+  "TP": -1.4
+ },
+ "master_gain_db": 2.9,
+ "limiter_ceiling_db": -1.85,
+ "limiter_max_gr_db": 3.4,
+ "after_limiter": {
+  "I": -14.0,
+  "LRA": 1.7,
+  "TP": -1.6
+ },
+ "loudnorm_pass1": {
+  "input_i": "-14.02",
+  "input_tp": "-1.65",
+  "input_lra": "1.70",
+  "input_thresh": "-24.12",
+  "output_i": "-14.04",
+  "output_tp": "-1.56",
+  "output_lra": "1.30",
+  "output_thresh": "-24.13",
+  "normalization_type": "dynamic",
+  "target_offset": "0.04"
+ },
+ "loudnorm_pass2_type": "linear",
+ "final_wav": {
+  "I": -14.0,
+  "LRA": 1.7,
+  "TP": -1.6
+ },
+ "duration_s": 63.017,
+ "final_m4a": {
+  "I": -14.1,
+  "LRA": 1.8,
+  "TP": -0.8
+ }
+}

@@ -21,7 +21,7 @@
 //
 // Параметры: count, clips[{ char, gait, opt, over, pose(ch, phase, {view, facing}) , yaw }], clip, pos, heading, rate, offset,
 //   phase(i, t), state(i, t, m) — правка участника перед отрисовкой: m.rot (поворот фигуры), m.scale, m.alpha, m.air (true —
-//   pos задаёт центр тела, а не ступни: полёт), m.clip, m.phase, m.heading, m.view/m.facing (жёстко), m.hide, m.marble (0..1),
+//   pos задаёт центр тела, а не ступни: полёт), m.clip, m.phase, m.heading, m.view/m.facing (жёстко), m.hide, m.marble (0..1), m.noTop (не подменять видом сверху и не сплющивать: падающие фигурки),
 //   m.pose(p) — правка позы ближнего участника (эмоции);
 //   marbles — 0..1 | (i, t) => 0..1: гэг «шарики» (фигура схлопывается в катящийся синий шарик и обратно);
 //   cell [ширина, высота] ячейки атласа, phases, nearPx, maxNear, haze (0..1 — подмешать туман сцены вдали), bias.
@@ -143,7 +143,7 @@ export class Crowd {
       const m = this._m[i]; const r = o.pos(i, t, m.pos); if (r && r !== m.pos) m.pos.copy(r);
       m.clip = typeof o.clip === 'function' ? o.clip(i, t) : o.clip ?? i % nc; m.heading = typeof o.heading === 'function' ? o.heading(i, t) : o.heading ?? 0;
       m.phase = o.phase ? o.phase(i, t) : t * this.rate + this.offsets[i];
-      m.rot = 0; m.scale = 1; m.alpha = 1; m.air = false; m.hide = false; m.view = null; m.facing = null; m.pose = null; m.ground = null;
+      m.rot = 0; m.scale = 1; m.alpha = 1; m.air = false; m.hide = false; m.view = null; m.facing = null; m.pose = null; m.ground = null; m.noTop = false;
       m.marble = typeof this.marbles === 'function' ? this.marbles(i, t) : this.marbles;
       if (o.state) o.state(i, t, m);
     }
@@ -176,7 +176,7 @@ export class Crowd {
     }
     list.sort((a, b) => b.d - a.d);
     // ближние — вектором в слой nearCanvas (не больше maxNear самых крупных)
-    let near = list.filter(m => m.px > this.nearPx && m.elev < 1.0); if (near.length > this.maxNear) near = near.slice(near.length - this.maxNear);
+    let near = list.filter(m => m.px > this.nearPx && (m.noTop || m.elev < 1.0)); if (near.length > this.maxNear) near = near.slice(near.length - this.maxNear);
     const isNear = new Set(near), nx = this.nearCtx;
     if (near.length) {
       nx.setTransform(1, 0, 0, 1, 0, 0); nx.clearRect(0, 0, st.W, st.H);
@@ -186,7 +186,7 @@ export class Crowd {
         const mk = m.marble || 0;
         if (mk >= .5) { const r = cw * .42 / s * k * (this.o.marbleSize ?? .5) * E.outBack(clamp((mk - .5) * 2)); marble2D(nx, 0, -r, r, m.phase * 5, this.o.marbleStyle || {}); }
         else {
-          nx.scale(k * (1 + mk * .5), k * squashOf(m.elev) * (1 - mk * 1.3)); if (m.air) nx.translate(0, -S.body.y);
+          nx.scale(k * (1 + mk * .5), k * (m.noTop ? 1 : squashOf(m.elev)) * (1 - mk * 1.3)); if (m.air) nx.translate(0, -S.body.y);
           let pose = this.poseOf(c, m.phase, m.vw, m.fc); if (m.rot) pose = { ...pose, rot: m.rot }; if (m.pose) pose = m.pose(pose, m) || pose;
           drawStickman(nx, S, pose);
         }
@@ -204,10 +204,10 @@ export class Crowd {
       const c = m.c, un = c.unit * m.scale, wM = cw / s * un, hM = ch / s * un, mk = m.marble || 0, lod = clamp((62 - m.px * (BOX.y1 - BOX.y0) * s / ch) / 26);
       if (isNear.has(m)) { put(m, 0, 2, 2, wM * 1.5, hM * 1.25, .5, m.air ? .5 : ay / 1.25 + .06, 0, 1, false, 1); continue; }
       if (mk >= .5) { const k = E.outBack(clamp((mk - .5) * 2)), r = wM * k * (this.o.marbleSize ?? .5); put(m, this.marbleBase + (Math.floor(fract(m.phase * .8) * N_MARBLE) % N_MARBLE), 0, lod, r, r, .5, .08, 0, m.alpha, false, 1, true); continue; }
-      const top = m.elev > .95 ? 1 : 0;                         // жёсткая смена: полупрозрачное наложение двух видов даёт муар
+      const top = !m.noTop && m.elev > .95 ? 1 : 0;                         // жёсткая смена: полупрозрачное наложение двух видов даёт муар
       if (top < 1) {
         const ph = Math.floor(fract(m.phase) * P) % P, idx = c.base + VIEWS.indexOf(m.vw) * P + ph, flip = m.fc < 0 && m.vw !== 'front' && m.vw !== 'back';
-        put(m, idx, 0, lod, wM * (1 + mk * .5), hM * (1 - mk * 1.3), ax, m.air ? ay + (-c.char.spec.body.y * s / ch) : ay, m.rot, m.alpha * (1 - top), flip, squashOf(m.elev));
+        put(m, idx, 0, lod, wM * (1 + mk * .5), hM * (1 - mk * 1.3), ax, m.air ? ay + (-c.char.spec.body.y * s / ch) : ay, m.rot, m.alpha * (1 - top), flip, m.noTop ? 1 : squashOf(m.elev));
       }
       if (top > 0) put(m, c.base + 4 * P + (Math.floor(fract(m.phase) * N_TOP) % N_TOP), 1, lod, wM, wM, .5, .5, 0, m.alpha * top, false, 1, true);
     }

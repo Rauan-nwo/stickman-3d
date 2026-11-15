@@ -40,3 +40,6 @@ touched: engine/, production/V001/film.js
 
 ## [2026-11-15 05:30] lint | ружьё на средних планах: сравнение 2D и 3D, правило в библии стиля
 touched: wiki/craft/style-bible.md
+
+## [2026-11-15 10:55] video | V002: первая полная сборка (картинка, голос Liam, звук, субтитры), status: production
+touched: production/V002/film.js, production/V002/ROUNDS.md, wiki/videos/V002-why-soldiers-never-march-across-bridges.md, engine/

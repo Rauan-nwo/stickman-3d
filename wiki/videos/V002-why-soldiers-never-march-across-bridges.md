@@ -1,6 +1,6 @@
 ---
 type: video
-status: scripting
+status: production
 tags: [shorts, stickman-3d, engineering, army, resonance]
 created: 2026-11-15
 updated: 2026-11-15
