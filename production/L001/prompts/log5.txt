@@ -1,0 +1,4 @@
+[bg_newsroom.png] генерирую...
+[bg_newsroom.png] готово -> C:\dev\projects\youtube-video\production\L001\raw\bg_newsroom.png
+
+итого: готово 1, пропущено 0, с ошибкой 0

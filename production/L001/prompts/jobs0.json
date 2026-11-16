@@ -1,0 +1,26 @@
+[
+ {
+  "out": "raw/bg_taipei_bar.png",
+  "promptFile": "prompts/bg_taipei_bar.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_nvidia_ceo_office.png",
+  "promptFile": "prompts/bg_nvidia_ceo_office.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_washington_office.png",
+  "promptFile": "prompts/bg_washington_office.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ }
+]

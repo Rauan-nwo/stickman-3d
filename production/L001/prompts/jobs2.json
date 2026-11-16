@@ -1,0 +1,18 @@
+[
+ {
+  "out": "raw/bg_singapore_street.png",
+  "promptFile": "prompts/bg_singapore_street.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_megaspeed_office.png",
+  "promptFile": "prompts/bg_megaspeed_office.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ }
+]

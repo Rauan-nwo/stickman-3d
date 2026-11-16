@@ -1,0 +1,4 @@
+[bg_event_hall_reverse.png] генерирую...
+[bg_event_hall_reverse.png] готово -> C:\dev\projects\youtube-video\production\L001\raw\bg_event_hall_reverse.png
+
+итого: готово 1, пропущено 0, с ошибкой 0

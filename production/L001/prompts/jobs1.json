@@ -1,0 +1,18 @@
+[
+ {
+  "out": "raw/bg_kentucky_dorm.png",
+  "promptFile": "prompts/bg_kentucky_dorm.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_diner_booth.png",
+  "promptFile": "prompts/bg_diner_booth.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ }
+]

@@ -1,0 +1,6 @@
+[bg_singapore_street.png] генерирую...
+[bg_singapore_street.png] готово -> C:\dev\projects\youtube-video\production\L001\raw\bg_singapore_street.png
+[bg_megaspeed_office.png] генерирую...
+[bg_megaspeed_office.png] готово -> C:\dev\projects\youtube-video\production\L001\raw\bg_megaspeed_office.png
+
+итого: готово 2, пропущено 0, с ошибкой 0

@@ -1,0 +1,6 @@
+[bg_kentucky_dorm.png] генерирую...
+[bg_kentucky_dorm.png] готово -> C:\dev\projects\youtube-video\production\L001\raw\bg_kentucky_dorm.png
+[bg_diner_booth.png] генерирую...
+[bg_diner_booth.png] готово -> C:\dev\projects\youtube-video\production\L001\raw\bg_diner_booth.png
+
+итого: готово 2, пропущено 0, с ошибкой 0
