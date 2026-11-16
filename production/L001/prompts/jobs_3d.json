@@ -1,0 +1,19 @@
+[
+ {
+  "out": "scenes/desk3d/raw/plate_wall.png",
+  "promptFile": "scenes/desk3d/prompts/plate_wall.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png",
+   "assets/bg_washington_cold.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "scenes/conveyor/raw/plate_lab.png",
+  "promptFile": "scenes/conveyor/prompts/plate_lab.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ }
+]
