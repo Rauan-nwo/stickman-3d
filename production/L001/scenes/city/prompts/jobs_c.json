@@ -1,0 +1,26 @@
+[
+ {
+  "out": "raw/sg_wheel.png",
+  "promptFile": "prompts/sg_wheel.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/dc_capitol.png",
+  "promptFile": "prompts/dc_capitol.txt",
+  "refs": [
+   "refs/bg_washington_cold.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/tp_101.png",
+  "promptFile": "prompts/tp_101.txt",
+  "refs": [
+   "refs/bg_event_hall.png"
+  ],
+  "refMode": "material"
+ }
+]

@@ -1,0 +1,34 @@
+[
+ {
+  "out": "raw/sg_mbs.png",
+  "promptFile": "prompts/sg_mbs.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/dc_backdrop.png",
+  "promptFile": "prompts/dc_backdrop.txt",
+  "refs": [
+   "refs/bg_washington_cold.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/tp_backdrop.png",
+  "promptFile": "prompts/tp_backdrop.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/fin_backdrop.png",
+  "promptFile": "prompts/fin_backdrop.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ }
+]
