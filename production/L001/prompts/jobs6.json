@@ -1,0 +1,90 @@
+[
+ {
+  "out": "raw/bg_relatives_porch.png",
+  "promptFile": "prompts/bg_relatives_porch.txt",
+  "refs": [
+   "raw/bg_dorm_room.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_dennys_dishpit.png",
+  "promptFile": "prompts/bg_dennys_dishpit.txt",
+  "refs": [
+   "raw/bg_diner_day.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_blocked_warehouse.png",
+  "promptFile": "prompts/bg_blocked_warehouse.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_closed_room.png",
+  "promptFile": "prompts/bg_closed_room.txt",
+  "refs": [
+   "raw/bg_washington_cold.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_trading_desk.png",
+  "promptFile": "prompts/bg_trading_desk.txt",
+  "refs": [
+   "raw/bg_newsroom.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_desk_restaurant_top.png",
+  "promptFile": "prompts/bg_desk_restaurant_top.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_desk_dennys_top.png",
+  "promptFile": "prompts/bg_desk_dennys_top.txt",
+  "refs": [
+   "raw/bg_diner_day.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_diner_night_1997.png",
+  "promptFile": "prompts/bg_diner_night_1997.txt",
+  "refs": [
+   "raw/bg_diner_booth.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_street_no_car.png",
+  "promptFile": "prompts/bg_street_no_car.txt",
+  "refs": [
+   "raw/bg_singapore_street.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_front_door_huang.png",
+  "promptFile": "prompts/bg_front_door_huang.txt",
+  "refs": [
+   "raw/bg_front_door.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_megaspeed_reverse_7road.png",
+  "promptFile": "prompts/bg_megaspeed_reverse_7road.txt",
+  "refs": [
+   "raw/bg_megaspeed_reverse.png"
+  ],
+  "refMode": "material"
+ }
+]
