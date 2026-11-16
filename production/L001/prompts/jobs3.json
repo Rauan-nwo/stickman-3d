@@ -1,0 +1,130 @@
+[
+ {
+  "out": "raw/bg_beijing_office.png",
+  "promptFile": "prompts/bg_beijing_office.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_car_interior.png",
+  "promptFile": "prompts/bg_car_interior.txt",
+  "refs": [
+   "raw/bg_singapore_street.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_dorm_room.png",
+  "promptFile": "prompts/bg_dorm_room.txt",
+  "refs": [
+   "raw/bg_kentucky_dorm.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_event_hall.png",
+  "promptFile": "prompts/bg_event_hall.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_customs_gate.png",
+  "promptFile": "prompts/bg_customs_gate.txt",
+  "refs": [
+   "raw/bg_singapore_street.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_newsroom.png",
+  "promptFile": "prompts/bg_newsroom.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_front_door.png",
+  "promptFile": "prompts/bg_front_door.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_desk_topdown.png",
+  "promptFile": "prompts/bg_desk_topdown.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_diner_day.png",
+  "promptFile": "prompts/bg_diner_day.txt",
+  "refs": [
+   "raw/bg_diner_booth.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_kentucky_day.png",
+  "promptFile": "prompts/bg_kentucky_day.txt",
+  "refs": [
+   "raw/bg_kentucky_dorm.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_washington_cold.png",
+  "promptFile": "prompts/bg_washington_cold.txt",
+  "refs": [
+   "raw/bg_washington_office.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_nvidia_office_dry.png",
+  "promptFile": "prompts/bg_nvidia_office_dry.txt",
+  "refs": [
+   "raw/bg_nvidia_ceo_office.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_taipei_bar_dry.png",
+  "promptFile": "prompts/bg_taipei_bar_dry.txt",
+  "refs": [
+   "raw/bg_taipei_bar.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_washington_reverse.png",
+  "promptFile": "prompts/bg_washington_reverse.txt",
+  "refs": [
+   "raw/bg_washington_office.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_nvidia_office_reverse.png",
+  "promptFile": "prompts/bg_nvidia_office_reverse.txt",
+  "refs": [
+   "raw/bg_nvidia_ceo_office.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_megaspeed_reverse.png",
+  "promptFile": "prompts/bg_megaspeed_reverse.txt",
+  "refs": [
+   "raw/bg_megaspeed_office.png"
+  ],
+  "refMode": "material"
+ }
+]

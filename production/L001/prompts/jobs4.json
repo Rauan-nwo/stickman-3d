@@ -1,0 +1,10 @@
+[
+ {
+  "out": "raw/bg_event_hall_reverse.png",
+  "promptFile": "prompts/bg_event_hall_reverse.txt",
+  "refs": [
+   "raw/bg_event_hall.png"
+  ],
+  "refMode": "material"
+ }
+]
