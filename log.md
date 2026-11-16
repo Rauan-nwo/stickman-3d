@@ -67,3 +67,6 @@ touched: wiki/craft/stickman-noir.md, wiki/channel/longform-channel.md, index.md
 
 ## [2026-11-16 13:00] video | L001 пилот лонга: факт-чек истории Nvidia/Хуанг, структура и типы сцен на утверждение
 touched: raw/research/2026-11-16-nvidia-huang-spy-story.md, production/L001/outline.md, wiki/craft/stickman-noir.md
+
+## [2026-11-16 23:30] video | L001 — сверка с конкурентом по планам перед сборкой
+touched: production/L001/review_before_build.md, production/L001/refs/competitor_shot_types.jpg
