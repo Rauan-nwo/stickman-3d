@@ -1,0 +1,4 @@
+[bg_megaspeed_reverse_7road.png] генерирую...
+[bg_megaspeed_reverse_7road.png] готово -> C:\dev\projects\youtube-video\production\L001\raw\bg_megaspeed_reverse_7road.png
+
+итого: готово 1, пропущено 0, с ошибкой 0

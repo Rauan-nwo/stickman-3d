@@ -1,0 +1,4 @@
+[plate_lab.png] генерирую...
+[plate_lab.png] готово -> C:\dev\projects\youtube-video\production\L001\scenes\conveyor\raw\plate_lab.png
+
+итого: готово 1, пропущено 0, с ошибкой 0

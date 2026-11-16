@@ -96,12 +96,36 @@ for (let i = 0; i < shots.length; i++) {
 }
 // сдвиг слова по вставкам (для субтитров/проверки)
 const shiftAt = t => inserts.filter(x => x.at <= t).reduce((a, x) => a + x.dur, 0);
+// грамматика камеры: рывок на ударном слове «…» из колонки «камера»; вип-пан — на первом слове второго говорящего
+const absW = k => words[k].s + shiftAt(words[k].s);
+for (let i = 0; i < shots.length; i++) {
+  const s = shots[i]; if (s.wi == null) continue;
+  let j = i + 1; while (j < shots.length && shots[j].wi == null) j++;
+  const to = j < shots.length ? shots[j].wi : words.length;
+  const m = s.camera.match(/«([^»]+)»/);
+  if (m && /рывок/.test(s.camera)) {
+    const key = norm(m[1]); let k = -1;
+    for (let q = s.wi; q < to; q++) if (words[q].k === key) { k = q; break; }
+    let t = k >= 0 ? absW(k) - s.start : s.dur * .55;
+    if (t < s.dur * .3) {   // слово слишком рано — рывку нужна остановка перед ним: берём ударное слово во второй половине фразы
+      for (let q = s.wi; q < to; q++) if (words[q].w.replace(/[^A-Za-z0-9$%]/g, '').length >= 4 && absW(q) - s.start >= s.dur * .4 && absW(q) - s.start <= s.dur - .3) { k = q; t = absW(q) - s.start; break; }
+    }
+    s.snap = +Math.min(Math.max(t, .25), s.dur - .2).toFixed(3);
+    if (k >= 0) s.snapWord = words[k].w.replace(/^[^A-Za-z0-9$]+|[^A-Za-z0-9%]+$/g, '');
+  } else if (/рывок на событии/.test(s.camera)) s.snap = +(s.dur * .55).toFixed(3);
+  if (/вип-пан/.test(s.camera)) {
+    const sp0 = lines[words[s.wi].li].speaker;
+    for (let q = s.wi + 1; q < to; q++) if (lines[words[q].li].speaker !== sp0) {
+      s.whip = { t: +(absW(q) - s.start).toFixed(3), from: sp0, to: lines[words[q].li].speaker }; break;
+    }
+  }
+}
 
 const out = {
   fps: 30, voiceDuration: voiceEnd, total: +total.toFixed(3), inserts,
   note: 'start/end — секунды аниматика (голос со вставленными паузами inserts: at — время в voice_draft.mp3, dur — тишина)',
   shots: shots.map(s => ({ n: s.n, ch: s.ch, chTitle: s.chTitle, start: +s.start.toFixed(3), end: +s.end.toFixed(3), dur: +s.dur.toFixed(3),
-    listDur: s.listDur, loc: s.loc, framing: s.framing, text: s.text, spoken: s.spoken, event: s.event, camera: s.camera, ...(s.box ? { box: s.box } : {}) })),
+    listDur: s.listDur, loc: s.loc, framing: s.framing, text: s.text, spoken: s.spoken, event: s.event, camera: s.camera, ...(s.box ? { box: s.box } : {}), ...(s.snap != null ? { snap: s.snap, snapWord: s.snapWord } : {}), ...(s.whip ? { whip: s.whip } : {}) })),
 };
 writeFileSync(join(D, 'timing.json'), JSON.stringify(out, null, 1));
 

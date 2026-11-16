@@ -76,3 +76,6 @@ touched: engine/src/sets/noirInteriors.js, production/L001/scenes/desk3d/, produ
 
 ## [2026-11-16 16:45] video | L001 — сверка с конкурентом по смыслу сцена за сценой; шотлист 277 → 303 плана (+26, 134 изменено), аниматик 15:30; номера планов сдвинуты (старые → новые: кухня #55–57 → #62–64, стол #25 → #27, конвейер #80 → #90, ДЦ #180–186 → #198–204, коридор #258 → #283; полная карта animatic/renumber_277_to_303.json)
 touched: production/L001/compare_scenes.md, production/L001/shotlist.md, production/L001/animatic/conf.js, production/L001/animatic/film.js, production/L001/animatic/make_timing.mjs, production/L001/animatic/render_all.mjs, production/L001/animatic/shotlist_tool.mjs, production/L001/animatic/timing.json, production/L001/animatic/out/
+
+## [2026-11-16 17:20] video | L001 — сцена-метафора «повара» (#62–64 по шотлисту 303): монитор 90-х → один повар CPU у длинного стола (рисованная кухня GPT + 2D-герои) → отъезд к ~5800 одинаковым поварам GPU, синхронные подбросы → все тарелки разом; 13.68 с, 1920×1080
+touched: production/L001/scenes/kitchen/

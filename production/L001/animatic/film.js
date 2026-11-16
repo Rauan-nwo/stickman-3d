@@ -7,7 +7,7 @@
 import { templates as T } from 'engine';
 import timing from './timing.json';
 import BOXF from './boxframes.js';
-import { NUMBERS, MAPS, BOARDS, DOCS, LOWER, YEAR, SPLITS } from './conf.js';
+import { NUMBERS, MAPS, BOARDS, DOCS, LOWER, YEAR, SPLITS, TRANS } from './conf.js';
 import p_restaurant from './tmp/restaurant.jpg';
 import p_restaurant_reverse from './tmp/restaurant_reverse.jpg';
 import p_host_office from './tmp/host_office.jpg';
@@ -65,8 +65,8 @@ const SPOTS = {
   bg_desk_topdown: { a: [.5, .5], b: [.5, .5], prop: [.55, .5] },
   box: { a: [.4, .6], b: [.62, .6], prop: [.5, .55] },
 };
-const PROP_AT = { 3: [.6, .42], 42: [.8, .32], 83: [.6, .42], 100: [.52, .66], 115: [.36, .42], 122: [.82, .56], 137: [.36, .42], 150: [.52, .55],
-  161: [.5, .55], 168: [.25, .62], 194: [.72, .62], 219: [.48, .3], 256: [.6, .42], 258: [.3, .7], 266: [.3, .7], 291: [.66, .62], 301: [.88, .36], 66: [.55, .32] };
+const PROP_AT = { 20: [.6, .42], 36: [.8, .32], 74: [.6, .42], 90: [.52, .66], 105: [.36, .42], 112: [.82, .56], 127: [.36, .42], 139: [.52, .55],
+  149: [.5, .55], 156: [.25, .62], 180: [.72, .62], 205: [.48, .3], 239: [.6, .42], 241: [.3, .7], 248: [.3, .7], 271: [.66, .62], 281: [.88, .36], 57: [.55, .32] };
 const LOCP = { 'L01-restaurant': ['restaurant', 'restaurant_reverse'], 'L02-sg-street': ['bg_singapore_street'], 'L03-host-office': ['host_office'],
   'L04-washington': ['bg_washington_cold', 'bg_washington_reverse'], 'L05-beijing': ['bg_beijing_office'], 'L06-nvidia-office': ['bg_nvidia_office_dry', 'bg_nvidia_office_reverse'],
   'L07-dennys': ['bg_diner_day'], 'L08-kentucky': ['bg_kentucky_day'], 'L09-megaspeed': ['bg_megaspeed_office', 'bg_megaspeed_reverse'],
@@ -101,17 +101,33 @@ const speakerOf = s => (s.text.match(/^([A-Z][A-Z0-9 ]{1,20}):/) || [])[1] || nu
 const nameOf = s => { const rest = s.framing.replace(/^(\S+)\s*/, ''); for (const [re, n] of NAMES) if (re.test(rest)) return n; return null; };
 
 // движение камеры из колонки шотлиста -> функция t -> { z, dx, dy, rot, sh }
-function camOf(cam, d) {
-  const c = cam.toLowerCase(); let z0 = 1, z1 = 1.06, dx = 0, dy = 0, kick = false, rot = 0;
-  if (/отъезд/.test(c)) { z0 = 1.09; z1 = 1; }
-  else if (/наезд|зум/.test(c)) z1 = /медленн|микро|лёгк/.test(c) ? 1.05 : 1.1;
-  if (/влево/.test(c)) dx = -.04; else if (/вправо/.test(c)) dx = .04; else if (/дрейф/.test(c)) dx = .03;
-  if (/панорама|проезд|пролёт/.test(c)) dx = /влево/.test(c) ? -.08 : .08;
-  if (/подъём/.test(c)) dy = -.06; if (/опускание|наклон вниз/.test(c)) dy = .06; if (/прокрутка вверх/.test(c)) dy = -.05; if (/прокрутка вниз/.test(c)) dy = .05;
-  if (/толчок|встряска|рывок/.test(c)) kick = true; if (/поворот/.test(c)) rot = .03;
-  if (/статично/.test(c)) { z1 = 1.015; dx *= .3; }
-  return t => { const k = ease(t / d), kt = t - Math.min(d * .4, 1.2);
-    return { z: lerp(z0, z1, k), dx: dx * (k - .5), dy: dy * (k - .5), rot: rot * (k - .5), sh: kick && kt > 0 && kt < .35 ? 14 * Math.sin(kt * 60) * (1 - kt / .35) : 0 }; };
+const outExpo = k => (k >= 1 ? 1 : k <= 0 ? 0 : 1 - Math.pow(2, -10 * k)), outCubic = k => 1 - Math.pow(1 - clamp(k), 3);
+const inOutExpo = k => (k <= 0 ? 0 : k >= 1 ? 1 : k < .5 ? Math.pow(2, 20 * k - 10) / 2 : (2 - Math.pow(2, -20 * k + 10)) / 2);
+const outBack = k => { const c1 = 1.9, c3 = c1 + 1; k = clamp(k); return 1 + c3 * Math.pow(k - 1, 3) + c1 * Math.pow(k - 1, 2); };
+const SNAP_Z = .13, SNAP_T = 5 / 30;
+// грамматика камеры (колонка «камера»): «статично» — настоящая остановка; «рывок на «слово»» — наезд с торможением, остановка,
+// рывок-зум 13 % за 5 кадров на ударном слове (s.snap из make_timing); «вип-пан» — остановка, вип со смазом на втором говорящем;
+// панорама/проезд/подъём/… — плавный проход с остановкой на последних 15 %
+function camOf(s, d) {
+  const c = s.camera.toLowerCase();
+  const kind = /вип-пан/.test(c) ? 'whip' : /статично/.test(c) ? 'static' : /панорам|проезд|пролёт|подъём|опускани|прокрутк|поворот|наклон|проход/.test(c) ? 'pan' : /рывок/.test(c) ? 'snap' : 'push';
+  const settle = Math.min(.8, Math.max(.3, d * .35)), pull = /отъезд/.test(c), kick = /толчок|встряска/.test(c);
+  let dx = 0, dy = 0;
+  if (kind === 'pan') {
+    dx = /влево/.test(c) ? -.08 : /подъём|опускани|прокрутк|наклон/.test(c) ? 0 : .08;
+    if (/подъём|прокрутка вверх/.test(c)) dy = -.06; if (/опускани|наклон вниз|прокрутка вниз/.test(c)) dy = .06;
+  }
+  const ts = s.snap ?? d * .4;
+  // хук и финал — пики энергии: вместо мёртвой остановки камера ползёт (0.25 %/кадр), рывок на этом фоне всё равно читается
+  const hot = s.ch === 0 || s.ch === 1 || s.ch === 10 || (s.ch === 9 && s.n >= 270), creep = hot && kind !== 'static' ? .075 : 0;
+  return t => {
+    let z = 1, ox = 0, oy = 0;
+    if (kind === 'pan') { const k = ease(t / (d * .85)); z = 1 + .03 * k; ox = dx * (k - .5) * (hot ? 1.8 : 1); oy = dy * (k - .5) * (hot ? 1.8 : 1); }
+    else if (kind !== 'static') { const k = outCubic(t / settle); z = (pull ? lerp(1.08, 1, k) : lerp(1, 1.03, k)) * (1 + creep * Math.max(0, t - settle)); ox = hot ? .02 * Math.sin(t * 1.3) : 0; }
+    const sz = s.snap != null && kind !== 'static' ? 1 + SNAP_Z * outExpo((t - s.snap) / SNAP_T) : 1;
+    const sh = kick && t > ts && t < ts + .35 ? 14 * Math.sin((t - ts) * 60) * (1 - (t - ts) / .35) : 0;
+    return { z: z * sz, snapZ: sz, dx: ox, dy: oy, rot: 0, sh, kind };
+  };
 }
 
 export default {
@@ -232,24 +248,26 @@ export default {
     }
 
     // ---------- один план ----------
-    function shot(ctx, s, t) {
-      const d = s.dur, sz = sizeOf(s.framing), cam = camOf(s.camera, d)(t), sp = speakerOf(s);
+    function content(ctx, s, t) {
+      const d = s.dur, sz = sizeOf(s.framing), cam = camOf(s, d)(t), sp = speakerOf(s);
+      const settleDur = Math.min(1.2, Math.max(.4, d * .35));            // шаблон доезжает и стоит, дальше — рывок
+      const snapWrap = f => { ctx.save(); if (cam.snapZ !== 1) { ctx.translate(W / 2, H / 2); ctx.scale(cam.snapZ, cam.snapZ); ctx.translate(-W / 2, -H / 2); } f(); ctx.restore(); };
       ctx.save();
       switch (s.loc) {
         case 'T-card': {
           const q = (s.event.match(/«([^»]+)»/) || [])[1] || s.spoken, len = q.length;
           const size = len > 60 ? 64 : len > 40 ? 76 : 96, cps = Math.max(15, len / Math.max(.3, d * .6 - .2));   // дописана к 60% плана
           const last = (q.match(/([A-Za-z']+)[^A-Za-z']*$/) || [])[1];
-          T.blackCard(ctx, t, { text: q, dur: d, at: .2, cps, size, underline: last });
+          T.blackCard(ctx, t, { text: q, dur: 1e6, doneBy: (d * .6) / 1e6, at: .2, cps, size, underline: last });   // карточка стоит: без наезда
           break;
         }
         case 'T-title': T.chapterTitle(ctx, t, { label: `CHAPTER ${s.ch}`, title: s.chTitle, dur: d, at: .03, sweepAt: d * .55 }); break;
-        case 'T-number': { const o = NUMBERS[s.n](d); if (o.countDur != null && o.at + o.countDur > d * .5) o.countDur = Math.max(.3, d * .5 - o.at); T.bigNumber(ctx, t, { dur: d, ...o }); break; }   // отсчёт кончается к половине плана
+        case 'T-number': { const o = NUMBERS[s.n](d); if (o.countDur != null && o.at + o.countDur > d * .5) o.countDur = Math.max(.3, d * .5 - o.at); snapWrap(() => T.bigNumber(ctx, t, { dur: settleDur, ...o })); break; }   // отсчёт кончается к половине плана
         case 'T-map': T.map(ctx, t, { dur: d, ...MAPS[s.n](d) }); break;
         case 'T-board': T.board(ctx, t, { dur: d, ...BOARDS[s.n](d) }); break;
-        case 'T-doc': T.document(ctx, t, { dur: d, ...DOCS[s.n](d) }); break;
-        case 'T-joke': joke(ctx, s, t, d); break;
-        case 'T-desk': { const v = plateView(1.04 * cam.z, [.5, .5]); drawImg(ctx, I.bg_desk_topdown, v); deskProps(ctx, s, t, d); tag3d(ctx, 'T-DESK: ' + s.framing.replace(/^сверху /, '')); break; }
+        case 'T-doc': snapWrap(() => T.document(ctx, t, { dur: settleDur, ...DOCS[s.n](d) })); break;
+        case 'T-joke': snapWrap(() => joke(ctx, s, t, d)); break;
+        case 'T-desk': { const v = plateView(1.04 * cam.z, [.5 + cam.dx, .5 + cam.dy]); drawImg(ctx, I.bg_desk_topdown, v); deskProps(ctx, s, t, d); tag3d(ctx, 'T-DESK: ' + s.framing.replace(/^сверху /, '')); break; }
         case 'T-split': {                 // окна из SPLITS (conf.js): [плейт, центр, подпись героя] слева направо
           const P = (SPLITS[s.n] || (() => ({ panes: [['bg_washington_cold', [.37, .66], 'AIDE'], ['bg_beijing_office', [.6, .66], 'OFFICER']], tag: 'WASHINGTON | BEIJING' })))(d);
           const n = P.panes.length, pw = W / n;
@@ -264,11 +282,110 @@ export default {
         default: if (s.loc.startsWith('3D-')) threeD(ctx, s, t, d, sz, cam, sp); else plate(ctx, s, t, d, sz, cam, sp);
       }
       ctx.restore();
+      if (!/^T-(card|title|number|doc|map|board)$/.test(s.loc) && !s.box) ambient(ctx, s, t);
+      events(ctx, s, t, d, cam);
+      if (/титр ролика/.test(s.framing)) videoTitle(ctx, t, d);
       // подписи
       const lt = LOWER[s.n]; if (lt) lt.forEach(([name, role, at], i) => T.lowerThird(ctx, t, { name, role, at: at * d, out: lt[i + 1] ? lt[i + 1][2] * d - .1 : null }));
       if (YEAR[s.n]) { ctx.save(); ctx.font = `bold 64px 'Courier New', monospace`; ctx.fillStyle = 'rgba(241,230,204,.9)'; ctx.globalAlpha = clamp(t / .4); ctx.fillText(YEAR[s.n], 90, 140); ctx.restore(); }
+    }
+    // переходы (conf.js TRANS) + засвет перед титром главы
+    const IDX = new Map(timing.shots.map((x, i) => [x.n, i]));
+    const prevOf = s => timing.shots[IDX.get(s.n) - 1], nextOf = s => timing.shots[IDX.get(s.n) + 1];
+    function shot(ctx, s, t) {
+      const d = s.dur, tr = TRANS[s.n], pv = prevOf(s);
+      if ((tr === 'wipe' || tr === 'whip') && pv && t < .27) {
+        const u = inOutExpo(t / .27);
+        if (tr === 'wipe') {
+          ctx.save(); content(ctx, pv, pv.dur - .001); ctx.restore();
+          ctx.save(); ctx.beginPath(); ctx.rect(W * (1 - u), 0, W, H); ctx.clip(); ctx.translate(W * (1 - u), 0); content(ctx, s, t); ctx.restore();
+          ctx.fillStyle = '#f2a94e'; ctx.fillRect(W * (1 - u) - 6, 0, 12, H);
+        } else {
+          for (let g = 0; g < 4; g++) { ctx.save(); ctx.globalAlpha = g ? .25 : 1; ctx.translate(-W * (u - g * .05), 0); content(ctx, pv, pv.dur - .001); ctx.restore(); }
+          for (let g = 0; g < 4; g++) { ctx.save(); ctx.globalAlpha = g ? .25 : 1; ctx.translate(W * (1 - u + g * .05), 0); content(ctx, s, t); ctx.restore(); }
+        }
+      } else content(ctx, s, t);
+      const nx = nextOf(s);
+      if (nx && TRANS[nx.n] === 'white' && t > d - .25) { ctx.fillStyle = `rgba(255,252,240,${clamp((t - (d - .25)) / .25)})`; ctx.fillRect(0, 0, W, H); }
+      if (tr === 'white' && t < .3) { ctx.fillStyle = `rgba(255,252,240,${1 - clamp(t / .3)})`; ctx.fillRect(0, 0, W, H); }
+      if (tr === 'flash' && t < .2) { ctx.fillStyle = `rgba(255,255,255,${.95 * (1 - t / .2)})`; ctx.fillRect(0, 0, W, H); }
+      if (tr === 'rewind' && t < .45) rewindFx(ctx, t);
+      if (tr === 'speed') speedLines(ctx, t, s.snap ?? d * .4);
       debugStrip(ctx, s);
       if (opt.sheet === '1') sheetLabel(ctx, s);
+    }
+    function rewindFx(ctx, t) {
+      let k = Math.floor(t * 30) * 7919 + 7; const r = () => (k = (k * 16807) % 2147483647) / 2147483647;
+      ctx.save(); for (let i = 0; i < 14; i++) { const y = r() * H, h = 8 + r() * 40, sx = (r() - .5) * 160;
+        ctx.drawImage(ctx.canvas, 0, y, W, h, sx, y, W, h); ctx.fillStyle = `rgba(255,255,255,${.08 + r() * .15})`; ctx.fillRect(0, y, W, 3); }
+      ctx.fillStyle = 'rgba(255,255,255,.9)'; ctx.font = "700 72px 'Courier New', monospace"; ctx.fillText('◀◀', 90, 150); ctx.restore();
+    }
+    function speedLines(ctx, t, t0) {
+      const u = (t - t0) / .45; if (u < 0 || u > 1) return;
+      ctx.save(); ctx.strokeStyle = `rgba(255,240,200,${.7 * (1 - u)})`; ctx.lineWidth = 6;
+      for (let i = 0; i < 64; i++) { const a = i / 64 * 6.283 + i * .37, r0 = 260 + 500 * u + (i % 5) * 40, r1 = r0 + 260 + (i % 3) * 120;
+        ctx.beginPath(); ctx.moveTo(W / 2 + Math.cos(a) * r0, H / 2 + Math.sin(a) * r0); ctx.lineTo(W / 2 + Math.cos(a) * r1, H / 2 + Math.sin(a) * r1); ctx.stroke(); }
+      ctx.restore();
+    }
+    // жизнь в кадре: дыхание света, пыль, дождь (заглушки тоже не стоят мёртвыми)
+    function ambient(ctx, s, t) {
+      const n = (Math.sin(t * 14.5) + Math.sin(t * 23.2 + 1.3) + Math.sin(t * 37 + 2.1)) / 3;
+      ctx.save();
+      if (n > 0) { ctx.globalCompositeOperation = 'screen'; ctx.fillStyle = `rgba(255,190,120,${(.05 * n).toFixed(3)})`; }
+      else { ctx.globalCompositeOperation = 'multiply'; const c = Math.round(255 + 40 * n); ctx.fillStyle = `rgb(${c},${c},${c})`; }
+      ctx.fillRect(0, 0, W, H); ctx.restore();
+      ctx.save(); ctx.globalCompositeOperation = 'screen';
+      for (let i = 0; i < 46; i++) { const sp = .3 + ((i * 37) % 70) / 100, ph = i * 1.7;
+        const x = (((i * .6180339 + t * .012 * sp) % 1) * W + Math.sin(t * .7 * sp + ph) * 20), y = ((((i * .381966) - t * .02 * sp) % 1 + 1) % 1) * H;
+        ctx.fillStyle = `rgba(255,214,150,${(.18 + .25 * Math.abs(Math.sin(t * 1.3 * sp + ph))).toFixed(3)})`; ctx.beginPath(); ctx.arc(x, y, 1.5 + (i % 4), 0, 6.283); ctx.fill(); }
+      ctx.restore();
+      if (/L01|L02|L09/.test(s.loc) || /дожд/.test(s.event)) {
+        ctx.save(); ctx.strokeStyle = 'rgba(200,220,255,.22)'; ctx.lineWidth = 2;
+        for (let i = 0; i < 110; i++) { const x = ((i * 97.13 + t * 260) % (W + 200)) - 100, y = ((i * 53.7 + t * 1400) % (H + 100)) - 50;
+          ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x - 10, y + 42); ctx.stroke(); }
+        ctx.restore();
+      }
+    }
+    // события плана: появление с перелётом + толчок, вспышки, серия вспышек в толпе
+    const evText = (s, k) => { const parts = s.event.split(/[;→]/).map(x => x.trim().replace(/^\(|\)$/g, '')).filter(x => x && !/^на ~75/.test(x));
+      const p = parts[Math.min(k, parts.length - 1)] || s.framing; return p.length > 38 ? p.slice(0, 37) + '…' : p; };
+    function eventTimes(s, d) {
+      if (/^T-(card|title)$/.test(s.loc) || s.box) return [];
+      const dense = s.ch === 0 || s.ch === 10 || (s.ch === 9 && s.n >= 270), quiet = [5, 8, 9].includes(s.ch);
+      const a = []; const t1 = s.snap != null ? s.snap + .35 : Math.max(.45, d * .42); if (t1 < d - .15) a.push(t1);
+      if ((d >= 4.5 || (dense && d >= 2) || (quiet && d >= 3.2)) && d * .82 - (a[0] ?? 0) > .45) a.push(d * .82);
+      if (s.whip && s.whip.t + .35 < d - .15 && !a.some(x => Math.abs(x - s.whip.t - .35) < .4)) a.push(s.whip.t + .35);
+      return a;
+    }
+    function events(ctx, s, t, d, cam) {
+      const ts = eventTimes(s, d), isT = /^T-/.test(s.loc);
+      ts.forEach((t0, k) => { if (!isT) sticker(ctx, k ? W * .66 : W * .36, k ? H * .2 : H * .14, evText(s, k), t, t0); });
+      const fl = /вспышк|щелч|снимк|фото|flash/i.test(s.event + s.framing) && !/фоторамк/.test(s.event);
+      if (fl) flash(ctx, W * .62, H * .38, t, s.snap ?? d * .45);
+      if (/серия из 6 вспышек/.test(s.event)) for (let i = 0; i < 6; i++) flash(ctx, W * (.15 + ((i * .37) % .7)), H * (.25 + ((i * .53) % .5)), t, d * (.1 + .14 * i), .6);
+    }
+    function sticker(ctx, x, y, text, t, t0) {
+      const u = (t - t0) / (6 / 30); if (u < 0) return;
+      const k = u >= 1 ? 1 : outBack(u), kk = t - t0 < .3 ? 10 * Math.sin((t - t0) * 60) * (1 - (t - t0) / .3) : 0;
+      ctx.save(); ctx.translate(x + kk, y); ctx.scale(k, k); ctx.font = "700 40px 'Segoe UI', sans-serif";
+      const w = Math.min(760, ctx.measureText(text).width + 60);
+      ctx.fillStyle = 'rgba(242,169,78,.94)'; ctx.strokeStyle = '#120c08'; ctx.lineWidth = 5; ctx.beginPath(); ctx.roundRect(-w / 2, -58, w, 116, 18); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#120c08'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(text, 0, 2, w - 30); ctx.restore();
+    }
+    function flash(ctx, x, y, t, t0, k = 1) {
+      const u = (t - t0) / (3 / 30); if (u < 0 || u > 1) return;
+      ctx.save(); ctx.globalCompositeOperation = 'lighter';
+      const g = ctx.createRadialGradient(x, y, 0, x, y, 900); g.addColorStop(0, `rgba(255,255,255,${.95 * k * (1 - u)})`); g.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H); ctx.fillStyle = `rgba(255,255,255,${.35 * k * (1 - u)})`; ctx.fillRect(0, 0, W, H); ctx.restore();
+    }
+
+    function videoTitle(ctx, t, d) {      // название ролика поверх плана: полоса снизу, буквы проявляются
+      const k = clamp((t - .3) / .8), title = "How China Got a Seat at Jensen Huang's Table";
+      ctx.save(); const g = ctx.createLinearGradient(0, H * .45, 0, H); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, `rgba(0,0,0,${.85 * k})`);
+      ctx.fillStyle = g; ctx.fillRect(0, H * .45, W, H * .55);
+      ctx.globalAlpha = k; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = '#f1e6cc';
+      ctx.font = "600 78px Georgia, 'Times New Roman', serif"; ctx.shadowColor = '#000'; ctx.shadowBlur = 18;
+      ctx.fillText(title, W / 2, H * .8); ctx.restore();
     }
     function deskProps(ctx, s, t, d) {
       ctx.save(); ctx.strokeStyle = '#f1e6cc'; ctx.lineWidth = 6;
@@ -293,27 +410,47 @@ export default {
       const name = sp || nameOf(s), sizeK = sz === 'rev' && /^обратная (\S+)/.test(s.framing) && nameOf(s) ? 'ms' : sz;
       let focus = sz === 'ins' ? (PROP_AT[s.n] || SPOTS[key].prop) : name ? spotFor(key, name.split(' · ')[0]) : [.5, .5];
       if (sz === 'pov') focus = [.89, .38];
-      const baseZ = ZOOM[sz];
-      const c = [clamp(focus[0] + cam.dx), clamp(focus[1] + cam.dy)];
-      const v = plateView(baseZ * cam.z, (sz === 'ws' || sz === 'rev' || sz === 'top') ? [.5 + cam.dx, .5 + cam.dy] : c);
+      let wu = null, WA, WB;
+      if (s.whip) { WA = spotFor(key, s.whip.from); WB = spotFor(key, s.whip.to); wu = inOutExpo((t - s.whip.t + .1) / .22); focus = [lerp(WA[0], WB[0], wu), lerp(WA[1], WB[1], wu)]; }
+      const baseZ = ZOOM[sz] * (s.whip && sz === 'ws' ? 1.5 : 1);
+      const center = f => (sz === 'ws' || sz === 'rev' || sz === 'top') && !s.whip ? [.5 + cam.dx, .5 + cam.dy] : [clamp(f[0] + cam.dx), clamp(f[1] + cam.dy)];
+      const v = plateView(baseZ * cam.z, center(focus));
       ctx.save(); ctx.translate(cam.sh, cam.sh * .5);
-      if (cam.rot) { ctx.translate(W / 2, H / 2); ctx.rotate(cam.rot); ctx.scale(1.08, 1.08); ctx.translate(-W / 2, -H / 2); }
       const blur = sz === 'cu' || sz === 'xcu' || sz === 'ms';
       drawImg(ctx, blur && !flip ? blurOf(key) : I[key], v, flip, tint);
+      if (wu != null && wu > 0 && wu < 1) for (let g = 1; g <= 5; g++) {           // смаз вип-пана: копии кадра позади по пути
+        const ug = clamp(wu - g * .07), fg = [lerp(WA[0], WB[0], ug), lerp(WA[1], WB[1], ug)];
+        ctx.save(); ctx.globalAlpha = .22; drawImg(ctx, blur && !flip ? blurOf(key) : I[key], plateView(baseZ * cam.z, center(fg)), flip, tint); ctx.restore();
+      }
       if (blur && flip) { ctx.filter = 'none'; }
       if (sz === 'top' && s.loc === 'L05-beijing') chess(ctx, t, d);
       ctx.restore();
       // герои
-      const fh = FIG_H[sizeK], people = sz === 'pov' ? ['JENSEN'] : sz === 'ins' || sz === 'top' ? [] : name ? name.split(' · ') : [];
+      const fh = FIG_H[sizeK], people = s.whip ? [s.whip.from, s.whip.to] : sz === 'pov' ? ['JENSEN'] : sz === 'ins' || sz === 'top' ? [] : name ? name.split(' · ') : [];
       const empty = /пуст/.test(s.framing);
       if (!empty) people.forEach((nm, i) => {
-        const p = sz === 'pov' ? [W / 2, H * .5] : toScreen(v, people.length > 1 ? SPOTS[key][i % 2 ? 'b' : 'a'] : (flip ? [1 - focus[0], focus[1]] : spotFor(key, nm)));
-        const isSp = !!sp && (sp === nm || (sp === 'JENSEN' && /JENSEN/.test(nm)));
+        const p = sz === 'pov' ? [W / 2, H * .5] : toScreen(v, s.whip ? spotFor(key, nm) : people.length > 1 ? SPOTS[key][i % 2 ? 'b' : 'a'] : (flip ? [1 - focus[0], focus[1]] : spotFor(key, nm)));
+        const isSp = s.whip ? nm === (t < s.whip.t ? s.whip.from : s.whip.to) : !!sp && (sp === nm || (sp === 'JENSEN' && /JENSEN/.test(nm)));
         figure(ctx, p[0], p[1] + fh * .15, fh, sz === 'pov' ? 'JENSEN (in the window)' : nm, sz !== 'pov' && (isSp || (people.length === 1 && !!sp && !nameOf(s))));
       });
       const mk = sz === 'ins' ? toScreen(v, focus) : people.length ? toScreen(v, spotFor(key, people[0])) : [W / 2, H / 2];
-      eventMark(ctx, mk[0], mk[1] - (people.length ? fh * .2 : 0), t, d);
+      void mk;
       if (sz === 'pov') viewfinder(ctx, t);
+      if (sz === 'ins' && /край стола/.test(s.framing)) {      // чип под скатертью (заглушка): рука в перчатке, зелёное свечение
+        const k = clamp((t - .2) / Math.max(.4, (s.snap ?? d * .5) - .2)), x = lerp(W * .15, W * .55, outCubic(k));
+        ctx.save(); ctx.fillStyle = '#e9e2d0'; ctx.fillRect(0, 0, W, H * .42);
+        const g = ctx.createRadialGradient(x + 160, H * .62, 0, x + 160, H * .62, 360); g.addColorStop(0, 'rgba(90,255,140,.75)'); g.addColorStop(1, 'rgba(90,255,140,0)');
+        ctx.fillStyle = g; ctx.fillRect(0, H * .3, W, H * .7); ctx.fillStyle = '#0d0d10'; ctx.beginPath(); ctx.roundRect(x - 260, H * .55, 300, 120, 50); ctx.fill();
+        ctx.fillStyle = '#2fd36a'; ctx.strokeStyle = '#eaffea'; ctx.lineWidth = 4; ctx.fillRect(x + 60, H * .56, 200, 110); ctx.strokeRect(x + 60, H * .56, 200, 110); ctx.restore();
+        tag3d(ctx, 'GLOVED HAND (Alice side, no face) slides a glowing chip under the tablecloth');
+      }
+      if (sz === 'ws' && /объектив/.test(s.event) && s.loc === 'L01-restaurant') figure(ctx, W * .62, H * .5, 120, 'AGENT (menu + lens)', false);
+      if (sz === 'ins' && /снимк/.test(s.framing)) {   // снимки падают стопкой (заглушка)
+        const n = Math.min(4, Math.floor(t / Math.max(.3, d * .15)) + 1);
+        for (let i = 0; i < n; i++) { ctx.save(); ctx.translate(W * (.38 + i * .07), H * (.42 + i * .05)); ctx.rotate((i % 2 ? 1 : -1) * .08 * (i + 1));
+          ctx.fillStyle = '#f4efe2'; ctx.fillRect(-190, -150, 380, 300); ctx.fillStyle = '#2a2230'; ctx.fillRect(-170, -130, 340, 220);
+          ctx.fillStyle = '#e8c9a0'; ctx.beginPath(); ctx.arc(-60, -30, 40, 0, 6.283); ctx.arc(70, -25, 40, 0, 6.283); ctx.fill(); ctx.restore(); }
+      }
       if (flip) tag3d(ctx, 'REVERSE (mirrored plate — no reverse plate)');
       else if (NEWP[s.loc]) tag3d(ctx, NEWP[s.loc][1]);
     }

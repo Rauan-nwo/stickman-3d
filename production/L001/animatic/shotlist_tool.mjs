@@ -2,6 +2,7 @@
 //   node shotlist_tool.mjs check                 — текст планов против script.md слово в слово, карточки, крупности подряд
 //   node shotlist_tool.mjs apply <ops.mjs>       — правки по СТАРЫМ номерам (set / split / insert / del), перенумерация,
 //                                                  карта старый→новый в tmp/renumber.json и перенос номеров в conf.js / film.js
+//   node shotlist_tool.mjs remap <map.json>      — только перенос номеров в conf.js / film.js по карте {старый: новый}
 //   node shotlist_tool.mjs sync                  — старт и длительность планов из timing.json (черновой голос), шапки глав,
 //                                                  итоги и раздел «Проверка»
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
@@ -162,7 +163,9 @@ function sync() {
   const { lines, shots, toks, errs, rep, cardBad, noEv } = { ...parse(), ...check(false) };
   if (tm.shots.length !== shots.length) throw new Error('timing.json не от этого шотлиста — сначала make_timing');
   const T = new Map(tm.shots.map(s => [s.n, s]));
-  for (const s of shots) { const t = T.get(s.n); s.start = fmt(t.start); s.dur = t.dur; s.t0 = t.start; s.t1 = t.end; lines[s.li] = rowOf(s); }
+  for (const s of shots) { const t = T.get(s.n); s.start = fmt(t.start); s.dur = t.dur; s.t0 = t.start; s.t1 = t.end;
+    if (t.snapWord && /«[^»]+»/.test(s.camera)) s.camera = s.camera.replace(/«[^»]+»/, `«${t.snapWord}»`);   // ударное слово — как в черновом голосе
+    lines[s.li] = rowOf(s); }
   const chs = [...new Set(shots.map(s => s.ch))];
   const st = {};
   for (const c of chs) {
@@ -199,4 +202,5 @@ const [cmd, arg] = process.argv.slice(2);
 if (cmd === 'check') { const r = check(); if (r.errs.length || r.rep.length || r.cardBad.length) process.exitCode = 1; }
 else if (cmd === 'apply') await apply(arg);
 else if (cmd === 'sync') sync();
+else if (cmd === 'remap') { remapCode(JSON.parse(readFileSync(arg, 'utf8'))); console.log('remap ok'); }
 else console.log('check | apply <ops.mjs> | sync');

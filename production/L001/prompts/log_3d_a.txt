@@ -1,0 +1,4 @@
+[plate_wall.png] генерирую...
+[plate_wall.png] готово -> C:\dev\projects\youtube-video\production\L001\scenes\desk3d\raw\plate_wall.png
+
+итого: готово 1, пропущено 0, с ошибкой 0
