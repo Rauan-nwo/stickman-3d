@@ -279,4 +279,3 @@ So the next time someone friendly pulls up a chair beside the people building Am
 [HOST] Some keys are too heavy to carry.
 [HOST] So this one goes in the safe.
 [HOST] The question is who opens it next.
-<!-- SCRIPT END -->
