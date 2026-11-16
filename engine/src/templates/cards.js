@@ -2,7 +2,9 @@
 //   blackCard(ctx, t, { text, at, cps, size, underline, upper })   — фраза пишется буква за буквой маркером, чуть дрейфует;
 //        событие: красное подчёркивание слова underline после того, как фраза дописана
 //   chapterTitle(ctx, t, { label, title, at })                      — «CHAPTER 3» на пишмашинке, линейки расходятся,
-//        название буквами снизу; событие: луч лампы проходит по названию
+//        название буквами снизу; событие: луч лампы проходит по названию. dur < 1.5 с (или fast: true) — всё
+//        появляется за ~0.15 с, блик укорачивается до 40 % шота
+//   blackCard: doneBy — доля шота, к которой фраза дописана (по умолчанию 0.6 при заданном dur; cps — не медленнее)
 import { clamp, lerp, E, smooth } from '../core/ease.js';
 import { NOIR, FONT, dims, camPush, vignette, grain, motes, writeLine, wrap, wobble, partial, marker, scratch, hashS } from './noir.js';
 
@@ -20,11 +22,14 @@ export function blackCard(ctx, t, o = {}) {
   const { text = '', dur = 3, at = .3, cps = 15, size = 84, font = FONT.hand, color = NOIR.cream, underline = null, upper = false,
     x = W / 2, y = H / 2, maxW = W * .72, lh = 1.25, bg = true, seed = hashS(text) } = o;
   const str = upper ? text.toUpperCase() : text;
+  // doneBy: фраза дописана не позже этой доли шота (по умолчанию 0.6, если задан dur); cps — нижняя граница скорости
+  const doneBy = o.doneBy ?? (o.dur != null ? .6 : null);
+  const cpsE = doneBy != null ? Math.max(cps, str.length / Math.max(.05, doneBy * dur - at)) : cps;
   ctx.save();
   if (bg) { ctx.save(); camPush(ctx, W, H, t, { dur, to: 1.03, drift: 3, seed }); cardBg(ctx, W, H, t); ctx.restore(); motes(ctx, W, H, t, { n: 26, k: .22, seed }); }
   camPush(ctx, W, H, t, { dur, from: 1, to: 1.075, drift: 4, seed: seed % 7 });
   ctx.font = `${size}px ${font}`; ctx.textBaseline = 'middle';
-  const lines = wrap(ctx, str, maxW), n = Math.max(0, (t - at) * cps);
+  const lines = wrap(ctx, str, maxW), n = Math.max(0, (t - at) * cpsE);
   let used = 0, uPos = null;
   lines.forEach((ln, i) => {
     const ly = y + (i - (lines.length - 1) / 2) * size * lh, k = n - used;
@@ -34,7 +39,7 @@ export function blackCard(ctx, t, o = {}) {
   });
   // событие: красный маркер под словом, когда фраза дописана
   if (uPos) {
-    const t0 = at + str.length / cps + .25, k = E.outCubic(clamp((t - t0) / .35));
+    const t0 = at + str.length / cpsE + .25, k = E.outCubic(clamp((t - t0) / .35));
     if (k > 0) { const [a, b, uy] = uPos, pts = wobble([[a - 10, uy + 4], [b + 14, uy - 4]], 3, seed, 10); marker(ctx, partial(pts, k), { w: size * .085 }); }
   }
   ctx.restore();
@@ -44,6 +49,8 @@ export function blackCard(ctx, t, o = {}) {
 export function chapterTitle(ctx, t, o = {}) {
   const [W, H] = dims(ctx, o);
   const { label = 'CHAPTER 1', title = '', dur = 3, at = .15, size = 132, font = FONT.display, sweepAt = 1.75, seed = hashS(title) } = o;
+  // короткий шот (dur < 1.5 с или fast: true): весь выход сжимается в ~0.15 с — название читается почти сразу
+  const fast = o.fast ?? dur < 1.5, settle = at + .45 + title.length * .045 + .6, tt = fast ? t * settle / .15 : t;
   ctx.save();
   ctx.save(); camPush(ctx, W, H, t, { dur, to: 1.03, drift: 3, seed }); cardBg(ctx, W, H, t, { warm: 1 });
   // конус света сверху: висящая лампа над названием
@@ -55,10 +62,10 @@ export function chapterTitle(ctx, t, o = {}) {
   const cy = H * .5;
   // метка главы: пишмашинка, буквы набиваются, янтарные линейки расходятся от центра
   ctx.font = `bold 34px ${FONT.type}`; ctx.letterSpacing = '12px'; ctx.textBaseline = 'middle';
-  const lw = ctx.measureText(label).width, nL = (t - at) * 26;
+  const lw = ctx.measureText(label).width, nL = (tt - at) * (fast ? 999 : 26);
   writeLine(ctx, label, W / 2 + 6, cy - size * .82, nL, { align: 'center', fill: NOIR.amber });
   ctx.letterSpacing = '0px';
-  const rk = E.outCubic(clamp((t - at - .1) / .8)), gap = lw / 2 + 40, len = 260 * rk;
+  const rk = E.outCubic(clamp((tt - at - .1) / .8)), gap = lw / 2 + 40, len = 260 * rk;
   ctx.strokeStyle = NOIR.amber; ctx.lineWidth = 3; ctx.lineCap = 'round';
   for (const sd of [-1, 1]) { ctx.beginPath(); ctx.moveTo(W / 2 + sd * gap, cy - size * .82); ctx.lineTo(W / 2 + sd * (gap + len), cy - size * .82); ctx.stroke(); }
   // название: буквы поднимаются и проявляются по очереди (кремовые, контур тушью, жёсткая синяя тень)
@@ -66,7 +73,7 @@ export function chapterTitle(ctx, t, o = {}) {
   x.font = `600 ${size}px ${font}`; x.textBaseline = 'middle'; x.letterSpacing = '4px';
   const tw = x.measureText(title).width; let px = W / 2 - tw / 2;
   for (let i = 0; i < title.length; i++) {
-    const ch = title[i], cw = x.measureText(ch).width, k = E.outCubic(clamp((t - at - .45 - i * .045) / .5));
+    const ch = title[i], cw = x.measureText(ch).width, k = E.outCubic(clamp((tt - at - .45 - i * .045) / .5));
     if (k > 0) {
       x.globalAlpha = k; const yy = cy + 34 * (1 - k);
       x.fillStyle = 'rgba(20,32,70,.9)'; x.fillText(ch, px + 6, yy + 7);                          // cel-тень
@@ -77,7 +84,7 @@ export function chapterTitle(ctx, t, o = {}) {
   }
   x.globalAlpha = 1;
   // событие: тёплый блик лампы проходит по буквам слева направо
-  const sk = clamp((t - sweepAt) / .9);
+  const sk = clamp((t - sweepAt) / Math.min(.9, dur * .4));
   if (sk > 0 && sk < 1) {
     const sx = lerp(W / 2 - tw / 2 - 200, W / 2 + tw / 2 + 200, E.inOutSine(sk)), g = x.createLinearGradient(sx - 140, 0, sx + 140, 0);
     g.addColorStop(0, 'rgba(255,190,90,0)'); g.addColorStop(.5, 'rgba(255,200,110,.85)'); g.addColorStop(1, 'rgba(255,190,90,0)');
@@ -85,7 +92,7 @@ export function chapterTitle(ctx, t, o = {}) {
   }
   ctx.drawImage(c, 0, 0);
   // тонкая линейка под названием дорисовывается после букв
-  const uk = E.inOutCubic(clamp((t - at - .45 - title.length * .045) / .6));
+  const uk = E.inOutCubic(clamp((tt - at - .45 - title.length * .045) / .6));
   if (uk > 0) { ctx.strokeStyle = 'rgba(242,169,78,.6)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(W / 2 - tw * .3 * uk, cy + size * .62); ctx.lineTo(W / 2 + tw * .3 * uk, cy + size * .62); ctx.stroke(); }
   ctx.restore();
   vignette(ctx, W, H, .7); grain(ctx, W, H, t, .09);

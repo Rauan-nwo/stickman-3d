@@ -4,6 +4,9 @@
 //             x, y — центр в пикселях кадра; photo.draw — свой рисунок в окне снимка (голова героя и т.п.),
 //             без draw — силуэт-заглушка; note.lines — строки текста; label.title — надпись на полоске
 //     strings [{ from: id, to: id, t0, t1 }]  — красная нитка натягивается от кнопки к кнопке
+//             [{ from: id, loose: true, len, angle, sway, freq, t0, t1 }] — свободная нитка: висит от кнопки from
+//             (или от точки at: [x, y]), второй конец не привязан и чуть качается; angle — наклон от вертикали (рад),
+//             sway — размах качания (рад); с t0 нитка «разматывается» за t0..t1
 //     circle  { id, t0, dur, pad }            — событие: красный маркер обводит предмет
 //     focus   [x, y] | id                     — куда наезжает камера (по умолчанию — на обведённый предмет)
 import { clamp, lerp, E } from '../core/ease.js';
@@ -51,6 +54,24 @@ function stringPts(a, b) {
   for (let i = 0; i <= 40; i++) { const k = i / 40; pts.push([lerp(a[0], b[0], k), lerp(a[1], b[1], k) + Math.sin(k * Math.PI) * sag]); }
   return pts;
 }
+// свободная нитка: висит от кнопки, второй конец свободен; угол от вертикали тает к концу (тяжесть), чуть качается
+function loosePts(a, t, s, k) {
+  const n = 30, len = (s.len ?? 300) * k, ang = s.angle ?? .35, sway = s.sway ?? .07, w = 6.283 * (s.freq ?? .45), ph = s.phase ?? 0, pts = [[a[0], a[1]]];
+  let x = a[0], y = a[1];
+  for (let i = 1; i <= n; i++) {
+    const u = i / n, th = ang * (1 - .75 * u) + sway * Math.sin(w * t + ph - u * 1.9) * (.35 + .65 * u);
+    x += Math.sin(th) * len / n; y += Math.cos(th) * len / n; pts.push([x, y]);
+  }
+  return pts;
+}
+function drawString(ctx, pts) {
+  ctx.save(); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  ctx.save(); ctx.translate(8, 12); polyline(ctx, pts); ctx.strokeStyle = 'rgba(4,6,16,.45)'; ctx.lineWidth = 5; ctx.stroke(); ctx.restore();
+  polyline(ctx, pts); ctx.strokeStyle = '#4a0c0a'; ctx.lineWidth = 7; ctx.stroke();
+  polyline(ctx, pts); ctx.strokeStyle = NOIR.red; ctx.lineWidth = 4.5; ctx.stroke();
+  ctx.translate(-1, -1.2); polyline(ctx, pts); ctx.strokeStyle = 'rgba(255,150,130,.55)'; ctx.lineWidth = 1.4; ctx.stroke();
+  ctx.restore();
+}
 
 export function board(ctx, t, o = {}) {
   const [W, H] = dims(ctx, o);
@@ -72,15 +93,19 @@ export function board(ctx, t, o = {}) {
   for (const it of items) drawItem(ctx, it, t);
   // нитки
   for (const s of strings) {
+    if (s.loose || s.to == null) {                                        // свободная нитка: привязана одним концом
+      const A = byId[s.from], a = A ? pinOf(A) : s.at; if (!a) continue;
+      const k = s.t0 == null ? 1 : E.outCubic(clamp((t - s.t0) / ((s.t1 ?? s.t0 + .5) - s.t0))); if (k <= 0) continue;
+      const pts = loosePts(a, t, s, k), tip = pts[pts.length - 1];
+      drawString(ctx, pts);
+      ctx.fillStyle = '#4a0c0a'; ctx.beginPath(); ctx.arc(tip[0], tip[1], 5.5, 0, 6.283); ctx.fill();   // узелок на конце
+      ctx.fillStyle = NOIR.red; ctx.beginPath(); ctx.arc(tip[0] - .8, tip[1] - .8, 3.6, 0, 6.283); ctx.fill();
+      continue;
+    }
     const A = byId[s.from], B = byId[s.to]; if (!A || !B) continue;
     const k = E.inOutSine(clamp((t - s.t0) / ((s.t1 ?? s.t0 + .7) - s.t0))); if (k <= 0) continue;
     const pts = partial(stringPts(pinOf(A), pinOf(B)), k), tip = pts[pts.length - 1];
-    ctx.save(); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-    ctx.save(); ctx.translate(8, 12); polyline(ctx, pts); ctx.strokeStyle = 'rgba(4,6,16,.45)'; ctx.lineWidth = 5; ctx.stroke(); ctx.restore();
-    polyline(ctx, pts); ctx.strokeStyle = '#4a0c0a'; ctx.lineWidth = 7; ctx.stroke();
-    polyline(ctx, pts); ctx.strokeStyle = NOIR.red; ctx.lineWidth = 4.5; ctx.stroke();
-    ctx.translate(-1, -1.2); polyline(ctx, pts); ctx.strokeStyle = 'rgba(255,150,130,.55)'; ctx.lineWidth = 1.4; ctx.stroke();
-    ctx.restore();
+    drawString(ctx, pts);
     if (k < 1) { ctx.fillStyle = NOIR.red; ctx.beginPath(); ctx.arc(tip[0], tip[1], 5, 0, 6.283); ctx.fill(); }
   }
   for (const it of items) if (it.pinned !== false) pushPin(ctx, ...pinOf(it), { color: it.pinColor || NOIR.red });

@@ -7,7 +7,7 @@ export { noirMap, mapProjection } from './map.js';
 export { board } from './board.js';
 export { documentShot } from './document.js';
 export { NOIR, FONT as NOIR_FONT, camPush, grain, vignette, lampPool, motes, marker, scribbleEllipse, wobble, partial } from './noir.js';
-export { PLACES } from './mapData.js';
+export { PLACES, MAP_VIEWS } from './mapData.js';
 import { blackCard, chapterTitle } from './cards.js';
 import { lowerThird, bigNumber } from './captions.js';
 import { noirMap } from './map.js';

@@ -1,8 +1,9 @@
-// make_timing.mjs: шотлист L001 (277 планов) + черновой голос -> timing.json и план склейки звука для аниматика.
+// make_timing.mjs: шотлист L001 + черновой голос -> timing.json и план склейки звука для аниматика.
 //   node production/L001/animatic/make_timing.mjs
 // Старт плана = начало первого слова его «текста» (поиск последовательно по словам lines_draft.json).
-// Путь коробки (165–171) идёт по готовому видео box_path_v2 (S1..S6 + 3D-хвост): фразы голоса сдвигаются тишиной
-// так, чтобы каждая начиналась на своём подплане; план 168 — без голоса (пауза из шотлиста). План 277 — 2 с музыки в конце.
+// Путь коробки (7 планов 3D-boxpath в гл. 6) идёт по готовому видео box_path_v2 (S1..S6 + 3D-хвост): фразы голоса сдвигаются
+// тишиной так, чтобы каждая начиналась на своём подплане; S4 — без голоса (пауза из шотлиста). Последний план — 2 с музыки.
+// Титр главы (T-title): перед его первым словом вставляется TITLE_PAUSE с тишины — титр читается до начала закадра.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -18,7 +19,8 @@ for (const s of md) {
   const m = s.match(/^\| (\d+) \| ([\d:.]+) \| (.*?) \| (\S+) \| (.*?) \| ([\d.]+) \| (.*?) \| (.*?) \|$/);
   if (m && ch != null) shots.push({ n: +m[1], ch, chTitle, listStart: m[2], text: m[3], loc: m[4], framing: m[5], listDur: +m[6], event: m[7], camera: m[8] });
 }
-if (shots.length !== 277) throw new Error('планов ' + shots.length);
+const nums = shots.map(s => s.n); if (nums.some((n, i) => n !== i + 1)) throw new Error('номера планов не по порядку');
+const LAST = shots[shots.length - 1].n;
 
 // ---- слова голоса
 const norm = w => w.toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9]/g, '');
@@ -44,11 +46,18 @@ for (const s of shots) {
 }
 
 // ---- сдвиги звука (вставки тишины) и времена
-const BOX = [165, 166, 167, 168, 169, 170, 171], SEG = [0, 2.1, 4.1, 6.3, 8.2, 10.5, 13.3], BOX_END = 17.9, LEAD = .15;
+const BOX = shots.filter(s => s.ch === 6 && s.loc === '3D-boxpath').map(s => s.n).slice(0, 7), AFTER_BOX = BOX[6] + 1, TITLE_PAUSE = 1.2, MIN = { line: 1.5, card: 1.8, any: 1.3 }, SEG = [0, 2.1, 4.1, 6.3, 8.2, 10.5, 13.3], BOX_END = 17.9, LEAD = .15;
 const inserts = []; let shift = 0, boxStart = null;
 const insertBefore = (wi, need) => {        // тишина в середине паузы перед словом wi
   const prevE = wi > 0 ? words[wi - 1].e : 0, at = (prevE + words[wi].s) / 2;
   inserts.push({ at: +at.toFixed(3), dur: +need.toFixed(3) }); shift += need;
+};
+const minPrev = (s, wi, mid) => {   // добор длины предыдущего плана тишиной перед словом wi
+  const pv = shots[shots.indexOf(s) - 1];
+  if (!pv || pv.start == null || pv.box) return;
+  const need = /^[A-Z][A-Z0-9 ]{1,20}:/.test(pv.text) ? MIN.line : pv.loc === 'T-card' ? (pv.toks.length <= 3 ? MIN.line : MIN.card) : pv.loc === '3D-city' ? MIN.card : MIN.any;
+  const t0 = mid ? ((wi > 0 ? words[wi - 1].e : 0) + words[wi].s) / 2 + shift : words[wi].s + shift;
+  if (t0 - pv.start < need) insertBefore(wi, need - (t0 - pv.start));
 };
 for (const s of shots) {
   const bi = BOX.indexOf(s.n);
@@ -58,11 +67,22 @@ for (const s of shots) {
     if (s.wi != null) { const want = s.start + LEAD, act = words[s.wi].s + shift; if (act < want) insertBefore(s.wi, want - act); }
     continue;
   }
-  if (s.n === 277) { s.start = voiceEnd + shift + .4; continue; }
+  if (s.n === LAST) { s.start = voiceEnd + shift + .4; continue; }
   if (s.n === 1) { s.start = 0; continue; }
+  if (s.wi == null && /^—/.test(s.text)) {   // план без голоса (музыка): тишина длиной listDur перед следующей фразой
+    const nx = shots.slice(shots.indexOf(s) + 1).find(x => x.wi != null); minPrev(s, nx.wi, true); const prevE = nx.wi > 0 ? words[nx.wi - 1].e : 0;
+    s.start = (prevE + words[nx.wi].s) / 2 + shift; insertBefore(nx.wi, s.listDur); continue;
+  }
   if (s.wi == null) { console.log('MISSING', s.n, s.text, problems.slice(-3)); process.exit(1); }
+  // короткие планы: реплика ≥ 1.5 с, карточка ≥ 1.8 с (из 1–3 слов ≥ 1.5 с), пролёт 3D-city ≥ 1.8 с, прочее ≥ 1.3 с —
+  // недостающее добирается тишиной перед первым словом этого плана (смена говорящего успевает прочитаться)
+  minPrev(s, s.wi, s.loc === 'T-title');
+  if (s.loc === 'T-title') {               // тишина перед закадром: титр стоит с середины паузы
+    const prevE = s.wi > 0 ? words[s.wi - 1].e : 0, at = (prevE + words[s.wi].s) / 2;
+    s.start = at + shift; insertBefore(s.wi, TITLE_PAUSE); continue;
+  }
   let st = words[s.wi].s + shift;
-  if (boxStart != null && s.n === 172 && st < boxStart + BOX_END + .25) { insertBefore(s.wi, boxStart + BOX_END + .25 - st); st = words[s.wi].s + shift - .25; }
+  if (boxStart != null && s.n === AFTER_BOX && st < boxStart + BOX_END + .25) { insertBefore(s.wi, boxStart + BOX_END + .25 - st); st = words[s.wi].s + shift - .25; }
   s.start = st;
 }
 const total = shots[shots.length - 1].start + 2.0;

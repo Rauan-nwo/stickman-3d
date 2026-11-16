@@ -38,6 +38,16 @@ export function scratch(name, w, h) {
   return [c, x];
 }
 
+// черновой холст с программной растеризацией (willReadFrequently): крупный текст на нём рисуется одинаково
+// независимо от того, что рисовалось до этого (GPU-холст кэширует пути глифов, и первый кадр чуть отличается от следующих)
+export function scratchCPU(name, w, h) {
+  const key = 'cpu:' + name + w + 'x' + h; let c = memo.get(key);
+  if (!c) { c = document.createElement('canvas'); c.width = w; c.height = h; c.getContext('2d', { willReadFrequently: true }); memo.set(key, c); }
+  const x = c.getContext('2d');
+  x.setTransform(1, 0, 0, 1, 0, 0); x.globalAlpha = 1; x.globalCompositeOperation = 'source-over'; x.filter = 'none'; x.clearRect(0, 0, w, h);
+  return [c, x];
+}
+
 // ---------- камера шаблона: медленный наезд к точке + лёгкий дрейф (кадр никогда не стоит) ----------
 export function camPush(ctx, W, H, t, { dur = 3, from = 1.0, to = 1.07, fx = W / 2, fy = H / 2, drift = 5, seed = 1, ease = E.inOutSine, shake = 0 } = {}) {
   const k = lerp(from, to, ease(clamp(t / dur)));

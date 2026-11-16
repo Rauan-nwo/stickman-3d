@@ -30,6 +30,18 @@ export default {
                  { from: 'singapore', to: [101.6, 22.6], t0: 1.5, t1: 2.45, bend: -.08, stop: .935 }],
         border: { id: 'china', t0: 2.35 },
       })],
+      ['pacific', 4.2, (c, t) => T.map(c, t, {
+        dur: 4.2, view: 'pacific', zoom: 1.05, highlight: ['usa', 'china', 'taiwan'],
+        labels: [{ text: 'CHINA', at: [103, 34], size: 34 }, { text: 'U.S.', at: [-103, 36.5], size: 40 }, { text: 'PACIFIC OCEAN', at: [-172, 0], size: 26, color: 'rgba(127,184,255,.5)' }],
+        pins: [{ id: 'tw', label: 'TAIPEI', at: 'taipei', t0: .1 }, { id: 'bj', label: 'BEIJING', at: 'beijing', t0: .25, side: -1 }, { id: 'sg', label: 'SINGAPORE', at: 'singapore', t0: .4 },
+               { id: 'ky', label: 'KENTUCKY', at: 'kentucky', t0: 1.9, dy: 80 }, { id: 'sj', label: 'SAN JOSE', at: 'sanJose', t0: 2.2, side: -1 }, { id: 'dc', label: 'WASHINGTON', at: 'washington', t0: 2.4, side: -1 }],
+        routes: [{ from: 'taipei', to: 'kentucky', t0: .4, t1: 2.1, bend: -.16, plane: true },
+                 { from: 'sanJose', to: 'washington', t0: 2.4, t1: 3.1, bend: -.14, both: true },
+                 { from: 'kualaLumpur', to: 'sanJose', t0: 2.8, t1: 3.8, bend: .12, both: true, color: '#e9d27a' }],
+      })],
+      ['month', 2.4, (c, t) => T.bigNumber(c, t, { to: '1 MONTH', label: 'Cash left', sub: '1997', at: .4, dur: 2.4 })],
+      ['oneMonth', 2.2, (c, t) => T.bigNumber(c, t, { to: 'ONE MONTH', label: 'Payroll', at: .35, dur: 2.2 })],
+      ['ticker', 2.6, (c, t) => T.bigNumber(c, t, { to: 'NVDA −13%', label: 'That day', at: .5, dur: 2.6 })],
       ['board', 3.4, (c, t) => T.board(c, t, {
         dur: 3.4,
         items: [
@@ -42,6 +54,11 @@ export default {
         ],
         strings: [{ from: 'alice', to: 'mega', t0: .4, t1: 1.1 }, { from: 'mega', to: 'my', t0: .9, t1: 1.4 }, { from: 'sg', to: 'alice', t0: 1.1, t1: 1.7 }],
         circle: { id: 'alice', t0: 1.9, dur: .75, pad: 36 },
+      })],
+      ['loose', 2.6, (c, t) => T.board(c, t, {
+        dur: 2.6, focus: [960, 520],
+        items: [{ id: 'alice', kind: 'photo', x: 960, y: 520, w: 330, h: 390, rot: -.03, title: 'Alice Huang', draw: mugshot(A) }],
+        strings: [{ from: 'alice', loose: true, len: 420, angle: 1.05, sway: .1 }],
       })],
       ['memo', 3.4, (c, t) => T.document(c, t, {
         dur: 3.4, org: 'DEPARTMENT OF STATE', title: 'MEMORANDUM',
@@ -75,7 +92,9 @@ export default {
         c.restore();
         T.lowerThird(c, t, { name: 'Jensen Huang', role: 'CEO, Nvidia', at: .35 });
       }],
+      ['card3', 2.0, (c, t) => T.blackCard(c, t, { text: 'Nobody told the man at the table.', underline: 'Nobody', dur: 2.0, at: .15 })],
       ['card2', 2.6, (c, t) => T.blackCard(c, t, { text: 'WHY PICK A LOCK?', underline: 'LOCK', dur: 2.6, at: .25, cps: 13, size: 104 })],
+      ['chapterFast', 1.2, (c, t) => T.chapterTitle(c, t, { label: 'CHAPTER 8', title: 'The Memo', dur: 1.2 })],
       ['chapter', 3.2, (c, t) => T.chapterTitle(c, t, { label: 'CHAPTER 3', title: 'The Locked Door', dur: 3.2 })],
     ];
     let at = 0;

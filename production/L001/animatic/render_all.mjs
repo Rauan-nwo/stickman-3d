@@ -7,7 +7,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const D = dirname(fileURLToPath(import.meta.url)), ROOT = resolve(D, '../../..'), OUT = join(D, 'out'), TMP = join(D, 'tmp');
-const args = process.argv.slice(2), has = a => args.includes(a), JOBS = +(args[args.indexOf('--jobs') + 1] || 4);
+const args = process.argv.slice(2), has = a => args.includes(a), JOBS = has('--jobs') ? +args[args.indexOf('--jobs') + 1] : 4;
 const timing = JSON.parse(readFileSync(join(D, 'timing.json'), 'utf8')), FPS = 30, FR = Math.round(timing.total * FPS);
 const html = join(OUT, 'film.html'), render = join(ROOT, 'engine/tools/render.mjs');
 const run = (cmd, a) => new Promise((ok, no) => { const p = spawn(cmd, a, { stdio: ['ignore', 'ignore', 'inherit'] }); p.on('close', c => (c ? no(new Error(cmd + ' ' + c)) : ok())); });

@@ -1,4 +1,4 @@
-// animatic/film.js: полный аниматик L001 (277 планов, 1920x1080, 30 к/с) — проверка ритма до дорогой покадровой анимации.
+// animatic/film.js: полный аниматик L001 (все планы шотлиста, 1920x1080, 30 к/с) — проверка ритма до дорогой покадровой анимации.
 // Тайминг — timing.json (make_timing.mjs: старт плана = первое слово его текста в черновом голосе).
 // План = фон с кадрированием по крупности + движение камеры из шотлиста + метка события; герои — полупрозрачные
 // таблички-силуэты «JENSEN — speaks»; шаблоны (карточки, титры, цифры, карты, доски, документы, подписи) — настоящие.
@@ -7,7 +7,7 @@
 import { templates as T } from 'engine';
 import timing from './timing.json';
 import BOXF from './boxframes.js';
-import { NUMBERS, MAPS, BOARDS, DOCS, LOWER, YEAR } from './conf.js';
+import { NUMBERS, MAPS, BOARDS, DOCS, LOWER, YEAR, SPLITS } from './conf.js';
 import p_restaurant from './tmp/restaurant.jpg';
 import p_restaurant_reverse from './tmp/restaurant_reverse.jpg';
 import p_host_office from './tmp/host_office.jpg';
@@ -42,7 +42,7 @@ const URLS = { restaurant: p_restaurant, restaurant_reverse: p_restaurant_revers
 // точки героев на плейтах (доли кадра): a, b — два места для людей, prop — предмет для вставок
 const SPOTS = {
   restaurant: { a: [.13, .66], b: [.87, .66], prop: [.48, .72] },
-  restaurant_reverse: { a: [.5, .6], b: [.2, .66], prop: [.17, .86] },
+  restaurant_reverse: { a: [.56, .74], b: [.2, .66], prop: [.17, .86] },
   host_office: { a: [.6, .5], b: [.4, .55], prop: [.5, .5] },
   bg_singapore_street: { a: [.2, .68], b: [.73, .64], prop: [.73, .6] },
   bg_car_interior: { a: [.3, .58], b: [.7, .58], prop: [.48, .8] },
@@ -65,13 +65,17 @@ const SPOTS = {
   bg_desk_topdown: { a: [.5, .5], b: [.5, .5], prop: [.55, .5] },
   box: { a: [.4, .6], b: [.62, .6], prop: [.5, .55] },
 };
-const PROP_AT = { 3: [.6, .42], 37: [.8, .32], 73: [.6, .42], 89: [.52, .66], 100: [.36, .42], 107: [.82, .56], 122: [.36, .42], 134: [.52, .55],
-  143: [.5, .55], 150: [.25, .62], 176: [.72, .62], 197: [.48, .3], 231: [.6, .42], 233: [.3, .7], 241: [.3, .7], 266: [.66, .62], 275: [.88, .36], 59: [.55, .32] };
+const PROP_AT = { 3: [.6, .42], 42: [.8, .32], 83: [.6, .42], 100: [.52, .66], 115: [.36, .42], 122: [.82, .56], 137: [.36, .42], 150: [.52, .55],
+  161: [.5, .55], 168: [.25, .62], 194: [.72, .62], 219: [.48, .3], 256: [.6, .42], 258: [.3, .7], 266: [.3, .7], 291: [.66, .62], 301: [.88, .36], 66: [.55, .32] };
 const LOCP = { 'L01-restaurant': ['restaurant', 'restaurant_reverse'], 'L02-sg-street': ['bg_singapore_street'], 'L03-host-office': ['host_office'],
   'L04-washington': ['bg_washington_cold', 'bg_washington_reverse'], 'L05-beijing': ['bg_beijing_office'], 'L06-nvidia-office': ['bg_nvidia_office_dry', 'bg_nvidia_office_reverse'],
   'L07-dennys': ['bg_diner_day'], 'L08-kentucky': ['bg_kentucky_day'], 'L09-megaspeed': ['bg_megaspeed_office', 'bg_megaspeed_reverse'],
   'L10-taipei-bar': ['bg_taipei_bar_dry'], 'L11-event-hall': ['bg_event_hall', 'bg_event_hall_reverse'], 'L12-customs': ['bg_customs_gate'],
   'L13-newsroom': ['bg_newsroom'], 'L14-front-door': ['bg_front_door'] };
+// новые плейты, которых ещё нет: [чем заменить в аниматике, подпись]
+const NEWP = { 'L15-relatives': ['bg_dorm_room', "NEW PLATE L15: relatives' porch (placeholder)"], 'L16-dennys-kitchen': ['bg_diner_day', "NEW PLATE L16: Denny's dish pit (placeholder)"],
+  'L17-warehouse': ['bg_megaspeed_reverse', 'NEW PLATE L17: Nvidia warehouse, blocked H20 pallets (placeholder)'],
+  'L18-closed-room': ['bg_washington_reverse', 'NEW PLATE L18: windowless closed room, round table (placeholder)'], 'L19-trading-desk': ['bg_newsroom', 'NEW PLATE L19: trading desk, red tickers (placeholder)'] };
 const NAMES = [[/пуст/, null], [/юный Дженсен/, 'YOUNG JENSEN'], [/Дженсен-1993/, 'JENSEN (1993)'], [/Дженсен на ТВ/, 'JENSEN (on TV)'], [/силуэт/, 'JENSEN (silhouette)'],
   [/Дженсен/, 'JENSEN'], [/Алис/, 'ALICE'], [/ведущ/, 'HOST'], [/агенты у двери/, 'AGENT · AGENT 2'], [/агенты/, 'AGENT · AGENT 2'], [/агент 2/, 'AGENT 2'], [/агент/, 'AGENT'],
   [/тётя/, 'AUNT'], [/дядя/, 'UNCLE'], [/сосед/, 'ROOMMATE'], [/официантка/, 'WAITRESS'], [/Крис/, 'CHRIS'], [/трое/, 'JENSEN · CHRIS · CURTIS'],
@@ -184,18 +188,19 @@ export default {
       ctx.fillStyle = '#141018'; ctx.fillRect(0, 0, W, H);
       const g = ctx.createRadialGradient(W / 2, H * .2, 0, W / 2, H * .2, H); g.addColorStop(0, 'rgba(242,169,78,.35)'); g.addColorStop(1, 'rgba(242,169,78,0)'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
       ctx.save(); ctx.strokeStyle = '#f1e6cc'; ctx.fillStyle = 'rgba(241,230,204,.15)'; ctx.lineWidth = 4;
-      if (s.n === 55) {
+      const mon = /монитор/.test(s.framing), one = /один повар/.test(s.framing), many = !mon && !one;
+      if (mon) {
         ctx.fillStyle = '#222'; ctx.fillRect(560, 220, 800, 560); ctx.fillStyle = '#123'; ctx.fillRect(600, 260, 720, 480);
         const k = clamp((t - d * .35) / .6); ctx.fillStyle = `rgba(255,${180 - 80 * k},60,${k})`; ctx.beginPath();
         for (let i = 0; i < 16; i++) { const a = i / 16 * 6.283, r = (i % 2 ? 90 : 210) * k; ctx.lineTo(960 + Math.cos(a) * r, 500 + Math.sin(a) * r); } ctx.fill();
       } else {
-        const n = s.n === 56 ? 1 : Math.round(lerp(4, 30, ease(t / d))), cell = W / (n + 1);
-        for (let j = 0; j < (s.n === 56 ? 1 : Math.ceil(n * .5)); j++) for (let i = 0; i < n; i++) {
-          const x = cell * (i + 1), y = s.n === 56 ? 640 : 300 + j * cell * 1.1, h = s.n === 56 ? 360 : cell * .9; if (y > H + h) continue;
+        const n = one ? 1 : Math.round(lerp(4, 30, ease(t / d))), cell = W / (n + 1);
+        for (let j = 0; j < (one ? 1 : Math.ceil(n * .5)); j++) for (let i = 0; i < n; i++) {
+          const x = cell * (i + 1), y = one ? 640 : 300 + j * cell * 1.1, h = one ? 360 : cell * .9; if (y > H + h) continue;
           ctx.beginPath(); ctx.arc(x, y - h * .38, h * .12, 0, 6.283); ctx.stroke(); ctx.beginPath(); ctx.moveTo(x, y - h * .26); ctx.lineTo(x, y + h * .1); ctx.stroke();
-          const fl = s.n === 57 ? Math.sin(t * 8 + i * .7 + j) * h * .1 : 0; ctx.beginPath(); ctx.ellipse(x + h * .22, y - h * .12 + fl, h * .14, h * .04, 0, 0, 6.283); ctx.stroke();
+          const fl = many ? Math.sin(t * 8 + i * .7 + j) * h * .1 : 0; ctx.beginPath(); ctx.ellipse(x + h * .22, y - h * .12 + fl, h * .14, h * .04, 0, 0, 6.283); ctx.stroke();
         }
-        if (s.n === 56) for (let p = 0; p < Math.floor(t * 1.5); p++) { ctx.beginPath(); ctx.ellipse(1250 + p * 110, 760, 46, 14, 0, 0, 6.283); ctx.stroke(); }
+        if (one) for (let p = 0; p < Math.floor(t * 1.5); p++) { ctx.beginPath(); ctx.ellipse(1250 + p * 110, 760, 46, 14, 0, 0, 6.283); ctx.stroke(); }
       }
       ctx.restore();
     }
@@ -211,7 +216,7 @@ export default {
     }
     function joke(ctx, s, t, d) {
       ctx.fillStyle = '#1b2238'; ctx.fillRect(0, 0, W, H); ctx.fillStyle = '#e8dbbb'; ctx.strokeStyle = '#0b0910'; ctx.lineWidth = 8;
-      if (s.n === 156) {
+      if (/пекарн/.test(s.framing)) {
         ctx.fillStyle = '#5a3622'; ctx.fillRect(760, 260, 400, 640); ctx.strokeRect(760, 260, 400, 640);
         const n = Math.floor(lerp(2, 14, ease(t / d)));
         for (let i = 0; i < n; i++) { ctx.fillStyle = '#e8dbbb'; const x = 700 + (i % 5) * 110, y = 840 - Math.floor(i / 5) * 120; ctx.beginPath(); ctx.roundRect(x, y, 100, 110, 20); ctx.fill(); ctx.stroke(); }
@@ -220,7 +225,7 @@ export default {
         ctx.fillStyle = '#0d1322'; ctx.fillRect(560, 200, 800, 560); ctx.strokeRect(560, 200, 800, 560);
         ctx.fillStyle = '#ffd48a'; ctx.fillRect(600, 240, 720, 480);
         ctx.fillStyle = '#c8312b'; ctx.fillRect(880, 360, 160, 220); ctx.strokeRect(880, 360, 160, 220);
-        if (s.n === 115) { ctx.fillStyle = 'rgba(255,240,170,.5)'; ctx.beginPath(); ctx.moveTo(320, 820); ctx.lineTo(880, 380); ctx.lineTo(1040, 580); ctx.fill();
+        if (/ребён/.test(s.framing)) { ctx.fillStyle = 'rgba(255,240,170,.5)'; ctx.beginPath(); ctx.moveTo(320, 820); ctx.lineTo(880, 380); ctx.lineTo(1040, 580); ctx.fill();
           ctx.strokeStyle = '#e8dbbb'; ctx.beginPath(); ctx.arc(300, 760, 50, 0, 6.283); ctx.stroke(); }
       }
       tag3d(ctx, 'T-JOKE (flat): ' + s.event.slice(0, 60));
@@ -233,24 +238,28 @@ export default {
       switch (s.loc) {
         case 'T-card': {
           const q = (s.event.match(/«([^»]+)»/) || [])[1] || s.spoken, len = q.length;
-          const size = len > 60 ? 64 : len > 40 ? 76 : 96, cps = Math.max(15, len / Math.max(.35, d - .25 - .55));
+          const size = len > 60 ? 64 : len > 40 ? 76 : 96, cps = Math.max(15, len / Math.max(.3, d * .6 - .2));   // дописана к 60% плана
           const last = (q.match(/([A-Za-z']+)[^A-Za-z']*$/) || [])[1];
           T.blackCard(ctx, t, { text: q, dur: d, at: .2, cps, size, underline: last });
           break;
         }
         case 'T-title': T.chapterTitle(ctx, t, { label: `CHAPTER ${s.ch}`, title: s.chTitle, dur: d, at: .03, sweepAt: d * .55 }); break;
-        case 'T-number': T.bigNumber(ctx, t, { dur: d, ...NUMBERS[s.n](d) }); break;
+        case 'T-number': { const o = NUMBERS[s.n](d); if (o.countDur != null && o.at + o.countDur > d * .5) o.countDur = Math.max(.3, d * .5 - o.at); T.bigNumber(ctx, t, { dur: d, ...o }); break; }   // отсчёт кончается к половине плана
         case 'T-map': T.map(ctx, t, { dur: d, ...MAPS[s.n](d) }); break;
         case 'T-board': T.board(ctx, t, { dur: d, ...BOARDS[s.n](d) }); break;
         case 'T-doc': T.document(ctx, t, { dur: d, ...DOCS[s.n](d) }); break;
         case 'T-joke': joke(ctx, s, t, d); break;
         case 'T-desk': { const v = plateView(1.04 * cam.z, [.5, .5]); drawImg(ctx, I.bg_desk_topdown, v); deskProps(ctx, s, t, d); tag3d(ctx, 'T-DESK: ' + s.framing.replace(/^сверху /, '')); break; }
-        case 'T-split': {
-          ctx.save(); ctx.beginPath(); ctx.rect(0, 0, W / 2 - 4, H); ctx.clip(); ctx.translate(-W / 4, 0); drawImg(ctx, I.bg_washington_cold, plateView(1.6 * cam.z, [.37, .66])); ctx.restore();
-          ctx.save(); ctx.beginPath(); ctx.rect(W / 2 + 4, 0, W / 2, H); ctx.clip(); ctx.translate(W / 4, 0); drawImg(ctx, I.bg_beijing_office, plateView(1.6 * cam.z, [.6, .66])); ctx.restore();
-          ctx.fillStyle = '#000'; ctx.fillRect(W / 2 - 4, 0, 8, H);
-          figure(ctx, W * .3, H * .62, 260, 'AIDE (phone rings)', false); figure(ctx, W * .72, H * .62, 260, 'OFFICER (photo of Jensen)', false);
-          tag3d(ctx, 'T-SPLIT: WASHINGTON | BEIJING'); break;
+        case 'T-split': {                 // окна из SPLITS (conf.js): [плейт, центр, подпись героя] слева направо
+          const P = (SPLITS[s.n] || (() => ({ panes: [['bg_washington_cold', [.37, .66], 'AIDE'], ['bg_beijing_office', [.6, .66], 'OFFICER']], tag: 'WASHINGTON | BEIJING' })))(d);
+          const n = P.panes.length, pw = W / n;
+          P.panes.forEach(([key, c, who], i) => {
+            ctx.save(); ctx.beginPath(); ctx.rect(i * pw + 4, 0, pw - 8, H); ctx.clip(); ctx.translate(i * pw + pw / 2 - W / 2, 0);
+            drawImg(ctx, I[key], plateView(1.6 * cam.z, c)); ctx.restore();
+            if (who) figure(ctx, i * pw + pw / 2, H * .62, n > 2 ? 200 : 260, who, false);
+          });
+          ctx.fillStyle = '#000'; for (let i = 1; i < n; i++) ctx.fillRect(i * pw - 4, 0, 8, H);
+          tag3d(ctx, 'T-SPLIT: ' + P.tag); break;
         }
         default: if (s.loc.startsWith('3D-')) threeD(ctx, s, t, d, sz, cam, sp); else plate(ctx, s, t, d, sz, cam, sp);
       }
@@ -263,10 +272,10 @@ export default {
     }
     function deskProps(ctx, s, t, d) {
       ctx.save(); ctx.strokeStyle = '#f1e6cc'; ctx.lineWidth = 6;
-      if (s.n === 24) {
+      if (/ресторан/.test(s.framing)) {
         for (const x of [820, 1100]) { ctx.fillStyle = 'rgba(200,220,255,.25)'; ctx.beginPath(); ctx.arc(x, 470, 80, 0, 6.283); ctx.fill(); ctx.stroke(); }
         const vib = t > d * .4 ? Math.sin(t * 90) * 6 : 0; ctx.fillStyle = '#111'; ctx.beginPath(); ctx.roundRect(900 + vib, 640, 140, 260, 20); ctx.fill(); ctx.stroke();
-      } else if (s.n === 45) {
+      } else if (/салфетк|Denny/.test(s.framing)) {
         ctx.fillStyle = '#f4efe2'; ctx.beginPath(); ctx.roundRect(660, 300, 600, 480, 12); ctx.fill(); ctx.strokeStyle = '#2b3a66'; ctx.lineWidth = 5;
         const k = ease(t / (d * .8)), segs = [[760, 400, 1160, 400], [1160, 400, 1160, 680], [1160, 680, 760, 680], [760, 680, 760, 400], [860, 480, 1060, 480], [860, 480, 860, 600], [860, 600, 1060, 600], [1060, 480, 1060, 600]];
         segs.slice(0, Math.ceil(k * segs.length)).forEach(([a, b, c, e]) => { ctx.beginPath(); ctx.moveTo(a, b); ctx.lineTo(c, e); ctx.stroke(); });
@@ -278,11 +287,12 @@ export default {
       let key = P[0], flip = false, tint = null;
       if (sz === 'rev') { if (P[1]) key = P[1]; else flip = true; }
       if (s.loc === 'L02-sg-street' && sz !== 'ws') key = 'bg_car_interior';
-      if (s.loc === 'L08-kentucky' && ![27, 33, 34].includes(s.n)) key = 'bg_dorm_room';
+      if (s.loc === 'L08-kentucky' && !/санузел|кабин|ведро|швабр/.test(s.framing + ' ' + s.event)) key = 'bg_dorm_room';
+      if (NEWP[s.loc]) key = NEWP[s.loc][0];
       if (sz === 'top') { key = 'bg_desk_topdown'; if (s.loc === 'L05-beijing') tint = 'rgba(200,90,80,1)'; }
       const name = sp || nameOf(s), sizeK = sz === 'rev' && /^обратная (\S+)/.test(s.framing) && nameOf(s) ? 'ms' : sz;
       let focus = sz === 'ins' ? (PROP_AT[s.n] || SPOTS[key].prop) : name ? spotFor(key, name.split(' · ')[0]) : [.5, .5];
-      if (sz === 'pov') focus = [.86, .42];
+      if (sz === 'pov') focus = [.89, .38];
       const baseZ = ZOOM[sz];
       const c = [clamp(focus[0] + cam.dx), clamp(focus[1] + cam.dy)];
       const v = plateView(baseZ * cam.z, (sz === 'ws' || sz === 'rev' || sz === 'top') ? [.5 + cam.dx, .5 + cam.dy] : c);
@@ -297,7 +307,7 @@ export default {
       const fh = FIG_H[sizeK], people = sz === 'pov' ? ['JENSEN'] : sz === 'ins' || sz === 'top' ? [] : name ? name.split(' · ') : [];
       const empty = /пуст/.test(s.framing);
       if (!empty) people.forEach((nm, i) => {
-        const p = sz === 'pov' ? [W / 2, H * .62] : toScreen(v, people.length > 1 ? SPOTS[key][i % 2 ? 'b' : 'a'] : (flip ? [1 - focus[0], focus[1]] : spotFor(key, nm)));
+        const p = sz === 'pov' ? [W / 2, H * .5] : toScreen(v, people.length > 1 ? SPOTS[key][i % 2 ? 'b' : 'a'] : (flip ? [1 - focus[0], focus[1]] : spotFor(key, nm)));
         const isSp = !!sp && (sp === nm || (sp === 'JENSEN' && /JENSEN/.test(nm)));
         figure(ctx, p[0], p[1] + fh * .15, fh, sz === 'pov' ? 'JENSEN (in the window)' : nm, sz !== 'pov' && (isSp || (people.length === 1 && !!sp && !nameOf(s))));
       });
@@ -305,6 +315,7 @@ export default {
       eventMark(ctx, mk[0], mk[1] - (people.length ? fh * .2 : 0), t, d);
       if (sz === 'pov') viewfinder(ctx, t);
       if (flip) tag3d(ctx, 'REVERSE (mirrored plate — no reverse plate)');
+      else if (NEWP[s.loc]) tag3d(ctx, NEWP[s.loc][1]);
     }
     function chess(ctx, t, d) {
       const s0 = 70, x0 = 960 - s0 * 4, y0 = 540 - s0 * 4;
@@ -318,6 +329,7 @@ export default {
       if (s.loc === '3D-boxpath' || s.loc === '3D-datacenter') {
         let ts;
         if (s.box) ts = Math.min(s.box.from + t, s.box.to - .07);
+        else if (s.loc === '3D-boxpath' && /серийник/.test(s.framing)) ts = Math.min(10.6 + t * .4, 13.2);   // вставка серийника — кадры S6
         else if (s.loc === '3D-boxpath') ts = Math.min(t * .75, 4.0);         // гл. 1: склад из S1–S2
         else ts = Math.min(15.4 + t * .35, 17.8);                              // ДЦ: кадры 3D-хвоста
         const fr = BOX[clamp(Math.floor(ts * 15), 0, BOX.length - 1)];
@@ -332,13 +344,15 @@ export default {
       }
       if (s.loc === '3D-kitchen') { kitchen(ctx, s, t, d); tag3d(ctx, '3D: ' + what); return; }
       if (s.loc === '3D-conveyor') { conveyor(ctx, t, d); tag3d(ctx, '3D: ' + what); return; }
-      const PL = { 6: ['bg_singapore_street', [.6, .45], 1.25, 1.6], 75: ['bg_washington_cold', [.62, .28], 1.5, 2.1], 136: ['bg_taipei_bar_dry', [.13, .28], 1.8, 2.4],
-        272: ['bg_singapore_street', [.5, .4], 1.6, 1.05], 25: ['bg_washington_cold', [.37, .7], 2.0, 2.3], 258: ['bg_nvidia_office_reverse', [.27, .42], 1.5, 2.6] }[s.n];
+      const f3 = s.framing + ' ' + s.event;
+      const PL = /Сингапур/.test(f3) && !/отъезд над/.test(f3) ? ['bg_singapore_street', [.6, .45], 1.25, 1.6] : /Вашингтон|Капитол/.test(f3) && /пролёт/.test(f3) ? ['bg_washington_cold', [.62, .28], 1.5, 2.1]
+        : /Тайбэ/.test(f3) ? ['bg_taipei_bar_dry', [.13, .28], 1.8, 2.4] : /отъезд над городом/.test(f3) ? ['bg_singapore_street', [.5, .4], 1.6, 1.05]
+        : s.loc === '3D-phone-desk' ? ['bg_washington_cold', [.37, .7], 2.0, 2.3] : s.loc === '3D-hq-corridor' ? ['bg_nvidia_office_reverse', [.27, .42], 1.5, 2.6] : null;
       const [key, c, z0, z1] = PL || ['bg_desk_topdown', [.5, .5], 1.04, 1.1];
       const v = plateView(lerp(z0, z1, ease(t / d)), c);
-      const sh = s.n === 25 && t > d * .2 ? Math.sin(t * 70) * 5 : 0;
+      const sh = s.loc === '3D-phone-desk' && t > d * .2 ? Math.sin(t * 70) * 5 : 0;
       ctx.save(); ctx.translate(sh, 0); drawImg(ctx, I[key], v); ctx.restore();
-      if (s.n === 25) eventMark(ctx, W / 2, H / 2, t, d);
+      if (s.loc === '3D-phone-desk') eventMark(ctx, W / 2, H / 2, t, d);
       tag3d(ctx, '3D: ' + what);
     }
 

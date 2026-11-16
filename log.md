@@ -70,3 +70,9 @@ touched: raw/research/2026-11-16-nvidia-huang-spy-story.md, production/L001/outl
 
 ## [2026-11-16 23:30] video | L001 — сверка с конкурентом по планам перед сборкой
 touched: production/L001/review_before_build.md, production/L001/refs/competitor_shot_types.jpg
+
+## [2026-11-16 16:40] video | L001 — 3D-планы в «рисованном» виде: #25 стол (desk3d), #80 конвейер STOP (conveyor), #258 коридор HQ (hq_corridor), #180–186 осмотр ДЦ с героями (dc_inspection); общий набор engine/src/sets/noirInteriors.js
+touched: engine/src/sets/noirInteriors.js, production/L001/scenes/desk3d/, production/L001/scenes/conveyor/, production/L001/scenes/hq_corridor/, production/L001/scenes/dc_inspection/, production/L001/prompts/make_prompts_3d.py
+
+## [2026-11-16 16:45] video | L001 — сверка с конкурентом по смыслу сцена за сценой; шотлист 277 → 303 плана (+26, 134 изменено), аниматик 15:30; номера планов сдвинуты (старые → новые: кухня #55–57 → #62–64, стол #25 → #27, конвейер #80 → #90, ДЦ #180–186 → #198–204, коридор #258 → #283; полная карта animatic/renumber_277_to_303.json)
+touched: production/L001/compare_scenes.md, production/L001/shotlist.md, production/L001/animatic/conf.js, production/L001/animatic/film.js, production/L001/animatic/make_timing.mjs, production/L001/animatic/render_all.mjs, production/L001/animatic/shotlist_tool.mjs, production/L001/animatic/timing.json, production/L001/animatic/out/
