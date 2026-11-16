@@ -7,7 +7,7 @@
 //   6  11.2–14   общий план, медленнее
 // Проверка непрозрачности: --set solo=k|w --set vig=0 (как в style-test/v3).
 // Координаты фона общего плана: v3 — пиксели исходника 1672×941 (src), 2D-планы — пиксели плиты 1920×1080.
-import { THREE, V, Actor, act, blinkAt, keyed, look, E, jensen, alice, noirShade, unUpper, shoulder, arcHand, gesture, restHand, elbowIK, elbowArm, clamp, seg, lerp, ell } from 'engine';
+import { THREE, V, Actor, act, blinkAt, keyed, look, E, jensen, alice, noirShade, unUpper, shoulder, arcHand, gesture, restHand, elbowIK, elbowArm, clamp, seg, lerp, ell, chairBack } from 'engine';
 import plateV2 from '../../../longform/style-test/assets/plate_v2.png';
 import farV2 from '../../../longform/style-test/assets/far_v2.jpg';
 import maskWindow from '../../../longform/style-test/assets/mask_window_v2.png';
@@ -21,7 +21,9 @@ const src = (u, v, z = -D) => { const k = -z / D; return V((u / SW - .5) * PW * 
 const P19 = (u, v) => [u * 1920 / SW, v * 1080 / SH];              // пиксели исходника -> пиксели плиты 1920
 const UNIT = .0059, FIGPX = UNIT * 1920 / PW;                       // пикселей плиты на единицу фигуры на общем плане (~.875)
 const ARMW = 11, TOP = 752;                                         // TOP — линия столешницы (пиксели исходника)
-const SEAT = [[252, 905], [1430, 905]];
+// посадка на стулья фона: бёдра на подушке (верх подушки ~950 пикс. плиты), торс не заходит за свес скатерти;
+// нарисованный стул (chairBack, w 470) ставится по центру героя и закрывает нарисованный на фоне
+const SEAT = [[212.5, 840.8], [1460, 836.5]], CHAIR_W = 470;
 // тайминг
 const CUT = [0, 2.4, 4.6, 6.8, 8.8, 11.2, 14];
 const J_LINE = [2.75, 4.15], A_LINE = [4.95, 6.2], CLINK = 7.55;
@@ -66,7 +68,11 @@ export default {
       far.material.map = tex(masked(I.far, null, false)); far.material.needsUpdate = true;
       A.cloth = masked(I.plate, I.cloth, false);                       // скатерть общего плана (резкая)
       A.plateB4 = blurred(I.plate, 4); A.plateB2 = blurred(I.plate, 2.2);
-      A.clothB = blurred(masked(I.plate, I.cloth, false), .8, false);  // скатерть на крупном плане: почти резкая (та же глубина, что и герой)
+      // стол целиком (свес скатерти по маске + столешница-эллипс) одним слоем и с ТЕМ ЖЕ размытием, что и фон плана:
+      // край стола совпадает с размытым столом фона пиксель в пиксель, двойного края нет (дефект A)
+      const tm = document.createElement('canvas'); tm.width = 1920; tm.height = 1080; const tx = tm.getContext('2d');
+      tx.drawImage(I.cloth, 0, 0, 1920, 1080); tx.fillStyle = '#fff'; tx.beginPath(); tx.ellipse(964.6, 829.8, 585.6, 60.8, 0, 0, Math.PI * 2); tx.fill();
+      const tableC = masked(I.plate, tm, false); A.tableB4 = blurred(tableC, 4, false); A.tableB2 = blurred(tableC, 2.2, false);
       A.revB = blurred(I.rev, 3.2); A.revB9 = blurred(I.rev, 8); A.revFG = blurred(masked(I.rev, I.revM, false), 1.6, false);
       return (ready = true);
     };
@@ -90,12 +96,13 @@ export default {
     const J = new Actor(stage, jensen(), { pin: 'seat', unit: UNIT, light: solo ? null : { shadow: { dx: -24, dy: 10, blur: 12, k: .4 } } }).at(src(...SEAT[0]));
     const Al = new Actor(stage, alice(), { pin: 'seat', unit: UNIT, light: solo ? null : { shadow: { dx: 24, dy: 10, blur: 12, k: .4 } } }).at(src(...SEAT[1]));
     J.char.spec.shade = noirShade([1, .45]); Al.char.spec.shade = noirShade([-1, .45]);
+    Al.char.spec.shade.head.glow.k = .12;   // тёплое свечение на чёрном каре давало коричневую «полупрозрачную» прядь (дефект C) — слабее, как на крупном
     for (const X of [J, Al]) X.char.spec.rig = { ...X.char.spec.rig, armLayer: 'front' };
     function wideChars(t, { jAt, aAt, jFace, aFace }) {
       const pj = fixMouth(act(t, jFace)), pa = fixMouth(act(t, aFace));
       Object.assign(pj, { blink: blinkAt(t, 1), view: 'threeQuarter', facing: 1, stance: 'sitR', look: [.6, 0] });
       Object.assign(pa, { blink: blinkAt(t, 2), view: 'threeQuarter', facing: -1, stance: 'sitL', look: [-.6, 0] });
-      const cast = [{ A: J, p: pj, f: 1, near: 1, pin: [446, 742], elbow: [378, 750], at: jAt }, { A: Al, p: pa, f: -1, near: 0, pin: [1236, 742], elbow: [1304, 750], at: aAt }];
+      const cast = [{ A: J, p: pj, f: 1, near: 1, pin: [432, 729], elbow: [341.4, 719.7], at: jAt }, { A: Al, p: pa, f: -1, near: 0, pin: [1248, 729], elbow: [1339.3, 721.5], at: aAt }];
       const shadows = [];
       for (const c of cast) {
         const S = c.A.char.spec, p = c.p, g = c.at == null ? { hand: 0, body: 0 } : gesture(t, c.at, { lead: .12, rise: .24, hold: .5, fall: .32, lagFrames: 3 });
@@ -111,6 +118,8 @@ export default {
         const fa = 1 - c.near; arms[fa] = { to: restHand(S, fa ? 1 : -1), w: ARMW };
         p.arms = arms;
       }
+      if (!solo) { J.with(c => chairBack(c, { w: CHAIR_W, light: 1 })); Al.with(c => chairBack(c, { w: CHAIR_W, light: -1 }));   // стул по центру героя
+        if (A.cloth) { const [x, y, w, h] = plateRect(); stage.ctx.drawImage(A.cloth, x, y, w, h); } }                          // стол целиком перед стулом
       J.draw(pj, { only: 'base' }); Al.draw(pa, { only: 'base' });
       if (A.cloth && !solo) { const [x, y, w, h] = plateRect(), yTop = y + TOP / SH * h, ctx = stage.ctx;
         ctx.save(); ctx.beginPath(); ctx.rect(0, yTop, W, H); ctx.clip(); ctx.drawImage(A.cloth, x, y, w, h); ctx.restore(); }
@@ -125,7 +134,7 @@ export default {
         ctx.restore(); }
       J.draw(pj, { only: 'front' }); Al.draw(pa, { only: 'front' });
     }
-    const wideUnder = () => { if (solo) return; contact(src(...SEAT[0]), .9, .16, .55); contact(src(...SEAT[1]), .9, .16, .55); };
+    const wideUnder = () => {};                                       // контактная тень не нужна: герой сидит на нарисованном стуле
     const flame = () => { const [x0, y0, w, h] = plateRect(); return [x0 + 912 / 1920 * w, y0 + 748 / 1080 * h, w / 1920]; };
 
     // ============ 2D-планы: «камера» = (cx, cy, k) в пикселях плиты; фон — размытая плита со своим (меньшим) ходом ============
@@ -137,6 +146,11 @@ export default {
     function drawFig(C, p, v, seatP, fs, opt) {
       const [x, y] = toS(v, seatP), s = fs * v.k, pin = C.spec.pins.seat;
       ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.translate(-pin[0], -pin[1]); C.draw(ctx, p, opt); ctx.restore();
+    }
+    // стул за героем в том же преобразовании, что и фигура (координаты фигуры; сиденье = pins.seat)
+    function drawChair(C, v, seatP, fs, o) {
+      if (solo) return; const [x, y] = toS(v, seatP), s = fs * v.k, pin = C.spec.pins.seat;
+      ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.translate(-pin[0], -pin[1]); chairBack(ctx, { seatY: pin[1], ...o }); ctx.restore();
     }
     const figLoc = (S, p, seatP, fs, P) => unUpper(S, p, [(P[0] - seatP[0]) / fs + S.pins.seat[0], (P[1] - seatP[1]) / fs + S.pins.seat[1]]);
     // тень предплечья на столешнице (экранные точки), клип — path()
@@ -152,12 +166,12 @@ export default {
 
     // крупные планы: свои экземпляры героев (у Алисы серп без «укуса» прядей — cutY)
     const JC = jensen(), AC = alice(), AB = alice();
-    JC.spec.shade = noirShade([1, .45]); AC.spec.shade = noirShade([-1, .45], { cutY: -40 }); AB.spec.shade = noirShade([-1, .45], { cutY: -40 });
+    JC.spec.shade = noirShade([1, .45]); AC.spec.shade = noirShade([-1, .45], { cutY: -40 }); AC.spec.shade.head.glow.k = .12; AB.spec.shade = noirShade([-1, .45], { cutY: -40 });
     for (const C of [JC, AC, AB]) C.spec.rig = { ...C.spec.rig, armLayer: 'front' };
-    const seatJ = [P19(...SEAT[0])[0] - 40, P19(...SEAT[0])[1]], pinJ = P19(452, 731), elbJ = P19(374, 750), TOP19 = TOP * 1080 / SH;
+    const seatJ = P19(...SEAT[0]), pinJ = P19(432, 729), elbJ = P19(341.4, 719.7), TOP19 = TOP * 1080 / SH;
     const tableTop = v => { const c = toS(v, P19(840, 723)); ctx.beginPath(); ctx.ellipse(c[0], c[1], 510 * 1920 / SW * v.k, 53 * 1080 / SH * v.k, 0, 0, Math.PI * 2); };
     // Дженсен на крупных планах: поза + руки (ближняя на столе, жест к ударному слову), рисование по слоям вокруг скатерти
-    function jensenCU(t, v, { face, at, view = 'threeQuarter', lookAt = [.6, 0], lean = 0 }) {
+    function jensenCU(t, v, { face, at, view = 'threeQuarter', lookAt = [.6, 0], lean = 0, table = 'tableB4' }) {
       const S = JC.spec, p = fixMouth(act(t, face)); Object.assign(p, { blink: blinkAt(t, 1), view, facing: 1, stance: 'sitR', look: lookAt });
       const g = at == null ? { hand: 0, body: 0 } : gesture(t, at, { lead: .12, rise: .26, hold: .55, fall: .34, lagFrames: 3 });
       p.bob = (p.bob || 0) * .35; p.sq = (p.sq || 0) * .35; p.lean = (p.lean || 0) * .5 + .045 * g.body + lean; p.tilt = (p.tilt || 0) + .04 * g.body;
@@ -168,8 +182,9 @@ export default {
         elbow = [ev[0] + (ik[0] - ev[0]) * m, ev[1] + (ik[1] - ev[1]) * m]; shk = clamp(1 - g.hand * 2);
       }
       arms[1] = { to: hand, via: elbow, w: ARMW }; arms[0] = { to: restHand(S, -1), w: ARMW }; p.arms = arms;
+      drawChair(JC, v, seatJ, FIGPX, { w: CHAIR_W, light: 1 });
       drawFig(JC, p, v, seatJ, FIGPX, { only: 'base' });
-      if (!solo && A.clothB) plate2D(A.clothB, v);       // скатерть целиком резкая: торс сидящего сбоку её не касается, ступеньки на линии столешницы нет
+      if (!solo && A[table]) plate2D(A[table], v);      // стол перед стулом и ногами, в фокусе фона (торс стола не касается)
       // тень предплечья: точки «до корпуса» -> экран (как в общем плане — от приклеенных точек стола)
       armShadow(toS(v, elbJ), toS(v, pinJ), shk, FIGPX * v.k, () => tableTop(v));
       drawFig(JC, p, v, seatJ, FIGPX, { only: 'front' });
@@ -177,7 +192,7 @@ export default {
     }
 
     // ---------- план 2: крупно Дженсен ----------
-    const v2 = t => { const k = ease(t, CUT[1], CUT[2], E.outCubic); return cover({ cx: lerp(520, 528, k), cy: lerp(752, 744, k), k: lerp(1.84, 1.95, k) }); };
+    const v2 = t => { const k = ease(t, CUT[1], CUT[2], E.outCubic); return cover({ cx: lerp(520, 528, k), cy: lerp(690, 682, k), k: lerp(1.84, 1.95, k) }); };
     const shot2 = {
       id: 'cu_jensen', from: CUT[1], to: CUT[2], set: set2D, camera: () => look([0, 0, 0], [0, 0, -1], FOV),
       under(t) { plate2D(A.plateB4, v2(t)); },
@@ -189,10 +204,10 @@ export default {
     };
 
     // ---------- план 3: обратная точка, крупно Алиса ----------
-    const FS_A = 1.62, seatA = [1250, 1100];                                // пикселей плиты на единицу фигуры; сиденье (пиксели обратной плиты)
+    const FS_A = 1.62, seatA = [1200, 1100];                                // пикселей плиты на единицу фигуры; сиденье (пиксели обратной плиты)
     const REV_EDGE = [[0, 968], [40, 958], [120, 955], [160, 945], [240, 938], [360, 929], [600, 928], [960, 931], [1200, 949], [1340, 958], [1420, 970], [1500, 985], [1560, 998], [1640, 1012], [1640, 1080], [0, 1080]];
     const v3 = t => { const k = ease(t, CUT[2], CUT[3], E.outCubic); return cover({ cx: lerp(960, 990, k), cy: lerp(540, 552, k), k: lerp(1.0, 1.05, k) }); };
-    const pinA = [1000, 1025], elbA = [1085, 958], pinA2 = [1412, 1035], elbA2 = [1352, 972];
+    const pinA = [950, 1025], elbA = [1035, 958], pinA2 = [1362, 1035], elbA2 = [1302, 972];
     const shot3 = {
       id: 'cu_alice_reverse', from: CUT[2], to: CUT[3], set: set2D, camera: () => look([0, 0, 0], [0, 0, -1], FOV),
       under(t) { plate2D(A.revB, v3(t)); },
@@ -211,6 +226,7 @@ export default {
           el2 = [ev2[0] + (ik[0] - ev2[0]) * m, ev2[1] + (ik[1] - ev2[1]) * m];
         }
         p.arms = [{ to: q, via: ev, w: ARMW }, { to: hand2, via: el2, w: ARMW }];
+        drawChair(AC, v, seatA, FS_A, { w: 420, light: -1, legs: 0, col: { velvet: '#6E1A20', shade: '#4E1116', frame: '#3A1013' } });          // её стул: такой же, как в зале, за плечами
         drawFig(AC, p, v, seatA, FS_A, { only: 'base' });
         plate2D(A.revFG, v);                                                   // край нашего стола и свеча — перед героиней
         const clip = () => { ctx.beginPath(); REV_EDGE.forEach(([x, y], i) => { const s = toS(v, [x, y + 6]); i ? ctx.lineTo(...s) : ctx.moveTo(...s); }); ctx.closePath(); };
@@ -279,24 +295,24 @@ export default {
     };
 
     // ---------- план 5: через плечо Алисы на Дженсена (3/4) ----------
-    const v5 = t => { const k = ease(t, CUT[4], CUT[5]); return cover({ cx: lerp(640, 660, k), cy: lerp(720, 712, k), k: lerp(1.5, 1.55, k) }); };
+    const v5 = t => { const k = ease(t, CUT[4], CUT[5]); return cover({ cx: lerp(640, 660, k), cy: lerp(668, 660, k), k: lerp(1.5, 1.55, k) }); };
     let fgBuf = null;
     const shot5 = {
       id: 'ots_jensen', from: CUT[4], to: CUT[5], set: set2D, camera: () => look([0, 0, 0], [0, 0, -1], FOV),
       under(t) { plate2D(A.plateB2, v5(t)); },
       chars(t) {
         const v = v5(t);
-        jensenCU(t, v, { face: [[0, 'smug'], [9.35, 'laugh'], [10.55, 'smug']], at: null, lean: -.03 * ease(t, 9.35, 9.7) * (1 - ease(t, 10.5, 10.9)) });
+        jensenCU(t, v, { table: 'tableB2', face: [[0, 'smug'], [9.35, 'laugh'], [10.55, 'smug']], at: null, lean: -.03 * ease(t, 9.35, 9.7) * (1 - ease(t, 10.5, 10.9)) });
         // передний план: Алиса со спины (вид 'back'), ближе к камере, размыта и темнее; движется быстрее фона (параллакс)
         const S = AB.spec, k = ease(t, CUT[4], CUT[5]), p = act(t, [[0, 'neutral']]);
         Object.assign(p, { view: 'back', facing: -1, stance: 'sitL', bob: 0, sq: 0, lean: -.04, tilt: .05 });
         p.arms = [{ to: [-40, S.rig.hipY - 40], w: ARMW, layer: 'behind' }, { to: restHand(S, 1), w: ARMW, layer: 'behind' }];
         if (!fgBuf) { fgBuf = document.createElement('canvas'); fgBuf.width = W; fgBuf.height = H; }
         const fx = fgBuf.getContext('2d'); fx.setTransform(1, 0, 0, 1, 0, 0); fx.clearRect(0, 0, W, H);
-        const s = 2.0, x = lerp(1820, 1785, k), y = 720 + 412 * s;                  // y — сиденье (голова на ~760)
-        fx.save(); fx.translate(x, y); fx.scale(s, s); fx.translate(0, 300); AB.draw(fx, p); fx.restore();
+        const s = 2.0, x = lerp(1715, 1685, k), y = 645 + 412 * s;                  // y — сиденье (голова на ~760)
+        fx.save(); fx.translate(x, y); fx.scale(s, s); fx.translate(0, 300); AB.draw(fx, p); if (!solo) chairBack(fx, { w: 420, light: -1, back: true, seat: false, legs: 0 }); fx.restore();   // со спины спинка стула перед ней
         if (!solo) { fx.globalCompositeOperation = 'source-atop'; fx.fillStyle = 'rgba(8,6,14,.3)'; fx.fillRect(0, 0, W, H); fx.globalCompositeOperation = 'source-over'; }
-        ctx.save(); ctx.filter = solo ? 'none' : 'blur(7px)'; ctx.drawImage(fgBuf, 0, 0); ctx.restore();
+        ctx.save(); ctx.filter = solo ? 'none' : 'blur(5px)'; ctx.drawImage(fgBuf, 0, 0); if (!solo) ctx.drawImage(fgBuf, 0, 0); ctx.restore();   // второй проход: ореол края плотнее, задний план не просвечивает
       },
     };
 

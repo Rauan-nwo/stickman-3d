@@ -30,7 +30,7 @@ export { Actor, drawActors, blobShadow } from './chars/billboard.js';
 export { drawLit } from './chars/light.js';
 export { unUpper, restHand, shoulder, arcHand, gestureEnv, gesture } from './chars/arms.js';
 export { jensen, alice, detective, moneyman, reporter, LONG_PRESETS, LONG, noirShade } from './chars/presetsLong.js';
-export { gun2D, gun2DPoint, sandwich, nugget2D } from './chars/props2d.js';
+export { gun2D, gun2DPoint, sandwich, nugget2D, chairBack } from './chars/props2d.js';
 
 // 3D-пропсы
 export { createShotgun } from './props/shotgun.js';

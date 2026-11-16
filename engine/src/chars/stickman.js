@@ -445,7 +445,12 @@ function drawLimbs(x, limbs, layer, S, hipDy) {
     else if (L.pts) line(x, L.hip && hipDy ? [[L.pts[0][0], L.pts[0][1] + hipDy], ...L.pts.slice(1)] : L.pts, w, col);
     else if (L.ik) { const r = elbowArm(x, L.a, L.b, L.L, L.side, L.elbow, w, col, L.via, S.shade, S.limbLook === 'tube' ? { ink: S.colors.ink } : null); L.b = r; }   // via — локоть в заданной точке (предплечье лежит на столе)        // лонги: рука с локтем (spec.armStyle = 'elbow')
     else if (S.legStyle === 'natural' && layer === 'back') {                                   // лонги: нога бедро + голень с коленом (IK, длина постоянна)
-      const a = L.hip && hipDy ? [L.a[0], L.a[1] + hipDy] : L.a; elbowArm(x, a, L.b, L.L, 0, Math.sign(L.bend ?? 1) || 1, w, col, null, S.shade, S.limbLook === 'tube' ? { ink: S.colors.ink } : null);
+      const a = L.hip && hipDy ? [L.a[0], L.a[1] + hipDy] : L.a;
+      // spec.rig.plantLegs = k (по желанию, напр. .02): ступни стоят, колено всегда чуть наружу на k длины ноги —
+      // без этого длина ноги постоянна и любой bob корпуса качает колено внутрь на ~25 ед. (колени «иксом»)
+      const pk = S.rig && S.rig.plantLegs, d = pk != null ? Math.hypot(L.b[0] - a[0], L.b[1] - a[1]) : 0;
+      const LL = pk != null ? 2 * Math.hypot(d / 2, d * pk) : L.L, kn = (Math.sign(L.bend ?? 1) || 1) * (pk != null ? -1 : 1);
+      elbowArm(x, a, L.b, LL, 0, kn, w, col, null, S.shade, S.limbLook === 'tube' ? { ink: S.colors.ink } : null);
     }
     else { const a = L.hip && hipDy ? [L.a[0], L.a[1] + hipDy] : L.a; hose(x, a, L.b, Math.max(L.L, Math.hypot(L.b[0] - a[0], L.b[1] - a[1]) * (L.min ?? 1.04)), L.bend ?? 1, w, col, L.sag ?? .5); }
   }

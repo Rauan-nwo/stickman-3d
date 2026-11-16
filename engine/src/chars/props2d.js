@@ -53,3 +53,47 @@ export function sandwich(x, sx, sy, C = { lettuce: '#74B82F', bread: '#EADAB2', 
 }
 // золотой самородок в пальцах: плоский овал (блик рисуется отдельно: vfx/muzzleFlash.js glint)
 export function nugget2D(x, cx, cy, col = '#F2C530') { x.fillStyle = col; x.beginPath(); x.ellipse(cx, cy, 10, 8, .5, 0, 6.3); x.fill(); }
+
+// спинка стула за сидящим героем (канал лонгов, «Стикман Нуар»): красный бархат в деревянной раме, cel-тени, контур туши.
+// Рисуется в координатах фигуры (ед. фигуры; начало — как у героя), ДО героя: actor.with(ctx => chairBack(ctx, {...})) или в
+// своём преобразовании. Посадка: бёдра на подушке — seatY = точка сиденья героя (pins.seat[1], у presetsLong -300).
+// o: { x = 0, seatY = -300, w = 400 (ширина спинки), h = 430 (от сиденья до верха), light = 1 (свет справа; -1 слева),
+//      seat = true (подушка сиденья), legs = 300 (длина ножек до пола; 0 — без ножек), back = false (вид сзади: спинка ПЕРЕД героем),
+//      col: { frame, velvet, shade, hi, ink }, lw = 7.5 }
+export function chairBack(x, o = {}) {
+  const { x: cx = 0, seatY: y0 = -300, w = 400, h = 430, light = 1, seat = true, legs = 300, back = false, lw = 7.5 } = o;
+  const C = { frame: '#4A1518', velvet: '#8E2329', shade: '#6A161C', hi: 'rgba(255,170,140,.32)', ink: '#1C1418', wood: '#3A1F18', ...(o.col || {}) };
+  const L = cx - w / 2, R = cx + w / 2, top = y0 - h;
+  const outline = (ins = 0) => {                                                   // спинка: арка сверху, чуть сужается к сиденью
+    x.beginPath(); x.moveTo(L + 14 + ins, y0 + 30); x.lineTo(L + ins, top + w * .26);
+    x.bezierCurveTo(L + ins, top + ins * .6, cx - w * .18, top + ins, cx, top + ins);
+    x.bezierCurveTo(cx + w * .18, top + ins, R - ins, top + ins * .6, R - ins, top + w * .26);
+    x.lineTo(R - 14 - ins, y0 + 30); x.closePath();
+  };
+  x.save(); x.lineJoin = 'round'; x.lineCap = 'round';
+  if (legs > 0 && !back) for (const sx of [-1, 1]) {                               // ножки (задние, тёмное дерево)
+    x.beginPath(); x.moveTo(cx + sx * (w / 2 - 34), y0 + 40); x.lineTo(cx + sx * (w / 2 - 22), y0 + legs); x.lineWidth = 22; x.strokeStyle = C.ink; x.stroke();
+    x.lineWidth = 13; x.strokeStyle = C.wood; x.stroke();
+  }
+  outline(); x.fillStyle = C.frame; x.fill();                                      // рама
+  if (!back) {
+    x.save(); outline(26); x.clip();                                               // бархат с cel-тенью на дальней от света стороне
+    x.fillStyle = C.velvet; x.fillRect(L - 50, top - 50, w + 100, h + 120);
+    x.beginPath(); x.ellipse(cx + light * w * .26, top + h * .38, w * .62, h * .78, 0, 0, Math.PI * 2); x.rect(L - 60, top - 60, w + 120, h + 140);
+    x.fillStyle = C.shade; x.fill('evenodd');
+    x.restore();
+    outline(26); x.lineWidth = lw * .6; x.strokeStyle = C.ink; x.stroke();
+    x.beginPath(); x.moveTo(cx - light * w * .05, top + 14); x.quadraticCurveTo(cx + light * w * .3, top + 18, cx + light * (w / 2 - 12), top + w * .24);
+    x.lineWidth = 10; x.strokeStyle = C.hi; x.stroke();                            // блик рамы со стороны света
+  } else {
+    x.save(); outline(); x.clip(); x.beginPath(); x.ellipse(cx + light * w * .3, top + h * .4, w * .6, h * .8, 0, 0, Math.PI * 2); x.rect(L - 60, top - 60, w + 120, h + 140);
+    x.fillStyle = 'rgba(0,0,0,.28)'; x.fill('evenodd'); x.restore();
+  }
+  outline(); x.lineWidth = lw; x.strokeStyle = C.ink; x.stroke();
+  if (seat && !back) {                                                             // подушка сиденья под бёдрами
+    x.beginPath(); x.roundRect(L - 6, y0 - 12, w + 12, 66, 26); x.fillStyle = C.velvet; x.fill();
+    x.save(); x.clip(); x.fillStyle = C.shade; x.fillRect(L - 10, y0 + 22, w + 20, 40); x.restore();
+    x.lineWidth = lw; x.strokeStyle = C.ink; x.stroke();
+  }
+  x.restore();
+}

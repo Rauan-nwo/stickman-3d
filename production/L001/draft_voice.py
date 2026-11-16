@@ -24,16 +24,24 @@ def voice(sp):
     if sp in FIXED: return FIXED[sp]
     h = int(hashlib.md5(sp.encode()).hexdigest(), 16)
     return (FEMS if sp in FEMALE else MALES)[h % (len(FEMS) if sp in FEMALE else len(MALES))]
-GAP_NARR, GAP_LINE, GAP_CH = .28, .22, .7   # паузы: после фразы рассказчика, после реплики, перед главой
+GAP_NARR, GAP_LINE, GAP_CH = .2, .16, .6
+RATE_NARR, RATE_CHAR = '+9%', '+4%'   # паузы: после фразы рассказчика, после реплики, перед главой
 
-async def synth(text, v, path):
+async def synth(text, v, path, rate='+0%'):
     import edge_tts
     if os.path.exists(path + '.json'): return json.load(open(path + '.json', encoding='utf-8'))
-    c = edge_tts.Communicate(text, v, boundary='WordBoundary'); audio = bytearray(); words = []
-    async for ch in c.stream():
-        if ch['type'] == 'audio': audio += ch['data']
-        elif ch['type'] == 'WordBoundary':
-            s = ch['offset'] / 1e7; words.append({'w': ch['text'], 's': s, 'e': s + ch['duration'] / 1e7})
+    for attempt, vv in enumerate([v, v, NARR if v != NARR else 'en-US-GuyNeural']):
+        try:
+            c = edge_tts.Communicate(text, vv, rate=rate, boundary='WordBoundary'); audio = bytearray(); words = []
+            async for ch in c.stream():
+                if ch['type'] == 'audio': audio += ch['data']
+                elif ch['type'] == 'WordBoundary':
+                    s = ch['offset'] / 1e7; words.append({'w': ch['text'], 's': s, 'e': s + ch['duration'] / 1e7})
+            break
+        except Exception as e:
+            print('retry', vv, repr(text[:40]), type(e).__name__); await asyncio.sleep(2)
+    else:
+        raise RuntimeError('no audio: ' + text)
     open(path + '.mp3', 'wb').write(audio)
     dur = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', path + '.mp3'],
                                capture_output=True, text=True).stdout.strip())
@@ -51,8 +59,9 @@ async def main():
     for i, l in enumerate(lines, 1):
         m = re.match(r'^\[([A-Z0-9 ]+)\]\s*(.*)$', l); sp, text = (m.group(1), m.group(2)) if m else ('', l)
         if any(text.startswith(f) for f in firsts) and i > 1: t += GAP_CH
-        v = voice(sp); key = hashlib.md5(f'{v}|{text}'.encode()).hexdigest()[:12]; p = os.path.join(C, key)
-        r = await synth(text, v, p)
+        v = voice(sp); rate = RATE_CHAR if sp else RATE_NARR
+        key = hashlib.md5(f'{v}|{rate}|{text}'.encode()).hexdigest()[:12]; p = os.path.join(C, key)
+        r = await synth(text, v, p, rate)
         res.append({'line': i, 'speaker': sp or 'NARRATOR', 'voice': v, 'text': text, 'start': round(t, 3),
                     'end': round(t + r['dur'], 3), 'words': [{'w': w['w'], 's': round(t + w['s'], 3), 'e': round(t + w['e'], 3)} for w in r['words']]})
         parts.append((p + '.mp3', t)); t += r['dur'] + (GAP_LINE if sp else GAP_NARR)

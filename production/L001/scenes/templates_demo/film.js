@@ -1,7 +1,7 @@
 // templates_demo/film.js: витрина 2D-шаблонов «Стикман Нуар» (engine/src/templates) на материале L001.
 // Каждый шаблон ~3 с подряд: карточка -> цифра -> карта -> доска -> документ -> плашка на фоне -> карточка -> титул главы.
 // Текст служебки — иллюстрация для демо (пересказ сценария, не цитата из документа).
-import { templates as T, alice, jensen, act, blinkAt, talkMouth, noirShade } from 'engine';
+import { templates as T, alice, jensen, act, blinkAt, talkMouth, noirShade, shoulder, restHand, arcHand, gesture } from 'engine';
 import officePlate from '../../assets/bg_nvidia_ceo_office.png';
 
 const img = url => { const i = new Image(); i.src = url; i.style.display = 'none'; document.body.appendChild(i); return i; };
@@ -13,6 +13,7 @@ export default {
     const office = img(officePlate);
     const A = alice(), J = jensen();
     J.spec.shade = noirShade([1, -.35]);
+    J.spec.rig = { ...J.spec.rig, plantLegs: .02 };                         // ноги стоят, колени чуть наружу (stickman.js, по желанию)
     // голова героя в окне снимка на доске: рисунок фигуры, кадрированный по плечи
     const mugshot = ch => (ctx, w, h) => {
       ctx.save(); ctx.translate(w / 2, h * 1.12); const s = h / 640; ctx.scale(s, s); ctx.translate(0, 430);
@@ -49,16 +50,30 @@ export default {
         highlight: [2, 3], stampAt: .95, hlAt: 1.5, hlStep: .5,
       })],
       ['lower', 3.0, (c, t) => {
-        const W = 1920, H = 1080; c.save();
+        const W = 1920, H = 1080, FX = 1000, FY = 1040, SC = .74; c.save();
         const k = 1 + .045 * (t / 3); c.translate(W / 2, H / 2); c.scale(k, k); c.translate(-W / 2 - 20 * t, -H / 2);
         if (office.complete && office.naturalWidth) c.drawImage(office, 0, 0, W, H); else { c.fillStyle = '#0d1322'; c.fillRect(0, 0, W, H); }
-        // Дженсен стоит слева от стола, говорит (2D-герой прямо на фоне)
-        c.save(); c.translate(560, 1040); c.scale(.74, .74);
-        const p = act(t, [[0, 'talk']]); p.blink = blinkAt(t, 3); p.mouth = talkMouth(t, ['open', 'O', 'smile', 'flat'], 5).mouth;
-        if (p.mouth === 'teeth' || p.mouth === 'teethOpen') p.mouth = 'open';
+        // контактная тень: плотное пятно под ступнями + мягкий отброс от лампы (лампа на столе справа -> тень влево)
+        c.save(); c.translate(FX, FY + 2); c.scale(1, .16);
+        let g = c.createRadialGradient(0, 0, 0, 0, 0, 120); g.addColorStop(0, 'rgba(6,3,6,.62)'); g.addColorStop(.6, 'rgba(6,3,6,.3)'); g.addColorStop(1, 'rgba(6,3,6,0)');
+        c.fillStyle = g; c.beginPath(); c.arc(0, 0, 120, 0, 6.283); c.fill(); c.restore();
+        c.save(); c.translate(FX - 70, FY + 4); c.rotate(-.12); c.filter = 'blur(8px)'; c.fillStyle = 'rgba(8,3,6,.32)'; c.beginPath(); c.ellipse(0, 0, 150, 16, 0, 0, 6.283); c.fill(); c.restore();
+        // Дженсен стоит перед столом: ступни на месте, корпус только дышит, одно медленное движение рукой
+        c.save(); c.translate(FX, FY); c.scale(SC, SC);
+        const S = J.spec, p = act(t, [[0, 'neutral']]);
+        p.bob = -3 * (1 - Math.cos(t * 6.283 * .32)) / 2;                       // дыхание: до 3 ед. (~2 px)
+        p.lean = .005 * Math.sin(t * 6.283 * .2); p.tilt = .012 * Math.sin(t * 6.283 * .23 + .6); p.sq = 0; p.dx = 0;   // перенос веса — доли градуса
+        p.blink = blinkAt(t, 3);
+        const g1 = gesture(t, 1.15, { lead: .25, rise: .55, hold: .75, fall: .6, lagFrames: 3 });
+        const shR = shoulder(S, 1), shL = shoulder(S, -1);
+        const handR = arcHand(shR, restHand(S, 1), [shR[0] + 125, shR[1] + 150], g1.hand);
+        p.arms = [{ to: restHand(S, -1), w: 11 }, { to: handR, w: 11 }];
+        p.lean += .012 * g1.body; p.look = [.35 * g1.body, .1 * g1.body];
+        const speaking = t > .35 && t < 2.55;
+        p.mouth = speaking ? talkMouth(t, ['open', 'O', 'smile', 'flat'], 5).mouth : 'smile';
         J.draw(c, p); c.restore();
         c.restore();
-        T.lowerThird(c, t, { name: 'Jensen Huang', role: 'CEO, Nvidia', at: .35, point: [700, 520] });
+        T.lowerThird(c, t, { name: 'Jensen Huang', role: 'CEO, Nvidia', at: .35 });
       }],
       ['card2', 2.6, (c, t) => T.blackCard(c, t, { text: 'WHY PICK A LOCK?', underline: 'LOCK', dur: 2.6, at: .25, cps: 13, size: 104 })],
       ['chapter', 3.2, (c, t) => T.chapterTitle(c, t, { label: 'CHAPTER 3', title: 'The Locked Door', dur: 3.2 })],
