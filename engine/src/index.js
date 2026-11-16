@@ -46,3 +46,6 @@ export { glowTrail, shockRings } from './vfx/glowTrail.js';
 export { impactDecal } from './vfx/impactDecal.js';
 export { explosion } from './vfx/explosion.js';
 export { screenShake, shakeOffset } from './vfx/screenShake.js';
+
+// 2D-шаблоны кадров «Стикман Нуар» (карточки, цифра, карта, доска, документ, плашка, титул главы)
+export { templates, blackCard, chapterTitle, lowerThird, bigNumber, noirMap, mapProjection, board, documentShot, NOIR, NOIR_FONT, PLACES } from './templates/index.js';

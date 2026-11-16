@@ -28,7 +28,7 @@ const cloth = fn => (x, B, S, VW) => { x.save(); x.translate(B.cx, B.cy); x.scal
 function faceGeo(S, VW, p) {
   const h = S.head, f = S.face, r = f.mr || h.ry, v = VW && VIEWS[VW.view];
   const vfx = v ? VW.facing * v.turn * r : 0, fx = (p.turn || 0) * r, ecx = (f.eyes[0].x + f.eyes[1].x) / 2, comp = v ? v.comp : 1;
-  return { vfx, fx, off: fx + vfx, back: !!VW && VW.view === 'back', facing: VW ? VW.facing : 0,
+  return { vfx, fx, off: fx + vfx, back: !!VW && VW.view === 'back', side: !!VW && VW.view === 'side', facing: VW ? VW.facing : 0,
     eyes: f.eyes.map((e, i) => ({ x: (e.x - ecx) * comp + ecx + (i ? fx * .8 : fx) + vfx, y: e.y })) };
 }
 // тип шляпы: face(x, H, S, G, p) — причёска/очки без сдвига шляпы; hat(x, H, S, G, p) — сама шляпа
@@ -43,19 +43,30 @@ function overlay(face, hat) {
 // очки: прямоугольные (rect) или тёмные (shades)
 function glasses(x, G, S, { w = 70, h = 46, r = 10, lw = 6, frame, lens, glint = 'rgba(255,255,255,.75)', dy = 2, shades = false }) {
   const ink = frame || S.colors.ink; if (S.shade) glint = 'rgba(255,255,255,.4)';          // лонги со светом: блики мягче
-  for (const e of G.eyes) {
+  // вид сбоку (G.side): глаза сближены (comp .6), две линзы полной ширины налезали друг на друга — дальняя линза
+  // сжата в перспективе и сдвинута наружу; анфас и 3/4 рисуются как прежде (wl = w, сдвига нет)
+  const farI = G.facing > 0 ? 0 : 1, wl = i => (G.side && i === farI ? w * .5 : w), ox = i => (G.side && i === farI ? -G.facing * w * .12 : 0);
+  for (const [i, e0] of G.eyes.entries()) {
+    const w = wl(i), e = { x: e0.x + ox(i), y: e0.y };
     x.beginPath(); x.roundRect(e.x - w / 2, e.y + dy - h / 2, w, h, shades ? [r, r, r * 2.2, r * 2.2] : r);
     x.fillStyle = shades ? lgrad(x, 0, e.y - h / 2, 0, e.y + h / 2, [[0, '#3A3442'], [.45, '#16121A'], [1, '#08060A']]) : lens || 'rgba(175,205,225,.22)'; x.fill();
     x.lineWidth = lw; x.strokeStyle = ink; x.stroke();
     path(x, [[e.x - w * .3, e.y + dy - h * .05], [e.x - w * .1, e.y + dy - h * .32]], shades ? 6 : 4, glint);
     if (shades) path(x, [[e.x - w * .08, e.y + dy + h * .02], [e.x + w * .02, e.y + dy - h * .12]], 4, 'rgba(255,255,255,.4)');
   }
-  const [a, b] = G.eyes;
-  path(x, [[a.x + w / 2, a.y + dy - h * .12], [(a.x + b.x) / 2, a.y + dy - h * .32, b.x - w / 2, b.y + dy - h * .12]], lw * .8, ink);
+  const a = { x: G.eyes[0].x + ox(0), y: G.eyes[0].y, w: wl(0) }, b = { x: G.eyes[1].x + ox(1), y: G.eyes[1].y, w: wl(1) };
+  path(x, [[a.x + a.w / 2, a.y + dy - h * .12], [(a.x + b.x) / 2, a.y + dy - h * .32, b.x - b.w / 2, b.y + dy - h * .12]], lw * .8, ink);
   // дужки к краю головы
   const R = S.head.rx;
-  if (G.facing >= 0) path(x, [[a.x - w / 2, a.y + dy - h * .15], [-R + 6, a.y + dy - h * .3]], lw * .7, ink);
-  if (G.facing <= 0) path(x, [[b.x + w / 2, b.y + dy - h * .15], [R - 6, b.y + dy - h * .3]], lw * .7, ink);
+  if (G.facing >= 0) path(x, [[a.x - a.w / 2, a.y + dy - h * .15], [-R + 6, a.y + dy - h * .3]], lw * .7, ink);
+  if (G.facing <= 0) path(x, [[b.x + b.w / 2, b.y + dy - h * .15], [R - 6, b.y + dy - h * .3]], lw * .7, ink);
+}
+
+// спина одежды (вид 'back'): шов по центру, нижняя резинка (если band), блик
+function backSeam(x, seam, band, sheen) {
+  path(x, [[0, -150], [0, 160]], 3, seam);
+  if (band) { poly(x, [[-110, 118], [110, 118], [110, 160], [-110, 160]], band, null); path(x, [[-110, 118], [110, 118]], 4, seam); }
+  path(x, [[-92, -60], [-98, 0, -88, 70]], 9, sheen);
 }
 
 // ---------- общий каркас фигуры ----------
@@ -109,8 +120,9 @@ export function jensen(over = {}) {
     face: { restMouth: 'smile', browCol: '#7E848D', eyes: [{ x: -48, y: -16, rx: 8.5, ry: 11.5, lw: 6, tilt: 0 }, { x: 48, y: -16, rx: 8.5, ry: 11.5, lw: 6, tilt: 0 }] },
     body: {
       fillRadial: { at: [-46, -80], r0: 10, to: [-6, -10], r1: 200, stops: [[0, '#5A5560'], [.32, '#2C2830'], [1, lea]] },
-      inside: [cloth((x, S) => {
+      inside: [cloth((x, S, VW) => {
         const ink = S.colors.ink;
+        if (VW && VW.view === 'back') { backSeam(x, ink, '#0E0C10', 'rgba(255,255,255,.16)'); return; }                  // спина куртки
         poly(x, [[-34, -150], [26, -150], [24, 160], [-30, 160]], '#24232A', null);                                    // чёрная футболка в распахе
         path(x, [[-30, -142], [-2, -122, 24, -142]], 4, '#3D3C45');                                                       // ворот футболки
         path(x, [[-10, -110], [-6, -60]], 2.5, 'rgba(255,255,255,.08)');
@@ -138,7 +150,13 @@ export function jensen(over = {}) {
 // Алиса
 // =====================================================================================================
 HATS.L_alice = overlay((x, H, S, G) => {
-  if (G.back) return;
+  if (G.back) {                                                                                   // со спины: каре закрывает затылок до линии подбородка
+    poly(x, [[-150, 88], [-166, -40, -136, -120], [-90, -170, 0, -168], [90, -170, 136, -120], [166, -40, 150, 88], [0, 112, -150, 88]],
+      lgrad(x, -150, -170, 150, 90, [[0, '#2C2834'], [.5, '#151217'], [1, '#08070A']]), S.colors.ink, S.lw);
+    path(x, [[-104, -136], [-40, -164, 30, -158]], 9, 'rgba(120,120,170,.45)');
+    for (let k = -2; k <= 2; k++) path(x, [[k * 40, -150], [k * 52, -20, k * 58, 80]], 2.5, 'rgba(0,0,0,.5)');   // пряди
+    return;
+  }
   for (const sd of [-1, 1]) { x.beginPath(); x.arc(sd * 128 + G.off * .2, 52, 11, 0, TAU); x.lineWidth = 5; x.strokeStyle = '#E7B83C'; x.stroke(); }  // серьги-кольца
   glasses(x, G, S, { w: 78, h: 44, r: 12, lw: 6, shades: true, frame: '#0F0C10' });
   // каре: шапка волос с ровной чёлкой, по бокам до подбородка, кончики внутрь
@@ -158,8 +176,9 @@ export function alice(over = {}) {
     body: {
       topK: .8,
       fillRadial: { at: [-44, -76], r0: 12, to: [-8, -10], r1: 200, stops: [[0, '#F25A62'], [.42, '#CC2232'], [1, '#7A0C17']] },
-      inside: [cloth((x, S) => {
+      inside: [cloth((x, S, VW) => {
         const ink = S.colors.ink;
+        if (VW && VW.view === 'back') { backSeam(x, 'rgba(60,0,8,.55)', null, 'rgba(255,220,220,.22)'); return; }       // спина жакета
         poly(x, [[-36, -150], [36, -150], [0, -60]], '#FFF7F2', null);                                                   // белая блузка
         poly(x, [[-36, -150], [-12, -150], [-6, -112], [-26, -120]], '#F1E4DE', ink, 3); poly(x, [[36, -150], [12, -150], [6, -112], [26, -120]], '#F1E4DE', ink, 3);
         ell(x, 0, -96, 6, 6, '#E7B83C', ink, 2);                                                                          // кулон
@@ -345,7 +364,8 @@ export const HOSTS = ['detective', 'moneyman', 'reporter'];
 // [-1, -.55] — лампа сзади-слева). Тень головы — cel-серп с чётким краем (ложится и на волосы/шляпу),
 // тёплый свет только на лице и краю волос (мягко), на одежде тёплого света нет (давал полосы).
 // Использование: actor.char.spec.shade = noirShade([1, .45]);
-export const noirShade = (dir, { warm = '#ffc47a' } = {}) => ({
+// cutY (необязательно): для крупных планов с каре — пряди у щёк не выкусывают дыру в серпе (см. headShade в stickman.js)
+export const noirShade = (dir, { warm = '#ffc47a', cutY } = {}) => ({
   dir, body: { k: 0 },
-  head: { k: .42, color: '#55507e', shiftU: 52, after: true, glow: { color: warm, k: .3 } },
+  head: { k: .42, color: '#55507e', shiftU: 52, after: true, glow: { color: warm, k: .3 }, ...(cutY != null ? { cutY } : {}) },
 });

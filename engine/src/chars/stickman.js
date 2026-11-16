@@ -576,14 +576,16 @@ function headShade(x, S, h, VW, p, hd, hr, hx) {
   const H = S.shade.head, d = Math.hypot(S.shade.dir[0], S.shade.dir[1]) || 1, dx = S.shade.dir[0] / d, dy = S.shade.dir[1] / d, R = Math.max(h.rx, h.ry);
   const c = x.canvas, W = c.width, Hh = c.height, T = x.getTransform();
   const buf = i => { let b = _hs[i]; if (!b || b.width !== W || b.height !== Hh) { b = _hs[i] = document.createElement('canvas'); b.width = W; b.height = Hh; } const o = b.getContext('2d'); o.setTransform(1, 0, 0, 1, 0, 0); o.globalAlpha = 1; o.globalCompositeOperation = 'source-over'; o.filter = 'none'; o.clearRect(0, 0, W, Hh); return [b, o]; };
-  const sil = (o, sx = 0, sy = 0) => { o.save(); o.setTransform(T); o.translate(sx, sy); o.lineCap = 'round'; o.lineJoin = 'round';
+  // cut (необязательно, head.cutY): у сдвинутого силуэта волосы ниже cutY (координаты головы) не учитываются — пряди каре
+  // у щёк не «выкусывают» светлую дыру в серпе на лице (заметно на крупном плане). Без cutY — прежний рисунок.
+  const sil = (o, sx = 0, sy = 0, cut) => { o.save(); o.setTransform(T); o.translate(sx, sy); o.lineCap = 'round'; o.lineJoin = 'round';
     ell(o, 0, 0, h.rx + S.lw / 2, h.ry + S.lw / 2, '#000', null);
-    if (!p.hatOff) { o.save(); if (hd || hr || hx) { o.translate(hx, hd); o.rotate(hr); } HATS[S.hat.type](o, h, S, VW, p); o.restore(); }
+    if (!p.hatOff) { o.save(); if (cut != null) { o.beginPath(); o.rect(-R * 4, -R * 4, R * 8, R * 4 + cut); o.clip(); } if (hd || hr || hx) { o.translate(hx, hd); o.rotate(hr); } HATS[S.hat.type](o, h, S, VW, p); o.restore(); }
     o.restore(); };
   const [A, a] = buf(0); sil(a);                                                   // силуэт
   if ((H.k ?? .4) > 0) {
     const [B, b] = buf(1); b.drawImage(A, 0, 0); b.globalCompositeOperation = 'destination-out';
-    const sh = H.shiftU ?? R * .42; sil(b, dx * sh, dy * sh);                                     // минус сдвинутый к свету
+    const sh = H.shiftU ?? R * .42; sil(b, dx * sh, dy * sh, H.cutY);                                     // минус сдвинутый к свету
     b.globalCompositeOperation = 'source-in'; b.fillStyle = H.color || '#55507e'; b.fillRect(0, 0, W, Hh);
     x.save(); x.setTransform(1, 0, 0, 1, 0, 0); x.globalAlpha = H.k ?? .4; x.globalCompositeOperation = 'multiply'; x.drawImage(B, 0, 0); x.restore();
   }

@@ -1,0 +1,4 @@
+[bg_reverse.png] генерирую...
+[bg_reverse.png] готово -> C:\dev\projects\youtube-video\production\L001\scenes\dialogue_probe\raw\bg_reverse.png
+
+итого: готово 1, пропущено 0, с ошибкой 0
