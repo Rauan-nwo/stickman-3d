@@ -1,0 +1,18 @@
+[
+ {
+  "out": "raw/bg_kitchen_one.png",
+  "promptFile": "prompts/bg_kitchen_one.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/bg_crt_desk.png",
+  "promptFile": "prompts/bg_crt_desk.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ }
+]
