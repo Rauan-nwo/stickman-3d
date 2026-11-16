@@ -313,7 +313,8 @@ function stsCrane(parent, x, zLand, zSea) {
 // ---------------------------------------------------------------------------------------------------
 // декорация целиком
 // ---------------------------------------------------------------------------------------------------
-export function noirLogistics(stage, { origin = V(0, 0, 0), dcX = 300 } = {}) {
+// dcBoxes: false — без штабелей нераспакованных коробок в дата-центре (фильм ставит свои); по умолчанию как раньше
+export function noirLogistics(stage, { origin = V(0, 0, 0), dcX = 300, dcBoxes = true } = {}) {
   const group = new THREE.Group(); group.position.copy(origin); stage.add(group);
   RES.value.set(stage.W, stage.H);
   const lights = [];
@@ -411,17 +412,20 @@ export function noirLogistics(stage, { origin = V(0, 0, 0), dcX = 300 } = {}) {
   }
   // кабельные лотки и световые полосы
   for (const z of [-1.6, 1.6]) box(dc, 34, .08, .4, toon(0x3a4252), 4, 3.0, z, { px: 2 });
-  for (let i = 0; i < 8; i++) { const st = new THREE.Mesh(new THREE.PlaneGeometry(1.6, .22), glowMat(0x7fe6f0, 1.6)); st.rotation.x = Math.PI / 2; st.position.set(-10 + i * 4, 3.48, 0); dc.add(st);
-    if (i % 2 === 0) { const L = new THREE.PointLight(NOIR.teal, 14, 9, 1.6); L.position.set(-10 + i * 4, 3.0, 0); dc.add(L); } }
+  const strips = [], stripLights = [];
+  for (let i = 0; i < 8; i++) { const st = new THREE.Mesh(new THREE.PlaneGeometry(1.6, .22), glowMat(0x7fe6f0, 1.6)); st.rotation.x = Math.PI / 2; st.position.set(-10 + i * 4, 3.48, 0); dc.add(st); strips.push(st);
+    if (i % 2 === 0) { const L = new THREE.PointLight(NOIR.teal, 14, 9, 1.6); L.position.set(-10 + i * 4, 3.0, 0); dc.add(L); stripLights.push(L); } }
   const warm = new THREE.PointLight(NOIR.amber, 20, 7, 1.6); warm.position.set(-1.2, 2.4, 1.3); dc.add(warm);   // тёплое пятно у коробки
   const exitL = new THREE.Mesh(new THREE.PlaneGeometry(.6, .25), glowMat(0x7ce05a, 1.8)); exitL.rotation.y = -Math.PI / 2; exitL.position.set(20.88, 2.9, 0); dc.add(exitL);
   // нераспакованные коробки вдоль прохода (ящики с лентой)
+  if (dcBoxes) {
   const ub = [], uc = [], ru = rng(55);
   for (const [x, z, n] of [[1.5, 1.2, 3], [3.0, -1.2, 2], [5.2, 1.25, 4], [-2.8, -1.25, 2], [8, -1.2, 3], [11, 1.2, 3]]) { ub.push(TRS(x, .07, z, 0, [1.2, .14, 1])); uc.push(NOIR.pallet); for (let k = 0; k < n; k++) { ub.push(TRS(x + (ru() - .5) * .08, .15 + k * .56 + .275, z, (ru() - .5) * .1, [.9, .55, .7])); uc.push(NOIR.card); } }
   instanced(dc, boxGeo(1, 1, 1), toon(0xffffff), ub, { colors: uc, px: 2.5 });
   const tapeB = [], tapeC = [];
   for (const M of ub) { const p = new THREE.Vector3(), q = new THREE.Quaternion(), s = new THREE.Vector3(); M.decompose(p, q, s); if (s.y > .3) { tapeB.push(new THREE.Matrix4().compose(p, q, V(.912, .562, .09))); tapeB.push(new THREE.Matrix4().compose(p, q, V(.09, .565, .714))); } }
   instanced(dc, boxGeo(1, 1, 1), toon(NOIR.tape), tapeB, { ink: false });
+  }
 
   // ================= подвижные части =================
   const hero = new THREE.Group(); group.add(hero);
@@ -443,7 +447,9 @@ export function noirLogistics(stage, { origin = V(0, 0, 0), dcX = 300 } = {}) {
     for (let i = 0; i < racks.length; i++) racks[i].material = leds[(i + Math.floor(t * 3 + i * .37)) % 3];
   }
   return { group, look, tick, hero, heroBox, forklift: fork, truck: tr, moon, hemi, lights, dcX,
-    zones: { warehouse: V(-7, 0, -3), dock: V(6.45, 0, -1), port: V(55, 0, -1), dc: V(dcX, 0, 0) } };
+    zones: { warehouse: V(-7, 0, -3), dock: V(6.45, 0, -1), port: V(55, 0, -1), dc: V(dcX, 0, 0) },
+    // части дата-центра для фильма (свет рядами, LED по стойкам): strips — световые полосы, stripLights — их точечный свет
+    dcParts: { group: dc, strips, stripLights, racks, warm, exitL } };
 }
 let _soft2;
 function softTex2() { return _soft2 || (_soft2 = canvasTex(64, 256, (x, w, h) => { const g = x.createLinearGradient(0, 0, w, 0); g.addColorStop(0, 'rgba(255,255,255,0)'); g.addColorStop(.5, 'rgba(255,255,255,1)'); g.addColorStop(1, 'rgba(255,255,255,0)'); x.fillStyle = g; x.fillRect(0, 0, w, h); const v = x.getImageData(0, 0, w, h); for (let j = 0; j < h; j++) { const a = Math.sin(j / h * Math.PI) * (.5 + .5 * Math.sin(j * .7)); for (let i = 0; i < w; i++) v.data[(j * w + i) * 4 + 3] *= a; } x.putImageData(v, 0, 0); })); }

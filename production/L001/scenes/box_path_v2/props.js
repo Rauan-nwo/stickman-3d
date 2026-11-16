@@ -57,14 +57,46 @@ function inked(parent, geo, mat, px = 3.5, edges = true) {
 }
 const boxG = (w, h, d) => new THREE.BoxGeometry(w, h, d);
 
-function labelTex(sn) {
-  const c = document.createElement('canvas'); c.width = 512; c.height = 320; const x = c.getContext('2d');
-  x.fillStyle = '#ffffff'; x.fillRect(0, 0, 512, 320); x.strokeStyle = '#141018'; x.lineWidth = 14; x.strokeRect(7, 7, 498, 306);
-  x.fillStyle = '#76b900'; x.fillRect(30, 30, 110, 110);
-  x.fillStyle = '#141018'; x.font = 'bold 64px Arial'; x.fillText('SN', 168, 92); x.font = 'bold 46px Consolas, monospace'; x.fillText(sn, 168, 140);
-  for (let i = 0; i < 44; i++) { const r = Math.abs(Math.sin(i * 12.9898 + 3.1) * 43758.5) % 1; x.fillRect(32 + i * 10.5, 180, r > .5 ? 7 : 3, 108); }
-  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t;
+// v3: наклейка с серийником для крупного плана — 2048 px по ширине (на крупном плане наклейка ~1200 px экрана):
+//     зелёная полоса «под Nvidia» (без логотипа), SERIAL, моноширинный номер, штрихкод, мелкий текст; рамка тушью.
+//     Плоские заливки без градиентов — тон и cel-свет даёт материал. bg — цвет бумаги (белый: тон даёт материал)
+export function serialLabelTex(sn = '4XG-2207-1193', { w = 2048, bg = '#ffffff' } = {}) {
+  const h = Math.round(w * .633), k = w / 2048, c = document.createElement('canvas'); c.width = w; c.height = h; const x = c.getContext('2d');
+  x.scale(k, k); const W = 2048, H = 1296, ink = '#141018';
+  x.fillStyle = bg; x.fillRect(0, 0, W, H);
+  // зелёная полоса: основной тон + тёмный клин-тень справа + тонкая штриховка
+  x.fillStyle = '#76b900'; x.fillRect(0, 0, W, 300);
+  x.fillStyle = '#5a8f00'; x.beginPath(); x.moveTo(1380, 0); x.lineTo(W, 0); x.lineTo(W, 300); x.lineTo(1300, 300); x.closePath(); x.fill();
+  x.strokeStyle = 'rgba(20,16,24,.22)'; x.lineWidth = 8; for (let i = 0; i < 14; i++) { x.beginPath(); x.moveTo(1420 + i * 46, 0); x.lineTo(1340 + i * 46, 300); x.stroke(); }
+  x.fillStyle = ink; x.fillRect(0, 300, W, 16);
+  x.font = "900 170px 'Arial Black', Impact, Arial"; x.fillText('SERIAL', 90, 225);
+  // знак-чип (не логотип): квадрат с выводами
+  x.save(); x.translate(1760, 150); x.fillStyle = ink; x.fillRect(-92, -92, 184, 184);
+  for (let i = -3; i <= 3; i++) { x.fillRect(i * 26 - 6, -122, 12, 30); x.fillRect(i * 26 - 6, 92, 12, 30); x.fillRect(-122, i * 26 - 6, 30, 12); x.fillRect(92, i * 26 - 6, 30, 12); }
+  x.fillStyle = '#76b900'; x.fillRect(-50, -50, 100, 100); x.restore();
+  // номер
+  x.fillStyle = ink; x.font = "bold 92px Consolas, 'Courier New', monospace"; x.fillText('S/N', 90, 450);
+  x.font = "bold 210px Consolas, 'Courier New', monospace"; const tw = x.measureText(sn).width;
+  x.save(); x.translate(90, 650); x.scale(Math.min(1, (W - 180) / tw), 1); x.fillText(sn, 0, 0); x.restore();
+  // штрихкод (детерминированный)
+  let xx = 90, i = 0; while (xx < W - 100) { const r = Math.abs(Math.sin(i * 12.9898 + sn.length * 3.1) * 43758.5) % 1, bw = 8 + Math.floor(r * 4) * 8; if (i % 2 === 0) x.fillRect(xx, 720, bw, 330); xx += bw + (i % 2 ? 0 : 6); i++; }
+  x.font = "bold 62px Consolas, 'Courier New', monospace"; x.fillText('PN 900-2G422-0000  QTY 1  ESD', 90, 1160);
+  // рамка тушью
+  x.strokeStyle = ink; x.lineWidth = 40; x.strokeRect(20, 20, W - 40, H - 40);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 16; return t;
 }
+// пломба: зелёный диск, тёмный серп тени, блик, кольцо тушью — чёткий «нарисованный» кружок вместо светящейся кляксы
+export function sealTex(size = 512) {
+  const c = document.createElement('canvas'); c.width = c.height = size; const x = c.getContext('2d'), R = size / 2;
+  x.clearRect(0, 0, size, size);
+  x.fillStyle = '#141018'; x.beginPath(); x.arc(R, R, R, 0, 7); x.fill();
+  x.fillStyle = '#7cc414'; x.beginPath(); x.arc(R, R, R * .84, 0, 7); x.fill();
+  x.save(); x.beginPath(); x.arc(R, R, R * .84, 0, 7); x.clip(); x.fillStyle = '#4c8400'; x.beginPath(); x.arc(R - R * .28, R - R * .28, R * .9, 0, 7); x.rect(size, 0, -size, size); x.fill('evenodd'); x.restore();
+  x.strokeStyle = '#141018'; x.lineWidth = R * .07; x.beginPath(); x.arc(R, R, R * .56, 0, 7); x.stroke();
+  x.fillStyle = '#e8ffc0'; x.beginPath(); x.ellipse(R - R * .32, R - R * .36, R * .16, R * .09, -.7, 0, 7); x.fill();
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 16; return t;
+}
+const labelTex = sn => serialLabelTex(sn);
 
 // коробка на паллете. o: { grade, L, rim, px }
 export function hero({ grade, L, rim = null, px = 3.5, sn = '4XG-2207-1193' }) {
@@ -86,12 +118,12 @@ export function hero({ grade, L, rim = null, px = 3.5, sn = '4XG-2207-1193' }) {
   const la = new THREE.Mesh(new THREE.PlaneGeometry(.26, .165), lm); la.position.set(BW * .27, BY + BH * .58, BD / 2 + .004); g.add(la);
   const lb = new THREE.Mesh(new THREE.PlaneGeometry(.26, .165), lm); lb.rotation.y = Math.PI / 2; lb.position.set(BW / 2 + .004, BY + BH * .58, -BD * .22); g.add(lb);
   // пломба на ленте спереди: светится, с ореолом
-  const seal = new THREE.Mesh(new THREE.CircleGeometry(.06, 28), new THREE.MeshBasicMaterial({ color: C('#a6f03a'), toneMapped: false, fog: false }));
+  // v3: пломба — плоская текстура (диск, серп тени, блик, кольцо тушью), чуть ярче ленты; без радиального градиента
+  const seal = new THREE.Mesh(new THREE.PlaneGeometry(.15, .15), new THREE.MeshBasicMaterial({ map: sealTex(), color: new THREE.Color(1.25, 1.25, 1.25), transparent: true, alphaTest: .5, toneMapped: false, fog: false }));
   seal.position.set(0, BY + BH * .52, BD / 2 + .009); g.add(seal);
-  const ring = new THREE.Mesh(new THREE.RingGeometry(.06, .075, 28), new THREE.MeshBasicMaterial({ color: 0x141018, fog: false })); ring.position.copy(seal.position); ring.position.z -= .001; g.add(ring);
   const glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex(), color: C('#8be02a'), blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, opacity: .55, fog: false }));
   glow.position.copy(seal.position).add(new THREE.Vector3(0, 0, .03)); glow.scale.setScalar(.42); g.add(glow);
-  g.userData = { PW, PD, PH, top: BY + BH };
+  g.userData = { PW, PD, PH, top: BY + BH, sealGlow: glow, seal };
   return g;
 }
 

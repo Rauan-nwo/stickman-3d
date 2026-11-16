@@ -36,6 +36,15 @@ const flick = (t, seed, dips = []) => {
 };
 // встряска камеры после удара: затухающие колебания
 const kick = (t, t0, amp, dur = .35) => { const d = t - t0; if (d < 0 || d > dur) return 0; return amp * Math.sin(d * 70) * Math.pow(1 - d / dur, 2); };
+// v3: потолок увеличения плиты. Плита 1920 px = кадр 1920 px при crop 1, при crop .46 она растянута в 2.2 раза и мылится.
+// Если crop < cmin, камера вместо зума подъезжает по оси взгляда так, чтобы точка focus сохранила размер и место в кадре
+// (в плоскости коробки кадр тот же, фон растянут не больше 1/cmin).
+const TAN25 = Math.tan(25 * Math.PI / 180);
+function capZoom(c, focus, cmin = .8) {
+  const crop = Math.tan(c.fov * Math.PI / 360) / TAN25; if (crop >= cmin) return c;
+  const p = V(...c.pos), d = V(...c.target).sub(p).normalize(), D = focus.clone().sub(p).dot(d), s = D * (1 - crop / cmin);
+  return { ...c, pos: p.addScaledVector(d, s).toArray(), target: V(...c.target).addScaledVector(d, s).toArray(), fov: 2 * Math.atan(TAN25 * cmin) * 180 / Math.PI };
+}
 
 export default {
   fps: 30, size: [1920, 1080],
@@ -161,10 +170,11 @@ export default {
       poolP.material.opacity = .16 * flick(t, 8, [[5.15, 5.6], [7.0, 7.3]]);
     }
     const boxPW = () => heroP.localToWorld(V(0, .45, 0));
-    const camS3 = t => { const k = E.inOutSine(seg(t, T.S3, T.S4)); return PP.cam({ dz: lerp(2.6, 0, k), dx: lerp(.15, -.05, k), tilt: lerp(-7.4, 3.2, k) + kick(t, 4.62, 1.1, .4), yaw: lerp(.8, .3, k), crop: lerp(.46, .83, k) }); };   // рывок строп
+    const camS3 = t => capZoom(camS3raw(t), boxPW());
+    const camS3raw = t => { const k = E.inOutSine(seg(t, T.S3, T.S4)); return PP.cam({ dz: lerp(2.6, 0, k), dx: lerp(.15, -.05, k), tilt: lerp(-7.4, 3.2, k) + kick(t, 4.62, 1.1, .4), yaw: lerp(.8, .3, k), crop: lerp(.46, .83, k) }); };   // рывок строп
     const camS4 = t => { const k = E.inOutSine(seg(t, T.S4, T.S5)), b = boxPW(); const tg = V(b.x, b.y + .05, b.z); return PP.aim({ dx: lerp(-.6, -.2, k), dy: .32, dz: lerp(.3, 2.5, k), crop: lerp(.72, .46, k) }, tg); };
     // сглаживание прицела S4 (камера «догоняет» коробку, а не прилипает): прицел = среднее по 5 точкам прошлого
-    const camS4s = t => { const s = [0, .06, .12, .18, .24].map(d => camS4(Math.max(T.S4, t - d))); const c = camS4(t); c.target = [0, 1, 2].map(i => s.reduce((a, q) => a + q.target[i], 0) / s.length); return c; };
+    const camS4s = t => { const s = [0, .06, .12, .18, .24].map(d => camS4(Math.max(T.S4, t - d))); const c = camS4(t); c.target = [0, 1, 2].map(i => s.reduce((a, q) => a + q.target[i], 0) / s.length); return capZoom(c, boxPW()); };
 
     // ====================== КОНТЕЙНЕР ======================
     const PC = makePlate({ plate: pC, h: .7, vp: [882, 523], fov: 50, left: [400, 700], right: [1400, 716], back: [882, 652], ceil: 2.43,
@@ -204,6 +214,7 @@ export default {
       // двери
       const dk = doorK(t); leafL.rotation.y = AL * (1 - dk); leafR.rotation.y = -AR * (1 - dk);
       lampC.material.opacity = .45 * flick(t, 3, [[SLAM + .05, SLAM + .55], [12.55, 12.8]]);
+      heroC.userData.sealGlow.material.opacity = .55 * (1 - seg(t, 11.9, 12.1));            // ореол пломбы гаснет до наезда на наклейку
       // перевод фокуса в S5
       if (t < T.S6) { const r = E.inOutSine(seg(t, 8.8, 9.1)); Object.assign(f.look, { dof: true, focus: lerp(1.55, 3.7, r), aperture: .0042, maxblur: .011 }); }
     }
@@ -212,7 +223,7 @@ export default {
     const camS6 = t => {
       const k = E.inOutSine(seg(t, T.S6, 12.0)), z = E.inOutQuint(seg(t, 12.05, 12.32));
       const base = PC.cam({ dx: lerp(.4, .26, k), dy: -.24, dz: lerp(.5, .8, k), yaw: lerp(-3.5, -1.2, k), tilt: 2.2, roll: 0, crop: .72 });
-      const lw = labelW(), tg = V(...base.target).lerp(lw, z), fov = lerp(base.fov, 2 * Math.atan(Math.tan(25 * Math.PI / 180) * .15) * 180 / Math.PI, z);
+      const lw = labelW(), tg = V(...base.target).lerp(lw, z), fov = lerp(base.fov, 2 * Math.atan(Math.tan(25 * Math.PI / 180) * .12) * 180 / Math.PI, z);
       const c = { ...base, target: [tg.x, tg.y, tg.z], fov };
       const sh = kick(t, SLAM, .3, .5); c.target[1] += sh; c.target[0] += sh * .6; c.roll = kick(t, SLAM, 2.5, .5);
       if (t > 12.32) { const d = t - 12.32; c.target[0] += .004 * d; c.fov *= 1 - .03 * d; }
@@ -277,8 +288,8 @@ export default {
     const scenes = [
       { id: 's1', from: T.S1, to: T.S2, set: sW, camera: camS1, update(t) { whUpdate(t); }, over(t, f) { drawHaze(f.ctx, t, '200,140,80', .05, 3); } },
       { id: 's2', from: T.S2, to: T.S3, set: sW, camera: camS2, update(t) { whUpdate(t); }, over(t, f) { drawHaze(f.ctx, t, '200,140,80', .05, 3); whip(f); } },
-      { id: 's3', from: T.S3, to: T.S4, set: sP, camera: camS3, update(t) { portPose(t); }, over(t, f) { drawHaze(f.ctx, t, '90,140,170', .06, 5); drawRain(f.ctx, t, 1); whip(f); } },
-      { id: 's4', from: T.S4, to: T.S5, set: sP, camera: camS4s, update(t) { portPose(t); }, over(t, f) { drawHaze(f.ctx, t, '90,140,170', .06, 5); drawRain(f.ctx, t, 1); } },
+      { id: 's3', from: T.S3, to: T.S4, set: sP, camera: camS3, update(t) { portPose(t); if (PP.isReady()) PP.fgMeshes.forEach(m => { m.visible = true; }); }, over(t, f) { drawHaze(f.ctx, t, '90,140,170', .06, 5); drawRain(f.ctx, t, 1); whip(f); } },
+      { id: 's4', from: T.S4, to: T.S5, set: sP, camera: camS4s, update(t) { portPose(t); PP.fgMeshes.forEach(m => { m.visible = false; }); /* v3: камера ближе (capZoom) — угол контейнера переднего плана влезал бы чёрной плитой */ }, over(t, f) { drawHaze(f.ctx, t, '90,140,170', .06, 5); drawRain(f.ctx, t, 1); } },
       { id: 's5', from: T.S5, to: T.S6, set: sC, camera: camS5, update(t, f) { contUpdate(t, f); }, over(t, f) { rainInDoorway(f, t, .9); drawHaze(f.ctx, t, '60,130,150', .045, 7); } },
       { id: 's6', from: T.S6, to: T.END, set: sC, camera: camS6, update(t, f) { contUpdate(t, f); },
         over(t, f) {
@@ -287,8 +298,7 @@ export default {
           darkOverlay(f, Math.min(.94, dark));
           const lf = flick(t, 3, [[SLAM + .05, SLAM + .55], [12.55, 12.8]]);
           glow2D(f, lampC.position, 160, '255,170,80', .35 * lf * (dk > .5 ? 1 : 0));
-          const sp = heroC.localToWorld(V(0, .14 + .62 * .52, .39)), zr = 1 / Math.tan(f.cam.fov * Math.PI / 360);
-          glow2D(f, sp, 22 * zr, '150,230,60', .55 * clamp(dark * 1.6) * (1 - .5 * seg(t, 12.9, T.END)));
+          // v3: зелёный 2D-ореол пломбы убран — на крупном плане он раздувался в мутную кляксу на полкадра
         } },
     ];
     const only = scenes.find(s => s.id === o.shot);
