@@ -1,0 +1,4 @@
+[fin_mid.png] генерирую...
+[fin_mid.png] готово -> C:\dev\projects\youtube-video\production\L001\scenes\city\raw\fin_mid.png
+
+итого: готово 1, пропущено 0, с ошибкой 0

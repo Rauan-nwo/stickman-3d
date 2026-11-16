@@ -164,57 +164,122 @@ export function taipei(stage, A, dur) {
 }
 
 // ================================================================================================
-// #298 финал: от окна офисной башни камера поднимается и отъезжает над ночным городом; окна офисов гаснут по одному.
+// #298 финал: ночной американский техкампус. Ближний стеклянный корпус с флагом, в единственном горящем окне —
+// человек за столом; второй силуэт входит и подтаскивает стул рядом («who's going to warn them?»). Потом камера
+// поднимается и отъезжает над кампусом и городом, окна офисов гаснут по одному. Конец: кампус с главным корпусом в
+// центре, разная высота крыш, небо с облаками и одна башня-доминанта на горизонте (плиты fin_near, fin_mid, fin_sky).
 // ================================================================================================
 export function final(stage, A, dur) {
   const C = noirCity(stage, {
-    fog: .00062, fogStart: 120, haze: .6, hazeH: 55, fogHi: 0x0e1e38, fogLo: 0x1d3c52,
-    skyTop: 0x050a18, skyMid: 0x0c1a32, skyLow: 0x1a3550, clouds: .5, bloom: .5,
+    fog: .00048, fogStart: 140, haze: .5, hazeH: 50, fogHi: 0x0e1e38, fogLo: 0x1d3c52,
+    skyTop: 0x050a18, skyMid: 0x0c1a32, skyLow: 0x1a3550, clouds: .5, bloom: .55,
+    grade: { sat: .95, tint: [.95, 1, 1.06], lift: [.005, .01, .024], contrast: 1.05 },
   });
-  const cam = flight([
-    { p: [6, 66, 8], at: [0, 62, -60], fov: 38 },
-    { p: [10, 118, 170], at: [0, 72, -200], fov: 40 },
-    { p: [12, 230, 520], at: [0, 55, -850], fov: 43 },
-    { p: [14, 300, 780], at: [0, 45, -950], fov: 44 },
-  ], { dur, accel: .25, decel: .3 });
-  C.makeGround({ water: [0, 0, 0, 0], grid: [0, 0, 76, 76], streetW: [16, 16], wetStreet: .15, streak: .05, lampK: .45 });
-  const L = [], pal = [0x26384e, 0x2c3c58, 0x22344a, 0x30425a, 0x283a50], neon = [0x47e0e0, 0xff4fa8];
-  sky(C, A.fin_backdrop.url, { z0: 500, hy: 120, hf: .418, R: 3600, stretch: .8 });
-  const zs = [-1500, -1100, -800, -560, -380, -220, -60];
+  const N = A.fin_near, M = A.fin_mid, NZ = -40, NW = 48, hN = NW / (N ? N.aspect : 2), gN = N ? N.ground : .1;
+  const wn = N && N.win ? N.win : [.38, .4, .62, .57];                       // окно: доли картинки [x0, y0, x1, y1] (y сверху)
+  const wx0 = (wn[0] - .5) * NW, wx1 = (wn[2] - .5) * NW, wy1 = (1 - wn[1] - gN) * hN, wy0 = (1 - wn[3] - gN) * hN;
+  const wcx = (wx0 + wx1) / 2, wcy = (wy0 + wy1) / 2, wW = wx1 - wx0, wH = wy1 - wy0;
+  const camD = wW / .36 / (2 * Math.tan(19 * Math.PI / 180) * 16 / 9);      // окно ~36% ширины кадра в начале
+  const path = flight([
+    { p: [wcx, wcy + .3, NZ + camD], at: [wcx, wcy, NZ], fov: 38 },
+    { p: [wcx + 1.5, wcy + 4, NZ + camD + 14], at: [wcx, wcy + 1, NZ], fov: 38 },
+    { p: [wcx + 3, 30, NZ + camD + 60], at: [0, 28, -300], fov: 41 },
+    { p: [6, 55, 130], at: [0, 48, -700], fov: 43 },
+    { p: [8, 60, 175], at: [0, 52, -720], fov: 44 },
+  ], { dur, accel: .01, decel: .01 });
+  // время -> путь: ~1.6 с камера почти стоит у окна (сцена со стулом), потом подъём и отъезд с торможением в конце
+  const sm = x => { x = Math.min(1, Math.max(0, x)); return x * x * x * (x * (6 * x - 15) + 10); };
+  let Lp = 0; { let q = path(0).pos; for (let i = 1; i <= 200; i++) { const r = path(dur * i / 200).pos; Lp += Math.hypot(r[0] - q[0], r[1] - q[1], r[2] - q[2]); q = r; } }
+  const a1 = 4 / Lp, T1 = 1.45 / dur, warp = u => a1 * sm(u / T1) + (1 - a1) * sm((u - T1 * .85) / (1 - T1 * .85));
+  const cam = t => path(dur * warp(t / dur));
+  C.makeGround({ water: [-8000, -8000, 8000, -1150], waterCol: 0x0c1c2e, grid: [0, NZ + 12, 70, 70], streetW: [14, 12],
+    lawn: [-600, -370, 600, 600], grass: 0x142428, wetWater: .7, wetStreet: .12, streak: .04, lampK: .45 });
+  const L = [], glass = [0x1e3148, 0x223852, 0x1a2c42, 0x26405a, 0x203448], neon = [0x47e0e0];
+  if (A.fin_sky) sky(C, A.fin_sky.url, { z0: 500, hy: -560, hf: .19, R: 3600, stretch: .9, boost: .4 });
+  // кампус (плита) и его соседи
+  const MW = 380, MZ = -310;
+  row(C, cam, dur, -1100, { seed: 61, heightAt: x => 40 + 25 * gauss(x, -500, 300), w: [28, 50], palette: glass, lit: .4, neon, neonShare: .1, maxPpm: 6, haze: .6 }, L);
+  if (M) {
+    row(C, cam, dur, MZ - 1, { seed: 62, heightAt: () => 38, w: [30, 60], palette: glass, lit: .35, abut: [-MW / 2 + .5, MW / 2 - .5], dynamic: true, haze: .5 }, L);
+    plate(C, M, { z: MZ, wM: MW, ground: M.ground || 0, boost: .4, fogK: .55 });
+  }
+  // низкие корпуса и деревья между кампусом и ближним зданием (окна гаснут)
   const rows = [];
-  zs.forEach((z, i) => rows.push(row(C, cam, dur, z, { seed: 41 + i, heightAt: x => (z === -60 ? 70 + 60 * gauss(x, 0, 30) : 50 + 60 * gauss(x, -150 + i * 40, 250) + (z === -560 ? 150 * gauss(x, -240, 16) + 110 * gauss(x, 260, 14) : 0) + (z === -1100 ? 170 * gauss(x, 60, 20) : 0)),
-    w: z === -60 ? [34, 46] : [22, 44], palette: pal, lit: .55, neon, neonShare: .25, spireH: 160, dynamic: z > -600, maxPpm: z === -60 ? 30 : 18 }, L)));
-  // ряды позади начальной точки: ниже камеры в момент, когда она над ними
   const camAt = z => { let best = 1e9, y = 0; for (let i = 0; i <= 80; i++) { const s = cam(dur * i / 80); const d = Math.abs(s.pos[2] - z); if (d < best) { best = d; y = s.pos[1]; } } return y; };
-  for (const [z, s] of [[70, 51], [170, 52], [290, 53], [420, 54], [560, 55], [690, 56]]) { const cy = camAt(z) - 18; rows.push(row(C, cam, dur, z, { seed: s, heightAt: x => Math.min(cy, 34 + Math.abs(x) * .08), w: [22, 40], palette: [0x1e2e44, 0x22324a, 0x1a2a40], lit: .32, neon, neonShare: .15, dynamic: true }, L)); }
+  for (const [z, sd, h] of [[-250, 63, 12], [-190, 64, 11], [-130, 65, 10], [-80, 66, 9], [30, 68, 10], [70, 70, 10], [110, 69, 9]])
+    row(C, cam, dur, z, { kind: 'trees', seed: sd, heightAt: () => h, w: [7, 12], step: [.7, .9], palette: [0x18302f, 0x1a3436, 0x16282c, 0x1c3a38], haze: .2, crown: 8, keep: [[-9, 9]] }, L);
+  for (let z = -60; z > MZ + 10; z -= 18) for (const x of [-11, 11]) L.push([x, 3, z, 0xffe2b0, .6]);
+  // ближний корпус: плита + стеклянные соседи вплотную
+  rows.push(row(C, cam, dur, NZ - 1, { seed: 67, heightAt: () => hN * (1 - gN) * 1.05, w: [24, 34], step: [1, 1], palette: glass, lit: .55, cell: [3.2, 3.9], abut: [-NW / 2 + .4, NW / 2 - .4], dynamic: true, haze: .3, maxPpm: 30 }, L));
+  if (N) plate(C, N, { z: NZ, wM: NW, ground: gN, boost: .35, fogK: .4, renderOrder: 1 });
+  // ряды позади начальной точки: ниже камеры, когда она над ними
+  for (const [z, s] of [[70, 71]]) { const cy = camAt(z) - 20; rows.push(row(C, cam, dur, z, { seed: s, heightAt: () => Math.min(cy, 16), w: [26, 50], palette: glass, lit: .4, dynamic: true, haze: .3 }, L)); }
+  for (let x = -300; x <= 300; x += 26) L.push([x, 3.5, NZ + 10, 0xfff0d0, .7]);
   C.lamps(L, { k: 1000 });
-  C.hazeSheets([{ z: -400, alpha: .2, h: 35 }, { z: -1000, alpha: .3, h: 60, width: 5000 }, { z: -1700, alpha: .4, h: 90, width: 7000 }]);
-  // окна гаснут по одному: берём горящие окна, видимые в кадре в момент гашения, по одному каждые ~dt
+  C.hazeSheets([{ z: -330, alpha: .18, h: 25 }, { z: -800, alpha: .3, h: 50, width: 5000 }, { z: -1500, alpha: .38, h: 80, width: 7000 }]);
+
+  // ----- силуэты в окне: человек за столом и второй, который подтаскивает стул (2D, тёмные формы) -----
+  const deskV = N && N.desk ? N.desk : .7;                                    // линия столешницы, доля высоты окна сверху
+  const CW = 1024, CH = Math.round(CW * wH / wW), sil = document.createElement('canvas'); sil.width = CW; sil.height = CH;
+  const sx = sil.getContext('2d'), stex = new THREE.CanvasTexture(sil); stex.colorSpace = THREE.SRGBColorSpace; stex.userData.ready = true;
+  C.card(stex, { pos: V(wcx, wy0, NZ + .06), height: wH, aspect: wW / wH, bb: false, boost: 0, fogK: .4, renderOrder: 2, depthWrite: false });
+  const ease = x => x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x);
+  let lastT = -1;
+  function drawSil(t) {
+    const tq = Math.round(t * 30) / 30; if (tq === lastT) return; lastT = tq;
+    const g = sx, H = CH, W = CW, dy = H * deskV;
+    g.clearRect(0, 0, W, H); g.save();
+    g.beginPath(); g.rect(0, 0, W, dy); g.clip();                              // всё ниже столешницы скрыто столом
+    const ink = 'rgba(9,12,24,.94)', u = H / 100;
+    // 1) сидящий у монитора (смотрит влево, на монитор)
+    const breathe = Math.sin(t * 2.2) * .4 * u;
+    g.fillStyle = ink;
+    const sxp = W * .5;
+    g.beginPath(); g.roundRect(sxp - 13 * u, dy - 34 * u + breathe, 26 * u, 40 * u, 9 * u); g.fill();         // корпус
+    g.beginPath(); g.arc(sxp - 2 * u, dy - 43 * u + breathe, 8.5 * u, 0, Math.PI * 2); g.fill();             // голова
+    g.beginPath(); g.moveTo(sxp - 8 * u, dy - 20 * u); g.lineTo(sxp - 26 * u, dy - 3 * u); g.lineWidth = 6 * u; g.lineCap = 'round'; g.strokeStyle = ink; g.stroke();  // рука к клавиатуре
+    g.fillRect(sxp - 5 * u, dy - 40 * u + breathe, 7 * u, 8 * u);                                               // шея
+    // 2) второй входит справа и тянет за собой кресло; потом садится в него рядом с первым (лицом к нему)
+    const k1 = ease((t - .1) / 1.0), k2 = ease((t - 1.05) / .45);
+    const chX = W * (1.12 - .48 * k1);                                         // спинка кресла: от правого края к x = .64 W
+    const walk = Math.abs(Math.sin(t * 8)) * (1 - k1) * 2 * u, sit = 17 * u * k2;
+    const vx = chX + 26 * u * (1 - k2) - 12 * u * k2;                          // стоит справа от кресла -> сидит в нём
+    const by = dy - 54 * u + sit - walk;
+    g.beginPath(); g.roundRect(vx - 12 * u, by, 24 * u, 62 * u, 10 * u); g.fill();                              // корпус
+    g.fillRect(vx - 4 * u - 3 * u * k2, by - 8 * u, 7 * u, 10 * u);                                           // шея
+    g.beginPath(); g.arc(vx - 2 * u - 4 * u * k2, by - 12 * u, 8.5 * u, 0, Math.PI * 2); g.fill();               // голова (повёрнута к первому)
+    g.beginPath(); g.moveTo(vx - 6 * u, by + 12 * u); g.lineTo(chX + 4 * u * (1 - k2) - 30 * u * k2, dy - 22 * u + 10 * u * k2); g.lineWidth = 6 * u; g.lineCap = 'round'; g.stroke();  // рука: на спинке -> на столе
+    g.beginPath(); g.roundRect(chX - 3 * u, dy - 30 * u, 14 * u, 34 * u, 6 * u); g.fill();                   // спинка кресла (за спиной у второго)
+    g.fillRect(chX + 2 * u, dy - 3 * u, 4 * u, 6 * u);
+    g.restore();
+    // тёплая подсветка контуров со стороны монитора — чтобы силуэты читались как люди в комнате, а не дыры
+    stex.needsUpdate = true;
+  }
+  // ----- окна гаснут по одному (после того как стул подвинули) -----
   const offs = [];
   {
-    const T0 = .35, T1 = dur - .3, n = 40, P = new THREE.Vector3(), cm = new THREE.PerspectiveCamera(40, 16 / 9, .1, 1e5);
-    let k = 0; const cand = [];
-    rows.forEach((R, ri) => R.wins.forEach((w, wi) => cand.push([ri, wi, ((wi * 2654435761) >>> 0) / 4294967296])));
+    const T0 = 1.7, T1 = dur - .25, n = 28, P = new THREE.Vector3(), cm = new THREE.PerspectiveCamera(40, 16 / 9, .1, 1e5);
+    const cand = [];
+    rows.forEach((R, ri) => R.wins.forEach((w, wi) => cand.push([ri, wi, ((wi * 2654435761 + ri * 97) >>> 0) / 4294967296])));
     cand.sort((a, b) => a[2] - b[2]);
     for (let i = 0; i < n; i++) {
       const t = T0 + (T1 - T0) * i / (n - 1), s = cam(t);
       cm.fov = s.fov; cm.position.set(...s.pos); cm.lookAt(...s.target); cm.updateProjectionMatrix(); cm.updateMatrixWorld();
-      for (; k < cand.length; k++) {
+      for (let k = 0; k < cand.length; k++) {
         const [ri, wi] = cand[k], w = rows[ri].wins[wi], z = rows[ri].meshes[0].position.z;
         P.set(w.cx, w.cy, z).project(cm); const px = P.x, py = P.y, pz = P.z;
-        P.set(w.cx + w.w / rows[ri].ppm, w.cy, z).project(cm); const size = Math.abs(P.x - px) * 960;   // ширина окна на экране, px
-        if (!(Math.abs(px) < .7 && Math.abs(py) < .65 && pz < 1 && size > 6)) continue;
-        // не закрыто ли окно домом из более близкого ряда: луч камера -> окно на плоскости каждого ближнего ряда
+        P.set(w.cx + w.w / rows[ri].ppm, w.cy, z).project(cm); const size = Math.abs(P.x - px) * 960;
+        if (!(Math.abs(px) < .75 && Math.abs(py) < .7 && pz < 1 && size > 4)) continue;
         const cp = cm.position, hid = rows.some(R2 => { const z2 = R2.meshes[0].position.z; if (z2 <= z || z2 >= cp.z) return false;
           const k2 = (z2 - cp.z) / (z - cp.z), x2 = cp.x + (w.cx - cp.x) * k2, y2 = cp.y + (w.cy - cp.y) * k2;
           return R2.blds.some(b => x2 >= b.x - 1 && x2 <= b.x + b.w + 1 && y2 <= b.h + 2); });
-        if (!hid) { offs.push([t, ri, wi]); cand.splice(k, 1); k = 0; break; }
+        if (!hid) { offs.push([t, ri, wi]); cand.splice(k, 1); break; }
       }
     }
   }
   return {
     set: C, camera: cam,
-    update(t) { rows.forEach((R, ri) => R.setOff(offs.filter(o => o[1] === ri && o[0] <= t).map(o => o[2]))); },
+    update(t) { drawSil(t); rows.forEach((R, ri) => R.setOff(offs.filter(o => o[1] === ri && o[0] <= t).map(o => o[2]))); },
     over() {},
   };
 }

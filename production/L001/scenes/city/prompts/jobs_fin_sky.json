@@ -1,0 +1,10 @@
+[
+ {
+  "out": "raw/fin_sky.png",
+  "promptFile": "prompts/fin_sky.txt",
+  "refs": [
+   "refs/bg_washington_cold.png"
+  ],
+  "refMode": "material"
+ }
+]

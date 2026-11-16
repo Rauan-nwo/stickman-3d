@@ -13,40 +13,41 @@ Scene types: **A** painted bg + 2D figures, **B** painted bg inside a 3D scene, 
 
 <!-- SCRIPT START -->
 
-## 0. The Office (0:00–0:20)
+## 0. A Table in Singapore — cold open (0:00–0:35)
 
-[SCENE: moneyman's office, A. Green desk lamp, rain on the window. On the desk: an Nvidia box and a brass key. Host leans in, taps the box, then lifts the key into the light.]
+[SCENE: cold open, no title. Singapore restaurant, A, from the very first frame, caption "SINGAPORE". Candles, the night skyline. Jensen (leather jacket) on one side, Alice on the other. The danger is named in the first sentence; then names, the toast, the agents outside.]
 
-HOST: Evening. Mind the box, it's expensive.
-HOST: Inside, the most wanted chips on Earth.
-HOST: And this key opened every door to them.
-HOST: Tonight: who sat beside the man holding it.
+Picture this. In Singapore, the man who runs the most valuable company on Earth sits down to dinner across from a woman American intelligence believes is a Chinese spy.
 
-## 1. A Table in Singapore (0:20–1:00)
-
-[SCENE: Singapore restaurant, A. Candles, a window onto the night skyline. Jensen (leather jacket) on one side, Alice on the other. Glasses raised. Caption cards with names.]
-
-Picture a quiet dinner in Singapore. On one side sits Jensen Huang, the man in the leather jacket who runs Nvidia, the most valuable company on the planet. On the other sits Alice Huang. Same last name, no relation. Her company is one of his biggest customers in Asia.
+He's Jensen Huang, the man in the leather jacket who runs Nvidia. She's Alice Huang. Same last name, no relation. Her company is one of his biggest customers in Asia.
 
 JENSEN: To the next shipment.
 ALICE: To good partners.
 
 [SCENE: rainy street outside the restaurant, B. A parked car, two agents in headphones, a tape recorder turning. Camera dollies from the window to the car.]
 
-Her company buys his chips by the warehouse, the exact kind China is forbidden to have. And someone else is listening. American intelligence has been tapping her calls for more than a year, and has concluded she works for Beijing.
+Her company buys his chips by the warehouse, the exact kind China is forbidden to have. And across the street, someone is listening. American intelligence has been tapping her calls for more than a year.
 
 AGENT: She's talking to an American.
 AGENT 2: Which American?
 AGENT: The one in the jacket.
 
-[SCENE: back inside, A. Slow push-in on Jensen laughing, unaware. Title card "THE MAN WITH THE KEY" builds over black at the end.]
+[SCENE: back inside, A. Slow push-in on Jensen laughing, unaware.]
 
 Jensen has no idea.
 
 AGENT 2: Do we warn him?
 AGENT: Not tonight.
 
-So how did China get someone into the seat next to the man who controls the world's AI chips? It starts with a decision in Washington. But first, meet the man at the table. His first job in America was scrubbing toilets in Kentucky.
+## 1. The Office (0:35–0:55)
+
+[SCENE: moneyman's office, A. Green desk lamp, rain on the window. On the desk: an Nvidia box and a brass key. Host leans in, taps the box, then lifts the key into the light. The video title builds after the host's last line.]
+
+HOST: Evening. Mind the box, it's expensive.
+HOST: Inside, the most wanted chips on Earth.
+HOST: And the man at that table held the key to every one of them.
+
+So how did China get someone into the seat next to him? It starts with a decision in Washington. But first, meet the man at the table. His first job in America was scrubbing toilets in Kentucky.
 
 ## 2. The Man With the Key (1:00–3:20)
 

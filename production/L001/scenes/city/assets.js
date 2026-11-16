@@ -8,6 +8,9 @@ import sg_wheel from './assets/sg_wheel.png';
 import dc_capitol from './assets/dc_capitol.png';
 import tp_101 from './assets/tp_101.png';
 import tp_hall from './assets/tp_hall.png';
+import fin_near from './assets/fin_near.png';
+import fin_mid from './assets/fin_mid.png';
+import fin_sky from './assets/fin_sky.jpg';
 import sg_street from './assets/sg_street.png';
 import dc_wall from './assets/dc_wall.png';
 export default {
@@ -20,6 +23,9 @@ export default {
   dc_capitol: { url: dc_capitol, ...{"aspect": 2.150066401062417, "crop": [0, 0, 1, 1]} },
   tp_101: { url: tp_101, ...{"aspect": 0.7831715210355987, "crop": [0, 0, 1, 1]} },
   tp_hall: { url: tp_hall, ...{"aspect": 2.1463414634146343, "crop": [0, 0, 1, 1], "top_cut": 162, "ground_px": 872, "banner": [0.5, 0.5840821566110398, 0.5215311004784688, 0.2246469833119384], "ground": 0.08857509627727857} },
+  fin_near: { url: fin_near, ...{"aspect": 2.0193236714975846, "crop": [0, 0, 1, 1], "top_cut": 113, "ground_px": 880, "desk": 0.87, "win": [0.3845693779904306, 0.5253623188405797, 0.611244019138756, 0.6702898550724637], "ground": 0.07367149758454106} },
+  fin_mid: { url: fin_mid, ...{"aspect": 2.4955223880597015, "crop": [0, 0, 1, 1], "top_cut": 271, "ground_px": 830, "ground": 0.16567164179104477} },
+  fin_sky: { url: fin_sky, ...{"aspect": 1.7768331562167907, "crop": [0, 0, 1, 1]} },
   sg_street: { url: sg_street, ...{"aspect": 15.494158878504672, "crop": [0, 0, 1, 1], "cx": 0.4889542335821458, "ground": 0.11214953271028037, "winY": 0.23948598130841123, "ppm": 49.1764705882353} },
   dc_wall: { url: dc_wall, ...{"aspect": 2.216967333008289, "crop": [0, 0, 1, 1], "cx": 0.5016494391906752, "winY": 0.7537786445636275, "ground": 0, "ppm": 72.14285714285714} },
 };

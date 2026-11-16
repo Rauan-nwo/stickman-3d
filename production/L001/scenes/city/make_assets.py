@@ -18,7 +18,7 @@ os.makedirs(OUT, exist_ok=True)
 KIND = {
     'sg_backdrop': 'backdrop', 'dc_backdrop': 'backdrop', 'tp_backdrop': 'backdrop', 'fin_backdrop': 'backdrop',
     'sg_mbs': 'green', 'sg_wheel': 'green', 'dc_capitol': 'green', 'tp_101': 'magenta',
-    'tp_hall': 'facade',
+    'tp_hall': 'facade', 'fin_near': 'facade', 'fin_mid': 'facade', 'fin_sky': 'backdrop',
 }
 # ручные замеры (доли высоты картинки сверху; после обрезки зелёной полосы — пересчитываются ниже)
 META = json.load(open(os.path.join(HERE, 'assets_meta.json'), encoding='utf-8')) if os.path.exists(os.path.join(HERE, 'assets_meta.json')) else {}
@@ -103,6 +103,12 @@ for name, kind in KIND.items():
         # ground: доля высоты (после обрезки) ниже линии тротуара; winY: высота центра окна/баннера над тротуаром в долях ширины
         g = meta.get('ground_px')
         if g is not None: meta['ground'] = (H - g) / h2
+        if name == 'fin_near' and 'win' not in meta:    # горящее окно: самый большой тёплый яркий прямоугольник -> [x0, y0, x1, y1] доли (после обрезки)
+            c = rgb[y0:H]; warm = (c[..., 0] > .7) & (c[..., 1] > .45) & (c[..., 2] < .6)
+            lab, n = ndimage.label(warm)
+            if n:
+                big = 1 + int(np.argmax(ndimage.sum(warm, lab, range(1, n + 1)))); sl = ndimage.find_objects((lab == big).astype(int))[0]
+                meta['win'] = [sl[1].start / W, sl[0].start / h2, sl[1].stop / W, sl[0].stop / h2]
         if 'banner_px' in meta:   # баннер: [центр x доля ширины, центр y над тротуаром доля высоты, ширина доля ширины, высота доля высоты]
             bx, by = meta.pop('banner_px'); meta['banner'] = [bx / W, (g - by) / h2, 872 / W, 175 / h2]
         entries[name] = dict(file=name + '.png', aspect=W / h2, crop=[0, 0, 1, 1], top_cut=int(y0), **meta)
