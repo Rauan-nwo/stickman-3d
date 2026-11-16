@@ -23,7 +23,10 @@ const UNIT = .0059, FIGPX = UNIT * 1920 / PW;                       // пикс�
 const ARMW = 11, TOP = 752;                                         // TOP — линия столешницы (пиксели исходника)
 // посадка на стулья фона: бёдра на подушке (верх подушки ~950 пикс. плиты), торс не заходит за свес скатерти;
 // нарисованный стул (chairBack, w 470) ставится по центру героя и закрывает нарисованный на фоне
-const SEAT = [[212.5, 840.8], [1460, 836.5]], CHAIR_W = 470;
+const SEAT = [[235.1, 823.4], [1441.3, 819.0]], CHAIR_W = 470;
+// общий план: сидят на НАРИСОВАННЫХ стульях плиты (центр спинки ~x 285 / 1655, верх подушки ~y 945 / 940 пикс. плиты 1920);
+// Дженсен на 15 px левее центра спинки — иначе низ торса заходит за свес скатерти. Крупные планы — свой нарисованный стул (SEAT_CU).
+const SEAT_CU = [[212.5, 840.8], [1460, 836.5]];
 // тайминг
 const CUT = [0, 2.4, 4.6, 6.8, 8.8, 11.2, 14];
 const J_LINE = [2.75, 4.15], A_LINE = [4.95, 6.2], CLINK = 7.55;
@@ -102,7 +105,7 @@ export default {
       const pj = fixMouth(act(t, jFace)), pa = fixMouth(act(t, aFace));
       Object.assign(pj, { blink: blinkAt(t, 1), view: 'threeQuarter', facing: 1, stance: 'sitR', look: [.6, 0] });
       Object.assign(pa, { blink: blinkAt(t, 2), view: 'threeQuarter', facing: -1, stance: 'sitL', look: [-.6, 0] });
-      const cast = [{ A: J, p: pj, f: 1, near: 1, pin: [432, 729], elbow: [341.4, 719.7], at: jAt }, { A: Al, p: pa, f: -1, near: 0, pin: [1248, 729], elbow: [1339.3, 721.5], at: aAt }];
+      const cast = [{ A: J, p: pj, f: 1, near: 1, pin: [420, 730], elbow: [344, 720], at: jAt }, { A: Al, p: pa, f: -1, near: 0, pin: [1271.5, 730.2], elbow: [1336.8, 721.5], at: aAt }];
       const shadows = [];
       for (const c of cast) {
         const S = c.A.char.spec, p = c.p, g = c.at == null ? { hand: 0, body: 0 } : gesture(t, c.at, { lead: .12, rise: .24, hold: .5, fall: .32, lagFrames: 3 });
@@ -118,8 +121,6 @@ export default {
         const fa = 1 - c.near; arms[fa] = { to: restHand(S, fa ? 1 : -1), w: ARMW };
         p.arms = arms;
       }
-      if (!solo) { J.with(c => chairBack(c, { w: CHAIR_W, light: 1 })); Al.with(c => chairBack(c, { w: CHAIR_W, light: -1 }));   // стул по центру героя
-        if (A.cloth) { const [x, y, w, h] = plateRect(); stage.ctx.drawImage(A.cloth, x, y, w, h); } }                          // стол целиком перед стулом
       J.draw(pj, { only: 'base' }); Al.draw(pa, { only: 'base' });
       if (A.cloth && !solo) { const [x, y, w, h] = plateRect(), yTop = y + TOP / SH * h, ctx = stage.ctx;
         ctx.save(); ctx.beginPath(); ctx.rect(0, yTop, W, H); ctx.clip(); ctx.drawImage(A.cloth, x, y, w, h); ctx.restore(); }
@@ -168,7 +169,7 @@ export default {
     const JC = jensen(), AC = alice(), AB = alice();
     JC.spec.shade = noirShade([1, .45]); AC.spec.shade = noirShade([-1, .45], { cutY: -40 }); AC.spec.shade.head.glow.k = .12; AB.spec.shade = noirShade([-1, .45], { cutY: -40 });
     for (const C of [JC, AC, AB]) C.spec.rig = { ...C.spec.rig, armLayer: 'front' };
-    const seatJ = P19(...SEAT[0]), pinJ = P19(432, 729), elbJ = P19(341.4, 719.7), TOP19 = TOP * 1080 / SH;
+    const seatJ = P19(...SEAT_CU[0]), pinJ = P19(432, 729), elbJ = P19(341.4, 719.7), TOP19 = TOP * 1080 / SH;
     const tableTop = v => { const c = toS(v, P19(840, 723)); ctx.beginPath(); ctx.ellipse(c[0], c[1], 510 * 1920 / SW * v.k, 53 * 1080 / SH * v.k, 0, 0, Math.PI * 2); };
     // Дженсен на крупных планах: поза + руки (ближняя на столе, жест к ударному слову), рисование по слоям вокруг скатерти
     function jensenCU(t, v, { face, at, view = 'threeQuarter', lookAt = [.6, 0], lean = 0, table = 'tableB4' }) {
