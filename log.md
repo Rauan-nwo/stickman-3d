@@ -79,3 +79,6 @@ touched: production/L001/compare_scenes.md, production/L001/shotlist.md, product
 
 ## [2026-11-16 17:20] video | L001 — сцена-метафора «повара» (#62–64 по шотлисту 303): монитор 90-х → один повар CPU у длинного стола (рисованная кухня GPT + 2D-герои) → отъезд к ~5800 одинаковым поварам GPU, синхронные подбросы → все тарелки разом; 13.68 с, 1920×1080
 touched: production/L001/scenes/kitchen/
+
+## [2026-11-17 11:48] query | L001 — факт-чек 30 пунктов конкурента: 11 confirmed + 2 частично, 11 reported, 3 contradicted, 3 not found; 28 B-строк в черновик v2 (+3:08; A+B ≈ 19:14); правки: −13% → −14%, «now he runs a company»
+touched: raw/research/2026-11-17-l001-factcheck-2.md, production/L001/script_v2_draft.md
