@@ -61,6 +61,58 @@ speed, temperature, top_p. Модель — `s2.1-pro-free`: API-кредит 0,
 текстом сценария ниже 0,8 (RU 0,7; числа whisper пишет цифрами — перед сравнением они переводятся в слова) или если темп
 выпадает из медианы. Брак перегенерируется до 4 дублей, берётся лучший.
 
+## Результат сборки 2026-11-17
+
+| | EN | RU |
+|---|---|---|
+| длина дорожки | 17:20,2 (1040,2 с) | 20:12,3 (1212,3 с) |
+| темп с паузами | 165 слов/мин | 128 слов/мин |
+| темп рассказчика без пауз | 179 слов/мин | 137 слов/мин |
+| строк перегенерировано | 4 (4, 153, 154, 160) | 59 |
+| метка прочитана вслух | ни разу | ни разу |
+| медиана сходства с текстом (whisper) | 1,0 | 0,85 |
+
+Для сравнения: черновой голос edge-tts — 18:54.
+
+**EN** чистый. Остался один «флаг»: строка 154 (толпа, «GPU! GPU!») — 2,5 с, это скандирование, так и задумано.
+Самые короткие реплики — «A lot.» (0,5 с), «He's in it.», «We're looking.», «Of him?» (~0,6 с): быстрые, но целые.
+Самая длинная — строка 110 (7Road → Megaspeed), 12,1 с.
+
+**RU** понятный, но с сильным английским акцентом: голоса англоязычные, Fish S2 читает ими русский текст «как иностранец»
+(«Йо компания» вместо «Её компания»). Проба без меток и с temperature 0,6 не помогла — дело в голосах, не в режиссуре.
+Хуже всего звучат 10 строк (whisper `small` и `medium` разбирает их плохо): 36 «Каждый божий день», 60, 65 «Уолл-стрит
+не поняла», 70, 84, 138 «Но это скоро изменится», 165, 194 «Он включён?», 195, 299. Если русская дорожка нужна
+чище — поставить в неё русские голоса из библиотеки Fish (`language=ru`); в `cast.json` для этого нужен отдельный
+блок RU (нужно уточнить у Рауана).
+
+## Голоса
+
+Главные — выбор Рауана. Остальные подобраны из публичной библиотеки Fish по одной пробе на кандидата (80 голосов):
+пол и возраст проверены по высоте голоса (f0), пары в одной сценке разведены по тембру и высоте, у каждой роли свой
+голос. Клоны знаменитостей, ютуберов и персонажей игр/аниме отсеяны. Важно: два голоса из выбора Рауана сами по себе
+клоны игровых персонажей — **HOST = Leviticus Cornwall** (персонаж Red Dead Redemption 2) и **ALICE = Jane Doe**
+(персонаж Zenless Zone Zero, по описанию в библиотеке). Решение оставить или заменить — за Рауаном.
+
+| роль | голос Fish | id | speed | f0, Гц |
+|---|---|---|---|---|
+| NARRATOR | calm storyteller male | `e686ae649ee44f219a108aacba206c1a` | 0.96 | |
+| HOST | Leviticus Cornwall | `5a6774c58559475dac02eb2c91b26437` | 1.0 | |
+| JENSEN (юный Дженсен — отдельный детский голос) | Alok | `b7204d4e40ef4a548c7c8547b7f73492` | 1.0 | |
+| ALICE | Jane Doe | `9c90cae418834058b5aa51adb21dac41` | 1.0 | |
+| AGENT | Secret Agent | `77daaa587ee54edaa5c92931b49f4fa0` | 1.0 | |
+
+Второстепенные роли (44) с id, speed и f0 — в `cast.json`; кратко: AGENT 2 — alex; AUNT — Laura; UNCLE — BOOK RECORD
+REGULAR; ROOMMATE — boy; YOUNG JENSEN — Child (детский, f0 269 Гц); WAITRESS — Bella; CHRIS — Ethan; INVESTOR —
+Valentino; CUSTOMER — Energetic Male; SALESMAN — Tom Pearl; AIDE — News reporter; AIDE 2 — Sarah; OFFICER —
+Psychological; OFFICER 2 — Jordan; OFFICIAL — Adrian; ASSISTANT — Paula; CLERK — Hannah; STAFFER — Nex Watch TV;
+RENTER — Marcus the worm; REP — James FE; FAN — Alex; FAN 2 — Friendly Women; PHOTOGRAPHER — Larrry (Advertising);
+CROWD — Energetic Crowd; ACCOUNTANT — w2w; ACCOUNTANT 2 — Upbeat Woman; BANKER — Documentary; BANKER 2 — Abby (US
+audiobook); CUSTOMS — Voice DL; DRIVER — adam adam; INSPECTOR — Stoic; GUIDE — Selene; SENATOR — «Hi there — this is a
+quick sample» (пожилой мужской); COMMERCE — SK1; JUSTICE — horror; REPORTER — Adam; EDITOR — Measured Storyteller;
+CITIZEN — Man - Mae; BOARD — Deep Voice; CONGRESSMAN — peter; IMMIGRATION — Mp40; SPOKESMAN — ton; ANALYST — American
+Tech Review Voice; ANALYST 2 — New History. Женские роли — как в черновике аниматика: AUNT, WAITRESS, ASSISTANT,
+FAN 2, CLERK, ACCOUNTANT 2, EDITOR, BANKER 2, GUIDE, AIDE 2 (+ ALICE).
+
 ## Sources
 
 - `production/L001/narration.txt`, `production/L001/narration_ru.txt`, `production/L001/script.md`

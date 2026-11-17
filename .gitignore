@@ -30,3 +30,5 @@ production/channel/*.jpg
 production/channel/refs/
 production/longform/**/*.png
 production/longform/**/*.jpg
+
+__pycache__/
