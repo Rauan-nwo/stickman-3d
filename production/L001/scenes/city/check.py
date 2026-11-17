@@ -9,7 +9,7 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 W, H = 480, 270
-for shot in (sys.argv[1:] or ['singapore', 'washington', 'taipei', 'final']):
+for shot in (sys.argv[1:] or ['singapore', 'washington', 'taipei', 'final', 'towers', 'towers_5t', 'alaska']):
     mp4 = os.path.join(HERE, 'out', f'city_{shot}.mp4')
     if not os.path.exists(mp4): continue
     raw = subprocess.run(['ffmpeg', '-loglevel', 'error', '-i', mp4, '-vf', f'scale={W}:{H}', '-f', 'rawvideo', '-pix_fmt', 'gray', '-'], capture_output=True).stdout

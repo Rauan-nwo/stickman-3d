@@ -1,0 +1,10 @@
+[
+ {
+  "out": "raw/ak_backdrop.png",
+  "promptFile": "prompts/ak_backdrop.txt",
+  "refs": [
+   "refs/bg_washington_cold.png"
+  ],
+  "refMode": "material"
+ }
+]

@@ -1,0 +1,4 @@
+[ak_backdrop.png] генерирую...
+[ak_backdrop.png] готово -> C:\dev\projects\youtube-video\production\L001\scenes\city\raw\ak_backdrop.png
+
+итого: готово 1, пропущено 0, с ошибкой 0

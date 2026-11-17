@@ -283,3 +283,140 @@ export function final(stage, A, dur) {
     over() {},
   };
 }
+
+// ================================================================================================
+// #2 (и #79) башни компаний: ночной город из небоскрёбов без имён и логотипов; камера поднимается и наклоняется
+// вверх, зелёная башня (полоса цвета NVIDIA, без логотипа) вырастает из города выше всех. --set one=1 — в конце на
+// короне загорается «#1».
+// ================================================================================================
+export function towers(stage, A, dur, o = {}) {
+  const C = noirCity(stage, {
+    fog: .0004, fogStart: 120, haze: .45, hazeH: 60, fogHi: 0x0d1a33, fogLo: 0x1c3850,
+    skyTop: 0x050a18, skyMid: 0x0c1830, skyLow: 0x1a3048, clouds: .5, bloom: .6,
+  });
+  const GZ = -560, Tg = A.tw_green, Hg = 420, Wg = Tg ? Hg * Tg.aspect : 80;
+  const cam = flight([
+    { p: [0, 22, 130], at: [0, 70, -600], fov: 42 },
+    { p: [0, 78, 30], at: [0, 190, GZ], fov: 43 },
+    { p: [0, 135, -40], at: [0, 268, GZ], fov: 44 },
+  ], { dur, accel: .3, decel: .45 });
+  C.makeGround({ water: [0, 0, 0, 0], grid: [0, 0, 80, 80], streetW: [18, 16], wetStreet: .3, streak: .06, lampK: .5 });
+  const L = [], neon = [0x47e0e0, 0xff4fa8, 0x6a8cff, 0xffb24a];
+  const corp = [0x22344c, 0x2a3048, 0x1e3046, 0x2c3a52, 0x30304a, 0x243a48];
+  if (A.fin_backdrop) sky(C, A.fin_backdrop.url, { z0: 300, hy: 60, hf: .418, R: 3600, stretch: .85, boost: .35 });
+  row(C, cam, dur, -1300, { seed: 81, heightAt: x => 90 + 50 * gauss(x, -400, 300), w: [30, 55], palette: corp, lit: .45, neon, neonShare: .3, spireH: 120, maxPpm: 6 }, L);
+  row(C, cam, dur, -900, { seed: 82, heightAt: x => 120 + 40 * gauss(x, 300, 200), w: [28, 50], palette: corp, lit: .5, neon, neonShare: .3, spireH: 150, keep: [[-45, 45]] }, L);
+  // зелёная башня: поднимается из-за домов (низ под землёй закрыт землёй и рядами)
+  let gt = null;
+  if (Tg) gt = C.card(Tg.url, { pos: V(0, 0, GZ), height: Hg, aspect: Tg.aspect, bb: false, boost: .55, fogK: .35, renderOrder: 1 });
+  row(C, cam, dur, GZ + 120, { seed: 83, heightAt: x => 110 + 30 * gauss(x, -200, 150) + 25 * gauss(x, 220, 120), w: [26, 46], palette: corp, lit: .5, neon, neonShare: .3, spireH: 135 }, L);
+  row(C, cam, dur, GZ + 260, { seed: 84, heightAt: x => 85 + 40 * Math.min(1, Math.abs(x) / 200), w: [24, 40], palette: corp, lit: .55, neon, neonShare: .25, spireH: 120, keep: [[-30, 30]] }, L);
+  row(C, cam, dur, GZ + 400, { seed: 85, heightAt: x => Math.min(95, 20 + Math.max(0, Math.abs(x) - 24) * 1.1), w: [20, 34], palette: corp, lit: .5, neon, neonShare: .2, keep: [[-24, 24]] }, L);
+  row(C, cam, dur, GZ + 520, { seed: 86, heightAt: x => Math.min(80, 16 + Math.max(0, Math.abs(x) - 24) * 1.1), w: [20, 34], palette: corp, lit: .5, neon, neonShare: .2, keep: [[-24, 24]] }, L);
+  for (let z = 300; z > GZ + 100; z -= 24) for (const x of [-12, 12]) L.push([x, 5, z, NC.warmHot, .9]);
+  C.lamps(L, { k: 1100 });
+  C.hazeSheets([{ z: GZ + 200, alpha: .2, h: 40 }, { z: -1100, alpha: .3, h: 70, width: 5000 }]);
+  // рост: верх башни от уровня соседей (~120 м) до Hg; кривая — за 70% длительности, мягко
+  const sm = x => { x = Math.min(1, Math.max(0, x)); return x * x * (3 - 2 * x); };
+  const rise = t => 130 + (Hg - 130) * sm((t / dur - .08) / .72);
+  // корона-сияние и «#1»
+  const glow = (() => { const cv = document.createElement('canvas'); cv.width = cv.height = 256; const g = cv.getContext('2d');
+    const gr = g.createRadialGradient(128, 128, 0, 128, 128, 128); gr.addColorStop(0, 'rgba(190,255,120,.9)'); gr.addColorStop(.35, 'rgba(118,185,0,.45)'); gr.addColorStop(1, 'rgba(118,185,0,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, 256, 256); const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; t.userData.ready = true;
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false }));
+    m.renderOrder = 6; C.group.add(m); return m; })();
+  let one = null;
+  if (o.one) { const cv = document.createElement('canvas'); cv.width = 512; cv.height = 300; const g = cv.getContext('2d');
+    g.font = '900 230px "Arial Black", Impact, sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.shadowColor = '#9cff3a'; g.shadowBlur = 40; g.fillStyle = '#eaffd0'; g.fillText('#1', 256, 160); g.shadowBlur = 0;
+    g.lineWidth = 10; g.strokeStyle = 'rgba(10,30,5,.9)'; g.strokeText('#1', 256, 160); g.fillText('#1', 256, 160);
+    const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; t.userData.ready = true;
+    one = new THREE.Mesh(new THREE.PlaneGeometry(1, 300 / 512), new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false, toneMapped: false }));
+    one.renderOrder = 7; C.group.add(one); }
+  const crownY = () => (gt ? gt.position.y + Hg * (Tg.crown ?? .9) : 300);
+  function update(t) {
+    if (gt) gt.position.y = rise(t) - Hg;
+    const k = sm((t / dur - .55) / .35);
+    glow.position.set(0, crownY(), GZ + 2); glow.scale.setScalar(Wg * (1.2 + .4 * k)); glow.material.opacity = .25 + .55 * k;
+    if (one) { const t0 = dur - Math.min(.9, dur * .3), q = Math.min(1, Math.max(0, (t - t0) / .25)), pop = q < 1 ? 1.25 - .25 * q : 1;
+      one.visible = q > 0; one.position.set(0, crownY() - Wg * .05, GZ + 3); one.scale.setScalar(Wg * 1.05 * pop); one.material.opacity = q; }
+  }
+  return { set: C, camera: cam, update, over() {} };
+}
+
+// ================================================================================================
+// #300 Аляска: сумерки, аэродром у заснеженных гор; правительственный борт (без надписей и герба) с трапом; маленький
+// силуэт в кожанке поднимается по трапу; камера наезжает к трапу.
+// ================================================================================================
+export function alaska(stage, A, dur) {
+  const C = noirCity(stage, {
+    fog: .00035, fogStart: 150, haze: .35, hazeH: 40, fogHi: 0x1a2440, fogLo: 0x3a4a68,
+    skyTop: 0x0c1028, skyMid: 0x1c2448, skyLow: 0x40506e, clouds: .3, bloom: .5,
+    grade: { sat: .92, tint: [.97, .99, 1.07], lift: [.008, .01, .03], contrast: 1.05 },
+  });
+  const J = A.ak_jet, JZ = -150, JW = 76, JH = J ? JW / J.aspect : 20, jx = 0;
+  const st = J && J.stairs ? J.stairs : [.22, .97, .3, .45];              // трап: низ (x, y) и верх-дверь (x, y), доли картинки, y сверху
+  const sx0 = jx + (st[0] - .5) * JW, sy0 = (1 - st[1]) * JH, sx1 = jx + (st[2] - .5) * JW, sy1 = (1 - st[3]) * JH;
+  const cx = (sx0 + sx1) / 2;
+  const cam = flight([
+    { p: [cx + 40, 7, JZ + 150], at: [jx - 6, 17, JZ], fov: 40 },
+    { p: [cx + 16, 6.5, JZ + 90], at: [cx + 3, 12.5, JZ], fov: 40 },
+    { p: [cx + 6, 6, JZ + 52], at: [cx + 1, 9.5, JZ], fov: 40 },
+  ], { dur, accel: .25, decel: .5 });
+  C.makeGround({ water: [0, 0, 0, 0], grid: [0, 0, 400, 400], streetW: [0, 0], lawn: [-8000, -8000, 8000, 8000], grass: 0x4e5c80,
+    asphalt: 0x262e40, wetStreet: .3, streak: .04, lampK: .4, lamp: 0xffc070 });
+  const L = [];
+  if (A.ak_backdrop) sky(C, A.ak_backdrop.url, { z0: 300, hy: 0, hf: .27, R: 3400, stretch: .95, boost: .3 });
+  if (A.ak_terminal) { const T = A.ak_terminal, cw = .963, wT = 170, hT = wT / (T.aspect * cw);   // края с обрезками забора отрезаны
+    C.card(T.url, { pos: V(150, -(T.ground || 0) * hT, -470), height: hT, aspect: T.aspect * cw, bb: false, boost: .35, fogK: .55, crop: [.021, 0, cw, 1] }); }
+  // перрон: тёмная полоса асфальта под бортом (горизонтальная плоскость поверх снега)
+  { const ac = document.createElement('canvas'); ac.width = 512; ac.height = 128; const ax = ac.getContext('2d'); const ag = ax.createLinearGradient(0, 0, 0, 128);
+    ag.addColorStop(0, 'rgba(28,34,50,0)'); ag.addColorStop(.25, 'rgba(28,34,50,.6)'); ag.addColorStop(.75, 'rgba(28,34,50,.6)'); ag.addColorStop(1, 'rgba(28,34,50,0)'); ax.fillStyle = ag; ax.fillRect(0, 0, 512, 128);
+    const at = new THREE.CanvasTexture(ac); at.colorSpace = THREE.SRGBColorSpace;
+    const g = new THREE.Mesh(new THREE.PlaneGeometry(900, 160), new THREE.MeshBasicMaterial({ map: at, transparent: true, depthWrite: false }));
+    g.rotation.x = -Math.PI / 2; g.position.set(0, .05, JZ + 10); g.renderOrder = 1; C.group.add(g);
+    const sh = document.createElement('canvas'); sh.width = 512; sh.height = 128; const x = sh.getContext('2d');
+    const gr = x.createRadialGradient(256, 64, 10, 256, 64, 250); gr.addColorStop(0, 'rgba(0,0,8,.55)'); gr.addColorStop(1, 'rgba(0,0,8,0)');
+    x.setTransform(1, 0, 0, .25, 0, 48); x.fillStyle = gr; x.fillRect(0, 0, 512, 512);
+    const t = new THREE.CanvasTexture(sh); const m = new THREE.Mesh(new THREE.PlaneGeometry(JW * 1.1, 26), new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false }));
+    m.rotation.x = -Math.PI / 2; m.position.set(jx, .1, JZ + 2); m.renderOrder = 2; C.group.add(m); }
+  if (J) C.card(J.url, { pos: V(jx, -.1, JZ), height: JH, aspect: J.aspect, bb: false, boost: .5, fogK: .4, renderOrder: 3, tint: [.6, .66, .86] });
+  L.push([sx1 - .5, sy1 + 1.2, JZ + .6, 0xffc070, 1.1]);   // свет из открытой двери
+  // огни: синие рулёжные в перспективе, жёлтые прожекторы перрона
+  for (let z = 400; z > -1600; z -= 30) for (const x of [-60, 60]) L.push([x + (z < JZ ? 0 : 0), .6, z, 0x5a8cff, .7]);
+  for (let x = -400; x <= 400; x += 80) L.push([x, 18, JZ - 60, 0xffd59a, 1.4]);
+  for (let x = -300; x <= 300; x += 9) L.push([x, .4, JZ + 45, 0xffe0a0, .55], [x + 4.5, .4, JZ + 70, 0x5a8cff, .6]);   // кромка рулёжки на переднем плане
+  C.lamps(L, { k: 900 });
+  C.hazeSheets([{ z: -500, alpha: .2, h: 25, color: 0x5a6c90 }, { z: -1200, alpha: .3, h: 60, width: 5000, color: 0x4a5a80 }]);
+  // силуэт на трапе (2D): поднимается от низа к двери, шаги
+  const SW = 6, SH = 8, sc = document.createElement('canvas'); sc.width = 256; sc.height = 340; const sg = sc.getContext('2d');
+  const stx = new THREE.CanvasTexture(sc); stx.colorSpace = THREE.SRGBColorSpace; stx.userData.ready = true;
+  const man = C.card(stx, { pos: V(0, 0, JZ + .4), height: 4.2, aspect: 256 / 340, bb: false, boost: 0, fogK: .3, renderOrder: 4, depthWrite: false });
+  let lastQ = -1;
+  function drawMan(t) {
+    const k = Math.min(1, Math.max(0, (t - dur * .15) / (dur * .65))), q = Math.round(t * 30);
+    const kin = Math.min(1, Math.max(0, (t - dur * .82) / (dur * .12)));        // у двери: шаг внутрь и растворяется в проёме
+    const x = sx0 + (sx1 - sx0) * k + kin * 1.2, y = sy0 + (sy1 - sy0) * k;
+    man.position.set(x, y, JZ + .4); man.material.uniforms.uOpacity.value = 1 - kin;
+    if (q === lastQ) return; lastQ = q;
+    const g = sg, u = 3.4, cx = 128, ph = t * 7, st = k > 0 && k < 1 ? Math.sin(ph) : 0;
+    g.clearRect(0, 0, 256, 340); const ink = 'rgba(8,10,20,.97)'; g.fillStyle = ink; g.strokeStyle = ink; g.lineCap = 'round'; g.lineJoin = 'round';
+    // ноги (брюки): шаг вверх по ступеням — колено поднимается
+    g.lineWidth = 7.5 * u;
+    const hip = [cx, 56 * u], kneeA = [cx + 6 * u + 4 * u * st, 74 * u - 6 * u * Math.max(0, st)], footA = [cx + 4 * u + 6 * u * st, 96 * u - 8 * u * Math.max(0, st)];
+    const kneeB = [cx - 3 * u - 3 * u * st, 76 * u + 4 * u * Math.min(0, st)], footB = [cx - 7 * u - 4 * u * st, 97 * u];
+    for (const [kn, ft] of [[kneeB, footB], [kneeA, footA]]) { g.beginPath(); g.moveTo(...hip); g.lineTo(...kn); g.lineTo(...ft); g.stroke(); }
+    // корпус в кожанке (чуть наклонён вперёд-вправо — вверх по трапу)
+    g.beginPath(); g.moveTo(cx - 11 * u, 58 * u); g.lineTo(cx - 9 * u, 22 * u); g.quadraticCurveTo(cx, 16 * u, cx + 10 * u, 21 * u); g.lineTo(cx + 13 * u, 58 * u); g.closePath(); g.fill();
+    // рука на поручне
+    g.lineWidth = 6 * u; g.beginPath(); g.moveTo(cx + 7 * u, 26 * u); g.lineTo(cx + 15 * u, 40 * u); g.lineTo(cx + 22 * u, 36 * u); g.stroke();
+    // шея и голова
+    g.fillRect(cx - 2 * u, 12 * u, 6 * u, 8 * u); g.beginPath(); g.arc(cx + 2 * u, 9 * u, 7.5 * u, 0, Math.PI * 2); g.fill();
+    stx.needsUpdate = true;
+  }
+  // снег 2D: редкие медленные хлопья
+  const flakes = []; { let s = 7; const r = () => ((s = (s * 16807) % 2147483647) / 2147483647); for (let i = 0; i < 160; i++) flakes.push([r() * 1920, r() * 1080, .6 + r() * 1.8, .3 + r() * .7, r() * 6.28]); }
+  function snow(ctx, t) { ctx.save(); for (const [x0, y0, rr, sp, ph] of flakes) { const y = (y0 + t * 70 * sp) % 1100 - 10, x = x0 + Math.sin(t * .8 + ph) * 14 - t * 12 * sp;
+      ctx.globalAlpha = .25 + .35 * sp; ctx.fillStyle = '#e8f0ff'; ctx.beginPath(); ctx.arc(((x % 1920) + 1920) % 1920, y, rr, 0, 6.283); ctx.fill(); } ctx.restore(); }
+  return { set: C, camera: cam, update(t) { drawMan(t); }, over(t, f) { snow(f.ctx, t); } };
+}

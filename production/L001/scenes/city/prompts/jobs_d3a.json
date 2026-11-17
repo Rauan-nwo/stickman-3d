@@ -1,0 +1,18 @@
+[
+ {
+  "out": "raw/tw_green.png",
+  "promptFile": "prompts/tw_green.txt",
+  "refs": [
+   "refs/bg_event_hall.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "raw/ak_terminal.png",
+  "promptFile": "prompts/ak_terminal.txt",
+  "refs": [
+   "refs/bg_washington_cold.png"
+  ],
+  "refMode": "material"
+ }
+]

@@ -1,0 +1,4 @@
+[ak_jet.png] генерирую...
+[ak_jet.png] готово -> C:\dev\projects\youtube-video\production\L001\scenes\city\raw\ak_jet.png
+
+итого: готово 1, пропущено 0, с ошибкой 0

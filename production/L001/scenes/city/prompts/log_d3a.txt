@@ -1,0 +1,6 @@
+[tw_green.png] генерирую...
+[tw_green.png] готово -> C:\dev\projects\youtube-video\production\L001\scenes\city\raw\tw_green.png
+[ak_terminal.png] генерирую...
+[ak_terminal.png] готово -> C:\dev\projects\youtube-video\production\L001\scenes\city\raw\ak_terminal.png
+
+итого: готово 2, пропущено 0, с ошибкой 0

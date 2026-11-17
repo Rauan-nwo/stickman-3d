@@ -9,6 +9,8 @@ PAIRS = {  # кадр (с) -> фон
     'washington': [('0.8', 'bg_washington_cold.png'), ('end', 'bg_washington_cold.png')],
     'taipei': [('0.8', 'bg_taipei_bar_dry.png'), ('end', 'bg_event_hall.png')],
     'final': [('1.3', 'bg_washington_cold.png'), ('end', 'bg_newsroom.png')],
+    'towers': [('1.0', 'bg_newsroom.png'), ('end', 'bg_taipei_bar_dry.png')],
+    'alaska': [('0.4', 'bg_washington_cold.png'), ('end', 'bg_washington_cold.png')],
 }
 for shot, pairs in PAIRS.items():
     mp4 = os.path.join(HERE, 'out', f'city_{shot}.mp4')

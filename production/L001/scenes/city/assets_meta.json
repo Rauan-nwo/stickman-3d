@@ -24,5 +24,16 @@
  },
  "fin_mid": {
   "ground_px": 830
+ },
+ "ak_jet": {
+  "stairs_px": [
+   232,
+   738,
+   392,
+   550
+  ]
+ },
+ "ak_terminal": {
+  "ground_px": 875
  }
 }

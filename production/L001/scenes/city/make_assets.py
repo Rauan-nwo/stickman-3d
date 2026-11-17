@@ -18,7 +18,7 @@ os.makedirs(OUT, exist_ok=True)
 KIND = {
     'sg_backdrop': 'backdrop', 'dc_backdrop': 'backdrop', 'tp_backdrop': 'backdrop', 'fin_backdrop': 'backdrop',
     'sg_mbs': 'green', 'sg_wheel': 'green', 'dc_capitol': 'green', 'tp_101': 'magenta',
-    'tp_hall': 'facade', 'fin_near': 'facade', 'fin_mid': 'facade', 'fin_sky': 'backdrop',
+    'tp_hall': 'facade', 'fin_near': 'facade', 'fin_mid': 'facade', 'fin_sky': 'backdrop', 'tw_green': 'magenta', 'ak_jet': 'green', 'ak_backdrop': 'backdrop', 'ak_terminal': 'facade',
 }
 # ручные замеры (доли высоты картинки сверху; после обрезки зелёной полосы — пересчитываются ниже)
 META = json.load(open(os.path.join(HERE, 'assets_meta.json'), encoding='utf-8')) if os.path.exists(os.path.join(HERE, 'assets_meta.json')) else {}
@@ -85,10 +85,22 @@ for name, kind in KIND.items():
         entries[name] = dict(file=name + '.jpg', aspect=W / H, crop=[0, 0, 1, 1], **meta)
     elif kind in ('green', 'magenta'):
         alpha = cutout(a, kind)
+        if kind == 'magenta':     # ореолы, смешанные с пурпуром (розовая кайма), — убрать: свечение добавит код
+            tint = np.minimum(a[..., 0], a[..., 2]) - a[..., 1]
+            alpha = np.where(tint > .06, 0.0, alpha)
+            if name == 'tw_green':  # нарисованный ореол над короной (зелёный/розоватый) — убрать целиком, кроме окон и красного огня
+                r_, g_, b_ = a[..., 0], a[..., 1], a[..., 2]; lum = (r_ + g_ + b_) / 3
+                amber = (r_ > .75) & (b_ < .45); red = (r_ > .7) & (g_ < .45)
+                halo = (lum > .42) & ~amber & ~red; halo[140:] = False
+                alpha = np.where(halo, 0.0, alpha)
+            alpha = ndimage.gaussian_filter(alpha, .6)
         rgb = despill(a, alpha, kind)
         y0, y1, x0, x1 = bbox(alpha)
         rgba = np.concatenate([rgb, alpha[..., None]], -1)[y0:y1, x0:x1]
         Image.fromarray((np.clip(rgba, 0, 1) * 255 + .5).astype(np.uint8), 'RGBA').save(os.path.join(OUT, name + '.png'), optimize=True)
+        if 'stairs_px' in meta:   # трап: [x низа, y низа, x верха, y верха] px исходника -> доли вырезки (y сверху)
+            sx0, sy0, sx1, sy1 = meta.pop('stairs_px'); W_, H_ = x1 - x0, y1 - y0
+            meta['stairs'] = [(sx0 - x0) / W_, (sy0 - y0) / H_, (sx1 - x0) / W_, (sy1 - y0) / H_]
         entries[name] = dict(file=name + '.png', aspect=(x1 - x0) / (y1 - y0), crop=[0, 0, 1, 1], **meta)
         # проверочный кадр: вырезка на сером и на тёмно-синем
         ch = Image.new('RGB', (x1 - x0, y1 - y0), (40, 60, 90)); ch.paste(Image.open(os.path.join(OUT, name + '.png')), (0, 0), Image.open(os.path.join(OUT, name + '.png')))

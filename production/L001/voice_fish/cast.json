@@ -1,9 +1,339 @@
 {
-  "_note": "Голоса L001 в Fish Audio (выбор Рауана 2026-11-17). Режиссура — метки S2 в тексте ([confident], [emphasis], [break], [long-break], [soft tone] …). Второстепенные роли подбираются отдельно и отличаются друг от друга.",
-  "model": "s2.1-pro-free (бесплатная; для финала — s2.1-pro после пополнения API-кредита)",
-  "NARRATOR": { "id": "e686ae649ee44f219a108aacba206c1a", "name": "Calm Storyteller", "speed": 0.96, "temperature": 0.75, "top_p": 0.75 },
-  "HOST":     { "id": "5a6774c58559475dac02eb2c91b26437", "name": "Leviticus Cornwall", "speed": 1.0 },
-  "JENSEN":   { "id": "b7204d4e40ef4a548c7c8547b7f73492", "name": "Alok", "speed": 1.0 },
-  "ALICE":    { "id": "9c90cae418834058b5aa51adb21dac41", "name": "Jane Doe", "speed": 1.0 },
-  "AGENT":    { "id": "77daaa587ee54edaa5c92931b49f4fa0", "name": "Secret Agent", "speed": 1.0 }
+ "_note": "Голоса L001 в Fish Audio. Главные (NARRATOR, HOST, JENSEN, ALICE, AGENT) — выбор Рауана 2026-11-17. Остальные 44 роли подобраны 2026-11-17 из публичной библиотеки Fish (без клонов знаменитостей и персонажей игр/аниме), у каждой роли свой голос, пол как в аниматике; f0_hz — медианная высота голоса на пробе (для контроля пола и контраста в паре). speed подогнан под ~200 слов/мин на короткой реплике. Режиссура — метки S2 в narration_directed.txt.",
+ "model": "s2.1-pro-free (бесплатная; API-кредит 0, платная s2.1-pro отвечает 402)",
+ "NARRATOR": {
+  "id": "e686ae649ee44f219a108aacba206c1a",
+  "name": "Calm Storyteller",
+  "speed": 0.96,
+  "temperature": 0.75,
+  "top_p": 0.75
+ },
+ "HOST": {
+  "id": "5a6774c58559475dac02eb2c91b26437",
+  "name": "Leviticus Cornwall",
+  "speed": 1.0
+ },
+ "JENSEN": {
+  "id": "b7204d4e40ef4a548c7c8547b7f73492",
+  "name": "Alok",
+  "speed": 1.0
+ },
+ "ALICE": {
+  "id": "9c90cae418834058b5aa51adb21dac41",
+  "name": "Jane Doe",
+  "speed": 1.0
+ },
+ "AGENT": {
+  "id": "77daaa587ee54edaa5c92931b49f4fa0",
+  "name": "Secret Agent",
+  "speed": 1.0
+ },
+ "AGENT 2": {
+  "id": "1d52151a55eb4878a997bd06e816b5f6",
+  "name": "alex",
+  "speed": 0.96,
+  "f0_hz": 140,
+  "note": "мужской, моложе и выше Secret Agent — шёпот в паре"
+ },
+ "AUNT": {
+  "id": "e3cd384158934cc9a01029cd7d278634",
+  "name": "Laura",
+  "speed": 0.94,
+  "f0_hz": 180,
+  "note": "женский, взрослый, уверенный"
+ },
+ "UNCLE": {
+  "id": "f8dfe9c83081432386f143e2fe9767ef",
+  "name": "BOOK RECORD REGULAR",
+  "speed": 1.12,
+  "f0_hz": 95,
+  "note": "мужской, зрелый, низкий с хрипотцой"
+ },
+ "ROOMMATE": {
+  "id": "d9ce1833c191476db346efb50aa20722",
+  "name": "boy",
+  "speed": 0.92,
+  "f0_hz": 116,
+  "note": "мужской, молодой (старший подросток), расслабленный"
+ },
+ "YOUNG JENSEN": {
+  "id": "0c0f9d7d87e44e2dabb53ebb092f5f53",
+  "name": "Child",
+  "speed": 1.0,
+  "f0_hz": 269,
+  "note": "детский голос"
+ },
+ "WAITRESS": {
+  "id": "4c7e8d91253145b582ff36622ecf193c",
+  "name": "Bella",
+  "speed": 1.0,
+  "f0_hz": 216,
+  "note": "женский, дерзкий"
+ },
+ "CHRIS": {
+  "id": "536d3a5e000945adb7038665781a4aca",
+  "name": "Ethan",
+  "speed": 0.92,
+  "f0_hz": 106,
+  "note": "мужской, американский, живой"
+ },
+ "INVESTOR": {
+  "id": "d6cc48df129d45b18d5fe1afb76c1a92",
+  "name": "Valentino",
+  "speed": 1.12,
+  "f0_hz": 104,
+  "note": "мужской, низкий, «дорогой»"
+ },
+ "CUSTOMER": {
+  "id": "802e3bc2b27e49c2995d23ef70e6ac89",
+  "name": "Energetic Male",
+  "speed": 1.02,
+  "f0_hz": 188,
+  "note": "мужской, молодой, нетерпеливый"
+ },
+ "SALESMAN": {
+  "id": "f4923bed889f48c79ebb455e6c45e9f5",
+  "name": "Tom Pearl",
+  "speed": 0.92,
+  "f0_hz": 133,
+  "note": "мужской, низкий с хрипотцой, расслабленный"
+ },
+ "AIDE": {
+  "id": "05aff7ff557d45d2ace9a639452451ea",
+  "name": "News reporter",
+  "speed": 0.92,
+  "f0_hz": 130,
+  "note": "мужской, чёткий, деловой"
+ },
+ "OFFICER": {
+  "id": "c8c398f58ea74012969c3d9e51dd086c",
+  "name": "Psychological",
+  "speed": 1.12,
+  "f0_hz": 86,
+  "note": "мужской, низкий, серьёзный"
+ },
+ "OFFICER 2": {
+  "id": "79d0bd3e4e5444b18f7b6d89b5927bf1",
+  "name": "Jordan",
+  "speed": 1.0,
+  "f0_hz": 134,
+  "note": "мужской, зрелый, уверенный"
+ },
+ "OFFICIAL": {
+  "id": "bf322df2096a46f18c579d0baa36f41d",
+  "name": "Adrian",
+  "speed": 1.12,
+  "f0_hz": 113,
+  "note": "мужской, ровный, сухой"
+ },
+ "ASSISTANT": {
+  "id": "c2623f0c075b4492ac367989aee1576f",
+  "name": "Paula",
+  "speed": 1.12,
+  "f0_hz": 190,
+  "note": "женский, деловой"
+ },
+ "CLERK": {
+  "id": "9a9cf47702da476aa4629e2506d4a857",
+  "name": "Hannah",
+  "speed": 1.0,
+  "f0_hz": 232,
+  "note": "женский, деловой, звонкий"
+ },
+ "STAFFER": {
+  "id": "eebc395fe36b45a8b313fca358c34a92",
+  "name": "Nex Watch TV",
+  "speed": 0.94,
+  "f0_hz": 173,
+  "note": "мужской, молодой, дружелюбный"
+ },
+ "RENTER": {
+  "id": "8bed0e9b444046e2bf72da4b251d9a1d",
+  "name": "Marcus the worm",
+  "speed": 1.12,
+  "f0_hz": 91,
+  "note": "мужской, низкий, гладкий"
+ },
+ "REP": {
+  "id": "3863442a6d7b46d0adc17c62829d9150",
+  "name": "James FE",
+  "speed": 0.92,
+  "f0_hz": 126,
+  "note": "мужской, деловой"
+ },
+ "FAN": {
+  "id": "b5f4515fd395410b9ed3aef6fa51d9a0",
+  "name": "Alex",
+  "speed": 0.96,
+  "f0_hz": 131,
+  "note": "мужской, молодой, энергичный"
+ },
+ "FAN 2": {
+  "id": "b545c585f631496c914815291da4e893",
+  "name": "Friendly Women",
+  "speed": 1.0,
+  "f0_hz": 225,
+  "note": "женский, молодой, яркий"
+ },
+ "PHOTOGRAPHER": {
+  "id": "d114dfc1ac7f422d88faf45da0f937e3",
+  "name": "Larrry (Advertising)",
+  "speed": 0.92,
+  "f0_hz": 138,
+  "note": "мужской, громкий, ведущий"
+ },
+ "CROWD": {
+  "id": "35a41c4c9e754e49a124a4bab5aa47e6",
+  "name": "Energetic Crowd",
+  "speed": 1.0,
+  "f0_hz": 111,
+  "note": "толпа"
+ },
+ "ACCOUNTANT": {
+  "id": "4746f1b456494387993af9041d0516c4",
+  "name": "w2w",
+  "speed": 1.12,
+  "f0_hz": 126,
+  "note": "мужской, спокойный"
+ },
+ "ACCOUNTANT 2": {
+  "id": "e107ce68d2a64e928c3a674781ce9d56",
+  "name": "Upbeat Woman",
+  "speed": 1.08,
+  "f0_hz": 232,
+  "note": "женский, бодрый"
+ },
+ "BANKER": {
+  "id": "c3958f083c2d407982263c77cfa831e3",
+  "name": "Documentary",
+  "speed": 1.0,
+  "f0_hz": 101,
+  "note": "мужской, зрелый, британский"
+ },
+ "BANKER 2": {
+  "id": "f6a19fe5ab494e1fa51bb1476d583a44",
+  "name": "Abby: English Woman (US) - Audiobook",
+  "speed": 1.0,
+  "f0_hz": 176,
+  "note": "женский, американский"
+ },
+ "CUSTOMS": {
+  "id": "1936333080804be19655c6749b2ae7b2",
+  "name": "Voice DL",
+  "speed": 1.12,
+  "f0_hz": 104,
+  "note": "мужской, зрелый, низкий, скучающий"
+ },
+ "DRIVER": {
+  "id": "9259a7392c454a1eb6436141abb5a558",
+  "name": "adam adam",
+  "speed": 0.92,
+  "f0_hz": 154,
+  "note": "мужской, молодой"
+ },
+ "INSPECTOR": {
+  "id": "2947ec32c7e1479c8ec5628a1fc035f1",
+  "name": "Stoic",
+  "speed": 1.12,
+  "f0_hz": 111,
+  "note": "мужской, британский, сдержанный"
+ },
+ "GUIDE": {
+  "id": "b347db033a6549378b48d00acb0d06cd",
+  "name": "Selene",
+  "speed": 1.12,
+  "f0_hz": 151,
+  "note": "женский, тихий, спокойный"
+ },
+ "SENATOR": {
+  "id": "24379298f58f4d3a9da1685030f50f68",
+  "name": "Hi there — this is a quick sample",
+  "speed": 1.04,
+  "f0_hz": 129,
+  "note": "мужской, пожилой"
+ },
+ "COMMERCE": {
+  "id": "7295a63f84f64fa29730719b83239ebd",
+  "name": "SK1",
+  "speed": 1.12,
+  "f0_hz": 116,
+  "note": "мужской, североамериканский"
+ },
+ "JUSTICE": {
+  "id": "ef9c79b62ef34530bf452c0e50e3c260",
+  "name": "horror",
+  "speed": 1.12,
+  "f0_hz": 81,
+  "note": "мужской, очень низкий, серьёзный"
+ },
+ "AIDE 2": {
+  "id": "933563129e564b19a115bedd57b7406a",
+  "name": "Sarah",
+  "speed": 1.0,
+  "f0_hz": 199,
+  "note": "женский, молодой, мягкий"
+ },
+ "REPORTER": {
+  "id": "722523118ee94709b661502c76b016b7",
+  "name": "Adam",
+  "speed": 0.92,
+  "f0_hz": 127,
+  "note": "мужской, энергичный"
+ },
+ "EDITOR": {
+  "id": "8906b5268cae414fb9b8d3da6e84413d",
+  "name": "Measured Storyteller",
+  "speed": 1.1,
+  "f0_hz": 176,
+  "note": "женский, ровный"
+ },
+ "CITIZEN": {
+  "id": "48b83695ea7f4b2d8ebcd63a0775a3bd",
+  "name": "Man - Mae",
+  "speed": 0.92,
+  "f0_hz": 113,
+  "note": "мужской, мягкий"
+ },
+ "BOARD": {
+  "id": "e422370a73e4439b8ccc10d58b78819b",
+  "name": "Deep Voice",
+  "speed": 1.1,
+  "f0_hz": 114,
+  "note": "мужской, спокойный, авторитетный"
+ },
+ "CONGRESSMAN": {
+  "id": "a84d19016bc34098b3c89d78f9299e33",
+  "name": "peter",
+  "speed": 0.92,
+  "f0_hz": 143,
+  "note": "мужской, зрелый, деловой"
+ },
+ "IMMIGRATION": {
+  "id": "e978dba06f7047a787221160b3e2daa0",
+  "name": "Mp40",
+  "speed": 0.92,
+  "f0_hz": 100,
+  "note": "мужской, чёткий"
+ },
+ "SPOKESMAN": {
+  "id": "b97618c195814c9fb7558ea34093cd28",
+  "name": "ton",
+  "speed": 1.06,
+  "f0_hz": 101,
+  "note": "мужской, гладкий, профессиональный"
+ },
+ "ANALYST": {
+  "id": "a80cf1a25ee848c78d61ebcbe68be474",
+  "name": "American Tech Review Voice",
+  "speed": 0.92,
+  "f0_hz": 145,
+  "note": "мужской, молодой, деловой"
+ },
+ "ANALYST 2": {
+  "id": "80e34d5e0b2b4577a486f3a77e357261",
+  "name": "New History",
+  "speed": 0.96,
+  "f0_hz": 96,
+  "note": "мужской, низкий с хрипотцой"
+ }
 }

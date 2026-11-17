@@ -1,0 +1,10 @@
+[
+ {
+  "out": "raw/ak_jet.png",
+  "promptFile": "prompts/ak_jet.txt",
+  "refs": [
+   "refs/bg_washington_cold.png"
+  ],
+  "refMode": "material"
+ }
+]
