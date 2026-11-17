@@ -113,6 +113,26 @@ CITIZEN — Man - Mae; BOARD — Deep Voice; CONGRESSMAN — peter; IMMIGRATION 
 Tech Review Voice; ANALYST 2 — New History. Женские роли — как в черновике аниматика: AUNT, WAITRESS, ASSISTANT,
 FAN 2, CLERK, ACCOUNTANT 2, EDITOR, BANKER 2, GUIDE, AIDE 2 (+ ALICE).
 
+## Ведущий (HOST) — переделка, ждёт выбора Рауана
+
+Рауан: «тональность резко меняется и в такт не попадает». Причина — каждая реплика ведущего синтезировалась отдельным
+запросом со своей меткой: высота голоса по строкам 18–21 прыгала 176–340 Гц. Новые дубли (`host_takes.py`):
+все 4 реплики главы 1 — **один запрос**, одна метка `[confident]` на весь дубль, ударения только `[emphasis]` (box,
+chips, key), temperature 0.5 / top_p 0.55; дубль режется по словам whisper, реплики склеены через 0.3 с, темп
+подогнан под ~155 слов/мин. Метки вслух не прочитаны ни в одном дубле.
+
+| файл | голос | id | speed | длина | слов/мин | f0 по репликам, Гц |
+|---|---|---|---|---|---|---|
+| `host_takes/1_LeviticusCornwall.mp3` | Leviticus Cornwall (клон персонажа RDR2 — риск для монетизации) | `5a6774c58559475dac02eb2c91b26437` | 1.08 | 13,1 с | 161 | 271 / 200 / 229 / 204 |
+| `host_takes/2_OldRadio.mp3` | Old radio — трансатлантический радиоконферансье, шоумен | `190fab3282be4b97bf07c272c86814e2` | 1.0 | 13,3 с | 158 | 271 / 232 / 246 / 242 |
+| `host_takes/3_DavidBritishStoryteller.mp3` | David - British Storyteller — зрелый, тёплый, британский | `72324f5951924b2eb27faaf5630153b4` | 1.14 | 13,7 с | 154 | 109 / 105 / 86 / 115 |
+| `host_takes/4_BrianBritish.mp3` | Brian British — утончённый британский, самый ровный | `65c0b8155c464a648161af8877404f11` | 1.0 | 13,5 с | 155 | 90 / 89 / 82 / 82 |
+
+Запасной: `out/host_spare/BritishStoryteller.mp3` (British Storyteller, `1d304964fcfe4c5998cfe7b7298aa727`, f0 131–133).
+Подробности — `host_takes/takes.json`. После выбора: вписать голос в `cast.json`, тем же способом (один запрос на сцену)
+озвучить финал (строки 318–320) и пересобрать дорожки — `fish_voice.py` пока синтезирует HOST построчно, это нужно
+будет заменить на дубли из `host_takes.py`.
+
 ## Sources
 
 - `production/L001/narration.txt`, `production/L001/narration_ru.txt`, `production/L001/script.md`

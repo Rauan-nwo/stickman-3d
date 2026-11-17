@@ -1,0 +1,162 @@
+[
+ {
+  "file": "voice_fish/host_takes/1_LeviticusCornwall.mp3",
+  "speed": 1.08,
+  "dur": 13.08,
+  "wpm": 161,
+  "line_durs": [
+   3.42,
+   2.55,
+   3.0,
+   3.21
+  ],
+  "line_wpm": [
+   105,
+   165,
+   160,
+   261
+  ],
+  "f0_per_line": [
+   271,
+   200,
+   229,
+   204
+  ],
+  "asr": "Evening, mind the box, it's expensive. Inside the most wanted chips on Earth, 30 grand apiece by the maker's own count. And the man at that table held the key to every one of them.",
+  "sim": 1.0,
+  "leak": [],
+  "n": 1,
+  "voice": "Leviticus Cornwall (клон персонажа RDR2 — текущий выбор)",
+  "id": "5a6774c58559475dac02eb2c91b26437",
+  "f0_spread_hz": 71,
+  "text_variant": "без [break] между репликами"
+ },
+ {
+  "file": "voice_fish/host_takes/2_OldRadio.mp3",
+  "speed": 1.0,
+  "dur": 13.31,
+  "wpm": 158,
+  "line_durs": [
+   2.84,
+   2.97,
+   2.74,
+   3.86
+  ],
+  "line_wpm": [
+   127,
+   141,
+   175,
+   218
+  ],
+  "f0_per_line": [
+   271,
+   232,
+   246,
+   242
+  ],
+  "asr": "Evening, mind the box, it's expensive. Inside, the most wanted chips on Earth. 30 grand apiece by the maker's own count. And the man at that table held the key to every one of them.",
+  "sim": 1.0,
+  "leak": [],
+  "n": 2,
+  "voice": "Old radio",
+  "id": "190fab3282be4b97bf07c272c86814e2",
+  "f0_spread_hz": 39,
+  "text_variant": "с [break] между репликами"
+ },
+ {
+  "file": "voice_fish/host_takes/3_DavidBritishStoryteller.mp3",
+  "speed": 1.14,
+  "dur": 13.67,
+  "wpm": 154,
+  "line_durs": [
+   2.96,
+   3.17,
+   2.92,
+   3.72
+  ],
+  "line_wpm": [
+   122,
+   132,
+   164,
+   226
+  ],
+  "f0_per_line": [
+   109,
+   105,
+   86,
+   115
+  ],
+  "asr": "evening, mind the box, it's expensive. Inside, the most wanted chips on earth. Thirty grand a piece by the maker's own count. And the man at that table held the key to every one of them.",
+  "sim": 1.0,
+  "leak": [],
+  "n": 3,
+  "voice": "David - British Storyteller",
+  "id": "72324f5951924b2eb27faaf5630153b4",
+  "f0_spread_hz": 29,
+  "text_variant": "с [break] между репликами"
+ },
+ {
+  "file": "voice_fish/host_takes/4_BrianBritish.mp3",
+  "speed": 1.0,
+  "dur": 13.54,
+  "wpm": 155,
+  "line_durs": [
+   2.95,
+   3.08,
+   2.92,
+   3.69
+  ],
+  "line_wpm": [
+   122,
+   136,
+   164,
+   228
+  ],
+  "f0_per_line": [
+   90,
+   89,
+   82,
+   82
+  ],
+  "asr": "evening, mind the box, it's expensive. Inside, the most wanted chips on earth. Thirty grand a piece by the maker's own count, and the man at that table held the key to every one of them.",
+  "sim": 1.0,
+  "leak": [],
+  "n": 4,
+  "voice": "Brian British",
+  "id": "65c0b8155c464a648161af8877404f11",
+  "f0_spread_hz": 8,
+  "text_variant": "без [break] между репликами"
+ },
+ {
+  "file": "out/host_spare/BritishStoryteller.mp3",
+  "speed": 1.14,
+  "dur": 13.46,
+  "wpm": 156,
+  "line_durs": [
+   2.89,
+   3.08,
+   3.11,
+   3.48
+  ],
+  "line_wpm": [
+   125,
+   136,
+   154,
+   241
+  ],
+  "f0_per_line": [
+   131,
+   133,
+   133,
+   130
+  ],
+  "asr": "evening, mind the box, it's expensive. Inside, the most wanted chips on Earth. 30 grand a piece by the maker's own count, and the man at that table held the key to every one with them.",
+  "sim": 0.979,
+  "leak": [],
+  "n": 4,
+  "voice": "British Storyteller",
+  "id": "1d304964fcfe4c5998cfe7b7298aa727",
+  "f0_spread_hz": 3,
+  "note": "запасной"
+ }
+]
