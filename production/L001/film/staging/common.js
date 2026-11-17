@@ -7,7 +7,11 @@ export const W = 1920, H = 1080;
 export const cover = v => ({ ...v, cx: clamp(v.cx, W / 2 / v.k, W - W / 2 / v.k), cy: clamp(v.cy, H / 2 / v.k, H - H / 2 / v.k) });
 // базовый кадр + движение аниматика; drift: 0..1 — какую долю горизонтального «дыхания» (cam.dx) брать
 // zk 0..1 — доля наезда/рывка (общий план с героями у краёв: рывок мягче, чтобы никого не срезать)
-export const camView = (b, cam, drift = 1, zk = 1) => cover({ cx: b.cx + cam.dx * W * drift, cy: b.cy + cam.dy * H * drift, k: b.k * (1 + (cam.z - 1) * zk) });
+// zk — доля наезда/рывка ядра (по умолчанию .55: ползок ядра +30 % за план на крупном уводил героя за край кадра)
+// дрейф камеры ядра (cam.dx/dy растут со временем плана) на планах с героями ограничен ±DRIFT_MAX пикселей экрана: иначе герой уезжает из кадра
+const DRIFT_MAX = 70;
+export const camView = (b, cam, drift = .35, zk = .55) => { const k = b.k * (1 + (cam.z - 1) * zk), lim = DRIFT_MAX / k;
+  return cover({ cx: b.cx + clamp(cam.dx * W * drift, -lim, lim), cy: b.cy + clamp(cam.dy * H * drift, -lim, lim), k }); };
 export const toS = (v, P) => [(P[0] - v.cx) * v.k + W / 2, (P[1] - v.cy) * v.k + H / 2];
 export const lerpView = (a, b, u) => ({ cx: lerp(a.cx, b.cx, u), cy: lerp(a.cy, b.cy, u), k: lerp(a.k, b.k, u) });
 export function plate(ctx, im, v) { if (!im) return; ctx.drawImage(im, W / 2 - v.cx * v.k, H / 2 - v.cy * v.k, W * v.k, H * v.k); }

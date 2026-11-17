@@ -10,6 +10,7 @@ import * as CAR from './staging/car.js';
 import * as OF from './staging/office.js';
 import * as KY from './staging/kentucky.js';
 import * as IN from './staging/inserts.js';
+import * as DT from './staging/desktop.js';
 import { wordAt, lineSpan } from './words.js';
 import * as PR from './props.js';
 
@@ -36,17 +37,17 @@ function focusBox(ctx, x, y, w, h, lock = 0) {
 function freezeFrame(ctx, u) { if (u <= 0) return; const k = clamp(u / .12); ctx.save(); ctx.fillStyle = `rgba(250,246,236,${.16 * k})`; ctx.fillRect(0, 0, W, H); ctx.lineWidth = 34 * k; ctx.strokeStyle = 'rgba(250,246,236,.95)'; ctx.strokeRect(17, 17, W - 34, H - 34); ctx.restore(); }
 
 const V = {   // базовые кадры (центр в пикселях плейта, увеличение) — движение даёт cam
-  rWide: { cx: 960, cy: 560, k: 1.0 }, rCuJ: { cx: 520, cy: 690, k: 1.72 }, rCuA: { cx: 1420, cy: 800, k: 1.5 }, rRev: { cx: 975, cy: 545, k: 1.0 },
+  rWide: { cx: 960, cy: 560, k: 1.0 }, rCuJ: { cx: 430, cy: 690, k: 1.72 }, rCuA: { cx: 1420, cy: 800, k: 1.5 }, rRev: { cx: 975, cy: 545, k: 1.0 },
   rPovA: { cx: 1440, cy: 700, k: 1.55 }, rPov2: cover({ cx: 960, cy: 690, k: 1.18 }),
 };
 
 export const SHOTS = {
   // ---------------- гл. 0 ----------------
-  1: x => { const { ctx, t, T, cam, solo } = x, v = camView(V.rWide, cam, .6, .5);   // общий: двое за столом; агент с меню и объективом на переднем плане
+  1: x => { const { ctx, t, T, cam, solo } = x, v = camView(V.rWide, cam, .3, .3);   // общий: двое за столом; агент за дальним столиком справа (D01 #1); агент с меню и объективом на переднем плане
     ctx.save(); shake(ctx, cam);
-    R.wide(ctx, v, t, T, { solo, j: { keys: [[0, 'neutral']], at: 1.25 }, a: { keys: [[0, 'smug']] } });
+    R.wide(ctx, v, t, T, { solo, glint: tt => gauss(tt, .75, .16) + .8 * gauss(tt, x.s.snap ?? 1.5, .12), j: { keys: [[0, 'neutral']], at: 1.25 }, a: { keys: [[0, 'smug']] } });
     if (!solo) { const [fx, fy] = R.flame(v); candle(ctx, fx, fy, v.k, .35 + .65 * gauss(t, 1.15, .28) + .06 * Math.sin(t * 23));
-      R.fgSpy(ctx, 1110 + (v.cx - 960) * -.3, 1045, 1.05, { glint: gauss(t, .75, .16) + .7 * gauss(t, x.s.snap ?? 1.5, .12), blur: 6 }); }
+    }
     ctx.restore(); },
   3: x => { const { ctx, t, T, cam, solo, s } = x, ts = Math.min(t, s.snap ?? 1.4), v = camView(V.rPovA, { ...cam, z: x.camAt(ts).z, dx: 0 });   // POV: Алиса садится; щелчок — стоп-кадр
     const u = E.outCubic(clamp(ts / 1.0));
@@ -123,21 +124,21 @@ export const SHOTS = {
   19: x => { const { ctx, t, T, cam, solo, s } = x, v = camView(OF.views.wide, cam, .6), tb = s.snap ?? 1.8;   // кабинет: лампа щёлкает; «Mind the box» — рука к коробке
     const g = gesture(t, tb, { lead: .15, rise: .26, hold: .6, fall: .3, lagFrames: 3 }), lamp = t < .14 ? 0 : t < .2 ? 1 : t < .24 ? .25 : 1;
     ctx.save(); shake(ctx, cam);
-    OF.office(ctx, v, t, T, { solo, lamp, box: {}, photo: IN.snapPic, host: { keys: [[0, 'neutral'], [.25, 'talk']], lean: .06 * g.body, look: [.7 * g.body, .35 * g.body], R: { k: g.hand, to: OF.boxTop(-60, 20) } } });
+    OF.office(ctx, v, t, T, { solo, lamp, box: {}, photo: IN.snapPic, host: { keys: [[0, 'neutral'], [.25, 'talk']], lean: .06 * g.body, look: [.7 * g.body, .35 * g.body], R: { k: g.hand, to: [1196, 472] } } });
     if (!solo) OF.lampFlare(ctx, v, t > .14 ? gauss(t, .2, .09) : 0);
     ctx.restore(); },
-  20: x => { const { ctx, t, T, cam, solo } = x, v = camView(OF.views.box, cam, .3);   // вставка: палец стучит по крышке «тук-тук», пыль
+  20: x => { const { ctx, t, T, cam, solo } = x, v = camView(OF.views.box, cam, .06);   // вставка: палец стучит по крышке «тук-тук», пыль
     const taps = [W_(x, /^it/, .1), W_(x, 'expensive', .7)], bump = Math.max(...taps.map(t0 => gauss(t, t0 + .04, .05))), dust = Math.max(...taps.map(t0 => (t > t0 && t < t0 + .7 ? (t - t0) / .7 : 0)));
     ctx.save(); shake(ctx, cam);
-    OF.office(ctx, v, t, T, { solo, box: { dust }, photo: IN.snapPic, host: { keys: [[0, 'talk']], lean: .07, look: [.7, .45], R: { k: 1, to: OF.lidPt(-10, -26 * bump) } } });
+    OF.office(ctx, v, t, T, { solo, box: { dust }, photo: IN.snapPic, host: { keys: [[0, 'talk']], lean: .07, look: [.7, .45], R: { k: 1, to: OF.lidPt(-62, -24 * bump) } } });
     ctx.restore(); },
-  21: x => { const { ctx, t, T, cam, solo, s } = x, v = camView(OF.views.key, cam, .3), tc = s.snap ?? 1.5;   // сверхкрупно: крышка приоткрывается, на «chips» — зелёный свет; ключ поднимается в свет лампы
-    const lid = E.inOutCubic(clamp((t - .25) / (tc - .35))), glow = clamp((t - tc + .05) / .2), up = E.inOutCubic(clamp((t - (tc + .25)) / .9));
-    const hand = up > 0 ? [lerp(OF.lidPt(0, 30)[0], 1262, up), lerp(OF.lidPt(0, 30)[1], 385, up)] : OF.boxTop(-30 + 10 * lid, 0 - 20 * lid);
+  21: x => { const { ctx, t, T, cam, solo, s } = x, v = camView(OF.views.key, cam, .06), tc = s.snap ?? 1.5;   // сверхкрупно: крышка чуть приоткрывается, на «chips» — мягкий зелёный свет изнутри; ведущий поднимает ключ рядом с коробкой в свет лампы
+    const lid = .15 * E.inOutCubic(clamp((t - .25) / (tc - .35))), glow = .45 * clamp((t - tc + .05) / .3), up = E.inOutCubic(clamp((t - (tc + .15)) / .8));
     ctx.save(); shake(ctx, cam);
-    OF.office(ctx, v, t, T, { solo, box: { lid, glow }, photo: IN.snapPic, host: { keys: [[0, 'talk']], lean: .07, look: [.6, .2 - .5 * up], R: { k: 1, to: hand }, key: up > 0 ? { s: .28, a: -.5 - .4 * up, glint: gauss(t, tc + 1.35, .18), dx: 6, dy: -4 } : null } });
+    OF.office(ctx, v, t, T, { solo, box: { lid, glow }, photo: IN.snapPic, host: { keys: [[0, 'talk']], lean: .04, look: [.5 - .9 * up, .3 - .7 * up],
+      R: { k: .35 + .65 * up, to: [1186, lerp(470, 405, up)] }, key: { a: lerp(-1.2, -2.3, up), glint: gauss(t, tc + 1.15, .16) } } });
     ctx.restore(); },
-  22: x => { const { ctx, t, T, cam, solo, s } = x, v = camView(OF.views.tag, cam, .3), tm = (s.ev || []).find(e => e.p === 1)?.t ?? s.snap ?? 1.5;   // вставка: ценник $30,000 EACH на «Thirty», бирка SOURCE: NVIDIA на «maker's»
+  22: x => { const { ctx, t, T, cam, solo, s } = x, v = camView(OF.views.tag, cam, .06), tm = (s.ev || []).find(e => e.p === 1)?.t ?? s.snap ?? 1.5;   // вставка: ценник $30,000 EACH на «Thirty», бирка SOURCE: NVIDIA на «maker's»
     ctx.save(); shake(ctx, cam);
     OF.office(ctx, v, t, T, { solo, box: { glow: .25 }, photo: IN.snapPic, tag: { k: clamp(t / .35), t, sub: t >= tm }, host: { keys: [[0, 'talk']], look: [.6, .25] } });
     ctx.restore(); },
@@ -146,20 +147,23 @@ export const SHOTS = {
     ctx.save(); shake(ctx, cam);
     OF.office(ctx, v, t, T, { solo, box: {}, photo: IN.snapPic, host: { keys: [[0, 'talk']], lean: -.05 * k, look: [-.6 * k, .45 * k], L: { k, to: [OF.CFG.photo[0] + 4, OF.CFG.photo[1] - 2] } } });
     ctx.restore(); },
-  24: x => { const { ctx, t, T, cam, solo, s } = x, v = camView(OF.views.keycam, cam, .3), tt = s.snap ?? 1.2;   // сверхкрупно: ключ протянут прямо в объектив, блик на бородке
+  24: x => { const { ctx, t, T, cam, solo, s } = x, v = camView(OF.views.keycam, cam, .06), tt = s.snap ?? 1.2;   // сверхкрупно: ключ протянут прямо в объектив, блик на бородке
     const k = E.inOutCubic(clamp((t - .05) / (tt - .1)));
     ctx.save(); shake(ctx, cam);
-    const r = OF.office(ctx, v, t, T, { solo, blur: true, box: {}, photo: IN.snapPic, host: { keys: [[0, 'talk']], look: [0, 0], R: { k: .55 + .45 * k, to: [1150 - 40 * k, 470 - 30 * k] } } });
-    if (r.hr) { const cx = lerp(r.hr[0], W * .64, k), cy = lerp(r.hr[1], H * .6, k), sc = lerp(.42, 1.35, k);
-      OF.handKey(ctx, cx, cy, sc, gauss(t, tt, .14) + .25 * k, r.s * lerp(1, 3.2, k)); }
+    const r = OF.office(ctx, v, t, T, { solo, blur: true, box: {}, photo: IN.snapPic, host: { keys: [[0, 'talk']], look: [0, 0], R: { k: .55 + .45 * k, to: [1150 + 25 * k, 470 - 10 * k] }, key: null } });
+    if (r.hr) OF.keyGrip(ctx, r.hr, r.s * lerp(1, 3.6, k), lerp(-1.6, -.9, k), gauss(t, tt, .14) + .25 * k);   // хват на его же кисти; кисть с ключом крупнее — ближе к объективу
     ctx.restore(); },
   29: x => { const { ctx, t, T, cam, solo } = x, v = camView(KY.views.dorm, cam, .5);   // спальня: юный Дженсен с сундуком выше себя
     ctx.save(); shake(ctx, cam);
     KY.dorm(ctx, v, t, T, { solo, keys: [[0, 'neutral']], look: [lerp(.5, -.2, E.inOutCubic(clamp(t / 1.2))), -.45] });
     ctx.restore(); },
-  30: x => { const { ctx, t, cam, solo, s } = x, v = camView({ cx: 985, cy: 640, k: 2.05 }, cam, .3), tk = s.snap ?? .9;   // вставка: детская рука берёт швабру выше себя; брызги из ведра
+  25: x => { const { ctx, t, cam, s } = x, tc = (s.ev || []).find(e => e.p === 1)?.t ?? x.d * .4;   // их стол сверху: на «China» красная нить BEIJING тянется к пустому стулу напротив Дженсена (на его стуле — кожанка)
+    DT.desktop(ctx, cam, t, { base: 'top', thread: E.outCubic(clamp((t - tc + .05) / .45)), taut: 0 }); },
+  26: x => { const { ctx, t, cam, s } = x, ts = s.snap ?? x.d * .3;   // мел от руки обводит пустой стул (круг замыкается на «seat»), нить натягивается, телефон жужжит
+    DT.desktop(ctx, cam, t, { base: 'chair', thread: 1, taut: E.outBack(clamp((t - ts) / .3)), chalk: clamp(t / Math.max(.3, ts)), buzz: t > x.d * .45 ? .6 + .4 * Math.abs(Math.sin(t * 9)) : 0 }); },
+  30: x => { const { ctx, t, T, cam, solo, s } = x, v = camView(KY.views.bath, cam, .3, .5), tk = s.snap ?? .9;   // санузел, средний: юный Дженсен роняет швабру выше себя в ведро (брызги), на «Kentucky» берёт её
     ctx.save(); shake(ctx, cam);
-    KY.bathInsert(ctx, v, t, { solo, k: clamp((t - .15) / Math.max(.3, tk - .15)), splash: t / .55 });
+    KY.bathMid(ctx, v, t, T, { solo, drop: Math.min(.45, tk - .35), grab: tk });
     ctx.restore(); },
 };
 
@@ -180,6 +184,6 @@ export const OVER = {
 const polaroidAt = (ctx, x, y, w, a) => PR.polaroid(ctx, x, y, w, a, IN.snapPic, 1);
 
 // вещи-подписи аниматика, которые в финале уже стоят в кадре (или дублируют подпись в нижней трети)
-export const SKIP_PROPS = { 4: /SUBJECT/, 5: /JENSEN HUANG/, 6: /ALICE HUANG/, 8: /VIP/, 13: /JAN/, 18: /SUBJECT/, 22: /\$30,000|SOURCE/ };
+export const SKIP_PROPS = { 25: /BEIJING/, 26: /BEIJING/, 4: /SUBJECT/, 5: /JENSEN HUANG/, 6: /ALICE HUANG/, 8: /VIP/, 13: /JAN/, 18: /SUBJECT/, 22: /\$30,000|SOURCE/ };
 // дождь аниматика только на улице (в салоне и в зале ресторана — только за стеклом, он уже нарисован)
 export const RAIN = s => s.loc === 'L02-sg-street' ? /общий/.test(s.framing) : s.loc !== 'L01-restaurant';

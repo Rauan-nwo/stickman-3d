@@ -15,7 +15,7 @@ export const CFG = {
   photo: [905, 556, 92],                      // снимок на столе под лампой: центр, ширина
   lamp: [735, 410],                           // абажур лампы (вспышка включения)
   shade: { dir: [-1, -.55], body: { k: 0 }, head: { k: .42, color: '#4f4a72', shiftU: 52, after: true, glow: { color: '#f3d488', k: .28 } } },
-  views: { wide: { cx: 960, cy: 540, k: 1.02 }, box: { cx: 1285, cy: 480, k: 3.0 }, key: { cx: 1290, cy: 430, k: 3.1 }, tag: { cx: 1285, cy: 480, k: 2.8 }, mid: { cx: 1010, cy: 470, k: 1.85 }, keycam: { cx: 1080, cy: 420, k: 2.3 } },
+  views: { wide: { cx: 960, cy: 540, k: 1.02 }, box: { cx: 1285, cy: 480, k: 3.0 }, key: { cx: 1195, cy: 440, k: 2.6 }, tag: { cx: 1285, cy: 480, k: 2.8 }, mid: { cx: 1010, cy: 470, k: 1.85 }, keycam: { cx: 1080, cy: 420, k: 2.3 } },
 };
 const I = { plate: img(officePlate) };
 export const A = lazy([I.plate], () => ({ plate: I.plate, plateB3: blurred(I.plate, 3) }));
@@ -64,7 +64,7 @@ function host(ctx, v, t, T, h) {
   const handS = q => toS(v, toPlate(S, CFG.feet, CFG.fs, bodyPt(S, p, q), 'feet'));
   const hr = handS(R), hl = handS(L);
   for (const q of [hr, hl]) handRim(ctx, q, CFG.fs * v.k);
-  if (h.key) { brassKey(ctx, hr[0] + (h.key.dx || 0) * v.k, hr[1] + (h.key.dy || 0) * v.k, (h.key.s || .18) * v.k, h.key.a ?? -.6, h.key.glint || 0); ell(ctx, hr[0], hr[1], 12 * CFG.fs * v.k, 12 * CFG.fs * v.k, S.colors.ink, null); }
+  if (h.key) keyGrip(ctx, hr, CFG.fs * v.k, h.key.a ?? -1.9, h.key.glint || 0);
   return { p, hr, hl, s: CFG.fs * v.k };
 }
 // кисть-точка на тёмном столе почти не видна: мягкая светлая линия по стороне лампы (как на трубке руки)
@@ -87,4 +87,13 @@ export const views = CFG.views;
 export const holdK = (t, t0, t1, rise = .3, fall = .3) => t < t0 ? 0 : t < t0 + rise ? E.outBack(clamp((t - t0) / rise)) : t < t1 ? 1 : t < t1 + fall ? 1 - E.inOutCubic(clamp((t - t1) / fall)) : 0;
 
 // ключ в кисти крупно (рука тянется к объективу): (x, y) — кисть на экране, sc — рост ключа, s — пикселей на единицу (кисть-точка)
-export function handKey(ctx, x, y, sc, glint, s) { brassKey(ctx, x + 10 * sc, y - 6 * sc, 1.25 * sc, -.35, glint); ell(ctx, x, y, 12 * s, 12 * s, M.spec.colors.ink, null); }
+// ХВАТ ключа кистью-точкой (правило для предметов в руке): ключ длиной ~1.8 диаметра кисти; кисть ПЕРЕД головкой ключа и перекрывает
+// её нижний край; стержень уходит от кисти по направлению a (рад). h — кисть (экран), s — пикселей экрана на единицу фигуры.
+const KEY_LEN = 330;                                                         // длина рисунка brassKey в его единицах (головка + стержень + бородка)
+export function keyGrip(ctx, h, s, a, glint = 0) {
+  const r = 12 * s, ks = 1.8 * 2 * r / KEY_LEN, bow = 54 * ks;               // кисть радиус r; ключ = 1.8 диаметра кисти
+  brassKey(ctx, h[0] + Math.cos(a) * bow * .55, h[1] + Math.sin(a) * bow * .55, ks, a, glint);
+  ell(ctx, h[0], h[1], r, r, M.spec.colors.ink, null); handRim(ctx, h, s);
+}
+// ключ к объективу: кисть и ключ растут вместе (рука приближается к камере), хват тот же
+export function handKey(ctx, x, y, sc, glint, s) { keyGrip(ctx, [x, y], s * sc, -1.25, glint); }

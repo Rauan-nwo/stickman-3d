@@ -115,7 +115,7 @@ export function nvBox(ctx, x, y, w, { lid = 0, glow = 0, dust = 0 } = {}) {
   const topFace = () => { ctx.beginPath(); ctx.moveTo(-w / 2 + d * .5, 0); ctx.lineTo(w / 2 + d * .5, 0); ctx.lineTo(w / 2, d * .5); ctx.lineTo(-w / 2, d * .5); ctx.closePath(); };
   if (L > .02) {                                                       // открытый проём: тёмное нутро, на «chips» — зелёный свет изнутри
     topFace(); ctx.fillStyle = '#060608'; ctx.fill();
-    if (glow > .01) { ctx.save(); topFace(); ctx.clip(); ctx.fillStyle = rg(ctx, d * .25, d * .25, 0, w * .6, [[0, `rgba(190,255,205,${glow})`], [.5, `rgba(90,230,130,${.85 * glow})`], [1, `rgba(40,150,80,${.6 * glow})`]]); ctx.fillRect(-w, -w, w * 2, w * 2); ctx.restore(); }
+    if (glow > .01) { ctx.save(); topFace(); ctx.clip(); ctx.fillStyle = rg(ctx, d * .25, d * .45, 0, w * .5, [[0, `rgba(150,255,180,${.8 * glow})`], [.5, `rgba(60,200,110,${.45 * glow})`], [1, `rgba(20,90,50,${.25 * glow})`]]); ctx.fillRect(-w, -w, w * 2, w * 2); ctx.restore(); }
     topFace(); ctx.lineWidth = w * .016; ctx.strokeStyle = INK; ctx.stroke();
   }
   // крышка на петле по задней кромке: передний край поднимается вверх и уходит к задней кромке (высота стоящей крышки ~ глубина d)

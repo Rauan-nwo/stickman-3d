@@ -11,7 +11,7 @@ let SNAP = null;
 export function snapshot() {
   if (SNAP) return SNAP; if (!RA()) return null;
   const c = canvas(), x = c.getContext('2d');
-  wide(x, { cx: 960, cy: 620, k: 1.1 }, .9, -100, { j: { keys: [[0, 'laugh', { talking: false }]], laugh: true }, a: { keys: [[0, 'smug']] } });
+  wide(x, { cx: 960, cy: 620, k: 1.1 }, .9, -100, { noAgent: true, j: { keys: [[0, 'laugh', { talking: false }]], laugh: true }, a: { keys: [[0, 'smug']] } });
   return (SNAP = c);
 }
 // картинка в рамку w×h (кадр по центру, без искажения)
@@ -21,16 +21,19 @@ export const snapPic = (x, w, h) => { const s = snapshot(); if (!s) { x.fillStyl
 const SI = { street: img(streetPlate) };
 const SA = lazy([SI.street], () => ({ street: SI.street, cloth: masked(SI.street, polyMask([[[1212, 600], [1250, 594], [1380, 594], [1428, 600], [1430, 648], [1210, 648]]])) }));
 const tJ = jensen(), tA = alice(); tJ.spec.shade = noirShade([1, .45]); tA.spec.shade = noirShade([-1, .45]);
-export const STREET = { window: { J: [1196, 640], A: [1446, 640], fs: .17 }, car: [[300, 596], [352, 600]] };
+export const STREET = { window: { J: [1196, 640], A: [1446, 640], fs: .17, open: [[1108, 395], [1536, 600]] }, car: [[300, 596], [352, 600]] };   // open — проём окна выше столешницы
 export function street(ctx, v, t, o = {}) {
   const a = SA(); if (!a) return;
   if (!o.solo) plate(ctx, a.street, v);
   // в окне ресторана — двое за тем самым столом (крошечные, видны сквозь дождь)
   const w = STREET.window;
+  // сидящие за окном видны только в проёме и только выше столешницы (правило сидящего): всё ниже — за столом и подоконником
+  ctx.save(); const o0 = toS(v, w.open[0]), o1 = toS(v, w.open[1]); ctx.beginPath(); ctx.rect(o0[0], o0[1], o1[0] - o0[0], o1[1] - o0[1]); ctx.clip();
   for (const [C, P, f, st, seed] of [[tJ, w.J, 1, 'sitR', 1], [tA, w.A, -1, 'sitL', 2]]) {
     const p = act(t, [[0, f > 0 ? 'neutral' : 'smug']]); Object.assign(p, { blink: blinkAt(t, seed), view: 'threeQuarter', facing: f, stance: st, bob: 0, sq: 0, lean: f * .03 * Math.sin(t * 1.4 + seed), tilt: 0 });
     fig(ctx, C, p, v, P, w.fs, 'seat');
   }
+  ctx.restore();
   if (!o.solo) plate(ctx, a.cloth, v);
   // в припаркованной машине: два силуэта голов в окнах и тёплый отсвет магнитофона
   if (!o.solo) for (const [i, [x, y]] of STREET.car.entries()) { const P = toS(v, [x, y]), r = 15 * v.k;

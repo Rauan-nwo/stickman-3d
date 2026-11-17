@@ -9,7 +9,7 @@ import { watcher, waiter } from '../chars.js';
 import { wineGlass, menuLens, orderFolder, greenCrate, clinkSpark } from '../props.js';
 import { mouth } from '../words.js';
 import { W, H, toS, plate, img, masked, blurred, polyMask, lazy, fig, chair, loc, toPlate, armShadow, bokeh, soft, figXf } from './common.js';
-import plateV2 from '../../../longform/style-test/assets/plate_v2.png';
+import plateV2 from '../assets/plate_v2_far.png';                     // plate_v2 + дальний столик в проёме справа (make_plates.py, D01 #1)
 import maskCloth from '../../../longform/style-test/assets/mask_cloth_v2.png';
 import plateRevU from '../../scenes/dialogue_probe/assets/plate_reverse.png';
 import maskRevU from '../../scenes/dialogue_probe/assets/mask_rev_cloth.png';
@@ -26,6 +26,8 @@ export const CFG = {
     shadow: { dx: 24, dy: 10, blur: 12, k: .4 },          // падающая тень силуэта (свеча между ними)
     light: { J: [1, .45], A: [-1, .45] },
     flame: [912, 748],
+    // D01 #1: агент за дальним столиком в проёме справа (плейт plate_v2_far): сидит за столом, меню у лица, объектив на нашу пару
+    far: { seat: [1838, 590], fs: .14, cloth: [[1798, 556], [1806, 552], [1838, 549], [1870, 552], [1878, 558], [1880, 596], [1874, 602], [1802, 602], [1796, 596]] },
   },
   cu: {                                                   // крупные с плейта общего плана: свой стул, сиденье — центр спинки
     seat: { J: [244.0, 965.0], A: [1676.6, 960.1] }, pin: { J: [496.1, 836.7], A: [1433.0, 836.7] }, elbow: { J: [392.0, 826.0], A: [1537.0, 826.0] },
@@ -53,6 +55,7 @@ export const A = lazy(Object.values(I), () => {
   return {
     plate: I.plate, cloth: masked(I.plate, I.cloth), clothB2: blurred(masked(I.plate, I.cloth), 2.2, false), plateB4: blurred(I.plate, 4), plateB2: blurred(I.plate, 2.2), plateB6: blurred(I.plate, 6),
     tableB4: blurred(table, 4, false), tableB2: blurred(table, 2.2, false),
+    farCloth: masked(I.plate, polyMask([CFG.wide.far.cloth])), farClothB4: blurred(masked(I.plate, polyMask([CFG.wide.far.cloth])), 4, false),
     rev: I.rev, revB: blurred(I.rev, 3.2), revB9: blurred(I.rev, 8), revFG: blurred(masked(I.rev, I.revM), 1.6, false), revFar: blurred(masked(I.rev, farM), 3.2, false),
   };
 });
@@ -105,6 +108,7 @@ const G = (t, at, o) => (at == null ? { hand: 0, body: 0 } : gesture(t, at, { le
 export function wide(ctx, v, t, T, o = {}) {
   const a = A(), c = CFG.wide; if (!a) return;
   if (!o.solo) plate(ctx, o.blur ? a.plateB2 : a.plate, v);
+  if (!o.solo && !o.noAgent) farAgent(ctx, v, t, o.blur ? 2.2 : 0, o.glint);
   const cast = [
     { C: J, f: 1, k: 'J', st: 'sitR', seed: 1, sp: 'JENSEN', ...(o.j || {}) },
     { C: Al, f: -1, k: 'A', st: 'sitL', seed: 2, sp: 'ALICE', ...(o.a || {}) },
@@ -144,6 +148,7 @@ export function cu(ctx, v, t, T, o) {
   const pin = o.pin || c.pin[k], elb = o.elbow || c.elbow[k];
   const r = tableArms(S, p, { f, anchor: seat, fs: CFG.wide.figPx, pin, elbow: elb, g, up: o.up, far: o.far, farK: o.farK });
   if (!o.solo) plate(ctx, a[o.bg || 'plateB4'], v);
+  if (!o.solo) farAgent(ctx, v, t, o.bg === 'plateB2' ? 2.2 : 4, o.glint);
   if (!o.solo) chair(ctx, C, v, seat, CFG.wide.figPx, { w: c.chairW, light: f, ...(isJ ? {} : { col: CFG.rev.chairCol }) });
   if (o.under) o.under(ctx, v);
   fig(ctx, C, p, v, seat, CFG.wide.figPx, 'seat', { only: 'base' });
@@ -250,8 +255,8 @@ function trayAt(c) { c.beginPath(); c.ellipse(0, 0, 170, 22, 0, 0, Math.PI * 2);
 function wineGlassMini(c) { c.beginPath(); c.moveTo(-52, -196); c.bezierCurveTo(-74, -130, -64, -60, -8, -36); c.lineTo(8, -36); c.bezierCurveTo(64, -60, 74, -130, 52, -196); c.closePath(); c.fillStyle = 'rgba(200,225,240,.5)'; c.fill(); c.lineWidth = 9; c.strokeStyle = '#141014'; c.stroke(); c.beginPath(); c.moveTo(0, -36); c.lineTo(0, 10); c.stroke(); }
 
 // ================= реквизит у Алисы (план 8): ящики и бирка VIP, папка заказа =================
-export function crates(ctx, v, t, tA, tB, tTag) {
-  const drop = (t0, x, y, w, label) => { if (t < t0) return; const u = clamp((t - t0) / .22), b = u < 1 ? (1 - bounce(u)) * 260 : 0; const P = toS(v, [x, y - b]); greenCrate(ctx, P[0], P[1], w * v.k, { label, side: -1 }); };
+export function crates(ctx, v, t, tA, tB, tTag) {   // ящики ставят на пол: короткий удар с отскоком, не падение с неба
+  const drop = (t0, x, y, w, label) => { if (t < t0) return; const u = clamp((t - t0) / .18), b = u < 1 ? (1 - bounce(u)) * 90 : 0; const P = toS(v, [x, y - b]); greenCrate(ctx, P[0], P[1], w * v.k, { label, side: -1 }); };
   drop(tA, 1268, 1086, 230, null);                                       // два ящика на полу у её стула (ближе к камере, чем стол)
   drop(tB, 1508, 1086, 244, t >= tTag ? 'VIP CUSTOMER' : null);
 }
@@ -272,4 +277,17 @@ export function toastIn(ctx, v, t, tClink, r) {
   ctx.save(); const s = r.s; ctx.scale(s, s); elbowArm(ctx, [-300 / s, (H + 300) / s], [xJ / s, (yJ + 4 * s) / s], 760, 1, undefined, ARMW, '#141014', null, { dir: [-1, .45] }, { ink: '#141014' }); ctx.restore();
   ell(ctx, xJ, yJ + 4 * r.s, 12 * r.s, 12 * r.s, '#141014', null);
   const dc = t - tClink; if (dc > -.02 && dc < .55) clinkSpark(ctx, rimA[0] - 2, rimA[1] + 8 * r.s, 120 * r.s / .875 * .55, dc < .05 ? clamp((dc + .02) / .07) : Math.pow(1 - (dc - .05) / .5, 2), Math.max(0, dc));
+}
+
+// агент за дальним столиком (общий и крупные с этого плейта): федора, меню у лица, объектив смотрит влево — на нашу пару.
+// Нижняя половина за его скатертью (маска farCloth); размытие — как у фона плана. glint(t) 0..1 — блик объектива.
+export function farAgent(ctx, v, t, blur = 0, glint) {
+  const a = A(), c = CFG.wide.far, S = WT.spec, [sx] = toS(v, c.seat); if (sx < -60 || sx > W + 60) return;
+  const g = glint ? glint(t) : .15 + .1 * Math.max(0, Math.sin(t * 2.3));
+  const draw = x => { const p = act(t, [[0, 'neutral']]); Object.assign(p, { view: 'front', stance: 'sitR', bob: 0, sq: 0, lean: 0, tilt: 0, blink: false });
+    const hy = S.head.y; p.arms = [{ to: [-130, hy + 250], w: 12 }, { to: [130, hy + 250], w: 12 }];
+    const f = figXf(WT, v, c.seat, c.fs, 'seat'); x.save(); x.translate(f.x, f.y); x.scale(f.s, f.s); x.translate(-f.P[0], -f.P[1]);
+    WT.draw(x, p, { only: 'base' }); menuLens(x, 0, hy + 120, 330, { lens: -1, glint: g, tilt: -.03 }); for (const sd of [-1, 1]) ell(x, sd * 130, hy + 250, 13, 13, S.colors.ink, null); x.restore(); };
+  if (blur > .3) soft(ctx, blur * v.k / 1.6, draw, 1, .05); else draw(ctx);
+  plate(ctx, blur > 2.5 ? a.farClothB4 : a.farCloth, v);
 }
