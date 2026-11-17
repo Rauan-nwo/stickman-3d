@@ -26,7 +26,7 @@ function audio() {     // voice_draft.mp3 + тишина в точках inserts
   ins.forEach((x, i) => { f.push(`[0:a]atrim=${prev}:${x.at},asetpts=PTS-STARTPTS[v${i}]`, `aevalsrc=0:d=${x.dur}:s=24000[s${i}]`); lbl.push(`[v${i}]`, `[s${i}]`); prev = x.at; });
   f.push(`[0:a]atrim=start=${prev},asetpts=PTS-STARTPTS[vl]`); lbl.push('[vl]');
   f.push(`${lbl.join('')}concat=n=${lbl.length}:v=0:a=1,aresample=48000,apad[out]`);
-  execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', join(ROOT, 'production/L001/out/voice_draft.mp3'), '-filter_complex', f.join(';'), '-map', '[out]', '-t', String(FR / FPS), '-ac', '1', a]);
+  execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', join(ROOT, 'production/L001', timing.audioFile || 'out/voice_draft.mp3'), '-filter_complex', f.join(';'), '-map', '[out]', '-t', String(FR / FPS), '-ac', '1', a]);
   return a;
 }
 function mux(v, a, out) { execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', v, '-i', a, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k', '-shortest', '-movflags', '+faststart', out]); }

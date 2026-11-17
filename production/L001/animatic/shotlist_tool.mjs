@@ -5,7 +5,7 @@
 //   node shotlist_tool.mjs remap <map.json>      — только перенос номеров в conf.js / film.js по карте {старый: новый}
 //   node shotlist_tool.mjs sync                  — старт и длительность планов из timing.json (черновой голос), шапки глав,
 //                                                  итоги и раздел «Проверка»
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
@@ -149,13 +149,14 @@ function remapCode(map) {
   c = c.replace(/^(\s*)(\d+)(: (?:d =>|\[\[|'))/gm, (_, sp, n, rest) => sp + m(+n) + rest);
   c = c.replace(/(YEAR = \{)([^}]*)\}/, (_, a, b) => a + b.replace(/(\d+):/g, (__, n) => m(+n) + ':') + '}');
   writeFileSync(conf, c);
-  const film = join(D, 'film.js');
+  for (const film of [join(D, 'film.js'), join(D, 'core.js')].filter(existsSync)) {   // после выноса кода в core.js номера живут там
   let f = readFileSync(film, 'utf8');
   f = f.replace(/(const PROP_AT = \{)([\s\S]*?)\};/, (_, a, b) => a + b.replace(/(\d+): \[/g, (__, n) => m(+n) + ': [') + '};');
   f = f.replace(/(const PL = \{)([\s\S]*?)\}\[s\.n\]/, (_, a, b) => a + b.replace(/(\d+): \['/g, (__, n) => m(+n) + ": ['") + '}[s.n]');
   f = f.replace(/s\.n === (\d+)/g, (_, n) => 's.n === ' + m(+n));
   f = f.replace(/!\[([\d, ]+)\]\.includes\(s\.n\)/, (_, l) => '![' + l.split(',').map(x => m(+x.trim())).join(', ') + '].includes(s.n)');
   writeFileSync(film, f);
+  }
 }
 
 function sync() {

@@ -5,13 +5,15 @@
 // Путь коробки (7 планов 3D-boxpath в гл. 6) идёт по готовому видео box_path_v2 (S1..S6 + 3D-хвост): фразы голоса сдвигаются
 // тишиной так, чтобы каждая начиналась на своём подплане; S4 — без голоса (пауза из шотлиста). Последний план — 2 с музыки.
 // Титр главы (T-title): перед его первым словом вставляется TITLE_PAUSE с тишины — титр читается до начала закадра.
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const D = dirname(fileURLToPath(import.meta.url)), L = join(D, '..');
 const md = readFileSync(join(L, 'shotlist.md'), 'utf8').split(/\r?\n/);
-const LA = process.argv.indexOf('--lines'), LINES_FILE = LA > 0 ? process.argv[LA + 1] : 'out/lines_draft.json';
+// источник голоса: --lines <json>, иначе финальный Fish, если он есть (out/lines_fish.json + out/voice_fish_en.mp3), иначе черновой edge-tts
+const LA = process.argv.indexOf('--lines'), LINES_FILE = LA > 0 ? process.argv[LA + 1] : (existsSync(join(L, 'out/lines_fish.json')) ? 'out/lines_fish.json' : 'out/lines_draft.json');
+const AUDIO_FILE = /fish/.test(LINES_FILE) ? 'out/voice_fish_en.mp3' : 'out/voice_draft.mp3';
 const lines = JSON.parse(readFileSync(join(L, LINES_FILE), 'utf8'));
 
 // ---- шотлист
@@ -135,7 +137,7 @@ for (let i = 0; i < shots.length; i++) {
 }
 
 const out = {
-  fps: 30, voiceDuration: voiceEnd, total: +total.toFixed(3), inserts,
+  fps: 30, voiceDuration: voiceEnd, total: +total.toFixed(3), inserts, linesFile: LINES_FILE, audioFile: AUDIO_FILE,
   note: 'start/end — секунды аниматика (голос со вставленными паузами inserts: at — время в voice_draft.mp3, dur — тишина)',
   shots: shots.map(s => ({ n: s.n, ch: s.ch, chTitle: s.chTitle, start: +s.start.toFixed(3), end: +s.end.toFixed(3), dur: +s.dur.toFixed(3),
     listDur: s.listDur, loc: s.loc, framing: s.framing, text: s.text, spoken: s.spoken, event: s.event, camera: s.camera, ...(s.box ? { box: s.box } : {}), ...(s.snap != null ? { snap: s.snap, snapWord: s.snapWord } : {}), ...(s.whip ? { whip: s.whip } : {}), ...(s.ev && s.ev.length ? { ev: s.ev } : {}) })),

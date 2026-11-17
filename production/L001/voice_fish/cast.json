@@ -11,7 +11,11 @@
  "HOST": {
   "id": "5a6774c58559475dac02eb2c91b26437",
   "name": "Leviticus Cornwall",
-  "speed": 1.0
+  "speed": 1.08,
+  "temperature": 0.5,
+  "top_p": 0.55,
+  "scene_tag": "[confident]",
+  "note": "выбор Рауана 2026-11-17 (дубль 1, клон персонажа RDR2 — риск принят). Каждая сцена ведущего — один запрос (scene_tag на весь дубль, в строках только [emphasis]/[break]), режется по словам whisper, паузы 0.3 с"
  },
  "JENSEN": {
   "id": "b7204d4e40ef4a548c7c8547b7f73492",

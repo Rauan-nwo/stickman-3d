@@ -15,10 +15,10 @@ Same last name, [sarcastic] no relation.
 [calm] Jensen has no idea.
 [AGENT 2] [whispering] Do we warn him?
 [AGENT] [whispering] Not tonight.
-[HOST] [confident] Evening. [break] Mind the box, [sarcastic] it's expensive.
-[HOST] [mysterious] Inside, [emphasis] the most wanted chips on Earth.
-[HOST] [confident] Thirty grand apiece, by the maker's own count.
-[HOST] [serious] And the man at that table held the key to [emphasis] every one of them.
+[HOST] Evening. Mind the [emphasis] box, it's expensive.
+[HOST] Inside, the most wanted [emphasis] chips on Earth.
+[HOST] Thirty grand apiece, by the maker's own count.
+[HOST] And the man at that table held the [emphasis] key to every one of them.
 [curious] So how did China get someone into the seat next to him?
 [confident] It starts with a decision in Washington.
 [calm] But first, meet the man at the table.
@@ -315,6 +315,6 @@ Same last name, [sarcastic] no relation.
 [sad] Both chairs are empty now.
 [serious] America watched that table for more than a year [break] and never said a word to the man sitting at it.
 [serious] So the next time someone friendly pulls up a chair beside the people building America's AI, [break] who's going to warn them?
-[HOST] [serious] Some keys are too heavy to carry.
-[HOST] [calm] So this one goes in the safe.
-[HOST] [mysterious] The question is [break] who opens it next.
+[HOST] Some [emphasis] keys are too heavy to carry.
+[HOST] So this one goes in the [emphasis] safe.
+[HOST] The question is [break] who opens it next.

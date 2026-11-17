@@ -22,7 +22,7 @@ fmt = lambda t: f'{int(t // 60)}:{t % 60:04.1f}'
 VID = os.path.join(OUT, 'animatic_nodebug.mp4')
 
 # ---- слова чернового голоса на шкале аниматика (вставки тишины из timing.inserts)
-LINES = json.load(open(os.path.join(L, 'out', 'lines_draft.json'), encoding='utf-8'))
+LINES = json.load(open(os.path.join(L, TM.get('linesFile', 'out/lines_draft.json')), encoding='utf-8'))   # голос, по которому сделан timing.json
 INS = TM['inserts']
 def to_anim(t): return t + sum(x['dur'] for x in INS if x['at'] <= t)
 WORDS = []
@@ -149,7 +149,7 @@ def auto(npz, video, ru):
     try:
         head = json.loads(subprocess.run(['git', 'show', 'HEAD:production/L001/animatic/timing.json'], capture_output=True, cwd=L).stdout.decode('utf-8'))['shots']
         mp = json.load(open(os.path.join(D, 'renumber_283_to_288.json')))
-        for nxt in ('renumber_288_to_297.json', 'renumber_297_to_298.json', 'renumber_298_to_329.json', 'renumber_329_to_340.json', 'renumber_340_to_341.json'):            # цепочка карт: номер HEAD (283) -> текущий
+        for nxt in ('renumber_288_to_297.json', 'renumber_297_to_298.json', 'renumber_298_to_329.json', 'renumber_329_to_340.json', 'renumber_340_to_341.json', 'renumber_341_to_342.json'):            # цепочка карт: номер HEAD (283) -> текущий
             m2 = json.load(open(os.path.join(D, nxt))); mp = {k: (m2.get(str(v)) if v is not None else None) for k, v in mp.items()}
         cur = {s['n']: s for s in SH}; ch = []
         for h in head:

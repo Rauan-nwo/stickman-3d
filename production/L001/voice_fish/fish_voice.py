@@ -23,10 +23,11 @@ for _s in (sys.stdout, sys.stderr):
 D = fishlib.D; L001 = fishlib.L001; OUT = fishlib.OUT
 TRIM = os.path.join(OUT, 'fish_trim'); os.makedirs(TRIM, exist_ok=True)
 SR = 44100
-GAP_NARR, GAP_CHAR, GAP_CHAPTER = 0.2, 0.15, 1.0
+GAP_NARR, GAP_CHAR, GAP_CHAPTER, GAP_SCENE = 0.2, 0.15, 1.0, 0.3
 MAX_TAKES = 4
 SPK = re.compile(r'^\[([A-Z][A-Z0-9 ]*)\]\s*(.*)$')
 TAG = re.compile(r'\[[a-z][a-z \-]*\]\s*')
+CAST = {'en': 'cast.json', 'ru': 'cast_ru.json'}
 FILES = {'en': ('narration.txt', 'narration_directed.txt'), 'ru': ('narration_ru.txt', 'narration_ru_directed.txt')}
 # слова, которые означают, что метка прочитана вслух (если их нет в самой строке)
 LEAK_EN = {'emphasis', 'break', 'sarcastic', 'serious', 'confident', 'calm', 'curious', 'mysterious', 'whispering',
@@ -51,7 +52,7 @@ def load(lang):
     plain = [l.strip() for l in open(os.path.join(L001, a), encoding='utf-8') if l.strip()]
     directed = [l.strip() for l in open(os.path.join(D, b), encoding='utf-8') if l.strip()]
     assert len(plain) == len(directed), (lang, len(plain), len(directed))
-    cast = json.load(open(os.path.join(D, 'cast.json'), encoding='utf-8'))
+    cast = json.load(open(os.path.join(D, CAST[lang]), encoding='utf-8'))
     rows = []
     for i, (p, d) in enumerate(zip(plain, directed), 1):
         m = SPK.match(p); sp, text = (m[1], m[2]) if m else ('NARRATOR', p)
@@ -59,8 +60,43 @@ def load(lang):
         assert sp == dsp, (lang, i, sp, dsp)
         c = cast.get(sp) or {'id': None, 'name': None}
         rows.append({'line': i, 'speaker': sp, 'text': text, 'directed': dtext, 'vid': c['id'], 'voice': c['name'],
-                     'speed': c.get('speed', 1.0), 'temperature': c.get('temperature', 0.75), 'top_p': c.get('top_p', 0.75)})
+                     'speed': c.get('speed', 1.0), 'temperature': c.get('temperature', 0.75), 'top_p': c.get('top_p', 0.75),
+                     'scene_tag': c.get('scene_tag')})
+    # сцены одним дублем: подряд идущие строки говорящего со scene_tag (HOST) — один запрос на сцену
+    sc = None
+    for idx, r in enumerate(rows):
+        if r['scene_tag'] and idx and rows[idx - 1]['speaker'] == r['speaker'] and sc is not None: sc.append(r)
+        elif r['scene_tag']: sc = [r]
+        else: sc = None
+        r['scene'] = sc
     return rows
+
+
+def scene_text(scene):
+    return scene[0]['scene_tag'] + ' ' + ' '.join(x['directed'] for x in scene)
+
+
+def scene_cut(lang, scene, k=0):
+    """Один запрос на всю сцену -> режем по словам whisper (разрез посередине паузы) -> wav каждой реплики."""
+    r0 = scene[0]
+    mp3 = fishlib.synth(scene_text(scene), r0['vid'], r0['speed'], r0['temperature'], r0['top_p'],
+                        tag='host' if k == 0 else f'host_r{k}')
+    base = os.path.basename(mp3)[:-4]
+    outs = [os.path.join(TRIM, f'{base}_l{i}.wav') for i in range(len(scene))]
+    if all(os.path.exists(o) for o in outs): return mp3, outs
+    full = os.path.join(TRIM, base + '_full.wav')
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', mp3, '-ar', str(SR), '-ac', '1', full], check=True)
+    _, ws = transcribe(lang, full, words=True)
+    texts = [x['text'] for x in scene]
+    al = align(' '.join(texts), ws, fishlib.probe(full))
+    ends, n = [], 0
+    for t in texts:
+        n += len([w for w in t.split() if re.search(r'\w', w)]); ends.append(n)
+    cuts = [0.0] + [(al[e - 1]['e'] + al[e]['s']) / 2 for e in ends[:-1]] + [fishlib.probe(full)]
+    for i, o in enumerate(outs):
+        subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', full, '-ss', f'{cuts[i]:.3f}', '-to', f'{cuts[i + 1]:.3f}',
+                        '-af', TRIM_AF, '-ar', str(SR), '-ac', '1', o], check=True)
+    return mp3, outs
 
 
 def take_path(r, k):
@@ -88,13 +124,15 @@ def save_takes(lang, t):
             except PermissionError: time.sleep(0.25)
 
 
+TRIM_AF = ('silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.03,areverse,'
+           'silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.03,areverse')
+
+
 def trimmed(mp3):
-    """mp3 -> wav 44.1k mono без тишины по краям (оставляем 30 мс)."""
+    """mp3 -> wav 44.1k mono без тишины по краям (оставляем 30 мс). Готовый wav из fish_trim/ возвращается как есть."""
     w = os.path.join(TRIM, os.path.basename(mp3)[:-4] + '.wav')
     if not os.path.exists(w):
-        af = ('silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.03,areverse,'
-              'silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.03,areverse')
-        subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', mp3, '-af', af, '-ar', str(SR), '-ac', '1', w], check=True)
+        subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', mp3, '-af', TRIM_AF, '-ar', str(SR), '-ac', '1', w], check=True)
     return w
 
 
@@ -102,9 +140,23 @@ def trimmed(mp3):
 def cmd_synth(lang, workers=3):
     rows = load(lang); takes = load_takes(lang); done = [0]
 
+    def scene_job(scene):
+        sig = [scene_text(scene), scene[0]['vid'], scene[0]['speed'], scene[0]['temperature'], scene[0]['top_p'], 'scene']
+        keys = [str(x['line']) for x in scene]
+        if all(takes.get(k, {}).get('sig') == sig + [i] and os.path.exists(takes[k]['path']) for i, k in enumerate(keys)): return
+        mp3, outs = scene_cut(lang, scene)
+        with _tl:
+            for i, (k, o) in enumerate(zip(keys, outs)):
+                takes[k] = {'sig': sig + [i], 'path': o, 'scene_mp3': mp3, 'k': 0, 'attempts': []}
+        save_takes(lang, takes); done[0] += len(keys)
+        print(lang, 'scene take', keys[0], '-', keys[-1], flush=True)
+
+    for r in rows:   # сцены — последовательно, до общего пула (нужен whisper)
+        if r['scene'] and r['scene'][0] is r and r['vid']: scene_job(r['scene'])
+
     def job(r):
         key = str(r['line'])
-        if not r['vid']: return
+        if not r['vid'] or r['scene']: return
         t = takes.get(key)
         sig = [r['directed'], r['vid'], r['speed'], r['temperature'], r['top_p']]
         if t and t.get('sig') == sig and os.path.exists(t['path']): return
@@ -257,6 +309,7 @@ def cmd_fix(lang):
     for key, t in takes.items():
         r = rows[int(key)]
         if not t.get('score') or not t['score']['bad']: continue
+        if r['scene']: print('  scene line', key, 'bad — перегенерировать сцену вручную'); continue
         best = t['score']; t['attempts'] = t.get('attempts') or [best]
         for k in range(len(t['attempts']), MAX_TAKES):
             try: p = take_path(r, k)
@@ -314,6 +367,7 @@ def cmd_assemble(lang):
         if idx > 0:
             prev = rows[idx - 1]
             if r['line'] in chs: t += GAP_CHAPTER
+            elif r['scene'] and r['scene'] is prev.get('scene'): t += GAP_SCENE
             elif prev['speaker'] == 'NARRATOR' and r['speaker'] == 'NARRATOR': t += GAP_NARR
             else: t += GAP_CHAR
         w = trimmed(takes[str(r['line'])]['path']); dur = fishlib.probe(w)

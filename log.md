@@ -88,3 +88,12 @@ touched: production/L001/film/, production/L001/animatic/core.js, production/L00
 
 ## [2026-11-17 15:10] video | L001 — финальная озвучка Fish Audio (s2.1-pro-free): EN 17:20 (165 слов/мин) и RU 20:12 для прослушивания; 320 строк с режиссурой S2, 44 второстепенные роли подобраны из библиотеки Fish (по пробе, f0 для пола), проверка whisper — ни одной прочитанной метки, EN перегенерировано 4 строки, RU 59 (сильный акцент англоязычных голосов, 10 строк слабые); out/lines_fish.json с таймингами слов заменяет черновой голос
 touched: production/L001/voice_fish/narration_directed.txt, production/L001/voice_fish/narration_ru_directed.txt, production/L001/voice_fish/cast.json, production/L001/voice_fish/fishlib.py, production/L001/voice_fish/fish_voice.py, production/L001/voice_fish/README.md, production/L001/out/voice_fish_en.mp3, production/L001/out/voice_fish_ru.mp3, production/L001/out/lines_fish.json
+
+## [2026-11-17 16:10] video | L001 финал гл. 0–1, раунд 2: 3D — нативные рендеры кадр в кадр (final.mjs, одно кодирование crf 16, PSNR 44.5–50 дБ, 0 повторов кадров), #2 — city_towers; D01 #1 — агент за дальним столиком (плейт plate_v2 + проём из GPT Image); ошибки персонажей: окно #12, хват ключа #21/#24, стол сверху #25/#26, санузел #30, дрейф камеры уводил героев из кадра (#5, #8, #13)
+touched: production/L001/film/ (final.mjs, clips3d.js, verify3d.py, audio.mjs, make_plates.py, assets/, raw/, staging/desktop.js, QA.md, README.md), production/L001/animatic/core.js (хук noAmbient)
+
+## [2026-11-17 17:05] video | L001 финал гл. 0–1, раунд 3: #25–26 переделаны на карточки мест (JENSEN HUANG / пустая карточка, нить BEIJING, штамп RESERVED; телефон, мел и кожанка убраны), шотлист и D14 обновлены; полноразмерная проверка 25 планов — исправлены #9 (рука тоста — рукав кожанки), #18 (кисти на краю планшета и папки), #22 (ценник не закрывает логотип)
+touched: production/L001/film/, production/L001/shotlist.md, production/L001/decisions_for_owner.md, production/L001/animatic/timing.json
+
+## [2026-11-17 17:58] video | L001 финал гл. 0–1, раунд 5: смаз вип-пана/наезда-удара в общем ядре (core.js smearInto), #12 — сидящие в окне на нарисованных стульях, конец пилота по границе фразы со спадом, временная подложка без цифровой тишины, дорожки голоса и подложки отдельно
+touched: production/L001/animatic/core.js, production/L001/film/ (final.mjs, audio.mjs, shots.js, staging/inserts.js, staging/common.js, QA.md)

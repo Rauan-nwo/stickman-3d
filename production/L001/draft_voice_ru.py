@@ -66,7 +66,7 @@ def tempo(src, t, dst):
 async def main():
     en = [l.strip() for l in open(os.path.join(D, 'narration.txt'), encoding='utf-8') if l.strip() and not l.startswith('#')]
     ru = [l.strip() for l in open(os.path.join(D, 'narration_ru.txt'), encoding='utf-8') if l.strip() and not l.startswith('#')]
-    ld = json.load(open(os.path.join(OUT, 'lines_draft.json'), encoding='utf-8'))
+    ld = json.load(open(os.path.join(D, json.load(open(os.path.join(D, 'animatic', 'timing.json'), encoding='utf-8')).get('linesFile', 'out/lines_draft.json')), encoding='utf-8'))   # тот же голос, что в timing.json
     tm = json.load(open(os.path.join(D, 'animatic', 'timing.json'), encoding='utf-8'))
     assert len(en) == len(ru) == len(ld), (len(en), len(ru), len(ld))
     tag = lambda l: (re.match(r'^\[([A-Z0-9 ]+)\]', l) or [None, ''])[1]
