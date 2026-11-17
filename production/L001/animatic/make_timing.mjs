@@ -46,6 +46,7 @@ for (const s of shots) {
 }
 
 // ---- сдвиги звука (вставки тишины) и времена
+const TITLE_GAP = 1.6;
 const BOX = shots.filter(s => s.ch === 6 && s.loc === '3D-boxpath').map(s => s.n).slice(0, 7), AFTER_BOX = BOX[6] + 1, TITLE_PAUSE = 1.2, MIN = { line: 1.5, card: 1.8, any: 1.3 }, SEG = [0, 2.1, 4.1, 6.3, 8.2, 10.5, 13.3], BOX_END = 17.9, LEAD = .15;
 const inserts = []; let shift = 0, boxStart = null;
 const insertBefore = (wi, need) => {        // тишина в середине паузы перед словом wi
@@ -81,6 +82,8 @@ for (const s of shots) {
     const prevE = s.wi > 0 ? words[s.wi - 1].e : 0, at = (prevE + words[s.wi].s) / 2;
     s.start = at + shift; insertBefore(s.wi, TITLE_PAUSE); continue;
   }
+  // название ролика встаёт в паузу, не под голос (shot_for_shot, правка 6): тишина перед «But first,»
+  if (/^But first,/.test(s.text)) insertBefore(s.wi, TITLE_GAP);
   let st = words[s.wi].s + shift;
   if (boxStart != null && s.n === AFTER_BOX && st < boxStart + BOX_END + .25) { insertBefore(s.wi, boxStart + BOX_END + .25 - st); st = words[s.wi].s + shift - .25; }
   s.start = st;
@@ -113,6 +116,14 @@ for (let i = 0; i < shots.length; i++) {
     s.snap = +Math.min(Math.max(t, .25), s.dur - .2).toFixed(3);
     if (k >= 0) s.snapWord = words[k].w.replace(/^[^A-Za-z0-9$]+|[^A-Za-z0-9%]+$/g, '');
   } else if (/рывок на событии/.test(s.camera)) s.snap = +(s.dur * .55).toFixed(3);
+  // события по словам: часть колонки «событие» вида «на «слово» …» встаёт на время этого слова
+  s.ev = [];
+  s.event.split(/;\s*/).forEach((part, pi) => {
+    const m2 = part.match(/(?:^|\s)на «([^»]+)»/); if (!m2) return;
+    const key = norm(m2[1].split(/\s+/)[0]); let k = -1;
+    for (let q = s.wi; q < to; q++) if (words[q].k === key) { k = q; break; }
+    if (k >= 0) s.ev.push({ p: pi, t: +(absW(k) - s.start).toFixed(3) });
+  });
   if (/вип-пан/.test(s.camera)) {
     const sp0 = lines[words[s.wi].li].speaker;
     for (let q = s.wi + 1; q < to; q++) if (lines[words[q].li].speaker !== sp0) {
@@ -125,7 +136,7 @@ const out = {
   fps: 30, voiceDuration: voiceEnd, total: +total.toFixed(3), inserts,
   note: 'start/end — секунды аниматика (голос со вставленными паузами inserts: at — время в voice_draft.mp3, dur — тишина)',
   shots: shots.map(s => ({ n: s.n, ch: s.ch, chTitle: s.chTitle, start: +s.start.toFixed(3), end: +s.end.toFixed(3), dur: +s.dur.toFixed(3),
-    listDur: s.listDur, loc: s.loc, framing: s.framing, text: s.text, spoken: s.spoken, event: s.event, camera: s.camera, ...(s.box ? { box: s.box } : {}), ...(s.snap != null ? { snap: s.snap, snapWord: s.snapWord } : {}), ...(s.whip ? { whip: s.whip } : {}) })),
+    listDur: s.listDur, loc: s.loc, framing: s.framing, text: s.text, spoken: s.spoken, event: s.event, camera: s.camera, ...(s.box ? { box: s.box } : {}), ...(s.snap != null ? { snap: s.snap, snapWord: s.snapWord } : {}), ...(s.whip ? { whip: s.whip } : {}), ...(s.ev && s.ev.length ? { ev: s.ev } : {}) })),
 };
 writeFileSync(join(D, 'timing.json'), JSON.stringify(out, null, 1));
 

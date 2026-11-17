@@ -163,7 +163,8 @@ function sync() {
   const { lines, shots, toks, errs, rep, cardBad, noEv } = { ...parse(), ...check(false) };
   if (tm.shots.length !== shots.length) throw new Error('timing.json не от этого шотлиста — сначала make_timing');
   const T = new Map(tm.shots.map(s => [s.n, s]));
-  for (const s of shots) { const t = T.get(s.n); s.start = fmt(t.start); s.dur = t.dur; s.t0 = t.start; s.t1 = t.end;
+  // план без голоса: в колонке «с» остаётся заданная длина тишины (make_timing читает её как listDur), иначе длина растёт с каждым циклом
+  for (const s of shots) { const t = T.get(s.n); s.start = fmt(t.start); if (!/^—/.test(s.text)) s.dur = t.dur; s.t0 = t.start; s.t1 = t.end;
     if (t.snapWord && /«[^»]+»/.test(s.camera)) s.camera = s.camera.replace(/«[^»]+»/, `«${t.snapWord}»`);   // ударное слово — как в черновом голосе
     lines[s.li] = rowOf(s); }
   const chs = [...new Set(shots.map(s => s.ch))];

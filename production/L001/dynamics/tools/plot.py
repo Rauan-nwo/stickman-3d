@@ -6,12 +6,12 @@ OUT = r'C:\dev\projects\youtube-video\production\L001\out\dynamics_curve.png'
 F = json.load(open(D + r'\final.json', encoding='utf8'))
 T = json.load(open(r'C:\dev\projects\youtube-video\production\L001\animatic\timing.json', encoding='utf8'))
 C, A = F['res']['comp'], F['res']['anim']
-ch_comp = [0, 6, 53, 268, 364, 435, 549, 724, 954, 1037, 1181]
+ch_comp = [0, 37.2, 53, 268, 364, 435, 549, 724, 954, 1037, 1181]   # те же сюжетные отрезки, что в energy_ch.py (холодное начало)
 ch_anim = []
 for s in T['shots']:
     if not ch_anim or s['ch'] != len(ch_anim) - 1:
         while len(ch_anim) <= s['ch']: ch_anim.append(s['start'])
-names = ['0 Office', '1 Singapore', '2 Key', '3 Door', '4 Cover', '5 Intro', '6 Pipeline', '7 Prize', '8 Memo', '9 Chair', '10 Office']
+names = ['0 Singapore', '1 Office', '2 Key', '3 Door', '4 Cover', '5 Intro', '6 Pipeline', '7 Prize', '8 Memo', '9 Chair', '10 Office']
 
 
 def comps(R):
@@ -65,14 +65,17 @@ def base(a, title, ylab):
 a = ax[0]
 base(a, 'Индекс энергии: склейки + резкие движения/события + скорость камеры (1.0 = среднее конкурента)', 'индекс')
 a.plot(tc, roll(EC), color=BLUE, lw=2, label='конкурент (19:48)')
-a.plot(ta, roll(EA), color=ORANGE, lw=2, label='наш аниматик (15:30)')
+a.plot(ta, roll(EA), color=ORANGE, lw=2, label=f'наш аниматик ({int(len(EA)//60)}:{int(len(EA)%60):02d})')
+p10 = float(np.percentile(roll(EC), 10))
+a.axhline(p10, color=BLUE, lw=1, ls='--', alpha=0.8)
+a.text(16.0, p10 - 0.17, f'10-й процентиль конкурента {p10:.2f}: ниже не опускаемся', color=BLUE, fontsize=8)
 for b, n in zip(ch_anim[1:], names[1:]):
     a.axvline(b / 60, color=ORANGE, lw=0.6, alpha=0.5, ls=':')
-    a.text(b / 60 + 0.05, a.get_ylim()[1] * 0.97 if False else 2.35, n.split()[0], color=ORANGE, fontsize=8, va='top')
+    a.text(b / 60 + 0.05, 2.55, n.split()[0], color=ORANGE, fontsize=8, va='top')
 for b, n in zip(ch_comp[1:], names[1:]):
     a.axvline(b / 60, color=BLUE, lw=0.6, alpha=0.5, ls=':')
     a.text(b / 60 + 0.05, 0.08, n.split()[0], color=BLUE, fontsize=8)
-a.set_ylim(0, 2.4); a.legend(loc='upper right', frameon=False)
+a.set_ylim(0, 2.6); a.legend(loc='upper right', frameon=False)
 a.text(0.0, -0.22, 'пунктир и цифры сверху — главы у нас, снизу — те же главы у конкурента (по сверке compare_scenes.md)', transform=a.transAxes, color=INK2, fontsize=8)
 
 a = ax[1]
@@ -89,13 +92,15 @@ a.legend(loc='upper right', frameon=False)
 
 a = ax[3]
 x = np.arange(11); w = 0.38
+for i, (cv, av) in enumerate(zip(chapters['comp']['energy'], chapters['anim']['energy'])):
+    a.text(i + w / 2 + 0.01, av + 0.04, f'{av:.2f}', ha='center', fontsize=8, color=ORANGE); a.text(i - w / 2 - 0.01, cv + 0.04, f'{cv:.2f}', ha='center', fontsize=8, color=BLUE)
 a.bar(x - w / 2 - 0.01, chapters['comp']['energy'], w, color=BLUE, label='конкурент')
 a.bar(x + w / 2 + 0.01, chapters['anim']['energy'], w, color=ORANGE, label='наш аниматик')
 a.set_xticks(x); a.set_xticklabels(names, fontsize=9)
 a.set_title('Индекс энергии по главам', loc='left', fontsize=11); a.set_ylabel('индекс')
-a.grid(axis='y', color=GRID, lw=0.8); a.set_axisbelow(True); a.set_ylim(0, 2.6)
+a.grid(axis='y', color=GRID, lw=0.8); a.set_axisbelow(True); a.set_ylim(0, 3.3)
 for s in ['top', 'right']: a.spines[s].set_visible(False)
-a.legend(loc='upper left', frameon=False, ncol=2)
+a.legend(loc='upper center', bbox_to_anchor=(0.55, 1.0), frameon=False, ncol=2)
 for a in ax[:3]: a.set_xlabel('минуты')
 fig.savefig(OUT, dpi=110)
 print(OUT)

@@ -1,5 +1,5 @@
 // render_all.mjs: рендер аниматика кусками параллельно -> склейка -> голос со вставленными паузами -> mux; контактные листы.
-//   node production/L001/animatic/render_all.mjs [--nodebug] [--sheets] [--jobs 4]
+//   node production/L001/animatic/render_all.mjs [--nodebug] [--clean-only] [--sheets] [--jobs 4]   (--clean-only: только animatic_nodebug.mp4)
 // Перед этим: node make_timing.mjs, pwsh prep_assets.ps1, node engine/tools/build.mjs production/L001/animatic
 import { spawn, execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync, mkdirSync, rmSync, copyFileSync, existsSync } from 'node:fs';
@@ -48,6 +48,6 @@ async function sheets() {      // один кадр на план (60% длин�
 if (has('--sheets')) await sheets();
 if (!has('--sheets-only')) {
   const a = audio(); console.log('audio', a);
-  const r1 = await video(true); mux(r1.v, a, join(OUT, 'animatic.mp4')); console.log('animatic.mp4', r1.sec.toFixed(0), 's');
-  if (has('--nodebug')) { const r2 = await video(false); mux(r2.v, a, join(OUT, 'animatic_nodebug.mp4')); console.log('animatic_nodebug.mp4', r2.sec.toFixed(0), 's'); }
+  if (!has('--clean-only')) { const r1 = await video(true); mux(r1.v, a, join(OUT, 'animatic.mp4')); console.log('animatic.mp4', r1.sec.toFixed(0), 's'); }
+  if (has('--nodebug') || has('--clean-only')) { const r2 = await video(false); mux(r2.v, a, join(OUT, 'animatic_nodebug.mp4')); console.log('animatic_nodebug.mp4', r2.sec.toFixed(0), 's'); }
 }

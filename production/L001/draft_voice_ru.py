@@ -37,13 +37,16 @@ def probe(p):
 async def synth(text, v, rate, pitch, path):
     import edge_tts
     if os.path.exists(path + '.wav'): return
-    tries = [(v, rate, pitch)] * 6 + [(M, rate, '+30Hz')]   # запасной вариант, если голос не отвечает
+    # запасной вариант, если голос не отвечает (2026-11-17: DmitryNeural отказывает на части фраз) — Светлана ниже тоном; пишется в fallback.txt
+    tries = [(v, rate, pitch)] * 3 + [(F, rate, '-25Hz' if v == M else pitch)] * 3
     for attempt, (vv, rr, pp) in enumerate(tries):
         try:
             audio = bytearray()
             async for ch in edge_tts.Communicate(text, vv, rate=rr, pitch=pp).stream():
                 if ch['type'] == 'audio': audio += ch['data']
-            if audio: break
+            if audio:
+                if vv != v: open(os.path.join(OUT, 'voice_ru_fallback.txt'), 'a', encoding='utf-8').write(f'{v} -> {vv}: {text}' + chr(10))
+                break
         except Exception as e:
             print('retry', vv, repr(text[:40]), type(e).__name__)
         await asyncio.sleep(1 + attempt)
