@@ -1,0 +1,9 @@
+{
+  "_note": "Голоса L001 в Fish Audio (выбор Рауана 2026-11-17). Режиссура — метки S2 в тексте ([confident], [emphasis], [break], [long-break], [soft tone] …). Второстепенные роли подбираются отдельно и отличаются друг от друга.",
+  "model": "s2.1-pro-free (бесплатная; для финала — s2.1-pro после пополнения API-кредита)",
+  "NARRATOR": { "id": "e686ae649ee44f219a108aacba206c1a", "name": "Calm Storyteller", "speed": 0.96, "temperature": 0.75, "top_p": 0.75 },
+  "HOST":     { "id": "5a6774c58559475dac02eb2c91b26437", "name": "Leviticus Cornwall", "speed": 1.0 },
+  "JENSEN":   { "id": "b7204d4e40ef4a548c7c8547b7f73492", "name": "Alok", "speed": 1.0 },
+  "ALICE":    { "id": "9c90cae418834058b5aa51adb21dac41", "name": "Jane Doe", "speed": 1.0 },
+  "AGENT":    { "id": "77daaa587ee54edaa5c92931b49f4fa0", "name": "Secret Agent", "speed": 1.0 }
+}

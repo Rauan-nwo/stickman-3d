@@ -74,7 +74,7 @@ Decades later he'd put it simply: he used to clean bathrooms, and now he runs a 
 
 [SCENE: Denny's booth, A. Night, 1993 caption, three young engineers with coffee cups and a napkin sketch of a chip.]
 
-As a teenager he washed dishes at Denny's. In 1993 he walked back into one, this time as a customer. In a booth in San Jose, he and two engineer friends, Chris Malachowsky and Curtis Priem, planned a company that would build chips for 3D graphics.
+As a teenager he washed dishes at Denny's. He started at the sink and worked his way up to busboy. In 1993 he walked back into one, this time as a customer. In a booth in San Jose, he and two engineer friends, Chris Malachowsky and Curtis Priem, planned a company that would build chips for 3D graphics.
 
 WAITRESS: What can I get you?
 JENSEN: Coffee, and a new industry.
@@ -128,7 +128,7 @@ OFFICIAL: The ones they want.
 
 [SCENE: Nvidia lab, A. A conveyor of chips getting smaller each time; each one hits a red STOP stamp.]
 
-Nvidia designed slower versions just for China. Washington tightened the rules, and those were blocked too. So Nvidia made an even slower one. In April 2025, that one was blocked as well.
+Nvidia designed slower versions just for China. Washington tightened the rules, and those were blocked too. So Nvidia made an even slower one. In April 2025, that one was blocked as well, and Nvidia took a five-and-a-half-billion-dollar charge.
 
 JENSEN: What about this one?
 OFFICIAL: Absolutely not.
@@ -147,7 +147,7 @@ ASSISTANT: That's the chart.
 
 Jensen didn't hide how he felt. On stage after stage, he argued that the rules were hurting American companies and handing the market to Chinese rivals.
 
-JENSEN: Let American chips compete everywhere.
+Let American chips compete everywhere.
 
 [SCENE: dim Beijing office, A. Two faceless officers in silhouette over a desk; a photo of Jensen and a padlock on the desk. Black card at the end: "WHY PICK A LOCK?"]
 
@@ -162,7 +162,7 @@ And for that, you would need a company.
 
 [SCENE: Singapore business tower, B. A sign above an office door swaps from "7ROAD" to "MEGASPEED". A clerk with a form at a counter.]
 
-In March 2023, a small Singapore company called 7Road International, the overseas arm of a Chinese video game business, got a new name: Megaspeed. Its new managing director was Alice Huang.
+In March 2023, a small Singapore company called 7Road International, registered back in 2015 as the overseas arm of a Chinese video game business, got a new name: Megaspeed. Its new managing director was Alice Huang.
 
 CLERK: Previous business?
 STAFFER: Video games.
@@ -231,7 +231,7 @@ ACCOUNTANT: That was the small one.
 
 [SCENE: T "big number": $33 MILLION grows to $3 BILLION. Then A: two bankers at a window.]
 
-By the end of 2024, the little company's assets had jumped to about three billion dollars.
+By the end of 2024, the little company's assets had jumped to about three billion dollars. Its revenue that year: about two hundred ninety-four million.
 
 BANKER: Last year, a small firm.
 BANKER 2: And this year?
@@ -283,7 +283,7 @@ JENSEN: We counted every one.
 
 [SCENE: customs gate, A. A nervous smuggler with a bulging suitcase sweats; behind him a calm truck rolls through with a stamped stack of papers. Black card: "THE CHIPS WEREN'T THE PRIZE".]
 
-That's what made it so hard to catch. Ordinary smugglers sweat at customs. This operation never had to. Every box was exactly where the paperwork said it was. But in the eyes of American intelligence, the chips were never the real prize.
+That's what made it so hard to catch. Ordinary smugglers sweat at customs, and some get caught. Prosecutors charged one Chinese national over nine hundred and seventeen smuggled servers. This operation never had to sweat. Every box was exactly where the paperwork said it was. But in the eyes of American intelligence, the chips were never the real prize.
 
 ## 7. The Real Prize (10:30–12:00)
 
@@ -336,7 +336,7 @@ AIDE 2: He's in it.
 
 [SCENE: newsroom, A. A front page printing: NEW YORK TIMES, Oct. 29. Then Jensen on a TV screen in a hallway.]
 
-The memo went around before the president's trip to Beijing in May. Then, on October 29, 2026, the New York Times broke the story. China called it a smear. Jensen said his contacts with her were about business.
+The memo went around before the president's trip to Beijing in May. According to Axios, even Commerce Secretary Howard Lutnick got a copy. Then, on October 29, 2026, the New York Times broke the story. China called it a smear. Jensen said his contacts with her were about business.
 
 JENSEN: Completely normal and not unusual.
 
@@ -375,6 +375,8 @@ BOARD: We're opening an independent investigation.
 CONGRESSMAN: We'd like a closed-door briefing.
 IMMIGRATION: Alice Huang? Entry denied.
 
+President Trump said the FBI was looking into it.
+
 [SCENE: Nvidia headquarters at night, B. Camera drifts down an empty corridor to the CEO's office; the leather chair is empty. T ticker: NVDA −13%.]
 
 On November 12, Jensen Huang resigned as CEO, president, and board member, effective immediately. Thirty-three years at the top, over in one press release. Chief financial officer Colette Kress became interim CEO.
@@ -382,14 +384,14 @@ On November 12, Jensen Huang resigned as CEO, president, and board member, effec
 REPORTER: Any reason given?
 SPOKESMAN: None at all.
 
-That day, Nvidia's stock fell as much as thirteen percent.
+That day, Nvidia's stock fell as much as thirteen percent. And its next earnings report was due five days later.
 
 ANALYST: What did the affair cost?
 ANALYST 2: About thirteen percent.
 ANALYST: Of him?
 ANALYST 2: Of your retirement fund.
 
-Nobody has charged Jensen, Nvidia, or Alice Huang with any crime. Where she is now, nobody will say.
+Nobody has charged Jensen, Nvidia, or Alice Huang with any crime. Singapore has barred her from entering the country. Where she is now, nobody will say.
 
 [SCENE: the Singapore restaurant from chapter 1, A. Same candles, same glasses, two empty chairs. Slow pull-back through the window to the rainy street; the agents' car is gone.]
 
