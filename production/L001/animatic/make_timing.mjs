@@ -1,5 +1,6 @@
 // make_timing.mjs: шотлист L001 + черновой голос -> timing.json и план склейки звука для аниматика.
-//   node production/L001/animatic/make_timing.mjs
+//   node production/L001/animatic/make_timing.mjs [--lines out/lines_fish.json]   (по умолчанию out/lines_draft.json)
+// Пишет timing.json и words.json (слова голоса на шкале фильма: кто, что, когда — для рта героев в film/).
 // Старт плана = начало первого слова его «текста» (поиск последовательно по словам lines_draft.json).
 // Путь коробки (7 планов 3D-boxpath в гл. 6) идёт по готовому видео box_path_v2 (S1..S6 + 3D-хвост): фразы голоса сдвигаются
 // тишиной так, чтобы каждая начиналась на своём подплане; S4 — без голоса (пауза из шотлиста). Последний план — 2 с музыки.
@@ -10,7 +11,8 @@ import { fileURLToPath } from 'node:url';
 
 const D = dirname(fileURLToPath(import.meta.url)), L = join(D, '..');
 const md = readFileSync(join(L, 'shotlist.md'), 'utf8').split(/\r?\n/);
-const lines = JSON.parse(readFileSync(join(L, 'out', 'lines_draft.json'), 'utf8'));
+const LA = process.argv.indexOf('--lines'), LINES_FILE = LA > 0 ? process.argv[LA + 1] : 'out/lines_draft.json';
+const lines = JSON.parse(readFileSync(join(L, LINES_FILE), 'utf8'));
 
 // ---- шотлист
 const shots = []; let ch = null, chTitle = '';
@@ -139,6 +141,9 @@ const out = {
     listDur: s.listDur, loc: s.loc, framing: s.framing, text: s.text, spoken: s.spoken, event: s.event, camera: s.camera, ...(s.box ? { box: s.box } : {}), ...(s.snap != null ? { snap: s.snap, snapWord: s.snapWord } : {}), ...(s.whip ? { whip: s.whip } : {}), ...(s.ev && s.ev.length ? { ev: s.ev } : {}) })),
 };
 writeFileSync(join(D, 'timing.json'), JSON.stringify(out, null, 1));
+// слова на шкале фильма (секунды фильма): рот героя двигается только на своих словах (film/words.js)
+const wordsOut = { lines: LINES_FILE, total: out.total, words: lines.flatMap((l, li) => l.words.map(w => ({ w: w.w, s: +(w.s + shiftAt(w.s)).toFixed(3), e: +(w.e + shiftAt(w.s)).toFixed(3), sp: l.speaker, line: li + 1 }))) };
+writeFileSync(join(D, 'words.json'), JSON.stringify(wordsOut));
 
 // ---- отчёт
 const r = x => x.toFixed(1);

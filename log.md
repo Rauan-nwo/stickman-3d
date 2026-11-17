@@ -82,3 +82,6 @@ touched: production/L001/scenes/kitchen/
 
 ## [2026-11-17 11:48] query | L001 — факт-чек 30 пунктов конкурента: 11 confirmed + 2 частично, 11 reported, 3 contradicted, 3 not found; 28 B-строк в черновик v2 (+3:08; A+B ≈ 19:14); правки: −13% → −14%, «now he runs a company»
 touched: raw/research/2026-11-17-l001-factcheck-2.md, production/L001/script_v2_draft.md
+
+## [2026-11-17 15:05] video | L001 — финальный рендер: пилот гл. 0–1 с настоящими героями (out/ch0_1.mp4, 76 с, черновой голос); ядро аниматика вынесено в animatic/core.js (аниматик попиксельно тот же), make_timing пишет words.json (--lines для голоса Fish); конфиги локаций ресторан/салон/кабинет/Кентукки/улица; новые герои — агенты 1 и 2, агент в зале, официант, юный Дженсен, перчатка; 22 дефекта найдено и исправлено (QA.md); V001 не изменился
+touched: production/L001/film/, production/L001/animatic/core.js, production/L001/animatic/film.js, production/L001/animatic/make_timing.mjs, production/L001/animatic/words.json, production/L001/animatic/timing.json
