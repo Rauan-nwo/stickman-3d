@@ -197,7 +197,7 @@ NUMW = set('zero one two three four five six seven eight nine ten eleven twelve 
 
 
 def transcribe(lang, wav, words=False):
-    segs, _ = model(lang).transcribe(wav, language=lang, beam_size=5, word_timestamps=words, vad_filter=False,
+    segs, _ = model(lang).transcribe(wav, language=lang, beam_size=5 if words else 2, word_timestamps=words, vad_filter=False,
                                      condition_on_previous_text=False)
     segs = list(segs)
     text = ' '.join(s.text.strip() for s in segs)

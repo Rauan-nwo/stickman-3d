@@ -1,0 +1,303 @@
+{
+ "_note": "Русская дорожка L001 (только для прослушивания): родные русские голоса из библиотеки Fish (language=ru), подобраны 2026-11-17 по пробе на кандидата (whisper small, f0 для пола; женские — только с f0 ≥ 180 Гц, мужские ≤ 165 Гц). Без клонов знаменитостей, блогеров и персонажей. У каждой роли свой голос. speed подогнан под ~12,5 букв/с; рассказчик и ведущий — под ~темп EN.",
+ "model": "s2.1-pro-free (бесплатная; API-кредит 0, платная s2.1-pro отвечает 402)",
+ "NARRATOR": {
+  "id": "fa3e3b7d3c2a44d88d9f018bc45db1ce",
+  "name": "Russian",
+  "speed": 1.04,
+  "f0_hz": 84,
+  "temperature": 0.75,
+  "top_p": 0.75
+ },
+ "HOST": {
+  "id": "61a282fd80014a9d9e98af25b6c3a8ef",
+  "name": "Wan04",
+  "speed": 1.08,
+  "f0_hz": 134,
+  "temperature": 0.5,
+  "top_p": 0.55,
+  "scene_tag": "[confident]",
+  "note": "сцена ведущего — один запрос, как в EN"
+ },
+ "JENSEN": {
+  "id": "05affa5285c34563937c4f25eed3f130",
+  "name": "Вдумчивый Мужской Голос",
+  "speed": 0.96,
+  "f0_hz": 126
+ },
+ "ALICE": {
+  "id": "e1fe0abac1ff43f1a21187b2a5e0d9c7",
+  "name": "картье",
+  "speed": 0.98,
+  "f0_hz": 192
+ },
+ "AGENT": {
+  "id": "c6fba1388e6b47d68be886441ccc3674",
+  "name": "Max wise",
+  "speed": 1.12,
+  "f0_hz": 87
+ },
+ "AGENT 2": {
+  "id": "419b5f8f5ce743a8a14654f3f9cf5ba0",
+  "name": "Парень",
+  "speed": 1.0,
+  "f0_hz": 116
+ },
+ "AUNT": {
+  "id": "3d421e49cae44556a9b93d610e979cfe",
+  "name": "КАТЯ О",
+  "speed": 0.9,
+  "f0_hz": 184
+ },
+ "UNCLE": {
+  "id": "563736b1eb904cb29572f5eb5d9c46d2",
+  "name": "Анатолий",
+  "speed": 1.0,
+  "f0_hz": 132
+ },
+ "ROOMMATE": {
+  "id": "1815048e71504b989206225ff23a3516",
+  "name": "Подросток",
+  "speed": 1.08,
+  "f0_hz": 119
+ },
+ "YOUNG JENSEN": {
+  "id": "76d4aadd0fdf40fabdf0364a70efb99e",
+  "name": "Голос мальчика",
+  "speed": 1.0,
+  "f0_hz": 136
+ },
+ "WAITRESS": {
+  "id": "a7b8d6d0a7b84fe093822d5d2877b002",
+  "name": "Девушка",
+  "speed": 1.06,
+  "f0_hz": 203
+ },
+ "CHRIS": {
+  "id": "868377a7b08f4c0d9acf8c9f059571aa",
+  "name": "Молодой Аналитик",
+  "speed": 0.96,
+  "f0_hz": 123
+ },
+ "INVESTOR": {
+  "id": "4f5636abab7145598e4c2d613fe4813f",
+  "name": "Мужской",
+  "speed": 0.96,
+  "f0_hz": 110
+ },
+ "CUSTOMER": {
+  "id": "ad345871bcbd4ab0af5f3af9940287d2",
+  "name": "Игровой Рассказчик",
+  "speed": 0.9,
+  "f0_hz": 165
+ },
+ "SALESMAN": {
+  "id": "6ada82e315e648b6a30a2e2210844cbf",
+  "name": "Дерзкий Парень",
+  "speed": 0.94,
+  "f0_hz": 110
+ },
+ "AIDE": {
+  "id": "f175cd7c61de4898960f1fa4b8044124",
+  "name": "точно",
+  "speed": 0.96,
+  "f0_hz": 137
+ },
+ "OFFICER": {
+  "id": "8336207c3431432cb60e8851e78ba437",
+  "name": "Мощный русский голос",
+  "speed": 0.94,
+  "f0_hz": 142
+ },
+ "OFFICER 2": {
+  "id": "a611cca7a2034922b9cc7fd9f44b61fd",
+  "name": "Brian",
+  "speed": 1.12,
+  "f0_hz": 94
+ },
+ "OFFICIAL": {
+  "id": "34e963c56d11421889e3c31b05ea33f7",
+  "name": "С",
+  "speed": 1.12,
+  "f0_hz": 148
+ },
+ "ASSISTANT": {
+  "id": "bf75c2e80b0e441485eeec20330a75fa",
+  "name": "Полина Polina",
+  "speed": 0.94,
+  "f0_hz": 186
+ },
+ "CLERK": {
+  "id": "345193fc9ae942888141767d2bc9c4c9",
+  "name": "Женский Голос",
+  "speed": 0.96,
+  "f0_hz": 203
+ },
+ "STAFFER": {
+  "id": "b871e425b6c0442baa5cf73f6c336bbe",
+  "name": "Артём Artyom",
+  "speed": 0.9,
+  "f0_hz": 113
+ },
+ "RENTER": {
+  "id": "e89993ec089b4ff5ad397c0acbdb0877",
+  "name": "Мужской",
+  "speed": 1.0,
+  "f0_hz": 87
+ },
+ "REP": {
+  "id": "eb06e4b6ea8e4069bd7e574ba35d289b",
+  "name": "Nikolay",
+  "speed": 1.04,
+  "f0_hz": 150
+ },
+ "FAN": {
+  "id": "22f1ef912fa04918944a848e3e831d9e",
+  "name": "Молодой Рассказчик",
+  "speed": 0.9,
+  "f0_hz": 113
+ },
+ "FAN 2": {
+  "id": "1b2a928d297c4d649de2ef500be1d59c",
+  "name": "Энергичная собеседница",
+  "speed": 1.04,
+  "f0_hz": 211
+ },
+ "PHOTOGRAPHER": {
+  "id": "48ec28a45588422b977a86460c11977f",
+  "name": "Энергичный Рассказчик",
+  "speed": 0.9,
+  "f0_hz": 134
+ },
+ "ACCOUNTANT": {
+  "id": "0a438fbf645d4b84b83f763fd8617dc6",
+  "name": "Бот Максим",
+  "speed": 1.12,
+  "f0_hz": 113
+ },
+ "ACCOUNTANT 2": {
+  "id": "69b8fcfee5be4fd78e44078dbe39d8e6",
+  "name": "Девушка",
+  "speed": 1.0,
+  "f0_hz": 221
+ },
+ "BANKER": {
+  "id": "c0ad8bbb01ed4ad5aac75bf6d0fa294d",
+  "name": "Опытный Диктор",
+  "speed": 1.1,
+  "f0_hz": 131
+ },
+ "BANKER 2": {
+  "id": "682f9e9fa02d47c1a9b15115038fa0ef",
+  "name": "женский",
+  "speed": 0.94,
+  "f0_hz": 205
+ },
+ "CUSTOMS": {
+  "id": "a8c4213986e041ca92026419d81badf1",
+  "name": "Опытный Диктор",
+  "speed": 1.08,
+  "f0_hz": 126
+ },
+ "DRIVER": {
+  "id": "de9a2c99fcee4dfbbaec90327eab36d8",
+  "name": "Егор Egor",
+  "speed": 1.08,
+  "f0_hz": 102
+ },
+ "INSPECTOR": {
+  "id": "15744b178a9944f6b5a4f7a9f3556309",
+  "name": "Мужской Рассказчик",
+  "speed": 1.0,
+  "f0_hz": 128
+ },
+ "GUIDE": {
+  "id": "86bf8939ad424601b5202d8109e8acec",
+  "name": "Приятный женский голос",
+  "speed": 1.12,
+  "f0_hz": 190
+ },
+ "SENATOR": {
+  "id": "f0204d13a1264265809a24c656553b3e",
+  "name": "Опытный Мужской Голос",
+  "speed": 1.0,
+  "f0_hz": 137
+ },
+ "COMMERCE": {
+  "id": "5c29f23e8d0848b880a57397df6e8692",
+  "name": "Обычный Голос",
+  "speed": 1.0,
+  "f0_hz": 125
+ },
+ "JUSTICE": {
+  "id": "b199cff0e9ec47559e9bf207acb8f92e",
+  "name": "Мужской голос рассказчика",
+  "speed": 1.0,
+  "f0_hz": 79
+ },
+ "AIDE 2": {
+  "id": "911cdc7841634850ba72d88f5ed8c576",
+  "name": "Кира Kira",
+  "speed": 1.12,
+  "f0_hz": 239
+ },
+ "REPORTER": {
+  "id": "7312c38557eb4fb384e3874e8e9cea67",
+  "name": "Мужской Профессиональный213",
+  "speed": 1.12,
+  "f0_hz": 120
+ },
+ "EDITOR": {
+  "id": "7adab54c80d34cba8c11463ab1502c9a",
+  "name": "Мария Maria",
+  "speed": 1.08,
+  "f0_hz": 203
+ },
+ "CITIZEN": {
+  "id": "cfd7057a69204777af3a570d3e3ef164",
+  "name": "Спокойный Мужской Голос",
+  "speed": 1.0,
+  "f0_hz": 90
+ },
+ "BOARD": {
+  "id": "99b95f49173d4660b73ae59799867e51",
+  "name": "Тик ток",
+  "speed": 1.0,
+  "f0_hz": 143
+ },
+ "CONGRESSMAN": {
+  "id": "0a3fdc100457433bbd7f9ef94d4d0106",
+  "name": "Уверенный Мужской Голос",
+  "speed": 0.96,
+  "f0_hz": 143
+ },
+ "IMMIGRATION": {
+  "id": "2911dfe1c9d54419b24ed8c4a1489355",
+  "name": "Дмитрий Dmitri",
+  "speed": 1.12,
+  "f0_hz": 132
+ },
+ "SPOKESMAN": {
+  "id": "55ece81d65564775ab448bab3b525599",
+  "name": "Игорь Igor",
+  "speed": 1.06,
+  "f0_hz": 121
+ },
+ "ANALYST": {
+  "id": "172565be42474bf093d16c9b60885357",
+  "name": "Замена 1",
+  "speed": 0.9,
+  "f0_hz": 152
+ },
+ "ANALYST 2": {
+  "id": "c5a116bd8e394797961147c518222431",
+  "name": "Кава",
+  "speed": 1.12,
+  "f0_hz": 108
+ },
+ "CROWD": {
+  "id": "35a41c4c9e754e49a124a4bab5aa47e6",
+  "name": "Energetic Crowd (англоязычная толпа — русской нет)",
+  "speed": 1.0
+ }
+}
