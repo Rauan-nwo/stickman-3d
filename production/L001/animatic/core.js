@@ -2,7 +2,7 @@
 // Было телом animatic/film.js; вынесено без изменений поведения, добавлены только хуки HK (по умолчанию — пусто = аниматик как был).
 // HK.final — финальный рендер: без заметок о действии, меток 3D/шаблонов, янтарных колец; HK.plate(s) -> функция-рисовальщик
 // плана вместо заглушки; HK.rain(s) -> false глушит дождь; HK.skipProp(s, q) -> true не рисует вещь-подпись «q» (она уже в кадре);
-// HK.flash(s) -> false/true переопределяет вспышку; HK.over(s) -> рисовальщик поверх плана (до подписей); HK.shotOk(s) — фильтр планов (рендер одной главы).
+// HK.noAmbient(s) -> true без дыхания света и пыли (нативные 3D-кадры финала); HK.flash(s) -> false/true переопределяет вспышку; HK.over(s) -> рисовальщик поверх плана (до подписей); HK.shotOk(s) — фильтр планов (рендер одной главы).
 // Ниже — исходное описание аниматика.
 // animatic/film.js: полный аниматик L001 (все планы шотлиста, 1920x1080, 30 к/с) — проверка ритма до дорогой покадровой анимации.
 // Тайминг — timing.json (make_timing.mjs: старт плана = первое слово его текста в черновом голосе).
@@ -92,8 +92,8 @@ const SPOTS = {
 };
 // вставки: [x, y] точка на плейте, третьим — другой плейт той же локации (табличка на двери — на обратном плейте и т. п.)
 const PROP_AT = { 21: [.6, .42], 44: [.8, .32], 87: [.6, .42], 105: [.52, .66], 122: [.38, .42, 'bg_megaspeed_reverse'], 129: [.82, .56], 145: [.38, .42, 'bg_megaspeed_reverse'], 157: [.52, .55],
-  125: [.3, .62, 'bg_megaspeed_office'], 134: [.33, .4, 'bg_megaspeed_office'], 142: [.33, .5, 'bg_megaspeed_office'], 178: [.33, .5, 'bg_megaspeed_office'], 183: [.2, .6, 'bg_megaspeed_reverse'], 204: [.6, .4, 'bg_megaspeed_reverse'],
-  167: [.5, .55], 174: [.25, .62], 201: [.72, .62], 230: [.4, .3, 'bg_washington_reverse'], 275: [.6, .42], 280: [.3, .7], 287: [.3, .7], 324: [.66, .62], 339: [.88, .36], 69: [.55, .32] };
+  125: [.3, .62, 'bg_megaspeed_office'], 134: [.33, .4, 'bg_megaspeed_office'], 142: [.33, .5, 'bg_megaspeed_office'], 178: [.33, .5, 'bg_megaspeed_office'], 183: [.2, .6, 'bg_megaspeed_reverse'], 205: [.6, .4, 'bg_megaspeed_reverse'],
+  167: [.5, .55], 174: [.25, .62], 202: [.72, .62], 231: [.4, .3, 'bg_washington_reverse'], 276: [.6, .42], 281: [.3, .7], 288: [.3, .7], 325: [.66, .62], 340: [.88, .36], 69: [.55, .32] };
 const LOCP = { 'L01-restaurant': ['restaurant', 'restaurant_reverse'], 'L02-sg-street': ['bg_singapore_street'], 'L03-host-office': ['host_office'],
   'L04-washington': ['bg_washington_cold', 'bg_washington_reverse'], 'L05-beijing': ['bg_beijing_office'], 'L06-nvidia-office': ['bg_nvidia_office_dry', 'bg_nvidia_office_reverse'],
   'L07-dennys': ['bg_diner_day'], 'L08-kentucky': ['bg_kentucky_day'], 'L09-megaspeed': ['bg_megaspeed_office', 'bg_megaspeed_reverse'],
@@ -121,7 +121,7 @@ const ok = i => i && i.complete && i.naturalWidth > 0;
 
 const sizeOf = f => /^сверхкрупно/.test(f) ? 'xcu' : /^крупно/.test(f) ? 'cu' : /^средний/.test(f) ? 'ms' : /^вставка/.test(f) ? 'ins'
   : /^обратная/.test(f) ? 'rev' : /^сверху/.test(f) ? 'top' : /^POV/.test(f) ? 'pov' : 'ws';
-const ZOOM = { ws: 1.04, rev: 1.04, ms: 1.6, cu: 1.95, xcu: 2.6, ins: 2.3, pov: 2.2, top: 1.04 };
+const ZOOM = { ws: 1.12, rev: 1.12, ms: 1.6, cu: 1.95, xcu: 2.6, ins: 2.3, pov: 2.2, top: 1.04 };
 const FIG_H = { ws: 170, rev: 190, ms: 300, cu: 420, xcu: 520, ins: 0, pov: 200, top: 0 };
 const speakerOf = s => (s.text.match(/^([A-Z][A-Z0-9 ]{1,20}):/) || [])[1] || null;
 const nameOf = s => { const rest = s.framing.replace(/^(\S+)\s*/, ''); for (const [re, n] of NAMES) if (re.test(rest)) return n; return null; };
@@ -130,7 +130,7 @@ const nameOf = s => { const rest = s.framing.replace(/^(\S+)\s*/, ''); for (cons
 const outExpo = k => (k >= 1 ? 1 : k <= 0 ? 0 : 1 - Math.pow(2, -10 * k)), outCubic = k => 1 - Math.pow(1 - clamp(k), 3);
 const inOutExpo = k => (k <= 0 ? 0 : k >= 1 ? 1 : k < .5 ? Math.pow(2, 20 * k - 10) / 2 : (2 - Math.pow(2, -20 * k + 10)) / 2);
 const outBack = k => { const c1 = 1.9, c3 = c1 + 1; k = clamp(k); return 1 + c3 * Math.pow(k - 1, 3) + c1 * Math.pow(k - 1, 2); };
-const SNAP_Z = .13, SNAP_T = 5 / 30;
+const SNAP_Z = .13, SNAP_T = 5 / 30, WHIP_DUR = .18;   // WHIP_DUR — длина вип-пана внутри плана (с): ~5–6 кадров
 // грамматика камеры (колонка «камера»): «статично» — настоящая остановка; «рывок на «слово»» — наезд с торможением, остановка,
 // рывок-зум 13 % за 5 кадров на ударном слове (s.snap из make_timing); «вип-пан» — остановка, вип со смазом на втором говорящем;
 // панорама/проезд/подъём/… — плавный проход с остановкой на последних 15 %
@@ -142,10 +142,13 @@ const FINALE_FROM = Math.max(...timing.shots.filter(x => x.ch === 9).map(x => x.
 function CLIP_OF(s) {
   const f = s.framing;
   if (s.loc === '3D-kitchen') return /монитор/.test(f) ? ['kitchen', 0, 2.204] : /один повар/.test(f) ? ['kitchen', 2.204, 7.168] : ['kitchen', 7.168, 13.65];
+  if (s.loc === '3D-city' && /\$5T/.test(f)) return ['city_towers_5t', 0, 5.8];
+  if (s.loc === '3D-city' && /башен/.test(f)) return ['city_towers', 0, 2.2];
+  if (s.loc === '3D-city' && /Аляск/.test(f)) return ['city_alaska', 0, 3.6];
   if (s.loc === '3D-city') return /Вашингтон/.test(f) ? ['city_washington', 0, 4.9] : /Тайбэ/.test(f) ? (s.dur < 2.5 ? ['city_taipei', 3.3 - s.dur, 3.3] : ['city_taipei', 0, 3.3])
     : /отъезд над городом/.test(f) ? ['city_final', 0, 4.4] : /Сингапур/.test(f) ? ['city_singapore', 0, 3] : null;
   if (s.loc === '3D-phone-desk') return /папка/.test(f) ? ['desk3d', 3.6, 6] : ['desk3d', 0, 6, 1];
-  if (s.loc === '3D-conveyor') return ['conveyor', 0, 9, 9 / s.dur];                // клип 9 с ужат под план (рендер с --set dur — в scenes/, его не трогаем)
+  if (s.loc === '3D-conveyor') return ['conveyor', 0, 99, 1];                       // сцена перерендерена с --set dur = длина плана (animatic/tmp/conv/), 1:1
   if (s.loc === '3D-hq-corridor') return ['hq', 0, 6.7];
   if (s.loc === '3D-datacenter') return /пролёт ДЦ|суперкомпьютер|ворота/.test(f) ? ['dc', 0, 6] : /пустые стойки/.test(f) ? ['dc', 6, 9.5] : /коробки в плёнке/.test(f) ? ['dc', 7.5, 9.5]
     : /крошечный инспектор/.test(f) ? ['dc', 9.5, 11.5] : /крупно инспектор/.test(f) ? ['dc', 11.5, 13.1] : /гид/.test(f) ? ['dc', 13.1, 14.7] : /наклейка/.test(f) ? ['dc', 16.1, 17.7]
@@ -166,17 +169,20 @@ function camOf(s, d) {
   const ts = s.snap ?? d * .4;
   // хук и финал — пики энергии: вместо мёртвой остановки камера ползёт (0.25 %/кадр), рывок на этом фоне всё равно читается
   // между наездом и рывком камера не мертва: ползёт 0.1 %/кадр (3 %/с), как у конкурента; в хуке и финале — 0.25 %/кадр
-  const hot = s.ch === 0 || s.ch === 1 || s.ch === 10 || (s.ch === 9 && s.start >= FINALE_FROM), creep = kind === 'static' ? 0 : hot ? .075 : .03;
+  const hot = s.ch === 0 || s.ch === 1 || s.ch === 4 || s.ch === 10 || (s.ch === 9 && s.start >= FINALE_FROM);
+  const peak = s.ch <= 1 || s.ch === 10 || (s.ch === 9 && s.start >= FINALE_FROM), slowMin = [[240, 300], [540, 600], [660, 720]].some(([a, b]) => s.start < b && s.start + d > a);   // ведущий и финал — пики; минуты 4, 9, 11 по замеру — плотнее
+  const creep = kind === 'static' ? 0 : peak || slowMin ? .13 : hot ? .085 : .06, drift = kind === 'static' ? 0 : peak || slowMin ? .08 : hot ? .055 : .04, dir = s.n % 2 ? 1 : -1;   // зум %/с /100, сдвиг доля ширины/с
   return t => {
     let z = 1, ox = 0, oy = 0;
-    if (kind === 'pan') { const k = ease(t / (d * .85)); z = 1 + .03 * k; ox = dx * (k - .5) * (hot ? 1.8 : 1); oy = dy * (k - .5) * (hot ? 1.8 : 1); }
-    else if (kind !== 'static') { const k = outCubic(t / settle); z = (pull ? lerp(1.09, 1, k) : lerp(1, 1.08, k)) * (1 + creep * Math.max(0, t - settle)); ox = hot ? .02 * Math.sin(t * 1.3) : 0; }
+    if (kind === 'pan') { const k = ease(t / (d * .85)); z = 1 + .06 * k; ox = dx * (k - .5) * (hot ? 2.6 : 2); oy = dy * (k - .5) * (hot ? 2.6 : 2); }
+    else if (kind !== 'static') { const k = outCubic(t / settle), u = Math.max(0, t - settle); z = (pull ? lerp(1.12, 1, k) : lerp(1, 1.1, k)) * (1 + creep * u); ox = dir * drift * u; oy = -.25 * drift * u; }
     const sz = s.snap != null && kind !== 'static' ? 1 + SNAP_Z * outExpo((t - s.snap) / SNAP_T) : 1;
     const sh = kick && t > ts && t < ts + .35 ? 14 * Math.sin((t - ts) * 60) * (1 - (t - ts) / .35) : 0;
     return { z: z * sz, snapZ: sz, dx: ox, dy: oy, rot: 0, sh, kind };
   };
 }
 
+export { WHIP_DUR };
 export const OPTIONS = { debug: '1', f0: '0', f1: '', sheet: '0' };
 export { FPS, W, H, timing, CLIP_OF, sizeOf, camOf, ZOOM, SPOTS, LOCP, PROP_AT, speakerOf, nameOf, clamp, lerp, ease, outExpo, outCubic, inOutExpo, outBack };
 export function animatic(stage, opt, HK = {}) {
@@ -307,7 +313,8 @@ export function animatic(stage, opt, HK = {}) {
       if (!/^T-(card|title)$/.test(s.loc)) for (const t0 of eventTimes(s, d)) { const u = t - t0; if (u > 0 && u < .25) cam.sh += 9 * Math.sin(u * 55) * (1 - u / .25); }   // толчок камеры на появлении
       const settleDur = Math.min(1.2, Math.max(.4, d * .35));            // шаблон доезжает и стоит, дальше — рывок
       const sZ = /^T-(map|board|doc)$/.test(s.loc) ? 1 + (cam.snapZ - 1) * .4 : cam.snapZ;   // на картах и документах рывок мягче: подписи у краёв не срезаются
-      const snapWrap = f => { ctx.save(); if (sZ !== 1) { ctx.translate(W / 2, H / 2); ctx.scale(sZ, sZ); ctx.translate(-W / 2, -H / 2); } f(); ctx.restore(); };
+      const tZ = sZ * (/^T-(doc|number|board|map|split|joke)$/.test(s.loc) && cam.kind !== 'static' ? Math.min(/^T-(board|map)$/.test(s.loc) ? 1.2 : 1.12, cam.z / cam.snapZ) : 1);
+      const snapWrap = f => { ctx.save(); if (tZ !== 1) { ctx.translate(W / 2, H / 2); ctx.scale(tZ, tZ); ctx.translate(-W / 2, -H / 2); } f(); ctx.restore(); };
       ctx.save();
       if (/^T-(map|board|doc|split|desk|number)$/.test(s.loc) && cam.sh) ctx.translate(cam.sh, cam.sh * .5);   // толчок на событии шаблона
       const custT = /^T-desk$/.test(s.loc) && HK.plate && HK.plate(s);
@@ -337,10 +344,10 @@ export function animatic(stage, opt, HK = {}) {
           ctx.fillStyle = '#000'; for (let i = 1; i < n; i++) ctx.fillRect(i * pw - 4, 0, 8, H);
           tag3d(ctx, 'T-SPLIT: ' + P.tag); break;
         }
-        default: { const cust = HK.plate && HK.plate(s); if (cust) { cust(ctx, s, t, d, sz, cam, sp, API); break; } const cl = CLIP_OF(s); if (cl) drawClip(ctx, cl, t, d); else if (s.loc.startsWith('3D-')) threeD(ctx, s, t, d, sz, cam, sp); else plate(ctx, s, t, d, sz, cam, sp); }
+        default: { const cust = HK.plate && HK.plate(s); if (cust) { cust(ctx, s, t, d, sz, cam, sp, API); break; } const cl = CLIP_OF(s); if (cl) drawClip(ctx, cl, t, d, cam); else if (s.loc.startsWith('3D-')) threeD(ctx, s, t, d, sz, cam, sp); else plate(ctx, s, t, d, sz, cam, sp); }
       }
       ctx.restore();
-      if (!/^T-(card|title|number|doc|map|board)$/.test(s.loc) && !s.box) ambient(ctx, s, t);
+      if (!/^T-(card|title|number|doc|map|board)$/.test(s.loc) && !s.box && !(HK.noAmbient && HK.noAmbient(s))) ambient(ctx, s, t);
       events(ctx, s, t, d, cam);
       const ovl = HK.over && HK.over(s); if (ovl) ovl(ctx, s, t, d, API);
       if (/титр ролика/.test(s.framing)) videoTitle(ctx, t, d);
@@ -351,24 +358,46 @@ export function animatic(stage, opt, HK = {}) {
     // переходы (conf.js TRANS) + засвет перед титром главы
     const IDX = new Map(timing.shots.map((x, i) => [x.n, i]));
     const prevOf = s => timing.shots[IDX.get(s.n) - 1], nextOf = s => timing.shots[IDX.get(s.n) + 1];
+    // ---------- смаз движения всего кадра (вип-пан, наезд-удар) ----------
+    // Кадр (фон и герои вместе) рисуется один раз в буфер; смаз — среднее N сдвинутых (или увеличенных) копий этого ОДНОГО кадра,
+    // N так велико, что шаг ≤ 6 px: ни дискретных «призраков», ни полупрозрачных героев — результат непрозрачен (накопление на чёрном).
+    const SMB = {};
+    function sbuf(k) { let c = SMB[k]; if (!c) { c = document.createElement('canvas'); c.width = W; c.height = H; SMB[k] = c; }
+      const x = c.getContext('2d'); x.setTransform(1, 0, 0, 1, 0, 0); x.globalAlpha = 1; x.globalCompositeOperation = 'source-over'; x.filter = 'none'; x.clearRect(0, 0, W, H); return [c, x]; }
+    function smearInto(ctx, src, len, zoom = 0) {          // len — длина горизонтального смаза (px); zoom — разброс масштаба (радиальный смаз)
+      const N = Math.max(2, Math.min(48, Math.ceil(Math.max(len, zoom * W) / 6))), [a, ax] = sbuf('acc');
+      ax.fillStyle = '#000'; ax.fillRect(0, 0, W, H); ax.drawImage(src, 0, 0);
+      for (let i = 0; i < N; i++) { const k = i / (N - 1) - .5; ax.globalAlpha = 1 / (i + 2);           // бегущее среднее: каждая копия весит одинаково
+        if (zoom) { const z = 1 + zoom * (k + .5); ax.setTransform(z, 0, 0, z, W / 2 * (1 - z), H / 2 * (1 - z)); ax.drawImage(src, 0, 0); ax.setTransform(1, 0, 0, 1, 0, 0); }
+        else { const o = Math.round(k * len); ax.drawImage(src, o, 0);                                   // край кадра продлевается крайним столбцом
+          if (o > 0) ax.drawImage(src, 0, 0, 1, H, 0, 0, o, H); else if (o < 0) ax.drawImage(src, W - 1, 0, 1, H, W + o, 0, -o, H); } }   // (иначе у края оставался резкий кадр)
+      ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.drawImage(a, 0, 0); ctx.restore();
+    }
+    // длина смаза вип-пана по фазе u 0..1: пик в середине (~16 % ширины кадра), не меньше 6 % — шов между кадрами всегда под смазом
+    const whipLen = u => W * (.06 + .1 * Math.sin(Math.PI * clamp(u)));
+    // вип-пан внутри плана (s.whip — смена говорящего): фаза, как у плана (plate/HK.plate), WHIP_DUR ≈ 5–6 кадров
+    const whipU = (s, t) => (s.whip ? inOutExpo((t - s.whip.t + .1) / WHIP_DUR) : null);
     function shot(ctx, s, t) {
       LBL.length = 0;
-      const d = s.dur, tr = TRANS[s.n], pv = prevOf(s);
-      if (tr === 'zoom' && t < .3) {           // наезд-удар со смазом: кадр влетает из 140 % к 100 % за 9 кадров
-        const u = outExpo(t / .3);
-        for (let g = 3; g >= 0; g--) { const z = lerp(1.4, 1, u) * (1 + g * .06 * (1 - u)); ctx.save(); ctx.globalAlpha = g ? .22 : 1;
-          ctx.translate(W / 2, H / 2); ctx.scale(z, z); ctx.translate(-W / 2, -H / 2); content(ctx, s, t); ctx.restore(); }
-      } else if ((tr === 'wipe' || tr === 'whip') && pv && t < .27) {
-        const u = inOutExpo(t / .27);
+      const d = s.dur, tr = TRANS[s.n], pv = prevOf(s), wu = whipU(s, t);
+      if (tr === 'zoom' && t < .3) {           // наезд-удар со смазом: кадр влетает из 140 % к 100 % за 9 кадров; смаз — радиальный, сплошной
+        const u = outExpo(t / .3), z = lerp(1.4, 1, u), [b, bx] = sbuf('zoomSrc');
+        bx.save(); bx.translate(W / 2, H / 2); bx.scale(z, z); bx.translate(-W / 2, -H / 2); content(bx, s, t); bx.restore();
+        smearInto(ctx, b, 0, .18 * (1 - u));
+      } else if ((tr === 'wipe' || tr === 'whip') && pv && t < (tr === 'whip' ? .2 : .27)) {
+        const u = inOutExpo(t / (tr === 'whip' ? .2 : .27));                // вип-переход — 6 кадров
         if (tr === 'wipe') {
           ctx.save(); content(ctx, pv, pv.dur - .001); ctx.restore();
           ctx.save(); ctx.beginPath(); ctx.rect(W * (1 - u), 0, W, H); ctx.clip(); ctx.translate(W * (1 - u), 0); content(ctx, s, t); ctx.restore();
           ctx.fillStyle = '#f2a94e'; ctx.fillRect(W * (1 - u) - 6, 0, 12, H);
         } else {
-          for (let g = 0; g < 4; g++) { ctx.save(); ctx.globalAlpha = g ? .25 : 1; ctx.translate(-W * (u - g * .05), 0); content(ctx, pv, pv.dur - .001); ctx.restore(); }
-          for (let g = 0; g < 4; g++) { ctx.save(); ctx.globalAlpha = g ? .25 : 1; ctx.translate(W * (1 - u + g * .05), 0); content(ctx, s, t); ctx.restore(); }
+          // уходящий и входящий кадры — одной широкой лентой, панорама по ней, смаз всего кадра (шов всегда под смазом)
+          const [a, ax] = sbuf('whA'), [b, bx] = sbuf('whB'), [st, sx] = sbuf('whS');
+          content(ax, pv, pv.dur - .001); content(bx, s, t); sx.drawImage(a, -W * u, 0); sx.drawImage(b, W * (1 - u), 0);
+          smearInto(ctx, st, whipLen(u));
         }
-      } else content(ctx, s, t);
+      } else if (wu != null && wu > 0 && wu < 1) { const [b, bx] = sbuf('whSrc'); content(bx, s, t); smearInto(ctx, b, whipLen(wu)); }   // вип-пан внутри плана
+      else content(ctx, s, t);
       const nx = nextOf(s);
       if (nx && TRANS[nx.n] === 'white' && t > d - .25) { ctx.fillStyle = `rgba(255,252,240,${clamp((t - (d - .25)) / .25)})`; ctx.fillRect(0, 0, W, H); }
       if (tr === 'white' && t < .3) { ctx.fillStyle = `rgba(255,252,240,${1 - clamp(t / .3)})`; ctx.fillRect(0, 0, W, H); }
@@ -457,7 +486,7 @@ export function animatic(stage, opt, HK = {}) {
       shown.forEach((p, k) => { const sib = p.e.quotes.length > 1 && props.filter(x => x.e === p.e).length > 1;
         if (sib && p.q === p.e.quotes[0] && t > p.e.t + .45) return;           // «SEND» → «SENT»: второе сменяет первое
         if (sib && p.q !== p.e.quotes[0] && t <= p.e.t + .45) return;
-        const onClip = !!CLIP_OF(s), px = s.loc === 'T-doc' ? W * .835 : s.loc === 'T-number' ? W * .8 : onClip ? W * .2 : W / 2, py = s.loc === 'T-number' ? H * .4 : onClip ? H * .12 : H * .2;   // на цифре — справа от числа; на готовой 3D-сцене — в углу
+        const onClip = !!CLIP_OF(s), wallB = s.loc === 'L04-washington' && /вставка доска/.test(s.framing), px = wallB ? W * .8 : s.loc === 'T-doc' ? W * .835 : s.loc === 'T-number' ? W * .8 : onClip ? W * .2 : W / 2, py = wallB ? H * .45 : s.loc === 'T-number' ? H * .4 : onClip ? H * .12 : H * .2;   // на цифре — справа от числа; на готовой 3D-сцене — в углу
         prop(ctx, p.q, p.e.kind, px, py + (k % 4) * 104, t - p.e.t, /^T-(doc|number)$/.test(s.loc) ? 560 : onClip ? 700 : W - 120); });   // у документа — на правом поле, не на шапке   // на цифре — под числом, не на шапке
       // заметка о действии: одна, текущая
       let cur = null; for (const e of ev) if (t >= e.t) cur = e;
@@ -566,17 +595,14 @@ export function animatic(stage, opt, HK = {}) {
       const lensPov = sz === 'pov' && s.loc === 'L01-restaurant';      // объектив агента в зале: смотрит на их стол, а не в окно
       if (sz === 'pov') focus = lensPov ? [.5, .64] : [.89, .38];
       let wu = null, WA, WB;
-      if (s.whip) { WA = spotFor(key, s.whip.from); WB = spotFor(key, s.whip.to); wu = inOutExpo((t - s.whip.t + .1) / .22); focus = [lerp(WA[0], WB[0], wu), lerp(WA[1], WB[1], wu)]; }
+      if (s.whip) { WA = spotFor(key, s.whip.from); WB = spotFor(key, s.whip.to); wu = inOutExpo((t - s.whip.t + .1) / WHIP_DUR); focus = [lerp(WA[0], WB[0], wu), lerp(WA[1], WB[1], wu)]; }
       const baseZ = ZOOM[sz] * (s.whip && sz === 'ws' ? 1.5 : 1);
       const center = f => (sz === 'ws' || sz === 'rev' || sz === 'top') && !s.whip ? [.5 + cam.dx, .5 + cam.dy] : [clamp(f[0] + cam.dx), clamp(f[1] + cam.dy)];
       const v = plateView(baseZ * cam.z, center(focus));
       ctx.save(); ctx.translate(cam.sh, cam.sh * .5);
       const blur = sz === 'cu' || sz === 'xcu' || sz === 'ms';
       drawImg(ctx, blur && !flip ? blurOf(key) : I[key], v, flip, tint);
-      if (wu != null && wu > 0 && wu < 1) for (let g = 1; g <= 5; g++) {           // смаз вип-пана: копии кадра позади по пути
-        const ug = clamp(wu - g * .07), fg = [lerp(WA[0], WB[0], ug), lerp(WA[1], WB[1], ug)];
-        ctx.save(); ctx.globalAlpha = .22; drawImg(ctx, blur && !flip ? blurOf(key) : I[key], plateView(baseZ * cam.z, center(fg)), flip, tint); ctx.restore();
-      }
+      // смаз вип-пана — в shot(): весь кадр (фон и герои) смазывается одним проходом, без копий-призраков
       if (blur && flip) { ctx.filter = 'none'; }
       if (sz === 'top' && s.loc === 'L05-beijing') chess(ctx, t, d);
       ctx.restore();
@@ -596,6 +622,7 @@ export function animatic(stage, opt, HK = {}) {
       if (s.loc === 'L03-host-office') hostProps(ctx, s, t, d, sz);
       if (sz === 'ins' && /монитор|экран|планшет|график|селфи|ноутбук/.test(s.framing)) screen(ctx, t);
       if (sz === 'ins' && /вставка доска/.test(s.framing) && s.loc === 'L04-washington') whiteboard(ctx, t);
+      if (sz === 'ins' && /ящик стола/.test(s.framing)) drawer(ctx, t, s.snap ?? d * .5);
       if (sz === 'ins' && /шахмат|ворот/.test(s.framing) && s.loc === 'L05-beijing') { ctx.save(); ctx.translate(W / 2, H / 2); ctx.scale(1.25, 1.25); ctx.translate(-W / 2, -H / 2); chess(ctx, t, d); ctx.restore(); }
       if (/галерея/.test(s.framing)) gallery(ctx, t, s.snap ?? d * .7);
       if (sz === 'ws' && /объектив/.test(s.event) && s.loc === 'L01-restaurant' && !/пуст/.test(s.framing)) figure(ctx, W * .62, H * .5, 120, 'AGENT (menu + lens)', false);
@@ -608,10 +635,10 @@ export function animatic(stage, opt, HK = {}) {
       if (flip) tag3d(ctx, 'REVERSE (mirrored plate — no reverse plate)');
       else if (NEWP[s.loc]) tag3d(ctx, NEWP[s.loc][1]);
     }
-    function drawClip(ctx, [key, from, to, rate0], t, d) {      // готовая 3D-сцена: время ±25 % под длину плана, иначе обрезка / стоп-кадр
+    function drawClip(ctx, [key, from, to, rate0], t, d, cam) {      // готовая 3D-сцена: время ±25 % под длину плана, иначе обрезка / стоп-кадр
       const fr = CLIPI[key], rate = rate0 ?? clamp((to - from) / d, .8, 1.25), pos = Math.min(from + t * rate, to - 1 / CLIP_FPS);
       const im = fr[clamp(Math.floor(pos * CLIP_FPS), 0, fr.length - 1)];
-      drawImg(ctx, ok(im) ? im : null, { Z: 1, l: 0, tp: 0 });
+      drawImg(ctx, ok(im) ? im : null, cam && cam.kind !== 'static' ? plateView(Math.min(1.25, cam.z), [.5 + cam.dx, .5 + cam.dy]) : { Z: 1, l: 0, tp: 0 });
     }
     function chipUnderTable(ctx, t, tSnap) {   // заглушка D02-A: под краем скатерти рука в чёрной перчатке со стороны Алисы просовывает светящийся чип
       const k = clamp((t - .15) / Math.max(.4, tSnap - .15)), x = lerp(W * 1.02, W * .5, outCubic(k)), y = H * .64;
@@ -654,6 +681,14 @@ export function animatic(stage, opt, HK = {}) {
       ctx.save(); ctx.fillStyle = '#0d0f14'; ctx.strokeStyle = '#2e3340'; ctx.lineWidth = 14; ctx.beginPath(); ctx.roundRect(W * .2, H * .1, W * .6, H * .62, 22); ctx.fill(); ctx.stroke();
       ctx.fillStyle = 'rgba(80,160,220,.16)'; ctx.fillRect(W * .2 + 20, H * .1 + 20, W * .6 - 40, H * .62 - 40); ctx.restore();
     }
+    function drawer(ctx, t, tS) {           // ящик стола выдвигается к камере, в нём зелёная коробочка с чипом; на ударном слове крышка открывается
+      const k = outCubic(clamp(t / Math.max(.4, tS))), y = lerp(H * .62, H * .5, k);
+      ctx.save(); ctx.fillStyle = '#3b2416'; ctx.strokeStyle = '#1c0f08'; ctx.lineWidth = 8; ctx.fillRect(W * .2, y, W * .6, H * .42); ctx.strokeRect(W * .2, y, W * .6, H * .42);
+      ctx.fillStyle = '#2a170d'; ctx.fillRect(W * .23, y + 30, W * .54, H * .34); ctx.fillStyle = '#c9a54a'; ctx.fillRect(W * .46, y - 22, W * .08, 18);
+      ctx.fillStyle = '#121214'; ctx.fillRect(W * .38, y + 70, W * .24, H * .2); ctx.fillStyle = '#76b900'; ctx.fillRect(W * .38, y + 70 + H * .08, W * .24, 22);
+      if (t > tS) { const g = ctx.createRadialGradient(W / 2, y + 120, 0, W / 2, y + 120, 260); g.addColorStop(0, 'rgba(90,255,140,.5)'); g.addColorStop(1, 'rgba(90,255,140,0)'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H); }
+      ctx.restore();
+    }
     function whiteboard(ctx, t) {                // D08-B: доска с датами вставкой (без общего плана исписанной стены)
       ctx.save(); ctx.fillStyle = '#eef0ea'; ctx.strokeStyle = '#8b8f96'; ctx.lineWidth = 12; ctx.fillRect(W * .12, H * .12, W * .5, H * .62); ctx.strokeRect(W * .12, H * .12, W * .5, H * .62);
       ctx.fillStyle = '#1d3f8a'; ctx.font = "700 64px 'Segoe Print', 'Comic Sans MS', cursive"; ctx.fillText('APR: BLOCKED', W * .16, H * .3); ctx.fillText('AUG: 15%', W * .16, H * .48);
@@ -695,8 +730,8 @@ export function animatic(stage, opt, HK = {}) {
         else ts = Math.min(15.4 + t * .35, 17.8);                              // ДЦ: кадры 3D-хвоста
         const fr = BOX[clamp(Math.floor(ts * 15), 0, BOX.length - 1)];
         const name = sp || nameOf(s), focus = sz === 'ins' ? SPOTS.box.prop : name ? spotFor('box', name) : [.5, .5];
-        const z = s.box ? 1 : (ZOOM[sz] || 1.04) * cam.z;
-        const v = plateView(z, s.box ? [.5, .5] : [focus[0] + cam.dx, focus[1] + cam.dy]);
+        const z = s.box ? Math.min(1.2, cam.z) : (ZOOM[sz] || 1.04) * cam.z;
+        const v = plateView(z, s.box ? [.5 + cam.dx, .5 + cam.dy] : [focus[0] + cam.dx, focus[1] + cam.dy]);
         ctx.save(); ctx.translate(cam.sh, 0); drawImg(ctx, ok(fr) ? fr : null, v); ctx.restore();
         if (name && !s.box) { const p = toScreen(v, spotFor('box', name)); figure(ctx, p[0], p[1], FIG_H[sz] || 200, name, !!sp); }
         if (!s.box) eventMark(ctx, W / 2, H / 2, t, d);

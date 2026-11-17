@@ -12,6 +12,7 @@ import * as KY from './staging/kentucky.js';
 import * as IN from './staging/inserts.js';
 import * as DT from './staging/desktop.js';
 import { wordAt, lineSpan } from './words.js';
+import { WHIP_DUR } from '../animatic/core.js';
 import * as PR from './props.js';
 
 const inOutExpo = k => (k <= 0 ? 0 : k >= 1 ? 1 : k < .5 ? Math.pow(2, 20 * k - 10) / 2 : (2 - Math.pow(2, -20 * k + 10)) / 2);
@@ -21,11 +22,11 @@ const env = (t, t0, t1, rise = .3, fall = .3) => R.holdEnv(t, t0 + rise, t1, ris
 const W_ = (x, re, fb) => { const a = wordAt(re, x.s.start, x.s.end); return a == null ? fb : a - x.s.start; };
 const shake = (ctx, cam) => ctx.translate(cam.sh, cam.sh * .5);
 // вип со смазом между двумя рисовальщиками на РАЗНЫХ плейтах (как переход 'whip' аниматика): A уезжает влево, B въезжает справа
-function whipPlates(ctx, t, tw, drawA, drawB) {
-  const u = inOutExpo((t - (tw - .1)) / .22);
+function whipPlates(ctx, t, tw, drawA, drawB) {   // смаз делает ядро (core.js shot → smearInto) по всему кадру — здесь только лента без копий
+  const u = inOutExpo((t - (tw - .1)) / WHIP_DUR);
   if (u <= 0) return drawA(); if (u >= 1) return drawB();
-  for (let g = 0; g < 4; g++) { ctx.save(); ctx.globalAlpha = g ? .25 : 1; ctx.translate(-W * (u - g * .05), 0); drawA(); ctx.restore(); }
-  for (let g = 0; g < 4; g++) { ctx.save(); ctx.globalAlpha = g ? .25 : 1; ctx.translate(W * (1 - u + g * .05), 0); drawB(); ctx.restore(); }
+  ctx.save(); ctx.translate(-W * u, 0); drawA(); ctx.restore();
+  ctx.save(); ctx.translate(W * (1 - u), 0); drawB(); ctx.restore();
 }
 // рамка фокуса объектива (POV): прямоугольник с уголками
 function focusBox(ctx, x, y, w, h, lock = 0) {
@@ -109,15 +110,14 @@ export const SHOTS = {
     if (!solo) R.fgMenu(ctx, 1720, 840, 600, { lens: -1, glint: .35 + .25 * Math.sin(t * 4), blur: 11, tilt: -.08 });
     ctx.restore(); },
   18: x => { const { ctx, t, T, cam, solo, s, d } = x, tw = s.whip?.t ?? d * .47;   // салон, вип-пан: AGENT 2 получает снимок, опускает наушники -> AGENT кладёт распечатку в папку и закрывает
-    const wu = inOutExpo((t - tw + .1) / .22), a1s = lineSpan('AGENT', s.start, s.end), tClose = a1s ? a1s[1] - s.start + .15 : d - .5;
+    const wu = inOutExpo((t - tw + .1) / WHIP_DUR), a1s = lineSpan('AGENT', s.start, s.end), tClose = a1s ? a1s[1] - s.start + .15 : d - .5;
     const draw = (vv) => CAR.car(ctx, vv, t, T, { solo, reelsAng: T * 3.2,
       a2: { keys: [[0, 'neutral']], look: [-.3, .5], phones: E.inOutCubic(clamp((t - 1.05) / .35)), press: env(t, .85, 1.35, .2, .25),
-        hold: { k: env(t, 0, d + 1, .2), at: [-150, -470] }, held: (c, P, sc) => CAR.tablet(c, P[0] - 70 * sc, P[1] - 40 * sc, 300 * sc, -.12, IN.snapPic, clamp((t - .12) / .5)) },
-      a1: { keys: [[0, 'neutral']], look: [.5, .35], hold: { k: env(t, tw - .2, d + 1, .25), at: [170, -420] }, held: (c, P, sc) => CAR.subjectFolder(c, P[0] + 60 * sc, P[1] + 10 * sc, 320 * sc, .1, 1 - E.inOutCubic(clamp((t - tClose) / .3)), IN.snapPic) } });
+        hold: { k: env(t, 0, d + 1, .2), at: [-150, -470] }, held: (c, P, sc) => CAR.tablet(c, P[0] - 110 * sc, P[1] - 20 * sc, 300 * sc, -.12, IN.snapPic, clamp((t - .12) / .5)) },
+      a1: { keys: [[0, 'neutral']], look: [.5, .35], hold: { k: env(t, tw - .2, d + 1, .25), at: [170, -420] }, held: (c, P, sc) => CAR.subjectFolder(c, P[0] + 125 * sc, P[1] - 10 * sc, 320 * sc, .1, 1 - E.inOutCubic(clamp((t - tClose) / .3)), IN.snapPic) } });
     ctx.save(); shake(ctx, cam);
     const va = camView(CAR.views.a2, { ...cam, dx: 0 }), vb = camView(CAR.views.a1m, { ...cam, dx: 0 });
-    const v = lerpView(va, vb, clamp(wu)); draw(v);
-    if (wu > 0 && wu < 1) for (let g = 1; g <= 4; g++) { ctx.save(); ctx.globalAlpha = .2; draw(lerpView(va, vb, clamp(wu - g * .08))); ctx.restore(); }
+    draw(lerpView(va, vb, clamp(wu)));   // смаз — в ядре (smearInto), без копий-призраков
     ctx.restore(); },
 
   // ---------------- гл. 1 ----------------
@@ -157,10 +157,13 @@ export const SHOTS = {
     ctx.save(); shake(ctx, cam);
     KY.dorm(ctx, v, t, T, { solo, keys: [[0, 'neutral']], look: [lerp(.5, -.2, E.inOutCubic(clamp(t / 1.2))), -.45] });
     ctx.restore(); },
-  25: x => { const { ctx, t, cam, s } = x, tc = (s.ev || []).find(e => e.p === 1)?.t ?? x.d * .4;   // их стол сверху: на «China» красная нить BEIJING тянется к пустому стулу напротив Дженсена (на его стуле — кожанка)
+  25: x => { const { ctx, t, cam, s } = x, tc = (s.ev || [])[0]?.t ?? x.d * .4;   // их стол сверху: карточка «JENSEN HUANG», его кожанка на стуле; напротив — пустой стул и пустая карточка; на «China» нить BEIJING завязывается на пустой карточке
     DT.desktop(ctx, cam, t, { base: 'top', thread: E.outCubic(clamp((t - tc + .05) / .45)), taut: 0 }); },
-  26: x => { const { ctx, t, cam, s } = x, ts = s.snap ?? x.d * .3;   // мел от руки обводит пустой стул (круг замыкается на «seat»), нить натягивается, телефон жужжит
-    DT.desktop(ctx, cam, t, { base: 'chair', thread: 1, taut: E.outBack(clamp((t - ts) / .3)), chalk: clamp(t / Math.max(.3, ts)), buzz: t > x.d * .45 ? .6 + .4 * Math.abs(Math.sin(t * 9)) : 0 }); },
+  26: x => { const { ctx, t, cam, s } = x, ts = s.snap ?? x.d * .3, u = t - ts;   // ближе: пустая карточка и стул; на «seat» штамп RESERVED с толчком камеры, нить натягивается
+    const kick = u > 0 && u < .3 ? 12 * Math.sin(u * 60) * (1 - u / .3) : 0;
+    ctx.save(); ctx.translate(kick, kick * .6);
+    DT.desktop(ctx, cam, t, { base: 'card', thread: 1, taut: u < 0 ? 0 : E.outBack(clamp(u / .3)), stamp: u });
+    ctx.restore(); },
   30: x => { const { ctx, t, T, cam, solo, s } = x, v = camView(KY.views.bath, cam, .3, .5), tk = s.snap ?? .9;   // санузел, средний: юный Дженсен роняет швабру выше себя в ведро (брызги), на «Kentucky» берёт её
     ctx.save(); shake(ctx, cam);
     KY.bathMid(ctx, v, t, T, { solo, drop: Math.min(.45, tk - .35), grab: tk });
@@ -184,6 +187,6 @@ export const OVER = {
 const polaroidAt = (ctx, x, y, w, a) => PR.polaroid(ctx, x, y, w, a, IN.snapPic, 1);
 
 // вещи-подписи аниматика, которые в финале уже стоят в кадре (или дублируют подпись в нижней трети)
-export const SKIP_PROPS = { 25: /BEIJING/, 26: /BEIJING/, 4: /SUBJECT/, 5: /JENSEN HUANG/, 6: /ALICE HUANG/, 8: /VIP/, 13: /JAN/, 18: /SUBJECT/, 22: /\$30,000|SOURCE/ };
+export const SKIP_PROPS = { 25: /BEIJING|JENSEN/, 26: /BEIJING|RESERVED/, 4: /SUBJECT/, 5: /JENSEN HUANG/, 6: /ALICE HUANG/, 8: /VIP/, 13: /JAN/, 18: /SUBJECT/, 22: /\$30,000|SOURCE/ };
 // дождь аниматика только на улице (в салоне и в зале ресторана — только за стеклом, он уже нарисован)
 export const RAIN = s => s.loc === 'L02-sg-street' ? /общий/.test(s.framing) : s.loc !== 'L01-restaurant';

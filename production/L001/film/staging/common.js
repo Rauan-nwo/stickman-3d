@@ -81,9 +81,5 @@ export function soft(ctx, blur, fn, alpha = 1, dark = 0) {
   if (dark) { x.globalCompositeOperation = 'source-atop'; x.fillStyle = `rgba(8,6,14,${dark})`; x.fillRect(0, 0, W, H); x.globalCompositeOperation = 'source-over'; }
   ctx.save(); ctx.globalAlpha = alpha; ctx.filter = blur > .3 ? `blur(${blur}px)` : 'none'; ctx.drawImage(fgB, 0, 0); if (blur > .3) ctx.drawImage(fgB, 0, 0); ctx.restore();   // второй проход — край плотнее, задний план не просвечивает
 }
-// вип-пан со смазом между двумя видами одного плейта: draw(v) рисует кадр; ghosts — копии позади по пути
-export function whipViews(ctx, va, vb, wu, draw) {
-  const v = lerpView(va, vb, wu); draw(v, 1);
-  if (wu > 0 && wu < 1) for (let g = 1; g <= 5; g++) { const ug = clamp(wu - g * .07); ctx.save(); ctx.globalAlpha = .22; draw(lerpView(va, vb, ug), .22); ctx.restore(); }
-}
+// вип-пан: смаз всего кадра делает ядро (animatic/core.js smearInto) — здесь копий-призраков нет
 export { clamp, lerp };

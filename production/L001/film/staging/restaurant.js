@@ -274,7 +274,14 @@ export function toastIn(ctx, v, t, tClink, r) {
   const xJ = lerp(-200, rimA[0] - 52 * g - 2, E.inCubic(ap)) - 18 * r.s * rec, yJ = r.hand[1] + 4 * r.s - 6 * r.s * rec;
   const slosh = t < tClink ? 0 : Math.sin((t - tClink) * 14) * Math.exp(-(t - tClink) * 3.2) * .16;
   wineGlass(ctx, xJ, yJ, g, -.08 - jit, '#141014', undefined, slosh);
-  ctx.save(); const s = r.s; ctx.scale(s, s); elbowArm(ctx, [-300 / s, (H + 300) / s], [xJ / s, (yJ + 4 * s) / s], 760, 1, undefined, ARMW, '#141014', null, { dir: [-1, .45] }, { ink: '#141014' }); ctx.restore();
+  // рука Дженсена из-за левого края: рукав его кожанки (читается, чья рука — продолжение тоста с прошлой точки), кисть-точка на ножке
+  const s = r.s, ex = xJ - 150 * s, ey = yJ + 230 * s;
+  ctx.save(); ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(-120, H + 120); ctx.lineTo(ex, ey); ctx.lineWidth = 70 * s; ctx.strokeStyle = '#141014'; ctx.stroke();
+  ctx.lineWidth = 58 * s; ctx.strokeStyle = '#23202a'; ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(-100, H + 100); ctx.lineTo(ex + 10 * s, ey - 16 * s); ctx.lineWidth = 8 * s; ctx.strokeStyle = 'rgba(255,255,255,.2)'; ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(ex, ey); ctx.lineTo(xJ, yJ + 4 * s); ctx.lineWidth = ARMW * s; ctx.strokeStyle = '#141014'; ctx.stroke();
+  ctx.restore();
   ell(ctx, xJ, yJ + 4 * r.s, 12 * r.s, 12 * r.s, '#141014', null);
   const dc = t - tClink; if (dc > -.02 && dc < .55) clinkSpark(ctx, rimA[0] - 2, rimA[1] + 8 * r.s, 120 * r.s / .875 * .55, dc < .05 ? clamp((dc + .02) / .07) : Math.pow(1 - (dc - .05) / .5, 2), Math.max(0, dc));
 }

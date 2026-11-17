@@ -79,7 +79,7 @@ export function lampFlare(ctx, v, k) { if (k <= .01) return; const P = toS(v, CF
   g.addColorStop(0, `rgba(255,240,170,${.6 * k})`); g.addColorStop(.4, `rgba(220,255,170,${.22 * k})`); g.addColorStop(1, 'rgba(200,255,160,0)'); ctx.fillStyle = g; ctx.fillRect(P[0] - r, P[1] - r, r * 2, r * 2); ctx.restore(); }
 // ценник на коробке: k 0..1 — прилёт и качание; sub — показана ли бирка SOURCE
 function tagOn(ctx, v, o) {
-  if (o.k <= 0) return; const [x, y, w] = CFG.box, top = [x - w * .5 + 18, y - w * .45 + 4];
+  if (o.k <= 0) return; const [x, y, w] = CFG.box, top = [x - w * .5 + 14, y - w * .45 * .45];   // ценник висит у полосы, логотип NVIDIA открыт
   const P = toS(v, top), u = clamp(o.k), drop = (1 - E.outBack(clamp(u * 1.6))) * 120 * v.k, sw = Math.sin(o.t * 7) * Math.exp(-o.t * 3) * .25;
   priceTag(ctx, P[0], P[1] - drop, 96 * v.k, .15 + sw, '$30,000 EACH', o.sub ? 'SOURCE: NVIDIA' : null);
 }
