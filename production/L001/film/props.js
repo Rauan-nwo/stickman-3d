@@ -125,20 +125,23 @@ export function nvBox(ctx, x, y, w, { lid = 0, glow = 0, dust = 0 } = {}) {
   ctx.restore();
   // пыль с крышки
   if (dust > 0 && dust < 1) for (let i = 0; i < 14; i++) { const a = -Math.PI * (.15 + .7 * ((i * .618) % 1)), r = w * (.1 + .5 * dust) * (.6 + .4 * ((i * .37) % 1));
-    ctx.fillStyle = `rgba(230,215,190,${.6 * (1 - dust)})`; ctx.beginPath(); ctx.arc(Math.cos(a) * r + (i - 7) * w * .03, -h - d * .5 + Math.sin(a) * r * .7, w * .008 * (1 + i % 3), 0, TAU); ctx.fill(); }
+    ctx.fillStyle = `rgba(236,222,196,${.9 * (1 - dust)})`; ctx.beginPath(); ctx.arc(Math.cos(a) * r + (i - 7) * w * .03, -h - d * .5 + Math.sin(a) * r * .7, w * .016 * (1 + i % 3), 0, TAU); ctx.fill(); }
   ctx.restore();
 }
 // латунный ключ: (x, y) — середина головки; s — масштаб (длина ~ 300*s), a — поворот; glint 0..1
-export function brassKey(ctx, x, y, s, a, glint = 0) {
+export function brassKey(ctx, x, y, s, a, glint = 0) {   // длина рисунка 334 ед.: головка-кольцо (r 62), стержень толщиной 40, бородка с двумя зубцами
   ctx.save(); ctx.translate(x, y); ctx.rotate(a); ctx.scale(s, s); ctx.lineJoin = 'round';
-  const gold = lg(ctx, 0, -55, 0, 55, [[0, '#F3D27A'], [.5, '#C99A3E'], [1, '#7A5418']]);
-  ctx.beginPath(); ctx.arc(0, 0, 54, 0, TAU); ctx.arc(0, 0, 22, 0, TAU, true); ctx.fillStyle = gold; ctx.fill('evenodd'); ctx.lineWidth = 7; ctx.strokeStyle = '#3a2408'; ctx.stroke();
-  ctx.beginPath(); ctx.arc(0, 0, 22, 0, TAU); ctx.stroke();
-  ctx.beginPath(); ctx.roundRect(50, -13, 230, 26, 6); ctx.fillStyle = gold; ctx.fill(); ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(228, 13); ctx.lineTo(228, 52); ctx.lineTo(246, 52); ctx.lineTo(246, 34); ctx.lineTo(262, 34); ctx.lineTo(262, 13); ctx.closePath(); ctx.fill(); ctx.stroke();   // бородка
-  pathL(ctx, [[-30, -34], [-8, -46]], 7, 'rgba(255,250,220,.75)'); pathL(ctx, [[70, -6], [250, -6]], 4, 'rgba(255,250,220,.45)');
-  if (glint > .01) { ctx.globalCompositeOperation = 'screen'; ctx.fillStyle = rg(ctx, 250, 30, 0, 90, [[0, `rgba(255,255,235,${glint})`], [.35, `rgba(255,230,160,${.45 * glint})`], [1, 'rgba(255,220,150,0)']]); ctx.fillRect(160, -60, 180, 180);
-    ctx.fillStyle = `rgba(255,255,245,${glint})`; for (let i = 0; i < 4; i++) { ctx.save(); ctx.translate(250, 30); ctx.rotate(i * Math.PI / 2 + .4); ctx.beginPath(); ctx.moveTo(0, -60 * glint); ctx.lineTo(5, 0); ctx.lineTo(-5, 0); ctx.closePath(); ctx.fill(); ctx.restore(); } }
+  const gold = lg(ctx, 0, -62, 0, 78, [[0, '#F7DC8A'], [.45, '#D2A244'], [1, '#7E5618']]), OUT = '#2e1c06';
+  const shape = () => { ctx.beginPath();                                             // стержень + бородка одним контуром
+    ctx.moveTo(52, -20); ctx.lineTo(262, -20); ctx.quadraticCurveTo(272, -20, 272, -10); ctx.lineTo(272, 78); ctx.lineTo(250, 78); ctx.lineTo(250, 52); ctx.lineTo(236, 52); ctx.lineTo(236, 78); ctx.lineTo(206, 78); ctx.lineTo(206, 20); ctx.lineTo(52, 20); ctx.closePath(); };
+  shape(); ctx.lineWidth = 12; ctx.strokeStyle = OUT; ctx.stroke(); ctx.fillStyle = gold; ctx.fill();
+  ctx.beginPath(); ctx.arc(0, 0, 62, 0, TAU); ctx.lineWidth = 12; ctx.strokeStyle = OUT; ctx.stroke();                       // головка-кольцо
+  ctx.beginPath(); ctx.arc(0, 0, 62, 0, TAU); ctx.arc(0, 0, 27, 0, TAU, true); ctx.fillStyle = gold; ctx.fill('evenodd');
+  ctx.beginPath(); ctx.arc(0, 0, 27, 0, TAU); ctx.lineWidth = 8; ctx.strokeStyle = OUT; ctx.stroke();
+  for (const cx of [72, 92]) { ctx.beginPath(); ctx.moveTo(cx, -20); ctx.lineTo(cx, 20); ctx.lineWidth = 6; ctx.strokeStyle = 'rgba(70,44,10,.7)'; ctx.stroke(); }   // поясок у головки
+  pathL(ctx, [[-36, -38], [-10, -52]], 9, 'rgba(255,250,220,.8)'); pathL(ctx, [[104, -10], [256, -10]], 6, 'rgba(255,250,220,.5)'); pathL(ctx, [[212, 30], [212, 68]], 5, 'rgba(255,250,220,.35)');
+  if (glint > .01) { ctx.globalCompositeOperation = 'screen'; ctx.fillStyle = rg(ctx, 250, 40, 0, 100, [[0, `rgba(255,255,235,${glint})`], [.35, `rgba(255,230,160,${.45 * glint})`], [1, 'rgba(255,220,150,0)']]); ctx.fillRect(150, -60, 200, 200);
+    ctx.fillStyle = `rgba(255,255,245,${glint})`; for (let i = 0; i < 4; i++) { ctx.save(); ctx.translate(250, 40); ctx.rotate(i * Math.PI / 2 + .4); ctx.beginPath(); ctx.moveTo(0, -70 * glint); ctx.lineTo(6, 0); ctx.lineTo(-6, 0); ctx.closePath(); ctx.fill(); ctx.restore(); } }
   ctx.restore();
 }
 // бумажный ценник на нитке: (x, y) — точка крепления нитки, w — ширина, a — поворот
