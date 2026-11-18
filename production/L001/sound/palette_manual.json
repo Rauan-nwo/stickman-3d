@@ -2,18 +2,18 @@
  "_note": "Ручные решения палитры (перекрывают автоматический выбор tools/pick_palette.py). \"класс\": [{\"path\": \"sound/lib/rec/...wav\", \"gain_db\": 0, \"trim\": [a, b], \"loop\": true}] или null (синтез). Подложки amb.* — только здесь. Лицензия каждого файла — в LICENSES.md до использования.",
  "amb.restaurant": [
   {
-   "path": "sound/lib/rec/amb/amb_restaurant_04.wav",
+   "path": "sound/lib/rec/amb/amb_restaurant_02.wav",
    "src": "rec",
-   "name": "amb_restaurant_04",
-   "z": 6.25
+   "name": "amb_restaurant_02",
+   "z": 5.33
   }
  ],
  "amb.cutlery": [
   {
-   "path": "sound/lib/rec/amb/amb_cutlery_02.wav",
+   "path": "sound/lib/rec/amb/amb_cutlery_01.wav",
    "src": "rec",
-   "name": "amb_cutlery_02",
-   "z": 5.15
+   "name": "amb_cutlery_01",
+   "z": 3.72
   }
  ],
  "amb.rain_window": [
@@ -50,26 +50,26 @@
  ],
  "amb.office_tone": [
   {
-   "path": "sound/lib/rec/amb/amb_office_tone_01.wav",
+   "path": "sound/lib/rec/amb/amb_office_tone_02.wav",
    "src": "rec",
-   "name": "amb_office_tone_01",
-   "z": 4.48
+   "name": "amb_office_tone_02",
+   "z": 3.73
   }
  ],
  "amb.clock": [
   {
-   "path": "sound/lib/rec/amb/amb_clock_01.wav",
+   "path": "sound/lib/rec/amb/amb_clock_03.wav",
    "src": "rec",
-   "name": "amb_clock_01",
-   "z": 4.85
+   "name": "amb_clock_03",
+   "z": 3.59
   }
  ],
  "amb.drip": [
   {
-   "path": "sound/lib/rec/amb/amb_drip_01.wav",
+   "path": "sound/lib/rec/amb/amb_drip_02.wav",
    "src": "rec",
-   "name": "amb_drip_01",
-   "z": 4.84
+   "name": "amb_drip_02",
+   "z": 4.26
   }
  ],
  "amb.birds": [
@@ -82,26 +82,26 @@
  ],
  "amb.bar": [
   {
-   "path": "sound/lib/rec/amb/amb_bar_01.wav",
+   "path": "sound/lib/rec/amb/amb_bar_03.wav",
    "src": "rec",
-   "name": "amb_bar_01",
-   "z": 5.56
+   "name": "amb_bar_03",
+   "z": 4.94
   }
  ],
  "amb.diner": [
   {
-   "path": "sound/lib/rec/amb/amb_diner_01.wav",
+   "path": "sound/lib/rec/amb/amb_diner_03.wav",
    "src": "rec",
-   "name": "amb_diner_01",
-   "z": 6.33
+   "name": "amb_diner_03",
+   "z": 5.65
   }
  ],
  "amb.dishpit": [
   {
-   "path": "sound/lib/rec/amb/amb_dishpit_01.wav",
+   "path": "sound/lib/rec/amb/amb_dishpit_02.wav",
    "src": "rec",
-   "name": "amb_dishpit_01",
-   "z": 7.82
+   "name": "amb_dishpit_02",
+   "z": 6.74
   }
  ],
  "amb.fluor": [
@@ -122,10 +122,10 @@
  ],
  "amb.hvac": [
   {
-   "path": "sound/lib/rec/amb/amb_hvac_01.wav",
+   "path": "sound/lib/rec/amb/amb_hvac_02.wav",
    "src": "rec",
-   "name": "amb_hvac_01",
-   "z": 4.78
+   "name": "amb_hvac_02",
+   "z": 4.17
   }
  ],
  "amb.newsroom": [
@@ -138,10 +138,10 @@
  ],
  "amb.night": [
   {
-   "path": "sound/lib/rec/amb/amb_night_01.wav",
+   "path": "sound/lib/rec/amb/amb_night_03.wav",
    "src": "rec",
-   "name": "amb_night_01",
-   "z": 4.59
+   "name": "amb_night_03",
+   "z": 3.77
   }
  ],
  "amb.port": [
@@ -154,10 +154,10 @@
  ],
  "amb.servers": [
   {
-   "path": "sound/lib/rec/amb/amb_servers_01.wav",
+   "path": "sound/lib/rec/amb/amb_servers_02.wav",
    "src": "rec",
-   "name": "amb_servers_01",
-   "z": 4.81
+   "name": "amb_servers_02",
+   "z": 4.26
   }
  ],
  "amb.trading": [
@@ -884,12 +884,6 @@
    "src": "rec",
    "name": "ship_horn_02",
    "z": 3.47
-  },
-  {
-   "path": "sound/lib/rec/foley/ship_horn_01.wav",
-   "src": "rec",
-   "name": "ship_horn_01",
-   "z": 3.44
   }
  ],
  "shutter": [
@@ -914,10 +908,10 @@
  ],
  "stamp": [
   {
-   "path": "sound/lib/cand/stamp/layer_rec_body_tap.wav",
-   "src": "layer",
-   "name": "layer_rec_body_tap (запись stamp_01 CC0 + синтетический низ + банк tap/table)",
-   "z": 2.79
+   "path": "sound/lib/rec/foley/stamp_01.wav",
+   "src": "rec",
+   "name": "stamp_01",
+   "z": 3.54
   }
  ],
  "static": [

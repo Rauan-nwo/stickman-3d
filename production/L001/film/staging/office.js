@@ -110,6 +110,22 @@ export function bigKey(ctx, sr, hand, R, a, glint = 0, warm = 0) {
   if (warm > .01) { ctx.save(); ctx.globalCompositeOperation = 'screen'; const g = ctx.createRadialGradient(hand[0] - R * 2.4, hand[1] - R * 1.6, 0, hand[0] - R * 2.4, hand[1] - R * 1.6, R * 6); g.addColorStop(0, `rgba(255,214,130,${.3 * warm})`); g.addColorStop(1, 'rgba(255,190,100,0)'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H); ctx.restore(); }
   keyGrip(ctx, hand, s, a, glint);
 }
+// чистая вставка «рука входит в кадр»: зелёный рукав (жилет-костюм ведущего) с белой манжетой от края кадра, короткое запястье, кисть-точка.
+// to — точка кисти (плейт), from — откуда входит рукав (экран, за краем кадра), k — масштаб кисти как у фигуры (CFG.fs·v.k)
+export function insertHand(ctx, v, to, from, k = CFG.fs * v.k) {
+  const P = toS(v, to), r = 12 * k, dx = P[0] - from[0], dy = P[1] - from[1], l = Math.hypot(dx, dy) || 1, ux = dx / l, uy = dy / l, nx = -uy, ny = ux;
+  const C = [P[0] - ux * r * 1.05, P[1] - uy * r * 1.05], w0 = 17 * k, w1 = 13.5 * k, ink = M.spec.colors.ink;   // рукав по толщине ≈ кисть: читается рукой, не тубусом
+  ctx.save(); ctx.lineJoin = 'round';
+  ctx.beginPath(); ctx.moveTo(from[0] + nx * w0, from[1] + ny * w0); ctx.lineTo(C[0] + nx * w1, C[1] + ny * w1); ctx.lineTo(C[0] - nx * w1, C[1] - ny * w1); ctx.lineTo(from[0] - nx * w0, from[1] - ny * w0); ctx.closePath();
+  const g = ctx.createLinearGradient(C[0] + nx * w1, C[1] + ny * w1, C[0] - nx * w1, C[1] - ny * w1); g.addColorStop(0, '#4FA274'); g.addColorStop(.45, '#2C6E4A'); g.addColorStop(1, '#143A26');
+  ctx.fillStyle = g; ctx.fill(); ctx.lineWidth = 3.5 * k; ctx.strokeStyle = ink; ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(from[0] + nx * w0 * .45 + ux * 40 * k, from[1] + ny * w0 * .45 + uy * 40 * k); ctx.lineTo(C[0] + nx * w1 * .45 - ux * 8 * k, C[1] + ny * w1 * .45 - uy * 8 * k); ctx.lineWidth = 2.5 * k; ctx.strokeStyle = 'rgba(20,58,38,.8)'; ctx.stroke();   // складка рукава
+  const c0 = [C[0] - ux * 9 * k, C[1] - uy * 9 * k], cw = w1 * .92;                       // манжета рубашки
+  ctx.beginPath(); ctx.moveTo(c0[0] + nx * cw, c0[1] + ny * cw); ctx.lineTo(C[0] + ux * 4 * k + nx * cw * .9, C[1] + uy * 4 * k + ny * cw * .9); ctx.lineTo(C[0] + ux * 4 * k - nx * cw * .9, C[1] + uy * 4 * k - ny * cw * .9); ctx.lineTo(c0[0] - nx * cw, c0[1] - ny * cw); ctx.closePath();
+  ctx.fillStyle = '#FBF8F2'; ctx.fill(); ctx.lineWidth = 3 * k; ctx.strokeStyle = ink; ctx.stroke();
+  ell(ctx, P[0], P[1], r, r, ink, null); handRim(ctx, P, k);
+  ctx.restore(); return P;
+}
 // блик-звёздочка (отсвет латунного ключа): центр P (экран), радиус R, k 0..1
 function sparkle(ctx, P, R, k) { ctx.save(); ctx.globalCompositeOperation = 'screen'; const g = ctx.createRadialGradient(P[0], P[1], 0, P[0], P[1], R);
   g.addColorStop(0, `rgba(255,246,210,${.9 * k})`); g.addColorStop(.3, `rgba(255,214,130,${.4 * k})`); g.addColorStop(1, 'rgba(255,200,110,0)'); ctx.fillStyle = g; ctx.fillRect(P[0] - R, P[1] - R, R * 2, R * 2);

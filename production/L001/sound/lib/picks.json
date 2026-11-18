@@ -21,14 +21,6 @@
   "len": 60
  },
  {
-  "id": "amb_restaurant_04",
-  "need": "amb_restaurant",
-  "cat": "amb",
-  "ov": "68b91609",
-  "len": 60,
-  "rank_need": "amb_cutlery"
- },
- {
   "id": "amb_cutlery_01",
   "need": "amb_cutlery",
   "cat": "amb",
@@ -203,13 +195,6 @@
   "need": "amb_birds_day",
   "cat": "amb",
   "ov": "0e2335ff",
-  "len": 60
- },
- {
-  "id": "amb_birds_day_02",
-  "need": "amb_birds_day",
-  "cat": "amb",
-  "ov": "87b8f63b",
   "len": 60
  },
  {
@@ -751,16 +736,6 @@
   "note": "звонок длиннее, обрезан с затуханием"
  },
  {
-  "id": "phone_ring_02",
-  "need": "fx_phone_ring",
-  "cat": "foley",
-  "ov": "aac33631",
-  "start": 0.0,
-  "end": 2.6,
-  "fo": 100,
-  "note": "один звонок целиком"
- },
- {
   "id": "phone_ring_03",
   "need": "fx_phone_ring",
   "cat": "foley",
@@ -1022,16 +997,6 @@
   "note": "кладут трубку"
  },
  {
-  "id": "ship_horn_01",
-  "need": "fx_ship_horn",
-  "cat": "foley",
-  "ov": "641dfcae",
-  "start": 0.3,
-  "end": 5.1,
-  "fo": 500,
-  "note": "гудок 4.8 с, длиннее обычного точечного звука"
- },
- {
   "id": "ship_horn_02",
   "need": "fx_ship_horn",
   "cat": "foley",
@@ -1238,13 +1203,6 @@
   "note": "короткий, 3 с"
  },
  {
-  "id": "amb_diner_01",
-  "need": "amb_diner",
-  "cat": "amb",
-  "ov": "7d7354a1",
-  "len": 55
- },
- {
   "id": "amb_diner_02",
   "need": "amb_diner",
   "cat": "amb",
@@ -1347,14 +1305,6 @@
   "ov": "3dc7d50c",
   "len": 22,
   "note": "исходник 27 с"
- },
- {
-  "id": "amb_port_03",
-  "need": "amb_port",
-  "cat": "amb",
-  "ov": "baffc8c3",
-  "len": 60,
-  "note": "портовый кран"
  },
  {
   "id": "amb_servers_01",

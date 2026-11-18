@@ -97,3 +97,12 @@ C:/dev/tools/sound-venv/Scripts/python.exe sound/master_full.py --lang ru [--vid
 
 **Музыка фильма** — `music_spec.json` (гл. 0–1 — пилот, гл. 2–10 — план `music/MUSIC.md`); попадания внутри глав привязаны
 к фразам голоса (`text:<фраза>`), поэтому переживают перетайминг. Читаемый план — `MUSIC_PLAN.md`.
+
+## Проверка на «голоса» в фоне
+
+Крики, вопли, плач, визг, мяуканье, сирены в записях и синтезе:
+```
+C:/dev/tools/earshot/.venv/Scripts/python.exe sound/tools/library_scan.py --synth        # вся библиотека + классы синтеза -> lib/vocal_scan.json
+C:/dev/tools/sound-venv/Scripts/python.exe -I sound/tools/apply_scan.py [--dry]          # убрать помеченное, журнал в LICENSES.md, пересборка палитры
+C:/dev/tools/earshot/.venv/Scripts/python.exe sound/tools/verify_vocals.py sound/out/ch0_1 --t1 10   # микс: окна 1 с, без голоса < 0.10 (вся глава: --t1 99999 --hop .5 --rest-only)
+```

@@ -36,14 +36,15 @@ export const onTable = (ang, r = .75) => [CFG.table.c[0] + Math.sin(ang) * CFG.t
 function lampSign(ctx, v, t) {
   const P = toS(v, CFG.lampSign), s = v.k; ctx.save(); ctx.translate(P[0], P[1]);
   ctx.fillStyle = '#1a0606'; ctx.strokeStyle = '#000'; ctx.lineWidth = 2 * s; ctx.beginPath(); ctx.roundRect(-82 * s, -12 * s, 164 * s, 24 * s, 3 * s); ctx.fill(); ctx.stroke();
-  ctx.shadowColor = 'rgba(255,60,50,.9)'; ctx.shadowBlur = 10 * s; ctx.font = `800 ${Math.round(15 * s)}px ${F.label}`; ctx.fillStyle = `rgba(255,${90 + 20 * Math.sin(t * 6)},80,1)`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('CLASSIFIED — IN USE', 0, 1 * s); ctx.restore();
+  ctx.shadowColor = 'rgba(255,60,50,.9)'; ctx.shadowBlur = 10 * s; ctx.font = `800 ${Math.round(15 * s)}px ${F.label}`; ctx.fillStyle = `rgba(255,${90 + 20 * Math.sin(t * 2)},80,1)`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('CLASSIFIED — IN USE', 0, 1 * s); ctx.restore();
 }
 // кадр комнаты: o = { blur, a1: {...person}, a2: {...}, onTable(ctx, v) — предметы на сукне (поверх стола, под руками), solo }
 export function room(ctx, v, t, T, o = {}) {
   const a = A(); if (!a) return {};
   if (!o.solo) { plate(ctx, o.blur ? a.b3 : a.plate, v); lampSign(ctx, v, t); }
   const cast = [];
-  for (const [k, sp, f] of [['A1', 'AIDE', 1], ['A2', 'AIDE 2', -1]]) { const m = o[k.toLowerCase()]; if (!m) continue;
+  for (const [k, sp, f] of [['A1', 'AIDE', 1], ['A2', 'AIDE 2', -1]]) { let m = o[k.toLowerCase()]; if (!m) continue; const S0 = CFG.seat[k];
+    m = { L: { k: 1, to: [S0[0] - 52, 676] }, R: { k: 1, to: [S0[0] + 52, 676] }, ...m };   // кисти лежат на сукне (у ближней к ним кромки), если сцена не задала иное
     cast.push([k, person(ctx, v, t, T, { C: CAST[k], at: CFG.seat[k], fs: CFG.fs, pin: 'seat', stance: f > 0 ? 'sitR' : 'sitL', view: 'front', facing: f, sp, light: CFG.light[k], seed: f > 0 ? 3 : 6, ...m, only: 'base' }), m, f, sp]); }
   if (!o.solo) plate(ctx, o.blur ? a.fgB3 : a.fg, v);
   if (!o.solo && o.onTable) o.onTable(ctx, v);

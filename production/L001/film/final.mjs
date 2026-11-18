@@ -23,7 +23,11 @@ const JOBS = Math.min(2, +arg('--jobs', 2)), CH = arg('--ch', '0,1').split(',').
 const VOICE = join(L, arg('--voice', defaultVoice(words.lines)));
 const shots = timing.shots.filter(s => CH.includes(s.ch)), F0 = frame0(shots[0]), FCH = frame0(shots[shots.length - 1]) + frames(shots[shots.length - 1]);
 // конец экспорта: по границе фразы (последнее слово главы + 0.6 с), а не на чужой реплике следующей главы; --full-chapter — до конца главы
-const F1 = has('--full-chapter') ? FCH : Math.min(FCH, Math.ceil(pilotEnd(shots, words.words) * 30 - 1e-6));
+// финал фильма (последний план всего фильма в экспорте — немой план-каскад #347 и уход в чёрное) — всегда до конца главы, без обрезки по слову
+const FILM_END = shots.some(s => s.n === Math.max(...timing.shots.map(q => q.n)));
+// FILM_F — кадров на странице фильма (core animatic: fEnd = round(total·FPS)); конец главы по ceil у последнего плана бывает на кадр дальше
+const FILM_F = Math.round(timing.total * 30), FCH1 = Math.min(FCH, FILM_F);
+const F1 = has('--full-chapter') || FILM_END ? FCH1 : Math.min(FCH1, Math.ceil(pilotEnd(shots, words.words) * 30 - 1e-6));
 const FADE = Math.round(.4 * 30);                          // спад картинки в чёрное на последних 0.4 с (в браузере, до кодирования)
 // --entry <имя>: собранные только главы рабочего (entries/<имя>/out/film.html); иначе — весь фильм (out/film.html)
 const ENTRY = arg('--entry', null), HTML = ENTRY ? join(D, 'entries', ENTRY, 'out', 'film.html') : join(OUT, 'film.html');
@@ -109,5 +113,8 @@ copyFileSync(vw, join(OUT, `${NAME}_voice.wav`));
 execFileSync('ffmpeg', ['-v', 'error', '-y', '-f', 'lavfi', '-i', `anullsrc=r=48000:cl=mono:d=${((F1 - F0) / 30).toFixed(3)}`, join(TMP, `${NAME}_null.wav`)]);
 mixFinal({ timing, shots, voiceWav: join(TMP, `${NAME}_null.wav`), T0: F0 / 30, T1: F1 / 30, out: join(OUT, `${NAME}_tempbed.wav`) });
 execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', v, '-i', a, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart', out]);
-writeFileSync(join(OUT, `${NAME}.frames.json`), JSON.stringify({ F0, F1, shots3d: shots.filter(s => CLIPS3D[s.n]).map(s => ({ n: s.n, F: frame0(s), N: frames(s) })) }));
+writeFileSync(join(OUT, `${NAME}.frames.json`), JSON.stringify({ F0, F1, shots3d: shots.filter(s => CLIPS3D[s.n]).map(s => ({ n: s.n, F: frame0(s), N: frames(s) })), all: shots.map(s => ({ n: s.n, F: frame0(s), N: frames(s) })) }));
+// ворота мерцания (QA.md §9): по каждому плану — медиана |Δяркости| кадр-к-кадру и «пила» в секунду; отчёт out/<имя>_flicker.txt
+try { execFileSync('python', [join(D, 'flicker.py'), out, join(OUT, `${NAME}.frames.json`), join(OUT, `${NAME}_flicker.txt`)], { stdio: 'inherit', env: { ...process.env, PYTHONIOENCODING: 'utf-8' } }); }
+catch { console.log('!! ворота мерцания НЕ пройдены — см.', join(OUT, `${NAME}_flicker.txt`)); }
 console.log('готово', out, el());

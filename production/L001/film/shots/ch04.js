@@ -8,11 +8,17 @@ import { inOutExpo, gauss, env, W_, W0, shake, whipPlates, focusBox, freezeFrame
 import * as MS from '../staging/megaspeed.js';
 import * as PA from '../props_A.js';
 import { alice } from 'engine';
-import { clerk, staffer, renter, rep, courier, receptionist, person, shadeOf } from '../chars_A.js';
+import { clerk, staffer, renter, rep, courier, receptionist, guest, fan, person, shadeOf, handS } from '../chars_A.js';
+import * as JK from '../staging/jokes_A.js';
+import { ell } from 'engine';
 
 const AL = alice(); AL.spec.rig = { ...AL.spec.rig, plantLegs: .02, armLayer: 'front' };
 const CL = clerk(), ST = staffer(), RT = renter(), RP = rep(), CO = courier(), RC = receptionist();
 const MV = MS.views;
+const NB = guest(2), KID = fan();
+const JK_person = (c, C, v, t, T, o) => person(c, C, v, t, T, { shade: shadeOf([0, -1], '#ffc47a'), shadow: false, ...o });
+// фонарик в кисти: h — кисть (экран), a — направление луча, s — масштаб, on — горит
+function flashlightA(c, h, a, s, on) { c.save(); c.translate(h[0], h[1]); c.rotate(a); PA.rrect(c, -10 * s, -12 * s, 80 * s, 24 * s, 6 * s, '#2b2f38', '#141014', 4 * s); PA.rrect(c, 66 * s, -18 * s, 26 * s, 36 * s, 5 * s, '#3c424e', '#141014', 4 * s); if (on) ell(c, 92 * s, 0, 5 * s, 15 * s, '#fff6da', null); c.restore(); }
 // вип со смазом между двумя кадрами одного плейта: смаз делает ядро (smearInto), здесь — только переход кадра
 const whipU = (t, tw) => clamp(inOutExpo((t - tw + .1) / WHIP_DUR));
 // вывеска компании над дверью (R / R7): текст, свет 0..1
@@ -42,11 +48,11 @@ function callScene(t, T, o) {
     const g = c.createLinearGradient(0, 0, 0, 1080); g.addColorStop(0, '#2a1c22'); g.addColorStop(1, '#0c080a'); c.fillStyle = g; c.fillRect(0, 0, 1920, 1080);
     c.fillStyle = '#3a2a24'; c.fillRect(0, 760, 1920, 320); c.fillStyle = 'rgba(255,190,110,.18)'; c.beginPath(); c.arc(1500, 300, 420, 0, 6.283); c.fill();   // лампа за спиной
     c.fillStyle = '#4a3020'; c.fillRect(1380, 120, 260, 360); c.fillStyle = '#7a5a34'; c.fillRect(1400, 140, 220, 320);                                // картина на стене
-    const z = 1 + .35 * (o.lean || 0), v = { cx: 960, cy: 620 - 60 * (o.lean || 0), k: 1.35 * z };
+    const z = 1 + .35 * (o.lean || 0), v = { cx: 960, cy: 650 - 40 * (o.lean || 0), k: 2.3 * z };
     const hold = clamp(o.case || 0);
     const P = person(c, RT, v, t, T, { at: [960, 1010], fs: .62, pin: 'feet', f: 1, view: null, sp: 'RENTER', keys: [[0, 'smug']], look: [0, .1], shade: shadeOf([1, -.6], '#ffb070'), shadow: false,
       R: { k: hold, to: [1080, 820] }, L: { k: hold, to: [840, 820] } });
-    void P; if (hold > .02) { const p = toS(v, [960, 900 - 120 * hold]); PA.cashCase(c, p[0], p[1] + 120 * (1 - hold), (360 + 260 * hold) * v.k * .62, 0); }
+    void P; if (hold > .02) { const p = toS(v, [960, 900 - 120 * hold]); PA.cashCase(c, p[0], p[1] + 160 * (1 - hold), (230 + 170 * hold) * v.k * .62, 0); }
     c.fillStyle = 'rgba(0,0,0,.35)'; c.fillRect(0, 0, 1920, 70); c.fillStyle = '#ff4a3a'; c.beginPath(); c.arc(50, 35, 13, 0, 6.283); c.fill();
     PA.label(c, 'VIDEO CALL · ENCRYPTED', 80, 36, 30, '#e8e0d0', { align: 'left' }); PA.label(c, '00:0' + Math.floor(3 + T % 6), 1840, 36, 30, '#e8e0d0');
   });
@@ -207,6 +213,27 @@ const lerpP = (a, b, k) => [lerp(a[0], b[0], k), lerp(a[1], b[1], k)];
 function clipboardA(c, h, s) { c.save(); c.translate(h[0] + 10 * s, h[1] - 30 * s); c.rotate(-.1); PA.rrect(c, -50 * s, -66 * s, 100 * s, 132 * s, 6 * s, '#8a6a42', '#141014', 4 * s); PA.rrect(c, -42 * s, -54 * s, 84 * s, 110 * s, 3 * s, '#F2EEE2', null); for (let i = 0; i < 6; i++) { c.fillStyle = 'rgba(40,50,90,.6)'; c.fillRect(-32 * s, (-40 + i * 16) * s, (40 + (i % 3) * 12) * s, 3 * s); } c.restore(); }
 
 export const OVER = {
+  // D06-A: книга через окно соседа — плоская заставка с нашими героями поверх шаблона T-joke ядра
+  '4|Imagine you': (ctx, s, t, d) => { const wt = (re, fb) => { const a = wordAt(re, s.start, s.end); return a == null ? fb : a - s.start; };   // книга с замком на подоконнике; на «allowed» защёлкивается замок; на «neighbor» сосед берёт её и ставит на свою полку; отъезд
+    const ta = wt('allowed', .64), tn = wt('neighbor', 2.71), th = wt('house', 4.45), pull = E.inOutCubic(clamp((t - 2.2) / .9)), snap = 1 + .1 * E.outCubic(clamp((t - th) / .17));
+    const v0 = lerpView({ cx: 1000, cy: 560, k: 1.9 }, { cx: 960, cy: 520, k: 1.0 }, pull), v = { ...v0, k: v0.k * snap };
+    const grab = E.inOutCubic(clamp((t - tn) / .7)), bx = lerp(960, 880, grab), by = lerp(690, 470, grab), hand = t > tn - .35 ? (t < tn ? E.outCubic(clamp((t - tn + .35) / .35)) : 1) : 0;
+    JK.house(ctx, v, t, c => { const P = JK_person(c, NB, v, t, s.start + t, { at: [1100, 1061], fs: .9, f: -1, keys: [[0, 'smile']], look: [-.6, .3], L: { k: hand, to: [bx + 20, by + 30] } });
+      const b = toS(v, [bx, by]); JK.book(c, b[0], b[1], 120 * v.k, 0, { lock: clamp((t - ta) / .12) }); if (hand > .5) { const h = handS(P, v, 'L'); ell(c, h[0], h[1], 11 * .9 * v.k, 11 * .9 * v.k, NB.spec.colors.ink, null); } });
+  },
+  '4|and lets you read it through the window': (ctx, s, t, d) => { const wt = (re, fb) => { const a = wordAt(re, s.start, s.end); return a == null ? fb : a - s.start; };   // ребёнок светит фонариком в окно, сосед прижимает страницу к стеклу; на «fee» монета падает в банку PER PAGE
+    const tw = wt('window', 1.1), tp = wt('page', 1.88), tf = wt('fee', 3.28), snap = 1 + .1 * E.outCubic(clamp((t - tp) / .17)), push = 1 + .06 * clamp(t / d);
+    const v = { cx: 960, cy: 560, k: 1.12 * snap * push }, lit = E.outCubic(clamp((t - tw) / .25)), pg = E.outBack(clamp((t - .2) / .5));
+    JK.house(ctx, v, t, c => { const P = JK_person(c, NB, v, t, s.start + t, { at: [960, 1110], fs: .85, f: 1, view: null, keys: [[0, 'smile']], look: [0, .1], L: { k: 1, to: [860, 470] }, R: { k: 1, to: [1060, 470] } });
+      const b = toS(v, [960, lerp(560, 470, pg)]); JK.book(c, b[0], b[1], 150 * v.k, 0, { open: 1, lit }); for (const sd of ['L', 'R']) { const h = handS(P, v, sd); ell(c, h[0], h[1], 11 * .85 * v.k, 11 * .85 * v.k, NB.spec.colors.ink, null); } });
+    const J = toS(v, [1210, 760]); JK.jar(ctx, J[0], J[1], 90 * v.k, t > tf + .35 ? 4 : 3);
+    const cu = (t - tf) / .35; if (cu > 0 && cu < 1) { const c0 = toS(v, [1210, lerp(560, 740, cu * cu)]); ell(ctx, c0[0], c0[1], 14 * v.k, 6 * v.k + 4 * Math.abs(Math.sin(cu * 12)) * v.k, '#E8C04A', '#141014', 2); }
+    // ребёнок на переднем плане (по грудь), фонарик в правой руке; луч — на страницу
+    const K = JK_person(ctx, KID, v, t, s.start + t, { at: [430, 1330], fs: 1.05, f: 1, keys: [[0, 'smile']], look: [.7, -.4], R: { k: 1, to: [640, 900] } });
+    const h = handS(K, v, 'R'), pgS = toS(v, [960, 470]);
+    if (lit > .01) { ctx.save(); ctx.globalCompositeOperation = 'screen'; ctx.fillStyle = `rgba(255,245,190,${.32 * lit})`; ctx.beginPath(); ctx.moveTo(h[0] + 30 * v.k, h[1] - 20 * v.k); ctx.lineTo(pgS[0] - 120 * v.k, pgS[1] - 90 * v.k); ctx.lineTo(pgS[0] + 130 * v.k, pgS[1] + 110 * v.k); ctx.closePath(); ctx.fill(); ctx.restore(); }
+    flashlightA(ctx, h, Math.atan2(pgS[1] - h[1], pgS[0] - h[0]), 1.05 * v.k, lit > .01); ell(ctx, h[0], h[1], 12 * 1.05 * v.k, 12 * 1.05 * v.k, KID.spec.colors.ink, null);
+  },
 };
 export const SKIP_PROPS = {
   '4|a small Singapore company called 7Road': /7ROAD/, '4|got a new name: Megaspeed': /MEGASPEED|7ROAD/, '4|Its new managing director': /MANAGING/,

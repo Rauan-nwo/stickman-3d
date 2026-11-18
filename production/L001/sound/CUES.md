@@ -2,7 +2,7 @@
 
 Сгенерирован `node production/L001/sound/cues.mjs` из `animatic/timing.json`, `animatic/words.json`, `animatic/conf.js` и ручной постановки `cues_manual.mjs`. Не править руками.
 
-Всего звуков: **1233**; по типам: caption 8, foley 152, camera 320, transition 231, template 182, event 314, title 26. Подложек (сегментов амбиенса): 215.
+Всего звуков: **1176**; по типам: caption 8, foley 153, camera 320, transition 231, template 182, event 256, title 26. Подложек (сегментов амбиенса): 215.
 
 ## По главам
 
@@ -12,12 +12,12 @@
 | 1 | The Office | 0:44.53–1:10.45 | 53 | 122.7 |
 | 2 | The Man With the Key | 1:10.45–4:20.30 | 184 | 58.1 |
 | 3 | The Locked Door | 4:20.30–5:49.74 | 84 | 56.4 |
-| 4 | The Cover | 5:49.74–7:27.63 | 110 | 67.4 |
-| 5 | The Introduction | 7:27.63–9:13.01 | 129 | 73.4 |
-| 6 | The Pipeline | 9:13.01–11:20.98 | 138 | 64.7 |
-| 7 | The Real Prize | 11:20.98–13:25.89 | 157 | 75.4 |
-| 8 | The Memo | 13:25.89–14:51.76 | 84 | 58.7 |
-| 9 | The Empty Chair | 14:51.76–17:36.16 | 191 | 69.7 |
+| 4 | The Cover | 5:49.74–7:27.63 | 100 | 61.3 |
+| 5 | The Introduction | 7:27.63–9:13.01 | 124 | 70.6 |
+| 6 | The Pipeline | 9:13.01–11:20.98 | 131 | 61.4 |
+| 7 | The Real Prize | 11:20.98–13:25.89 | 146 | 70.1 |
+| 8 | The Memo | 13:25.89–14:51.76 | 76 | 53.1 |
+| 9 | The Empty Chair | 14:51.76–17:36.16 | 175 | 63.9 |
 | 10 | The Office | 17:36.16–17:46.77 | 23 | 130.0 |
 
 ## Подложки, главы 0

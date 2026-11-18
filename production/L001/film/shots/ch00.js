@@ -17,13 +17,13 @@ export const SHOTS = {
   '0|Picture this.': x => { const { ctx, t, T, cam, solo } = x, v = camView(V.rWide, cam, .3, .3);   // общий: двое за столом; агент с меню и объективом за дальним столиком справа (D01 #1)
     ctx.save(); shake(ctx, cam);
     R.wide(ctx, v, t, T, { solo, glint: tt => gauss(tt, .75, .16) + .8 * gauss(tt, x.s.snap ?? 1.5, .12), j: { keys: [[0, 'neutral']], at: 1.25 }, a: { keys: [[0, 'smug']] } });
-    if (!solo) { const [fx, fy] = R.flame(v); candle(ctx, fx, fy, v.k, .35 + .65 * gauss(t, 1.15, .28) + .06 * Math.sin(t * 23));
+    if (!solo) { const [fx, fy] = R.flame(v); candle(ctx, fx, fy, v.k, .35 + .65 * gauss(t, 1.15, .28) + .02 * Math.sin(t * 2.8));
     }
     ctx.restore(); },
   '0|sits down to dinner': x => { const { ctx, t, T, cam, solo, s } = x, ts = Math.min(t, s.snap ?? 1.4), v = camView(V.rPovA, { ...cam, z: x.camAt(ts).z, dx: 0 });   // POV: Алиса садится; щелчок — стоп-кадр
     const u = E.outCubic(clamp(ts / 1.0));
     R.wide(ctx, v, ts, T - t + ts, { solo, j: { keys: [[0, 'neutral']] }, a: { keys: [[0, 'smug']], dx: lerp(46, 0, u), dy: lerp(-20, 0, u), lean: lerp(.1, 0, u), armsK: clamp((ts - .55) / .55) } });
-    if (!solo) { const [fx, fy] = R.flame(v); candle(ctx, fx, fy, v.k, .4 + .05 * Math.sin(ts * 23)); const hd = toS(v, [1655, 560]); focusBox(ctx, hd[0] - 30, hd[1] + 40, 360, 460, t > (s.snap ?? 1.4) ? 1 : 0); x.API.viewfinder(ctx, t); freezeFrame(ctx, t - (s.snap ?? 1.4)); } },
+    if (!solo) { const [fx, fy] = R.flame(v); candle(ctx, fx, fy, v.k, .4 + .02 * Math.sin(ts * 2.8)); const hd = toS(v, [1655, 560]); focusBox(ctx, hd[0] - 30, hd[1] + 40, 360, 460, t > (s.snap ?? 1.4) ? 1 : 0); x.API.viewfinder(ctx, t); freezeFrame(ctx, t - (s.snap ?? 1.4)); } },
   "0|He's Jensen Huang": x => { const { ctx, t, T, cam, solo, s } = x, v = camView(V.rCuJ, cam), tj = s.snap ?? 2;   // крупно Дженсен: смеётся, на «jacket» — рука к лацкану
     ctx.save(); shake(ctx, cam);
     R.cu(ctx, v, t, T, { solo, who: 'J', keys: [[0, 'smug'], [.7, 'laugh', { talking: false }], [tj - .25, 'smug']], laugh: t > .7 && t < tj - .25, far: [-50, -585], farK: env(t, tj - .3, tj + .9, .28, .3) });
@@ -66,7 +66,7 @@ export const SHOTS = {
     ctx.restore(); },
   '0|AGENT 2: Which American': x => { const { ctx, t, T, solo } = x, v = V.rPov2;   // POV снова: рамка скользит с Алисы, официант заслоняет объектив (гэг), рамка находит Дженсена
     R.wide(ctx, v, t, T, { solo, j: { keys: [[0, 'neutral'], [1.0, 'laugh', { talking: false }]], laugh: t > 1.0, at: .5 }, a: { keys: [[0, 'smug']], at: .35 } });
-    if (!solo) { const [fx, fy] = R.flame(v); candle(ctx, fx, fy, v.k, .4 + .05 * Math.sin(t * 23));
+    if (!solo) { const [fx, fy] = R.flame(v); candle(ctx, fx, fy, v.k, .4 + .02 * Math.sin(t * 2.8));
       const u = E.inOutCubic(clamp((t - .2) / 1.1)), hA = toS(v, [1655, 560]), hJ = toS(v, [270, 560]), lock = t > 1.4 ? 1 : 0;
       focusBox(ctx, lerp(hA[0] - 20, hJ[0] + 30, u), lerp(hA[1] + 40, hJ[1] + 40, u), 300, 400, lock);
       R.fgWaiter(ctx, clamp((t - .38) / .75), { y: 1560, s: 1.32, blur: 10 });
@@ -77,7 +77,7 @@ export const SHOTS = {
   '0|Jensen has no idea': x => { const { ctx, t, T, cam, solo } = x, v = camView(V.rCuJ, cam);   // крупно Дженсен смеётся и откидывается; на переднем плане — край меню и объектив
     ctx.save(); shake(ctx, cam);
     R.cu(ctx, v, t, T, { solo, who: 'J', keys: [[0, 'smug'], [.18, 'laugh', { talking: false }]], laugh: t > .18, lean: -.07 * E.inOutCubic(clamp((t - .2) / .6)), table: 'tableB2', bg: 'plateB2' });
-    if (!solo) R.fgMenu(ctx, 1720, 840, 600, { lens: -1, glint: .35 + .25 * Math.sin(t * 4), blur: 11, tilt: -.08 });
+    if (!solo) R.fgMenu(ctx, 1720, 840, 600, { lens: -1, glint: .35 + .08 * Math.sin(t * 2.8), blur: 11, tilt: -.08 });
     ctx.restore(); },
   '0|AGENT 2: Do we warn him': x => { const { ctx, t, T, cam, solo, s, d } = x, tw = s.whip?.t ?? d * .47;   // салон, вип-пан: AGENT 2 получает снимок, опускает наушники -> AGENT кладёт распечатку в папку и закрывает
     const wu = inOutExpo((t - tw + .1) / WHIP_DUR), a1s = lineSpan('AGENT', s.start, s.end), tClose = a1s ? a1s[1] - s.start + .15 : d - .5;

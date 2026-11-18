@@ -190,3 +190,7 @@ export function person(ctx, v, t, T, o) {
   if (o.heldR) { o.heldR(ctx, out.hr, out.s); ctx.fillStyle = S.colors.ink; ctx.beginPath(); ctx.arc(out.hr[0], out.hr[1], 12 * out.s, 0, Math.PI * 2); ctx.fill(); }
   return out;
 }
+// агенты у двери (гл. 9): те же люди, что в машине (agent1/agent2 из chars.js — стрижки инспектора и гида), но без наушников
+import '../scenes/dc_inspection/chars.js';
+export const fieldAgent1 = () => make('fieldAgent1', 'L_inspector', { hair: '#2A2024', eye: 'lid', mouth: 'flat', body: ['#6a6870', '#3c3a42', '#1c1b20'], inside: suit({ lapel: '#35333b', tie: '#121116', tieKnot: '#0c0b0e' }) });
+export const fieldAgent2 = () => make('fieldAgent2', 'L_guide', { hair: '#141015', eye: 'dot', mouth: 'flat', body: ['#4d5f8c', '#2a3658', '#141a2e'], inside: suit({ lapel: '#25304e', tie: '#5d8fc9', tieKnot: '#3f6ea8' }) });

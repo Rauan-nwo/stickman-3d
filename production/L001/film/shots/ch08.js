@@ -86,7 +86,7 @@ export const SHOTS = {
   '8|Officials asked for the name': x => { const { ctx, t, T, cam, solo } = x, v = CR.view('mid', cam, .3), tu = W_(x, 'unmasked', 1.5);   // двое над сводкой; на «unmasked» левый тянет чёрную плашку вверх
     const reach = env(t, tu - .35, x.d + 1, .3), lift = E.inOutCubic(clamp((t - tu) / .5)), P0 = CR.onTable(0, .05);
     ctx.save(); shake(ctx, cam);
-    CR.room(ctx, v, t, T, { solo, a1: { keys: [[0, 'neutral']], look: [.4, .6], lean: .06 * reach, R: { k: reach, to: [P0[0] + 30, P0[1] - 6 - 30 * lift] } }, a2: { keys: [[0, 'neutral']], look: [-.45, .6] },
+    CR.room(ctx, v, t, T, { solo, a1: { keys: [[0, 'neutral']], look: [.4, .6], lean: .06 * reach, R: { k: 1, to: [lerp(720, P0[0] + 30, reach), lerp(676, P0[1] - 6 - 30 * lift, reach)] } }, a2: { keys: [[0, 'neutral']], look: [-.45, .6] },
       onTable: (c, vv) => { const P = toS(vv, P0); c.save(); c.translate(P[0], P[1]); c.scale(1, .5); B.sheet(c, 0, 0, 300 * vv.k, 380 * vv.k, .05, (cc, w, h) => B.intercept(cc, w, h, { lift: lift * .9 })); c.restore(); } });
     ctx.restore(); },
   '8|It was Jensen Huang': x => { const { ctx, t, cam, solo } = x, tj = W_(x, 'Jensen', .34);   // вставка: на «Jensen» чёрная плашка срывается — под ней JENSEN HUANG
@@ -104,7 +104,7 @@ export const SHOTS = {
     const v = lerpView(CR.view('a2', { ...cam, dx: 0 }), CR.view('a1', { ...cam, dx: 0 }), clamp(wu)), hug = env(t, .1, d + 1, .3), lean = env(t, tw + .1, d + 1, .4);
     const S2 = CR.CFG.seat.A2, fy = S2[1] - 255 * CR.CFG.fs;
     ctx.save(); shake(ctx, cam);
-    CR.room(ctx, v, t, T, { solo, blur: 3, a2: { keys: [[0, 'neutral']], look: [-.5, .2], L: { k: hug, to: [S2[0] - 34, fy + 20] }, R: { k: hug, to: [S2[0] + 34, fy + 26] },
+    CR.room(ctx, v, t, T, { solo, blur: 3, a2: { keys: [[0, 'neutral']], look: [-.5, .2], L: { k: 1, to: [lerp(S2[0] - 52, S2[0] - 34, hug), lerp(676, fy + 20, hug)] }, R: { k: 1, to: [lerp(S2[0] + 52, S2[0] + 34, hug), lerp(676, fy + 26, hug)] },
         under: (c, r) => { if (hug < .05) return; const P = toS(v, [S2[0], fy]); c.save(); c.translate(P[0], P[1]); c.rotate(-.08); c.fillStyle = '#c9ae72'; c.strokeStyle = '#141014'; c.lineWidth = 3 * v.k; const w = 120 * v.k * CR.CFG.fs / .62, h = 150 * v.k * CR.CFG.fs / .62; c.beginPath(); c.roundRect(-w / 2, -h / 2 + (1 - hug) * 60 * v.k, w, h, 4); c.fill(); c.stroke(); c.fillStyle = '#b3121f'; c.fillRect(-w * .35, -h * .1 + (1 - hug) * 60 * v.k, w * .7, h * .14); c.restore(); } },
       a1: { keys: [[0, 'neutral']], look: [.5, .3], lean: .1 * lean, tilt: .06 * lean } });
     ctx.restore(); },
@@ -113,7 +113,7 @@ export const SHOTS = {
     B.sheet(ctx, 900, 560, 760, 980, .02, (c, w, h) => B.intercept(c, w, h, { lift: 1 }));
     const k = E.outCubic(clamp((t - tp + .3) / .35)), hx = lerp(1560, 1050, k), hy = lerp(-60, 515, k);
     ctx.save(); ctx.lineCap = 'round'; ctx.strokeStyle = '#141014'; ctx.lineWidth = 46; ctx.beginPath(); ctx.moveTo(1980, -120); ctx.quadraticCurveTo(1650, 250, hx, hy); ctx.stroke();
-    const sx = lerp(1980, hx, .45), sy = lerp(-120, hy, .45) - 40; ctx.strokeStyle = '#141014'; ctx.lineWidth = 132; ctx.beginPath(); ctx.moveTo(2100, -260); ctx.lineTo(sx, sy); ctx.stroke(); ctx.strokeStyle = '#5e6068'; ctx.lineWidth = 120; ctx.stroke(); ctx.strokeStyle = 'rgba(255,255,255,.16)'; ctx.lineWidth = 16; ctx.beginPath(); ctx.moveTo(2080, -290); ctx.lineTo(sx - 20, sy - 40); ctx.stroke(); ctx.fillStyle = '#f4f2ee'; ctx.beginPath(); ctx.arc(sx, sy, 58, 0, Math.PI * 2); ctx.fill(); ctx.strokeStyle = 'rgba(255,214,150,.25)'; ctx.lineWidth = 8; ctx.beginPath(); ctx.moveTo(1960, -130); ctx.quadraticCurveTo(1640, 230, hx + 10, hy - 18); ctx.stroke();
+    const sx = lerp(1980, hx, .62), sy = lerp(-120, hy, .62) - 30; ctx.strokeStyle = '#141014'; ctx.lineWidth = 132; ctx.beginPath(); ctx.moveTo(2100, -260); ctx.lineTo(sx, sy); ctx.stroke(); ctx.strokeStyle = '#7a7c84'; ctx.lineWidth = 120; ctx.stroke(); ctx.strokeStyle = 'rgba(255,255,255,.16)'; ctx.lineWidth = 16; ctx.beginPath(); ctx.moveTo(2080, -290); ctx.lineTo(sx - 20, sy - 40); ctx.stroke();  ctx.strokeStyle = 'rgba(255,214,150,.25)'; ctx.lineWidth = 8; ctx.beginPath(); ctx.moveTo(1960, -130); ctx.quadraticCurveTo(1640, 230, hx + 10, hy - 18); ctx.stroke();
     ctx.fillStyle = '#141014'; ctx.beginPath(); ctx.arc(hx, hy, 34, 0, Math.PI * 2); ctx.fill(); ctx.restore();
     ctx.restore(); },
   // ---------------- L02 салон: бобины ----------------
@@ -173,7 +173,7 @@ export const SHOTS = {
 };
 export const OVER = {
   '8|CNN reported that Rubio briefed': B.plaquesAt(560, 110, { skip: /UNITED STATES/ }),
-  '8|That left one question': (ctx, s, t, d) => { const ta = wordAt('answer', s.start, s.end), t0 = ta != null ? ta - s.start + .05 : d * .6; if (t < t0 + .2) return;   // лампа ядра погасла: снимок остаётся в холодном свете окна
+  '8|That left one question': (ctx, s, t, d) => { const t0 = d * .6 - .2; if (t < t0 + .2) return;   // ядро гасит лампу на 0.6 длины плана (core lampOff)   // лампа ядра погасла: снимок остаётся в холодном свете окна
     const k = clamp((t - t0 - .2) / .3); ctx.save(); ctx.globalCompositeOperation = 'screen'; ctx.globalAlpha = .55 * k; ctx.fillStyle = 'rgba(110,150,210,1)';
     ctx.beginPath(); ctx.moveTo(560, 250); ctx.lineTo(1420, 300); ctx.lineTo(1380, 860); ctx.lineTo(540, 820); ctx.closePath(); ctx.filter = 'blur(30px)'; ctx.fill(); ctx.restore();
     ctx.save(); ctx.globalAlpha = .85 * k; ctx.translate(960, 560); ctx.rotate(-.02); ctx.translate(-380 + 60.8, -280 + 56); surveilPic(ctx, 638.4, 403.2); ctx.fillStyle = 'rgba(60,90,150,.25)'; ctx.fillRect(0, 0, 638.4, 403.2); ctx.restore(); },

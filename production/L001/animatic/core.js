@@ -331,7 +331,7 @@ export function animatic(stage, opt, HK = {}) {
           break;
         }
         case 'T-title': T.chapterTitle(ctx, t, { label: `CHAPTER ${s.ch}`, title: s.chTitle, dur: d, at: .03, sweepAt: d * .55 }); break;
-        case 'T-number': { const o = NUMBERS[s.n](d); const tEnd = s.snap ?? d * .5; if (o.countDur != null) { o.at = Math.min(o.at, Math.max(0, tEnd - .6)); o.countDur = Math.max(.3, tEnd - o.at); } snapWrap(() => T.bigNumber(ctx, t, { dur: settleDur, ...o })); break; }   // отсчёт кончается ровно на произнесённом числе (рывок)
+        case 'T-number': { const o = NUMBERS[s.n](d); const tEnd = s.snap ?? d * .5; if (o.countDur != null) { o.at = Math.min(o.at, Math.max(0, tEnd - .6)); o.countDur = Math.max(.3, tEnd - o.at); } snapWrap(() => T.bigNumber(ctx, t, { dur: settleDur, tickHz: 10, ...o })); break; }   // tickHz 10: цифры сменяются 10 раз/с — без «пилы» яркости (QA.md §9)   // отсчёт кончается ровно на произнесённом числе (рывок)
         case 'T-map': snapWrap(() => T.map(ctx, t, { dur: d, ...MAPS[s.n](d) })); break;          // рывок на ударном слове — и на карте
         case 'T-board': snapWrap(() => T.board(ctx, t, { dur: d, ...BOARDS[s.n](d) })); break;
         case 'T-doc': snapWrap(() => T.document(ctx, t, { dur: settleDur, ...DOCS[s.n](d) })); break;
@@ -428,11 +428,8 @@ export function animatic(stage, opt, HK = {}) {
     }
     // жизнь в кадре: дыхание света, пыль, дождь (заглушки тоже не стоят мёртвыми)
     function ambient(ctx, s, t) {
-      const n = (Math.sin(t * 14.5) + Math.sin(t * 23.2 + 1.3) + Math.sin(t * 37 + 2.1)) / 3;
-      ctx.save();
-      if (n > 0) { ctx.globalCompositeOperation = 'screen'; ctx.fillStyle = `rgba(255,190,120,${(.05 * n).toFixed(3)})`; }
-      else { ctx.globalCompositeOperation = 'multiply'; const c = Math.round(255 + 40 * n); ctx.fillStyle = `rgb(${c},${c},${c})`; }
-      ctx.fillRect(0, 0, W, H); ctx.restore();
+      // 2026-11-18: убрано «дыхание света» на весь кадр (три синуса 2.3–5.9 Гц, ±5% screen / до −16% multiply) — давало мерцание-пилу
+      // во всех 2D-планах («глаза болят»). Правило: никакой модуляции яркости всего кадра; жизнь света — только у самого источника, ≤0.5 Гц, ≤2%.
       ctx.save(); ctx.globalCompositeOperation = 'screen';
       for (let i = 0; i < 46; i++) { const sp = .3 + ((i * 37) % 70) / 100, ph = i * 1.7;
         const x = (((i * .6180339 + t * .012 * sp) % 1) * W + Math.sin(t * .7 * sp + ph) * 20), y = ((((i * (HK.final ? .7548776 : .381966)) - t * .02 * sp) % 1 + 1) % 1) * H;   // финал: шаг .7549 — пылинки не выстраиваются в диагональ (.618 + .382 = 1)
@@ -502,7 +499,7 @@ export function animatic(stage, opt, HK = {}) {
       const fl = /вспышк|щелч|затвор|flash|фотограф|селфи/i.test(s.event + s.framing) && !/фоторамк|без вспыш/.test(s.event);
       const flh = HK.flash ? HK.flash(s) : null;
       if (flh ?? fl) flash(ctx, W * .62, H * .38, t, s.snap ?? d * .45);
-      if (/серия из \d+ вспышек/.test(s.event) && /фотограф|пресс|толп|зал|телефон|селфи|бар/.test(s.event + s.framing)) for (let i = 0; i < 6; i++) flash(ctx, W * (.15 + ((i * .37) % .7)), H * (.25 + ((i * .53) % .5)), t, d * (.1 + .14 * i), .6);
+      if (flh !== false && /серия из \d+ вспышек/.test(s.event) && /фотограф|пресс|толп|зал|телефон|селфи|бар/.test(s.event + s.framing)) for (let i = 0; i < 6; i++) flash(ctx, W * (.15 + ((i * .37) % .7)), H * (.25 + ((i * .53) % .5)), t, d * (.1 + .14 * i), .6);
     }
     function wrap(ctx, text, maxW) { const w = text.split(' '), out = []; let line = '';
       for (const x of w) { const tt = line ? line + ' ' + x : x; if (ctx.measureText(tt).width > maxW && line) { out.push(line); line = x; } else line = tt; }
@@ -546,8 +543,8 @@ export function animatic(stage, opt, HK = {}) {
         ctx.fillStyle = g; ctx.fillRect(W * .8, H * .18, W * .2, H * .26); }
       ctx.restore();
     }
-    function lampFlicker(ctx, u) {          // лампа мигает: два провала света за 0.3 с
-      if (u < 0 || u > .3) return; const a = (u < .07 || (u > .14 && u < .2)) ? .55 : .12;
+    function lampFlicker(ctx, u) {          // лампа «вздрагивает»: одно плавное притухание света за 0.35 с
+      if (u < 0 || u > .35) return; const a = .16 * Math.sin(Math.PI * u / .35);   // одно плавное притухание (не «пила»: правило против мерцания всего кадра)
       ctx.save(); ctx.fillStyle = `rgba(0,0,0,${a})`; ctx.fillRect(0, 0, W, H); ctx.restore();
     }
     function callbacks(ctx, t) {            // финал: снимок агентов, ключ, пустой стул, тост — по 0.28 с на вспышке, перед тем как гаснет лампа

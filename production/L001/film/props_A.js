@@ -265,7 +265,7 @@ export function phone(ctx, x, y, s, a = 0, screen = null, flash = 0) {
 export function laptop(ctx, x, y, s, a = 0, sign = 0) {
   ctx.save(); ctx.translate(x, y); ctx.rotate(a); rrect(ctx, -90 * s, -60 * s, 180 * s, 120 * s, 10 * s, lg(ctx, 0, -60 * s, 0, 60 * s, [[0, '#9aa0aa'], [1, '#5a606a']]), INK, 4 * s);
   ell(ctx, 0, 0, 16 * s, 16 * s, 'rgba(255,255,255,.25)', null);
-  if (sign > 0) { ctx.save(); ctx.beginPath(); const n = 30, L = Math.round(n * Math.min(1, sign)); for (let i = 0; i <= L; i++) { const u = i / n, px = (-60 + 120 * u) * s, py = (20 + Math.sin(u * 14) * 14 - u * 30) * s; i ? ctx.lineTo(px, py) : ctx.moveTo(px, py); } ctx.lineWidth = 5 * s; ctx.strokeStyle = '#141014'; ctx.lineCap = 'round'; ctx.stroke(); ctx.restore(); }
+  if (sign > 0) { ctx.save(); ctx.beginPath(); const n = 30, L = Math.round(n * Math.min(1, sign)); for (let i = 0; i <= L; i++) { const u = i / n, px = (-60 + 120 * u) * s, py = (20 + Math.sin(u * 14) * 14 - u * 30) * s; i ? ctx.lineTo(px, py) : ctx.moveTo(px, py); } ctx.lineWidth = 9 * s; ctx.strokeStyle = '#141014'; ctx.lineCap = 'round'; ctx.stroke(); ctx.restore(); }
   ctx.restore();
 }
 export function marker(ctx, x, y, s, a = 0) { ctx.save(); ctx.translate(x, y); ctx.rotate(a); rrect(ctx, -6 * s, -8 * s, 12 * s, 70 * s, 5 * s, '#141014', INK, 2 * s); rrect(ctx, -6 * s, -8 * s, 12 * s, 16 * s, 3 * s, '#c8302a', null); ctx.restore(); }
@@ -298,12 +298,12 @@ export function cabSide(ctx, x, y, w, layer = 'back') {
   ctx.beginPath(); ctx.rect(0, -h, w, h); ctx.rect(w * CAB_WIN[0], -h + h * CAB_WIN[1], w * CAB_WIN[2], h * CAB_WIN[3]); ctx.fillStyle = lg(ctx, 0, -h, 0, 0, [[0, '#e8ecf2'], [1, '#a4aeba']]); ctx.fill('evenodd');
   rrect(ctx, 0, -h, w, h, w * .06, null, INK, w * .01); rrect(ctx, w * CAB_WIN[0], -h + h * CAB_WIN[1], w * CAB_WIN[2], h * CAB_WIN[3], w * .03, null, INK, w * .012);
   line(ctx, [[w * .1, -h * .45], [w * .9, -h * .45]], w * .008, 'rgba(0,0,0,.35)'); rrect(ctx, w * .66, -h * .4, w * .14, w * .03, 3, '#5a606a', INK, 2);
-  rrect(ctx, w * .08, -h * .3, w * .84, h * .12, 3, '#2a5a8a', null); text(ctx, 'LOGISTICS', w * .5, -h * .24, h * .07, '#ffffff', { weight: 900, font: LABEL });
+  rrect(ctx, w * .3, -h * .3, w * .4, h * .07, 3, '#2a5a8a', null); text(ctx, 'LOGISTICS', w * .5, -h * .265, h * .045, '#ffffff', { weight: 900, font: LABEL });
   ctx.restore();
 }
 // шлагбаум: ось (x, y), длина L, угол up 0..1 (0 — закрыт, 1 — поднят), толщина th
 export function barrierArm(ctx, x, y, L, up, th) {
-  ctx.save(); ctx.translate(x, y); ctx.rotate(-Math.PI / 2 * .92 * up); ctx.translate(-L, 0);
+  ctx.save(); ctx.translate(x, y); ctx.rotate(Math.PI / 2 * .92 * up); ctx.translate(-L, 0);
   rrect(ctx, 0, -th / 2, L, th, th * .3, '#F2EEE2', INK, Math.max(2, th * .12));
   ctx.save(); ctx.beginPath(); ctx.rect(0, -th / 2, L, th); ctx.clip(); ctx.fillStyle = '#d0302a'; for (let s = 0; s < L; s += th * 3) { ctx.beginPath(); ctx.moveTo(s, th); ctx.lineTo(s + th * 1.5, -th); ctx.lineTo(s + th * 3, -th); ctx.lineTo(s + th * 1.5, th); ctx.fill(); } ctx.restore();
   rrect(ctx, 0, -th / 2, L, th, th * .3, null, INK, Math.max(2, th * .12));

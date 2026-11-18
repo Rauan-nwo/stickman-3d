@@ -91,13 +91,13 @@ const BOXSEG = [[0, 2.1], [2.1, 4.1], [4.1, 6.3], [8.2, 10.5], [10.5, 13.3], [13
 //   · никогда внутри сцены ведущего: HOST записан одним дублем на сцену и играет как записан.
 // Если тишину вставить нельзя, план просто начинается на своём слове (короткий план — повод слить его с соседом в шотлисте).
 const lineOf = k => words[k].li, isHost = li => lines[li].speaker === 'HOST';
-const canInsert = k => k > 0 && lineOf(k) !== lineOf(k - 1) && !(isHost(lineOf(k)) && isHost(lineOf(k - 1))) && words[k].s - words[k - 1].e >= .1;
+const canInsert = k => k > 0 && lineOf(k) !== lineOf(k - 1) && !(isHost(lineOf(k)) && isHost(lineOf(k - 1))) && lines[lineOf(k)].start - lines[lineOf(k - 1)].end >= .1;
 const inserts = [], denied = []; let shift = 0;
 const insertBefore = (wi, need, why, must) => {        // тишина в середине естественной паузы перед словом wi
   if (!(need > 0)) return 0;
   if (!canInsert(wi)) { if (must) throw new Error(`нельзя вставить тишину (${why}) перед «${words[wi].w}» (строка ${lineOf(wi) + 1}): это середина фразы или дубль ведущего`); denied.push({ wi, need, why }); return 0; }
-  const prevE = words[wi - 1].e, at = (prevE + words[wi].s) / 2;
-  inserts.push({ at: +at.toFixed(3), dur: +need.toFixed(3), gap: +(words[wi].s - prevE).toFixed(3), why, before: `${lineOf(wi) + 1}: ${words[wi].w}` }); shift += need; return need;
+  const prevE = lines[lineOf(wi - 1)].end, nextS = lines[lineOf(wi)].start, at = (prevE + nextS) / 2;   // середина настоящей тишины между строками записи
+  inserts.push({ at: +at.toFixed(3), dur: +need.toFixed(3), gap: +(nextS - prevE).toFixed(3), why, before: `${lineOf(wi) + 1}: ${words[wi].w}` }); shift += need; return need;
 };
 const minPrev = (s, wi, mid) => {   // добор длины предыдущего плана тишиной перед словом wi — только если там стык строк
   const pv = shots[shots.indexOf(s) - 1];
@@ -151,6 +151,7 @@ const shiftAt = t => inserts.filter(x => x.at <= t).reduce((a, x) => a + x.dur, 
     const inLine = lineOf(k) === lineOf(k - 1), host = isHost(lineOf(k)) && isHost(lineOf(k - 1)), gap = words[k].s - words[k - 1].e;
     if (inLine) errs.push(`тишина ${x.dur} с ВНУТРИ строки ${lineOf(k) + 1}: «${words[k - 1].w} | ${words[k].w}» (естественная пауза ${gap.toFixed(2)} с)`);
     else if (host) errs.push(`тишина ${x.dur} с внутри дубля ведущего: строки ${lineOf(k)}–${lineOf(k) + 1}`);
+    else if (!(x.at > lines[lineOf(k - 1)].end && x.at < lines[lineOf(k)].start)) errs.push(`тишина ${x.dur} с не в паузе между строками ${lineOf(k)} и ${lineOf(k) + 1} (запись: ${lines[lineOf(k - 1)].end}–${lines[lineOf(k)].start}, вставка на ${x.at})`);
     else if (gap < .1) errs.push(`тишина ${x.dur} с там, где пауза между строками всего ${gap.toFixed(2)} с: строка ${lineOf(k) + 1}`);
   }
   for (let k = 1; k < words.length; k++) if (lineOf(k) === lineOf(k - 1) || (isHost(lineOf(k)) && isHost(lineOf(k - 1)))) {

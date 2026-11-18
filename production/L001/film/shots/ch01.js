@@ -35,7 +35,7 @@ export const SHOTS = {
   '1|HOST: Inside,': x => { const { ctx, t, T, cam, solo } = x, v = camView(OF.views.xkey, cam, .06), ti = W_(x, 'Inside', 0);   // СВЕРХКРУПНО ключ: на «Inside» кисть ведущего поднимает латунный ключ к объективу, в свет лампы; ключ — треть кадра
     const up = E.outCubic(clamp((t - ti - .02) / .6)), tw = W0(x, 'wanted'), tc = W0(x, 'chips'), te = W0(x, 'Earth'), op = tw == null ? 0 : E.outCubic(clamp((t - tw) / .3));   // «wanted» в этом же плане — коробка внизу приоткрывается
     ctx.save(); shake(ctx, cam);
-    const r = OF.office(ctx, v, t, T, { solo, blur: true, box: { lid: .2 * op, glow: .7 * op }, spill: op * (.75 + .25 * Math.sin(t * 11)) + (tc == null ? 0 : .6 * gauss(t, tc + .05, .12)), photo: IN.snapPic, host: { keys: [[0, 'talk']], lean: .03, look: [.75, -.1 - .3 * up], noR: true } });
+    const r = OF.office(ctx, v, t, T, { solo, blur: true, box: { lid: .2 * op, glow: .7 * op }, spill: op * (.96 + .04 * Math.sin(t * 2.8)) + (tc == null ? 0 : .6 * gauss(t, tc + .05, .12)), photo: IN.snapPic, host: { keys: [[0, 'talk']], lean: .03, look: [.75, -.1 - .3 * up], noR: true } });
     if (r.sr) OF.bigKey(ctx, [...r.sr, r.s], toS(v, [1215, lerp(560, 365, up)]), lerp(120, 172, up), lerp(-.25, -.62, up), gauss(t, te != null ? te + .05 : ti + .85, .16), solo ? 0 : up);
     ctx.restore(); },
   '1|HOST: Thirty grand apiece,': x => { const { ctx, t, T, cam, solo } = x, v = camView(OF.views.tag, cam, .06), t0 = W_(x, 'Thirty', 0), tm = W0(x, "maker's");   // ВСТАВКА ценник: на «Thirty» на коробку садится ценник $30,000 EACH (коробка во весь кадр)
@@ -55,7 +55,10 @@ export const SHOTS = {
   '1|to every one of them.': x => { const { ctx, t, T, cam, solo, s } = x, v = camView(OF.views.photo, cam, .06);   // ВСТАВКА снимок: на «every» ладонь ведущего пододвигает снимок «Дженсен + Алиса» под лампу; на «them» на снимок ложится блик ключа
     const te = W_(x, 'every', (s.ev || [])[0]?.t ?? .5), tm = W_(x, 'them', s.snap ?? 1.2), sl = E.outCubic(clamp((t - te) / .35)), dx = 46 * (1 - sl);
     ctx.save(); shake(ctx, cam);
-    OF.office(ctx, v, t, T, { solo, box: { lid: .2, glow: .45 }, photo: IN.snapPic, photoDx: dx, photoGlint: gauss(t, tm + .06, .2), host: { keys: [[0, 'talk']], lean: -.05, look: [-.6, .45], L: { k: 1, to: [OF.CFG.photo[0] + dx + 30, OF.CFG.photo[1] - 2] } } });
+    OF.office(ctx, v, t, T, { solo, box: { lid: .2, glow: .45 }, photo: IN.snapPic, photoDx: dx, photoGlint: gauss(t, tm + .06, .2), host: false });
+    // чистая вставка: ведущего в кадре нет (голос за кадром), снимок — главный; справа снизу входит только его рука — зелёный рукав, белая манжета, кисть-точка
+    const hin = E.outCubic(clamp(t / .45)), hx = OF.CFG.photo[0] + dx + 47 + 90 * (1 - hin), hy = OF.CFG.photo[1] + 5 + 40 * (1 - hin), HP = toS(v, [hx, hy]);   // кисть на правой белой кромке снимка — люди на снимке открыты
+    OF.insertHand(ctx, v, [hx, hy], [HP[0] + 1300, HP[1] + 640]);
     ctx.restore(); },
   '1|His first job in America': x => { const { ctx, t, T, cam, solo } = x, v = camView(KY.views.dorm, cam, .5);   // спальня: юный Дженсен с сундуком выше себя
     ctx.save(); shake(ctx, cam);

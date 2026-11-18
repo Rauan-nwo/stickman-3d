@@ -125,9 +125,8 @@ def riser(dur=1.0, seed=1, f0=300, f1=6000, tone=0.35, shimmer=0.0):
     """нарастание к точке (конец звука = точка попадания): шум вверх по частоте + тон, растущий по высоте, обрыв в конце"""
     n = int(dur * SR); t = tvec(dur)
     y = stft_shape(n, seed, lambda tt: f0 * (f1 / f0) ** (tt / dur), .9, lambda tt: (tt / dur) ** 2.4)
-    if tone:
-        ph = 2 * np.pi * np.cumsum(110 * 2 ** (2.2 * t / dur)) / SR
-        y = y + tone * np.std(y) * 3 * (np.sin(ph) + .4 * np.sin(2.01 * ph)) * (t / dur) ** 2 * (1 + .3 * np.sin(2 * np.pi * (4 + 10 * t / dur) * t))
+    if tone:   # низкий гул без скольжения высоты и без тремоло: тон, ползущий вверх с вибрато, ухо принимает за вопль/«мяу» (AudioSet: Meow, Wail)
+        y = y + tone * np.std(y) * 3 * (np.sin(2 * np.pi * 55 * t) + .5 * np.sin(2 * np.pi * 82.4 * t) + .25 * np.sin(2 * np.pi * 110 * t)) * (t / dur) ** 2
     if shimmer:
         for k, f in enumerate([2637, 3136, 3951, 4699]):
             y = y + shimmer * np.std(y) * np.sin(2 * np.pi * f * t + k) * (t / dur) ** 3 * (1 + np.sin(2 * np.pi * (7 + k) * t)) * .5
@@ -367,11 +366,14 @@ def tape_reels(dur=3.0, seed=1):
 
 
 def chip_glow(dur=1.0, seed=1):
-    """зелёный свет / чип: электрический подъём с мерцанием"""
-    t = tvec(dur); f = 180 * 2 ** (1.2 * np.clip(t / (dur * .4), 0, 1))
-    ph = 2 * np.pi * np.cumsum(f) / SR
-    y = (np.sin(ph) + .5 * np.sin(2 * ph + 3 * np.sin(2 * np.pi * 7 * t))) * env_ar(len(t), .0, dur * .45, peak_at=dur * .35, curve=1.5)
-    y += .25 * hp(noise(len(t), seed), 4000) * (rng(seed).random(len(t)) > .995) * 6 * decay(len(t), dur * .5)
+    """зелёный свет / чип: электрический гул постоянной высоты (100 Гц + гармоники), фильтр раскрывается, искры.
+    Без скольжения высоты и вибрато — иначе звучит как голос/мяуканье."""
+    t = tvec(dur); n = len(t)
+    y = sum(a * np.sin(2 * np.pi * 100 * k * t + k) for k, a in ((1, 1), (2, .6), (3, .45), (4, .3), (6, .2), (8, .12)))
+    e = env_ar(n, .0, dur * .45, peak_at=dur * .35, curve=1.5)
+    y = y * e; y = lp(y, 300 + 3500 * float(np.max(e))) if False else y
+    sw = np.clip(t / (dur * .35), 0, 1); y = (1 - sw) * lp(y, 400) + sw * y                     # фильтр раскрывается к пику
+    y += .35 * hp(noise(n, seed), 3000) * (rng(seed).random(n) > .996) * 6 * decay(n, dur * .5)  # искры
     return norm(y)
 
 
@@ -482,8 +484,8 @@ GEN = {   # имя -> (функция(seed) -> массив); длительны
     'whoosh.through': lambda s, d=None: whoosh(.9, .5, 200, 2400, 900, 1.3, s, body=.6),
     'whoosh.zoomin': lambda s, d=None: whoosh(.32, .315, 400, 4200, 4200, 1.0, s, 3.0, 4.0, body=.3),
     'body.pass': lambda s, d=None: lp(whoosh(.55, .3, 300, 1400, 700, 1.2, s), 1800),
-    'riser.white': lambda s, d=None: riser(.45, s, 800, 9000, .15, .6),
-    'riser.title': lambda s, d=None: riser(1.6, s, 200, 7000, .45, .4),
+    'riser.white': lambda s, d=None: reverse_swell(.45, s),   # без тона и мерцания: прежний вариант AudioSet слышал как речь (Speech 0.21)
+    'riser.title': lambda s, d=None: riser(1.6, s, 200, 7000, .45, 0),
     'riser.tower': lambda s, d=1.3: riser(d or 1.3, s, 120, 2500, .6, 0),
     'air.move': lambda s, d=2.0: air(d or 2.0, s),
     'hit.punch': lambda s, d=None: thump(.45, 120, 48, .12, .5, s, 1500, .5),

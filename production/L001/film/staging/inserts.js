@@ -64,7 +64,7 @@ export function chipUnder(ctx, t, k, pulse, o = {}) {
   const ra = RA(); if (!ra) return;
   // фон: зал из-под стола — обратная точка ресторана, сильно размытая и затемнённая (пол, ножки стульев)
   ctx.save(); ctx.filter = 'blur(6px) brightness(.38) saturate(.8)'; ctx.drawImage(ra.revB9, -60, -260, W + 120, H + 360); ctx.restore();
-  const x = lerp(W + 260, W * .56, E.outBack(clamp(k), 1.2)), y = H * .66, gl = .75 + .25 * Math.sin(t * 9) + .6 * pulse;
+  const x = lerp(W + 260, W * .56, E.outBack(clamp(k), 1.2)), y = H * .66, gl = .92 + .05 * Math.sin(t * 2.8) + .6 * pulse;
   // пол и ножки
   ctx.save(); const fl = ctx.createLinearGradient(0, H * .78, 0, H); fl.addColorStop(0, 'rgba(10,20,26,0)'); fl.addColorStop(1, 'rgba(10,20,26,.85)'); ctx.fillStyle = fl; ctx.fillRect(0, H * .78, W, H * .22); ctx.restore();
   ctx.fillStyle = '#1a0d10'; ctx.strokeStyle = '#0a0608'; ctx.lineWidth = 6;

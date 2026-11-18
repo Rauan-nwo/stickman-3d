@@ -64,10 +64,11 @@ for sh in META['shots3d']:
     pe = [psnr_yuv(out[k], ref_y[k]) for k in range(min(N, len(out)))]
     # кадр лёг 1:1 и по порядку: эталон (снят из браузера без потерь) совпадает с нативным кадром k попиксельно (кроме подписей поверх);
     # с соседним нативным кадром совпадает меньше — иначе кадр сдвинут; если соседние нативные кадры сами одинаковы — это стоп-кадр сцены, не повтор
-    share, order_bad, still = [], [], 0
+    share, order_bad, still, veiled = [], [], 0, []
     nat = [np.asarray(Image.open(q).convert('RGB')) for q in natp]
     for k in range(N):
         ref = np.asarray(Image.open(refp[k]).convert('RGB')); same = (ref == nat[k]).all(axis=2); share.append(same.mean())
+        if same.mean() < .5: veiled.append(k); continue   # кадр под полноэкранной накладкой (серия вспышек и т. п.): порядок по нему не проверить, PSNR к эталону — проверен
         for j in (k - 1, k + 1):
             if 0 <= j < N:
                 if (nat[j] == nat[k]).all(): still += 1; continue
@@ -77,7 +78,7 @@ for sh in META['shots3d']:
     rows.append((n, N, min(pe), float(np.mean(pe)), min(share), float(np.mean(share)), order_bad))
     print(f"#{n}: {N} кадров (кадры фильма {F}–{F + N - 1}) · PSNR выход/эталон (yuv420p) мин {min(pe):.1f} ср {np.mean(pe):.1f} дБ · "
           f"пикселей 1:1 с нативным кадром мин {min(share) * 100:.1f}% ср {np.mean(share) * 100:.1f}% (остальное — подписи поверх) · "
-          f"сдвиг кадров: {order_bad or 'нет'} · одинаковых соседних кадров в самой сцене: {still // 2} -> {'OK' if good else 'ПЛОХО'}")
+          f"сдвиг кадров: {order_bad or 'нет'}{f' (под накладкой, без проверки порядка: {len(veiled)} кадр.)' if veiled else ''} · одинаковых соседних кадров в самой сцене: {still // 2} -> {'OK' if good else 'ПЛОХО'}")
 
 # повторы кадров по всему ролику: нулевая разница соседних кадров (на 480×270)
 g = decode(0, 10 ** 6, 480, 270, gray=True).astype(np.int16)

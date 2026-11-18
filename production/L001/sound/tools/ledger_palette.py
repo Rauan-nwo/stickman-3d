@@ -30,11 +30,17 @@ def main():
     led = json.load(open(HERE / 'lib/ledger.json', encoding='utf-8'))['files']
     aud = json.load(open(HERE / 'lib/audition.json', encoding='utf-8'))
     man_p = HERE / 'palette_manual.json'; man = json.load(open(man_p, encoding='utf-8'))
+    # проверка на крики/визг/сирены (tools/library_scan.py): помеченные «remove» в палитру не берутся; подложки — самая «чистая»
+    vs_p = HERE / 'lib' / 'vocal_scan.json'; VS = json.load(open(vs_p, encoding='utf-8')) if vs_p.exists() else {}
+    vsk = lambda e: VS.get('lib/' + e['path'].replace(chr(92), '/').split('lib/', 1)[-1], {})
+    dirt = lambda e: max([vsk(e).get(g, {}).get('p', 0) for g in ('human', 'animal', 'siren', 'laugh')] or [0])
     by = {}
-    for e in led: by.setdefault(e['class'], []).append(e)
+    for e in led:
+        if vsk(e).get('verdict') == 'remove': continue
+        by.setdefault(e['class'], []).append(e)
     rep = []
     for c, es in sorted(by.items()):
-        es = [e for e in sorted(es, key=lambda e: -(zof(e) or 0)) if not e.get('weak')]
+        es = [e for e in sorted(es, key=(lambda e: dirt(e)) if c.startswith('amb.') else (lambda e: -(zof(e) or 0))) if not e.get('weak')]
         rival = max([x['z'] for x in aud.get(c, {}).get('ranked', []) if x.get('z') is not None] or [None], key=lambda v: v if v is not None else -99)
         if c in KEEP_SYNTH: rep.append(f'{c:16s} синтез (решение: {KEEP_SYNTH and "длительность по картинке"}); записи z {[zof(e) for e in es]}'); continue
         ok = [e for e in es if (zof(e) or 0) >= (rival + a.margin if rival is not None else 2.0) or c.startswith('amb.')]

@@ -20,7 +20,9 @@ node engine/tools/build.mjs production/L001/film
 node production/L001/film/final.mjs --ch 0,1            # ~10 мин; 2 браузера
 python production/L001/film/verify3d.py production/L001/film/out/ch0_1.mp4
 python production/L001/film/qa.py sheets production/L001/film/out/ch0_1.mp4 0,1
+python production/L001/film/flicker.py production/L001/film/out/ch0_1.mp4 production/L001/film/out/ch0_1.frames.json   # final.mjs запускает сам; 0 планов «!!»
 ```
+Ворота мерцания (QA.md §9): никакой модуляции яркости всего кадра быстрее 0.5 Гц и шума кадр-к-кадру; живой свет — только у источника.
 `render.mjs` (быстрый рендер через движок, crf 18, 3D — прокси аниматика) остаётся для черновых проверок.
 
 ## Плейты финала (make_plates.py)

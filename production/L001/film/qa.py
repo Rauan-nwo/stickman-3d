@@ -26,22 +26,25 @@ def word_at(t):
         if w['s'] - .05 <= t <= w['e'] + .1: return f"{w['sp'][:7]}:{w['w']}"
     return '—'
 
-def frames(video, t0, t1, every, tmp, w=384, h=216):
+def frames(video, t0, t1, every, tmp, w=384, h=216, T0=0.0):
     """кадры видео в [t0, t1) с шагом every кадров (ffmpeg select) -> список картинок"""
     os.makedirs(tmp, exist_ok=True)
     for f in os.listdir(tmp): os.remove(os.path.join(tmp, f))
     f0, f1 = round(t0 * FPS), round(t1 * FPS)
-    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-ss', f'{t0:.3f}', '-i', video, '-t', f'{t1 - t0:.3f}', '-vf', f"select='not(mod(n\\,{every}))',scale={w}:{h}", '-vsync', '0', os.path.join(tmp, 'f%04d.jpg')], check=True)
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-ss', f'{t0 - T0:.3f}', '-i', video, '-t', f'{t1 - t0:.3f}', '-vf', f"select='not(mod(n\\,{every}))',scale={w}:{h}", '-vsync', '0', os.path.join(tmp, 'f%04d.jpg')], check=True)
     fs = sorted(os.listdir(tmp)); return [(f0 + i * every, Image.open(os.path.join(tmp, f)).copy()) for i, f in enumerate(fs)]
 
 def sheets(video, chs, every=3):
-    vend = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', video], capture_output=True, text=True).stdout) - .07   # экспорт кончается раньше конца главы (граница фразы)
+    # видео главы начинается не с 0 фильма: F0 из <видео>.frames.json (final.mjs) -> T0; все времена ниже — время фильма
+    fj = video[:-4] + '.frames.json'; T0 = json.load(open(fj, encoding='utf-8'))['F0'] / FPS if os.path.exists(fj) else 0.0
+    vend = T0 + float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', video], capture_output=True, text=True).stdout) - .07   # экспорт кончается раньше конца главы (граница фразы)
     for ch in chs:
         shots = [s for s in SH if s['ch'] == ch]
         # 1) каждый every-й кадр каждого плана
         tiles = []
         for s in shots:
-            for fi, im in frames(video, s['start'], min(s['end'], vend), every, os.path.join(QA, f'tmp_{os.getpid()}')):
+            if min(s['end'], vend) - max(s['start'], T0) < .1: continue
+            for fi, im in frames(video, max(s['start'], T0), min(s['end'], vend), every, os.path.join(QA, f'tmp_{os.getpid()}'), T0=T0):
                 tiles.append((s, fi, im))
         cols, w, h, per = 8, 384, 216, 64
         for p in range(0, len(tiles), per):
@@ -56,11 +59,11 @@ def sheets(video, chs, every=3):
         for s in shots:
             ev = s.get('snap') or (s.get('whip') or {}).get('t') or s['dur'] * .5
             ts = [s['start'] + .05, s['start'] + min(ev + .12, s['dur'] - .1), s['end'] - .07]
-            ts = [min(q, vend) for q in ts]
+            ts = [min(max(q, T0), vend) for q in ts]
             ims = []
             for t in ts:
                 tmp = os.path.join(QA, f'one_{os.getpid()}.jpg')
-                subprocess.run(['ffmpeg', '-v', 'error', '-y', '-ss', f'{t:.3f}', '-i', video, '-frames:v', '1', '-vf', 'scale=480:270', tmp], check=True)
+                subprocess.run(['ffmpeg', '-v', 'error', '-y', '-ss', f'{t - T0:.3f}', '-i', video, '-frames:v', '1', '-vf', 'scale=480:270', tmp], check=True)
                 ims.append((t, Image.open(tmp).copy()))
             rows.append((s, ims))
         cols = 2; w, h = 480 * 3, 270 + 26; R = (len(rows) + 1) // 2

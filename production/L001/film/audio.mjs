@@ -5,6 +5,7 @@
 //                цифровой тишины нет нигде (подложка всегда ≥ −50 dBFS). Полный проход музыки и шумов — позже, отдельно.
 //   pilotEnd   — конец экспорта по границе фразы: последнее слово последнего плана + 0.6 с хвоста (не дальше конца главы).
 import { execFileSync } from 'node:child_process';
+import { writeFileSync, rmSync } from 'node:fs';
 
 export function voiceTrack(timing, voice, T0, T1, out) {
   const f = [], lbl = []; let prev = 0;
@@ -35,13 +36,21 @@ const lin = db => Math.pow(10, db / 20).toFixed(5);
 export function mixFinal({ timing, shots, voiceWav, T0, T1, out, fadeOut = .4 }) {
   const D = (T1 - T0).toFixed(3), rel = t => Math.max(0, t - T0);
   // громкость подложек по времени: кусочно по планам (смена — на склейке, с коротким сглаживанием через lowpass на огибающей нет нужды)
-  const piece = kind => shots.map(s => { const [k, db] = BED(s); return k === kind ? `between(t,${rel(s.start).toFixed(3)},${rel(s.end).toFixed(3)})*${lin(db)}` : null; }).filter(Boolean).join('+') || '0';
+  // огибающая громкости — файл (f32, 1000 Гц), а не выражение volume='between(..)+…': на длинной главе (109 планов) ffmpeg падал
+  //   «Cannot allocate memory» на разборе выражения. Перевод на 48 кГц (aresample) слегка сглаживает ступени на склейках.
+  const ER = 1000, NS = Math.ceil((T1 - T0) * ER) + 1;
+  const env = kind => { const a = new Float32Array(NS); for (const s of shots) { const [k, db] = BED(s); if (k !== kind) continue;
+      const g = +lin(db), i0 = Math.max(0, Math.round(rel(s.start) * ER)), i1 = Math.min(NS, Math.round(rel(s.end) * ER)); for (let i = i0; i < i1; i++) a[i] = g; }
+    const fn = `${out}.${kind}.env.f32`; writeFileSync(fn, Buffer.from(a.buffer)); return fn; };
+  const envRain = env('rain'), envRoom = env('room');
   // название ролика: встаёт за 1.75 с до конца плана «… + титр ролика» (core.js videoTitle) — бум на появлении, шум-нарастание до него
   const tShot = shots.find(s => /титр ролика/.test(s.framing)), stings = [];
   if (tShot) { const tb = rel(tShot.end - 1.75); stings.push({ boom: tb, riserFrom: Math.max(0, tb - .55) }); }
   const f = [
-    `anoisesrc=d=${D}:c=pink:r=48000:a=0.5:s=7,highpass=f=450,lowpass=f=6500,volume=18,volume='${piece('rain')}':eval=frame[rain]`,
-    `anoisesrc=d=${D}:c=brown:r=48000:a=0.5:s=11,highpass=f=35,lowpass=f=260,volume=16,volume='${piece('room')}':eval=frame[room]`,
+    `anoisesrc=d=${D}:c=pink:r=48000:a=0.5:s=7,highpass=f=450,lowpass=f=6500,volume=18,aformat=sample_fmts=flt:channel_layouts=mono[rn]`,
+    `[1:a]aresample=48000,aformat=sample_fmts=flt:channel_layouts=mono[er]`, `[rn][er]amultiply[rain]`,
+    `anoisesrc=d=${D}:c=brown:r=48000:a=0.5:s=11,highpass=f=35,lowpass=f=260,volume=16,aformat=sample_fmts=flt:channel_layouts=mono[rm]`,
+    `[2:a]aresample=48000,aformat=sample_fmts=flt:channel_layouts=mono[em]`, `[rm][em]amultiply[room]`,
   ];
   const mix = ['[0:a]', '[rain]', '[room]'];
   stings.forEach((g, i) => {
@@ -50,6 +59,8 @@ export function mixFinal({ timing, shots, voiceWav, T0, T1, out, fadeOut = .4 })
     mix.push(`[boom${i}]`, `[ris${i}]`);
   });
   f.push(`${mix.join('')}amix=inputs=${mix.length}:normalize=0:duration=first,afade=t=out:st=${(T1 - T0 - fadeOut).toFixed(3)}:d=${fadeOut},alimiter=limit=0.95[out]`);
-  execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', voiceWav, '-filter_complex', f.join(';'), '-map', '[out]', '-ac', '1', '-ar', '48000', out]);
+  const envIn = fn => ['-f', 'f32le', '-ar', String(ER), '-ac', '1', '-i', fn];
+  execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', voiceWav, ...envIn(envRain), ...envIn(envRoom), '-filter_complex', f.join(';'), '-map', '[out]', '-ac', '1', '-ar', '48000', out]);
+  for (const fn of [envRain, envRoom]) rmSync(fn, { force: true });
   return out;
 }

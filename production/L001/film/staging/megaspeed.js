@@ -7,7 +7,7 @@
 // Сидящие крупно — за 2D-столом на переднем плане (deskShot): кресла плейтов стоят спинкой к камере, сидящий лицом к нам на них невозможен.
 // Тогда фон — размытый плейт, за героем — офисное кресло (chairBack), стол — передний план: столешница, кромка, передняя панель (ящик).
 import { chairBack, ell, clamp, lerp, E } from 'engine';
-import { W, H, toS, plate, img, blurred, lazy, polyMask, masked, fig, contact, figXf } from './common.js';
+import { W, H, toS, plate, img, blurred, lazy, polyMask, masked, fig, contact, figXf, cover } from './common.js';
 import { pose, drawP, handS, person, shadeOf } from '../chars_A.js';
 import oPlate from '../../assets/bg_megaspeed_office.png';
 import rPlate from '../../assets/bg_megaspeed_reverse.png';
@@ -29,7 +29,7 @@ const I = { O: img(oPlate), R: img(rPlate), R7: img(r7Plate) };
 export const A = lazy([I.O, I.R, I.R7], () => ({ O: I.O, R: I.R, R7: I.R7, OB4: blurred(I.O, 4), RB4: blurred(I.R, 4), R7B4: blurred(I.R7, 4), OB10: blurred(I.O, 10), RB10: blurred(I.R, 10),
   chairR: masked(I.R, polyMask([CFG.chairR])) }));
 export const views = CFG.views;
-export function room(ctx, v, which = 'O', blur = 0, solo = false) { const a = A(); if (!a || solo) return; plate(ctx, a[which + (blur >= 8 ? 'B10' : blur ? 'B4' : '')] || a[which], v); }
+export function room(ctx, v, which = 'O', blur = 0, solo = false) { const a = A(); if (!a || solo) return; v = cover(v); plate(ctx, a[which + (blur >= 8 ? 'B10' : blur ? 'B4' : '')] || a[which], v); }
 
 // стоящий в комнате: ступни at (пиксели плейта), масштаб — по перспективе; light — 'O' | 'R' | 'glass' | [dx, dy]
 export function stand(ctx, C, v, t, T, o) {

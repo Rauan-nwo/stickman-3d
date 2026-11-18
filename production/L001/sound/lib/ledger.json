@@ -138,51 +138,6 @@
    "licence_checked_on_page": true
   },
   {
-   "id": "amb_restaurant_04",
-   "class": "amb.restaurant",
-   "need": "amb_restaurant",
-   "category": "amb",
-   "desc": "an upscale restaurant ambience, indistinct murmur of many diners talking, no clear words",
-   "z": 6.25,
-   "verdict": "strong",
-   "path": "lib/rec/amb/amb_restaurant_04.wav",
-   "duration_s": 60.0,
-   "channels": 2,
-   "sample_rate": 48000,
-   "source_file": "lib/_dl/openverse/amb_cutlery/68b91609.mp3",
-   "segment": [
-    53.0,
-    115.0
-   ],
-   "processing": {
-    "start_s": 53.0,
-    "loop_s": 60.0,
-    "crossfade_s": 2.0,
-    "dual_mono": false,
-    "lufs_in": -25.2,
-    "gain_db": -0.8,
-    "lufs_out": -26.0
-   },
-   "earshot": {
-    "rank_z": 6.25,
-    "rank_verdict": "strong",
-    "rank_query": "cutlery and plates clinking at restaurant tables"
-   },
-   "note": "",
-   "weak": false,
-   "source": "freesound.org (via Openverse)",
-   "openverse_id": "68b91609-a278-48e6-bd7a-235fd54a1988",
-   "page_url": "https://freesound.org/people/kyles/sounds/455727",
-   "author": "kyles",
-   "title": "crowd int medium murmur restaurant busy buffet dishes cutlery tinkling Montreal, Canada.flac",
-   "licence_stated": "page: Creative Commons 0 | Openverse: CC0 1.0",
-   "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/",
-   "downloaded": "2026-11-17",
-   "original_format": "Flac (.flac), 48 kHz, 16 bit, Stereo (we use the HQ preview: MP3, 48000 Hz)",
-   "download_url": "https://cdn.freesound.org/previews/455/455727_612689-hq.mp3",
-   "licence_checked_on_page": true
-  },
-  {
    "id": "amb_cutlery_01",
    "class": "amb.cutlery",
    "need": "amb_cutlery",
@@ -1215,51 +1170,6 @@
    "downloaded": "2026-11-17",
    "original_format": "Wave (.wav), 96 kHz, 24 bit, Stereo (we use the HQ preview: MP3, 48000 Hz)",
    "download_url": "https://cdn.freesound.org/previews/463/463903_7241289-hq.mp3",
-   "licence_checked_on_page": true
-  },
-  {
-   "id": "amb_birds_day_02",
-   "class": "amb.birds",
-   "need": "amb_birds_day",
-   "category": "amb",
-   "desc": "daytime outdoor ambience with birds singing and a light wind",
-   "z": 3.41,
-   "verdict": "strong",
-   "path": "lib/rec/amb/amb_birds_day_02.wav",
-   "duration_s": 60.0,
-   "channels": 2,
-   "sample_rate": 48000,
-   "source_file": "lib/_dl/openverse/amb_birds_day/87b8f63b.mp3",
-   "segment": [
-    36.0,
-    98.0
-   ],
-   "processing": {
-    "start_s": 36.0,
-    "loop_s": 60.0,
-    "crossfade_s": 2.0,
-    "dual_mono": false,
-    "lufs_in": -26.8,
-    "gain_db": 0.8,
-    "lufs_out": -26.0
-   },
-   "earshot": {
-    "rank_z": 3.41,
-    "rank_verdict": "strong",
-    "rank_query": "daytime outdoor ambience with birds singing and a light wind"
-   },
-   "note": "",
-   "weak": false,
-   "source": "freesound.org (via Openverse)",
-   "openverse_id": "87b8f63b-5f65-4c7e-92d8-37c0df68bc14",
-   "page_url": "https://freesound.org/people/felix.blume/sounds/328295",
-   "author": "felix.blume",
-   "title": "Forest at dawn with a light wind in the trees, grey hawk, jay, colibri, birds, crickets and insects in the Sian Ka'an Biosphere Reserve",
-   "licence_stated": "page: Creative Commons 0 | Openverse: CC0 1.0",
-   "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/",
-   "downloaded": "2026-11-17",
-   "original_format": "Wave (.wav), 96 kHz, 24 bit, Stereo (we use the HQ preview: MP3, 48000 Hz)",
-   "download_url": "https://cdn.freesound.org/previews/328/328295_1661766-hq.mp3",
    "licence_checked_on_page": true
   },
   {
@@ -4014,52 +3924,6 @@
    "licence_checked_on_page": true
   },
   {
-   "id": "phone_ring_02",
-   "class": "phone.ring",
-   "need": "fx_phone_ring",
-   "category": "foley",
-   "desc": "an old bell telephone ringing",
-   "z": 5.08,
-   "verdict": "strong",
-   "path": "lib/rec/foley/phone_ring_02.wav",
-   "duration_s": 2.6,
-   "channels": 1,
-   "sample_rate": 48000,
-   "source_file": "lib/_dl/openverse/fx_phone_ring/aac33631.mp3",
-   "segment": [
-    0.0,
-    2.6
-   ],
-   "processing": {
-    "lead_ms": 0.0,
-    "fade_out_ms": 100,
-    "peak_dbfs": -1.0
-   },
-   "earshot": {
-    "rank_z": 5.33,
-    "rank_verdict": "strong",
-    "rank_query": "an old bell telephone ringing",
-    "find_z": 5.08,
-    "find_segment": [
-     0.025,
-     2.025
-    ]
-   },
-   "note": "один звонок целиком",
-   "weak": false,
-   "source": "freesound.org (via Openverse)",
-   "openverse_id": "aac33631-2873-44e3-8b6d-2137ec6359a2",
-   "page_url": "https://freesound.org/people/meisterleise/sounds/332073",
-   "author": "meisterleise",
-   "title": "Telephone Ring (old German W48)",
-   "licence_stated": "page: Creative Commons 0 | Openverse: CC0 1.0",
-   "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/",
-   "downloaded": "2026-11-17",
-   "original_format": "Mp3 (.mp3), 44.1 kHz, Stereo (we use the HQ preview: MP3, 44100 Hz)",
-   "download_url": "https://cdn.freesound.org/previews/332/332073_5832939-hq.mp3",
-   "licence_checked_on_page": true
-  },
-  {
    "id": "phone_ring_03",
    "class": "phone.ring",
    "need": "fx_phone_ring",
@@ -5401,52 +5265,6 @@
    "licence_checked_on_page": true
   },
   {
-   "id": "ship_horn_01",
-   "class": "ship.horn",
-   "need": "fx_ship_horn",
-   "category": "foley",
-   "desc": "a distant ship horn",
-   "z": 3.44,
-   "verdict": "strong",
-   "path": "lib/rec/foley/ship_horn_01.wav",
-   "duration_s": 4.739,
-   "channels": 1,
-   "sample_rate": 48000,
-   "source_file": "lib/_dl/openverse/fx_ship_horn/641dfcae.mp3",
-   "segment": [
-    0.3,
-    5.1
-   ],
-   "processing": {
-    "lead_ms": 3.0,
-    "fade_out_ms": 500,
-    "peak_dbfs": -1.0
-   },
-   "earshot": {
-    "rank_z": 3.27,
-    "rank_verdict": "strong",
-    "rank_query": "a distant ship horn",
-    "find_z": 3.44,
-    "find_segment": [
-     0.0,
-     4.667
-    ]
-   },
-   "note": "гудок 4.8 с, длиннее обычного точечного звука",
-   "weak": false,
-   "source": "freesound.org (via Openverse)",
-   "openverse_id": "641dfcae-b71c-45f0-909d-ebbf6619bd3b",
-   "page_url": "https://freesound.org/people/Kinoton/sounds/352374",
-   "author": "Kinoton",
-   "title": "Cruise Ship Horn, 3x",
-   "licence_stated": "page: Creative Commons 0 | Openverse: CC0 1.0",
-   "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/",
-   "downloaded": "2026-11-17",
-   "original_format": "Wave (.wav), 48 kHz, 24 bit, Stereo (we use the HQ preview: MP3, 48000 Hz)",
-   "download_url": "https://cdn.freesound.org/previews/352/352374_2247456-hq.mp3",
-   "licence_checked_on_page": true
-  },
-  {
    "id": "ship_horn_02",
    "class": "ship.horn",
    "need": "fx_ship_horn",
@@ -6457,51 +6275,6 @@
    "licence_checked_on_page": true
   },
   {
-   "id": "amb_diner_01",
-   "class": "amb.diner",
-   "need": "amb_diner",
-   "category": "amb",
-   "desc": "a busy diner ambience, people talking, dishes clinking",
-   "z": 6.33,
-   "verdict": "strong",
-   "path": "lib/rec/amb/amb_diner_01.wav",
-   "duration_s": 55.0,
-   "channels": 2,
-   "sample_rate": 48000,
-   "source_file": "lib/_dl/openverse/amb_diner/7d7354a1.mp3",
-   "segment": [
-    4.0,
-    61.0
-   ],
-   "processing": {
-    "start_s": 4.0,
-    "loop_s": 55.0,
-    "crossfade_s": 2.0,
-    "dual_mono": false,
-    "lufs_in": -35.3,
-    "gain_db": 9.3,
-    "lufs_out": -26.0
-   },
-   "earshot": {
-    "rank_z": 6.33,
-    "rank_verdict": "strong",
-    "rank_query": "a busy diner ambience, people talking, dishes clinking"
-   },
-   "note": "",
-   "weak": false,
-   "source": "freesound.org (via Openverse)",
-   "openverse_id": "7d7354a1-53b3-426f-a8eb-f75e62989dcc",
-   "page_url": "https://freesound.org/people/ViaTorci/sounds/66789",
-   "author": "ViaTorci",
-   "title": "CafeteriaLight.wav",
-   "licence_stated": "page: Creative Commons 0 | Openverse: CC0 1.0",
-   "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/",
-   "downloaded": "2026-11-17",
-   "original_format": "Wave (.wav), 48 kHz, 16 bit, Stereo (we use the HQ preview: MP3, 48000 Hz)",
-   "download_url": "https://cdn.freesound.org/previews/66/66789_935297-hq.mp3",
-   "licence_checked_on_page": true
-  },
-  {
    "id": "amb_diner_02",
    "class": "amb.diner",
    "need": "amb_diner",
@@ -7129,51 +6902,6 @@
    "downloaded": "2026-11-17",
    "original_format": "Wave (.wav), 48 kHz, 24 bit, Mono (we use the HQ preview: MP3, 48000 Hz)",
    "download_url": "https://cdn.freesound.org/previews/254/254130_3530854-hq.mp3",
-   "licence_checked_on_page": true
-  },
-  {
-   "id": "amb_port_03",
-   "class": "amb.port",
-   "need": "amb_port",
-   "category": "amb",
-   "desc": "a harbour ambience with water, gulls and distant machinery",
-   "z": 2.81,
-   "verdict": "plausible",
-   "path": "lib/rec/amb/amb_port_03.wav",
-   "duration_s": 60.0,
-   "channels": 2,
-   "sample_rate": 48000,
-   "source_file": "lib/_dl/openverse/amb_port/baffc8c3.mp3",
-   "segment": [
-    159.0,
-    221.0
-   ],
-   "processing": {
-    "start_s": 159.0,
-    "loop_s": 60.0,
-    "crossfade_s": 2.0,
-    "dual_mono": true,
-    "lufs_in": -25.8,
-    "gain_db": -0.2,
-    "lufs_out": -26.0
-   },
-   "earshot": {
-    "rank_z": 2.81,
-    "rank_verdict": "plausible",
-    "rank_query": "a harbour ambience with water, gulls and distant machinery"
-   },
-   "note": "портовый кран",
-   "weak": false,
-   "source": "freesound.org (via Openverse)",
-   "openverse_id": "baffc8c3-4bed-4c63-8638-6ffb710e6a01",
-   "page_url": "https://freesound.org/people/sinewave1kHz/sounds/207386",
-   "author": "sinewave1kHz",
-   "title": "crane",
-   "licence_stated": "page: Creative Commons 0 | Openverse: CC0 1.0",
-   "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/",
-   "downloaded": "2026-11-17",
-   "original_format": "Wave (.wav), 48 kHz, 24 bit, Mono (we use the HQ preview: MP3, 48000 Hz)",
-   "download_url": "https://cdn.freesound.org/previews/207/207386_1667744-hq.mp3",
    "licence_checked_on_page": true
   },
   {
