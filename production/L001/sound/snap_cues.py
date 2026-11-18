@@ -8,7 +8,8 @@ snap_cues.py — подогнать приблизительные звуки л
 Двигаются только звуки без точного времени: фоли по словам события, поставленные в «слот» (approx: true в листе — у
 события в шотлисте нет слова «на «…»», core.js ставит его на 42 %/78 % плана), и толчки камеры без вещи. Для каждого ищется
 начало всплеска покадровой разницы (vis.py) в окне −0.4…+0.6 с; нашёлся уверенный — звук переезжает на этот кадр (vt и t).
-Точные звуки (склейки, рывки, штампы, бирки, шаблоны, ручная постановка) не трогаются. Таблица сдвигов — в <out>.md.
+Точные звуки (склейки, штампы, бирки, булавки, вспышки) — вторым проходом и только если картинка показывает событие
+на 2–5 кадров в стороне (тот же детектор, что в check.py). Таблица сдвигов — в <out>.md.
 """
 import argparse, json
 from pathlib import Path
@@ -35,11 +36,27 @@ def main():
             k = best[1]; taken.add(k); nt = (k + F0) / 30; d = nt - c.get('vt', c['t'])
             moves.append((c['id'], c['shot'], c['snd'], round(c['t'], 3), round(c['t'] + d, 3), round(d, 3), c.get('what', '')[:60]))
             c['t'] = round(c['t'] + d, 4); c['vt'] = round(nt, 4); c['frame'] = round(c['t'] * 30); c['snapped'] = round(d, 3); c['vis'] = 'motion'
+    # второй проход — точные звуки (склейки, булавки, бирки, штампы, вспышки): шаблон ставит их по формуле, а картинка
+    # иногда показывает событие на 2–5 кадров раньше/позже. Тот же детектор, что в check.py (ближайший всплеск в ±5 кадров,
+    # оценка ≥ 1.5); звук переезжает целиком — намеренный сдвиг (t − vt) сохраняется.
+    from check import vis_onset
+    moved = {m[0] for m in moves}; tight = []
+    for c in C['cues']:
+        if not (a.t0 <= c['t'] < a.t1) or c['id'] in moved: continue
+        kind = c.get('vis', 'formula')
+        if kind not in ('cut', 'motion', 'flash', 'appear'): continue
+        vt = c.get('vt', c['t']); f_ev = int(np.ceil(vt * 30 - 1e-6)) - F0
+        vf, sc = vis_onset(V, f_ev, kind, win=5)
+        if vf is None or sc is None or sc < 1.5 or abs(vf - f_ev) < 2: continue
+        d = (vf - f_ev) / 30
+        tight.append((c['id'], c['shot'], c['snd'], round(c['t'], 3), round(c['t'] + d, 3), round(d, 3), c.get('what', '')[:60]))
+        c['t'] = round(c['t'] + d, 4); c['vt'] = round(vt + d, 4); c['frame'] = round(c['t'] * 30); c['snapped'] = round(d, 3)
+    moves += tight
     json.dump(C, open(a.out, 'w', encoding='utf-8'), ensure_ascii=False)
     md = ['# Приблизительные звуки, подогнанные к картинке', '', f'Окно {a.t0:.2f}–{a.t1:.2f} с; передвинуто {len(moves)}.', '',
           '| id | план | звук | было, с | стало, с | сдвиг, с | что |', '|---|---|---|---|---|---|---|'] + [f'| {m[0]} | {m[1]} | {m[2]} | {m[3]} | {m[4]} | {m[5]:+.3f} | {m[6]} |' for m in moves]
     Path(a.out).with_suffix('.md').write_text('\n'.join(md) + '\n', encoding='utf-8')
-    print(f'snap: {len(moves)} звуков подогнано к картинке')
+    print(f'snap: {len(moves)} звуков подогнано к картинке (из них точных, на 2–5 кадров: {len(tight)})')
 
 
 if __name__ == '__main__':

@@ -25,9 +25,11 @@ import { BJ } from '../staging/beijing.js';
 import { silhouette } from '../staging/desk.js';
 import { official, officer } from '../chars.js';
 import { jensen, alice, NOIR_FONT as F, ell } from 'engine';
-import { plate, img, lazy, blurred } from '../staging/common.js';
+import { plate, img, lazy, blurred, masked, polyMask, chair } from '../staging/common.js';
 import barPlate from '../../assets/bg_taipei_bar_dry.png';
 import streetPlate from '../../assets/bg_singapore_street.png';
+import taipeiPlate from '../../assets/bg_street_no_car.png';   // TODO: assets/B_taipei_street.png (GPT, лимит до 20:56)
+import { gait } from 'engine/chars/gaits.js';
 
 const fixArms = C => { C.spec.rig = { ...C.spec.rig, plantLegs: .02, armLayer: 'front' }; return C; };
 const JH7 = fixArms(jensen()), PRESS = [0, 1, 2, 3, 4].map(i => fixArms(guestA(i + 2)));
@@ -90,19 +92,67 @@ function sleeveArm(ctx, Ep, Hp, r, col) { const mx = lerp(Ep[0], Hp[0], .72), my
   ctx.lineWidth = r * 3.4; ctx.beginPath(); ctx.moveTo(Ep[0], Ep[1]); ctx.lineTo(mx, my); ctx.stroke(); ctx.strokeStyle = col; ctx.lineWidth = r * 3.0; ctx.stroke();
   ctx.strokeStyle = 'rgba(255,255,255,.15)'; ctx.lineWidth = r * .5; ctx.beginPath(); ctx.moveTo(Ep[0], Ep[1] - r); ctx.lineTo(mx, my - r); ctx.stroke();
   ctx.fillStyle = '#141014'; ctx.beginPath(); ctx.arc(Hp[0], Hp[1], r, 0, Math.PI * 2); ctx.fill(); ctx.restore(); }
-// кадр ТВ-хроники: улица ночью, машина; двое садятся в неё (на «car» пригибаются за крышу, дверь хлопает)
-function streetFootage(ctx, t, tc, cam) {
-  const a = PAa(); if (!a) return; const v = cover({ cx: 300, cy: 600, k: 3.2 * (1 + (cam.z - 1) * .4) }); plate(ctx, a.streetB, v);
-  const duck = E.inCubic(clamp((t - tc + .35) / .35)), body = [[35, 680], [48, 607], [100, 600], [145, 572], [225, 562], [300, 567], [395, 607], [470, 625], [520, 650], [525, 690], [500, 700], [35, 700]];
-  for (const [i, C, x0, f] of [[0, B.CAST_MINI.AL, 250, 1], [1, B.CAST_MINI.J, 305, -1]]) { const P = toS(v, [x0, 690 + 160 * duck]), s = .21 * v.k;
-    if (duck >= 1) continue; ctx.save(); ctx.beginPath(); ctx.rect(0, 0, W, toS(v, [0, 700])[1]); ctx.clip(); B.miniFig(ctx, C, P[0], P[1], s, { view: 'threeQuarter', facing: f }); ctx.restore(); }
-  ctx.save(); ctx.beginPath(); body.forEach((q, i) => { const S = toS(v, q); i ? ctx.lineTo(...S) : ctx.moveTo(...S); }); ctx.closePath(); ctx.clip(); plate(ctx, a.streetB, v); ctx.restore();   // кузов машины — перед ними
-  const slam = t - tc; if (slam > 0 && slam < .25) { ctx.fillStyle = `rgba(255,255,255,${.25 * (1 - slam / .25)})`; ctx.fillRect(0, 0, W, H); }
+// ---------- ТВ-хроника Тайбэя (#250–251): плейт ночной улицы Тайбэя без машины (assets/B_taipei_street.png) + своя 2D-машина ----------
+// Двое (Алиса впереди, Дженсен следом) идут к машине по проезжей части перед ней — шагом (gait 'walk': ступня стоит, тело идёт ровно
+// на длину шага, без скольжения), задняя дверь открывается к камере, Алиса садится, затем Дженсен, дверь закрывается, машина уезжает вправо.
+// Время — от слова «car» (tc): идут до tc−1.6, дверь tc−1.6…tc−1.3, Алиса tc−1.3…tc−.85, Дженсен tc−.85…tc−.35, дверь закрывается tc−.35…tc−.1, уезжает с tc.
+const TPI = { p: img(taipeiPlate) }, TPA = lazy([TPI.p], () => ({ p: TPI.p }));
+const SED = { x0: 760, y: 850, L: 820 };                                // задний край машины (экран), низ колёс, длина
+const carPt = (u, w, dx = 0) => [SED.x0 + dx + u * SED.L, SED.y + w * SED.L];
+function sedan(ctx, dx, door, wheel) {
+  const P = (u, w) => carPt(u, w, dx), poly = pts => { ctx.beginPath(); pts.forEach(([u, w], i) => { const q = P(u, w); i ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]); }); ctx.closePath(); };
+  ctx.save(); ctx.lineJoin = 'round'; ctx.strokeStyle = '#06060a'; ctx.lineWidth = 6;
+  ctx.fillStyle = 'rgba(0,0,0,.45)'; ctx.beginPath(); ctx.ellipse(...P(.5, -.005), SED.L * .55, SED.L * .03, 0, 0, Math.PI * 2); ctx.fill();   // тень под машиной
+  poly([[0, -.075], [0, -.2], [.05, -.225], [.24, -.24], [.32, -.355], [.43, -.385], [.63, -.385], [.73, -.27], [.93, -.25], [1, -.205], [1, -.075]]);
+  const g = ctx.createLinearGradient(0, P(0, -.39)[1], 0, P(0, -.07)[1]); g.addColorStop(0, '#3a3e4a'); g.addColorStop(.5, '#1a1c24'); g.addColorStop(1, '#0c0d12'); ctx.fillStyle = g; ctx.fill(); ctx.stroke();
+  poly([[.335, -.27], [.335, -.345], [.43, -.37], [.505, -.37], [.505, -.27]]); ctx.fillStyle = '#2a3446'; ctx.fill(); ctx.stroke();   // заднее окно двери
+  poly([[.525, -.27], [.525, -.37], [.625, -.37], [.70, -.275]]); ctx.fillStyle = '#2a3446'; ctx.fill(); ctx.stroke();               // переднее
+  ctx.strokeStyle = 'rgba(160,200,255,.25)'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(...P(.012, -.21)); ctx.lineTo(...P(.97, -.215)); ctx.stroke();   // блик по борту
+  ctx.strokeStyle = '#06060a'; ctx.lineWidth = 4; for (const u of [.33, .515, .715]) { ctx.beginPath(); ctx.moveTo(...P(u, -.27)); ctx.lineTo(...P(u + .01, -.085)); ctx.stroke(); }   // швы дверей
+  ctx.fillStyle = '#ff3a2a'; ctx.fillRect(...P(.005, -.19), 10, 22); ctx.fillStyle = '#fff2c0'; ctx.fillRect(...P(.985, -.19), 10, 18);       // фонари
+  if (door > 0) {                                                                                                                         // задняя дверь открыта: проём и полотно к камере
+    poly([[.335, -.085], [.335, -.355], [.43, -.375], [.51, -.375], [.51, -.085]]); ctx.fillStyle = '#07070b'; ctx.fill();
+  }
+  for (const u of [.18, .82]) { const c = P(u, -.075), r = SED.L * .075; ctx.fillStyle = '#0a0a0e'; ctx.beginPath(); ctx.arc(c[0], c[1], r, 0, Math.PI * 2); ctx.fill(); ctx.fillStyle = '#5a5e68'; ctx.beginPath(); ctx.arc(c[0], c[1], r * .55, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = '#1a1c22'; ctx.lineWidth = 4; for (let i = 0; i < 5; i++) { const a = wheel + i * 1.2566; ctx.beginPath(); ctx.moveTo(c[0], c[1]); ctx.lineTo(c[0] + Math.cos(a) * r * .5, c[1] + Math.sin(a) * r * .5); ctx.stroke(); } }
+  ctx.restore();
 }
-// «телевизионный» вид кадра: зерно, строки, тон
+// полотно открытой задней двери (петли у стойки — u .51): свободный край идёт к камере — ниже и левее, полотно шире
+function doorLeaf(ctx, dx, door) {
+  if (door <= 0) return; const a = door * 1.2, hinge = [carPt(.51, -.375, dx), carPt(.51, -.085, dx)], w = SED.L * .175, fx = -Math.cos(a) * w - Math.sin(a) * w * .25, fy = Math.sin(a) * w * .18, gr = 1 + .22 * Math.sin(a);
+  const top = [hinge[0][0] + fx, hinge[0][1] - 10 * Math.sin(a) + fy * .3], bot = [hinge[1][0] + fx, hinge[1][1] + fy * gr];
+  ctx.save(); ctx.lineJoin = 'round'; ctx.beginPath(); ctx.moveTo(...hinge[0]); ctx.lineTo(...top); ctx.lineTo(...bot); ctx.lineTo(...hinge[1]); ctx.closePath();
+  ctx.fillStyle = '#16181f'; ctx.fill(); ctx.strokeStyle = '#06060a'; ctx.lineWidth = 6; ctx.stroke();
+  const m = (q, r, k) => [lerp(q[0], r[0], k), lerp(q[1], r[1], k)], w0 = m(hinge[0], hinge[1], .35), w1 = m(top, bot, .35);
+  ctx.beginPath(); ctx.moveTo(...hinge[0]); ctx.lineTo(...top); ctx.lineTo(...w1); ctx.lineTo(...w0); ctx.closePath(); ctx.fillStyle = '#2a3446'; ctx.fill(); ctx.stroke(); ctx.restore();
+}
+// фигура шагом: x — где ступни, s — масштаб, phase — фаза шага (0..1 = два шага)
+function walker(ctx, C, x, y, s, phase, o = {}) {
+  const P = o.stand ? gait(C, 'stand', o.t || 0, { view: o.view || 'side', facing: 1 }) : gait(C, 'walk', phase, { view: 'side', facing: 1 });
+  Object.assign(P, { blink: 0, mouth: 'smile' }, o.pose || {}); ctx.save(); ctx.translate(x, y); ctx.scale(s, s); C.draw(ctx, P); ctx.restore();
+}
+const STEP = 300;                                                      // длина цикла шага (два шага) в единицах фигуры — gait 'walk' stride 150
+function taipeiFootage(ctx, t, d, tc, cam) {
+  const a = TPA(); if (!a) return; const z = 1 + (cam.z - 1) * .4; ctx.save(); ctx.translate(W / 2, H / 2); ctx.scale(z, z); ctx.translate(-W / 2, -H / 2);
+  plate(ctx, a.p, { cx: 960, cy: 540, k: 1 });
+  const s = .4, tW = tc - 1.6, dOpen = E.inOutCubic(clamp((t - tW) / .3)) * (1 - E.inOutCubic(clamp((t - (tc - .35)) / .25))), go = E.inCubic(clamp((t - tc) / 1.2)), dx = go * 1400;
+  const doorX = carPt(.40, 0)[0], feetY = SED.y + 26;
+  const fig = (C, lead, tIn) => {                                       // lead — отставание по пути (px), tIn — начало посадки
+    const xEnd = doorX - lead * .15, x0 = xEnd - 620 - lead, walkT = clamp(t / Math.max(.3, tW)), x = lerp(x0, xEnd, walkT), ph = (x - x0) / (STEP * s);
+    if (t < tIn) { walker(ctx, C, x, feetY, s, ph, { stand: walkT >= 1, t, view: walkT >= 1 ? 'threeQuarter' : 'side' }); return; }
+    const u = clamp((t - tIn) / .4); if (u >= 1) return;                // садится: шаг в проём и вниз, видна часть над порогом проёма
+    const sill = carPt(.42, -.09)[1]; ctx.save(); ctx.beginPath(); ctx.rect(0, 0, W, sill); ctx.clip();
+    walker(ctx, C, lerp(xEnd, doorX + 30, u), feetY - 40 * u + 140 * u * u, s * (1 - .12 * u), 0, { stand: true, t, view: 'back' }); ctx.restore();
+  };
+  sedan(ctx, dx, dOpen, -go * 30);
+  if (go <= 0) { fig(B.CAST_MINI.AL, 0, tc - 1.3); fig(B.CAST_MINI.J, 150, tc - .85); }
+  doorLeaf(ctx, dx, dOpen);
+  ctx.restore();
+}
+// «телевизионный» вид: тон, строки развёртки, СТАТИЧНОЕ зерно (без «кипения» по кадрам — правило мерцания), логотип канала
 function tvLook(ctx, t, bug) { ctx.save(); ctx.globalCompositeOperation = 'saturation'; ctx.fillStyle = 'rgba(120,120,120,.55)'; ctx.fillRect(0, 0, W, H); ctx.restore();
-  ctx.save(); ctx.fillStyle = 'rgba(255,255,255,.05)'; for (let y = 0; y < H; y += 4) ctx.fillRect(0, y, W, 1); let k = Math.floor(t * 30) * 7919 + 3; const r = () => (k = (k * 16807) % 2147483647) / 2147483647;
-  for (let i = 0; i < 900; i++) { ctx.fillStyle = `rgba(${r() > .5 ? 255 : 0},${r() > .5 ? 255 : 0},${r() > .5 ? 255 : 0},.08)`; ctx.fillRect(r() * W, r() * H, 3, 3); }
+  ctx.save(); ctx.fillStyle = 'rgba(255,255,255,.05)'; for (let y = 0; y < H; y += 4) ctx.fillRect(0, y, W, 1); let k = 7919 + 3; const r = () => (k = (k * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < 900; i++) { ctx.fillStyle = `rgba(${r() > .5 ? 255 : 0},${r() > .5 ? 255 : 0},${r() > .5 ? 255 : 0},.06)`; ctx.fillRect(r() * W, r() * H, 3, 3); }
   if (bug) B.txt(ctx, bug, 70, 80, 40, { col: 'rgba(255,255,255,.8)', font: F.label, w: 800 }); ctx.restore(); }
 
 // шахматная доска на пекинском столе (пиксели плейта: центр 1060, 846): фигурки, стул (chair 0..1 — офицер 2 ставит), hand — кисть офицера 2 (экран)
@@ -113,10 +163,13 @@ function chessOnDesk(ctx, v, t, o = {}) {
   if (o.chair > 0) { const c = at(.2, .25), from = o.hand || [c[0], c[1] - 200 * v.k]; piece(ctx, [lerp(from[0], c[0], o.chair), lerp(from[1] + 10 * v.k, c[1], o.chair)], .5 * v.k * .5, 'chair'); }
 }
 // офицер 2 стоит за столом справа от кресла (ноги скрыты столом): place 0..1 — тянется к доске
+// офицер 2 сидит за тем же столом справа, лицом к офицеру 1 (своё кресло — 2D-спинка за ним); ноги ниже столешницы закрывает стол,
+// рамка с фото на столе — перед ним (маска FRAME_BJ). place 0..1 — тянется к доске и ставит стульчик
+const SEAT2 = [1300, 812], FS2 = .62, FRAME_BJ = [[1243, 692], [1398, 678], [1414, 862], [1238, 864]];
+let frameLayer = null; const bjFrame = () => { const a = BJ.A && BJ.A(); if (!a) return null; return (frameLayer ||= masked(a.plate, polyMask([FRAME_BJ]))); };
+function B2chair(ctx, v) { chair(ctx, OFF2, v, SEAT2, FS2, { w: 440, light: -1, legs: 0, col: { frame: '#1e1010', velvet: '#7a1a1e', shade: '#4e1014', hi: 'rgba(255,170,140,.3)', wood: '#140808' } }); }
 function B2stand(c, v, t, T, place) {
-  const at = [1185, 832], fs = .62, P = [1110, 830];
-  const r = person(c, v, t, T, { C: OFF2, at, fs, pin: 'feet', view: 'threeQuarter', facing: -1, sp: 'OFFICER 2', light: [.2, -1], keys: [[0, 'neutral']], lean: -.12 * place, R: { k: place, to: P } });
-  return r;
+  return person(c, v, t, T, { C: OFF2, at: SEAT2, fs: FS2, pin: 'seat', stance: 'sitL', view: 'threeQuarter', facing: -1, sp: 'OFFICER 2', light: [.2, -1], keys: [[0, 'neutral']], lean: -.1 * place, R: { k: Math.max(.35, place), to: place > .05 ? [1110, 832] : [1235, 790] }, L: { k: .35, to: [1270, 795] } });
 }
 // печать на стене (в раме плейта): SENATE — синяя с орлом-звездой, JUSTICE — весы
 function seal(ctx, v, Pp, kind) { const P = toS(v, Pp), r = 70 * v.k; ctx.save(); ctx.translate(P[0], P[1]); ctx.lineWidth = 4 * v.k; ctx.strokeStyle = '#c9a54a';
@@ -137,10 +190,10 @@ function frosted(ctx, v, s) { const a = toS(v, [1120, 110]), b = toS(v, [1300, 3
   const words = s.split(' '); words.forEach((wd, i) => B.txt(ctx, wd, (a[0] + b[0]) / 2, a[1] + (b[1] - a[1]) * (.3 + i * .22), 22 * v.k, { col: '#1e2a3a', font: F.label, w: 800, align: 'center' })); ctx.restore(); }
 export const SHOTS = {
   // ---------------- L11 зал (staging/eventhall.js рабочего A, только чтение) ----------------
-  '7|Through every twist, Jensen made': x => { const { ctx, t, T, cam, solo, d } = x, v = camView({ cx: 760, cy: 500, k: 2.5 }, cam, .2), tl = W_(x, 'loudly', 2.6);   // средний: Дженсен у микрофонов в той же позе; баннер за ним щёлкает APR 2025 -> AUG 2025 -> DEC 2025; на «loudly» вспышки
+  '7|Through every twist, Jensen made': x => { const { ctx, t, T, cam, solo, d } = x, v = camView({ cx: 700, cy: 470, k: 3.2 }, cam, .15), tl = W_(x, 'loudly', 2.6);   // средний: Дженсен у микрофонов в той же позе; баннер за ним щёлкает APR 2025 -> AUG 2025 -> DEC 2025; на «loudly» вспышки
     const m = t < d * .3 ? 'APR 2025' : t < d * .58 ? 'AUG 2025' : 'DEC 2025', sw = [d * .3, d * .58].some(q => t > q && t < q + .08);
     ctx.save(); shake(ctx, cam); EH.plate(ctx, v, 'wide', 0, solo);
-    if (!solo) EH.screen(ctx, v, [m, 'EXPORT RULES'], sw ? .3 : 1);
+    if (!solo) { EH.screen(ctx, v, ['', ''], 1); const P = toS(v, [835, 360]); if (!sw) { B.txt(ctx, m, P[0], P[1], 44 * v.k, { col: '#7dff9a', font: F.label, w: 900, align: 'center' }); B.txt(ctx, 'EXPORT RULES', P[0], P[1] + 46 * v.k, 18 * v.k, { col: '#bfe8c8', font: F.label, w: 800, align: 'center' }); } }   // баннер — на части экрана за его плечом, целиком в кадре
     const P = EH.podium(ctx, JH7, v, t, T, { f: 1, view: null, keys: [[0, 'neutral']], look: [.2, -.05], solo, R: { k: env(t, tl - .3, d + 1, .25), to: [700, 470] } });
     if (P) drawP(ctx, P, v, 'front');
     ctx.restore(); },
@@ -152,7 +205,7 @@ export const SHOTS = {
     EH.stageFront(ctx, v, solo);
     ctx.restore(); },
   '7|JENSEN: The export control was a failure': x => { const { ctx, t, T, cam, solo } = x, tf = W_(x, 'failure', 1.2), ts = Math.min(t, tf + .05), v = camView({ cx: 585, cy: 470, k: 3.2 }, { ...cam, z: x.camAt(ts).z }, .1);   // крупно Дженсен у букета микрофонов, на заднике COMPUTEX; на «failure» вспышка и стоп-кадр
-    ctx.save(); EH.plate(ctx, v, 'wide', 4, solo); if (!solo) EH.screen(ctx, v, ['COMPUTEX', 'TAIPEI · MAY 2025'], 1);
+    ctx.save(); EH.plate(ctx, v, 'wide', 4, solo); if (!solo) { EH.screen(ctx, v, ['', ''], 1); const P = toS(v, [770, 375]); B.txt(ctx, 'COMPUTEX', P[0], P[1], 26 * v.k, { col: '#7dff9a', font: F.label, w: 900, align: 'center' }); B.txt(ctx, 'TAIPEI · MAY 2025', P[0], P[1] + 26 * v.k, 11 * v.k, { col: '#bfe8c8', font: F.label, w: 800, align: 'center' }); }   // задник целиком в кадре
     const P = EH.podium(ctx, JH7, v, ts, T - t + ts, { f: 1, view: null, sp: 'JENSEN', keys: [[0, 'neutral']], look: [.15, .1], solo, R: { k: env(ts, .2, 9, .3), to: [640, 520] } });
     if (P) drawP(ctx, P, v, 'front');
     if (!solo) { for (let i = 0; i < 7; i++) { const b = toS(v, [585 + (i - 3) * 14, 640]), tp = toS(v, [585 + (i - 3) * 9, 588 - (i % 2) * 8]); ctx.strokeStyle = '#121216'; ctx.lineWidth = 3 * v.k; ctx.beginPath(); ctx.moveTo(b[0], b[1]); ctx.lineTo(tp[0], tp[1]); ctx.stroke();
@@ -220,7 +273,7 @@ export const SHOTS = {
     monthCal(ctx, 1640, 520, 300, 'APR');
     const drop = E.inOutCubic(clamp((t - .15) / Math.max(.4, tb - .25))), bx = 960, by = lerp(120, dy + 300, drop);
     ctx.save(); ctx.beginPath(); ctx.rect(0, 0, W, by > dy + 40 ? dy + 480 : H); ctx.clip(); PR.nvBox(ctx, bx, by, 300, { lid: 0, glow: .3 }); ctx.restore();
-    if (drop < 1) sleeveArm(ctx, [lerp(1300, 1250, drop), -200], [bx + 120, by - 150], 26, '#26232c');
+    if (drop < 1) B.insertSleeve(ctx, [bx + 95, by - 128], [bx + 520, -160], 30, B.CLOTH.jensen, null);   // рукав кожанки Дженсена сверху справа, кисть держит угол крышки
     ctx.restore(); },
   '7|JENSEN: Wait. Understood?': x => { const { ctx, t, T, cam, solo } = x, v = NV.view('cu', cam), tu = W_(x, 'Understood', .74);   // крупно Дженсен: достаёт ту же коробочку обратно; календарь на столе — уже AUG
     const k = E.outCubic(clamp((t - .1) / .45));
@@ -263,7 +316,7 @@ export const SHOTS = {
     board(ctx, W / 2, H / 2, 960, 1);
     const pl = E.outCubic(clamp((t - .05) / .5)), jP = [W / 2 - 90, lerp(H / 2 - 520, H / 2 + 80, pl)];
     piece(ctx, [W / 2 + 230, H / 2 + 80], 2.6, 'house'); piece(ctx, jP, 2.6, 'jensen'); piece(ctx, [W / 2 + 80, H / 2 + 20], 2.3, 'bubble', { k: E.outBack(clamp((t - tc) / .3)) });
-    if (pl < 1) sleeveArm(ctx, [W / 2 - 300, -260], [jP[0], jP[1] - 270], 40, '#3a1414');
+    if (pl < 1) B.insertSleeve(ctx, [jP[0] + 6, jP[1] - 250], [W / 2 + 380, -320], 40, B.CLOTH.officer, null);   // рукав офицера (тёмно-красный, как его силуэт): кисть держит голову фигурки
     ctx.restore(); },
   '7|could open or close an entire': x => { const { ctx, t, cam, solo } = x, to = W_(x, 'open', .3), tc = W_(x, 'close', 1.1);   // вставка: воротца CHINA · $50B с навесным замком; замок щёлкает — открылся, закрылся
     if (solo) return; ctx.save(); shake(ctx, cam); const v = cover({ cx: 1060, cy: 830, k: 3.4 * (1 + (cam.z - 1) * .5) }); BJ.widePlate(ctx, v, 6, solo);
@@ -274,8 +327,9 @@ export const SHOTS = {
     ctx.save(); shake(ctx, cam); BJ.widePlate(ctx, v, 3, solo);
     let r1 = {}, r2 = {};
     silhouette(ctx, c => { r1 = BJ.seated(c, v, t, T, { C: OFF1, solo: true, shade: false, sp: 'OFFICER', keys: [[0, 'neutral']], R: { k: lift, to: [960, 640] } }); }, { col: '#160909', rim: 'rgba(255,140,100,.55)', rimDir: [0, -1] });
+    if (!solo) B2chair(ctx, v);
     silhouette(ctx, c => { r2 = B2stand(c, v, t, T, place); }, { col: '#1c0a0a', rim: 'rgba(255,140,100,.5)', rimDir: [-1, -.4] });
-    BJ.deskFront(ctx, v, 3, solo); chessOnDesk(ctx, v, t, { chair: place, hand: r2.hl });
+    BJ.deskFront(ctx, v, 3, solo); if (!solo && bjFrame()) plate(ctx, bjFrame(), v); chessOnDesk(ctx, v, t, { chair: place, hand: r2.hl });
     if (r1.hr && lift > .2) piece(ctx, [r1.hr[0] + 6 * r1.s, r1.hr[1] - 6 * r1.s], .7 * r1.s / .66 * 1.0, 'chip');
     for (const r of [r1, r2]) if (r.hl) for (const P of [r.hl, r.hr]) { ctx.fillStyle = '#160909'; ctx.beginPath(); ctx.arc(P[0], P[1], 12 * r.s, 0, Math.PI * 2); ctx.fill(); }
     ctx.restore(); },
@@ -319,10 +373,10 @@ export const SHOTS = {
     ctx.restore(); },
   '7|Footage aired later by a Taiwanese': x => { const { ctx, t, cam, solo, s } = x;   // вставка: монитор в баре — на экране кадр ТВ: улица, машина
     if (solo) return; const a = PAa(); if (!a) return; ctx.save(); shake(ctx, cam); plate(ctx, a.bar, cover({ cx: 960, cy: 540, k: 1.3 }));
-    const z = 1 + (cam.z - 1) * .6; B.tv(ctx, W / 2, H * .5, 1280 * z, -.01, t, { scene: (c, w, h) => { c.save(); c.scale(w / W, h / H); streetFootage(c, 0, 9, { z: 1 }); tvLook(c, t, 'TV'); c.restore(); }, chyron: 'TAIPEI · GROUP DINNER', chyronK: up(t, .3) });
+    const z = 1 + (cam.z - 1) * .6; B.tv(ctx, W / 2, H * .5, 1280 * z, -.01, t, { scene: (c, w, h) => { c.save(); c.scale(w / W, h / H); taipeiFootage(c, 1.6, 9, 9, { z: 1 }); tvLook(c, t, 'TV'); c.restore(); }, chyron: 'TAIPEI · GROUP DINNER', chyronK: up(t, .3) });
     ctx.restore(); },
   '7|leaving a group dinner in Taipei': x => { const { ctx, t, cam, solo } = x, tc = W_(x, 'car', 3.7);   // кадр ТВ-хроники: двое садятся в одну машину, дверь хлопает
-    if (solo) return; ctx.save(); streetFootage(ctx, t, tc, cam); tvLook(ctx, t, 'TV'); ctx.restore(); },
+    if (solo) return; ctx.save(); taipeiFootage(ctx, t, x.d, tc, cam); tvLook(ctx, t, 'TV'); ctx.restore(); },
 
 };
 export const OVER = {

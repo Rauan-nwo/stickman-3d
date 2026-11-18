@@ -273,3 +273,28 @@ export function person(ctx, C, v, t, T, o) {
 }
 // свет стиля для героев локации: dir — на источник
 export const shadeOf = (dir, warm = '#ffc47a') => noirShade(dir, { warm });
+
+// ---------------- гл. 2–3 (по просьбе ведущего): учёные в халатах, продавец, инвестор, ассистент ----------------
+// лабораторный халат поверх рубашки: белые полы, карман с ручками, бейдж лаборатории (цвет без логотипа)
+OUTFIT.labcoat = ({ shirt = '#6a8ab0', tie = null, badge = '#2a8a8c' }) => cloth((x, S, VW) => {
+  const ink = S.colors.ink; if (isBack(VW)) { path(x, [[0, -150], [0, 160]], 3, 'rgba(0,0,0,.25)'); return; }
+  poly(x, [[-34, -150], [34, -150], [0, -60]], shirt, null); if (tie) shirtTie(x, ink, shirt, tie);
+  poly(x, [[-34, -150], [-96, -132], [-110, 160], [-8, 160], [-6, -50]], '#F6F4EE', ink, 4); poly(x, [[34, -150], [96, -132], [110, 160], [8, 160], [6, -50]], '#ECE9E0', ink, 4);
+  poly(x, [[-34, -150], [-64, -150], [-46, -92], [-14, -70]], '#FFFFFF', ink, 3); poly(x, [[34, -150], [64, -150], [46, -92], [14, -70]], '#F2EFE8', ink, 3);
+  poly(x, [[-88, -40], [-44, -40], [-44, 6], [-88, 6]], null, 'rgba(0,0,0,.3)', 3); path(x, [[-80, -48], [-80, -30]], 4, '#2a4a8a'); path(x, [[-70, -50], [-70, -30]], 4, '#c8302a');
+  x.save(); x.translate(64, -40); x.beginPath(); x.roundRect(-22, -14, 44, 56, 5); x.fillStyle = '#F2EEE2'; x.fill(); x.lineWidth = 3; x.strokeStyle = ink; x.stroke(); x.fillStyle = badge; x.fillRect(-18, -10, 36, 14); ell(x, 0, 18, 8, 8, '#9aa2ae', ink, 2); x.restore();
+  for (const py of [20, 80]) ell(x, -8, py, 5, 5, '#d8d4c8', ink, 2);
+  path(x, [[-96, -40], [-104, 20, -96, 100]], 9, 'rgba(255,255,255,.35)');
+});
+HATS.L_A_sci = (x, H, S, VW, p) => { shortHair(x, S, VW, p, { light: '#6a5a4a', mid: '#3e3226', dark: '#1a140e' }); specs(x, S, VW, p, { round: true, frame: '#2a2026' }); };
+HATS.L_A_sci2 = (x, H, S, VW, p) => { const c = { light: '#2a2228', mid: '#141016', dark: '#060406' }; shortHair(x, S, VW, p, c); bun(x, S, VW, p, c, [0, -170], 44); };
+HATS.L_A_sales = (x, H, S, VW, p) => shortHair(x, S, VW, p, { light: '#7a6a5a', mid: '#4a3a2a', dark: '#1e160e' });
+HATS.L_A_investor = (x, H, S, VW, p) => { if (isBack(VW)) { poly(x, [[-134, 10], [-150, -60], [-120, -60, -100, 0], [100, 0], [120, -60, 150, -60], [134, 10], [0, 40, -134, 10]], '#c8c8cc', S.colors.ink, S.lw); return; }
+  for (const sd of [-1, 1]) poly(x, [[sd * 134, 14], [sd * 146, -50, sd * 126, -86], [sd * 100, -70], [sd * 112, -30, sd * 110, 14]], lgrad(x, -140, -80, 140, 20, [[0, '#e8e8ec'], [1, '#9a9aa2']]), S.colors.ink, S.lw);
+  path(x, [[-60, -134], [-20, -146]], 8, 'rgba(255,255,255,.55)'); };
+const SCI = [['#6a8ab0', '#2a8a8c', 'L_A_sci', 0], ['#8a6a8a', '#c8302a', 'L_A_sci2', 1], ['#5a7a5a', '#d9b24a', 'L_A_sci', 0], ['#8a7a5a', '#2a5aa8', 'L_A_sci2', 1]];
+export const scientist = i => { const [sh, bd, h, f] = SCI[i % SCI.length], inside = OUTFIT.labcoat({ shirt: sh, badge: bd, tie: i % 3 ? null : '#2a3a5a' });
+  return f ? woman('scientist' + i, h, '#F2F0EA', inside, { rest: 'flatS' }) : man('scientist' + i, h, '#F2F0EA', inside, { rest: 'flatS', hair: '#3e3226' }); };
+export const salesman = () => man('salesman', 'L_A_sales', '#3a4a3a', OUTFIT.suit({ lapel: '#2c3a2c', tie: '#76b900' }), { hair: '#4a3a2a', rest: 'smirkS', eye: 'lid' });
+export const investor = () => man('investor', 'L_A_investor', '#4a3e34', OUTFIT.suit({ lapel: '#3a3028', tie: '#8a6a2a', stripe: 'rgba(230,220,200,.15)' }), { hair: '#9a9aa2', rest: 'flat', stache: .8, eye: 'lid' });
+export const assistant = () => woman('assistant', 'L_A_recep', '#3a4a6a', OUTFIT.blouse({ col: '#3a4a6a' }), { hair: '#1c1418', rest: 'flatS' });

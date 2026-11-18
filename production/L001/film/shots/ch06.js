@@ -222,9 +222,35 @@ function chipChecks(c, x, y, w, n, N) { c.save(); c.translate(x, y); c.scale(1, 
     if (i < n) PA.inkLine(c, [[cx - w * .08, cy], [cx - w * .02, cy + w * .07], [cx + w * .1, cy - w * .1]], w * .04, '#c8302a'); } c.restore(); }
 
 export const OVER = {
+  // #204 поверх шаблона T-number: бок коробки из пути коробки (серийник тот же), на «two» трафарет NEARLY $2 BILLION, на «Nvidia's» рывок-отъезд — одна коробка в стене таких же
+  '6|One count put the haul': (ctx, s, t, d) => { const wt = (re, fb) => { const a = wordAt(re, s.start, s.end); return a == null ? fb : a - s.start; };
+    const t2 = wt('two', 1.58), tn = wt("Nvidia's", 3.08), spray = clamp((t - t2) / .45), pull = E.outExpo(clamp((t - tn) / .4)), z = lerp(8.2 + .3 * clamp(t / tn), 1, pull);
+    const g = ctx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#10141c'); g.addColorStop(1, '#06080c'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    ctx.save(); ctx.translate(W / 2, H / 2); ctx.scale(z, z);
+    const cw = 230, ch = 190;
+    for (let r = -4; r <= 4; r++) for (let c = -6; c <= 6; c++) { const hero = !r && !c; if (z > 4 && !hero && Math.abs(r) + Math.abs(c) > 2) continue;
+      boxFace(ctx, c * cw, r * ch, cw - 10, ch - 10, hero ? spray : 0, hero ? 0 : 1 + (r * 7 + c * 3 + 40) % 9); }
+    ctx.restore();
+    const vg = ctx.createRadialGradient(W / 2, H / 2, H * .3, W / 2, H / 2, H * .95); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, `rgba(0,0,0,${.35 + .25 * pull})`); ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
+  },
 };
 export const SKIP_PROPS = {
   '6|that the United States had put': /INSPUR|BLACKLIST/, "6|CLERK: Inspur? You're blacklisted": /BLACKLISTED|INSPUR/, "6|REP: I'm Aivres. California": /AIVRES|INSP/,
-  '6|CUSTOMS: Final destination': /MALAYSIA/, '6|all flowing to one company': /MEGASPEED/, '6|In 2023, Hong Kong customs found': /70 GPU/, '6|over nine hundred and seventeen': /917|SEIZED/,
+  '6|CUSTOMS: Final destination': /MALAYSIA/, '6|all flowing to one company': /MEGASPEED/, '6|In 2023, Hong Kong customs found': /70 GPU/, '6|over nine hundred and seventeen': /917|SEIZED/, '6|One count put the haul': /NEARLY|$2 BILLION/,
 };
 export const RAIN = s => (/L09|L10|L12/.test(s.loc) ? false : undefined);   // в офисе, баре и на таможне дождя поверх кадра нет
+
+// бок коробки пути коробки (картон, зелёная полоса, белая бирка SN 4XG-2207-1193); stencil 0..1 — трафарет NEARLY $2 BILLION проявляется слева направо
+function boxFace(c, x, y, w, h, stencil = 0, n = 0) {
+  c.save(); c.translate(x, y);
+  const g = c.createLinearGradient(0, -h / 2, 0, h / 2); g.addColorStop(0, '#CDA06A'); g.addColorStop(1, '#A87C4A'); c.fillStyle = g; c.fillRect(-w / 2, -h / 2, w, h);
+  c.fillStyle = '#3ea85a'; c.fillRect(-w * .1, -h / 2, w * .2, h); c.strokeStyle = '#141014'; c.lineWidth = 3; c.strokeRect(-w / 2, -h / 2, w, h);
+  c.fillStyle = '#F4F1E8'; c.fillRect(w * .16, -h * .3, w * .28, h * .2); c.strokeRect(w * .16, -h * .3, w * .28, h * .2);
+  c.fillStyle = '#141014'; c.font = `800 ${Math.round(h * .045)}px 'Courier New', monospace`; c.textAlign = 'left'; c.textBaseline = 'middle'; c.fillText('SN 4XG-2207-' + String(1193 + n * 17).padStart(4, '0'), w * .18, -h * .25, w * .25);
+  for (let i = 0; i < 18; i++) c.fillRect(w * .18 + i * w * .013, -h * .19, i % 3 ? w * .005 : w * .008, h * .06);
+  c.fillStyle = 'rgba(0,0,0,.1)'; c.fillRect(-w / 2, h * .38, w, h * .12);
+  if (stencil > 0) { c.save(); c.beginPath(); c.rect(-w / 2, -h / 2, w * stencil, h); c.clip(); c.fillStyle = 'rgba(245,240,225,.95)'; c.textAlign = 'center';
+    c.font = `900 ${Math.round(h * .12)}px Stencil, 'Bahnschrift', 'Arial Black', sans-serif`; c.fillText('NEARLY', -w * .02, h * .08); c.font = `900 ${Math.round(h * .17)}px Stencil, 'Bahnschrift', 'Arial Black', sans-serif`; c.fillText('$2 BILLION', -w * .02, h * .26, w * .9);
+    c.globalAlpha = .25; c.filter = 'blur(2px)'; c.fillText('$2 BILLION', -w * .02, h * .26, w * .9); c.restore(); }
+  c.restore();
+}

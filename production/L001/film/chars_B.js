@@ -194,3 +194,47 @@ export function person(ctx, v, t, T, o) {
 import '../scenes/dc_inspection/chars.js';
 export const fieldAgent1 = () => make('fieldAgent1', 'L_inspector', { hair: '#2A2024', eye: 'lid', mouth: 'flat', body: ['#6a6870', '#3c3a42', '#1c1b20'], inside: suit({ lapel: '#35333b', tie: '#121116', tieKnot: '#0c0b0e' }) });
 export const fieldAgent2 = () => make('fieldAgent2', 'L_guide', { hair: '#141015', eye: 'dot', mouth: 'flat', body: ['#4d5f8c', '#2a3658', '#141a2e'], inside: suit({ lapel: '#25304e', tie: '#5d8fc9', tieKnot: '#3f6ea8' }) });
+
+// ======================= гл. 2 (рабочий B): Denny's, кухня, родственники =======================
+// очки в прямоугольной оправе (Дженсен 1993/1997, Крис, Кёртис)
+function rectGlasses(x, S, VW, p) {
+  if (isBack(VW)) return; const ink = S.colors.ink, comp = VW ? (VW.view === 'side' ? .6 : .86) : 1, o = offOf(VW, p);
+  const ecx = (S.face.eyes[0].x + S.face.eyes[1].x) / 2, E2 = S.face.eyes.map(e => [(e.x - ecx) * comp + ecx + o, e.y + 2]);
+  for (const [ex, ey] of E2) { x.beginPath(); x.roundRect(ex - 36, ey - 22, 72, 44, 9); x.fillStyle = 'rgba(175,205,225,.18)'; x.fill(); x.lineWidth = 6; x.strokeStyle = ink; x.stroke(); path(x, [[ex - 20, ey - 8], [ex - 8, ey - 16]], 3.5, 'rgba(255,255,255,.35)'); }
+  path(x, [[E2[0][0] + 36, E2[0][1] - 6], [(E2[0][0] + E2[1][0]) / 2, E2[0][1] - 16, E2[1][0] - 36, E2[1][1] - 6]], 5, ink);
+}
+// борода (Крис): по низу лица, вокруг рта
+function beard(x, S, VW, p) { if (isBack(VW)) return; const o = offOf(VW, p) * .9; x.beginPath(); x.moveTo(-112 + o * .3, 10); x.quadraticCurveTo(-96 + o, 120, o, 128); x.quadraticCurveTo(96 + o, 120, 112 + o * .3, 10);
+  x.quadraticCurveTo(70 + o, 70, o, 62); x.quadraticCurveTo(-70 + o, 70, -112 + o * .3, 10); x.closePath(); x.fillStyle = '#5a3a24'; x.fill(); x.lineWidth = S.lw * .8; x.strokeStyle = S.colors.ink; x.stroke(); }
+const both = (...fns) => (x, S, VW, p) => fns.forEach(f => f(x, S, VW, p));
+HATS.LB_j93 = H({ style: 'part', light: '#3c3a44', mid: '#16141a', dark: '#060508', gloss: .4 }, rectGlasses);
+HATS.LB_teen = H({ style: 'messy', light: '#3a3640', mid: '#1a181e', dark: '#0a090c', gloss: .25 });
+HATS.LB_chris = H({ style: 'part', light: '#7a5434', mid: '#4a3220', dark: '#20140c' }, both(beard, rectGlasses));
+HATS.LB_curtis = H({ style: 'messy', light: '#a08a64', mid: '#6e5a3c', dark: '#3a2c18' }, rectGlasses);
+HATS.LB_waitress = H({ style: 'bun', light: '#c8642a', mid: '#9a4a1c', dark: '#5a2a0c', gloss: .35 });
+HATS.LB_aunt = H({ style: 'bob', light: '#7a5434', mid: '#4a3220', dark: '#20140c', gloss: .3 });
+HATS.LB_uncle = H({ style: 'fringeBald', light: '#8a7a6a', mid: '#5a4a3a', dark: '#2a2018' });
+HATS.LB_kid = H({ style: 'part', light: '#3a3640', mid: '#1a181e', dark: '#0a090c', gloss: .3 });
+// одежда
+const polo = (col, collar) => cloth((x, S, VW) => { const ink = S.colors.ink; if (isBack(VW)) { path(x, [[0, -150], [0, 160]], 3, 'rgba(0,0,0,.3)'); return; }
+  poly(x, [[-34, -152], [-4, -152], [0, -120], [-26, -128]], collar, ink, 3); poly(x, [[34, -152], [4, -152], [0, -120], [26, -128]], collar, ink, 3);
+  path(x, [[0, -122], [0, -70]], 3, 'rgba(0,0,0,.4)'); for (const py of [-108, -84]) ell(x, 0, py, 4, 4, '#f4f4f4', ink, 1.5); path(x, [[-80, -60], [-90, 0, -80, 60]], 9, 'rgba(255,255,255,.25)'); });
+const apron = (shirt, stripe) => cloth((x, S, VW) => { const ink = S.colors.ink; if (stripe) for (let y = -150; y < 160; y += 40) { x.fillStyle = stripe; x.fillRect(-120, y, 240, 12); }
+  if (isBack(VW)) { path(x, [[-60, -40], [60, -40]], 6, '#f4f2ee'); return; }
+  poly(x, [[-62, -120], [62, -120], [72, 160], [-72, 160]], '#f6f3ec', ink, 3.5); path(x, [[-62, -120], [-30, -150]], 5, '#f6f3ec'); path(x, [[62, -120], [30, -150]], 5, '#f6f3ec');
+  poly(x, [[-40, 20], [40, 20], [40, 70], [-40, 70]], null, 'rgba(0,0,0,.3)', 3); });
+const dress = (col, apronOn) => cloth((x, S, VW) => { const ink = S.colors.ink; if (isBack(VW)) return; poly(x, [[-30, -152], [30, -152], [0, -110]], '#f4f2ee', ink, 3);
+  if (apronOn) { poly(x, [[-70, -20], [70, -20], [80, 160], [-80, 160]], '#f6f3ec', ink, 3.5); path(x, [[-70, -20], [70, -20]], 6, '#f6f3ec'); }
+  for (let i = 0; i < 6; i++) ell(x, -70 + (i * 37) % 140, -100 + i * 40, 7, 7, 'rgba(255,255,255,.35)', null); });
+const plaid = (a, b) => cloth((x, S, VW) => { for (let k = -120; k < 120; k += 36) { x.fillStyle = a; x.fillRect(k, -160, 12, 320); x.fillRect(-120, k, 240, 12); } if (isBack(VW)) return;
+  poly(x, [[-30, -152], [-4, -152], [0, -124], [-24, -130]], b, S.colors.ink, 3); poly(x, [[30, -152], [4, -152], [0, -124], [24, -130]], b, S.colors.ink, 3); });
+const knit = (col) => cloth((x, S, VW) => { for (let k = -100; k <= 100; k += 14) path(x, [[k, -150], [k, 150]], 1.6, 'rgba(0,0,0,.12)'); if (isBack(VW)) return; path(x, [[-40, -150], [0, -112], [40, -150]], 8, col); });
+export const jensen93 = () => make('jensen93', 'LB_j93', { hair: '#16141a', eye: 'dot', mouth: 'smile', body: ['#5f8a74', '#3a6050', '#1c3428'], inside: polo('#4a7a62', '#6a9a82') });
+export const jensen97 = () => make('jensen97', 'LB_j93', { hair: '#16141a', eye: 'dot', mouth: 'flat', body: ['#4a4a5a', '#2c2c38', '#14141c'], inside: knit('#5a5a6a') });
+export const teenJensen = () => make('teenJensen', 'LB_teen', { hair: '#1a181e', eye: 'dot', mouth: 'flat', body: ['#f4f0e6', '#d8d0c0', '#a89c88'], inside: apron('#e8e2d4', 'rgba(46,92,160,.55)'), shoe: '#2a1c14' });
+export const chris = () => make('chris', 'LB_chris', { hair: '#4a3220', eye: 'dot', mouth: 'flat', body: ['#9a6a4a', '#6a4a30', '#3a2818'], inside: plaid('rgba(40,24,14,.35)', '#c8a070') });
+export const curtis = () => make('curtis', 'LB_curtis', { hair: '#6e5a3c', eye: 'dot', mouth: 'smile', body: ['#6a7a9a', '#4a5a7a', '#24304a'], inside: knit('#8a9aba') });
+export const waitress = () => make('waitress', 'LB_waitress', { hair: '#9a4a1c', brow: '#5a2a0c', eye: 'lid', mouth: 'smile', body: ['#f0b040', '#d08a20', '#8a5a10'], inside: dress('#d08a20', true), shoe: '#2a1c14' });
+export const aunt = () => make('aunt', 'LB_aunt', { hair: '#4a3220', eye: 'dot', mouth: 'smile', body: ['#e8a0a8', '#c87080', '#8a4050'], inside: dress('#c87080', false), shoe: '#5a3418' });
+export const uncle = () => make('uncle', 'LB_uncle', { hair: '#5a4a3a', stache: '#4a3a2a', moustache: true, eye: 'dot', mouth: 'smile', body: ['#b08a5a', '#8a6a40', '#4a3820'], inside: knit('#6a5030'), shoe: '#3a2418' });
+export const brother = () => make('brother', 'LB_kid', { hair: '#1a181e', eye: 'dot', mouth: 'smile', body: ['#c86a5a', '#a04a3a', '#5a2418'], inside: plaid('rgba(30,10,8,.4)', '#e8d0b0'), shoe: '#3a2418' });

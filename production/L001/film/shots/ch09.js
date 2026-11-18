@@ -27,13 +27,8 @@ import { jensen, NOIR_FONT as F, ell } from 'engine';
 import { plate, img, lazy, blurred, canvas } from '../staging/common.js';
 import noCarPlate from '../../assets/bg_street_no_car.png';
 
-import dinerPlate from '../../assets/bg_diner_day.png';
-// L07 Denny's, гл. 9 — локальный конфиг (локация ведущего, в гл. 9 только табличка): плейт дня, табличка на стене над левой кабинкой
-const DN = { plaque: [118, 440, 190] }, DNI = { p: img(dinerPlate) }, DNA = lazy([DNI.p], () => ({ p: DNI.p }));
-function holes(ctx, v, k) { if (k <= 0) return; for (const sx of [-1, 1]) { const P = toS(v, [DN.plaque[0] + sx * DN.plaque[2] * .42, DN.plaque[1]]); ctx.fillStyle = '#140c08'; ctx.beginPath(); ctx.arc(P[0], P[1], 3.2 * v.k, 0, Math.PI * 2); ctx.fill(); ctx.fillStyle = 'rgba(255,230,190,.4)'; ctx.beginPath(); ctx.arc(P[0] + 1.2 * v.k, P[1] + 1.2 * v.k, 1.4 * v.k, 0, Math.PI * 2); ctx.fill(); } }
-// винты выкручиваются и отлетают: u 0..1
-function screwsOut(ctx, v, u) { if (u <= 0 || u >= 1) return; for (const sx of [-1, 1]) { const P = toS(v, [DN.plaque[0] + sx * DN.plaque[2] * .42 + sx * 40 * u, DN.plaque[1] - 30 * u + 160 * u * u]); ctx.save(); ctx.translate(P[0], P[1]); ctx.rotate(u * 12 * sx);
-  ctx.fillStyle = '#b8b0a0'; ctx.strokeStyle = '#141014'; ctx.lineWidth = 1.5 * v.k; ctx.beginPath(); ctx.arc(0, 0, 4 * v.k, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.fillRect(-1 * v.k, 0, 2 * v.k, 10 * v.k); ctx.restore(); } }
+import * as DNS from '../staging/dennys.js';   // L07 Denny's — общий конфиг (табличка [118, 440, 190])
+const DN = { plaque: DNS.CFG.plaque }, DNA = () => { const a = DNS.A(); return a && { p: a.day }; }, holes = DNS.holes, screwsOut = (c, v, u) => DNS.screws(c, v, u, 'out');
 const IMM = customs(), JH = jensen(), BOARD = boardMember(), SPOKES = spokesman(), KRESS = aide2(), FBI = fieldAgent2();
 JH.spec.rig = { ...JH.spec.rig, armLayer: 'front', plantLegs: .02 };
 const CONG15 = official({ hair: 'grey', glasses: false, tie: ['#2f5a8a', '#22446a'], suit: ['#5a5650', '#3a3632', '#1c1a18'] }), CONG = official({ hair: 'dark', tie: ['#8a1a24', '#6a121a'], suit: ['#4a5060', '#2e3240', '#16181e'] });
@@ -116,9 +111,9 @@ export const SHOTS = {
   '9|AGENT: No. Your new friend is': x => { const { ctx, t, T, cam, solo } = x, tf = W_(x, 'friend', 1.62);   // вставка: агент протягивает фото — на нём тот самый гость из окна
     if (solo) return; ctx.save(); shake(ctx, cam); const v = PO.view('home', cam, .1);
     PO.porch(ctx, v, t, T, { blur: 6, open: 1, home: { look: [-.2, .2], keys: [[0, 'nervous']], tremble: .6, R: { k: 1, to: [1290, 440] } } });
-    const k = E.outCubic(clamp((t - .1) / .5)), Hp = [lerp(-150, 760, k), lerp(900, 640, k)];
+    const k = E.outCubic(clamp((t - .1) / .5)), Hp = [lerp(-150, 560, k), lerp(1000, 760, k)];
     ctx.save(); const sc = 1 + .08 * gauss(t, tf, .2); B.photo(ctx, Hp[0] + 220, Hp[1] - 160, 420 * sc, -.06, guestPic); ctx.restore();
-    sleeveArm(ctx, [-80, 1180], Hp, 36, '#3c3a42');
+    B.insertSleeve(ctx, [Hp[0] + 34, Hp[1] + 30], [-120, 1260], 36, B.CLOTH.agent1);   // рукав пиджака агента 1, манжета рубашки; кисть держит нижний край снимка
     ctx.restore(); },
   '9|Jensen never got that knock': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 1300, cy: 470, k: 1.6 }, cam, .2);   // та же плита, дом Дженсена: на почтовом ящике HUANG, за стеклом кожанка; фонарь горит, никто не стучит, мотылёк у лампы
     ctx.save(); shake(ctx, cam); PO.porch(ctx, v, t, T, { solo, huang: true, moth: true }); ctx.restore(); },
@@ -194,8 +189,8 @@ export const SHOTS = {
     NV.standing(ctx, v, t, T, { C: SPOKES, at: 'front', dx: 60, sp: 'SPOKESMAN', solo, view: 'threeQuarter', facing: 1, look: [.3, 0], L: { k: 1 - down, to: [560 + 60 - 70, 1052 - 660] }, heldL: down < .6 ? (c, P, s) => PR.handsetHeld(c, P, s, -1) : null });
     ctx.restore(); },
   // ---------------- L13 редакция ----------------
-  '9|President Trump said the FBI': x => { const { ctx, t, T, cam, solo } = x, v = NR.view('tvMid', cam, .3), tf = W_(x, 'FBI', 1.04);   // средний: ТВ над столами — экстренный выпуск; на «FBI» бегущая строка
-    ctx.save(); shake(ctx, cam); NR.room(ctx, v, t, T, { solo, tv: { scene: NR.sceneWhiteHouse, breaking: true, bug: 'NEWS', ticker: 'TRUMP: FBI IS LOOKING INTO IT · ', tickerK: up(t, tf, .35), tickerRun: Math.max(0, t - tf - .35) } }); ctx.restore(); },
+  '9|President Trump said the FBI': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 1530, cy: 430, k: 3.4 }, cam, .15), tf = W_(x, 'FBI', 1.04);   // средний: ТВ над столами — экстренный выпуск; на «FBI» бегущая строка
+    ctx.save(); shake(ctx, cam); NR.room(ctx, v, t, T, { solo, tv: { scene: NR.sceneWhiteHouse, breaking: true, bug: 'NEWS', ticker: 'TRUMP: FBI IS LOOKING INTO IT', tickerBand: .19, tickerK: up(t, tf, .35), tickerRun: 0 } }); ctx.restore(); },
   '9|REPORTER: Any reason given': x => { const { ctx, t, T, cam, solo } = x, v = NR.view('rep', cam, .2);   // крупно репортёр говорит в трубку
     ctx.save(); shake(ctx, cam); NR.room(ctx, v, t, T, { solo, blur: 3, rep: { handset: 'L', look: [.5, .1], keys: [[0, 'neutral']] } }); ctx.restore(); },
   "9|When China's DeepSeek released": x => { const { ctx, t, T, cam, solo } = x, v = NR.view('tv', cam, .1), td = W_(x, 'DeepSeek', .6), tc = W_(x, 'cheap', 1.72);   // ТВ крупно: выпуск о DeepSeek; плашка DEEPSEEK · JAN 2025, ценник CHEAP AI MODEL
@@ -216,7 +211,7 @@ export const SHOTS = {
     if (solo) return; ctx.save(); shake(ctx, cam); const a = TD.A(); if (a) plate(ctx, a.b6, cover({ cx: 1330, cy: 560, k: 2.6 }));
     let P = [0, 0]; B.tv(ctx, W / 2, H * .48, 1500 * (1 + (cam.z - 1) * .5), 0, t, { scene: (c, w, h) => { P = B.retirementScreen(c, w, h, { red: clamp((t - tr) / .35), tap: t - tr - .55 }); } });
     const tap = Math.max(0, Math.sin(clamp((t - tr - .45) / .2) * Math.PI)), z = 1 + (cam.z - 1) * .5, Hp = [W / 2 + (806 - W / 2) * z + 18, H * .48 + (447 - H * .48) * z + 22 - 30 * (1 - tap)];
-    sleeveArm(ctx, [W + 200, H + 250], Hp, 30, '#26262c');
+    B.insertSleeve(ctx, Hp, [Hp[0] + 260, H + 160], 30, B.CLOTH.analyst2);   // рукав чёрного пиджака аналитика 2
     ctx.restore(); },
   '9|the index behind millions': x => { const { ctx, t, cam, solo } = x, tr = W_(x, 'retirement', 1.56);   // крупно экран пенсионного счёта: на «retirement» плашка 401(K) · IRA, кусок NVDA подсвечен
     if (solo) return; ctx.save(); shake(ctx, cam); const a = TD.A(); if (a) plate(ctx, a.b6, cover({ cx: 1330, cy: 560, k: 2.6 }));

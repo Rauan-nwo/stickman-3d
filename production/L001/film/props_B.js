@@ -41,8 +41,8 @@ export function tvScreen(ctx, sw, sh, t, c = {}) {
     if (c.chyron) { const k = clamp(c.chyronK ?? 1); if (k > 0) { const y = sh * .68, bw = sw * .92 * E.outCubic(k);
       ctx.fillStyle = '#f1ece0'; ctx.fillRect(sw * .04, y, bw, sh * .14); ctx.fillStyle = '#b3121b'; ctx.fillRect(sw * .04, y, sw * .015, sh * .14);
       ctx.save(); ctx.beginPath(); ctx.rect(sw * .04, y, bw, sh * .14); ctx.clip(); txt(ctx, c.chyron, sw * .07, y + sh * .07, sh * (c.chyronSize || .066), { font: F.label, w: 800, max: sw * .86 }); ctx.restore(); } }
-    if (c.ticker) { const y = sh * .86; ctx.fillStyle = '#0d1430'; ctx.fillRect(0, y, sw, sh * .14); ctx.save(); ctx.beginPath(); ctx.rect(0, y, sw, sh * .14); ctx.clip();
-      const k = clamp(c.tickerK ?? 1), xx = lerp(sw, sw * .03, E.outCubic(k)) - (c.tickerRun || 0) * sw * .04; txt(ctx, c.ticker, xx, y + sh * .07, sh * .062, { col: '#ffd84a', font: F.label, w: 700 }); ctx.restore(); }
+    if (c.ticker) { const tb = sh * (c.tickerBand || .14), y = sh - tb; ctx.fillStyle = '#0d1430'; ctx.fillRect(0, y, sw, tb); ctx.save(); ctx.beginPath(); ctx.rect(0, y, sw, tb); ctx.clip();
+      const k = clamp(c.tickerK ?? 1), xx = lerp(sw, sw * .03, E.outCubic(k)) - (c.tickerRun || 0) * sw * .04; txt(ctx, c.ticker, xx, y + tb / 2, tb * .44, { col: '#ffd84a', font: F.label, w: 800 }); ctx.restore(); }
     if (c.bug) txt(ctx, c.bug, sw * .04, sh * .04 + sh * .03, sh * .05, { col: 'rgba(255,255,255,.75)', font: F.label, w: 800 });
     ctx.fillStyle = 'rgba(255,255,255,.04)'; for (let y = 0; y < sh; y += Math.max(2, sh / 160)) ctx.fillRect(0, y, sw, 1);   // строки развёртки
     ctx.restore();
@@ -173,7 +173,7 @@ export function retirementScreen(x, w, h, { red = 0, pop = 0, tag = 0, tap = -1 
   txt(x, 'YOUR RETIREMENT ACCOUNT', w * .05, h * .1, h * .065, { col: '#e8f0f8', font: F.label, w: 800 });
   txt(x, 'S&P 500 INDEX FUND', w * .05, h * .18, h * .05, { col: '#8fb0cc', font: F.label, w: 700 });
   const cx = w * .36, cy = h * .58, R = h * .3, sl = [[.12, '#3a6ea8'], [.1, '#5a88b8'], [.09, '#7aa0c8'], [.11, '#46628a'], [.15, '#2f4f78'], [.19, '#557aa6'], [.16, '#6c8cb6']];
-  let a0 = -Math.PI / 2 + TAU * .08; for (const [f, c] of sl) { const a1 = a0 + TAU * f * (.92 / 1.0); x.fillStyle = c; x.beginPath(); x.moveTo(cx, cy); x.arc(cx, cy, R, a0, a1); x.closePath(); x.fill(); x.strokeStyle = '#0c1a26'; x.lineWidth = 2; x.stroke(); a0 = a1; }
+  const sum = sl.reduce((q, [f]) => q + f, 0); let a0 = -Math.PI / 2 + TAU * .08; for (const [f, c] of sl) { const a1 = a0 + TAU * .92 * f / sum; x.fillStyle = c; x.beginPath(); x.moveTo(cx, cy); x.arc(cx, cy, R, a0, a1); x.closePath(); x.fill(); x.strokeStyle = '#0c1a26'; x.lineWidth = 2; x.stroke(); a0 = a1; }   // остальной круг замкнут: 92 % без зазоров
   const n0 = -Math.PI / 2, n1 = -Math.PI / 2 + TAU * .08, mid = (n0 + n1) / 2, off = R * .18 * E.outBack(clamp(pop)), ox = Math.cos(mid) * off, oy = Math.sin(mid) * off;
   const col = `rgb(${Math.round(lerp(60, 220, red))},${Math.round(lerp(190, 50, red))},${Math.round(lerp(90, 50, red))})`;
   x.fillStyle = col; x.beginPath(); x.moveTo(cx + ox, cy + oy); x.arc(cx + ox, cy + oy, R * 1.04, n0, n1); x.closePath(); x.fill(); x.strokeStyle = '#fff'; x.lineWidth = 3; x.stroke();
@@ -224,3 +224,22 @@ export const plaquesAt = (x0, y0, { skip = null, dy = 112, maxW = 900 } = {}) =>
   if (!API || !API.evList) return; let k = 0;
   for (const e of API.evList(s, d)) for (const q of e.quotes.slice(0, 2)) { if (skip && skip.test(q)) continue; if (t >= e.t) { API.prop(ctx, q, e.kind, x0, y0 + k * dy, t - e.t, maxW); k++; } }
 };
+// рука-вставка из-за края кадра (по образцу office.js insertHand ведущего): рукав одежды героя толщиной ≈ кисть, манжета рубашки, кисть-точка.
+// P — кисть (экран), from — откуда входит рукав (за краем кадра), r — радиус кисти (px); cols — [свет, середина, тень] ткани рукава; cuff — цвет манжеты или null
+export function insertSleeve(ctx, P, from, r, cols, cuff = '#F4F2EE') {
+  const k = r / 12, dx = P[0] - from[0], dy = P[1] - from[1], l = Math.hypot(dx, dy) || 1, ux = dx / l, uy = dy / l, nx = -uy, ny = ux;
+  const C = [P[0] - ux * r * 1.05, P[1] - uy * r * 1.05], w0 = 21 * k, w1 = 16 * k;
+  ctx.save(); ctx.lineJoin = 'round';
+  ctx.beginPath(); ctx.moveTo(from[0] + nx * w0, from[1] + ny * w0); ctx.lineTo(C[0] + nx * w1, C[1] + ny * w1); ctx.lineTo(C[0] - nx * w1, C[1] - ny * w1); ctx.lineTo(from[0] - nx * w0, from[1] - ny * w0); ctx.closePath();
+  const g = ctx.createLinearGradient(C[0] + nx * w1, C[1] + ny * w1, C[0] - nx * w1, C[1] - ny * w1); g.addColorStop(0, cols[0]); g.addColorStop(.45, cols[1]); g.addColorStop(1, cols[2]);
+  ctx.fillStyle = g; ctx.fill(); ctx.lineWidth = 3.5 * k; ctx.strokeStyle = INK; ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(from[0] + nx * w0 * .45 + ux * 40 * k, from[1] + ny * w0 * .45 + uy * 40 * k); ctx.lineTo(C[0] + nx * w1 * .45 - ux * 8 * k, C[1] + ny * w1 * .45 - uy * 8 * k); ctx.lineWidth = 2.5 * k; ctx.strokeStyle = 'rgba(0,0,0,.35)'; ctx.stroke();   // складка
+  ctx.beginPath(); ctx.moveTo(from[0] + nx * w0 * .8, from[1] + ny * w0 * .8); ctx.lineTo(C[0] + nx * w1 * .8, C[1] + ny * w1 * .8); ctx.lineWidth = 3 * k; ctx.strokeStyle = 'rgba(255,220,170,.45)'; ctx.stroke();   // тёплый край ткани со стороны света
+  if (cuff) { const c0 = [C[0] - ux * 13 * k, C[1] - uy * 13 * k], cw = w1 * .98;
+    ctx.beginPath(); ctx.moveTo(c0[0] + nx * cw, c0[1] + ny * cw); ctx.lineTo(C[0] + ux * 4 * k + nx * cw * .9, C[1] + uy * 4 * k + ny * cw * .9); ctx.lineTo(C[0] + ux * 4 * k - nx * cw * .9, C[1] + uy * 4 * k - ny * cw * .9); ctx.lineTo(c0[0] - nx * cw, c0[1] - ny * cw); ctx.closePath();
+    ctx.fillStyle = cuff; ctx.fill(); ctx.lineWidth = 3 * k; ctx.strokeStyle = INK; ctx.stroke(); }
+  ell(ctx, P[0], P[1], r, r, INK, null);
+  ctx.lineCap = 'round'; ctx.strokeStyle = 'rgba(255,214,150,.6)'; ctx.lineWidth = 3.2 * k; ctx.beginPath(); ctx.arc(P[0], P[1], r * .75, Math.PI * 1.05, Math.PI * 1.75); ctx.stroke();
+  ctx.restore(); return P;
+}
+export const CLOTH = { jensen: ['#5A5560', '#2C2830', '#16131A'], officer: ['#4a2a26', '#2a1614', '#140909'], aide2: ['#8a8c94', '#5e6068', '#2e3036'], agent1: ['#6a6870', '#3c3a42', '#1c1b20'], analyst2: ['#4a4a52', '#26262c', '#0e0e12'] };

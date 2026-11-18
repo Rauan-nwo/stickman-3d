@@ -379,3 +379,30 @@ export function signBox(ctx, x, y, w, s, lit = 1) {
 // холст вне экрана 1920×1080 (сцена видеозвонка, снимок, кадр галереи): fn(ctx) рисует; возвращает холст
 const OFF = new Map();
 export function offscreen(key, fn, w = 1920, h = 1080) { let c = OFF.get(key); if (!c) { c = document.createElement('canvas'); c.width = w; c.height = h; OFF.set(key, c); } const x = c.getContext('2d'); x.setTransform(1, 0, 0, 1, 0, 0); x.globalAlpha = 1; x.globalCompositeOperation = 'source-over'; x.filter = 'none'; x.clearRect(0, 0, w, h); fn(x); return c; }
+// песочные часы: центр, высота h, поворот a; top 0..1 — сколько песка вверху (сыплется вниз)
+export function hourglass(ctx, x, y, h, a = 0, top = 1) {
+  const w = h * .55; ctx.save(); ctx.translate(x, y); ctx.rotate(a);
+  rrect(ctx, -w / 2, -h / 2, w, h * .08, h * .02, '#6a4020', INK, h * .02); rrect(ctx, -w / 2, h / 2 - h * .08, w, h * .08, h * .02, '#6a4020', INK, h * .02);
+  for (const sx of [-1, 1]) line(ctx, [[sx * w * .42, -h * .42], [sx * w * .42, h * .42]], h * .03, '#4a2a12');
+  const bulb = sy => { ctx.beginPath(); ctx.moveTo(-w * .34, sy * h * .42); ctx.quadraticCurveTo(-w * .34, sy * h * .08, -w * .04, 0); ctx.lineTo(w * .04, 0); ctx.quadraticCurveTo(w * .34, sy * h * .08, w * .34, sy * h * .42); ctx.closePath(); };
+  ctx.save(); bulb(-1); ctx.clip(); ctx.fillStyle = '#E8C46A'; const tt = h * .4 * clamp01(top); ctx.fillRect(-w, -tt * .9 - h * .02, w * 2, tt); ctx.restore();
+  ctx.save(); bulb(1); ctx.clip(); ctx.fillStyle = '#E8C46A'; const bb = h * .4 * (1 - clamp01(top)); ctx.beginPath(); ctx.moveTo(-w, h * .42); ctx.lineTo(w, h * .42); ctx.lineTo(w, h * .42 - bb); ctx.lineTo(0, h * .42 - bb * 1.4); ctx.lineTo(-w, h * .42 - bb); ctx.fill(); ctx.restore();
+  if (top > .02 && top < .98) line(ctx, [[0, 0], [0, h * .4]], h * .012, '#E8C46A');
+  for (const sy of [-1, 1]) { bulb(sy); ctx.fillStyle = 'rgba(200,230,240,.18)'; ctx.fill(); ctx.lineWidth = h * .018; ctx.strokeStyle = INK; ctx.stroke(); }
+  line(ctx, [[-w * .22, -h * .32], [-w * .16, -h * .18]], h * .02, 'rgba(255,255,255,.6)');
+  ctx.restore();
+}
+// график по регионам на доске-мольберте: центр доски, ширина; china — высота столбика CHINA 0..1, glow
+export function regionChart(ctx, x, y, w, china = 1, glow = 0, title = 'SALES BY REGION') {
+  const h = w * .72; ctx.save(); ctx.translate(x, y);
+  shadowOn(ctx, w * .03, w * .015); rrect(ctx, -w / 2, -h / 2, w, h, w * .02, '#F4F2EA', INK, w * .012); shadowOff(ctx);
+  text(ctx, title, 0, -h * .4, h * .07, '#1c140c', { weight: 900 });
+  const base = h * .36, bw = w * .14, regs = [['US', .55], ['CHINA', china], ['TAIWAN', .42], ['OTHER', .3]];
+  line(ctx, [[-w * .42, base], [w * .42, base]], w * .008, INK); line(ctx, [[-w * .42, base], [-w * .42, -h * .3]], w * .008, INK);
+  regs.forEach(([r, v], i) => { const cx = -w * .3 + i * w * .2, bh = h * .6 * v;
+    if (bh > 1) { rrect(ctx, cx - bw / 2, base - bh, bw, bh, 2, r === 'CHINA' ? '#4ade80' : '#7a8a9a', INK, w * .006);
+      if (r === 'CHINA' && glow > .01) { ctx.save(); ctx.globalCompositeOperation = 'screen'; ctx.fillStyle = rg(ctx, cx, base - bh / 2, 0, w * .3, [[0, `rgba(120,255,160,${.6 * glow})`], [1, 'rgba(100,255,150,0)']]); ctx.fillRect(cx - w * .3, base - bh - w * .2, w * .6, bh + w * .4); ctx.restore(); } }
+    else { ctx.save(); ctx.setLineDash([w * .015, w * .012]); rrect(ctx, cx - bw / 2, base - h * .05, bw, h * .05, 2, null, '#9a8a7a', w * .004); ctx.restore(); }
+    text(ctx, r, cx, base + h * .07, h * .055, '#1c140c', { weight: 800 }); });
+  ctx.restore();
+}

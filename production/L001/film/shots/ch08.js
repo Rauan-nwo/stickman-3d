@@ -110,11 +110,9 @@ export const SHOTS = {
     ctx.restore(); },
   "8|AIDE 2: He's in it": x => { const { ctx, t, cam, solo } = x, tp = W_(x, 'in', .3);   // вставка: палец AIDE 2 на строке JENSEN HUANG (рука — от её кресла, сверху справа)
     if (solo) return; ctx.save(); shake(ctx, cam); const a = CR.A(); if (a) plate(ctx, a.b3, cover({ cx: 1050, cy: 690, k: 2.6 * cam.z }));
-    B.sheet(ctx, 900, 560, 760, 980, .02, (c, w, h) => B.intercept(c, w, h, { lift: 1 }));
-    const k = E.outCubic(clamp((t - tp + .3) / .35)), hx = lerp(1560, 1050, k), hy = lerp(-60, 515, k);
-    ctx.save(); ctx.lineCap = 'round'; ctx.strokeStyle = '#141014'; ctx.lineWidth = 46; ctx.beginPath(); ctx.moveTo(1980, -120); ctx.quadraticCurveTo(1650, 250, hx, hy); ctx.stroke();
-    const sx = lerp(1980, hx, .62), sy = lerp(-120, hy, .62) - 30; ctx.strokeStyle = '#141014'; ctx.lineWidth = 132; ctx.beginPath(); ctx.moveTo(2100, -260); ctx.lineTo(sx, sy); ctx.stroke(); ctx.strokeStyle = '#7a7c84'; ctx.lineWidth = 120; ctx.stroke(); ctx.strokeStyle = 'rgba(255,255,255,.16)'; ctx.lineWidth = 16; ctx.beginPath(); ctx.moveTo(2080, -290); ctx.lineTo(sx - 20, sy - 40); ctx.stroke();  ctx.strokeStyle = 'rgba(255,214,150,.25)'; ctx.lineWidth = 8; ctx.beginPath(); ctx.moveTo(1960, -130); ctx.quadraticCurveTo(1640, 230, hx + 10, hy - 18); ctx.stroke();
-    ctx.fillStyle = '#141014'; ctx.beginPath(); ctx.arc(hx, hy, 34, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+    B.sheet(ctx, 1080, 560, 760, 980, .02, (c, w, h) => B.intercept(c, w, h, { lift: 1 }));
+    const k = E.outCubic(clamp((t - tp + .3) / .35)), hx = lerp(1700, 1250, k), hy = lerp(-60, 515, k);
+    B.insertSleeve(ctx, [hx, hy], [1980, -140], 34, B.CLOTH.aide2);   // рукав серого пиджака AIDE 2 (сидит справа сверху), манжета, палец-точка на строке
     ctx.restore(); },
   // ---------------- L02 салон: бобины ----------------
   '8|It was built on electronic surveillance': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 830, cy: 620, k: 1.9 }, cam, .3), ta = W_(x, 'Alice', 2);   // крупно бобины и бирка LINE 2; AGENT 2 снимает наушники

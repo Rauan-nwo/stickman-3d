@@ -30,7 +30,8 @@ def main():
     mix, sr = rd('mix'); rest = sum(rd(k)[0] for k in ('music', 'sfx', 'amb'))
     for name, x in ((() if a.rest_only else (('mix', mix),)) + (('без голоса', rest),)):
         x16 = librosa.resample(x.mean(1)[:int(a.t1 * sr)], orig_sr=sr, target_sr=16000)
-        st = list(range(0, len(x16) - 16000 + 1, int(a.hop * 16000))); P = m.probs([x16[s:s + 16000] for s in st], reduce='max')
+        hop = a.hop if len(x16) <= 120 * 16000 else max(a.hop, 1.0)   # длинная глава — окна 1 с встык (каждая секунда, вдвое дешевле)
+        st = list(range(0, len(x16) - 16000 + 1, int(hop * 16000))); P = m.probs([x16[s:s + 16000] for s in st], reduce='max')
         rows = []
         for k, s in enumerate(st):
             g = {}

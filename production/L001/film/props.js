@@ -301,3 +301,17 @@ export function chipSheet(ctx, x, y, w, a = -.06) {
   for (let i = 0; i < 4; i++) { ctx.fillStyle = 'rgba(40,40,60,.35)'; ctx.fillRect(-w * .38, w * (.0 + i * .12), w * (.76 - (i % 2) * .2), w * .04); }
   ctx.restore();
 }
+
+// навесной латунный замок (тот же, что на вашингтонской двери и на пекинской коробке): центр корпуса x,y, масштаб s (корпус 100×86 ед.);
+// open 0..1 — дужка выходит из корпуса; jerk — рывок (сдвиг вниз, ед.); glint 0..1 — блик
+export function padlock(ctx, x, y, s, { open = 0, jerk = 0, glint = 0 } = {}) {
+  ctx.save(); ctx.translate(x, y + jerk * s); ctx.scale(s, s); ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  const lift = 26 * clamp01(open);
+  ctx.beginPath(); ctx.moveTo(-30, -30); ctx.lineTo(-30, -62 - lift); ctx.arc(0, -62 - lift, 30, Math.PI, 0); ctx.lineTo(30, -30 - lift * (open > 0 ? 1 : 0));   // дужка
+  ctx.lineWidth = 20; ctx.strokeStyle = INK; ctx.stroke(); ctx.lineWidth = 11; ctx.strokeStyle = lg(ctx, -30, -90, 30, -30, [[0, '#d9dde2'], [.5, '#9aa0a8'], [1, '#5c626a']]); ctx.stroke();
+  ctx.beginPath(); ctx.roundRect(-50, -36, 100, 86, 14); ctx.fillStyle = lg(ctx, 0, -36, 0, 50, [[0, '#F7DC8A'], [.45, '#D2A244'], [1, '#7E5618']]); ctx.fill(); ctx.lineWidth = 7; ctx.strokeStyle = '#2e1c06'; ctx.stroke();
+  pathL(ctx, [[-36, -24], [-36, 30]], 6, 'rgba(255,250,220,.55)');
+  ctx.beginPath(); ctx.arc(0, 4, 9, 0, TAU); ctx.fillStyle = '#2a1a08'; ctx.fill(); ctx.beginPath(); ctx.moveTo(-5, 8); ctx.lineTo(5, 8); ctx.lineTo(3, 28); ctx.lineTo(-3, 28); ctx.closePath(); ctx.fill();   // скважина
+  if (glint > .01) { ctx.globalCompositeOperation = 'screen'; ctx.fillStyle = rg(ctx, -24, -14, 0, 60, [[0, `rgba(255,255,235,${glint})`], [1, 'rgba(255,220,150,0)']]); ctx.fillRect(-90, -80, 180, 160); }
+  ctx.restore();
+}
