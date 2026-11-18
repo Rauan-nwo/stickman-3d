@@ -37,7 +37,7 @@ function hair(x, S, VW, p, st) {
     if (st.style === 'bun') { x.beginPath(); x.ellipse(isBack(VW) ? 0 : -f * 110, isBack(VW) ? -150 : -160, 58, 50, 0, 0, TAU); x.fillStyle = g(); x.fill(); x.lineWidth = S.lw; x.strokeStyle = ink; x.stroke(); }
     else poly(x, [[bx, by], [bx - f * 60 - 20, by + 60, bx - f * 40, by + 190], [bx - f * 10 + 20, by + 120, bx + 20, by + 10]], g(), ink, S.lw);
   }
-  if (isBack(VW)) { poly(x, [[-136, 10], [-154, -112, -80, -168], [0, -188, 80, -168], [154, -112, 136, 10], [0, 40, -136, 10]], g(), ink, S.lw); return; }
+  if (isBack(VW)) { poly(x, [[-134, 70], [-160, -112, -80, -168], [0, -190, 80, -168], [160, -112, 134, 70], [0, 118, -134, 70]], g(), ink, S.lw); return; }   // затылок: волосы до шеи (иначе белая полоса читалась улыбкой)
   let cap;
   if (st.style === 'messy' || st.style === 'curly') {
     const j = st.style === 'curly' ? 16 : 22;

@@ -43,8 +43,8 @@ export const SHOTS = {
   '6|that the United States had put': x => { const { ctx, t, T, cam, solo } = x, v = WA.view('cu', cam), tu = W_(x, 'United', .62), tb = W_(x, 'blacklist', 2.26);   // ВСТАВКА: на «United» папка INSPUR GROUP ложится на стол; на «blacklist» чиновник бьёт штамп BLACKLIST, толчок
     const drop = E.outBack(clamp((t - tu) / .3)), k = env(t, tb - .35, tb + .45, .22, .25);
     ctx.save(); shake(ctx, cam);
-    WA.seated(ctx, v, t, T, { C: CLERK, solo, blur: 3, keys: [[0, 'neutral']], look: [.1, .5], R: { k, to: [1000, 800 - 30 * (1 - k)] },
-      deskTop: (c, vv) => { if (drop <= 0) return; const P = toS(vv, [995, 800 - 120 * (1 - drop)]); folder(c, P[0], P[1], 150 * vv.k, 'INSPUR GROUP'); if (t > tb) PR.stampMark(c, P[0] + 6 * vv.k, P[1] + 2 * vv.k, 110 * vv.k, 'BLACKLIST', clamp((t - tb) / .12)); },
+    WA.seated(ctx, v, t, T, { C: CLERK, solo, blur: 3, keys: [[0, 'neutral']], look: [.1, .5], R: { k, to: [1015, 816 - 30 * (1 - k)] },
+      deskTop: (c, vv) => { if (drop <= 0) return; const P = toS(vv, [975, 800 - 120 * (1 - drop)]); folder(c, P[0], P[1], 200 * vv.k, 'INSPUR GROUP'); if (t > tb) PR.stampMark(c, P[0] + 40 * vv.k, P[1] + 16 * vv.k, 80 * vv.k, 'BLACKLIST', clamp((t - tb) / .12)); },
       heldR: k > .2 ? (c, P, s) => PR.rubberStamp(c, P[0], P[1] + 18 * s, 80 * s) : null });
     ctx.restore(); },
   "6|CLERK: Inspur? You're blacklisted": x => { const { ctx, t, T, cam, solo } = x, v = WA.view('mid', cam), tb = W_(x, 'blacklisted', 1.2);   // СРЕДНИЙ: палец чиновника ведёт по странице папки чёрного списка до строки INSPUR; на «blacklisted» штамп BLACKLISTED
@@ -171,7 +171,7 @@ export const SHOTS = {
     ctx.save(); shake(ctx, cam); CU.gate(ctx, v, 0, solo); CU.arm(ctx, v, 0, solo);
     if (!solo) { for (let r = 0; r < 6; r++) { const y = 690 + r * 42, m = CU.mAt(y); for (let c = -3; c <= 3; c++) { const P = toS(v, [CU.laneX(y, -.03) - 20 + c * 1.25 * m, y]); PA.crate(ctx, P[0], P[1], 1.05 * m * v.k, .55 * m * v.k, { d: .25 * m * v.k }); } }
       const fy = 940, fm = CU.mAt(fy), F = toS(v, [820, fy]); PA.crate(ctx, F[0], F[1], 1.2 * fm * v.k, .62 * fm * v.k, { d: .3 * fm * v.k });
-      PA.stampMark(ctx, F[0], F[1] - .3 * fm * v.k, .8 * fm * v.k, 'SEIZED', -.1, t - ts);
+      PA.stampMark(ctx, F[0] - .32 * fm * v.k, F[1] - .25 * fm * v.k, .5 * fm * v.k, 'SEIZED', -.1, t - ts);
       const k = E.outBack(clamp((t - tn) / .3)); if (k > 0) PA.hangTag(ctx, F[0] + .35 * fm * v.k, F[1] - .62 * fm * v.k - 200 * (1 - k), 330, Math.sin(t * 3) * .05, '917 SERVERS SEIZED'); }
     ctx.restore(); },
   '6|This operation never had to sweat': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 1080, cy: 640, k: 1.5 }, cam, .3);   // СРЕДНИЙ: за спиной задержанного контрабандиста спокойно проезжает грузовик под поднятым шлагбаумом
@@ -194,7 +194,7 @@ export const SHOTS = {
     ctx.restore(); },
   '6|the chips were never the real prize': x => { const { ctx, t, cam, solo } = x, tc = W_(x, 'chips', .06), tp = W_(x, 'prize', 1.2);   // ВСТАВКА снимок на накладной: камера въезжает в снимок; на «chips» накладная съезжает вниз из кадра; на «prize» остаётся лицо на снимке
     if (solo) return; const z = cam.z * lerp(1, 1.8, E.inOutCubic(clamp(t / (tp + .3)))), slide = E.inCubic(clamp((t - tc) / .7));
-    CAR.car(ctx, { cx: 820, cy: 760, k: 2.6 }, t, t, { solo: false, reelsAng: t * 3.2, a1: { hidden: true }, a2: { hidden: true } });
+    CAR.car(ctx, cover({ cx: 820, cy: 760, k: 2.6 }), t, t, { solo: false, reelsAng: t * 3.2, a1: { hidden: true }, a2: { hidden: true } });
     ctx.save(); ctx.fillStyle = 'rgba(0,0,0,.45)'; ctx.fillRect(0, 0, W, H); ctx.restore();
     ctx.save(); ctx.translate(W / 2, H / 2); ctx.scale(z, z); ctx.translate(-W / 2, -H / 2);
     PA.waybill(ctx, 1020, 560 + 900 * slide, 560, .08);

@@ -158,12 +158,13 @@ export function wallMap(ctx, x, y, w, { dark = 0, pins = 2 } = {}) {
   ctx.restore(); ctx.restore();
 }
 // монитор: центр (x, y), ширина w; screen(ctx, w, h) рисует содержимое экрана в его координатах (0..w, 0..h)
-export function monitor(ctx, x, y, w, screen, { stand = true, glow = .25 } = {}) {
+export function monitor(ctx, x, y, w, screen, { stand = true, glow = .25, glare = true } = {}) {
   const h = w * .6, b = w * .035; ctx.save(); ctx.translate(x, y);
   if (stand) { rrect(ctx, -w * .06, h / 2, w * .12, w * .12, 3, '#1a1a20', INK, w * .006); rrect(ctx, -w * .2, h / 2 + w * .11, w * .4, w * .03, w * .01, '#1a1a20', INK, w * .006); }
   shadowOn(ctx, w * .04, w * .01); rrect(ctx, -w / 2 - b, -h / 2 - b, w + b * 2, h + b * 2, w * .02, '#16161c', INK, w * .006); shadowOff(ctx);
   ctx.save(); ctx.beginPath(); ctx.rect(-w / 2, -h / 2, w, h); ctx.clip(); ctx.translate(-w / 2, -h / 2); screen(ctx, w, h); ctx.restore();
-  ctx.save(); ctx.globalAlpha = .08; ctx.beginPath(); ctx.moveTo(-w / 2, -h / 2); ctx.lineTo(-w * .1, -h / 2); ctx.lineTo(-w * .4, h / 2); ctx.lineTo(-w / 2, h / 2); ctx.closePath(); ctx.fillStyle = '#fff'; ctx.fill(); ctx.restore();
+  if (glare) ctx.save(), ctx.globalAlpha = .08, ctx.beginPath(), ctx.moveTo(-w / 2, -h / 2);
+  if (glare) { ctx.lineTo(-w * .1, -h / 2); ctx.lineTo(-w * .4, h / 2); ctx.lineTo(-w / 2, h / 2); ctx.closePath(); ctx.fillStyle = '#fff'; ctx.fill(); ctx.restore(); }
   if (glow > 0) { ctx.globalCompositeOperation = 'screen'; ctx.fillStyle = rg(ctx, 0, 0, w * .3, w * .9, [[0, `rgba(120,220,230,${glow * .3})`], [1, 'rgba(80,200,220,0)']]); ctx.fillRect(-w, -w, w * 2, w * 2); }
   ctx.restore();
 }

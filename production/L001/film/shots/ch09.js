@@ -111,9 +111,9 @@ export const SHOTS = {
   '9|AGENT: No. Your new friend is': x => { const { ctx, t, T, cam, solo } = x, tf = W_(x, 'friend', 1.62);   // вставка: агент протягивает фото — на нём тот самый гость из окна
     if (solo) return; ctx.save(); shake(ctx, cam); const v = PO.view('home', cam, .1);
     PO.porch(ctx, v, t, T, { blur: 6, open: 1, home: { look: [-.2, .2], keys: [[0, 'nervous']], tremble: .6, R: { k: 1, to: [1290, 440] } } });
-    const k = E.outCubic(clamp((t - .1) / .5)), Hp = [lerp(-150, 560, k), lerp(1000, 760, k)];
+    const k = E.outCubic(clamp((t - .1) / .5)), Hp = [lerp(700, 700, k), lerp(1250, 880, k)];
     ctx.save(); const sc = 1 + .08 * gauss(t, tf, .2); B.photo(ctx, Hp[0] + 220, Hp[1] - 160, 420 * sc, -.06, guestPic); ctx.restore();
-    B.insertSleeve(ctx, [Hp[0] + 34, Hp[1] + 30], [-120, 1260], 36, B.CLOTH.agent1);   // рукав пиджака агента 1, манжета рубашки; кисть держит нижний край снимка
+    B.insertSleeve(ctx, [Hp[0] + 34, Hp[1] + 30], [Hp[0] - 40, H + 140], 36, B.CLOTH.agent1);   // снизу, от ближнего края   // рукав пиджака агента 1, манжета рубашки; кисть держит нижний край снимка
     ctx.restore(); },
   '9|Jensen never got that knock': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 1300, cy: 470, k: 1.6 }, cam, .2);   // та же плита, дом Дженсена: на почтовом ящике HUANG, за стеклом кожанка; фонарь горит, никто не стучит, мотылёк у лампы
     ctx.save(); shake(ctx, cam); PO.porch(ctx, v, t, T, { solo, huang: true, moth: true }); ctx.restore(); },
@@ -121,7 +121,8 @@ export const SHOTS = {
   '9|about a suspected Chinese spy': x => { const { ctx, t, T, cam, solo } = x, v = WA.view('mid', cam), ts = W_(x, 'spy', 1.54), tc = W_(x, 'circle', 2.44);   // средний: агент ФБР кладёт на стол фото силуэта с плашкой; на «circle» вокруг силуэта красный круг
     const put = E.outCubic(clamp((t - ts + .4) / .4));
     ctx.save(); shake(ctx, cam); WA.widePlate(ctx, v, 0, solo);
-    const r = person(ctx, v, t, T, { C: FBI, at: [1255, 880], fs: .6, view: 'threeQuarter', facing: -1, light: [-1, .1], keys: [[0, 'neutral']], look: [-.6, .5], lean: -.08 * (1 - put * .5), L: { k: 1 - put * .6, to: [1060, 800] } });
+    ctx.save(); { const yc = toS(v, [0, 764])[1]; ctx.beginPath(); ctx.rect(0, 0, W, yc); ctx.clip(); }   // агент стоит ЗА столом: ниже столешницы и стопки книг его не видно
+    const r = person(ctx, v, t, T, { C: FBI, at: [1255, 880], fs: .6, view: 'threeQuarter', facing: -1, light: [-1, .1], keys: [[0, 'neutral']], look: [-.6, .5], lean: -.08 * (1 - put * .5), L: { k: 1 - put * .6, to: [1060, 800] } }); ctx.restore();
     WA.seated(ctx, v, t, T, { C: CONG15, solo, noPlate: true, keys: [[0, 'neutral'], [ts + .3, 'nervous']], look: [.2, .6],
       deskTop: (c, vv) => { const P = toS(vv, [lerp(1080, 1010, put), lerp(770, 812, put)]); c.save(); c.translate(P[0], P[1]); c.scale(1, lerp(.8, .5, put)); B.photo(c, 0, 0, 150 * vv.k, .08, spyPic(clamp((t - tc) / .5))); c.restore(); } });
     ctx.restore(); },
@@ -147,7 +148,7 @@ export const SHOTS = {
     if (!solo) { ctx.save(); const g = ctx.createRadialGradient(W / 2, H / 2, H * .3, W / 2, H / 2, H * .9); g.addColorStop(0, 'rgba(255,240,210,0)'); g.addColorStop(1, 'rgba(255,240,210,.28)'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H); ctx.restore(); } },
   '9|Both chairs are empty now': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 960, cy: 700, k: 1.3 }, cam, .3), te = W_(x, 'empty', .7);   // та же ось, людей нет: два бокала там, где их держали; салфетка соскальзывает со стула
     if (solo) return; const a = R.A(); if (!a) return; ctx.save(); shake(ctx, cam); plate(ctx, a.plate, v);
-    const sl = E.inCubic(clamp((t - te) / .6)), N = toS(v, [1650 + 30 * sl, 905 + 150 * sl]); ctx.save(); ctx.translate(N[0], N[1]); ctx.rotate(.2 + 1.2 * sl); ctx.fillStyle = '#f4efe2'; ctx.strokeStyle = '#141014'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(-40 * v.k, -10 * v.k); ctx.lineTo(40 * v.k, -18 * v.k); ctx.lineTo(46 * v.k, 30 * v.k); ctx.lineTo(-30 * v.k, 36 * v.k); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
+    const sl = E.inCubic(clamp((t - te) / .6)), N = toS(v, [1590 + 30 * sl, 870 + 150 * sl]); ctx.save(); ctx.translate(N[0], N[1]); ctx.rotate(.2 + 1.2 * sl); ctx.fillStyle = '#f4efe2'; ctx.strokeStyle = '#141014'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(-40 * v.k, -10 * v.k); ctx.lineTo(40 * v.k, -18 * v.k); ctx.lineTo(46 * v.k, 30 * v.k); ctx.lineTo(-30 * v.k, 36 * v.k); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
     const [fx, fy] = R.flame(v); candle(ctx, fx, fy, v.k, .3 + .02 * Math.sin(t * 2.8)); ctx.restore(); },
   '9|America watched that table': x => { const { ctx, t, cam, solo, d } = x;   // отъезд на улицу: машины агентов нет, на мокром асфальте сухой прямоугольник
     if (solo) return; const a = SA(); if (!a) return; const u = E.inOutCubic(clamp(t / (d * .9))), v = cover({ cx: lerp(1250, 900, u), cy: lerp(600, 560, u), k: lerp(1.9, 1.05, u) });
@@ -155,17 +156,17 @@ export const SHOTS = {
   // ---------------- L06 кабинет Nvidia: письмо, совет, новый CEO, пресс-секретарь ----------------
   '9|On November 8, Jensen wrote a letter': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 1180, cy: 620, k: 1.25 }, cam, .3), tn = W_(x, 'November', .08), ts = W_(x, 'staff', 2.54);   // обратная: силуэт Дженсена у тёмного окна; на ноутбуке письмо — дата Nov 8, To: ALL STAFF
     ctx.save(); shake(ctx, cam); NV.revPlate(ctx, v, 0, solo);
-    silhouette(ctx, c => person(c, v, t, T, { C: JH, at: [1450, 735], fs: .44, view: 'side', facing: 1, light: [1, 0], keys: [[0, 'neutral']], look: [1, -.1], blinkOff: true }), { col: '#0a0c14', rim: 'rgba(170,200,255,.55)', rimDir: [1, -.2] });
+    silhouette(ctx, c => person(c, v, t, T, { C: JH, at: [1700, 760], fs: .46, view: 'side', facing: 1, light: [1, 0], keys: [[0, 'neutral']], look: [1, -.1], blinkOff: true }), { col: '#0a0c14', rim: 'rgba(170,200,255,.55)', rimDir: [1, -.2] });
     NV.revFront(ctx, v, 0, solo);
     if (!solo) { const P = toS(v, [1330, 905]); laptop(ctx, P[0], P[1], 300 * v.k, (c, w, h) => letterScreen(c, w, h, { date: clamp((t - tn) / .4), to: clamp((t - ts + .2) / .4) })); }
     ctx.restore(); },
   '9|In it, he admitted he had been': x => { const { ctx, t, cam, solo } = x, ta = W_(x, 'admitted', .64);   // вставка: экран ноутбука с письмом; на «admitted» курсор жмёт SEND -> SENT
     if (solo) return; ctx.save(); shake(ctx, cam); NV.revPlate(ctx, cover({ cx: 1330, cy: 860, k: 3 }), 6, false); ctx.fillStyle = 'rgba(0,0,0,.35)'; ctx.fillRect(0, 0, W, H);
     const z = 1 + (cam.z - 1) * .5; ctx.translate(W / 2, H / 2); ctx.scale(z, z); ctx.translate(-W / 2, -H / 2);
-    laptop(ctx, W / 2, H * .97, 1500, (c, w, h) => letterScreen(c, w, h, { sent: clamp((t - ta) / .1), cursor: clamp((t - ta + .5) / .45) }));
+    laptop(ctx, W / 2, H * .95, 1300, (c, w, h) => letterScreen(c, w, h, { sent: clamp((t - ta) / .1), cursor: clamp((t - ta + .5) / .45) }));
     ctx.restore(); },
   '9|JENSEN: I was unfaithful': x => { const { ctx, t, T, cam, solo } = x, v = NV.view('cu', cam), tw = W_(x, 'wife', 1.22);   // крупно Дженсен: опускает глаза, лампа тускнеет
-    const down = up(t, .2, .6);
+    const down = up(t, 0, .35);
     ctx.save(); shake(ctx, cam);
     NV.seated(ctx, v, t, T, { C: JH, sp: 'JENSEN', solo, blur: 3, keys: [[0, 'nervous']], rest: 'flat', look: [0, lerp(.1, .85, down)], tilt: .06 * down, lean: .04 * down });
     if (!solo) { ctx.fillStyle = `rgba(0,0,4,${.35 * up(t, tw - .3, .8)})`; ctx.fillRect(0, 0, W, H); }
@@ -186,17 +187,17 @@ export const SHOTS = {
   '9|SPOKESMAN: None at all': x => { const { ctx, t, T, cam, solo, d } = x, v = NV.view('front', cam, .2);   // средний: пресс-секретарь Nvidia в кабинете с зелёной полосой опускает телефон
     const down = up(t, d - .6, .4);
     ctx.save(); shake(ctx, cam); NV.widePlate(ctx, v, 0, solo);
-    NV.standing(ctx, v, t, T, { C: SPOKES, at: 'front', dx: 60, sp: 'SPOKESMAN', solo, view: 'threeQuarter', facing: 1, look: [.3, 0], L: { k: 1 - down, to: [560 + 60 - 70, 1052 - 660] }, heldL: down < .6 ? (c, P, s) => PR.handsetHeld(c, P, s, -1) : null });
+    NV.standing(ctx, v, t, T, { C: SPOKES, at: 'front', dx: 60, sp: 'SPOKESMAN', solo, view: 'threeQuarter', facing: 1, look: [.3, 0], L: { k: 1 - down, to: [556, 612] }, heldL: down < .6 ? (c, P, s) => PR.handsetHeld(c, P, s, -1) : null });
     ctx.restore(); },
   // ---------------- L13 редакция ----------------
   '9|President Trump said the FBI': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 1530, cy: 430, k: 3.4 }, cam, .15), tf = W_(x, 'FBI', 1.04);   // средний: ТВ над столами — экстренный выпуск; на «FBI» бегущая строка
-    ctx.save(); shake(ctx, cam); NR.room(ctx, v, t, T, { solo, tv: { scene: NR.sceneWhiteHouse, breaking: true, bug: 'NEWS', ticker: 'TRUMP: FBI IS LOOKING INTO IT', tickerBand: .19, tickerK: up(t, tf, .35), tickerRun: 0 } }); ctx.restore(); },
+    ctx.save(); shake(ctx, cam); NR.room(ctx, v, t, T, { solo, tv: { scene: NR.sceneWhiteHouse, breaking: true, ticker: 'TRUMP: FBI IS LOOKING INTO IT', tickerBand: .19, tickerK: up(t, tf, .35), tickerRun: 0 } }); ctx.restore(); },
   '9|REPORTER: Any reason given': x => { const { ctx, t, T, cam, solo } = x, v = NR.view('rep', cam, .2);   // крупно репортёр говорит в трубку
     ctx.save(); shake(ctx, cam); NR.room(ctx, v, t, T, { solo, blur: 3, rep: { handset: 'L', look: [.5, .1], keys: [[0, 'neutral']] } }); ctx.restore(); },
   "9|When China's DeepSeek released": x => { const { ctx, t, T, cam, solo } = x, v = NR.view('tv', cam, .1), td = W_(x, 'DeepSeek', .6), tc = W_(x, 'cheap', 1.72);   // ТВ крупно: выпуск о DeepSeek; плашка DEEPSEEK · JAN 2025, ценник CHEAP AI MODEL
     ctx.save(); shake(ctx, cam); NR.room(ctx, v, t, T, { solo, blur: 6, tvBezel: true, tv: { scene: NR.sceneDeepSeek(clamp((t - tc) / .4)), bug: 'NEWS', chyron: 'DEEPSEEK · JAN 2025', chyronK: up(t, td, .35), chyronSize: .08 } }); ctx.restore(); },
   '9|CNN later reported that US intelligence': x => { const { ctx, t, T, cam, solo } = x, v = NR.view('tv', cam, .1), ts = W_(x, 'sure', 2.94), tr = W_(x, 'risk', 5.64);   // ТВ крупно: экстренный выпуск; на «sure» бегущая строка; на «risk» плашка SOURCES: A RISK
-    ctx.save(); shake(ctx, cam); NR.room(ctx, v, t, T, { solo, blur: 6, tvBezel: true, tv: { scene: NR.sceneAlice, breaking: true, bug: 'NEWS', ticker: "US INTEL ISN'T SURE SHE SPIED · SOURCE: CNN · ", tickerK: up(t, ts, .35), tickerRun: Math.max(0, t - ts - .35), chyron: t >= tr ? 'SOURCES: A RISK' : null, chyronK: up(t, tr, .3), chyronSize: .09 } }); ctx.restore(); },
+    ctx.save(); shake(ctx, cam); NR.room(ctx, v, t, T, { solo, blur: 6, tvBezel: true, tv: { scene: NR.sceneAlice, breaking: true, ticker: "US INTEL ISN'T SURE SHE SPIED · SOURCE: CNN · ", tickerK: up(t, ts, .35), tickerRun: Math.max(0, t - ts - .35), chyron: t >= tr ? 'SOURCES: A RISK' : null, chyronK: up(t, tr, .3), chyronSize: .09 } }); ctx.restore(); },
   // ---------------- L19 трейдеры ----------------
   '9|And its next earnings report': x => { const { ctx, t, cam, solo } = x, te = W_(x, 'earnings', .44), tf = W_(x, 'five', 1.86);   // вставка: настольный календарь у тикера NVDA; на «earnings» обводится дата EARNINGS; на «five» — IN 5 DAYS
     if (solo) return; ctx.save(); shake(ctx, cam); const a = TD.A(); if (a) plate(ctx, a.b6, cover({ cx: 960, cy: 620, k: 2.4 * (1 + (cam.z - 1) * .5) }));
@@ -211,7 +212,7 @@ export const SHOTS = {
     if (solo) return; ctx.save(); shake(ctx, cam); const a = TD.A(); if (a) plate(ctx, a.b6, cover({ cx: 1330, cy: 560, k: 2.6 }));
     let P = [0, 0]; B.tv(ctx, W / 2, H * .48, 1500 * (1 + (cam.z - 1) * .5), 0, t, { scene: (c, w, h) => { P = B.retirementScreen(c, w, h, { red: clamp((t - tr) / .35), tap: t - tr - .55 }); } });
     const tap = Math.max(0, Math.sin(clamp((t - tr - .45) / .2) * Math.PI)), z = 1 + (cam.z - 1) * .5, Hp = [W / 2 + (806 - W / 2) * z + 18, H * .48 + (447 - H * .48) * z + 22 - 30 * (1 - tap)];
-    B.insertSleeve(ctx, Hp, [Hp[0] + 260, H + 160], 30, B.CLOTH.analyst2);   // рукав чёрного пиджака аналитика 2
+    B.insertSleeve(ctx, Hp, [Hp[0] + 520, -60], 30, B.CLOTH.analyst2);   // сверху, от ближнего края   // рукав чёрного пиджака аналитика 2
     ctx.restore(); },
   '9|the index behind millions': x => { const { ctx, t, cam, solo } = x, tr = W_(x, 'retirement', 1.56);   // крупно экран пенсионного счёта: на «retirement» плашка 401(K) · IRA, кусок NVDA подсвечен
     if (solo) return; ctx.save(); shake(ctx, cam); const a = TD.A(); if (a) plate(ctx, a.b6, cover({ cx: 1330, cy: 560, k: 2.6 }));

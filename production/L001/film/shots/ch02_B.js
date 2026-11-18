@@ -66,8 +66,7 @@ export const s54 = x => { const { ctx, t, T, cam, solo, s } = x, v = DN.view('wi
 export const s55 = x => { const { ctx, t, T, cam, solo } = x, v = DN.view('wide', cam, .3);   // трое садятся в кабинку; на стекле SAN JOSE; подписи по очереди (ядро)
   const sit = q => ({ dy: -110 * (1 - E.outBack(clamp((t - q) / .45))) });
   ctx.save(); shake(ctx, cam);
-  DN.booth(ctx, v, t, T, { solo, under: (c, vv) => glassText(c, vv, 'SAN JOSE', [960, 120]), seated: { L1: { C: J93, keys: [[0, 'smile']], look: [.5, 0], pose: sit(.1) }, L2: { C: CU, keys: [[0, 'smile']], look: [.6, .1], pose: sit(.35) }, R1: { C: CH, keys: [[0, 'neutral']], look: [-.6, 0], pose: sit(.6) } },
-    onTable: (c, vv) => { mugAt(c, toS(vv, [640, 830]), vv.k * .9, 1); mugAt(c, toS(vv, [1260, 830]), vv.k * .9, 1); } });
+  DN.booth(ctx, v, t, T, { solo, under: (c, vv) => glassText(c, vv, 'SAN JOSE', [960, 120]), seated: { L1: { C: J93, keys: [[0, 'smile']], look: [.5, 0], pose: sit(.1) }, L2: { C: CU, keys: [[0, 'smile']], look: [.6, .1], pose: sit(.35) }, R1: { C: CH, keys: [[0, 'neutral']], look: [-.6, 0], pose: sit(.6) } } });   // кружки — нарисованные на плейте
   ctx.restore(); };
 export const s57 = x => { const { ctx, t, T, cam, solo, s, d } = x, tw = s.whip?.t ?? d * .45, wu = inOutExpo((t - tw + .1) / WHIP_DUR);   // официантка щёлкает ручкой над блокнотом -> вип-пан -> Дженсен стучит пальцем по салфетке с кубом
   const v = lerpView(DN.view('aisleR', { ...cam, dx: 0 }), DN.view('L1', { ...cam, dx: 0 }), clamp(wu)), click = gauss(t, .45, .05) > .5, tap = Math.abs(Math.sin(Math.max(0, t - tw - .2) * 10)) * (t > tw + .2 ? 1 : 0);
@@ -85,7 +84,7 @@ export const s58 = x => { const { ctx, t, T, cam, solo } = x, tm = W_(x, 'menu',
   ctx.save(); ctx.translate(P[0], P[1]); ctx.rotate(-.9 * tilt); ctx.fillStyle = 'rgba(200,225,235,.45)'; ctx.strokeStyle = '#141014'; ctx.lineWidth = 6; ctx.beginPath(); ctx.ellipse(0, 40, 90, 100, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
   ctx.fillStyle = '#3a2416'; ctx.beginPath(); ctx.ellipse(0, 70, 80, 60, 0, 0, Math.PI); ctx.fill(); ctx.fillStyle = '#1a1a1e'; ctx.fillRect(-60, -80, 120, 30); ctx.strokeRect(-60, -80, 120, 30); ctx.lineWidth = 16; ctx.beginPath(); ctx.moveTo(80, -40); ctx.quadraticCurveTo(150, 0, 85, 80); ctx.stroke(); ctx.restore();
   if (tilt > .7) { ctx.strokeStyle = '#3a2416'; ctx.lineWidth = 10; ctx.beginPath(); ctx.moveTo(P[0] - 110, P[1] + 40); ctx.quadraticCurveTo(M[0] - 10, P[1] + 120, M[0], M[1] - 80); ctx.stroke(); }
-  B.insertSleeve(ctx, [P[0] + 130, P[1] - 20], [W + 200, P[1] - 260], 30, WAIT_CLOTH);   // рукав формы официантки
+  B.insertSleeve(ctx, [P[0] + 130, P[1] - 20], [W + 90, P[1] + 30], 30, WAIT_CLOTH);   // рукав формы официантки
   ctx.restore(); };
 export const s59 = x => { const { ctx, t, cam, solo } = x, tp = W_(x, 'plaque', 1.2), v = DN.view('plaque', cam, .1);   // на «plaque» над той же кабинкой привинчивают табличку; на «trillion-dollar» плашка 2023 (ядро)
   if (solo) return; const a = DN.A(); if (!a) return; ctx.save(); shake(ctx, cam); plate(ctx, a.day, v);
@@ -95,8 +94,8 @@ export const s62 = x => { const { ctx, t, T, cam, solo } = x, v = DN.view('wide'
   ctx.save(); shake(ctx, cam);
   DN.booth(ctx, v, t, T, { solo, night: true, under: (c, vv) => glassText(c, vv, '1997', [960, 120]),
     seated: { L1: { C: J97, keys: [[0, 'neutral']], look: [.5, .3] }, L2: { C: CU, keys: [[0, 'neutral']], look: [.4, .4] }, R1: { C: CH, sp: 'CHRIS', keys: [[0, 'neutral']], look: [-.5, .3], R: { k: 1, to: [1400, 900] } } },
-    onTable: (c, vv) => { for (const [px, py, r] of [[650, 800, -.2], [720, 830, .3], [800, 790, 0], [1120, 800, .1], [1190, 840, -.3], [1260, 790, .2]]) mugAt(c, toS(vv, [px, py]), vv.k * .8, 0, r);
-      payroll(c, toS(vv, [960, 900]), vv.k * .8); mugAt(c, toS(vv, [1385, 920]), vv.k * .85, 0, .3 * Math.sin(t * 6)); } });
+    onTable: (c, vv) => { for (const [px, py] of [[560, 840], [690, 900], [800, 830], [1130, 830], [1240, 900], [1350, 850]]) mugAt(c, toS(vv, [px, py]), vv.k * 1.25, 0, 0);   // гора пустых кружек — стоят на столешнице
+      payroll(c, toS(vv, [960, 920]), vv.k * 1.1); mugAt(c, toS(vv, [1420, 940]), vv.k * 1.25, 0, .25 * Math.sin(t * 3)); } });
   ctx.restore(); };
 export const s63 = x => { const { ctx, t, cam, solo } = x;   // вставка: банка PAYROLL — на дне одна тонкая пачка
   if (solo) return; const a = DN.A(); if (!a) return; ctx.save(); shake(ctx, cam); plate(ctx, a.nightB, cover({ cx: 960, cy: 820, k: 2.4 })); payroll(ctx, [W / 2, H * .9], 3.6 * (1 + (cam.z - 1) * .5)); ctx.restore(); };
@@ -104,7 +103,7 @@ export const s64 = x => { const { ctx, t, T, cam, solo, s, d } = x, tw = s.whip?
   const v = lerpView(DN.view('R1', { ...cam, dx: 0 }), DN.view('L1', { ...cam, dx: 0 }), clamp(wu)), push = E.inOutCubic(clamp((t - tw - .25) / .6)), brow = up(t, .3, .25);
   ctx.save(); shake(ctx, cam);
   DN.booth(ctx, v, t, T, { solo, night: true, blur: true,
-    seated: { L1: { C: J97, sp: 'JENSEN', keys: [[0, 'neutral']], look: [.6, .3], R: { k: 1, to: [lerp(560, 700, push), 828] } }, L2: { C: CU, look: [.4, .3] }, R1: { C: CH, sp: 'CHRIS', keys: [[0, 'neutral']], look: [-.5, 0], brows: [lerp(0, 34, brow), -.2] } },
+    seated: { L1: { C: J97, sp: 'JENSEN', keys: [[0, 'neutral']], look: [.6, .3], R: { k: 1, to: [lerp(578, 718, push), 836] } } /* кисть на левом краю тарелки, двигает её */, L2: { C: CU, look: [.4, .3] }, R1: { C: CH, sp: 'CHRIS', keys: [[0, 'neutral']], look: [-.5, 0], brows: [lerp(0, 34, brow), -.2] } },
     onTable: (c, vv) => { pancakes(c, toS(vv, [lerp(640, 780, push), 838]), vv.k * .8); for (const [px, py] of [[1150, 800], [1250, 830]]) mugAt(c, toS(vv, [px, py]), vv.k * .8, 0); } });
   ctx.restore(); };
 // ---------- T-desk: стол Denny's сверху (#56), вещи родителей (#36) ----------
@@ -112,8 +111,11 @@ export const s56 = x => { const { ctx, t, cam, solo } = x, t3 = W_(x, '3D', 2.36
   if (solo) return; const a = A(); if (!a) return; const v = cover({ cx: 960, cy: 540, k: 1.04 * (1 + (cam.z - 1) * .5) }); ctx.save(); shake(ctx, cam); plate(ctx, a.top, v);
   const sq = clamp((t - .2) / 1.0), cube = clamp((t - 1.3) / .7), P = toS(v, [960, 500]); napkin(ctx, P, v.k * 1.7, sq, cube, clamp((t - t3) / .2), 1);
   const pen = sq < 1 ? (() => { const n = sq * 4, i = Math.min(3, Math.floor(n)), k = n - i, pts = [[-36, -10], [26, -10], [26, 52], [-36, 52], [-36, -10]]; return [lerp(pts[i][0], pts[i + 1][0], k), lerp(pts[i][1], pts[i + 1][1], k)]; })() : [26 + 30 * cube, -10 - 30 * cube];
-  const Hp = [P[0] + pen[0] * 1.7 * v.k + 30, P[1] + pen[1] * 1.7 * v.k + 30]; ctx.strokeStyle = '#2b3a66'; ctx.lineWidth = 10; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(Hp[0] - 26, Hp[1] - 26); ctx.lineTo(Hp[0] + 40, Hp[1] + 40); ctx.stroke();
-  B.insertSleeve(ctx, [Hp[0] + 20, Hp[1] + 20], [Hp[0] + 420, H + 260], 26, ['#5f8a74', '#3a6050', '#1c3428'], null);   // рука Дженсена-1993 (зелёное поло) снизу справа
+  const Tp = [P[0] + pen[0] * 1.7 * v.k, P[1] + pen[1] * 1.7 * v.k], Hd = [Tp[0] + 32, Tp[1] + 10];          // кончик ручки — на линии рисунка; кисть чуть выше по ручке
+  B.insertSleeve(ctx, Hd, [Hd[0] + 150, H + 140], 26, ['#5f8a74', '#3a6050', '#1c3428']);                      // рука Дженсена-1993: зелёное поло, белая манжета, снизу справа
+  ctx.save(); ctx.lineCap = 'round'; ctx.strokeStyle = '#141014'; ctx.lineWidth = 14; ctx.beginPath(); ctx.moveTo(Tp[0], Tp[1]); ctx.lineTo(Tp[0] + 96, Tp[1] + 30); ctx.stroke();   // ручка поверх руки: тёмный корпус,
+  ctx.strokeStyle = '#2b3a66'; ctx.lineWidth = 9; ctx.stroke(); ctx.strokeStyle = '#d8d4c8'; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(Tp[0], Tp[1]); ctx.lineTo(Tp[0] + 9, Tp[1] + 3); ctx.stroke();   // светлый наконечник
+  ctx.fillStyle = '#141014'; ctx.beginPath(); ctx.arc(Hd[0], Hd[1], 15, 0, Math.PI * 2); ctx.fill(); ctx.restore();                                  // кисть-точка поверх ручки
   ctx.restore(); };
 // вещь родителей сверху (рисунок в стиле: контур туши, плоские заливки): kind 0..5
 function belonging(ctx, kind, s) { ctx.lineJoin = 'round'; ctx.lineCap = 'round'; ctx.strokeStyle = '#141014'; ctx.lineWidth = 5 * s; const f = (c) => { ctx.fillStyle = c; ctx.fill(); ctx.stroke(); };
@@ -153,12 +155,15 @@ export const s53 = x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 
   const tray = up(t, tb - .2, .35), turn = t > tb - .35;
   ctx.save(); shake(ctx, cam);
   const r = dishpit(ctx, v, t, T, { solo, night: true, clock: 1, view: turn ? 'threeQuarter' : 'back', stack: 16 + 30 * clamp((t - ts) / 1.2), sway: Math.sin(t * 4) * .8, look: [.4, -.6],
-    p: tray > .05 ? { R: { k: 1, to: [1120, 700] }, L: { k: 1, to: [1000, 705] }, under: (c, o) => { if (tb != null && t > tb) { const P = [o.head[0] - 20 * o.s, o.head[1] + 330 * o.s]; c.save(); c.translate(P[0], P[1]); c.fillStyle = '#f2c230'; c.strokeStyle = '#141014'; c.lineWidth = 3; c.beginPath(); c.roundRect(-46 * o.s, -16 * o.s, 92 * o.s, 32 * o.s, 4); c.fill(); c.stroke(); B.txt(c, 'BUSBOY', 0, 0, 18 * o.s, { align: 'center', w: 900 }); c.restore(); } } } : null });
-  if (r && tray > .05) { const P = [(r.hl[0] + r.hr[0]) / 2, Math.min(r.hl[1], r.hr[1]) - 6]; ctx.save(); ctx.fillStyle = '#7a7e88'; ctx.strokeStyle = '#141014'; ctx.lineWidth = 4; ctx.beginPath(); ctx.ellipse(P[0], P[1] + 30 * (1 - tray), 120 * r.s, 18 * r.s, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore(); }
+    p: tray > .05 ? { R: { k: 1, to: [1125, 640] }, L: { k: 1, to: [995, 645] }, under: (c, o) => { if (tb != null && t > tb) { const P = [o.head[0] - 20 * o.s, o.head[1] + 330 * o.s]; c.save(); c.translate(P[0], P[1]); c.fillStyle = '#f2c230'; c.strokeStyle = '#141014'; c.lineWidth = 3; c.beginPath(); c.roundRect(-46 * o.s, -16 * o.s, 92 * o.s, 32 * o.s, 4); c.fill(); c.stroke(); B.txt(c, 'BUSBOY', 0, 0, 18 * o.s, { align: 'center', w: 900 }); c.restore(); } } } : null });
+  if (r && tray > .05) { const P = [(r.hl[0] + r.hr[0]) / 2, (r.hl[1] + r.hr[1]) / 2 - 4 * r.s], hw = Math.max(70 * r.s, Math.abs(r.hr[0] - r.hl[0]) / 2 + 6 * r.s);   // поднос: края — на кистях
+    ctx.save(); ctx.fillStyle = '#7a7e88'; ctx.strokeStyle = '#141014'; ctx.lineWidth = 4; ctx.beginPath(); ctx.ellipse(P[0], P[1], hw, 18 * r.s, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#141014'; for (const Q of [r.hl, r.hr]) { ctx.beginPath(); ctx.arc(Q[0], Q[1], 12 * r.s, 0, Math.PI * 2); ctx.fill(); } ctx.restore(); }   // правило хвата: кисти-точки поверх края подноса
   ctx.restore(); };
 
 // ---------- L15 крыльцо родственников (bg_relatives_porch) ----------
-const RP = { aunt: { at: [800, 705], fs: .62 }, uncle: { at: [1330, 905], fs: .7 }, kids: [[360, 1000], [560, 1010]], kfs: .48, case: [[360, 1000], [560, 1010]], light: [.6, -.8] };
+const RP = { aunt: { at: [835, 690], fs: .5 },   // тётя сидит НА скамье (сиденье y≈688, высота сиденья ≈90 px плейта) — масштаб под скамью
+   uncle: { at: [1330, 905], fs: .7 }, kids: [[360, 1000], [560, 1010]], kfs: .48, case: [[360, 1000], [560, 1010]], light: [.6, -.8] };
 function suitcase(ctx, P, s) { ctx.save(); ctx.translate(P[0], P[1]); ctx.fillStyle = '#7a4a24'; ctx.strokeStyle = '#141014'; ctx.lineWidth = 4 * s; ctx.beginPath(); ctx.roundRect(-110 * s, -120 * s, 220 * s, 120 * s, 10 * s); ctx.fill(); ctx.stroke();
   ctx.fillStyle = '#c9a54a'; ctx.fillRect(-90 * s, -70 * s, 16 * s, 14 * s); ctx.fillRect(74 * s, -70 * s, 16 * s, 14 * s); ctx.strokeStyle = '#3a2412'; ctx.lineWidth = 8 * s; ctx.beginPath(); ctx.moveTo(-110 * s, -40 * s); ctx.lineTo(110 * s, -40 * s); ctx.stroke(); ctx.restore(); }
 // брошюра в руке тёти: белое здание, VERY STRICT; line — строка FOR TROUBLED BOYS
@@ -172,7 +177,7 @@ function porch(ctx, v, t, T, o) {
   if (!o.solo) for (const P of RP.case) suitcase(ctx, toS(v, P), .75 * v.k);
   const out = {};
   out.aunt = person(ctx, v, t, T, { C: AU, at: RP.aunt.at, fs: RP.aunt.fs, pin: 'seat', stance: 'sitL', view: 'threeQuarter', facing: -1, sp: 'AUNT', light: RP.light, keys: [[0, 'smile']], look: [-.2, .4], ...(o.aunt || {}),
-    L: { k: 1, to: [760, 610] }, R: { k: 1, to: [850, 615] }, heldR: (c, P, s) => brochure(c, [P[0] - 40 * s, P[1] - 60 * s], 150 * s, -.1, o.line || 0) });
+    L: { k: 1, to: [828, 600] }, R: { k: 1, to: [880, 604] }, heldR: (c, P, s) => brochure(c, [P[0] - 40 * s, P[1] - 60 * s], 150 * s, -.1, o.line || 0) });
   RP.kids.forEach((P, i) => { out['k' + i] = person(ctx, v, t, T, { C: i ? BR : YJ, at: [P[0], P[1] - 120 * .75], fs: RP.kfs, pin: 'seat', stance: 'sitR', view: 'threeQuarter', facing: 1, light: RP.light, keys: [[0, o.kidsEmo || 'smile']], look: [.6, -.2], seed: 4 + i }); });
   out.uncle = person(ctx, v, t, T, { C: UN, at: RP.uncle.at, fs: RP.uncle.fs, view: 'threeQuarter', facing: -1, sp: 'UNCLE', light: RP.light, keys: [[0, 'smile']], shadow: !o.solo, look: [-.5, .2], ...(o.uncle || {}) });
   return out;

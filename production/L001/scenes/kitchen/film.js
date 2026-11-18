@@ -10,7 +10,7 @@
 //                     поднимается — сетка поваров читается как квадрат кристалла с выводами · C3 банкетный стол: на «moment»
 //                     блины падают сразу на ВСЕ тарелки, гости ликуют, 1000 / 1000
 // Параметры: --set shot=monitor|one|grid|sync|chip|feast — один план; --set solo=k|w — герои одни на чёрном/белом;
-//   --set off=0 — с «The chip was a hit.» в начале.
+//   --set off=0 — с «The chip was a hit.» в начале; --set at=…,dur=… — перетайминг под голос финала (см. sh ниже).
 import { THREE, V, look, keyed, E, clamp, lerp } from 'engine';
 import { makeHall } from './hall.js';
 import { makeBanquet } from './banquet.js';
@@ -202,9 +202,16 @@ export default {
           label(t, 'NVIDIA CHIP', `plates: ${n} / 1000`, T.C3, t > 14.03 ? Math.exp(-(t - 14.03) * 5) : 0);
         } },
     ];
-    const sh = s => { const w = fn => fn && ((t, f) => fn(t + OFF, f)); return { ...s, from: Math.max(0, s.from - OFF), to: s.to - OFF, camera: w(s.camera), under: w(s.under), chars: w(s.chars), update: w(s.update) }; };
+    // --set at=<changed>,<An>,<Nvidia's>,<one>,<at>,<moment> --set dur=<с>: перетайминг под текущий голос (финал L001, clips3d/ch02.js).
+    // Время ролика (0 = «And the trick…») -> внутреннее время сцены кусочно-линейно по якорям: слова черновика -> слова голоса,
+    // стыки планов (An = B, Nvidia's = C1) совпадают с монтажными склейками кадр в кадр. Без at — как было (время черновика).
+    const SCN = [OFF, 2.33, T.B, T.C1, 12.19, 13.12, 14.14, T.END];                 // якоря во внутреннем времени (слова lines_draft)
+    const AT = o.at ? [0, ...String(o.at).split(',').map(Number), +o.dur || (T.END - OFF)] : SCN.map(x => x - OFF);
+    const pl = (x, A, B) => { if (x <= A[0]) return B[0] + (x - A[0]); for (let i = 1; i < A.length; i++) if (x <= A[i]) return B[i - 1] + (B[i] - B[i - 1]) * (x - A[i - 1]) / (A[i] - A[i - 1]); return B[B.length - 1] + (x - A[A.length - 1]); };
+    const warp = u => pl(u, AT, SCN), unwarp = t => pl(t, SCN, AT);
+    const sh = s => { const w = fn => fn && ((t, f) => fn(warp(t), f)); return { ...s, from: Math.max(0, unwarp(s.from)), to: unwarp(s.to), camera: w(s.camera), under: w(s.under), chars: w(s.chars), update: w(s.update) }; };
     const pick = (o.shot === 'all' ? scenes : scenes.filter(s => s.id === o.shot)).map(sh);
     if (o.shot !== 'all') { const s = pick[0]; return { duration: s.to, frames: Math.round(s.to * 30), scenes: [{ ...s, from: 0 }] }; }
-    return { duration: T.END - OFF, scenes: pick };
+    return { duration: AT[AT.length - 1], scenes: pick };
   },
 };

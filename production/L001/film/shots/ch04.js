@@ -45,14 +45,20 @@ export function glassOver(ctx, v, a) {
 // экран видеозвонка: покупатель в тёмной комнате (холст 1920×1080). o = { lean 0..1 — наклон к камере, case 0..1 — чемодан к камере }
 function callScene(t, T, o) {
   return PA.offscreen('call', c => {
-    const g = c.createLinearGradient(0, 0, 0, 1080); g.addColorStop(0, '#2a1c22'); g.addColorStop(1, '#0c080a'); c.fillStyle = g; c.fillRect(0, 0, 1920, 1080);
-    c.fillStyle = '#3a2a24'; c.fillRect(0, 760, 1920, 320); c.fillStyle = 'rgba(255,190,110,.18)'; c.beginPath(); c.arc(1500, 300, 420, 0, 6.283); c.fill();   // лампа за спиной
-    c.fillStyle = '#4a3020'; c.fillRect(1380, 120, 260, 360); c.fillStyle = '#7a5a34'; c.fillRect(1400, 140, 220, 320);                                // картина на стене
-    const z = 1 + .35 * (o.lean || 0), v = { cx: 960, cy: 650 - 40 * (o.lean || 0), k: 2.3 * z };
+    // комната покупателя ночью: стена, окно с жалюзи на ночной город, книжная полка; покупатель по грудь (крупность веб-камеры)
+    const g = c.createLinearGradient(0, 0, 0, 1080); g.addColorStop(0, '#3a2a2c'); g.addColorStop(1, '#1a1214'); c.fillStyle = g; c.fillRect(0, 0, 1920, 1080);
+    const ink = '#141014', box = (x0, y0, x1, y1, f, lw = 8) => { c.fillStyle = f; c.fillRect(x0, y0, x1 - x0, y1 - y0); c.lineWidth = lw; c.strokeStyle = ink; c.strokeRect(x0, y0, x1 - x0, y1 - y0); };
+    box(1230, 110, 1790, 720, '#14203a'); for (let i = 0; i < 26; i++) { c.fillStyle = i % 3 ? 'rgba(255,214,140,.7)' : 'rgba(140,200,255,.6)'; c.fillRect(1260 + (i * 97) % 500, 420 + (i * 53) % 260, 10, 14); }
+    for (let y = 130; y < 700; y += 36) { c.fillStyle = '#b89a70'; c.fillRect(1240, y, 540, 14); c.fillStyle = 'rgba(0,0,0,.35)'; c.fillRect(1240, y + 12, 540, 3); }
+    box(1230, 110, 1790, 720, null, 10); box(1210, 718, 1810, 744, '#5a3a24', 6);
+    box(110, 160, 560, 1000, '#4a2e1c'); for (const y of [360, 560, 760]) box(110, y, 560, y + 18, '#3a2214', 5);
+    for (let r = 0; r < 4; r++) { let x = 130; for (let k = 0; k < 9 && x < 530; k++) { const w = 26 + (k * 17 + r * 11) % 22, h = 120 + (k * 29 + r * 7) % 60, y = 180 + r * 200 + (180 - h); box(x, y, x + w, 180 + r * 200 + 178, ['#7a2a24', '#2a4a6a', '#6a5a2a', '#3a5a3a'][(k + r) % 4], 4); x += w + 4; } }
+    const z = 1 + .3 * (o.lean || 0), v = { cx: 960, cy: 590 - 30 * (o.lean || 0), k: 3.0 * z };
     const hold = clamp(o.case || 0);
-    const P = person(c, RT, v, t, T, { at: [960, 1010], fs: .62, pin: 'feet', f: 1, view: null, sp: 'RENTER', keys: [[0, 'smug']], look: [0, .1], shade: shadeOf([1, -.6], '#ffb070'), shadow: false,
-      R: { k: hold, to: [1080, 820] }, L: { k: hold, to: [840, 820] } });
-    void P; if (hold > .02) { const p = toS(v, [960, 900 - 120 * hold]); PA.cashCase(c, p[0], p[1] + 160 * (1 - hold), (230 + 170 * hold) * v.k * .62, 0); }
+    const P = person(c, RT, v, t, T, { at: [960, 1010], fs: .62, pin: 'feet', f: 1, view: null, sp: 'RENTER', keys: [[0, 'smug']], look: [0, .1], shade: shadeOf([-1, -.5], '#ffb070'), shadow: false,
+      R: { k: hold, to: [1045, 770 + 220 * (1 - hold) / (3 * .62)] }, L: { k: hold, to: [875, 770 + 220 * (1 - hold) / (3 * .62)] } });
+    void P; if (hold > .02) { const p = toS(v, [960, 790 - 40 * hold]), w = 210 * v.k * .62; c.save(); c.translate(p[0], p[1] + 220 * (1 - hold)); PA.rrect(c, -w / 2, -w * .42, w, w * .5, w * .04, '#3a2416', '#141014', w * .02); for (let r = 0; r < 2; r++) for (let k = 0; k < 4; k++) { const bx = -w * .44 + k * w * .22, by = -w * .38 + r * w * .22; PA.rrect(c, bx, by, w * .2, w * .19, w * .01, '#7aa86a', '#141014', w * .006); c.fillStyle = '#E8E0C0'; c.fillRect(bx + w * .075, by, w * .05, w * .19); } PA.rrect(c, -w / 2, w * .08, w, w * .06, w * .02, '#2a1a0e', '#141014', w * .015); c.restore();
+      for (const q of [[875, 770], [1045, 770]]) { const h = toS(v, q); ell(c, h[0], h[1] + 220 * (1 - hold), 12 * .62 * v.k, 12 * .62 * v.k, '#141014', null); } }
     c.fillStyle = 'rgba(0,0,0,.35)'; c.fillRect(0, 0, 1920, 70); c.fillStyle = '#ff4a3a'; c.beginPath(); c.arc(50, 35, 13, 0, 6.283); c.fill();
     PA.label(c, 'VIDEO CALL · ENCRYPTED', 80, 36, 30, '#e8e0d0', { align: 'left' }); PA.label(c, '00:0' + Math.floor(3 + T % 6), 1840, 36, 30, '#e8e0d0');
   });
@@ -62,7 +68,7 @@ function callMonitor(ctx, v, t, T, cam, o) {
   MS.room(ctx, v, 'O', 8);
   const buf = callScene(t, T, o), z = cam.z;
   ctx.save(); ctx.translate(W / 2, H / 2); ctx.scale(z, z); ctx.translate(-W / 2, -H / 2);
-  PA.monitor(ctx, 960, 470, 1320, (c, w, h) => c.drawImage(buf, 0, 0, w, h), { glow: .35 });
+  PA.monitor(ctx, 960, 470, 1320, (c, w, h) => c.drawImage(buf, 0, 0, w, h), { glow: 0, glare: false });
   ctx.restore();
 }
 
@@ -150,7 +156,7 @@ export const SHOTS = {
   // ---------- карта, клиенты ----------
   '4|Not one chip had to enter China': x => { const { ctx, t, cam, solo } = x, tn = Math.max(.12, W_(x, 'Not', 0) + .12), v = camView({ cx: 920, cy: 300, k: 2.4 }, cam, .1);   // ВСТАВКА карта на стене офиса: на «Not» на Китай бьёт штамп NOT ONE CHIP, Китай темнеет; толчок
     ctx.save(); shake(ctx, cam); MS.room(ctx, v, 'R', 8, solo);
-    if (!solo) { const z = cam.z; ctx.save(); ctx.translate(W / 2, H / 2); ctx.scale(z, z); PA.wallMap(ctx, 0, 0, 1180, { dark: clamp((t - tn) / .4) * .8 }); PA.stampMark(ctx, 180, -300, 480, 'NOT ONE CHIP', -.08, t - tn); ctx.restore(); }
+    if (!solo) { const z = cam.z; ctx.save(); ctx.translate(W / 2, H / 2); ctx.scale(z, z); PA.wallMap(ctx, 0, -20, 1040, { dark: clamp((t - tn) / .4) * .8 }); PA.stampMark(ctx, 180, -300, 480, 'NOT ONE CHIP', -.08, t - tn); ctx.restore(); }
     ctx.restore(); },
   '4|According to the Financial Times': x => { const { ctx, t, cam, solo } = x, ta = W_(x, 'Alibaba', 4.78), v = { cx: 330, cy: 600, k: 1.4 };   // ВСТАВКА монитор: список клиентов MEGASPEED; на «Alibaba» первая строка подсвечивается
     ctx.save(); shake(ctx, cam); MS.room(ctx, v, 'O', 8, solo);
@@ -161,11 +167,13 @@ export const SHOTS = {
     if (solo) { ctx.fillStyle = '#000'; return; }
     ctx.save(); shake(ctx, cam); callMonitor(ctx, { cx: 960, cy: 540, k: 1 }, t, T, cam, { case: E.outBack(clamp((t - (tc - .45)) / .45)) }); ctx.restore(); },
   '4|REP: No. You can borrow them': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 760, cy: 600, k: 1.7 }, cam, .15), tb = W_(x, 'borrow', 1.08), tn = W_(x, 'No', 0);   // ОБРАТНАЯ представитель: на «No» качает головой; на «borrow» поднимает к камере ценник RENT · PER HOUR
-    const shakeK = clamp((t - tn) / .1) * clamp((tn + .6 - t) / .15), up = E.outBack(clamp((t - (tb - .35)) / .35));
+    const shakeK = clamp((t - tn) / .1) * clamp((tn + .6 - t) / .15), up = E.inOutCubic(clamp((t - (tb - .35)) / .45)), tagHand = u => { const g = MS.deskGeo([760, 820], .55); return [760 + lerp(40, 110, u) * .55, lerp(g.yb + 30 * .55, g.yf - 4 * .55, u)]; };
     ctx.save(); shake(ctx, cam);
     MS.deskShot(ctx, v, t, T, { C: RP, bg: 'R', seat: [760, 820], fs: .55, sp: 'REP', keys: [[0, 'smug']], look: [.35 * Math.sin(t * 16) * shakeK, .05], solo,
-      R: { k: up, to: g0(760, 820, .55, 150, -230) }, heldR: up > .05 ? (c, h, s) => PR.priceTag(c, h[0] - 4 * s, h[1] - 6 * s, 360 * s, -.12, 'RENT', 'PER HOUR') : null,
-      deskTop: (c, vv, g) => { const P = toS(vv, g.on(-200, .25)); PA.monitor(c, P[0], P[1] - 60 * vv.k * g.fs * 2, 220 * g.fs * vv.k, (cc, w, h) => { cc.fillStyle = '#1a2a3a'; cc.fillRect(0, 0, w, h); }, { stand: true, glow: .1 }); } });
+      // ценник лежит на столе; на «borrow» кисть (на кольце нитки) пододвигает его к камере — правило хвата: кисть на конце нитки, ценник от кисти
+      R: { k: 1, to: tagHand(up) },
+      deskTop: (c, vv, g) => { const h = toS(vv, tagHand(up)), sc = .55 * vv.k; c.save(); c.translate(h[0], h[1]); c.scale(1, .62); PR.priceTag(c, 0, 0, 300 * sc, .05, 'RENT', 'PER HOUR'); c.restore();
+        const P = toS(vv, g.on(-200, .25)); PA.monitor(c, P[0], P[1] - 60 * vv.k * g.fs * 2, 220 * g.fs * vv.k, (cc, w, hh) => { cc.fillStyle = '#1a2a3a'; cc.fillRect(0, 0, w, hh); }, { stand: true, glow: .1 }); } });
     ctx.restore(); },
   '4|RENTER: For how long': x => { const { ctx, t, T, cam, solo } = x, tl = W_(x, 'long', .32);   // ВСТАВКА монитор видеозвонка: покупатель наклоняется к веб-камере
     if (solo) return;

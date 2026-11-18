@@ -16,6 +16,15 @@ const plateK = (ctx, im, v, b = 0) => { if (!b) return plate(ctx, im, v); ctx.sa
 
 export const SHOTS = {
   // ---- L08 Кентукки (ведущий): санузел, ряд кабинок, спальня соседа; staging/kentucky.js ----
+  '2|who picked a boarding school in rural Kentucky': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 965, cy: 600, k: 1.0 }, cam, .25, .3), tb = W_(x, 'boarding', .44);   // ОБЩИЙ ворота Oneida: два брата с чемоданами перед открытыми воротами; на «boarding» на пустой доске проступает ONEIDA BAPTIST INSTITUTE; плашка ONEIDA, KENTUCKY — ядро
+    ctx.save(); shake(ctx, cam);
+    KY.gate(ctx, v, t, T, { solo, sign: E.outCubic(clamp((t - tb) / .45)), look: [.05, -.75], emo: t > tb + .3 ? 'nervous' : 'neutral' });
+    ctx.restore(); },
+  '2|Years later he gave the school two million': x => { const { ctx, t, T, cam, solo } = x, tt = W_(x, 'two', 1.32), td = W_(x, 'dorm', 3.74), th = W_(x, 'Huang', 4.46);   // ОБЩИЙ новый корпус: на «two» въезжает чек $2,000,000; на «dorm» камера поднимается к фасаду; на «Huang» над дверью загорается HUANG HALL
+    const up = E.inOutCubic(clamp((t - td + .1) / .7)), v = camView(lerpView({ cx: 960, cy: 700, k: 1.3 }, { cx: 982, cy: 450, k: 1.55 }, up), cam, .2);
+    ctx.save(); shake(ctx, cam); KY.hall(ctx, v, { solo, sign: E.outCubic(clamp((t - th) / .35)) });
+    if (!solo) { const cin = E.outCubic(clamp((t - tt + .05) / .35)), cout = E.inCubic(clamp((t - td + .2) / .3)); if (cin > 0 && cout < 1) KY.cheque(ctx, lerp(W + 520, 1330, cin) + 900 * cout, 800 + 40 * cout, 880, -.05 + .05 * (1 - cin)); }
+    ctx.restore(); },
   '2|The older boys were sent out to do farm work': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 900, cy: 560, k: 1.15 }, cam, .25), tl = W_(x, 'work', 1.8);   // ОБЩИЙ санузел: в окне колонна старших с вилами уходит в поле, последний — брат в клетчатой рубашке оглядывается; впереди маленький Дженсен у ведра
     ctx.save(); shake(ctx, cam);
     if (!solo) { const a = KY.A(); if (a) plateK(ctx, a.bath, v); KY.boysInWindow(ctx, v, t, tl); }
@@ -78,7 +87,19 @@ export const SHOTS = {
   '2|CHRIS: And if the chip flops': x => B2.s64(x),   // Крис поднимает бровь -> вип-пан -> Дженсен отодвигает тарелку блинов на троих
 };
 export const OVER = {
+  // СПЛИТ «тогда / сейчас» (окна шаблона ядра закрыты целиком): на «bathrooms» шторкой открывается левое окно — юный Дженсен со шваброй у ведра;
+  // на «ran» — правое: взрослый Дженсен за трибуной на сцене, руки в стороны. Надпись DECADES LATER — ядро (вещь-подпись).
+  "2|Decades later he'd put it simply": (ctx, s, t, d) => { const T = s.start + t, x = { s }, tb = W_(x, 'bathrooms', 2.82), tr = W_(x, 'ran', 4.52), pw = W / 2;
+    const pane = (i, fn, k) => { ctx.save(); ctx.fillStyle = '#07070a'; ctx.fillRect(i * pw, 0, pw, H); ctx.beginPath(); ctx.rect(i * pw + 4, 0, (pw - 8) * k, H); ctx.clip(); ctx.translate(i * pw + pw / 2 - W / 2, 0); fn(); ctx.restore(); };
+    pane(0, () => { const v = cover({ cx: 905, cy: 610, k: 1.55 + .02 * t }); KY.bathMid(ctx, v, t, T, { drop: 99, grab: 99, look: [.3, -.3], keys: [[0, 'neutral']] }); }, E.inOutCubic(clamp((t - tb + .15) / .35)));
+    pane(1, () => { const v = cover({ cx: 600, cy: 520, k: 2.3 + .02 * t }), g = E.outBack(clamp((t - tr) / .4));
+      A_EH.plate(ctx, v, 'wide', 0, false);
+      A_EH.podium(ctx, A_JH, v, t, T, { f: 1, view: null, keys: [[0, 'smile']], look: [0, -.1], L: { k: g, to: [582 - 125, 682 - 190] }, R: { k: g, to: [582 + 125, 682 - 190] } }); }, E.inOutCubic(clamp((t - tr + .15) / .35)));
+    ctx.fillStyle = '#000'; ctx.fillRect(pw - 4, 0, 8, H); },
 };
-export const SKIP_PROPS = { '2|Every single day': /MON|TUE|WED|THU|FRI|SAT|SUN/, /* --- B --- */ '2|In a booth in San Jose': /SAN JOSE/, '2|Thirty years later': /BOOTH/, '2|He started at the sink': /BUSBOY/, '2|At fifteen he took the night shift': /2:00/, '2|JENSEN: One month': /PAYROLL/, '2|CHRIS: How long can we last': /PAYROLL|1997/, '2|AUNT: Oneida Baptist Institute': /VERY STRICT/, '2|and the family had chosen it by mistake': /TROUBLED/, '2|planned a company that would build chips': /3D/, };
+export const SKIP_PROPS = { '2|Every single day': /MON|TUE|WED|THU|FRI|SAT|SUN/, '2|who picked a boarding school in rural Kentucky': /BAPTIST/, '2|Years later he gave the school two million': /2,000,000|HUANG HALL/, /* --- B --- */ '2|In a booth in San Jose': /SAN JOSE/, '2|Thirty years later': /BOOTH/, '2|He started at the sink': /BUSBOY/, '2|At fifteen he took the night shift': /2:00/, '2|JENSEN: One month': /PAYROLL/, '2|CHRIS: How long can we last': /PAYROLL|1997/, '2|AUNT: Oneida Baptist Institute': /VERY STRICT/, '2|and the family had chosen it by mistake': /TROUBLED/, '2|planned a company that would build chips': /3D/, };
 export const RAIN = null;   // или s => true/false/undefined — переопределение дождя для планов главы
 import * as B2 from './ch02_B.js';   // --- B --- рисовальщики рабочего B
+import { EH as A_EH } from '../staging/eventhall.js';
+import { jensen as A_jensen } from 'engine';
+const A_JH = A_jensen(); A_JH.spec.rig = { ...A_JH.spec.rig, plantLegs: .02, armLayer: 'front' };   // взрослый Дженсен на сцене (как в ch03.js)

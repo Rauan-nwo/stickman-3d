@@ -143,14 +143,16 @@ export function stallRow(ctx, v, t, n = 7, t0 = .05, dt = .16) {
     const k = Math.pow(.6, i), D0 = toS(v, [sx0, sy0]), D1 = toS(v, [sx1, sy1]);
     const x0 = VP[0] + (D0[0] - VP[0]) * k, y0 = VP[1] + (D0[1] - VP[1]) * k, w = (D1[0] - D0[0]) * k, h = (D1[1] - D0[1]) * k;
     const ts = t0 + (n - 1 - i) * dt, u = (t - ts) / .2, j = u > 0 && u < 1 ? Math.sin(u * 30) * (1 - u) * 6 * k * v.k : 0;
-    ctx.save(); ctx.drawImage(stallSoft(a), x0 + j, y0, w, h);
-    ctx.fillStyle = `rgba(30,24,20,${(.18 + .1 * i).toFixed(2)})`; ctx.fillRect(x0 + j, y0, w, h); ctx.restore();   // дальние — темнее (воздух)
+    ctx.drawImage(stallDark(a, i), x0 + j, y0, w, h);                                                       // дальние — темнее (воздух); затемнение только внутри копии, без прямоугольника
   }
 }
 // копия кабинок с мягкими краями слева и сверху (без шва-прямоугольника у копий)
 let SF = null; function stallSoft(a) { if (SF) return SF; const [sx0, sy0, sx1, sy1] = CFG.stalls, w = sx1 - sx0, h = sy1 - sy0; SF = document.createElement('canvas'); SF.width = w; SF.height = h; const x = SF.getContext('2d'); x.drawImage(a.bath, sx0, sy0, w, h, 0, 0, w, h);
   x.globalCompositeOperation = 'destination-in'; let g = x.createLinearGradient(0, 0, w * .3, 0); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,1)'); x.fillStyle = g; x.fillRect(0, 0, w, h);
-  g = x.createLinearGradient(0, 0, 0, h * .15); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,1)'); x.fillStyle = g; x.fillRect(0, 0, w, h); return SF; }
+  g = x.createLinearGradient(0, 0, 0, h * .15); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,1)'); x.fillStyle = g; x.fillRect(0, 0, w, h);
+  g = x.createLinearGradient(0, h * .82, 0, h); g.addColorStop(0, 'rgba(0,0,0,1)'); g.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = g; x.fillRect(0, 0, w, h); return SF; }   // и снизу: шов по полу не виден
+const SD = {}; function stallDark(a, i) { if (SD[i]) return SD[i]; const src = stallSoft(a), c = document.createElement('canvas'); c.width = src.width; c.height = src.height; const x = c.getContext('2d');
+  x.drawImage(src, 0, 0); x.globalCompositeOperation = 'source-atop'; x.fillStyle = `rgba(30,24,20,${(.18 + .1 * i).toFixed(2)})`; x.fillRect(0, 0, c.width, c.height); return (SD[i] = c); }
 // отрывной календарь на стене: дни MON..SUN срываются по одному с tA до tB; на tB падает SUN
 export function dayPad(ctx, P, w, t, tA, tB) {
   const days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'], h = w * 1.2, n = days.length;
@@ -189,7 +191,7 @@ export function book(ctx, P, w, a) { const h = w * .72; ctx.save(); ctx.translat
   ctx.fillStyle = '#2f5f8a'; ctx.strokeStyle = INK; ctx.lineWidth = w * .025; ctx.beginPath(); ctx.roundRect(-w / 2, -h / 2, w, h, w * .03); ctx.fill(); ctx.stroke();
   ctx.fillStyle = '#f2e8d0'; ctx.fillRect(-w * .44, -h * .3, w * .88, h * .6); ctx.strokeRect(-w * .44, -h * .3, w * .88, h * .6);
   ctx.fillStyle = INK; ctx.font = `900 ${Math.round(h * .32)}px Georgia, serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('A B C', 0, h * .02);
-  ctx.fillStyle = '#e0b040'; ctx.beginPath(); ctx.arc(-w * .3, h * .17, h * .07, 0, 6.28); ctx.fill(); ctx.restore(); }
+  ctx.restore(); }   // (жёлтый кружок-«наклейка» убран: читался как пустая фигура)
 // рука во вставке: рукав от края кадра к кисти. kind: 'kid' — полосатая футболка Дженсена; 'big' — голое плечо соседа с тату и бинтом
 export function insertArm(ctx, from, P, s, kind) { const dx = P[0] - from[0], dy = P[1] - from[1], l = Math.hypot(dx, dy) || 1, a = Math.atan2(dy, dx), r = (kind === 'big' ? 26 : 15) * s;
   ctx.save(); ctx.translate(from[0], from[1]); ctx.rotate(a); ctx.lineJoin = 'round';
@@ -200,3 +202,58 @@ export function insertArm(ctx, from, P, s, kind) { const dx = P[0] - from[0], dy
   ell(ctx, P[0], P[1], r, r, INK, null);
   if (kind === 'big') bandage(ctx, [P[0] - Math.cos(a) * r * 1.6, P[1] - Math.sin(a) * r * 1.6 + 22 * s], s * 1.6);
 }
+
+// ======================= кампус Oneida снаружи (гл. 2: #35 ворота, #51 Huang Hall) =======================
+// Плейты: assets/bg_oneida_gate.png (raw/bg_oneida_gate_a.png, GPT Image, промпт prompts/bg_oneida_gate.txt),
+// assets/bg_huang_hall.png (raw/bg_huang_hall.png, промпт prompts/bg_huang_hall.txt). Тёплый день; солнце сзади-справа.
+import { NOIR_FONT } from 'engine';
+import { person, brother } from '../chars_B.js';
+import gatePlate from '../assets/bg_oneida_gate.png';
+import hallPlate from '../assets/bg_huang_hall.png';
+const IC = { gate: img(gatePlate), hall: img(hallPlate) };
+export const AC = lazy([IC.gate, IC.hall], () => ({ gate: IC.gate, hall: IC.hall }));
+CFG.gate = { board: [993, 152, 600, 128], kids: [[905, 968], [1035, 962]], fs: .36, cases: [[838, 972], [1104, 966]], light: [.5, -.8] };
+const GJ = youngJensen(), GB = brother(); GJ.spec.rig = { ...GJ.spec.rig, plantLegs: .02 }; GB.spec.rig = { ...GB.spec.rig, plantLegs: .02 };
+// чемодан стоит на земле: низ-центр P, s — масштаб (как у чемоданов на крыльце родственников, ch02_B)
+function caseOnGround(ctx, P, s) { ctx.save(); ctx.translate(P[0], P[1]); ctx.fillStyle = '#7a4a24'; ctx.strokeStyle = INK; ctx.lineWidth = 4 * s; ctx.beginPath(); ctx.roundRect(-110 * s, -150 * s, 220 * s, 150 * s, 10 * s); ctx.fill(); ctx.stroke();
+  ctx.lineWidth = 7 * s; ctx.beginPath(); ctx.roundRect(-34 * s, -178 * s, 68 * s, 30 * s, 10 * s); ctx.stroke();                                  // ручка сверху
+  ctx.fillStyle = '#c9a54a'; ctx.fillRect(-90 * s, -98 * s, 16 * s, 14 * s); ctx.fillRect(74 * s, -98 * s, 16 * s, 14 * s); ctx.strokeStyle = '#3a2412'; ctx.lineWidth = 8 * s; ctx.beginPath(); ctx.moveTo(-110 * s, -56 * s); ctx.lineTo(110 * s, -56 * s); ctx.stroke(); ctx.restore(); }
+// #35: ворота школы; два мальчика с чемоданами спиной-вполоборота смотрят на школу; sign 0..1 — надпись проступает на пустой доске
+export function gate(ctx, v, t, T, o = {}) {
+  const a = AC(), c = CFG.gate; if (!a) return;
+  if (!o.solo) { plate(ctx, a.gate, v);
+    const [bx, by, bw, bh] = c.board, u = clamp(o.sign ?? 0);
+    if (u > 0) { const P = toS(v, [bx, by]), s = v.k; ctx.save(); ctx.beginPath(); ctx.rect(P[0] - bw / 2 * s, P[1] - bh / 2 * s, bw * s * u, bh * s); ctx.clip();          // буквы «пишутся» слева направо
+      ctx.fillStyle = '#3a2414'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = `700 ${Math.round(44 * s)}px ${NOIR_FONT.display}`; ctx.fillText('ONEIDA BAPTIST', P[0], P[1] - 24 * s, bw * .86 * s);
+      ctx.font = `700 ${Math.round(36 * s)}px ${NOIR_FONT.display}`; ctx.fillText('INSTITUTE', P[0], P[1] + 28 * s, bw * .7 * s); ctx.restore(); }
+    for (const P of c.cases) { const Q = toS(v, P); contact(ctx, Q[0] + 12 * v.k, Q[1] + 2 * v.k, 95 * v.k * c.fs / .36 * .55, 12 * v.k, .45, -.3); caseOnGround(ctx, Q, c.fs * .9 * v.k); } }
+  const look = o.look || [.1, -.6];
+  c.kids.forEach((P, i) => person(ctx, v, t, T, { C: i ? GB : GJ, at: P, fs: i ? c.fs * 1.12 : c.fs, pin: 'feet', stance: 'stand', view: 'threeQuarter', facing: i ? -1 : 1, light: c.light, shadow: !o.solo, shadowW: 120,
+    keys: [[0, i ? 'smile' : (o.emo || 'neutral')]], look: i ? [-.3, -.3] : look, seed: 5 + i }));
+}
+
+
+// #51: новый корпус Huang Hall. sign 0..1 — над дверью загорается надпись на пустой каменной полосе (тёплый свет, один раз, без мерцания)
+CFG.hall = { band: [982, 440, 430, 58] };
+export function hall(ctx, v, o = {}) {
+  const a = AC(); if (!a || o.solo) return; plate(ctx, a.hall, v);
+  const [bx, by, bw, bh] = CFG.hall.band, u = clamp(o.sign ?? 0); if (u <= 0) return;
+  const P = toS(v, [bx, by]), s = v.k;
+  ctx.save(); ctx.globalCompositeOperation = 'screen'; const g = ctx.createRadialGradient(P[0], P[1], 0, P[0], P[1], bw * .62 * s); g.addColorStop(0, `rgba(255,214,140,${(.35 * u).toFixed(3)})`); g.addColorStop(1, 'rgba(255,200,120,0)'); ctx.fillStyle = g; ctx.fillRect(P[0] - bw * s, P[1] - bw * .7 * s, bw * 2 * s, bw * 1.4 * s); ctx.restore();
+  ctx.save(); ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = `700 ${Math.round(42 * s)}px ${NOIR_FONT.display}`;
+  ctx.shadowColor = `rgba(255,190,90,${(.9 * u).toFixed(3)})`; ctx.shadowBlur = 14 * s * u; ctx.fillStyle = `rgb(${Math.round(lerp(120, 255, u))},${Math.round(lerp(100, 236, u))},${Math.round(lerp(80, 190, u))})`;
+  ctx.fillText('H U A N G   H A L L', P[0], P[1] + 2 * s, bw * .9 * s); ctx.restore();
+}
+// чек на $2,000,000 (плоская вставка поверх кадра, не в руке): x, y — центр, w — ширина, a — наклон
+export function cheque(ctx, x, y, w, a) { const h = w * .42; ctx.save(); ctx.translate(x, y); ctx.rotate(a);
+  ctx.fillStyle = 'rgba(0,0,0,.28)'; ctx.fillRect(-w / 2 + 10, -h / 2 + 12, w, h);
+  ctx.fillStyle = '#eef0dc'; ctx.strokeStyle = INK; ctx.lineWidth = Math.max(2, w * .006); ctx.fillRect(-w / 2, -h / 2, w, h); ctx.strokeRect(-w / 2, -h / 2, w, h);
+  ctx.strokeStyle = '#5f8a62'; ctx.lineWidth = w * .008; ctx.strokeRect(-w / 2 + w * .02, -h / 2 + w * .02, w - w * .04, h - w * .04);
+  const T = (str, tx, ty, sz, al = 'left', col = '#1e2a22', wt = 700) => { ctx.font = `${wt} ${Math.round(sz)}px ${NOIR_FONT.type}`; ctx.fillStyle = col; ctx.textAlign = al; ctx.textBaseline = 'middle'; ctx.fillText(str, tx, ty); };
+  T('PAY TO THE', -w * .44, -h * .2, w * .03); T('ORDER OF', -w * .44, -h * .08, w * .03);
+  T('ONEIDA BAPTIST', -w * .26, -h * .2, w * .04, 'left', '#141014'); T('INSTITUTE', -w * .26, -h * .08, w * .04, 'left', '#141014');   // получатель в две строки — не налезает на сумму
+  ctx.strokeStyle = '#1e2a22'; ctx.lineWidth = w * .003; ctx.beginPath(); ctx.moveTo(-w * .27, -h * .0); ctx.lineTo(w * .12, -h * .0); ctx.stroke();
+  ctx.strokeStyle = INK; ctx.lineWidth = w * .006; ctx.strokeRect(w * .17, -h * .24, w * .28, h * .26); T('$2,000,000', w * .31, -h * .11, w * .05, 'center', '#141014', 800);
+  T('TWO MILLION AND 00/100 DOLLARS', -w * .44, h * .14, w * .03);
+  ctx.beginPath(); ctx.moveTo(w * .1, h * .36); ctx.lineTo(w * .44, h * .36); ctx.stroke();
+  ctx.restore(); }

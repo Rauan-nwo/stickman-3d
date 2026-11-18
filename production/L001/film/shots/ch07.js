@@ -28,7 +28,7 @@ import { jensen, alice, NOIR_FONT as F, ell } from 'engine';
 import { plate, img, lazy, blurred, masked, polyMask, chair } from '../staging/common.js';
 import barPlate from '../../assets/bg_taipei_bar_dry.png';
 import streetPlate from '../../assets/bg_singapore_street.png';
-import taipeiPlate from '../../assets/bg_street_no_car.png';   // TODO: assets/B_taipei_street.png (GPT, лимит до 20:56)
+import taipeiPlate from '../assets/B_taipei_street.png';   // ночная улица Тайбэя без машины (GPT Image, prompts/B_taipei_street.txt)
 import { gait } from 'engine/chars/gaits.js';
 
 const fixArms = C => { C.spec.rig = { ...C.spec.rig, plantLegs: .02, armLayer: 'front' }; return C; };
@@ -83,7 +83,7 @@ function piece(ctx, P, s, kind, o = {}) {
 function gate(ctx, P, s, open) { ctx.save(); ctx.translate(P[0], P[1]); ctx.scale(s, s); ctx.lineJoin = 'round'; ctx.strokeStyle = '#141014'; ctx.lineWidth = 5;
   ctx.fillStyle = '#8a1a1e'; ctx.fillRect(-150, -150, 20, 150); ctx.strokeRect(-150, -150, 20, 150); ctx.fillRect(130, -150, 20, 150); ctx.strokeRect(130, -150, 20, 150);
   ctx.fillStyle = '#c9a54a'; for (let i = 0; i < 7; i++) { ctx.fillRect(-120 + i * 36, -128, 8, 110); } ctx.fillRect(-130, -132, 260, 10); ctx.fillRect(-130, -30, 260, 10);
-  ctx.fillStyle = '#efe4c8'; ctx.beginPath(); ctx.roundRect(-90, -200, 180, 40, 4); ctx.fill(); ctx.stroke(); B.txt(ctx, 'CHINA · $50B', 0, -180, 26, { align: 'center', w: 900 });
+  ctx.fillStyle = '#efe4c8'; ctx.beginPath(); ctx.roundRect(-125, -202, 250, 44, 4); ctx.fill(); ctx.stroke(); B.txt(ctx, 'CHINA · $50B', 0, -180, 24, { align: 'center', w: 900, max: 230 });
   ctx.translate(0, -70); ctx.strokeStyle = '#8a8f98'; ctx.lineWidth = 8; ctx.beginPath(); ctx.arc(0, -16 - 18 * open, 18, Math.PI, 0); ctx.lineTo(18, -16 * (1 - open)); ctx.stroke();
   ctx.fillStyle = '#c9a54a'; ctx.strokeStyle = '#141014'; ctx.lineWidth = 4; ctx.beginPath(); ctx.roundRect(-26, -16, 52, 44, 6); ctx.fill(); ctx.stroke(); ell(ctx, 0, 4, 5, 5, '#141014', null); ctx.restore(); }
 // рука-рукав из-за края кадра (контекст — герой прошлого/соседнего плана): от точки E (экран, за краем) к кисти H; col — рукав
@@ -194,10 +194,10 @@ export const SHOTS = {
     const m = t < d * .3 ? 'APR 2025' : t < d * .58 ? 'AUG 2025' : 'DEC 2025', sw = [d * .3, d * .58].some(q => t > q && t < q + .08);
     ctx.save(); shake(ctx, cam); EH.plate(ctx, v, 'wide', 0, solo);
     if (!solo) { EH.screen(ctx, v, ['', ''], 1); const P = toS(v, [835, 360]); if (!sw) { B.txt(ctx, m, P[0], P[1], 44 * v.k, { col: '#7dff9a', font: F.label, w: 900, align: 'center' }); B.txt(ctx, 'EXPORT RULES', P[0], P[1] + 46 * v.k, 18 * v.k, { col: '#bfe8c8', font: F.label, w: 800, align: 'center' }); } }   // баннер — на части экрана за его плечом, целиком в кадре
-    const P = EH.podium(ctx, JH7, v, t, T, { f: 1, view: null, keys: [[0, 'neutral']], look: [.2, -.05], solo, R: { k: env(t, tl - .3, d + 1, .25), to: [700, 470] } });
+    const P = EH.podium(ctx, JH7, v, t, T, { at: [528, 682], f: 1, view: null, keys: [[0, 'neutral']], look: [.2, -.05], solo, R: { k: env(t, tl - .3, d + 1, .25), to: [700, 470] } });
     if (P) drawP(ctx, P, v, 'front');
     ctx.restore(); },
-  '7|he told reporters exactly': x => { const { ctx, t, T, cam, solo, d } = x, v = camView({ cx: 900, cy: 700, k: 1.3 }, cam, .25);   // обратная: со сцены в зал — ряды прессы, поднятые телефоны, вспышки по залу
+  '7|he told reporters exactly': x => { const { ctx, t, T, cam, solo, d } = x, v = cover({ cx: 800, cy: 560, k: 1.9 * (1 + (cam.z - 1) * .4) });   // чистая крупность по пояс: нижний край кадра — по сиденьям, ног нет   // обратная: со сцены в зал — ряды прессы, поднятые телефоны, вспышки по залу
     ctx.save(); shake(ctx, cam); EH.plate(ctx, v, 'rev', 0, solo);
     const seats = [[372, 850], [541, 848], [712, 846], [1060, 846], [1230, 848]];
     seats.forEach((st, i) => { const up = clamp((t - .1 - i * .12) / .3); EH.seatedRev(ctx, PRESS[i], v, t, T, { seat: st, keys: [[0, 'neutral']], look: [0, -.2], seed: i + 1, solo, R: { k: up, to: [st[0] + 30, st[1] - 260] },
@@ -206,7 +206,7 @@ export const SHOTS = {
     ctx.restore(); },
   '7|JENSEN: The export control was a failure': x => { const { ctx, t, T, cam, solo } = x, tf = W_(x, 'failure', 1.2), ts = Math.min(t, tf + .05), v = camView({ cx: 585, cy: 470, k: 3.2 }, { ...cam, z: x.camAt(ts).z }, .1);   // крупно Дженсен у букета микрофонов, на заднике COMPUTEX; на «failure» вспышка и стоп-кадр
     ctx.save(); EH.plate(ctx, v, 'wide', 4, solo); if (!solo) { EH.screen(ctx, v, ['', ''], 1); const P = toS(v, [770, 375]); B.txt(ctx, 'COMPUTEX', P[0], P[1], 26 * v.k, { col: '#7dff9a', font: F.label, w: 900, align: 'center' }); B.txt(ctx, 'TAIPEI · MAY 2025', P[0], P[1] + 26 * v.k, 11 * v.k, { col: '#bfe8c8', font: F.label, w: 800, align: 'center' }); }   // задник целиком в кадре
-    const P = EH.podium(ctx, JH7, v, ts, T - t + ts, { f: 1, view: null, sp: 'JENSEN', keys: [[0, 'neutral']], look: [.15, .1], solo, R: { k: env(ts, .2, 9, .3), to: [640, 520] } });
+    const P = EH.podium(ctx, JH7, v, ts, T - t + ts, { at: [528, 682], f: 1, view: null, sp: 'JENSEN', keys: [[0, 'neutral']], look: [.15, .1], solo, R: { k: env(ts, .2, 9, .3), to: [640, 520] } });
     if (P) drawP(ctx, P, v, 'front');
     if (!solo) { for (let i = 0; i < 7; i++) { const b = toS(v, [585 + (i - 3) * 14, 640]), tp = toS(v, [585 + (i - 3) * 9, 588 - (i % 2) * 8]); ctx.strokeStyle = '#121216'; ctx.lineWidth = 3 * v.k; ctx.beginPath(); ctx.moveTo(b[0], b[1]); ctx.lineTo(tp[0], tp[1]); ctx.stroke();
         ell(ctx, tp[0], tp[1], 6 * v.k, 8 * v.k, ['#d0302a', '#2a2a30', '#3a6ad0', '#e0c040', '#2a2a30', '#ffffff', '#d0302a'][i], '#141014', 1.5 * v.k); }
@@ -223,13 +223,13 @@ export const SHOTS = {
   // ---------------- L09 Megaspeed (плейты и реквизит рабочего A, только чтение) ----------------
   '7|Then Megaspeed suddenly went quiet': x => { const { ctx, t, T, cam, solo } = x, v = camView(MS.views.oWide, cam, .3), ts = W_(x, 'stopped', 2.26);   // общий: из факса ползёт бланк PURCHASE ORDER — NVIDIA и застревает; лампочка телефона мигает без ответа; свет в серверной гаснет
     if (solo) return; ctx.save(); shake(ctx, cam); MS.room(ctx, v, 'O', 0, false);
-    const flow = Math.min(t, ts) / Math.max(.5, ts) * .55, P = toS(v, [610, 676]); PA.printer(ctx, P[0], P[1], 150 * v.k, flow, Math.min(t, ts));
+    const flow = Math.min(t, ts) / Math.max(.5, ts) * .35, P = toS(v, [430, 668]); PA.printer(ctx, P[0], P[1], 120 * v.k, flow, Math.min(t, ts));   // факс на столе, за креслом (кресло ближе к камере)
     const ph = toS(v, [250, 700]); PR.deskPhone(ctx, ph[0], ph[1], 110 * v.k); if (Math.sin(t * 12) > 0) { ctx.fillStyle = '#ff3a2a'; ctx.shadowColor = '#ff3a2a'; ctx.shadowBlur = 14; ctx.beginPath(); ctx.arc(ph[0] + 38 * v.k, ph[1] - 30 * v.k, 6 * v.k, 0, Math.PI * 2); ctx.fill(); ctx.shadowBlur = 0; }
     const off = E.inOutCubic(clamp((t - ts) / .35)); if (off > 0) { ctx.save(); ctx.beginPath(); for (const [i, q] of [[1100, 60], [1920, 0], [1920, 1000], [1100, 820]].entries()) { const S = toS(v, q); i ? ctx.lineTo(...S) : ctx.moveTo(...S); } ctx.closePath(); ctx.clip(); ctx.fillStyle = `rgba(2,6,10,${.72 * off})`; ctx.fillRect(0, 0, W, H); ctx.restore(); }
     ctx.restore(); },
   '7|and Singapore police opened a case': x => { const { ctx, t, cam, solo } = x, v = camView(MS.views.oGlass, cam, .3);   // средний: по стеклу серверной и коробкам проходит красно-синий отсвет мигалки с улицы
     if (solo) return; ctx.save(); shake(ctx, cam); MS.room(ctx, v, 'O', 0, false);
-    for (const [col, ph] of [['255,40,40', 0], ['40,90,255', Math.PI]]) { const k = Math.max(0, Math.sin(t * 2.2 + ph)), x0 = W * (.55 + .4 * Math.sin(t * 1.4 + ph)); ctx.save(); ctx.globalCompositeOperation = 'screen'; const g = ctx.createRadialGradient(x0, H * 1.05, 0, x0, H * 1.05, W * .7); g.addColorStop(0, `rgba(${col},${.95 * k})`); g.addColorStop(1, `rgba(${col},0)`); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H); ctx.restore(); }
+    for (const [col, ph] of [['255,40,40', 0], ['40,90,255', Math.PI]]) { const k = .3 + .7 * Math.max(0, Math.sin(t * 2.2 + ph)), x0 = W * (.55 + .4 * Math.sin(t * 1.4 + ph)); ctx.save(); ctx.globalCompositeOperation = 'screen'; const g = ctx.createRadialGradient(x0, H * 1.05, 0, x0, H * 1.05, W * .7); g.addColorStop(0, `rgba(${col},${.95 * k})`); g.addColorStop(1, `rgba(${col},0)`); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H); ctx.restore(); }
     ctx.restore(); },
 
   // ---------------- L04 Вашингтон: доска, штамп, ладонь ----------------
@@ -273,14 +273,14 @@ export const SHOTS = {
     monthCal(ctx, 1640, 520, 300, 'APR');
     const drop = E.inOutCubic(clamp((t - .15) / Math.max(.4, tb - .25))), bx = 960, by = lerp(120, dy + 300, drop);
     ctx.save(); ctx.beginPath(); ctx.rect(0, 0, W, by > dy + 40 ? dy + 480 : H); ctx.clip(); PR.nvBox(ctx, bx, by, 300, { lid: 0, glow: .3 }); ctx.restore();
-    if (drop < 1) B.insertSleeve(ctx, [bx + 95, by - 128], [bx + 520, -160], 30, B.CLOTH.jensen, null);   // рукав кожанки Дженсена сверху справа, кисть держит угол крышки
+    if (drop < 1) B.insertSleeve(ctx, [bx + 95, by - 128], [bx + 220, -140], 30, B.CLOTH.jensen, null);   // рукав кожанки Дженсена сверху справа, кисть держит угол крышки
     ctx.restore(); },
   '7|JENSEN: Wait. Understood?': x => { const { ctx, t, T, cam, solo } = x, v = NV.view('cu', cam), tu = W_(x, 'Understood', .74);   // крупно Дженсен: достаёт ту же коробочку обратно; календарь на столе — уже AUG
     const k = E.outCubic(clamp((t - .1) / .45));
     ctx.save(); shake(ctx, cam);
     NV.seated(ctx, v, t, T, { C: JH, sp: 'JENSEN', solo, blur: 3, keys: [[0, 'neutral'], [tu, 'nervous']], look: [.2, -.1], R: { k, to: [1040, lerp(690, 600, k)] },
       deskTop: (c, vv) => { const P = toS(vv, [1210, 690]); monthCal(c, P[0], P[1], 120 * vv.k, 'AUG'); },
-      heldR: (c, P, s) => PR.nvBox(c, P[0] + 46 * s, P[1] + 30 * s, 120 * s, { lid: 0, glow: .25 }) });
+      heldR: (c, P, s) => PR.nvBox(c, P[0] + 34 * s, P[1] + 22 * s, 120 * s, { lid: 0, glow: .25 }) });
     ctx.restore(); },
   '7|JENSEN: Does anyone have a calendar': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 900, cy: 600, k: 1.35 }, cam, .2), tc = W_(x, 'calendar', 1.2);   // обратная: Дженсен у стола; календарь сам перелистывается AUG -> DEC
     const fl = clamp((t - tc + .45) / .9), m = ['AUG', 'SEP', 'OCT', 'NOV', 'DEC'], i = Math.min(3, Math.floor(fl * 4)), f = fl * 4 - i;
@@ -295,7 +295,7 @@ export const SHOTS = {
     const LW = 260, LH = 330, at = NR.CFG.rep.at, fs = NR.CFG.rep.fs, P0 = [at[0] + 40, at[1] - 470 * fs];
     ctx.save(); shake(ctx, cam);
     NR.room(ctx, v, t, T, { solo, blur: 3, rep: { keys: [[0, 'neutral']], look: [.3, .7], tilt: .04, L: { k: 1, to: [P0[0] - LW * fs * .42, P0[1] + LH * fs * .35] }, R: { k: 1, to: [P0[0] + LW * fs * .42, P0[1] + LH * fs * .35] },
-      under: (c) => { const P = toS(v, P0), sc = v.k * fs; B.sheet(c, P[0], P[1], LW * sc, LH * sc, -.03, (cc, w, h) => B.clearedList(cc, w, h, clamp((t - tc) / .4))); } } });
+      heldR: () => {}, heldL: (c) => { const P = toS(v, P0), sc = v.k * fs; B.sheet(c, P[0], P[1], LW * sc, LH * sc, -.03, (cc, w, h) => B.clearedList(cc, w, h, clamp((t - tc) / .4))); } } });
     ctx.restore(); },
   // ---------------- L05 Пекин ----------------
   '7|its Beijing address was an empty': x => { const { ctx, t, cam, solo } = x, te = W_(x, 'empty', 1.4);   // общий: здание по адресу; на «empty» окна гаснут, табличка на двери пустая
@@ -316,7 +316,7 @@ export const SHOTS = {
     board(ctx, W / 2, H / 2, 960, 1);
     const pl = E.outCubic(clamp((t - .05) / .5)), jP = [W / 2 - 90, lerp(H / 2 - 520, H / 2 + 80, pl)];
     piece(ctx, [W / 2 + 230, H / 2 + 80], 2.6, 'house'); piece(ctx, jP, 2.6, 'jensen'); piece(ctx, [W / 2 + 80, H / 2 + 20], 2.3, 'bubble', { k: E.outBack(clamp((t - tc) / .3)) });
-    if (pl < 1) B.insertSleeve(ctx, [jP[0] + 6, jP[1] - 250], [W / 2 + 380, -320], 40, B.CLOTH.officer, null);   // рукав офицера (тёмно-красный, как его силуэт): кисть держит голову фигурки
+    if (pl < 1) B.insertSleeve(ctx, [jP[0] + 6, jP[1] - 250], [jP[0] + 140, -160], 40, B.CLOTH.officer, null);   // рукав офицера (тёмно-красный, как его силуэт): кисть держит голову фигурки
     ctx.restore(); },
   '7|could open or close an entire': x => { const { ctx, t, cam, solo } = x, to = W_(x, 'open', .3), tc = W_(x, 'close', 1.1);   // вставка: воротца CHINA · $50B с навесным замком; замок щёлкает — открылся, закрылся
     if (solo) return; ctx.save(); shake(ctx, cam); const v = cover({ cx: 1060, cy: 830, k: 3.4 * (1 + (cam.z - 1) * .5) }); BJ.widePlate(ctx, v, 6, solo);
@@ -337,7 +337,7 @@ export const SHOTS = {
   '7|Nvidia later said it had cut': x => { const { ctx, t, cam, solo } = x, tc = W_(x, 'cut', 1.46);   // вставка: на столе Nvidia папка MEGASPEED · ORDERS; на «cut» штамп ACCOUNT CLOSED, толчок
     if (solo) return; ctx.save(); shake(ctx, cam); const v = cover({ cx: 1000, cy: 700, k: 2.6 * (1 + (cam.z - 1) * .5) }); NV.widePlate(ctx, v, 3, solo);
     ctx.save(); ctx.translate(W / 2, H * .6); ctx.scale(1, .62); ctx.rotate(-.04); ctx.fillStyle = '#c9ae72'; ctx.strokeStyle = '#141014'; ctx.lineWidth = 6; ctx.beginPath(); ctx.roundRect(-460, -330, 920, 660, 10); ctx.fill(); ctx.stroke();
-    ctx.fillStyle = '#efe4c8'; ctx.fillRect(-300, -200, 600, 120); ctx.strokeRect(-300, -200, 600, 120); B.txt(ctx, 'MEGASPEED · ORDERS', 0, -140, 56, { align: 'center', w: 900 }); B.lines(ctx, -300, 0, 600, 5, 50); B.stamp(ctx, 40, 120, 'ACCOUNT CLOSED', 84, t - tc, -.12); ctx.restore();
+    ctx.fillStyle = '#efe4c8'; ctx.fillRect(-360, -200, 720, 120); ctx.strokeRect(-360, -200, 720, 120); B.txt(ctx, 'MEGASPEED · ORDERS', 0, -140, 52, { align: 'center', w: 900, max: 680 }); B.lines(ctx, -300, 0, 600, 5, 50); B.stamp(ctx, 40, 120, 'ACCOUNT CLOSED', 84, t - tc, -.12); ctx.restore();
     ctx.restore(); },
   // ---------------- L04: сенатор -> Минторг (вип-пан), Минюст ----------------
   '7|SENATOR: Look into Megaspeed': x => { const { ctx, t, T, cam, solo, s, d } = x, tw = s.whip?.t ?? d * .6;   // крупно сенатор кладёт папку MEGASPEED с обрывком красной нити, печать Сената -> вип-пан -> Минторг у матовой двери; папка уходит вправо
@@ -358,7 +358,7 @@ export const SHOTS = {
     const fx = lerp(500, 880, inn);   // папка въезжает слева, он принимает её левой рукой и забирает под мышку
     WA.standing(ctx, v, t, T, { C: JUSTICE, rev: true, at: 'door', dx: 30, sp: 'JUSTICE', solo, view: 'threeQuarter', facing: -1, look: [-.4, .1], L: { k: inn >= 1 ? 1 : E.outCubic(inn), to: [lerp(fx, 1010, tuck), lerp(560, 600, tuck)] },
       heldL: inn >= 1 ? (c, P, sc) => megaFolder(c, P[0] - 40 * sc * (1 - tuck), P[1] - 10 * sc, 200 * sc, 1, lerp(-.1, 1.2, tuck)) : null });
-    if (!solo && inn < 1) { const P = toS(v, [fx - 20, 550]); megaFolder(ctx, P[0], P[1], 200 * .5 * v.k, 1, -.1); }
+    if (!solo && inn < 1) { const P = toS(v, [fx - 20, 550]); megaFolder(ctx, P[0], P[1], 200 * .5 * v.k, 1, -.1); B.insertSleeve(ctx, [P[0] - 46 * v.k, P[1] + 8 * v.k], [-60, P[1] + 40 * v.k], 13 * v.k * .5 * 2, ['#6a6458', '#463f36', '#221e18']); }   // папку подаёт Минторг (рукав его пиджака с левого края)
     WA.revFront(ctx, v, 0, solo);
     ctx.restore(); },
   // ---------------- L02: агенты в салоне, папка расшифровок; хроника Тайбэя ----------------
@@ -369,6 +369,7 @@ export const SHOTS = {
   '7|had put everything in writing': x => { const { ctx, t, T, cam, solo } = x, tw = W_(x, 'writing', 1.4);   // вставка: толстая папка TRANSCRIPTS с закладками JAN…DEC захлопывается на пассажирском сиденье
     if (solo) return; ctx.save(); shake(ctx, cam); const a = CAR.A(); if (a) plate(ctx, a.plate, cover({ cx: 1150, cy: 900, k: 2.4 * (1 + (cam.z - 1) * .5) }));
     ctx.fillStyle = 'rgba(10,10,16,.35)'; ctx.fillRect(0, 0, W, H);
+    ctx.save(); ctx.fillStyle = 'rgba(0,0,0,.5)'; ctx.filter = 'blur(18px)'; ctx.beginPath(); ctx.ellipse(W / 2, H * .3 + 760 * .55, 620, 70, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();   // тень папки на сиденье
     ctx.save(); ctx.translate(W / 2 - 560, H * .3); B.transcripts(ctx, 1120, 760, clamp((t - tw + .25) / .25)); ctx.restore();
     ctx.restore(); },
   '7|Footage aired later by a Taiwanese': x => { const { ctx, t, cam, solo, s } = x;   // вставка: монитор в баре — на экране кадр ТВ: улица, машина

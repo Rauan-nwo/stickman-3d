@@ -51,15 +51,27 @@ function safeInside(ctx, t) {
   ctx.save(); ctx.globalCompositeOperation = 'screen'; const L = ctx.createRadialGradient(300, 200, 0, 300, 200, 1300); L.addColorStop(0, 'rgba(255,214,140,.28)'); L.addColorStop(1, 'rgba(255,200,120,0)'); ctx.fillStyle = L; ctx.fillRect(0, 0, W, H); ctx.restore();
 }
 // дверца сейфа захлопывается слева: cl 0..1
-function safeDoor(ctx, cl) { const w = W * cl; ctx.save(); const g = ctx.createLinearGradient(0, 0, w, 0); g.addColorStop(0, '#20252c'); g.addColorStop(1, '#3a414a'); ctx.fillStyle = g; ctx.fillRect(0, 0, w, H);
-  ctx.strokeStyle = '#0c0d10'; ctx.lineWidth = 10; ctx.strokeRect(5, 5, w - 10, H - 10); ctx.fillStyle = '#5a616a'; for (let i = 0; i < 6; i++) for (const yy of [60, H - 60]) { ctx.beginPath(); ctx.arc(w - 60 - i * w / 7, yy, 12, 0, Math.PI * 2); ctx.fill(); }
-  if (cl > .6) { ell(ctx, w - W * .5, H / 2, 150, 150, '#2a3038', '#c9a54a', 10); } ctx.restore(); }
+function safeDoor(ctx, cl) {   // дверца сейфа захлопывается слева направо: сталь, петли, заклёпки, штурвал и кодовый диск (читается как сейф)
+  const w = W * cl; ctx.save(); ctx.beginPath(); ctx.rect(0, 0, w, H); ctx.clip(); ctx.translate(w - W, 0);
+  const g = ctx.createLinearGradient(0, 0, W, H); g.addColorStop(0, '#4a525c'); g.addColorStop(1, '#22272e'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  ctx.strokeStyle = '#0c0d10'; ctx.lineWidth = 14; ctx.strokeRect(60, 60, W - 120, H - 120); ctx.strokeStyle = 'rgba(255,255,255,.12)'; ctx.lineWidth = 6; ctx.strokeRect(80, 80, W - 160, H - 160);
+  ctx.fillStyle = '#7a828c'; ctx.strokeStyle = '#0c0d10'; ctx.lineWidth = 3; for (let i = 0; i < 14; i++) for (const yy of [110, H - 110]) { ctx.beginPath(); ctx.arc(140 + i * (W - 280) / 13, yy, 11, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); }
+  for (const yy of [H * .25, H * .75]) { ctx.fillStyle = '#5a626c'; ctx.beginPath(); ctx.roundRect(W - 70, yy - 70, 90, 140, 12); ctx.fill(); ctx.stroke(); }   // петли (справа — дверца закрывается слева)
+  const cx = W * .42, cy = H * .5; ctx.lineCap = 'round';
+  ctx.strokeStyle = '#141014'; ctx.lineWidth = 34; for (let i = 0; i < 3; i++) { const a = -Math.PI / 2 + i * 2.094; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(a) * 190, cy + Math.sin(a) * 190); ctx.stroke(); }
+  ctx.strokeStyle = '#c9a54a'; ctx.lineWidth = 22; for (let i = 0; i < 3; i++) { const a = -Math.PI / 2 + i * 2.094; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(a) * 185, cy + Math.sin(a) * 185); ctx.stroke(); ell(ctx, cx + Math.cos(a) * 190, cy + Math.sin(a) * 190, 26, 26, '#d9b24a', '#141014', 5); }
+  ell(ctx, cx, cy, 52, 52, '#d9b24a', '#141014', 6);
+  const dx = W * .7, dy = H * .5; ell(ctx, dx, dy, 110, 110, '#2a3038', '#141014', 8); ell(ctx, dx, dy, 84, 84, '#c9c4b8', '#141014', 5);   // кодовый диск
+  ctx.strokeStyle = '#141014'; ctx.lineWidth = 4; for (let i = 0; i < 24; i++) { const a = i * Math.PI / 12; ctx.beginPath(); ctx.moveTo(dx + Math.cos(a) * 70, dy + Math.sin(a) * 70); ctx.lineTo(dx + Math.cos(a) * 82, dy + Math.sin(a) * 82); ctx.stroke(); }
+  ell(ctx, dx, dy, 26, 26, '#3a4048', '#141014', 4);
+  ctx.restore(); }
 
 export const SHOTS = {
   '10|HOST: Some keys are': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 1090, cy: 400, k: 2.3 }, cam, .1), tk = W_(x, 'keys', .32);   // крупно ведущий вертит латунный ключ в пальцах
     const tw = Math.sin(t * 7) * .9;
     ctx.save(); shake(ctx, cam);
-    OF.office(ctx, v, t, T, { solo, blur: true, box: { lid: .2, glow: .3 }, photo: IN.snapPic, host: { keys: [[0, 'talk']], look: [.35, .35], tilt: .04, R: { k: 1, to: [1185, 380] }, key: { a: -1.6 + tw, glint: gauss(t, tk + .1, .15) } } });
+    const r = OF.office(ctx, v, t, T, { solo, blur: true, box: { lid: .2, glow: .3 }, photo: IN.snapPic, host: { keys: [[0, 'talk']], look: [.45, .4], tilt: .04, noR: true } });
+    if (r.sr) OF.bigKey(ctx, [...r.sr, r.s], toS(v, [1150, 470]), 62, -.9 + tw * .5, gauss(t, tk + .1, .15), solo ? 0 : .6);   // кисть у груди вертит ключ: хват за кольцо, ключ читается
     ctx.restore(); },
   '10|too heavy to carry': x => { const { ctx, t, T, cam, solo } = x, v = camView(OF.views.xkey, cam, .06), th = W_(x, 'heavy', .25);   // сверхкрупно ключ в ладони: на «heavy» ладонь опускается под тяжестью, блик; на «carry» лампа мигает (ядро)
     const sag = E.outBack(clamp((t - th) / .35));

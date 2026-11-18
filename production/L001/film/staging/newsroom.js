@@ -57,7 +57,7 @@ export function room(ctx, v, t, T, o = {}) {
   if (!o.solo) plate(ctx, o.blur >= 5 ? a.b6 : o.blur >= 2 ? a.b3 : a.plate, v);
   if (!o.solo && o.tv) tvOn(ctx, v, t, o.tv, { bezel: o.tvBezel });
   const out = {};
-  if (o.backs) o.backs.forEach((m, i) => { if (m) out['b' + i] = person(ctx, v, t, T, { C: i ? CAST.REP : CAST.ED, ...CFG.backs[i], light: [0, -1], view: 'back', facing: i ? -1 : 1, shadow: !o.solo, seed: 7 + i, ...m }); });
+  if (o.backs) o.backs.forEach((m, i) => { if (m) out['b' + i] = person(ctx, v, t, T, { C: i ? CAST.REP : CAST.ED, ...CFG.backs[i], light: [-.9, -.5], view: 'back', facing: i ? -1 : 1, shadow: !o.solo, seed: 7 + i, ...m }); });
   if (o.ed) out.ed = person(ctx, v, t, T, { C: CAST.ED, ...CFG.ed, sp: 'EDITOR', facing: -1, shadow: !o.solo, seed: 5, ...o.ed });
   if (o.rep) out.rep = person(ctx, v, t, T, { C: CAST.REP, ...CFG.rep, sp: 'REPORTER', facing: 1, shadow: !o.solo, seed: 4, ...o.rep });
   return out;
@@ -79,8 +79,8 @@ export const sceneDeepSeek = tag => (x, w, h) => { studioBg(x, w, h); x.save(); 
   txt(x, 'AI CHAT', -w * .2, -h * .205, h * .035, { col: '#fff', font: F.label, w: 800 });
   for (let i = 0; i < 3; i++) { x.fillStyle = i % 2 ? '#cfe0ff' : '#d8d8de'; x.beginPath(); x.roundRect(i % 2 ? -w * .02 : -w * .2, -h * .15 + i * h * .065, w * .2, h * .045, 8); x.fill(); }
   x.fillStyle = '#26262e'; x.beginPath(); x.moveTo(-w * .3, h * .1); x.lineTo(w * .3, h * .1); x.lineTo(w * .26, h * .16); x.lineTo(-w * .26, h * .16); x.closePath(); x.fill(); x.stroke();
-  if (tag > 0) { const k = Math.min(1, tag * 1.4); x.save(); x.translate(w * .26, -h * .3); x.rotate(.12 + .1 * Math.sin(tag * 9) * (1 - Math.min(1, tag))); x.scale(k, k);
-    x.fillStyle = '#efe4c8'; x.beginPath(); x.roundRect(-w * .14, -h * .06, w * .28, h * .12, 8); x.fill(); x.lineWidth = 3; x.stroke(); txt(x, 'CHEAP AI MODEL', 0, 0, h * .045, { font: F.type, w: 900, align: 'center', max: w * .26 }); x.restore(); }
+  if (tag > 0) { const k = Math.min(1, tag * 1.4); x.save(); x.translate(w * .2, -h * .3); x.rotate(.08 + .1 * Math.sin(tag * 9) * (1 - Math.min(1, tag))); x.scale(k, k);
+    x.fillStyle = '#efe4c8'; x.beginPath(); x.roundRect(-w * .2, -h * .09, w * .4, h * .18, 8); x.fill(); x.lineWidth = 4; x.stroke(); txt(x, 'CHEAP AI MODEL', 0, 0, h * .075, { font: F.type, w: 900, align: 'center', max: w * .37 }); x.restore(); }
   x.restore(); };
 // экстренный выпуск: силуэт Белого дома (#314)
 export const sceneWhiteHouse = (x, w, h) => { studioBg(x, w, h); x.fillStyle = '#e8ecf4'; const y = h * .62; x.fillRect(w * .22, y - h * .18, w * .56, h * .18); x.beginPath(); x.moveTo(w * .4, y - h * .18); x.lineTo(w * .5, y - h * .3); x.lineTo(w * .6, y - h * .18); x.closePath(); x.fill();

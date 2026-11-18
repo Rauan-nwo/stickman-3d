@@ -6,6 +6,7 @@
 // Декорация: engine/src/sets/noirLogistics.js. 1920x1080, 30 fps, 18 с.
 import { THREE, V, clamp, seg, E, smooth } from 'engine';
 import { noirLogistics } from 'engine/sets/noirLogistics.js';
+import { sealTex } from '../box_path_v2/props.js';   // пломба как в box_path_v2: диск, кольцо тушью, серп тени, блик (L001 #226, замечание координатора)
 
 const T_SWAP = 13.15;
 // Catmull-Rom по ключам [t, [..vals]]
@@ -39,6 +40,10 @@ export default {
     stage.setVignette({ alpha: .5, color: '4,6,16', inner: .42, outer: 1.0, cy: .5 });
     const L = noirLogistics(stage);
     const { hero, forklift: F, truck: TR } = L;
+    // стойки ДЦ не работают (шотлист гл. 6: «стойки ДЦ тёмные, никаких мигающих огней») — гасим аддитивные планки огоньков набора (только в этой сцене)
+    L.group.traverse(m => { if (m.isMesh && m.material && m.material.blending === THREE.AdditiveBlending && m.geometry.type === 'PlaneGeometry' && Math.abs((m.geometry.parameters || {}).width - .54) < 1e-6) m.visible = false; });
+    // пломба героя: вместо плоского светящегося лаймового круга набора — нарисованная пломба box_path_v2 (только в этой сцене; набор не меняется)
+    { const st = sealTex(); (L.group || hero).traverse(m => { if (m.isMesh && m.geometry && m.geometry.type === 'CircleGeometry' && Math.abs((m.geometry.parameters || {}).radius - .075) < 1e-6) m.material = new THREE.MeshBasicMaterial({ map: st, transparent: true, alphaTest: .5, toneMapped: false, fog: false }); }); }
     const Z = -1, TRUCK0 = 6.9, BOXL = .63, BED = TR.bed;
     // путь: погрузчик и коробка, тягач
     function pose(t) {

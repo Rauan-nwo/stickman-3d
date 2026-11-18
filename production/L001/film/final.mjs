@@ -49,6 +49,8 @@ async function native3d() {
       set.dur = (g.reduce((a, x) => a + frames(x), 0) / 30).toFixed(6);
       from = g.slice(0, g.indexOf(g.find(x => x.n === s.n))).reduce((a, x) => a + frames(x), 0);
     }
+    // setFn: параметры сцены из голоса (слова words.json) — якоря перетайминга; t0 — начало дубля (кадр 0 сцены) на шкале фильма, с
+    if (typeof c.setFn === 'function') Object.assign(set, c.setFn({ words: words.words, t0: (frame0(s) - from) / 30 }));
     const dir = join(C3D, String(s.n)), meta = JSON.stringify({ scene: c.scene, set, from, N });
     if (existsSync(join(dir, 'meta.json')) && readFileSync(join(dir, 'meta.json'), 'utf8') === meta && readdirSync(dir).filter(f => f.endsWith('.png')).length === N) { console.log(`3D #${s.n}: готово (${N} кадров)`); continue; }
     rmSync(dir, { recursive: true, force: true }); mkdirSync(dir, { recursive: true });
@@ -72,7 +74,7 @@ async function chunk(a, b, out) {
   let browser; try { browser = await chromium.launch({ channel: 'chrome', args: ['--allow-file-access-from-files'] }); } catch { browser = await chromium.launch({ args: ['--allow-file-access-from-files'] }); }
   const page = await browser.newPage(), errs = [];
   page.on('pageerror', e => errs.push(e.message));
-  await page.goto(pathToFileURL(HTML).href + `?render&f0=${a}&f1=${b}&c3d=${encodeURIComponent(C3D.replace(/\\/g, '/'))}`);
+  await page.goto(pathToFileURL(HTML).href + `?render&f0=${a}&f1=${b}&c3d=${encodeURIComponent(C3D.replace(/\\/g, '/'))}`, { timeout: 180000 });   // страница 150+ МБ: под нагрузкой грузится дольше 30 с
   const n = await page.evaluate(() => window.FRAMES);
   if (n !== b - a) throw new Error(`кусок ${a}-${b}: FRAMES ${n}`);
   const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', '30', '-c:v', 'png', '-i', '-',

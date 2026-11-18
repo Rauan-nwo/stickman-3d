@@ -2,17 +2,17 @@
 
 Сгенерирован `node production/L001/sound/cues.mjs` из `animatic/timing.json`, `animatic/words.json`, `animatic/conf.js` и ручной постановки `cues_manual.mjs`. Не править руками.
 
-Всего звуков: **1168**; по типам: caption 8, foley 154, camera 320, transition 231, template 182, event 247, title 26. Подложек (сегментов амбиенса): 215.
+Всего звуков: **1173**; по типам: caption 8, foley 154, camera 320, transition 231, template 182, event 252, title 26. Подложек (сегментов амбиенса): 215.
 
 ## По главам
 
 | гл. | название | время | звуков | в минуту |
 |---|---|---|---|---|
-| 0 | A Table in Singapore | 0:00.00–0:44.53 | 80 | 107.8 |
+| 0 | A Table in Singapore | 0:00.00–0:44.53 | 81 | 109.1 |
 | 1 | The Office | 0:44.53–1:10.45 | 53 | 122.7 |
-| 2 | The Man With the Key | 1:10.45–4:20.30 | 177 | 55.9 |
+| 2 | The Man With the Key | 1:10.45–4:20.30 | 176 | 55.6 |
 | 3 | The Locked Door | 4:20.30–5:49.74 | 84 | 56.4 |
-| 4 | The Cover | 5:49.74–7:27.63 | 100 | 61.3 |
+| 4 | The Cover | 5:49.74–7:27.63 | 105 | 64.4 |
 | 5 | The Introduction | 7:27.63–9:13.01 | 124 | 70.6 |
 | 6 | The Pipeline | 9:13.01–11:20.98 | 130 | 61.0 |
 | 7 | The Real Prize | 11:20.98–13:25.89 | 146 | 70.1 |
@@ -92,7 +92,7 @@
 | c0049 | 11 | 819 | 0:27.31 | stamp | onset | штамп «EXPORT CONTROLLED» | event |
 | c0050 | 11 | 833 | 0:27.76 | stamp | onset | штамп «NOT FOR CHINA» | event |
 | c0051 | 12 | 844 | 0:28.14 | whoosh.cut | apex | склейка #11→#12: смена места | transition |
-| c0052 | 12 | 846 | 0:28.21 | air.move (-3) | span 2.12 с | движение камеры: проезд вправо | camera |
+| c0052 | 12 | 846 | 0:28.21 | air.move (-3) | span 2.12 с | движение камеры: проезд вправо + удары ×2 | camera |
 | c0053 | 12 | 854 | 0:28.46 | thunder.far (-6) | onset | проезд к машине под дождём (далёкий гром) | foley |
 | c0054 | 13 | 922 | 0:30.72 | tape.reels (-4) | span 3.54 с | крутятся бобины магнитофона | foley |
 | c0055 | 13 | 925 | 0:30.82 | whoosh.whip | apex | склейка #12→#13: вип-переход | transition |
@@ -108,16 +108,17 @@
 | c0065 | 15 | 1138 | 0:37.93 | af.beep (-2) | onset | рамка нашла Дженсена | foley |
 | c0066 | 16 | 1141 | 0:38.03 | flash.pop | onset | склейка #15→#16: вспышка | transition |
 | c0067 | 16 | 1146 | 0:38.21 | photo.drop (-3) | onset | снимок 1 падает на столик агента | foley |
-| c0068 | 16 | 1157 | 0:38.55 | photo.drop (-3) | onset | снимок 2 падает на столик агента | foley |
-| c0069 | 16 | 1163 | 0:38.75 | snap (-6) | apex | рывок на «jacket» | camera |
-| c0070 | 16 | 1163 | 0:38.75 | shutter | onset | щелчок затвора | event |
-| c0071 | 16 | 1163 | 0:38.75 | flash.pop (-6) | onset | вспышка | event |
-| c0072 | 16 | 1166 | 0:38.87 | photo.drop | onset | снимок 3 падает на столик агента | foley |
-| c0073 | 17 | 1198 | 0:39.95 | chair.creak (-5) | onset | Дженсен откидывается на спинку | foley |
-| c0074 | 17 | 1211 | 0:40.37 | snap | apex | рывок на «idea» | camera |
-| c0075 | 18 | 1236 | 0:41.19 | tape.reels (-8) | span 3.34 с | бобины | foley |
-| c0076 | 18 | 1237 | 0:41.22 | whoosh.cut | apex | склейка #17→#18: смена места | transition |
-| c0077 | 18 | 1239 | 0:41.30 | tablet.ping (-4) | onset | на планшет приходит снимок | foley |
-| c0078 | 18 | 1267 | 0:42.23 | headphone (-4) | onset | агент 2 опускает наушники | foley |
-| c0079 | 18 | 1270 | 0:42.34 | whoosh.whip | apex | вип-пан AGENT 2 → AGENT | camera |
-| c0080 | 18 | 1302 | 0:43.39 | folder.close | onset | агент закрывает папку «SUBJECT: ALICE HUANG» | foley |
+| c0068 | 16 | 1149 | 0:38.29 | stamp | onset | штамп «THE JACKET» | event |
+| c0069 | 16 | 1157 | 0:38.55 | photo.drop (-3) | onset | снимок 2 падает на столик агента | foley |
+| c0070 | 16 | 1163 | 0:38.75 | snap (-6) | apex | рывок на «jacket» | camera |
+| c0071 | 16 | 1163 | 0:38.75 | shutter | onset | щелчок затвора | event |
+| c0072 | 16 | 1163 | 0:38.75 | flash.pop (-6) | onset | вспышка | event |
+| c0073 | 16 | 1166 | 0:38.87 | photo.drop | onset | снимок 3 падает на столик агента | foley |
+| c0074 | 17 | 1198 | 0:39.95 | chair.creak (-5) | onset | Дженсен откидывается на спинку | foley |
+| c0075 | 17 | 1211 | 0:40.37 | snap | apex | рывок на «idea» | camera |
+| c0076 | 18 | 1236 | 0:41.19 | tape.reels (-8) | span 3.34 с | бобины | foley |
+| c0077 | 18 | 1237 | 0:41.22 | whoosh.cut | apex | склейка #17→#18: смена места | transition |
+| c0078 | 18 | 1239 | 0:41.30 | tablet.ping (-4) | onset | на планшет приходит снимок | foley |
+| c0079 | 18 | 1267 | 0:42.23 | headphone (-4) | onset | агент 2 опускает наушники | foley |
+| c0080 | 18 | 1270 | 0:42.34 | whoosh.whip | apex | вип-пан AGENT 2 → AGENT | camera |
+| c0081 | 18 | 1302 | 0:43.39 | folder.close | onset | агент закрывает папку «SUBJECT: ALICE HUANG» | foley |

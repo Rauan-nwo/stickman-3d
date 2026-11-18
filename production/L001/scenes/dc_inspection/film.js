@@ -9,7 +9,7 @@
 //   186   вставка: палец на наклейке с датой доставки (реплика гида «Since delivery.» за кадром) (1.6 с)
 // Параметры: --set shot=180|182|183w|183|184|185|186 — один план; --set dur=<с> — длительность (одного плана, а без shot —
 // всего фильма, планы масштабируются); --set d183=1.4 — длительность отдельного плана; --set date="..." — дата на
-// наклейке (по умолчанию даты нет: поле смазано — в сценарии даты нет, НУЖНО УТОЧНИТЬ у Рауана); --set solo=k|w --set vig=0 — проверка непрозрачности героев.
+// наклейке; --set torch=0 — план 180 без фонаря, зал освещён (гл. 2 #78 «суперкомпьютер») (по умолчанию даты нет: поле смазано — в сценарии даты нет, НУЖНО УТОЧНИТЬ у Рауана); --set solo=k|w --set vig=0 — проверка непрозрачности героев.
 import { THREE, V, clamp, seg, E, Actor, act, blinkAt, unUpper, shoulder, restHand, arcHand, gesture, elbowIK, noirShade, blobShadow, lerp, ell } from 'engine';
 import { noirLogistics, box, toon, pallet, edgeLines, NOIR } from 'engine/sets/noirLogistics.js';
 import { paint, inkHull, rbox, decal, glow, hazeCard, noirLook, camSpline, GLIDE, setRes, tex } from 'engine/sets/noirInteriors.js';
@@ -26,7 +26,7 @@ export default {
   options: {},
   setup(stage, o) {
     setRes(stage.W, stage.H);
-    const solo = o.solo;
+    const solo = o.solo, NOTORCH = String(o.torch) === '0';
     stage.setVignette({ alpha: .58, color: '3,5,12', inner: .4, outer: 1.0, cy: .5 });
     // ---------- длительности ----------
     let list = BASE.map(([id, d]) => [id, o['d' + id] != null ? +o['d' + id] : d]);
@@ -343,9 +343,10 @@ export default {
     add('180', s => ({
       camera: t => camSpline([[0, [-15.35, 1.55, .05, -6, 1.25, 0, 46]], [.55, [-13.6, 1.5, 0, -4, 1.2, 0, 45]], [1, [-10.6, 1.42, -.05, 0, 1.1, .1, 44]]].map(([u, v]) => [u, [v[0] + DC.x, v[1], v[2], v[3] + DC.x, v[4], v[5], v[6]]]), u01(t, s) , GLIDE),
       update(t, f) {
-        const u = u01(t, s), lt = t - s.from; paintedBeam = 1;
-        setDark(.38 + .3 * smoothK(lt, 1.2, 3.2), 1.05 + .25 * smoothK(lt, 1.0, 3.0)); openLook(f, 0x163a4e, .055);
-        darkRacks(.4 + .6 * smoothK(lt, 1.0, 3.0));
+        const u = u01(t, s), lt = t - s.from; paintedBeam = NOTORCH ? 0 : 1;
+        if (NOTORCH) { setDark(.8, 1.35); openLook(f, 0x163a4e, .05); darkRacks(1); }    // --set torch=0: зал работает (L001 гл. 2 #78), без фонаря
+        else { setDark(.38 + .3 * smoothK(lt, 1.2, 3.2), 1.05 + .25 * smoothK(lt, 1.0, 3.0)); openLook(f, 0x163a4e, .055);
+        darkRacks(.4 + .6 * smoothK(lt, 1.0, 3.0)); }
         doorLamp.intensity = 2.6; doorGlow.material.opacity = .55;
         const open = E.inOutCubic(clamp((lt - .35) / 1.5)); for (const l of leaves) l.hinge.rotation.y = l.s * -1.75 * open * (1 - .06 * Math.sin(lt * 3) * (1 - open));
         lockL.material.color.setRGB(lt > .3 ? .25 : 1.6, lt > .3 ? 1.6 : .2, .15);
@@ -353,7 +354,7 @@ export default {
         // луч: сначала на створки, с открытием — в проход, к штабелю в плёнке справа вдали (горячее пятно на плёнке)
         const go = E.inOutSine(clamp((lt - .9) / (s.d - 1.1)));
         const aimX = lt < .9 ? -14.1 : lerp(-14.1, 1.0, go), aimY = lt < .9 ? 1.15 - .1 * lt : lerp(1.05, .95, go), aimZ = lt < .9 ? .35 - .3 * lt : lerp(.08, .62, go);
-        const k = smoothK(lt, .08, .4);                                                      // фонарь включается плавно (без мерцания)
+        const k = NOTORCH ? 0 : smoothK(lt, .08, .4);                                        // фонарь включается плавно (без мерцания)
         const from = cp.clone().add(V(-.3, -.42, -.45)), to = W(aimX, aimY, aimZ);
         setTorch(from, to, k * lerp(.7, 1.15, smoothK(lt, .8, 1.6)), lerp(.45, 1, smoothK(lt, .9, 1.8)));
         motesInBeam(lt, from, to, k * .55 * smoothK(lt, .8, 1.8)); hidePuff();

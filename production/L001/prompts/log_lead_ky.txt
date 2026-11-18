@@ -1,1 +1,6 @@
 [bg_oneida_gate.png] генерирую...
+[bg_oneida_gate.png] готово -> C:\dev\projects\youtube-video\production\L001\raw\bg_oneida_gate.png
+[bg_huang_hall.png] генерирую...
+[bg_huang_hall.png] готово -> C:\dev\projects\youtube-video\production\L001\raw\bg_huang_hall.png
+
+итого: готово 2, пропущено 0, с ошибкой 0

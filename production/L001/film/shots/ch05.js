@@ -146,11 +146,11 @@ export const SHOTS = {
     drawP(ctx, P, v, 'front'); if (!solo) { const h = toS(v, [hx, hy]), s = .29 * v.k; PA.marker(ctx, h[0], h[1] - 6 * s, s * 1.3, .5); ell(ctx, h[0], h[1], 12 * s, 12 * s, JH.spec.colors.ink, null); }
     ctx.restore(); },
   '5|In early 2024, she turned up': x => { const { ctx, t, T, cam, solo } = x, tm = W_(x, 'Megaspeed', 5.1);   // ОБРАТНАЯ зал: Алиса с бейджем в первом ряду; на «Megaspeed» бейдж крупно, по сцене проходит Дженсен в кожанке
-    const push = E.inOutCubic(clamp((t - (tm - .6)) / .6)), v = camView(lerpView({ cx: 900, cy: 660, k: 1.25 }, { cx: 712, cy: 700, k: 3.0 }, push), cam, .15);
+    const push = E.inOutCubic(clamp((t - (tm - .6)) / .6)), v = camView(lerpView({ cx: 900, cy: 660, k: 1.25 }, { cx: 701, cy: 720, k: 3.2 }, push), cam, .15);
     ctx.save(); shake(ctx, cam); EH.plate(ctx, v, 'rev', 0, solo);
-    EH.seatedRev(ctx, Q[0], v, t, T, { seat: [372, 850], keys: [[0, 'smile']], look: [0, -.1], seed: 1, solo });
-    EH.seatedRev(ctx, Q[2], v, t, T, { seat: [541, 848], keys: [[0, 'smile']], look: [0, -.1], seed: 3, solo });
-    const r = EH.seatedRev(ctx, AL, v, t, T, { seat: [712, 846], keys: [[0, 'smug']], look: [lerp(.1, -.05, push), -.15], seed: 5, solo, L: { k: .6, to: [690, 870] }, R: { k: .6, to: [735, 870] } });
+    EH.seatedRev(ctx, Q[0], v, t, T, { seat: [367, 846], keys: [[0, 'smile']], look: [0, -.1], seed: 1, solo });
+    EH.seatedRev(ctx, Q[2], v, t, T, { seat: [533, 846], keys: [[0, 'smile']], look: [0, -.1], seed: 3, solo });
+    const r = EH.seatedRev(ctx, AL, v, t, T, { seat: [701, 846], keys: [[0, 'smug']], look: [lerp(.1, -.05, push), -.15], seed: 5, solo });
     EH.stageFront(ctx, v, solo);
     if (!solo) { BR.chestBadge(ctx, r.P, v, 'NVIDIA EVENT', 'MEGASPEED', 1.15);
       const u = (t - (tm - .9)) / 1.6; if (u > 0 && u < 1) soft(ctx, 14, c => { EH.standing(c, JH, { cx: 960, cy: 540, k: 1 }, t, T, { at: [lerp(2400, -500, u), 2050], which: 'rev', f: -1, view: 'threeQuarter', keys: [[0, 'smile']], shadow: false }); }, 1, .35); }

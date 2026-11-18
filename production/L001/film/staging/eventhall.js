@@ -7,7 +7,7 @@
 //   EH.fsAt(y, which)                — масштаб фигуры (пикс. плейта на единицу) для ступней на полу у y; 'stage' — на сцене WIDE
 //   EH.standing(ctx, C, v, t, T, o) — стоящий: o = { at:[x,y] ступни, which, f, view, keys, look, sp, L/R:{k,to}, held:{L,R}, solo } (chars_A.person)
 //   EH.podium(ctx, C, v, t, T, o)    — оратор за трибуной WIDE (трибуна и микрофон — передний план): o как standing, at по умолчанию за трибуной
-//   EH.seatedRev(ctx, C, v, t, T, o) — сидящий в первом ряду REV (кресло лицом к нам), ноги ниже края сцены закрыты сценой; o.seat — [x,y] сиденья
+//   EH.seatedRev(ctx, C, v, t, T, o) — сидящий В кресле первого ряда REV (сиденья x 367 / 533 / 701, y 846; fs .45; стойки подлокотников поверх; кисти на подлокотниках), ноги ниже края сцены закрыты сценой
 //   EH.stageFront(ctx, v, solo)      — край сцены REV поверх (после героев в зале)
 //   EH.crowd(ctx, v, t, o)           — передний план: силуэты зрителей со спины (головы и плечи у нижнего края кадра) с поднятыми телефонами;
 //                                      o = { n, phones 0..1, flashes: [t…], seed, y } — чистые силуэты (заливка + тёплый контровой край)
@@ -25,6 +25,7 @@ import revP from '../../assets/bg_event_hall_reverse.png';
 const PODIUM = [[493, 548], [560, 533], [663, 544], [663, 561], [642, 573], [628, 688], [646, 692], [646, 712], [514, 712], [514, 692], [537, 688], [518, 573], [497, 562]];
 const MIC = [[561, 537], [573, 492], [598, 481], [617, 489], [612, 500], [592, 497], [581, 537]];
 const STAGE_REV = (() => { const o = [[0, 1080], [0, 978]]; for (let x = 0; x <= 1920; x += 80) o.push([x, 944 + Math.pow((x - 960) / 960, 2) * 34]); o.push([1920, 1080]); return o; })();
+const ARMS_REV = [290, 445, 622, 780].map(x => [[x - 24, 812], [x + 24, 812], [x + 19, 906], [x - 19, 906]]);   // стойки подлокотников первого ряда REV (перед сидящими)
 const REV_PODIUM = [[1390, 655], [1470, 640], [1700, 668], [1705, 712], [1650, 742], [1610, 960], [1660, 990], [1650, 1025], [1430, 1025], [1420, 985], [1470, 960], [1440, 742], [1395, 712]];
 export const CFG = {
   hor: 453, stageY: 690, podiumAt: [582, 682],
@@ -34,7 +35,7 @@ export const CFG = {
 };
 const I = { wide: img(wideP), rev: img(revP) };
 export const A = lazy([I.wide, I.rev], () => ({ wide: I.wide, rev: I.rev, wideB4: blurred(I.wide, 4), wideB10: blurred(I.wide, 10), revB4: blurred(I.rev, 4), revB10: blurred(I.rev, 10),
-  podium: masked(I.wide, polyMask([PODIUM, MIC])), stageRev: masked(I.rev, polyMask([STAGE_REV, REV_PODIUM])) }));
+  podium: masked(I.wide, polyMask([PODIUM, MIC])), stageRev: masked(I.rev, polyMask([STAGE_REV, REV_PODIUM])), armsRev: masked(I.rev, polyMask(ARMS_REV)) }));
 const fsAt = (y, which = 'wide') => which === 'stage' ? .29 * (1 + (y - 690) / 400) : which === 'rev' ? .63 * (1 + (y - 845) / 520) : .001226 * (y - 453);
 function plateEH(ctx, v, which = 'wide', blur = 0, solo) { const a = A(); if (a && !solo) plate(ctx, a[which + (blur >= 8 ? 'B10' : blur ? 'B4' : '')] || a[which], cover(v)); }
 function standing(ctx, C, v, t, T, o) {
@@ -48,9 +49,14 @@ function podiumSpk(ctx, C, v, t, T, o = {}) {
   return P;
 }
 function seatedRev(ctx, C, v, t, T, o = {}) {
-  const seat = o.seat || [710, 845], fs = fsAt(seat[1], 'rev') * (o.scale || 1);
-  const P = pose(C, t, T, { at: seat, fs, pin: 'seat', f: o.f ?? 1, view: o.view === undefined ? null : o.view, stance: o.f && o.view ? (o.f > 0 ? 'sitR' : 'sitL') : 'sitR', keys: o.keys, look: o.look, lean: o.lean, sp: o.sp, seed: o.seed, shade: shadeOf(CFG.light.rev), L: o.L, R: o.R });
+  // сидит В кресле первого ряда: торс между подлокотниками (кресло 130 px = .5 м -> fs .45), ноги вниз к полу (анфас) — ниже края сцены скрыты сценой;
+  // стойки подлокотников плейта — поверх героя, кисти лежат на подушках подлокотников (o.L/o.R по умолчанию)
+  const seat = o.seat || [701, 846], fs = .45 * (o.scale || 1), front = o.view == null;
+  const arm = sd => { const xs = [290, 445, 622, 780], i = xs.findIndex(x => x > seat[0]); return [sd > 0 ? xs[i] - 6 : xs[i - 1] + 6, 806]; };
+  const P = pose(C, t, T, { at: seat, fs, pin: 'seat', f: o.f ?? 1, view: front ? null : o.view, stance: front ? 'stand' : (o.f > 0 ? 'sitR' : 'sitL'), keys: o.keys, look: o.look, lean: o.lean, tilt: o.tilt, sp: o.sp, seed: o.seed, shade: shadeOf(CFG.light.rev),
+    L: o.L || { k: 1, to: arm(-1) }, R: o.R || { k: 1, to: arm(1) } });
   drawP(ctx, P, v);
+  { const a = A(); if (a && !o.solo) plate(ctx, a.armsRev, cover(v)); }
   return { P, hl: handS(P, v, 'L'), hr: handS(P, v, 'R'), s: fs * v.k };
 }
 function stageFront(ctx, v, solo) { const a = A(); if (a && !solo) plate(ctx, a.stageRev, cover(v)); }

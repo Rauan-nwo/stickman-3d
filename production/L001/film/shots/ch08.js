@@ -86,7 +86,7 @@ export const SHOTS = {
   '8|Officials asked for the name': x => { const { ctx, t, T, cam, solo } = x, v = CR.view('mid', cam, .3), tu = W_(x, 'unmasked', 1.5);   // двое над сводкой; на «unmasked» левый тянет чёрную плашку вверх
     const reach = env(t, tu - .35, x.d + 1, .3), lift = E.inOutCubic(clamp((t - tu) / .5)), P0 = CR.onTable(0, .05);
     ctx.save(); shake(ctx, cam);
-    CR.room(ctx, v, t, T, { solo, a1: { keys: [[0, 'neutral']], look: [.4, .6], lean: .06 * reach, R: { k: 1, to: [lerp(720, P0[0] + 30, reach), lerp(676, P0[1] - 6 - 30 * lift, reach)] } }, a2: { keys: [[0, 'neutral']], look: [-.45, .6] },
+    CR.room(ctx, v, t, T, { solo, a1: { keys: [[0, 'neutral']], look: [.4, .6], lean: .06 * reach, R: { k: 1, to: [lerp(720, P0[0] - 44, reach), lerp(676, P0[1] - 95 * lift * .9, reach)] } }, /* кисть на левом краю чёрной плашки, тянет её вверх */ a2: { keys: [[0, 'neutral']], look: [-.45, .6] },
       onTable: (c, vv) => { const P = toS(vv, P0); c.save(); c.translate(P[0], P[1]); c.scale(1, .5); B.sheet(c, 0, 0, 300 * vv.k, 380 * vv.k, .05, (cc, w, h) => B.intercept(cc, w, h, { lift: lift * .9 })); c.restore(); } });
     ctx.restore(); },
   '8|It was Jensen Huang': x => { const { ctx, t, cam, solo } = x, tj = W_(x, 'Jensen', .34);   // вставка: на «Jensen» чёрная плашка срывается — под ней JENSEN HUANG
@@ -110,9 +110,9 @@ export const SHOTS = {
     ctx.restore(); },
   "8|AIDE 2: He's in it": x => { const { ctx, t, cam, solo } = x, tp = W_(x, 'in', .3);   // вставка: палец AIDE 2 на строке JENSEN HUANG (рука — от её кресла, сверху справа)
     if (solo) return; ctx.save(); shake(ctx, cam); const a = CR.A(); if (a) plate(ctx, a.b3, cover({ cx: 1050, cy: 690, k: 2.6 * cam.z }));
-    B.sheet(ctx, 1080, 560, 760, 980, .02, (c, w, h) => B.intercept(c, w, h, { lift: 1 }));
-    const k = E.outCubic(clamp((t - tp + .3) / .35)), hx = lerp(1700, 1250, k), hy = lerp(-60, 515, k);
-    B.insertSleeve(ctx, [hx, hy], [1980, -140], 34, B.CLOTH.aide2);   // рукав серого пиджака AIDE 2 (сидит справа сверху), манжета, палец-точка на строке
+    B.sheet(ctx, 1250, 560, 760, 980, .02, (c, w, h) => B.intercept(c, w, h, { lift: 1 }));
+    const k = E.outCubic(clamp((t - tp + .3) / .35)), hx = lerp(2100, 1420, k), hy = lerp(560, 515, k);
+    B.insertSleeve(ctx, [hx, hy], [2010, 600], 34, B.CLOTH.aide2);   // от ближнего (правого) края: видно ~30 % ширины кадра   // рукав серого пиджака AIDE 2 (сидит справа сверху), манжета, палец-точка на строке
     ctx.restore(); },
   // ---------------- L02 салон: бобины ----------------
   '8|It was built on electronic surveillance': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 830, cy: 620, k: 1.9 }, cam, .3), ta = W_(x, 'Alice', 2);   // крупно бобины и бирка LINE 2; AGENT 2 снимает наушники
@@ -150,7 +150,7 @@ export const SHOTS = {
     const op = E.inOutCubic(clamp((t - (tm - .35)) / .45)), FW = 330;
     ctx.save(); shake(ctx, cam);
     NR.room(ctx, v, t, T, { solo, blur: 3, ed: { keys: [[0, 'neutral']], look: [0, .55], tilt: .04, L: { k: 1, to: [1505 - FW * .3 * .6 + 0, 735] }, R: { k: 1, to: [1505 + FW * .3 * .6, 735] },
-      under: (c, r) => { const P = toS(v, [1505, 700]), s = v.k * .6; c.save(); c.translate(P[0] - FW * s / 2, P[1] - FW * .78 * s / 2); B.tsFolder(c, FW * s, FW * .78 * s, { open: op, copy: true, inner: (cc, w, h) => B.memoPage(cc, w, h, { head: 'TOP SECRET', title: 'MEMORANDUM' }) }); c.restore(); } } });
+      heldR: () => {}, heldL: (c) => { const P = toS(v, [1505, 700]), s = v.k * .6; c.save(); c.translate(P[0] - FW * s / 2, P[1] - FW * .78 * s / 2); B.tsFolder(c, FW * s, FW * .78 * s, { open: op, copy: true, inner: (cc, w, h) => B.memoPage(cc, w, h, { head: 'TOP SECRET', title: 'MEMORANDUM' }) }); c.restore(); } } });
     ctx.restore(); },
   '8|REPORTER: Beyond business': x => { const { ctx, t, T, cam, solo, s, d } = x, tw = s.whip?.t ?? d * .5, wu = inOutExpo((t - tw + .1) / WHIP_DUR);   // крупно репортёр: брови ползут вверх -> вип-пан -> редактор переворачивает страницу
     const va = NR.view('rep', { ...cam, dx: 0 }), vb = NR.view('ed', { ...cam, dx: 0 }), v = lerpView(va, vb, clamp(wu)), flip = E.inOutCubic(clamp((t - tw - .45) / .4)), FW = 330;
@@ -158,7 +158,7 @@ export const SHOTS = {
     NR.room(ctx, v, t, T, { solo, blur: 3,
       rep: { keys: [[0, 'neutral'], [.35, 'nervous']], brows: t > .35 ? [lerp(0, 30, up(t, .35, .5)), .1] : null, look: [.6, 0] },
       ed: { keys: [[0, 'neutral']], look: [-.4, .3], L: { k: 1, to: [1505 - 60, 735] }, R: { k: 1, to: [1505 + 60 - 120 * Math.sin(Math.PI * flip) * .5, 735 - 40 * Math.sin(Math.PI * flip)] },
-        under: (c) => { const P = toS(v, [1505, 700]), sc = v.k * .6; c.save(); c.translate(P[0] - FW * sc / 2, P[1] - FW * .78 * sc / 2); B.tsFolder(c, FW * sc, FW * .78 * sc, { open: 1, inner: (cc, w, h) => { B.memoPage(cc, w, h, { title: 'MEMORANDUM', line: '…BEYOND BUSINESS…', lineY: .4, k: 1 });
+        heldR: () => {}, heldL: (c) => { const P = toS(v, [1505, 700]), sc = v.k * .6; c.save(); c.translate(P[0] - FW * sc / 2, P[1] - FW * .78 * sc / 2); B.tsFolder(c, FW * sc, FW * .78 * sc, { open: 1, inner: (cc, w, h) => { B.memoPage(cc, w, h, { title: 'MEMORANDUM', line: '…BEYOND BUSINESS…', lineY: .4, k: 1 });
           if (flip > 0 && flip < 1) { cc.save(); cc.translate(w, 0); cc.scale(-Math.cos(Math.PI * flip), 1); cc.translate(-w, 0); cc.fillStyle = '#ece4d0'; cc.fillRect(w * .02, 0, w * .96, h); B.lines(cc, w * .1, h * .1, w * .8, 14, h * .06); cc.restore(); } } }); c.restore(); } } });
     ctx.restore(); },
   '8|That left one question': x => { const { ctx, t, cam, solo } = x, ta = W_(x, 'answer', 2.4);   // страница переворачивается: под ней снимок наблюдения — ужин через мокрое стекло; лампа гаснет, снимок в свете окна (OVER)

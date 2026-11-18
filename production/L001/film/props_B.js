@@ -163,8 +163,8 @@ export function deskCalendar(x, w, h, earn = 0, in5 = 0) {
   for (let r = 0; r < 5; r++) for (let c = 0; c < 7; c++) { const d = r * 7 + c - 6; if (d < 1 || d > 30) continue; const cx = w * (.2 + c * .088), cy = h * (.36 + r * .11);
     txt(x, String(d), cx + w * .03, cy, h * .05, { align: 'center', col: d === 17 ? '#b3121f' : INK }); }
   for (const r0 of [0, 1, 2]) for (let k = 1; k <= 1; k++) { }
-  const ex = w * (.2 + 1 * .088) + w * .03, ey = h * (.36 + 3 * .11);   // 17 ноября — вторник
-  redCircle(x, ex, ey, w * .05, h * .05, earn, Math.max(3, w * .012)); if (earn > .6) txt(x, 'EARNINGS', ex, ey + h * .075, h * .04, { col: '#b3121f', font: F.label, w: 900, align: 'center' });
+  const ex = w * (.2 + 2 * .088) + w * .03, ey = h * (.36 + 3 * .11);   // 17 ноября — красная дата (строка 3-я сверху, колонка 3)   // 17 ноября — вторник
+  redCircle(x, ex, ey, w * .05, h * .05, earn, Math.max(3, w * .012)); if (earn > .6) { x.fillStyle = '#b3121f'; x.fillRect(w * .86, ey - h * .035, w * .3, h * .07); txt(x, 'EARNINGS', w * 1.01, ey, h * .045, { col: '#fff', font: F.label, w: 900, align: 'center' }); x.strokeStyle = '#b3121f'; x.lineWidth = 3; x.beginPath(); x.moveTo(ex + w * .05, ey); x.lineTo(w * .86, ey); x.stroke(); }
   if (in5 > 0) { x.save(); x.translate(w / 2, h * 1.08); x.scale(1, E.outBack(clamp(in5))); x.fillStyle = '#121216'; x.fillRect(-w * .3, -h * .07, w * .6, h * .14); txt(x, 'IN 5 DAYS', 0, 0, h * .085, { col: '#ffd84a', font: F.label, w: 900, align: 'center' }); x.restore(); }
 }
 // экран пенсионного счёта: круговая диаграмма S&P 500, кусок NVDA (red 0..1 — краснеет, pop 0..1 — выдвигается), плашка (tag)

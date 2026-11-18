@@ -16,6 +16,7 @@ import { silhouette } from '../staging/desk.js';
 import * as B from '../props_B.js';
 import * as PA from '../props_A.js';
 import { official, aide, officer } from '../chars.js';
+import { person } from '../chars_B.js';
 import { jensen, noirShade } from 'engine';
 
 const OFFICIAL = official(), JH = jensen(), OFF1 = officer(), OFF2 = officer(), ASSIST = aide();
@@ -161,7 +162,7 @@ export const SHOTS = {
   '2|In 2006, Jensen made his biggest bet': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 960, cy: 520, k: 1.25 }, cam, .25), tr = W_(x, 'released', 3.49);   // ОБЩИЙ: маленькая презентация 2006, зал полупустой, на экране слайд CUDA; на «released» слайд вспыхивает, Дженсен показывает на экран
     const g = gesture(t, tr, { lead: .2, rise: .3, hold: 1.2, fall: .4 });
     ctx.save(); shake(ctx, cam); A_EH.plate(ctx, v, 'wide', 0, solo);
-    if (!solo) { A_EH.screen(ctx, v, ['CUDA', 'PARALLEL COMPUTING ON THE GPU'], 1); A_screenFlash(ctx, v, gauss(t, tr + .05, .12) * .5); }
+    if (!solo) { A_scr(ctx, v, ['CUDA', 'PARALLEL COMPUTING ON THE GPU'], 1); A_screenFlash(ctx, v, gauss(t, tr + .05, .12) * .5); }
     A_EH.standing(ctx, A_JH, v, t, T, { at: [1240, 700], which: 'stage', f: -1, view: 'threeQuarter', keys: [[0, 'smile']], look: [-.3 - .4 * g.body, 0], solo, L: { k: g.hand, to: [1120, 520] } });
     if (!solo) A_heads(ctx, v, [[420, 770, 22], [1300, 772, 22], [1610, 800, 27]]);
     ctx.restore(); },
@@ -170,20 +171,20 @@ export const SHOTS = {
     A_onScreen(ctx, v, (c, w, h) => { const u = clamp((t - (tm - .3)) / .5);
       c.globalAlpha = 1 - u; for (let r = 0; r < 3; r++) for (let k = 0; k < 7; k++) { const cx = w * (.1 + k * .13), cy = h * (.25 + r * .27) - Math.abs(Math.sin(t * 6 + r + k)) * h * .03; A_cook(c, cx, cy, h * .09); }
       c.globalAlpha = u; ['Σ aᵢ·bᵢ', '∫ f(x) dx', 'E = mc²', '∇·E = ρ/ε₀', 'λ = h / p', 'F = ma'].forEach((s, i) => A_PA.label(c, s, w * (.2 + (i % 3) * .3), h * (.32 + Math.floor(i / 3) * .34), h * .1, '#bfffd0', { weight: 700, font: "'Cambria Math', Georgia, serif" }));
-      c.globalAlpha = clamp((t - (tg - .3)) / .3); A_PA.gamepad(c, w * .9, h * .86, h * .0035 * 100 * .6, -.2); c.globalAlpha = 1; });
+      c.globalAlpha = clamp((t - (tg - .3)) / .3); A_PA.gamepad(c, w * .86, h * .78, h * .0022, -.2); c.globalAlpha = 1; });
     ctx.restore(); },
   '2|INVESTOR: Who exactly is this for': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 560, cy: 650, k: 2.3 }, cam, .1), tt = W_(x, 'this', .98);   // ОБРАТНАЯ инвестор в первом ряду: скучает, на «this» подаётся вперёд и спрашивает
     const fwd = E.inOutCubic(clamp((t - (tt - .3)) / .3));
     ctx.save(); shake(ctx, cam); A_EH.plate(ctx, v, 'rev', 0, solo);
-    A_EH.seatedRev(ctx, A_INV, v, t, T, { seat: [541, 848], sp: 'INVESTOR', keys: [[0, 'neutral']], look: [-.1, .1], lean: .06 * fwd - .04, tilt: .06 * (1 - fwd), seed: 4, solo, L: { k: .6, to: [520, 872] }, R: { k: .6, to: [565, 872] } });
+    A_EH.seatedRev(ctx, A_INV, v, t, T, { seat: [533, 846], sp: 'INVESTOR', keys: [[0, 'neutral']], look: [-.1, .1], lean: .06 * fwd - .04, tilt: .06 * (1 - fwd), seed: 4, solo });
     A_EH.stageFront(ctx, v, solo); ctx.restore(); },
   "2|JENSEN: People who don't know yet": x => { const { ctx, t, T, solo } = x, v = { cx: 1190, cy: 560, k: 2.3 };   // СРЕДНИЙ Дженсен (статично): улыбается, экран за ним гаснет
     A_EH.plate(ctx, v, 'wide', 0, solo);
-    if (!solo) { A_EH.screen(ctx, v, ['CUDA', 'PARALLEL COMPUTING ON THE GPU'], 1); A_screenDark(ctx, v, E.inOutCubic(clamp((t - .3) / .9)) * .85); }
+    if (!solo) { A_scr(ctx, v, ['CUDA', 'PARALLEL COMPUTING ON THE GPU'], 1); A_screenDark(ctx, v, E.inOutCubic(clamp((t - .3) / .9)) * .85); }
     A_EH.standing(ctx, A_JH, v, t, T, { at: [1200, 700], which: 'stage', f: 1, view: null, sp: 'JENSEN', keys: [[0, 'smile']], look: [0, .05], solo }); },
   '2|For years it looked like an expensive ho': x => { const { ctx, t, cam, solo } = x, v = camView({ cx: 960, cy: 520, k: 1.2 }, cam, .25), th = W_(x, 'hobby', 1.46);   // ОБЩИЙ пустой зал: слайд CUDA зарастает пылью и паутиной; в углу листаются годы 2007…2011
     if (solo) return; ctx.save(); shake(ctx, cam); A_EH.plate(ctx, v, 'wide', 0, false);
-    const dust = clamp(t / Math.max(.6, th)); A_EH.screen(ctx, v, ['CUDA', 'PARALLEL COMPUTING ON THE GPU'], 1); A_screenDark(ctx, v, .35 + .3 * dust, '120,110,100'); A_cobwebs(ctx, v, dust);
+    const dust = clamp(t / Math.max(.6, th)); A_scr(ctx, v, ['CUDA', 'PARALLEL COMPUTING ON THE GPU'], 1); A_screenDark(ctx, v, .35 + .3 * dust, '120,110,100'); A_cobwebs(ctx, v, dust);
     const yr = 2007 + Math.min(4, Math.floor(t / Math.max(.3, (x.d - .3) / 5))); A_PA.label(ctx, String(yr), W - 150, 90, 64, '#F2E8CC', { weight: 700 });
     ctx.restore(); },
   '2|When he talked about who should be allow': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 820, cy: 470, k: 1.6 }, cam, .2), ta = W_(x, 'allowed', 1.28);   // ОБЩИЙ Дженсен у трибуны; на экране очередь у турникета: на «allowed» первый проходит, перед вторым опускается планка (D16-C)
@@ -201,7 +202,7 @@ export const SHOTS = {
     const pull = E.inOutCubic(clamp(t / (x.d * .8))), v = camView(lerpView({ cx: 640, cy: 470, k: 2.6 }, { cx: 880, cy: 500, k: 1.35 }, pull), cam, .1);
     const evn = t < .76 ? 0 : t < th - .06 ? 1 : 2, names = [['TECH SUMMIT', 'KEYNOTE'], ['DEVELOPER CONFERENCE', 'KEYNOTE'], ['INDUSTRY EXPO', 'KEYNOTE']];
     ctx.save(); shake(ctx, cam); A_EH.plate(ctx, v, 'wide', 0, solo);
-    if (!solo) A_EH.screen(ctx, v, names[evn], 1);
+    if (!solo) A_scr(ctx, v, names[evn], 1);
     const g = gesture(t, th + .2, { lead: .2, rise: .3, hold: 1, fall: .4 });
     A_EH.podium(ctx, A_JH, v, t, T, { f: 1, view: null, keys: [[0, 'neutral']], look: [.2, .05], solo, R: { k: g.hand, to: [640, 470] } });
     void ts2; ctx.restore(); },
@@ -282,12 +283,28 @@ export const SHOTS = {
     ctx.restore(); },
 };
 export const OVER = {
+  // СПЛИТ #84 (окна шаблона ядра закрыты целиком): слева Вашингтон — помощник подносит трубку к уху; справа Пекин — силуэт офицера, перед ним на столе портрет Дженсена
+  '2|Washington picked up the phone': (ctx, s, t, d) => { const T = s.start + t, pw = W / 2;
+    const pane = (i, fn) => { ctx.save(); ctx.beginPath(); ctx.rect(i * pw + 4, 0, pw - 8, H); ctx.clip(); ctx.translate(i * pw + pw / 2 - W / 2, 0); fn(); ctx.restore(); };
+    pane(0, () => { const v = WA.view('mid', { z: 1 + .03 * t, dx: 0, dy: 0 }); WA.seated(ctx, v, t, T, { C: ASSIST, keys: [[0, 'neutral']], phone: 'L', phoneK: E.outCubic(clamp((t - .1) / .3)), view: 'front', look: [.1, .05] }); });
+    pane(1, () => { const v = BJ.view('mid', { z: 1 + .03 * t, dx: 0, dy: 0 }, .2); BJ.widePlate(ctx, v, 0, false); bjOfficer(ctx, v, t, T, { C: OFF1, keys: [[0, 'neutral']] }); BJ.deskFront(ctx, v, 0, false);
+      const P = toS(v, [960, 800]); ctx.save(); ctx.translate(P[0], P[1]); ctx.scale(1, .8); B.photo(ctx, 0, 0, 170 * v.k, -.04, jPic(0)); ctx.restore(); });
+    ctx.fillStyle = '#000'; ctx.fillRect(pw - 4, 0, 8, H); },
+  // СПЛИТ #94 «звонок»: слева чиновник у окна с трубкой (обратная точка, холодный синий); справа Дженсен за столом в кабинете Nvidia, трубка у уха — его вопрос
+  '3|JENSEN: Which ones count as best': (ctx, s, t, d) => { const T = s.start + t, pw = W / 2;
+    const pane = (i, fn) => { ctx.save(); ctx.beginPath(); ctx.rect(i * pw + 4, 0, pw - 8, H); ctx.clip(); ctx.translate(i * pw + pw / 2 - W / 2, 0); fn(); ctx.restore(); };
+    pane(0, () => { const v = { cx: 330, cy: 470, k: 1.5 + .03 * t }; WA.revPlate(ctx, v, 0, false);
+      person(ctx, v, t, T, { C: OFFICIAL, at: [420, 800], fs: .5, view: 'threeQuarter', facing: -1, light: [-1, -.2], shadow: true, keys: [[0, 'neutral']], look: [-.6, -.2], L: { k: 1, to: [385, 462] }, heldL: (c, P, sc) => PR.handsetHeld(c, P, sc, -1) });   // трубка у щеки, не на глазу
+      WA.revFront(ctx, v, 0, false); });
+    pane(1, () => { const v = NV.view('cu', { z: 1 + .03 * t, dx: 0, dy: 0 }); NV.seated(ctx, v, t, T, { C: JH, sp: 'JENSEN', blur: 3, keys: [[0, 'neutral']], phone: 'L', phoneK: 1, look: [.3, -.1] }); });
+    ctx.fillStyle = '#000'; ctx.fillRect(pw - 4, 0, 8, H); },
 };
 export const SKIP_PROPS = { '2|Because in October 2022, Washington': /OCT 2022/, '3|OFFICER 2: Then become his customer': /PURCHASE ORDER/, '3|the same man arguing with Washington': /./, '3|But it could try to get close': /./, "3|OFFICIAL: Your best chips can't go": /BLOCKED/ };
 export const RAIN = null;   // или s => true/false/undefined — переопределение дождя для планов главы
 
 // --- A --- импорты и помощники рабочего A для его планов гл. 2–3 (имена с префиксом A_, чтобы не пересекаться с импортами ведущего)
 import { EH as A_EH } from '../staging/eventhall.js';
+import { plate as A_plate } from '../staging/common.js';
 import { WH as A_WH } from '../staging/warehouse.js';
 import * as A_PA from '../props_A.js';
 import { person as A_person, figS as A_figS, shadeOf as A_shadeOf, investor as A_investor, scientist as A_scientist, salesman as A_salesman, assistant as A_assistant } from '../chars_A.js';
@@ -295,10 +312,13 @@ import { ell as A_ell, jensen as A_jensen } from 'engine';
 const A_fix = C => { C.spec.rig = { ...C.spec.rig, plantLegs: .02, armLayer: 'front' }; return C; };
 const A_JH = A_fix(A_jensen()), A_INV = A_investor(), A_SALES = A_salesman(), A_ASS = A_assistant(), A_SCI = [0, 1, 2, 3, 4, 5, 6, 7].map(A_scientist);
 // экран зала WIDE (x 560–1370, y 255–590): рисовальщик fn(ctx, w, h) в координатах экрана
+// трибуна и микрофон плейта WIDE — передний план: после любой картинки на экране рисуются заново (иначе экран ложится поверх трибуны и микрофон «просвечивает»)
+function A_podFront(ctx, v) { const a = A_EH.A(); if (a && a.podium) A_plate(ctx, a.podium, v); }
+function A_scr(ctx, v, lines, k) { A_EH.screen(ctx, v, lines, k); A_podFront(ctx, v); }
 function A_onScreen(ctx, v, fn) { const a = toS(v, [560, 255]), b = toS(v, [1370, 590]), w = b[0] - a[0], h = b[1] - a[1]; ctx.save(); ctx.beginPath(); ctx.rect(a[0], a[1], w, h); ctx.clip();
-  ctx.fillStyle = 'rgba(14,24,18,.95)'; ctx.fillRect(a[0], a[1], w, h); ctx.translate(a[0], a[1]); fn(ctx, w, h); ctx.restore(); }
-function A_screenFlash(ctx, v, k) { if (k <= .01) return; const a = toS(v, [560, 255]), b = toS(v, [1370, 590]); ctx.save(); ctx.globalCompositeOperation = 'screen'; ctx.fillStyle = `rgba(200,255,210,${k})`; ctx.fillRect(a[0], a[1], b[0] - a[0], b[1] - a[1]); ctx.restore(); }
-function A_screenDark(ctx, v, k, rgb = '6,8,10') { if (k <= .01) return; const a = toS(v, [545, 240]), b = toS(v, [1385, 605]); ctx.save(); ctx.fillStyle = `rgba(${rgb},${k})`; ctx.fillRect(a[0], a[1], b[0] - a[0], b[1] - a[1]); ctx.restore(); }
+  ctx.fillStyle = 'rgba(14,24,18,.95)'; ctx.fillRect(a[0], a[1], w, h); ctx.translate(a[0], a[1]); fn(ctx, w, h); ctx.restore();  A_podFront(ctx, v); }
+function A_screenFlash(ctx, v, k) { if (k <= .01) return; const a = toS(v, [560, 255]), b = toS(v, [1370, 590]); ctx.save(); ctx.globalCompositeOperation = 'screen'; ctx.fillStyle = `rgba(200,255,210,${k})`; ctx.fillRect(a[0], a[1], b[0] - a[0], b[1] - a[1]); ctx.restore();  A_podFront(ctx, v); }
+function A_screenDark(ctx, v, k, rgb = '6,8,10') { if (k <= .01) return; const a = toS(v, [545, 240]), b = toS(v, [1385, 605]); ctx.save(); ctx.fillStyle = `rgba(${rgb},${k})`; ctx.fillRect(a[0], a[1], b[0] - a[0], b[1] - a[1]); ctx.restore();  A_podFront(ctx, v); }
 // паутина по углам экрана: k 0..1 — разрослась
 function A_cobwebs(ctx, v, k) { if (k <= .02) return; ctx.save(); ctx.strokeStyle = `rgba(230,230,220,${.55 * k})`; ctx.lineWidth = 1.5 * v.k;
   for (const [cx, cy, sx, sy] of [[560, 255, 1, 1], [1370, 255, -1, 1], [560, 590, 1, -1]]) { const c = toS(v, [cx, cy]), R = 150 * v.k * k;
