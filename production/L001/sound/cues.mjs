@@ -9,22 +9,26 @@
 // Запись звука (cue): t — секунда фильма, в которую звук должен «попасть» (кадр события); align — какая точка звука
 // ставится на t: onset (атака удара), apex (пик свиста), end (конец райзера), span (звук длится dur с t);
 // snd — класс звука (палитра — sound/palette.py), gain — поправка к уровню класса (дБ), pan −1…1, vis — чем проверять по картинке.
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { TRANS, LOWER, YEAR, DOCS, MAPS, BOARDS, NUMBERS } from '../animatic/conf.js';
 import { MANUAL, BED_OVERRIDE, setTiming } from './cues_manual.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url)), L = join(HERE, '..');
-const timing = JSON.parse(readFileSync(join(L, 'animatic/timing.json'), 'utf8'));
-const WORDS = JSON.parse(readFileSync(join(L, 'animatic/words.json'), 'utf8')).words;
+const argv0 = process.argv.slice(2), arg0 = (k, d) => { const i = argv0.indexOf(k); return i >= 0 ? argv0[i + 1] : d; };
+// другой язык: --timing animatic/timing_ru.json --words animatic/words_ru.json --out cues_ru.json (планы и события те же, своё время)
+const timing = JSON.parse(readFileSync(join(L, arg0('--timing', 'animatic/timing.json')), 'utf8'));
+const WORDS = JSON.parse(readFileSync(join(L, arg0('--words', 'animatic/words.json')), 'utf8')).words;
+const OUT_JSON = arg0('--out', 'cues.json'), OUT_MD = OUT_JSON === 'cues.json' ? 'CUES.md' : OUT_JSON.replace(/[.]json$/, '.md').replace(/^cues/, 'CUES');
 setTiming(timing);
 const FPS = timing.fps || 30, WHIP_DUR = .18;
 // SKIP_PROPS берём из film/shots.js текстом (сам модуль тянет движок и canvas) — вещи, которые финал рисует сам
-const SKIP_PROPS = (() => {   // ключи — номер плана или 'глава|начало текста' (film/keys.js)
-  const src = readFileSync(join(L, 'film/shots.js'), 'utf8'), m = src.match(/export const SKIP_PROPS = (\{[\s\S]*?\});/);
-  if (!m) return {};
-  const tbl = new Function(`return ${m[1]}`)(), out = {};
+const SKIP_PROPS = (() => {   // ключи — номер плана или 'глава|начало текста' (film/keys.js); постановка — film/shots/chNN.js (или старый film/shots.js)
+  const dir = join(L, 'film/shots'), files = existsSync(dir) ? readdirSync(dir).filter(f => /^ch\d+\.js$/.test(f)).map(f => join(dir, f)) : [join(L, 'film/shots.js')];
+  const tbl = {};
+  for (const f of files) { if (!existsSync(f)) continue; const m = readFileSync(f, 'utf8').match(/export const SKIP_PROPS = (\{[\s\S]*?\});/); if (m) Object.assign(tbl, new Function(`return ${m[1]}`)()); }
+  const out = {};
   for (const key of Object.keys(tbl)) {
     if (/^\d+$/.test(key)) { out[key] = tbl[key]; continue; }
     const i = key.indexOf('|'), ch = +key.slice(0, i), pre = key.slice(i + 1), hit = timing.shots.filter(x => x.ch === ch && x.text.startsWith(pre));
@@ -77,53 +81,57 @@ function camKind(s) {
 }
 
 // ---------- ключевые слова события -> фоли (для планов без ручной постановки; время — время события по core) ----------
-// [регэксп по тексту части события, класс звука, поправка к времени (с), опции]
+// [регэксп по тексту части события, класс звука, поправка к времени (с), опции { dur, not }]; до двух разных фоли на часть.
+// Слова — с границами (B: не буква перед словом), глагол — рядом с предметом: «экран гаснет», а не «бейдж загорается красным».
+// Затвор и вспышку ставит правило 4 (вспышка на картинке), бирки/штампы — вещи-подписи; здесь их нет, чтобы не двоилось.
+const B = '(?<![а-яё])';
 const FOLEY = [
-  // затвор и вспышку ставит правило 4 (вспышка на картинке — в кадре рывка), здесь их нет, чтобы не двоилось
-  [/снимк\w* пада|фото\w* пада|полароид|кладёт снимок|снимок ложится|снимки/, 'photo.drop', .12],
-  [/звонит|звонок|телефон звонит/, 'phone.ring', 0, { dur: 1.6 }],
-  [/снимает трубку|трубк/, 'phone.pickup', 0],
-  [/хлоп|захлоп/, 'door.slam', 0],
-  [/стучит|стук в дверь|тук-тук/, 'knock', 0],
-  [/двер\w* открыва|открывает двер|входит/, 'door.open', 0],
+  [/снимк\w* пада|фото\w* пада|полароид|кладёт снимок|снимок ложится|кладёт .{0,15}снимок/, 'photo.drop', .12],
+  [/звонит|звонок телефона|телефон звонит/, 'phone.ring', 0, { dur: 1.6 }],
+  [/(снимает|кладёт|бросает|берёт) трубку/, 'phone.pickup', 0],
+  [/папк\w*.{0,25}захлоп|захлопыва\w* папк/, 'folder.close', 0],
+  [/двер\w*.{0,25}(хлоп|захлоп)|(хлоп|захлоп)\w*.{0,15}двер|дверца.{0,15}захлоп/, 'door.slam', 0],
+  [/стук в дверь|стучит в дверь|стучат в дверь/, 'knock', 0],
+  [/(палец|пальцем|костяшк).{0,15}стучит|стучит (пальцем|по)|тук-тук/, 'box.tap', 0],
+  [/открывает двер|дверь открыва|звенит колокольчик/, 'door.open', 0],
+  [/садятся в .{0,10}машину|дверь машины|захлопывает дверцу машины/, 'car.door', 0],
   [/бокал|дзынь|чокаю/, 'glass.clink', 0],
-  [/ящик|коробк\w* (ставит|пада|ложит)|стопк\w* короб/, 'box.set', .08],
-  [/ключ/, 'key.jingle', 0],
-  [/замок щёлкает|защёлкива|замок/, 'lock.click', 0],
-  [/аплодис|хлопают/, 'applause', 0, { dur: 2.5 }],
-  [/толп|зал ахает|ахает/, 'crowd.react', 0, { dur: 1.5 }],
-  [/клавиат|печатает на|курсор|SEND/, 'keyboard', 0, { dur: 1.0 }],
+  [/(ставят|ставит|выносят|грузят|опускают|ставит на пол).{0,25}(ящик|коробк)|(ящик|коробк)\w*.{0,15}(ставят|падает|ложится)|стопк\w* короб/, 'box.set', .08, { not: /штамп|наклейк|ценник/ }],
+  [/крышк\w* (ящика|коробки)? ?(приоткрыва|открыва)|открывает (ящик|коробку|крышку)/, 'box.lid', 0, { dur: .6 }],
+  [/(ключ.{0,30}(блест|ловит свет|блик))|((блест|блик).{0,30}ключ)/, 'glint', 0],
+  [new RegExp(B + 'ключ'), 'key.jingle', 0, { not: /блест|блик|ловит свет/ }],
+  [/замок щёлкает|защёлкива|дёргает замок/, 'lock.click', 0],
+  [/аплодис|аплодиру|хлопают в ладоши/, 'applause', 0, { dur: 2.5 }],
+  [/(толп|зал)\w*.{0,15}(ахает|охает|шумит)|ахает/, 'crowd.react', 0, { dur: 1.5 }],
+  [/клавиат|печатает на|курсор|«SEND»/, 'keyboard', 0, { dur: 1.0 }],
   [/факс/, 'fax', 0, { dur: 1.5 }],
-  [/монет|касс|купюр|пачк\w* денег/, 'cash', 0],
-  [/нит[ьк]\w* натягива|нить|нитк/, 'string.pull', 0, { dur: .45 }],
-  [/булавк|кнопк\w* в проб/, 'pin.push', 0],
-  [/самолёт|самолет|рейс|иллюминат/, 'plane.by', 0, { dur: 2.0 }],
-  [/(?<![а-яё])кран(?![а-яё]{3})|контейнер|(?<![а-яё])порт(?![а-яё]{2})/, 'crane.clank', 0],
-  [/лампа щёлкает|выключател|загорается|гаснет/, 'switch.click', 0],
-  [/мигает|вздрагивает/, 'lamp.flicker', .1],
-  [/крышк\w* приоткрыва|открывает крышк/, 'box.lid', 0, { dur: .6 }],
-  [/зелён\w* свет|свет из/, 'chip.glow', .1],
-  [/блик/, 'glint', 0],
-  [/ладонь|ложится на крышк/, 'photo.pat', 0],
-  [/ценник|наклейк/, 'tag.slap', .2],
-  [/швабр|ведр|брызг/, 'water.splash', 0],
-  [/кофе|льёт/, 'pour', 0, { dur: 1.2 }],
-  [/тарелк|посуд|мойк/, 'dishes', 0],
-  [/страниц\w* перевора|переворачивает страниц|лист/, 'page.turn', 0],
-  [/папк\w* (закрыва|захлоп)|закрывает папк/, 'folder.close', 0],
-  [/папк|документ|бланк|распечат|письм|конверт/, 'paper.handle', 0],
-  [/ручк\w* роняет|роняет ручку/, 'pen.drop', .1],
+  [/монет\w* пада|касс|купюр|пачк\w* денег/, 'cash', 0],
+  [/нит[ьк]\w* натягива|натягивает\w* нит|красн\w* нит/, 'string.pull', 0, { dur: .45 }],
+  [/булавк|кнопк\w* в проб|прикалыва/, 'pin.push', 0],
+  [/самолётик|самолёт (летит|взлета|садится)|иллюминат/, 'plane.by', 0, { dur: 2.0 }],
+  [new RegExp(B + '(кран|контейнер)\w*.{0,20}(подним|опуска|ставит|грузит)'), 'crane.clank', 0],
+  [/(лампа|свет|вывеска|табличка|экран|прожектор|телевизор|ТВ)\w*.{0,20}(загора|гаснет|щёлка|включа|выключа)|(загора|гаснет|включа|выключа)\w*.{0,20}(лампа|свет|вывеска|табличка|экран|прожектор)|выключател/, 'switch.click', 0],
+  [/лампа (мигает|вздрагивает)|свет мигает/, 'lamp.flicker', .1],
+  [/зелён\w* свет|свет из (коробки|щели)/, 'chip.glow', .1],
+  [/ладонь.{0,20}(ложится|хлопает|опускается на|накрывает)/, 'photo.pat', 0],
+  [/(садится|клеит|наклеива|прилепля)\w*.{0,20}(ценник|наклейк)|(ценник|наклейк)\w*.{0,20}(садится|клеит|прилип|ложится)/, 'tag.slap', .2],
+  [/(швабр|ведр|лужу|вод)\w*.{0,25}(падает|плюх|брызг)|(падает|роняет|бросает|плюхается)\w*.{0,25}(ведр|вод|лужу)|брызг|всплеск/, 'water.splash', 0],
+  [/льёт|наливает/, 'pour', 0, { dur: 1.2 }],
+  [/тарелк|посуд|мойк/, 'dishes', 0, { not: /часы|показывают/ }],
+  [/страниц\w* перевора|переворачивает страниц|(срывается|отрывается|отрывной) лист|листок/, 'page.turn', 0, { not: /штамп/ }],
+  [/папк\w* (скользит|ложится|раскрыва)|раскрывает папк|бланк|распечат|конверт/, 'paper.handle', 0],
+  [/роняет ручку|ручка падает/, 'pen.drop', .1],
   [/таймер/, 'timer.click', 0],
-  [/пот|капает/, 'drip', .1],
-  [/чемодан/, 'case.creak', 0],
+  [new RegExp(B + 'пот' + '(?![а-яё])|капл\w* (пота|падает)|капает'), 'drip', .1],
+  [/чемодан\w* (лопается|трещит|скрипит)|сундук/, 'case.creak', 0],
   [/наушник/, 'headphone', 0],
-  [/садится на|садятся|садится за|встаёт со|встаёт из|откидывается|разворачивается на стуле|койка прогибается/, 'chair.creak', 0],
+  [/(садится|садятся) (на|за|в кабинк|в кресл)|откидывается|разворачивается на стуле|койка прогибается/, 'chair.creak', 0, { not: /стрелк/ }],
   [/рукопожат|пожимает/, 'cloth.rustle', 0],
-  [/пыл/, 'dust.puff', 0],
-  [/красн\w* крест|зачёркив|перечёрк/, 'marker.cross', 0],
-  [/обвод|рисуется красн/, 'marker.circle', 0, { dur: .7 }],
+  [/облачко\w* пыли|пыль (слетает|сходит)|облачком/, 'dust.puff', 0],
+  [/красн\w* крест|зачёркива|перечёрк/, 'marker.cross', 0],
+  [/обвод|рисуется красн\w* круг/, 'marker.circle', 0, { dur: .7 }],
   [/подчёркива/, 'marker.line', 0, { dur: .35 }],
-  [/тикер|табло|щёлкает «/, 'flip.board', 0, { dur: .6 }],
+  [/тикер|табло\w* (щёлка|переворач|меня)|щёлкает «/, 'flip.board', 0, { dur: .6 }],
 ];
 
 // ---------- подложка (амбиенс) по месту ----------
@@ -226,7 +234,7 @@ shots.forEach((s, i) => {
       else add(s, { t: t0, snd: 'tag.pop', kind: 'event', what: `бирка/плашка «${q}»`, vis: 'appear' });
     });
     let hit = 0;   // до двух разных фоли на часть события; бирки/таблички не дублируют вещь-подпись
-    if (!drop.has('foley')) for (const [re, snd, off, o = {}] of FOLEY) if (re.test(e.x) && hit < 2 && !(props.length && /^(tag|paper|flip)/.test(snd))) {
+    if (!drop.has('foley')) for (const [re, snd, off, o = {}] of FOLEY) if (re.test(e.x) && !(o.not && o.not.test(e.x)) && hit < 2 && !(props.length && /^(tag|paper|flip)/.test(snd))) {
       add(s, { t: T + e.t + off + hit * .05, snd, align: o.dur ? 'span' : 'onset', dur: o.dur, kind: 'foley', what: e.x.slice(0, 80), vis: e.timed ? 'formula' : 'slot', approx: !e.timed });
       hit++;
     }
@@ -310,7 +318,7 @@ for (const b of beds) { const l = segs[segs.length - 1]; if (l && l.bed === b.be
 const chapters = [];
 for (const s of shots) { const c = chapters[s.ch] ||= { ch: s.ch, title: s.chTitle, start: s.start, end: s.end }; c.end = s.end; }
 
-writeFileSync(join(HERE, 'cues.json'), JSON.stringify({ note: 'sound/cues.mjs — не править руками; правки — в cues_manual.mjs', fps: FPS, total: timing.total, chapters, marks, beds: segs, cues }, null, 1));
+writeFileSync(join(HERE, OUT_JSON), JSON.stringify({ note: 'sound/cues.mjs — не править руками; правки — в cues_manual.mjs', fps: FPS, total: timing.total, chapters, marks, beds: segs, cues }, null, 1));
 
 // ---------- CUES.md: таблица для выбранных глав ----------
 const sel = cues.filter(c => CH.includes(c.ch)), mm = t => `${Math.floor(t / 60)}:${(t % 60).toFixed(2).padStart(5, '0')}`;
@@ -326,5 +334,5 @@ const md = [
   `## Звуки, главы ${CH.join(', ')}`, '', '| id | план | кадр | время | звук | точка | что в кадре | правило |', '|---|---|---|---|---|---|---|---|',
   ...sel.map(c => `| ${c.id} | ${c.shot} | ${c.frame} | ${mm(c.t)} | ${c.snd}${c.gain ? ` (${c.gain > 0 ? '+' : ''}${c.gain})` : ''} | ${c.align}${c.dur ? ` ${c.dur.toFixed(2)} с` : ''} | ${(c.what || '').replace(/\|/g, '/')} | ${c.kind}${c.approx ? ' ≈слот' : ''} |`),
 ];
-writeFileSync(join(HERE, 'CUES.md'), md.join('\n') + '\n');
+writeFileSync(join(HERE, OUT_MD), md.join('\n') + '\n');
 console.log(`manual: ${manualHits.length} планов (${manualHits.join(',')}); cues: ${cues.length} (${Object.entries(byKind).map(([k, v]) => `${k} ${v}`).join(', ')}), beds: ${segs.length}, chapters: ${chapters.length}; ch ${CH}: ${sel.length}`);

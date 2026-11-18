@@ -157,3 +157,47 @@ export function youngJensen() {
   c.spec.rig = { ...c.spec.rig, plantLegs: .02, armLayer: 'front' };
   return c;
 }
+
+// =====================================================================================================
+// Общие для глав 2–9 (владелец — ведущий; рабочие импортируют, не правят)
+// =====================================================================================================
+// official — чиновник Вашингтона (OFFICIAL гл. 3 и 7, клерк чёрного списка гл. 6; Минторг, Минюст, конгрессмен — варианты):
+//   седая стрижка на пробор, круглые очки, костюм; o = { suit: [свет, тень, низ], tie: [галстук, узел], hair: 'grey'|'dark'|'bald', glasses }
+HATS.L_official_grey = (x, H, S, VW, p) => { sleekHair(x, S, VW, p, { light: '#E4E6EA', mid: '#A9AEB6', dark: '#6D727B', gloss: .5 }); if (S.glasses !== false) roundGlasses(x, S, VW, p); };
+HATS.L_official_dark = (x, H, S, VW, p) => { sleekHair(x, S, VW, p, { light: '#5a4c48', mid: '#33282a', dark: '#1a1416', gloss: .3 }); if (S.glasses) roundGlasses(x, S, VW, p); };
+HATS.L_official_bald = (x, H, S, VW, p) => { if (!isBack(VW)) for (const sd of [-1, 1]) poly(x, [[sd * 131, -40], [sd * 122, -66], [sd * 112, 4], [sd * 128, 12]], '#8d8f95', null); if (S.glasses !== false) roundGlasses(x, S, VW, p); };
+export function official(o = {}) {
+  const [l, m, d] = o.suit || ['#5e6472', '#383d49', '#1b1e26'], [tie, knot] = o.tie || ['#7A1B28', '#5E1520'];
+  const c = detective({
+    name: o.name || 'official', hat: { type: 'L_official_' + (o.hair || 'grey') }, colors: { hair: '#A9AEB6' }, shoe: '#121010',
+    face: { restEye: 'dot', restMouth: 'flat', browCol: o.hair === 'dark' ? '#2A2024' : '#8d9097', eyes: [{ x: -44, y: -16, rx: 8.5, ry: 11, lw: 6, tilt: 0 }, { x: 44, y: -16, rx: 8.5, ry: 11, lw: 6, tilt: 0 }] },
+    body: { fillRadial: { at: [-44, -76], r0: 12, to: [-8, -10], r1: 205, stops: [[0, l], [.45, m], [1, d]] },
+      inside: [suit({ lapel: m, lapelHi: 'rgba(220,225,240,.25)', tie, tieKnot: knot, tieHi: 'rgba(255,255,255,.2)' })] },
+  });
+  c.spec.glasses = o.glasses; c.spec.rig = { ...c.spec.rig, plantLegs: .02, armLayer: 'front' };
+  return c;
+}
+// aide — помощник (AIDE гл. 2 и 8): молодой, тёмные волосы, рубашка с закатанными рукавами (светлый корпус) и узкий тёмный галстук
+export function aide() {
+  const c = detective({
+    name: 'aide', hat: { type: 'L_official_dark' }, colors: { hair: '#2A2024' }, shoe: '#121010',
+    face: { restEye: 'dot', restMouth: 'flatS', browCol: '#2A2024' },
+    body: { fillRadial: { at: [-44, -76], r0: 12, to: [-8, -10], r1: 205, stops: [[0, '#F4F6FA'], [.5, '#D6DCE6'], [1, '#97A0B0']] },
+      inside: [cloth((x, S, VW) => { if (isBack(VW)) return; const ink = S.colors.ink;
+        poly(x, [[-9, -140], [9, -140], [11, -124], [-11, -124]], '#1e2433', ink, 2.5); poly(x, [[-11, -124], [11, -124], [8, -40], [0, -28], [-8, -40]], '#2b3550', ink, 2.5);
+        path(x, [[-34, -150], [0, -128], [34, -150]], 5, ink); for (const py of [-20, 40, 100]) ell(x, 22, py, 5, 5, '#e8ebf0', ink, 2);
+        path(x, [[-90, -60], [-100, 0, -90, 60]], 10, 'rgba(255,255,255,.35)'); })] },
+  });
+  c.spec.rig = { ...c.spec.rig, plantLegs: .02, armLayer: 'front' };
+  return c;
+}
+// officer — пекинский офицер: рисуется ТОЛЬКО силуэтом без лица (staging/desk.js silhouette), поэтому важен контур: фуражка и китель
+HATS.L_officer = (x, H, S, VW, p) => { const ink = S.colors.ink, o = offOf(VW, p) * .2;
+  poly(x, [[-150 + o, -96], [-128 + o, -150], [0 + o, -196], [130 + o, -150], [152 + o, -96], [0 + o, -84]], '#2a1414', ink, S.lw);      // тулья фуражки
+  poly(x, [[-160 + o, -96], [160 + o, -96], [180 + o, -70], [-60 + o, -60]], '#140909', ink, S.lw); };                                   // козырёк
+export function officer() {
+  const c = detective({ name: 'officer', hat: { type: 'L_officer' }, colors: { hair: '#140909' },
+    body: { fillRadial: { at: [-44, -76], r0: 12, to: [-8, -10], r1: 205, stops: [[0, '#4a2a26'], [.5, '#2a1614'], [1, '#140909']] }, inside: [] } });
+  c.spec.rig = { ...c.spec.rig, plantLegs: .02, armLayer: 'front' };
+  return c;
+}

@@ -1,5 +1,5 @@
 // render_all.mjs: рендер аниматика кусками параллельно -> склейка -> голос со вставленными паузами -> mux; контактные листы.
-//   node production/L001/animatic/render_all.mjs [--nodebug] [--clean-only] [--sheets] [--jobs 4]   (--clean-only: только animatic_nodebug.mp4)
+//   node production/L001/animatic/render_all.mjs [--nodebug] [--clean-only] [--sheets] [--jobs 4] [--lang ru] [--mux-only]   (--clean-only: только animatic_nodebug.mp4)
 // Перед этим: node make_timing.mjs, pwsh prep_assets.ps1, node engine/tools/build.mjs production/L001/animatic
 import { spawn, execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync, mkdirSync, rmSync, copyFileSync, existsSync } from 'node:fs';
@@ -8,12 +8,15 @@ import { fileURLToPath } from 'node:url';
 
 const D = dirname(fileURLToPath(import.meta.url)), ROOT = resolve(D, '../../..'), OUT = join(D, 'out'), TMP = join(D, 'tmp');
 const args = process.argv.slice(2), has = a => args.includes(a), JOBS = has('--jobs') ? +args[args.indexOf('--jobs') + 1] : 4;
-const timing = JSON.parse(readFileSync(join(D, 'timing.json'), 'utf8')), FPS = 30, FR = Math.round(timing.total * FPS);
-const html = join(OUT, 'film.html'), render = join(ROOT, 'engine/tools/render.mjs');
+// --lang ru: русская версия со своим таймингом (timing_ru.json, страница ru/out/film.html) -> animatic_ru_debug.mp4 и animatic_ru.mp4
+const LANG = has('--lang') ? args[args.indexOf('--lang') + 1] : '', SFX = LANG ? '_' + LANG : '';
+const timing = JSON.parse(readFileSync(join(D, `timing${SFX}.json`), 'utf8')), FPS = 30, FR = Math.round(timing.total * FPS);
+const html = LANG ? join(D, LANG, 'out', 'film.html') : join(OUT, 'film.html'), render = join(ROOT, 'engine/tools/render.mjs');
 const run = (cmd, a) => new Promise((ok, no) => { const p = spawn(cmd, a, { stdio: ['ignore', 'ignore', 'inherit'] }); p.on('close', c => (c ? no(new Error(cmd + ' ' + c)) : ok())); });
 
 async function video(debug) {
-  const tag = debug ? 'dbg' : 'clean', parts = [], t0 = Date.now(), n = JOBS * 2, step = Math.ceil(FR / n);
+  if (has('--mux-only')) return { v: join(TMP, `video_${(debug ? 'dbg' : 'clean') + SFX}.mp4`), sec: 0 };   // картинка уже отрендерена — только новый звук
+  const tag = (debug ? 'dbg' : 'clean') + SFX, parts = [], t0 = Date.now(), n = JOBS * 2, step = Math.ceil(FR / n);
   const todo = []; for (let i = 0; i < n; i++) { const f0 = i * step, f1 = Math.min(FR, f0 + step); if (f0 < f1) todo.push({ i, f0, f1, out: join(TMP, `part_${tag}_${i}.mp4`) }); }
   let k = 0; await Promise.all(Array.from({ length: JOBS }, async () => { while (k < todo.length) { const c = todo[k++];
     await run('node', [render, html, c.out, '--set', `f0=${c.f0}`, '--set', `f1=${c.f1}`, '--set', `debug=${debug ? 1 : 0}`]); console.log(tag, 'part', c.i, 'done', ((Date.now() - t0) / 1000).toFixed(0), 's'); } }));
@@ -22,9 +25,13 @@ async function video(debug) {
   return { v, sec: (Date.now() - t0) / 1000 };
 }
 function audio() {     // voice_draft.mp3 + тишина в точках inserts, хвост до конца плана 277
-  const a = join(TMP, 'voice_animatic.wav'); const ins = timing.inserts; const f = []; let prev = 0, lbl = [];
-  ins.forEach((x, i) => { f.push(`[0:a]atrim=${prev}:${x.at},asetpts=PTS-STARTPTS[v${i}]`, `aevalsrc=0:d=${x.dur}:s=24000[s${i}]`); lbl.push(`[v${i}]`, `[s${i}]`); prev = x.at; });
-  f.push(`[0:a]atrim=start=${prev},asetpts=PTS-STARTPTS[vl]`); lbl.push('[vl]');
+  const a = join(TMP, `voice_animatic${SFX}.wav`); const ins = timing.inserts; const f = []; let prev = 0, lbl = [];
+  // вставки тишины режут голос только в естественной паузе между строками; на каждом крае куска — затухание 15 мс (без щелчков)
+  const FD = .015, seg = (a0, a1, lb) => { const d = a1 == null ? null : a1 - a0;
+    const fo = d == null ? '' : `,afade=t=out:st=${Math.max(0, d - FD).toFixed(4)}:d=${FD}`, fi = a0 > 0 ? `,afade=t=in:st=0:d=${FD}` : '';
+    return `[0:a]atrim=${a1 == null ? `start=${a0}` : `${a0}:${a1}`},asetpts=PTS-STARTPTS${fi}${fo}[${lb}]`; };
+  ins.forEach((x, i) => { f.push(seg(prev, x.at, `v${i}`), `aevalsrc=0:d=${x.dur}:s=24000[s${i}]`); lbl.push(`[v${i}]`, `[s${i}]`); prev = x.at; });
+  f.push(seg(prev, null, 'vl')); lbl.push('[vl]');
   f.push(`${lbl.join('')}concat=n=${lbl.length}:v=0:a=1,aresample=48000,apad[out]`);
   execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', join(ROOT, 'production/L001', timing.audioFile || 'out/voice_draft.mp3'), '-filter_complex', f.join(';'), '-map', '[out]', '-t', String(FR / FPS), '-ac', '1', a]);
   return a;
@@ -48,6 +55,6 @@ async function sheets() {      // один кадр на план (60% длин�
 if (has('--sheets')) await sheets();
 if (!has('--sheets-only')) {
   const a = audio(); console.log('audio', a);
-  if (!has('--clean-only')) { const r1 = await video(true); mux(r1.v, a, join(OUT, 'animatic.mp4')); console.log('animatic.mp4', r1.sec.toFixed(0), 's'); }
-  if (has('--nodebug') || has('--clean-only')) { const r2 = await video(false); mux(r2.v, a, join(OUT, 'animatic_nodebug.mp4')); console.log('animatic_nodebug.mp4', r2.sec.toFixed(0), 's'); }
+  if (!has('--clean-only')) { const r1 = await video(true); mux(r1.v, a, join(OUT, LANG ? `animatic_${LANG}_debug.mp4` : 'animatic.mp4')); console.log('debug mp4', r1.sec.toFixed(0), 's'); }
+  if (has('--nodebug') || has('--clean-only')) { const r2 = await video(false); mux(r2.v, a, join(OUT, LANG ? `animatic_${LANG}.mp4` : 'animatic_nodebug.mp4')); console.log('clean mp4', r2.sec.toFixed(0), 's'); }
 }

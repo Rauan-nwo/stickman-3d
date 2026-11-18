@@ -69,3 +69,31 @@ C:/dev/tools/earshot/.venv/Scripts/python.exe sound/tools/audition.py --classes 
 - Запись вместо синтеза для класса: строка в `palette_rec.json` — `"класс": [{"path": "sound/lib/rec/…wav", "gain_db": 0}]`
   (несколько файлов — варианты по очереди). Лицензия файла — в `LICENSES.md` до использования.
 - Уровень класса — `LEVEL` в `render.py` (дБ к уровню голоса); «главные» звуки (не приглушаются речью) — `FEATURED`.
+
+## Фильм целиком и главы (с 2026-11-18)
+
+**Плотность** (`render.py --density`): `mid` — по умолчанию, ≈ 50–60 звуков в минуту, только смысловые события (переходы,
+рывки на ударных словах, вещи-доказательства, шаблоны, действия героев); `full` — весь лист (≈ 60–90 в минуту, в хуке выше);
+`lean` — ≈ 45 в минуту. Подложка: full +3 дБ, mid 0, lean −2. Музыка под речью −20 дБ к голосу.
+
+**Глава от картинки** — когда фильм-агент кладёт `film/out/chNN*.mp4` (+ `.frames.json`):
+```
+C:/dev/tools/sound-venv/Scripts/python.exe sound/do_chapter.py film/out/ch02.mp4 [--density mid] [--lang ru]
+```
+лист по текущему таймингу → музыка (`music_spec.json` → `out/music_plan.json`) → признаки картинки (`vis.py`) →
+приблизительные звуки (слоты шотлиста) подгоняются к событиям картинки (`snap_cues.py`, отчёт `out/<имя>/cues_chapter.md`) →
+микс и `film/out/chNN_sound.mp4` → проверки (`out/<имя>/CHECK.md`, Whisper) → строка в `CHAPTERS.md`.
+
+**Фильм целиком** — главы рендерятся по очереди без мастера (общее усиление голоса на весь фильм), склейка встык,
+одна громкость −14 LUFS и лимитер истинного пика по главам (память — одна глава за раз):
+```
+C:/dev/tools/sound-venv/Scripts/python.exe sound/master_full.py --lang en [--video film/out/full.mp4]
+C:/dev/tools/sound-venv/Scripts/python.exe sound/master_full.py --lang ru [--video film/out/full_ru.mp4]
+```
+→ `out/full<_ru>/{mix,voice,music,sfx,amb}.wav`, `report.json`.
+
+**Русская версия** идёт по своему таймингу: `animatic/timing_ru.json`, `words_ru.json` (те же планы и события, русское
+время), голос `out/voice_fish_ru.mp3`; лист — `cues_ru.json` / `CUES_ru.md`; WER — Whisper medium по-русски.
+
+**Музыка фильма** — `music_spec.json` (гл. 0–1 — пилот, гл. 2–10 — план `music/MUSIC.md`); попадания внутри глав привязаны
+к фразам голоса (`text:<фраза>`), поэтому переживают перетайминг. Читаемый план — `MUSIC_PLAN.md`.

@@ -1,0 +1,42 @@
+{
+ "_note": "Музыка по главам (music_plan.py -> music_plan.json). Точки считаются из cues.json и words.json — после перетайминга пересчитываются сами. Пилот гл. 0–1: Kevin MacLeod (incompetech.com), CC BY 4.0 — строка автора в описании ролика обязательна (music/MUSIC.md).",
+ "cues": [
+  {
+   "id": "ch0_tension",
+   "file": "music/candidates/inc-covert-affair.mp3",
+   "from": "film:0",
+   "to": "lastword:0+1.35",
+   "hit": {
+    "film": "lastword:0+0.35",
+    "src": 60.98
+   },
+   "fade_in": 0.25,
+   "fade_out": 1.0,
+   "gain_db": 0,
+   "why": "шпионское напряжение (A minor, 68 BPM); граница раздела B→C (60.98) ложится сразу после последней реплики главы и гаснет за 1 с — тишина перед щелчком лампы"
+  },
+  {
+   "id": "ch1_host",
+   "file": "music/candidates/inc-i-knew-a-guy.mp3",
+   "from": "chapter:1+0.54",
+   "to": "video_title+5.5",
+   "hit": {
+    "film": "video_title",
+    "src": 154.92,
+    "snap": false
+   },
+   "fade_in": 0.12,
+   "fade_out": 1.5,
+   "gain_db": 0,
+   "why": "нуарный джаз ведущего (D minor, 76 BPM); финальный аккорд трека (154.92, после стоп-тайма) = кадр, где встаёт название ролика"
+  }
+ ],
+ "holds": [
+  {
+   "at": "video_title",
+   "pre": 0.25,
+   "post": 3.0,
+   "db": -8
+  }
+ ]
+}

@@ -74,21 +74,27 @@ def vis_onset(vis, f, kind, win=6):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--name', default='ch0_1'); ap.add_argument('--vis', default=None)
-    ap.add_argument('--whisper', default='medium.en'); ap.add_argument('--stt-only', action='store_true'); ap.add_argument('--no-stt', action='store_true')
+    ap.add_argument('--whisper', default=None); ap.add_argument('--stt-only', action='store_true'); ap.add_argument('--no-stt', action='store_true')
+    ap.add_argument('--lang', default='en', choices=['en', 'ru']); ap.add_argument('--words', default='animatic/words.json'); ap.add_argument('--cues', default='cues.json')
+    ap.add_argument('--lines', default='out/lines_fish_ru_sync.json', help='для --lang ru: русский текст строк (эталон WER)')
     a = ap.parse_args(); od = HERE / 'out' / a.name
     rep = json.load(open(od / 'report.json', encoding='utf-8')); t0, t1 = rep['t0'], rep['t1']
-    words = [w for w in json.load(open(L / 'animatic/words.json', encoding='utf-8'))['words'] if w['s'] >= t0 and w['e'] <= t1 + .05]
+    words = [w for w in json.load(open(L / a.words, encoding='utf-8'))['words'] if w['s'] >= t0 and w['e'] <= t1 + .05]
     ref = ' '.join(w['w'] for w in words)
+    if a.lang == 'ru':   # эталон — русский текст строк, чьи слова целиком в окне
+        ids = []; [ids.append(w['line']) for w in words if w['line'] not in ids]
+        RL = {x['line']: x['text'] for x in json.load(open(L / a.lines, encoding='utf-8'))}; ref = ' '.join(RL[i] for i in ids if i in RL)
+    a.whisper = a.whisper or ('medium.en' if a.lang == 'en' else 'medium')
 
     if a.stt_only:   # отдельный запуск в питоне с faster-whisper
         from faster_whisper import WhisperModel
         m = WhisperModel(a.whisper, device='cpu', compute_type='int8', cpu_threads=8); dev = 'cpu int8'   # CUDA-сборка без cuBLAS на этой машине
         out = {'model': a.whisper, 'device': dev}
         for k in ('voice', 'mix'):
-            segs, _ = m.transcribe(str(od / f'{k}.wav'), language='en', beam_size=5, vad_filter=False, condition_on_previous_text=False)
+            segs, _ = m.transcribe(str(od / f'{k}.wav'), language=a.lang, beam_size=5, vad_filter=False, condition_on_previous_text=False)
             out[k] = ' '.join(s.text.strip() for s in segs)
         out['ref'] = ref
-        nw = lambda s: re.sub(r"[^a-z0-9$%' ]", ' ', s.lower().replace('-', ' ')).split()
+        nw = lambda s: re.sub(r"[^\w$%' ]", ' ', s.lower().replace('ё', 'е').replace('-', ' ').replace('—', ' '), flags=re.UNICODE).split()
         def wer(r, h):
             r, h = nw(r), nw(h); d = list(range(len(h) + 1))
             for i in range(1, len(r) + 1):
@@ -130,7 +136,7 @@ def main():
             'silence_spans_lt_-60dBFS_ge_0.3s': sil, 'min_rms50_dBFS': round(mind, 1)}
 
     # попадание в картинку
-    cues = {c['id']: c for c in json.load(open(HERE / 'cues.json', encoding='utf-8'))['cues']}
+    cues = {c['id']: c for c in json.load(open(a.cues if Path(a.cues).is_absolute() else HERE / a.cues, encoding='utf-8'))['cues']}
     vis = json.load(open(a.vis)) if a.vis else None
     rows = []
     for p in rep['placed']:
@@ -188,7 +194,7 @@ def main():
           f'- Голос − музыка под речью: {loud["voice_minus_music_speech_dB"]} дБ; музыка в паузах выше, чем под речью, на {loud["music_pause_minus_speech_dB"]} дБ.',
           f'- Голос − всё остальное под речью: {loud["voice_minus_rest_speech_dB"]} дБ; остальное в паузах против речи: {loud["rest_pause_vs_speech_dB"]} дБ.',
           f'- Цифровая тишина (< −60 dBFS ≥ 0.3 с): {len(sil)} участков {sil}; минимум RMS 50 мс {loud["min_rms50_dBFS"]} dBFS.', '',
-          '## Разборчивость', '', (f'- Whisper {stt["model"]} ({stt["device"]}): WER сухого голоса **{stt["wer_voice"]*100:.1f} %**, микса **{stt["wer_mix"]*100:.1f} %** '
+          '## Разборчивость', '', (f'- Whisper {stt["model"]} ({stt["device"]}, {a.lang}): WER сухого голоса **{stt["wer_voice"]*100:.1f} %**, микса **{stt["wer_mix"]*100:.1f} %** '
                                     f'(разница {(stt["wer_mix"]-stt["wer_voice"])*100:+.1f} п.п.).' if stt else '- (распознавание не запускалось)'), '',
           '## Плотность эффектов (детектор конкурента)', '',
           *([f'- порог {t} дБ: **{v.get("per_min")} событий/мин**; по классам/мин: {v.get("class_per_min")}' for t, v in dens.items()] if dens else ['- (детектор не запускался)']), '',

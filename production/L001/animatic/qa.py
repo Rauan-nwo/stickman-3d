@@ -16,7 +16,7 @@ for _s in (sys.stdout, sys.stderr):
     except Exception: pass
 D = os.path.dirname(os.path.abspath(__file__)); L = os.path.dirname(D); OUT = os.path.join(D, 'out')
 FPS = 30
-TM = json.load(open(os.path.join(D, 'timing.json'), encoding='utf-8')); SH = TM['shots']
+TM = json.load(open(os.path.join(D, os.environ.get('L001_TIMING', 'timing.json')), encoding='utf-8')); SH = TM['shots']   # L001_TIMING=timing_ru.json — русская версия
 F = ImageFont.truetype(r'C:\Windows\Fonts\arial.ttf', 16); FB = ImageFont.truetype(r'C:\Windows\Fonts\arialbd.ttf', 18)
 fmt = lambda t: f'{int(t // 60)}:{t % 60:04.1f}'
 VID = os.path.join(OUT, 'animatic_nodebug.mp4')
@@ -149,7 +149,7 @@ def auto(npz, video, ru):
     try:
         head = json.loads(subprocess.run(['git', 'show', 'HEAD:production/L001/animatic/timing.json'], capture_output=True, cwd=L).stdout.decode('utf-8'))['shots']
         mp = json.load(open(os.path.join(D, 'renumber_283_to_288.json')))
-        for nxt in ('renumber_288_to_297.json', 'renumber_297_to_298.json', 'renumber_298_to_329.json', 'renumber_329_to_340.json', 'renumber_340_to_341.json', 'renumber_341_to_342.json', 'renumber_342_to_351.json', 'renumber_351_to_352.json'):            # цепочка карт: номер HEAD (283) -> текущий
+        for nxt in ('renumber_288_to_297.json', 'renumber_297_to_298.json', 'renumber_298_to_329.json', 'renumber_329_to_340.json', 'renumber_340_to_341.json', 'renumber_341_to_342.json', 'renumber_342_to_351.json', 'renumber_351_to_352.json', 'renumber_352_to_351.json', 'renumber_351_to_347.json'):            # цепочка карт: номер HEAD (283) -> текущий
             m2 = json.load(open(os.path.join(D, nxt))); mp = {k: (m2.get(str(v)) if v is not None else None) for k, v in mp.items()}
         cur = {s['n']: s for s in SH}; ch = []
         for h in head:
@@ -162,7 +162,7 @@ def auto(npz, video, ru):
         rep['regression'] = dict(changed=ch, added=added)
     except Exception as e:
         rep['regression'] = str(e)
-    json.dump(rep, open(os.path.join(OUT, 'qa_auto.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    json.dump(rep, open(os.path.join(OUT, 'qa_auto_ru.json' if 'ru' in os.environ.get('L001_TIMING', '') else 'qa_auto.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     print(json.dumps(rep['duration'], ensure_ascii=False)); print('black', len(rep['black_frames']), 'spikes', len(rep['diff_spikes']),
           'sync bad', len(rep['sync_bad']), '/', rep['sync_total'])
     if isinstance(rep['regression'], dict): print('regression changed', len(rep['regression']['changed']), 'added', rep['regression']['added'])

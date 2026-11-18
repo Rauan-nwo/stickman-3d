@@ -11,7 +11,8 @@
 // Параметры (--set): debug=0 — без отладочной полосы; f0, f1 — диапазон кадров (рендер кусками).
 // Перед сборкой: pwsh prep_assets.ps1 (JPG-плейты и кадры пути коробки в tmp/, модуль boxframes.js).
 import { templates as T } from 'engine';
-import timing from './timing.json';
+import timingDefault from './timing.json';
+let timing = timingDefault;
 import BOXF from './boxframes.js';
 import { NUMBERS, MAPS, BOARDS, DOCS, LOWER, YEAR, SPLITS, TRANS } from './conf.js';
 import p_restaurant from './tmp/restaurant.jpg';
@@ -91,9 +92,9 @@ const SPOTS = {
   box: { a: [.4, .6], b: [.62, .6], prop: [.5, .55] },
 };
 // вставки: [x, y] точка на плейте, третьим — другой плейт той же локации (табличка на двери — на обратном плейте и т. п.)
-const PROP_AT = { 22: [.6, .42], 48: [.8, .32], 91: [.6, .42], 109: [.52, .66], 126: [.38, .42, 'bg_megaspeed_reverse'], 133: [.82, .56], 149: [.38, .42, 'bg_megaspeed_reverse'], 161: [.52, .55],
-  129: [.3, .62, 'bg_megaspeed_office'], 138: [.33, .4, 'bg_megaspeed_office'], 146: [.33, .5, 'bg_megaspeed_office'], 182: [.33, .5, 'bg_megaspeed_office'], 187: [.2, .6, 'bg_megaspeed_reverse'], 209: [.6, .4, 'bg_megaspeed_reverse'],
-  171: [.5, .55], 178: [.25, .62], 206: [.72, .62], 238: [.4, .3, 'bg_washington_reverse'], 283: [.6, .42], 288: [.3, .7], 295: [.3, .7], 332: [.66, .62], 349: [.88, .36], 73: [.55, .32] };
+const PROP_AT = { 22: [.6, .42], 46: [.8, .32], 89: [.6, .42], 107: [.52, .66], 124: [.38, .42, 'bg_megaspeed_reverse'], 131: [.82, .56], 147: [.38, .42, 'bg_megaspeed_reverse'], 159: [.52, .55],
+  127: [.3, .62, 'bg_megaspeed_office'], 136: [.33, .4, 'bg_megaspeed_office'], 144: [.33, .5, 'bg_megaspeed_office'], 180: [.33, .5, 'bg_megaspeed_office'], 185: [.2, .6, 'bg_megaspeed_reverse'], 206: [.6, .4, 'bg_megaspeed_reverse'],
+  169: [.5, .55], 176: [.25, .62], 203: [.72, .62], 235: [.4, .3, 'bg_washington_reverse'], 280: [.6, .42], 285: [.3, .7], 292: [.3, .7], 329: [.66, .62], null: [.88, .36], 71: [.55, .32] };
 const LOCP = { 'L01-restaurant': ['restaurant', 'restaurant_reverse'], 'L02-sg-street': ['bg_singapore_street'], 'L03-host-office': ['host_office'],
   'L04-washington': ['bg_washington_cold', 'bg_washington_reverse'], 'L05-beijing': ['bg_beijing_office'], 'L06-nvidia-office': ['bg_nvidia_office_dry', 'bg_nvidia_office_reverse'],
   'L07-dennys': ['bg_diner_day'], 'L08-kentucky': ['bg_kentucky_day'], 'L09-megaspeed': ['bg_megaspeed_office', 'bg_megaspeed_reverse'],
@@ -135,9 +136,12 @@ const SNAP_Z = .13, SNAP_T = 5 / 30, WHIP_DUR = .18;   // WHIP_DUR — длин�
 // рывок-зум 13 % за 5 кадров на ударном слове (s.snap из make_timing); «вип-пан» — остановка, вип со смазом на втором говорящем;
 // панорама/проезд/подъём/… — плавный проход с остановкой на последних 15 %
 // Denny's: ночь начинается с плана «When its make-or-break chip finally shipped in 1997»
-const NIGHT_1997 = (timing.shots.find(x => /^When its make-or-break/.test(x.text)) || { start: 1e9 }).start;
+let NIGHT_1997 = (timing.shots.find(x => /^When its make-or-break/.test(x.text)) || { start: 1e9 }).start;
 // финал — последние 75 с гл. 9 (от «Nobody has charged…» до конца), по времени, а не по номеру плана
-const FINALE_FROM = Math.max(...timing.shots.filter(x => x.ch === 9).map(x => x.end)) - 75;
+let FINALE_FROM = Math.max(...timing.shots.filter(x => x.ch === 9).map(x => x.end)) - 75;
+// другой тайминг тех же планов (например timing_ru.json — русский голос в своём темпе); вызывать до animatic()
+export function useTiming(t) { timing = t; NIGHT_1997 = (t.shots.find(x => /^When its make-or-break/.test(x.text)) || { start: 1e9 }).start;
+  FINALE_FROM = Math.max(...t.shots.filter(x => x.ch === 9).map(x => x.end)) - 75; }
 // какие планы берут готовую 3D-сцену (scenes/*/out/*.mp4 через prep_clips.py): [клип, с, по (с), скорость (необяз.)]
 function CLIP_OF(s) {
   const f = s.framing;
@@ -352,7 +356,8 @@ export function animatic(stage, opt, HK = {}) {
       const ovl = HK.over && HK.over(s); if (ovl) ovl(ctx, s, t, d, API);
       if (/титр ролика/.test(s.framing)) videoTitle(ctx, t, d);
       // подписи
-      const lt = LOWER[s.n]; if (lt) lt.forEach(([name, role, at], i) => T.lowerThird(ctx, t, { name, role, at: at * d, out: lt[i + 1] ? lt[i + 1][2] * d - .1 : s.whip ? s.whip.t - .5 : null }));   // плашка уходит до вип-пана на другого
+      const lt = LOWER[s.n]; if (lt) lt.forEach(([name, role, at], i) => { const wl = s.whip && !lt[i + 1], u = wl ? inOutExpo((t - s.whip.t + .1) / .22) : 0;
+        if (u < 1) T.lowerThird(ctx, t, { name, role, at: wl ? -.6 : at * d, x: 110 - u * W * 1.1, out: lt[i + 1] ? lt[i + 1][2] * d - .1 : null }); });   // на вип-пане плашка уезжает с героем
       if (YEAR[s.n]) { ctx.save(); ctx.font = `bold 64px 'Courier New', monospace`; ctx.fillStyle = 'rgba(241,230,204,.9)'; ctx.globalAlpha = clamp(t / .4); ctx.fillText(YEAR[s.n], 90, 140); ctx.restore(); }
     }
     // переходы (conf.js TRANS) + засвет перед титром главы
@@ -493,6 +498,7 @@ export function animatic(stage, opt, HK = {}) {
       if (cur && !HK.final && opt.sheet !== '1' && !(/титр ролика/.test(s.framing) && t > d - 1.9)) note(ctx, cur.note, t - cur.t);   // под названием ролика заметок нет
       for (const e of ev) if (/лампа (мигает|вздрагивает|щёлкает)|свет мигает/.test(e.note)) lampFlicker(ctx, t - e.t);
       if (/каскад отыгрышей/.test(s.event)) callbacks(ctx, t);
+      if (/лампа гаснет/.test(s.event)) lampOff(ctx, t, /каскад отыгрышей/.test(s.event) ? 1.32 : d * .6);
       const fl = /вспышк|щелч|затвор|flash|фотограф|селфи/i.test(s.event + s.framing) && !/фоторамк|без вспыш/.test(s.event);
       const flh = HK.flash ? HK.flash(s) : null;
       if (flh ?? fl) flash(ctx, W * .62, H * .38, t, s.snap ?? d * .45);
@@ -532,6 +538,13 @@ export function animatic(stage, opt, HK = {}) {
       ctx.save(); ctx.globalCompositeOperation = 'lighter';
       const g = ctx.createRadialGradient(x, y, 0, x, y, 900); g.addColorStop(0, `rgba(255,255,255,${.95 * k * (1 - u)})`); g.addColorStop(1, 'rgba(255,255,255,0)');
       ctx.fillStyle = g; ctx.fillRect(0, 0, W, H); ctx.fillStyle = `rgba(255,255,255,${.35 * k * (1 - u)})`; ctx.fillRect(0, 0, W, H); ctx.restore();
+    }
+    function lampOff(ctx, t, t0) {          // лампа гаснет: щелчок-провал, затем темнота за 0.35 с; в темноте остаётся блик у сейфа
+      const u = t - t0; if (u < 0) return; const a = u < .06 ? .5 : u < .12 ? .15 : Math.min(.93, .15 + (u - .12) / .35 * .78);
+      ctx.save(); ctx.fillStyle = `rgba(4,3,8,${a})`; ctx.fillRect(0, 0, W, H);
+      if (u > .2) { const g = ctx.createRadialGradient(W * .9, H * .3, 0, W * .9, H * .3, 80); g.addColorStop(0, `rgba(255,214,150,${.55 * Math.min(1, (u - .2) / .3)})`); g.addColorStop(1, 'rgba(255,214,150,0)');
+        ctx.fillStyle = g; ctx.fillRect(W * .8, H * .18, W * .2, H * .26); }
+      ctx.restore();
     }
     function lampFlicker(ctx, u) {          // лампа мигает: два провала света за 0.3 с
       if (u < 0 || u > .3) return; const a = (u < .07 || (u > .14 && u < .2)) ? .55 : .12;
@@ -640,6 +653,9 @@ export function animatic(stage, opt, HK = {}) {
       if (sz === 'ins' && /шахмат|ворот/.test(s.framing) && s.loc === 'L05-beijing') { ctx.save(); ctx.translate(W / 2, H / 2); ctx.scale(1.25, 1.25); ctx.translate(-W / 2, -H / 2); chess(ctx, t, d); ctx.restore(); }
       if (/галерея/.test(s.framing)) gallery(ctx, t, s.snap ?? d * .7);
       if (sz === 'ws' && /объектив/.test(s.event) && s.loc === 'L01-restaurant' && !/пуст/.test(s.framing)) figure(ctx, W * .62, H * .5, 120, 'AGENT (menu + lens)', false);
+      if (/снимок под лампой/.test(s.framing)) photoSlide(ctx, t, s.snap ?? d * .5);
+      if (/контрабандист потеет/.test(s.framing)) smuggler(ctx, t, d, s);
+      if (/лобстер/.test(s.framing)) lobsterCrate(ctx, t, s.snap ?? d * .5, /сверхкрупно/.test(s.framing));
       if (sz === 'ins' && /снимк/.test(s.framing)) {   // снимки падают стопкой (заглушка)
         const n = Math.min(4, Math.floor(t / Math.max(.3, d * .15)) + 1);
         for (let i = 0; i < n; i++) { ctx.save(); ctx.translate(W * (.38 + i * .07), H * (.42 + i * .05)); ctx.rotate((i % 2 ? 1 : -1) * .08 * (i + 1));
@@ -653,6 +669,54 @@ export function animatic(stage, opt, HK = {}) {
       const fr = CLIPI[key], rate = rate0 ?? clamp((to - from) / d, .8, 1.25), pos = Math.min(from + t * rate, to - 1 / CLIP_FPS);
       const im = fr[clamp(Math.floor(pos * CLIP_FPS), 0, fr.length - 1)];
       drawImg(ctx, ok(im) ? im : null, cam && cam.kind !== 'static' ? plateView(Math.min(1.25, cam.z), [.5 + cam.dx, .5 + cam.dy]) : { Z: 1, l: 0, tp: 0 });
+    }
+    function photoSlide(ctx, t, tS) {        // снимок «Дженсен + Алиса» скользит по столу под лампу; на ударном слове на него ложится блик ключа
+      const k = outCubic(clamp(t / Math.max(.4, tS))), x = lerp(W * 1.1, W * .52, k), y = H * .56;
+      ctx.save(); const g = ctx.createRadialGradient(W * .5, H * .5, 0, W * .5, H * .5, 520); g.addColorStop(0, 'rgba(255,200,120,.28)'); g.addColorStop(1, 'rgba(255,200,120,0)'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+      ctx.translate(x, y); ctx.rotate(-.07 + .05 * (1 - k)); ctx.shadowColor = 'rgba(0,0,0,.6)'; ctx.shadowBlur = 30; ctx.fillStyle = '#f4efe2'; ctx.fillRect(-300, -230, 600, 460); ctx.shadowBlur = 0;
+      ctx.fillStyle = '#1f2a3a'; ctx.fillRect(-270, -200, 540, 330);
+      ctx.fillStyle = '#e9e2d0'; ctx.beginPath(); ctx.ellipse(0, 120, 230, 60, 0, Math.PI, 0); ctx.fill();                       // стол
+      ctx.fillStyle = '#ffcf8a'; ctx.beginPath(); ctx.ellipse(0, 40, 9, 22, 0, 0, 6.283); ctx.fill();                               // свеча
+      for (const [px, jacket] of [[-130, '#15151a'], [130, '#8f1f24']]) { ctx.fillStyle = '#f1e6cc'; ctx.beginPath(); ctx.arc(px, -70, 46, 0, 6.283); ctx.fill();
+        ctx.fillStyle = jacket; ctx.beginPath(); ctx.roundRect(px - 62, -22, 124, 130, 26); ctx.fill(); }
+      ctx.fillStyle = '#1c140c'; ctx.font = "700 30px 'Courier New', monospace"; ctx.textAlign = 'center'; ctx.fillText('SINGAPORE · TABLE 9', 0, 190);
+      if (t > tS) { const u = Math.min(1, (t - tS) / .25), gl = ctx.createRadialGradient(150, -150, 0, 150, -150, 140); gl.addColorStop(0, `rgba(255,236,170,${.8 * u})`); gl.addColorStop(1, 'rgba(255,236,170,0)'); ctx.fillStyle = gl; ctx.fillRect(-300, -230, 600, 460); }
+      ctx.restore();
+    }
+    function smuggler(ctx, t, d, s) {        // контрабандист потеет: капли пота, раздутый чемодан; на «caught» шов лопается, рука таможенника ложится на плечо
+      const tC = s.snap ?? d * .7, hit = t > tC, x = W * .46, y = H * .5;
+      ctx.save(); ctx.fillStyle = 'rgba(8,10,18,.45)'; ctx.fillRect(0, 0, W, H); ctx.lineWidth = 8; ctx.strokeStyle = '#0b0910';
+      ctx.fillStyle = '#3b4a63'; ctx.beginPath(); ctx.roundRect(x - 190, y + 60, 380, 520, 90); ctx.fill(); ctx.stroke();          // плечи и пиджак
+      ctx.fillStyle = '#f1e6cc'; ctx.beginPath(); ctx.arc(x, y - 60, 150, 0, 6.283); ctx.fill(); ctx.stroke();                       // голова
+      ctx.fillStyle = '#0b0910'; ctx.beginPath(); ctx.arc(x - 52, y - 80, 13, 0, 6.283); ctx.arc(x + 52, y - 80, 13, 0, 6.283); ctx.fill();
+      ctx.beginPath(); ctx.moveTo(x - 85, y - 120 - (hit ? 16 : 0)); ctx.lineTo(x - 25, y - 108); ctx.moveTo(x + 85, y - 120 - (hit ? 16 : 0)); ctx.lineTo(x + 25, y - 108); ctx.stroke();   // брови домиком
+      ctx.beginPath(); if (hit) ctx.ellipse(x, y + 12, 34, 26, 0, 0, 6.283); else { ctx.moveTo(x - 50, y + 14); ctx.quadraticCurveTo(x, y - 4, x + 50, y + 14); } ctx.stroke();
+      ctx.fillStyle = '#8fd0ff'; for (let i = 0; i < 5; i++) { const ph = (t * 1.1 + i * .23) % 1, dx = (i - 2) * 62; ctx.beginPath(); ctx.ellipse(x + dx, y - 190 + ph * 170, 10, 17, 0, 0, 6.283); ctx.fill(); }   // пот
+      const bx = W * .76, by = H * .7, bul = 1 + .05 * Math.sin(t * 9);                                                             // чемодан
+      ctx.fillStyle = '#6b3f22'; ctx.beginPath(); ctx.roundRect(bx - 200 * bul, by - 130 * bul, 400 * bul, 290 * bul, 34); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#c9a54a'; ctx.fillRect(bx - 60, by - 170, 120, 26); ctx.strokeRect(bx - 60, by - 170, 120, 26);
+      if (hit) { const u = Math.min(1, (t - tC) / .3); ctx.strokeStyle = '#120a06'; ctx.lineWidth = 10; ctx.beginPath(); ctx.moveTo(bx - 190, by); for (let i = 1; i <= 8; i++) ctx.lineTo(bx - 190 + i * 47, by + (i % 2 ? -22 : 22) * u); ctx.stroke();
+        ctx.fillStyle = '#2fd36a'; ctx.strokeStyle = '#eaffea'; ctx.lineWidth = 3; for (let i = 0; i < 6; i++) { const cx = bx - 150 + i * 60, cy = by + 30 + u * (60 + (i % 3) * 40); ctx.fillRect(cx, cy, 44, 30); ctx.strokeRect(cx, cy, 44, 30); }   // чипы сыплются
+        ctx.fillStyle = '#1b2d4f'; ctx.strokeStyle = '#0b0910'; ctx.lineWidth = 8; const hx = lerp(-260, x - 300, outCubic(u)); ctx.beginPath(); ctx.roundRect(hx - 400, y + 40, 560, 110, 55); ctx.fill(); ctx.stroke();   // рукав таможенника
+        ctx.fillStyle = '#f1e6cc'; ctx.beginPath(); ctx.roundRect(hx + 110, y + 30, 150, 130, 50); ctx.fill(); ctx.stroke(); }
+      ctx.restore();
+    }
+    function lobsterCrate(ctx, t, tS, close) {   // ящик со льдом: живые лобстеры, между ними видеокарты; на ударном слове крышка отъезжает
+      const k = outCubic(clamp((t - Math.max(0, tS - .5)) / .5)), sc = close ? 1.45 : 1, cx = W * .5, cy = H * .56;
+      ctx.save(); ctx.fillStyle = 'rgba(8,10,18,.5)'; ctx.fillRect(0, 0, W, H); ctx.translate(cx, cy); ctx.scale(sc, sc); ctx.lineWidth = 7; ctx.strokeStyle = '#0b0910';
+      ctx.fillStyle = '#7a5230'; ctx.beginPath(); ctx.roundRect(-430, -230, 860, 500, 16); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#cfe6f2'; ctx.fillRect(-395, -195, 790, 430); ctx.fillStyle = '#eaf6fb'; for (let i = 0; i < 26; i++) ctx.fillRect(-390 + ((i * 131) % 760), -190 + ((i * 89) % 400), 34, 22);   // лёд
+      const card = (x, y, r) => { ctx.save(); ctx.translate(x, y); ctx.rotate(r); ctx.fillStyle = '#1f9a4c'; ctx.strokeStyle = '#d8ffe4'; ctx.lineWidth = 4; ctx.beginPath(); ctx.roundRect(-110, -48, 220, 96, 8); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = '#0d0f14'; ctx.beginPath(); ctx.arc(-45, 0, 30, 0, 6.283); ctx.arc(45, 0, 30, 0, 6.283); ctx.fill(); ctx.fillStyle = '#c9a54a'; ctx.fillRect(-90, 48, 150, 12); ctx.restore(); };
+      const lob = (x, y, r, ph) => { ctx.save(); ctx.translate(x, y); ctx.rotate(r); ctx.fillStyle = '#c8342c'; ctx.strokeStyle = '#5a0f0c'; ctx.lineWidth = 5; const w = .18 * Math.sin(t * 5 + ph);
+        ctx.beginPath(); ctx.ellipse(0, 0, 46, 92, 0, 0, 6.283); ctx.fill(); ctx.stroke(); for (let j = 0; j < 3; j++) { ctx.beginPath(); ctx.ellipse(0, 100 + j * 26, 36 - j * 8, 16, 0, 0, 6.283); ctx.fill(); ctx.stroke(); }
+        for (const sgn of [-1, 1]) { ctx.save(); ctx.translate(sgn * 40, -70); ctx.rotate(sgn * (.7 + w)); ctx.beginPath(); ctx.ellipse(0, -52, 24, 46, 0, 0, 6.283); ctx.fill(); ctx.stroke(); ctx.restore();
+          ctx.beginPath(); ctx.moveTo(sgn * 14, -90); ctx.lineTo(sgn * 60, -200 - 10 * w); ctx.stroke(); }
+        ctx.fillStyle = '#0b0910'; ctx.beginPath(); ctx.arc(-14, -72, 6, 0, 6.283); ctx.arc(14, -72, 6, 0, 6.283); ctx.fill(); ctx.restore(); };
+      card(-230, -80, -.2); card(170, 60, .15); card(-60, 130, .05); lob(-320, 60, .3, 0); lob(10, -50, -.25, 1.3); lob(300, -70, .5, 2.1); lob(-150, -40, -.6, 3);
+      ctx.fillStyle = '#5c3b20'; ctx.beginPath(); ctx.roundRect(-450 + k * 760, -250, 900, 540, 16); ctx.fill(); ctx.stroke();                 // крышка отъезжает вправо
+      ctx.fillStyle = '#efe4c8'; ctx.font = "700 46px 'Courier New', monospace"; ctx.textAlign = 'center'; ctx.fillText('LIVE LOBSTERS', k * 760, 20);
+      ctx.restore();
     }
     function chipUnderTable(ctx, t, tSnap) {   // заглушка D02-A: под краем скатерти рука в чёрной перчатке со стороны Алисы просовывает светящийся чип
       const k = clamp((t - .15) / Math.max(.4, tSnap - .15)), x = lerp(W * 1.02, W * .5, outCubic(k)), y = H * .64;
@@ -677,11 +741,16 @@ export function animatic(stage, opt, HK = {}) {
     }
     function hostProps(ctx, s, t, d, sz) {      // кабинет ведущего: коробка Nvidia и латунный ключ, которых нет на плейте
       const f = s.framing + ' ' + s.event;
-      if (/коробк/.test(s.framing) || (sz === 'ws' && /коробк/.test(f))) {
+      if (/коробк|бирка источника/.test(s.framing) || (sz === 'ws' && /коробк/.test(f))) {
         const near = sz === 'ins' || sz === 'cu' || sz === 'xcu', bx = near ? W * .5 : W * .56, by = near ? H * .58 : H * .52, sc = near ? 1 : .32, tap = /стучит/.test(f) && Math.sin(t * 22) > .6 ? 4 : 0;
         ctx.save(); ctx.translate(bx, by + tap); ctx.scale(sc, sc); ctx.fillStyle = '#121214'; ctx.strokeStyle = '#3a3a40'; ctx.lineWidth = 6;
         ctx.beginPath(); ctx.roundRect(-330, -170, 660, 340, 14); ctx.fill(); ctx.stroke(); ctx.fillStyle = '#76b900'; ctx.fillRect(-330, -30, 660, 60);
-        ctx.fillStyle = '#f1f1f1'; ctx.font = "800 64px Bahnschrift, sans-serif"; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('NVIDIA', 0, -95); ctx.restore();
+        ctx.fillStyle = '#f1f1f1'; ctx.font = "800 64px Bahnschrift, sans-serif"; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('NVIDIA', 0, -95);
+        if (/бирка источника/.test(s.framing)) {      // ценник на шнурке у угла коробки; бирка источника подлетает к нему на слове (вещь из колонки «событие»)
+          const sw = .06 * Math.sin(t * 3); ctx.save(); ctx.translate(360, -170); ctx.rotate(.12 + sw); ctx.strokeStyle = '#c9b48a'; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(0, -70); ctx.stroke();
+          ctx.fillStyle = '#efe4c8'; ctx.strokeStyle = '#3a2a18'; ctx.lineWidth = 5; ctx.beginPath(); ctx.roundRect(-150, -170, 300, 100, 10); ctx.fill(); ctx.stroke();
+          ctx.fillStyle = '#1c140c'; ctx.font = "700 44px 'Courier New', monospace"; ctx.fillText('$30,000 EACH', 0, -118); ctx.restore(); }
+        ctx.restore();
       }
       if (/ключ/.test(f) && sz !== 'ws') {
         const big = sz === 'xcu' || /ключ к камере/.test(s.framing), kx = big ? W * .52 : W * .58, ky = big ? H * .48 - Math.min(1, t / .8) * 60 : H * .55, sc = big ? 1.6 : .7;
@@ -747,7 +816,7 @@ export function animatic(stage, opt, HK = {}) {
       const what = s.framing.replace(/^3D\s*/, '') || s.loc;
       if (s.loc === '3D-boxpath' || s.loc === '3D-datacenter') {
         let ts;
-        if (s.box) ts = Math.min(s.box.from + t, s.box.to - .07);
+        if (s.box) ts = Math.min(s.box.from + t * clamp((s.box.to - s.box.from) / d, .8, 1.7), s.box.to - .07);   // кусок готового видео идёт под длину плана: подпланы пути коробки стоят по голосу
         else if (s.loc === '3D-boxpath' && /серийник/.test(s.framing)) ts = Math.min(10.6 + t * .4, 13.2);   // вставка серийника — кадры S6
         else if (s.loc === '3D-boxpath') ts = Math.min(t * .75, 4.0);         // гл. 1: склад из S1–S2
         else ts = Math.min(15.4 + t * .35, 17.8);                              // ДЦ: кадры 3D-хвоста

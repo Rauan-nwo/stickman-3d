@@ -3,6 +3,7 @@
 
   python production/L001/fish_voice_ru_place.py      (потом: pwsh production/L001/mux_ru.ps1)
 
+Устарело для просмотра: русская версия теперь со своим таймингом (animatic/timing_ru.json, render_all.mjs --lang ru).
 Берёт out/voice_fish_ru.mp3 + out/lines_fish_ru.json (строка в строку с английской дорожкой из animatic/timing.json →
 linesFile), режет по строкам и ставит каждую на старт её английской строки на таймлайне аниматика (вставки тишины из
 timing.json). Если русская строка длиннее окна до следующей — ускоряет atempo (не больше MAX_TEMPO), если и так не влезает —
@@ -15,7 +16,7 @@ for _s in (sys.stdout, sys.stderr):
     except Exception: pass
 D = os.path.dirname(os.path.abspath(__file__)); OUT = os.path.join(D, 'out'); C = os.path.join(OUT, 'fish_ru_cache')
 os.makedirs(C, exist_ok=True)
-SR, MAX_TEMPO, GAP, PAD = 24000, 1.3, 0.05, 0.03
+SR, MAX_TEMPO, GAP, PRE, POST, FADE = 24000, 1.3, 0.05, 0.06, 0.10, 0.020   # кусок строки [start − 0.06, end + 0.10] с затуханием 20 мс — хвосты не режутся
 
 
 def probe(p):
@@ -38,8 +39,11 @@ def main():
     w = wave.open(full, 'rb'); n_all = w.getnframes(); pcm = w.readframes(n_all); w.close()
 
     def cut(i, a, b):
-        p = os.path.join(C, f'l{i:03d}.wav'); f0 = max(0, int((a - PAD) * SR)); f1 = min(n_all, int((b + PAD) * SR))
-        o = wave.open(p, 'wb'); o.setnchannels(1); o.setsampwidth(2); o.setframerate(SR); o.writeframes(pcm[f0 * 2:f1 * 2]); o.close()
+        import array
+        p = os.path.join(C, f'l{i:03d}.wav'); f0 = max(0, int((a - PRE) * SR)); f1 = min(n_all, int((b + POST) * SR))
+        x = array.array('h', pcm[f0 * 2:f1 * 2]); nf = min(len(x) // 2, int(FADE * SR))
+        for k in range(nf): g = k / nf; x[k] = int(x[k] * g); x[-1 - k] = int(x[-1 - k] * g)
+        o = wave.open(p, 'wb'); o.setnchannels(1); o.setsampwidth(2); o.setframerate(SR); o.writeframes(x.tobytes()); o.close()
         return p, (f1 - f0) / SR
 
     def sil(g):

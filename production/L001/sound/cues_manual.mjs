@@ -105,7 +105,7 @@ export const MANUAL = [
     { t: .12, snd: 'lamp.buzz', align: 'span', dur: Math.max(.5, s.dur - .12), gain: -6, what: 'гудит нить лампы' },
     { t: .5, snd: 'cloth.rustle', gain: -8, what: 'ведущий приподнимает котелок' },
   ] }) },
-  { m: F(1, 'L03-host-office', /рука на коробке/), f: (s, h) => { const tb = s.snap ?? .6; return { replace: ['foley', 'shake'], cues: [
+  { m: F(1, 'L03-host-office', /рука на коробке/), f: (s, h) => { const tb = h.W(/^box/i, s.snap ?? .6); return { replace: ['foley', 'shake'], cues: [
     { t: tb + .02, snd: 'box.pat', what: 'ладонь ложится на крышку коробки NVIDIA', vis: 'formula' },
     { t: tb, snd: 'lamp.flicker', gain: -12, what: 'лампа вздрагивает (кадр темнеет)' },
   ] }; } },
@@ -113,29 +113,21 @@ export const MANUAL = [
     ...taps.map((t0, k) => ({ t: t0 + .04, snd: 'box.tap', gain: k ? 0 : -1, what: `палец стучит по крышке (${k + 1})`, vis: 'formula' })),
     ...taps.map(t0 => ({ t: t0 + .08, snd: 'dust.puff', gain: -10, what: 'с крышки слетает пыль' })),
   ] }; } },
-  { m: F(1, 'L03-host-office', /^сверхкрупно ключ$/), f: (s, h) => ({ replace: ['foley', 'shake'], cues: [
-    { t: .12, snd: 'key.jingle', gain: -3, what: 'латунный ключ поднимается в свет лампы' },
-    { t: .95, snd: 'glint', gain: -6, what: 'блик на ключе' },
-  ] }) },
-  { m: F(1, 'L03-host-office', /зелёный свет из коробки/), f: (s, h) => { const tw = (s.ev || [])[0]?.t ?? .3, te = s.snap ?? 1.3; return { replace: ['foley', 'shake'], cues: [
-    { t: tw, snd: 'box.lid', align: 'span', dur: .45, gain: -4, what: 'крышка приоткрывается' },
-    { t: tw, snd: 'lamp.flicker', gain: -12, what: 'лампа вздрагивает (кадр темнеет)' },
-    { t: tw + .1, snd: 'chip.glow', what: 'из щели бьёт зелёный свет', vis: 'formula' },
-    { t: te + .05, snd: 'glint', gain: -4, what: 'блик на ключе' },
-  ] }; } },
+  // гл. 1, планы с ключом и коробкой: время — по словам, как в film/shots.js (W_ / W0): «Inside», «wanted», «chips», «Earth», «Thirty», «maker's», «table», «key»
+  { m: F(1, 'L03-host-office', /ключ/), f: (s, h) => { const w = re => { const a = h.wordAt(re, s.start, s.end); return a == null ? null : a - s.start; };
+    const ti = w(/^inside/i), tw = w(/^wanted/i), tc = w(/^chips/i), te = w(/^earth/i), tt = w(/^table/i), tk = w(/^key/i), cs = [];
+    if (ti != null) cs.push({ t: ti + .1, snd: 'key.jingle', gain: -3, what: 'латунный ключ поднимается к объективу, в свет лампы' });
+    if (tw != null) cs.push({ t: tw, snd: 'box.lid', align: 'span', dur: .45, gain: -4, what: 'крышка коробки приоткрывается' }, { t: tw + .1, snd: 'chip.glow', what: 'из щели бьёт зелёный свет', vis: 'formula' });
+    if (tc != null) cs.push({ t: tc + .05, snd: 'chip.pulse', gain: -4, what: 'зелёный свет вспыхивает на «chips»' });
+    if (te != null) cs.push({ t: te + .05, snd: 'glint', gain: -4, what: 'блик на ключе' });
+    if (tt != null) cs.push({ t: tt - .1, snd: 'photo.pat', what: 'ладонь ложится на снимок', vis: 'formula' });
+    if (tk != null) cs.push({ t: Math.max(.05, tk - .12), snd: 'whoosh.small', align: 'apex', gain: -6, what: 'ключ выброшен прямо в объектив' }, { t: tk + .06, snd: 'glint', gain: -2, what: 'блик на бородке ключа' });
+    return { replace: ['foley', 'shake'], cues: cs }; } },
   { m: F(1, 'L03-host-office', /ценник на коробке/), f: (s, h) => ({ replace: ['foley', 'shake', 'props'], cues: [
-    { t: .3, snd: 'tag.slap', gain: -2, what: 'ценник «$30,000 EACH» садится на коробку', vis: 'formula' },
+    { t: h.W(/^thirty/i, 0) + .3, snd: 'tag.slap', gain: -2, what: 'ценник «$30,000 EACH» садится на коробку', vis: 'formula' },
   ] }) },
-  { m: F(1, 'L03-host-office', /бирка источника/), f: (s, h) => { const tm = (s.ev || [])[0]?.t ?? s.snap ?? .8; return { replace: ['foley', 'shake', 'props'], cues: [
+  { m: F(1, 'L03-host-office', /бирка источника/), f: (s, h) => { const tm = h.W(/^maker/i, (s.ev || [])[0]?.t ?? s.snap ?? .8); return { replace: ['foley', 'shake', 'props'], cues: [
     { t: tm, snd: 'tag.pop', what: 'на ценнике встаёт строка «SOURCE: NVIDIA», ценник вздрагивает', vis: 'appear' },
-  ] }; } },
-  { m: F(1, 'L03-host-office', /^средний ведущий/), f: (s, h) => { const tt = s.snap ?? .7; return { replace: ['foley', 'shake'], cues: [
-    { t: tt - .1, snd: 'photo.pat', what: 'ладонь ложится на снимок', vis: 'formula' },
-  ] }; } },
-  { m: F(1, 'L03-host-office', /ключ к камере/), f: (s, h) => { const tt = s.snap ?? .5; return { replace: ['foley', 'shake'], cues: [
-    { t: .08, snd: 'key.jingle', gain: -6, what: 'ключ в руке' },
-    { t: Math.max(.12, tt * .7), snd: 'whoosh.small', align: 'apex', gain: -6, what: 'ключ летит в объектив' },
-    { t: tt + .05, snd: 'glint', gain: -2, what: 'блик на бородке ключа' },
   ] }; } },
   { m: F(1, 'L03-host-office', /снимок под лампой/), f: (s, h) => { const te = (s.ev || [])[0]?.t ?? .5, tm = s.snap ?? 1.2; return { replace: ['foley', 'shake'], cues: [
     { t: te, snd: 'paper.slide', align: 'span', dur: .35, gain: -2, what: 'ладонь пододвигает снимок «Дженсен + Алиса» под лампу' },

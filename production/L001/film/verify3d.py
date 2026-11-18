@@ -20,6 +20,7 @@ for _s in (sys.stdout, sys.stderr):
 D = os.path.dirname(os.path.abspath(__file__)); OUT = os.path.join(D, 'out'); TMP = os.path.join(OUT, 'tmp')
 VID = sys.argv[1] if len(sys.argv) > 1 else os.path.join(OUT, 'ch0_1.mp4')
 META = json.load(open(VID.replace('.mp4', '.frames.json'), encoding='utf-8'))
+REFD = os.path.join(TMP, 'ref_' + os.path.basename(VID)[:-4])          # эталон кадров этого рендера (final.mjs --name)
 W, H = 1920, 1080
 
 def decode(a, b, w=W, h=H, gray=False):
@@ -42,7 +43,7 @@ def yuv_out(a, b):
     return split(raw)
 def yuv_png(F, N):
     """эталон PNG без потерь -> yuv420p тем же swscale, что в final.mjs (png -> libx264 yuv420p)"""
-    raw = subprocess.run(['ffmpeg', '-v', 'error', '-framerate', '30', '-start_number', str(F), '-i', os.path.join(TMP, 'ref', 'F%05d.png'), '-frames:v', str(N), '-f', 'rawvideo', '-pix_fmt', 'yuv420p', '-'], capture_output=True, check=True).stdout
+    raw = subprocess.run(['ffmpeg', '-v', 'error', '-framerate', '30', '-start_number', str(F), '-i', os.path.join(REFD, 'F%05d.png'), '-frames:v', str(N), '-f', 'rawvideo', '-pix_fmt', 'yuv420p', '-'], capture_output=True, check=True).stdout
     return split(raw)
 def split(raw):
     n = W * H * 3 // 2; out = []
@@ -57,7 +58,7 @@ def psnr_yuv(a, b):                                       # как ffmpeg psnr: 
 for sh in META['shots3d']:
     n, F, N = sh['n'], sh['F'], sh['N']
     natp = [os.path.join(TMP, 'c3d', str(n), f'f-{k:04d}.png') for k in range(N)]
-    refp = [os.path.join(TMP, 'ref', f'F{F + k:05d}.png') for k in range(N)]
+    refp = [os.path.join(REFD, f'F{F + k:05d}.png') for k in range(N)]
     out, ref_y = yuv_out(F - F0, F - F0 + N), yuv_png(F, N)
     if len(out) != N: print(f'#{n}: в выходе {len(out)} кадров вместо {N}'); ok_all = False
     pe = [psnr_yuv(out[k], ref_y[k]) for k in range(min(N, len(out)))]

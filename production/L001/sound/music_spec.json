@@ -1,5 +1,5 @@
 {
- "_note": "Музыка по главам (music_plan.py -> music_plan.json). Точки считаются из cues.json и words.json — после перетайминга пересчитываются сами. Пилот гл. 0–1: Kevin MacLeod (incompetech.com), CC BY 4.0 — строка автора в описании ролика обязательна (music/MUSIC.md).",
+ "_note": "Музыка фильма (music_plan.py -> music_plan.json). Гл. 0–1 — пилот, гл. 2–10 — план music/MUSIC.md; попадания внутри глав привязаны к фразам голоса (text:), начала глав и название ролика — из cues.json. Все треки — Kevin MacLeod (incompetech.com), CC BY 4.0: строка автора в описании (music/MUSIC.md, раздел 1).",
  "cues": [
   {
    "id": "ch0_tension",
@@ -18,7 +18,7 @@
   {
    "id": "ch1_host",
    "file": "music/candidates/inc-i-knew-a-guy.mp3",
-   "from": "chapter:1+0.54",
+   "from": "chapter:1+0.3",
    "to": "video_title+5.5",
    "hit": {
     "film": "video_title",
@@ -28,15 +28,227 @@
    "fade_in": 0.12,
    "fade_out": 1.5,
    "gain_db": 0,
-   "why": "нуарный джаз ведущего (D minor, 76 BPM); финальный аккорд трека (154.92, после стоп-тайма) = кадр, где встаёт название ролика"
+   "why": "нуарный джаз ведущего (D minor, 76 BPM); финальный аккорд трека (154.92, после стоп-тайма) = кадр, где встаёт название ролика",
+   "bar_in": true
+  },
+  {
+   "id": "ch2_kentucky",
+   "file": "music/candidates/inc-dreamer.mp3",
+   "from": "chapter:2-0.05",
+   "to": "chapter:3",
+   "hit": {
+    "film": "chapter:2",
+    "src": 0.05,
+    "snap": false
+   },
+   "fade_in": 0.01,
+   "fade_out": "bar",
+   "gain_db": 0,
+   "_why": "тёплое фортепиано (G minor, 99 BPM); первый аккорд трека (атака 0.046 с) — ровно на титр главы 2. Точное попадание без привязки к доле: иначе src_in прилипнет к первой сильной доле 0.673 и атака аккорда срежется. Играет подряд 0.00–189.9 с источника, петля не нужна; конец — в разделе C (173.48–192.66), до тихой коды"
+  },
+  {
+   "id": "ch3_locked_door",
+   "file": "music/candidates/inc-stay-the-course.mp3",
+   "from": "chapter:3",
+   "to": "chapter:4",
+   "fade_in": 0.05,
+   "fade_out": "bar",
+   "gain_db": 0,
+   "_why": "ровный холодный фон с отсчётом секунд (60 BPM); с первой сильной доли трека. Раздел B (18.065) придёт на +16.0 с главы, раздел C (70.078) — на +68.0 с, перед «So here was Beijing's problem» (+71.2 с)",
+   "hit": {
+    "film": "text:So here was Beijing's problem-3.2",
+    "src": 70.078
+   }
+  },
+  {
+   "id": "ch4_cover",
+   "file": "music/candidates/inc-bass-walker.mp3",
+   "from": "chapter:4",
+   "to": "chapter:5",
+   "src_in": 0.139,
+   "fade_in": 0.03,
+   "fade_out": "bar",
+   "gain_db": 0,
+   "_why": "один шагающий контрабас (112 BPM) — меньше всех мешает речи; с первой сильной доли. Границы разделов сами ложатся на текст: C (34.133) — «and nobody asks why», E (70.031) — «On paper, renting…», F (87.191) — «At the end of 2023…»; конец главы = граница F→G (97.826)"
+  },
+  {
+   "id": "ch5_introduction",
+   "file": "music/candidates/inc-deadly-roulette.mp3",
+   "from": "chapter:5",
+   "to": "chapter:6",
+   "src_in": 0.627,
+   "fade_in": 0.03,
+   "fade_out": "bar",
+   "gain_db": 0,
+   "_why": "лаунж-джаз с вибрафоном (103 BPM); с первой сильной доли. Тихий раздел C с сольным вибрафоном (39.845–58.329) ложится на вечеринку в баре Тайбэя (+39.2…+57.7 с главы), возврат D — к «Nobody looked at it twice» (+60.6 с)"
+  },
+  {
+   "id": "ch6_pipeline",
+   "file": "music/candidates/inc-chase-pulse.mp3",
+   "from": "chapter:6",
+   "to": "chapter:7",
+   "hit": {
+    "film": "text:Follow one box",
+    "src": 35.062
+   },
+   "loop": [
+    10.077,
+    108.391
+   ],
+   "fade_in": 0.03,
+   "fade_out": "bar",
+   "gain_db": 0,
+   "_why": "низкий ровный пульс (144 BPM по замеру); src_in выходит 10.062 (сильная доля 10.077). Сбивка C (35.062) — на «Follow one box», возврат D (41.726) — в план без голоса с кораблём (+31.7 с), E (48.414) — на «Every step has paperwork» (+38.35 с). Трек (117 с) короче главы (135 с): петля 59 тактов 10.077–108.391 до начала коды"
+  },
+  {
+   "id": "ch7_real_prize",
+   "file": "music/candidates/inc-crypto.mp3",
+   "from": "chapter:7",
+   "to": "chapter:8",
+   "fade_in": 0.05,
+   "fade_out": "bar",
+   "gain_db": 0,
+   "_why": "тёмный таинственный фон (81 BPM); с третьего такта, чтобы раздел D (81.084) пришёл на +75.0 с — «Now look at it from Beijing» (+74.3 с). B (39.079) — на чехарду разрешений (+33.0 с), конец главы — начало раздела F (129.08)",
+   "hit": {
+    "film": "text:Now look at it from Beijing+0.7",
+    "src": 81.084
+   }
+  },
+  {
+   "id": "ch8_memo",
+   "file": "music/candidates/inc-ossuary-6-air.mp3",
+   "from": "chapter:8",
+   "to": "chapter:9",
+   "hit": {
+    "film": "text:It was Jensen Huang",
+    "src": 96.25,
+    "snap": false
+   },
+   "fade_in": 1.0,
+   "fade_out": "bar",
+   "gain_db": 0,
+   "_why": "холодный дрон без слышимого пульса — сетка тактов не нужна, попадание точное. src_in выходит 66.45. Провал почти в тишину 93.5–95.0 с источника ложится на «Officials asked for the name to be unmasked», дрон возвращается в полную громкость (96.25) на «It was Jensen Huang» (+29.8 с главы); второй подъём (137.8) — на «Completely normal…» и «beyond business»"
+  },
+  {
+   "id": "ch9_empty_chair",
+   "file": "music/candidates/inc-gloom-horizon.mp3",
+   "from": "chapter:9",
+   "to": "chapter:10",
+   "hit": {
+    "film": "text:Nobody told the man at the table-0.34",
+    "src": 39.01
+   },
+   "loop": [
+    3.019,
+    98.987
+   ],
+   "fade_in": 0.3,
+   "fade_out": "bar",
+   "gain_db": 0,
+   "_why": "скорбные струнные с нарастанием (99 BPM); src_in выходит 3.02 (сильная доля 3.019). Вступление мелодии (39.01) — на «Nobody told the man at the table» (+36.35 с), самый громкий раздел E (72.632) — на «Jensen Huang resigned» (+69.8 с). Трек (128 с) короче главы (164 с): петля 40 тактов 3.019–98.987; второй круг начинается тихим вступлением на падении акций (+96 с), мелодия возвращается к +132 с; затухание в один такт начинается на карточке «who's going to warn them?»"
+  },
+  {
+   "id": "ch10_host_outro",
+   "file": "music/candidates/inc-i-knew-a-guy.mp3",
+   "from": "chapter:10-0.71",
+   "to": "end",
+   "hit": {
+    "film": "end-2.0",
+    "src": 154.92,
+    "snap": false
+   },
+   "fade_in": 0.02,
+   "fade_out": 1.2,
+   "gain_db": 0,
+   "_why": "возврат темы ведущего: последние такты и тот же финальный аккорд (154.92), что стоит на названии ролика, — на начало последнего плана без голоса (end-2.0). src_in выходит 144.051 (сильная доля 144.057). fade_out не «bar»: затухание в такт (3.2 с) съело бы аккорд",
+   "bar_in": true
   }
  ],
  "holds": [
   {
+   "at": "chapter:2",
+   "pre": 0.2,
+   "post": 2.0,
+   "db": -8,
+   "why": "титр главы 2: стинг, новый трек входит с сильной доли, музыка поднята"
+  },
+  {
+   "at": "chapter:3",
+   "pre": 0.2,
+   "post": 2.0,
+   "db": -8,
+   "why": "титр главы 3: стинг, новый трек входит с сильной доли, музыка поднята"
+  },
+  {
+   "at": "chapter:4",
+   "pre": 0.2,
+   "post": 2.0,
+   "db": -8,
+   "why": "титр главы 4: стинг, новый трек входит с сильной доли, музыка поднята"
+  },
+  {
+   "at": "chapter:5",
+   "pre": 0.2,
+   "post": 2.0,
+   "db": -8,
+   "why": "титр главы 5: стинг, новый трек входит с сильной доли, музыка поднята"
+  },
+  {
+   "at": "chapter:6",
+   "pre": 0.2,
+   "post": 2.0,
+   "db": -8,
+   "why": "титр главы 6: стинг, новый трек входит с сильной доли, музыка поднята"
+  },
+  {
+   "at": "chapter:7",
+   "pre": 0.2,
+   "post": 2.0,
+   "db": -8,
+   "why": "титр главы 7: стинг, новый трек входит с сильной доли, музыка поднята"
+  },
+  {
+   "at": "chapter:8",
+   "pre": 0.2,
+   "post": 2.0,
+   "db": -8,
+   "why": "титр главы 8: стинг, новый трек входит с сильной доли, музыка поднята"
+  },
+  {
+   "at": "chapter:9",
+   "pre": 0.2,
+   "post": 2.0,
+   "db": -8,
+   "why": "титр главы 9: стинг, новый трек входит с сильной доли, музыка поднята"
+  },
+  {
+   "at": "end-2.0",
+   "pre": 0.2,
+   "post": 2.0,
+   "db": -8,
+   "why": "последний план без голоса: тот же финальный аккорд, музыка поднята"
+  },
+  {
    "at": "video_title",
    "pre": 0.25,
    "post": 3.0,
-   "db": -8
+   "db": -8,
+   "why": "название ролика: финальный аккорд темы ведущего на кадре названия, музыка поднята"
+  },
+  {
+   "at": "text:Jensen Huang resigned",
+   "pre": 0.7,
+   "post": -0.05,
+   "db": -45,
+   "why": "тишина перед раскрытием: музыка уходит, «Jensen Huang resigned» звучит в паузе, следом самый громкий раздел"
+  },
+  {
+   "at": "text:It was Jensen Huang",
+   "pre": 0.6,
+   "post": -0.05,
+   "db": -45,
+   "why": "тишина перед раскрытием имени (в треке там и так провал)"
   }
- ]
+ ],
+ "_pilot_only": "music/music_spec_full.json — исходный план музыкального подбора; music_spec_pilot.json — прежняя спека пилота"
 }

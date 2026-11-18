@@ -37,7 +37,7 @@ METER = pyln.Meter(SR)
 
 MIX = {
     'voice_lufs': -16.0,
-    'music_speech_db': -21.5, 'music_pause_db': -12.0, 'music_carve_db': -3.0,
+    'music_speech_db': -20.0, 'music_pause_db': -12.0, 'music_carve_db': -3.0,
     'music_attack': .08, 'music_release': .35, 'music_lookahead': .12,
     'sfx_duck_db': -4.0, 'sfx_trim_db': -4.0, 'amb_duck_db': -1.5, 'amb_trim_db': 4.0, 'peak_cap_db': 11.0,
     'target_lufs': -14.0, 'ceiling_dbtp': -1.0,
@@ -75,7 +75,12 @@ NONDIEG = {'snap', 'snap.soft', 'whoosh.cut', 'whoosh.whip', 'whoosh.wipe', 'who
            'riser.title', 'shimmer.sweep', 'hit.reveal', 'riser.tower', 'glint', 'ui.slide', 'hit.number', 'hit.x', 'alarm.hit', 'pin.pop',
            'ticker.run', 'type.run', 'marker.write', 'marker.line', 'marker.hl', 'marker.circle', 'map.route', 'tape.rewind', 'flash.pop'}
 WIDE = {'sting.title', 'sting.chapter', 'hit.reveal', 'hit.card', 'hit.bloom', 'riser.title'}   # широкое стерео: хвост расходится по сторонам (как удар титра у конкурента)
-# «скромный» вариант (--lean): без мелкой жизни кадра — остаются переходы, вещи-доказательства, главные фоли
+# плотность (--density): full — всё из листа; mid (по умолчанию) — без декоративной «жизни кадра» и без рывков-свистов,
+# прижатых к более важному звуку (≈ 50–60 звуков в минуту, только смысловые события); lean — ещё и без переходов-свистов на смене места,
+# бликов, мелкого фоли (≈ 45 в минуту). Подложка: full +3 дБ, mid 0, lean −2 (к уровням BEDS).
+MID_SKIP = {'cloth.rustle', 'cloth.slide', 'headphone', 'dust.puff', 'glasses.tick', 'glass.lift', 'servo', 'lamp.flicker', 'tape.clack', 'air.move',
+            'hit.event', 'tag.tick', 'clip.snap', 'glint', 'body.pass', 'string.taut', 'whoosh.small', 'chair.creak', 'chair.scrape', 'page.turn', 'paper.handle', 'hit.kick'}
+AMB_BY_DENSITY = {'full': 3.0, 'mid': 0.0, 'lean': -2.0}
 LEAN_SKIP = {'cloth.rustle', 'cloth.slide', 'headphone', 'dust.puff', 'glasses.tick', 'glass.lift', 'servo', 'lamp.buzz', 'lamp.flicker', 'tape.clack',
              'air.move', 'hit.event', 'chair.creak', 'chair.scrape', 'tag.tick', 'clip.snap', 'whoosh.cut', 'glint', 'motor.hum', 'box.lid', 'af.beep',
              'thunder.far', 'whoosh.small', 'body.pass', 'string.taut', 'riser.tower', 'ui.slide', 'type.run'}
@@ -169,11 +174,12 @@ def voice_track(timing, voice_path, t0, t1):
     return full[n0:n1]
 
 
-def process_voice(v):
+def process_voice(v, gain_db=None):
+    """срез 80 Гц, компрессия; уровень — к voice_lufs по этому окну или постоянным gain_db (одним на весь фильм: главы без скачков)"""
     pb = Pedalboard([HighpassFilter(80), Compressor(threshold_db=-24, ratio=2.5, attack_ms=6, release_ms=120)])
     y = pb(v.reshape(1, -1), SR).ravel()
-    L0 = METER.integrated_loudness(to_stereo(y))
-    return (y * lin(MIX['voice_lufs'] - L0)).astype(np.float32)
+    if gain_db is None: gain_db = MIX['voice_lufs'] - METER.integrated_loudness(to_stereo(y))
+    return (y * lin(gain_db)).astype(np.float32)
 
 
 def speech_mask(words, t0, n, pre=.05, post=.08, bridge=.25):
@@ -288,14 +294,15 @@ def reverb_of(bed):
     return Pedalboard([Reverb(room_size=rs, damping=dp, wet_level=wet, dry_level=1.0, width=.8)])
 
 
-def render_sfx(cues, bank, t0, n, vref, bed_at, mask, lean=False):
+def render_sfx(cues, bank, t0, n, vref, bed_at, mask, density='mid'):
     out = np.zeros((n, 2), np.float32); placed = []
     wide = Pedalboard([Reverb(room_size=.75, damping=.4, wet_level=.2, dry_level=1.0, width=1.0)])
     for c in cues:
         t = c['t'] - t0
         if t < -3 or t > n / SR + .5: continue
         snd = c['snd']
-        if lean and (snd in LEAN_SKIP or c.get('ducked')): continue
+        if density == 'lean' and (snd in LEAN_SKIP or c.get('ducked')): continue
+        if density == 'mid' and (snd in MID_SKIP or (c.get('ducked') and snd.startswith('snap'))): continue
         snd = c['snd']; seed = int(hashlib.md5(c['id'].encode()).hexdigest()[:6], 16) % 997 + 1
         y = bank.get(snd, seed % 7 + 1, c.get('dur'), c.get('n'))
         if snd in VARY: y = vary(y, seed)
@@ -467,16 +474,21 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--name', default='ch0_1'); ap.add_argument('--t0', type=float, default=None); ap.add_argument('--t1', type=float, default=None)
     ap.add_argument('--frames', default=None); ap.add_argument('--video', default=None); ap.add_argument('--voice', default='out/voice_fish_en.mp3')
-    ap.add_argument('--no-music', action='store_true'); ap.add_argument('--lean', action='store_true', help='скромный вариант: без мелких звуков')
+    ap.add_argument('--no-music', action='store_true'); ap.add_argument('--lean', action='store_true', help='= --density lean')
+    ap.add_argument('--density', default='mid', choices=['full', 'mid', 'lean'])
+    ap.add_argument('--voice-gain-db', type=float, default=None, help='постоянное усиление голоса (master_full.py считает его один раз на весь фильм)')
+    ap.add_argument('--premaster', action='store_true', help='без мастера: стемы и premix.wav в единицах голоса −16 LUFS (сборку фильма делает master_full.py)')
     ap.add_argument('--music-plan', default=str(HERE / 'music_plan.json'))
+    ap.add_argument('--timing', default='animatic/timing.json'); ap.add_argument('--words', default='animatic/words.json'); ap.add_argument('--cues', default=str(HERE / 'cues.json'))
     ap.add_argument('--voice-wav', default=None, help='готовый голос на шкале фильма (напр. русский из ru_fit.py); речь ищется по огибающей')
     ap.add_argument('--suffix', default='_sound', help='хвост имени видео: <видео><suffix>.mp4')
     ap.add_argument('--tail-fade', type=float, default=.4, help='спад в конце куска, с (0 — без спада)')
     a = ap.parse_args()
     os.chdir(L)
-    timing = json.load(open('animatic/timing.json', encoding='utf-8'))
-    words = json.load(open('animatic/words.json', encoding='utf-8'))['words']
-    C = json.load(open(HERE / 'cues.json', encoding='utf-8'))
+    timing = json.load(open(a.timing, encoding='utf-8'))
+    words = json.load(open(a.words, encoding='utf-8'))['words']
+    C = json.load(open(a.cues, encoding='utf-8'))
+    if a.voice == 'out/voice_fish_en.mp3' and timing.get('audioFile'): a.voice = timing['audioFile']   # голос, по которому сделан тайминг
     t0, t1 = a.t0, a.t1
     if a.frames:
         fr = json.load(open(a.frames)); t0 = fr['F0'] / 30 if t0 is None else t0; t1 = fr['F1'] / 30 if t1 is None else t1
@@ -487,9 +499,10 @@ def main():
 
     if a.voice_wav:
         vw = load_audio(a.voice_wav, mono=True); vw = np.r_[vw, np.zeros(max(0, n - len(vw)), np.float32)][:n]
-        v = process_voice(vw); mask, phrases = envelope_mask(v)
+        v = process_voice(vw, a.voice_gain_db); mask, phrases = envelope_mask(v)
     else:
-        v = process_voice(voice_track(timing, a.voice, t0, t1)); mask, phrases = speech_mask(words, t0, n)
+        v = process_voice(voice_track(timing, a.voice, t0, t1), a.voice_gain_db); mask, phrases = speech_mask(words, t0, n)
+        em, _ = envelope_mask(v); mask = mask | em   # слова + огибающая голоса: дакинг не промахнётся, если слова смещены
     vr = rms_win(v, .05); act = vr[mask[:len(vr)]] if mask.any() else vr
     vref = float(np.median(act[act > 1e-4])) if len(act) else .05
     beds = C['beds']
@@ -498,19 +511,27 @@ def main():
             if b['start'] <= t < b['end']: return b['bed']
         return 'room'
     bank = Bank(rec_map)
-    sfx, placed = render_sfx(C['cues'], bank, t0, n, vref, bed_at, mask, lean=a.lean)
+    density = 'lean' if a.lean else a.density; MIX['amb_trim_db'] = AMB_BY_DENSITY[density]
+    sfx, placed = render_sfx(C['cues'], bank, t0, n, vref, bed_at, mask, density=density)
     amb = render_amb(beds, rec_map, t0, n, vref, mask)
     music, minfo, mg = render_music(plan, t0, n, mask, MIX['voice_lufs'], C.get('marks', []))
     stems = {'voice': to_stereo(v), 'music': music, 'sfx': sfx, 'amb': amb}
     if a.tail_fade > 0:   # спад в конце куска (пилот кончается по границе фразы)
         k = int(a.tail_fade * SR); w = np.cos(np.linspace(0, np.pi / 2, k))[:, None].astype(np.float32)
         for x in stems.values(): x[-k:] *= w
+    if a.premaster:
+        for k, x in stems.items(): sf.write(str(od / f'{k}.wav'), x.astype(np.float32), SR, subtype='FLOAT')
+        sf.write(str(od / 'premix.wav'), sum(stems.values()).astype(np.float32), SR, subtype='FLOAT')
+        json.dump({'name': a.name, 't0': t0, 't1': t1, 'density': density, 'vref_dbfs': round(float(db(vref)), 1), 'cues_placed': len(placed),
+                   'from_recordings': sum(p['src'] == 'rec' for p in placed), 'placed': placed, 'music': minfo,
+                   'phrases': [[round(p0 + t0, 3), round(p1 + t0, 3)] for p0, p1 in phrases]}, open(od / 'report.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+        print(json.dumps({'premaster': a.name, 'cues_placed': len(placed), 'from_recordings': sum(p['src'] == 'rec' for p in placed)})); return
     mix, gain, meas = master(stems)
     for k, x in stems.items(): write(od / f'{k}.wav', (x * lin(gain)).astype(np.float32))
     write(od / 'mix.wav', mix)
     rep = {'name': a.name, 't0': t0, 't1': t1, 'master_gain_db': round(gain, 2), 'ebur128': meas, 'vref_dbfs': round(float(db(vref)), 1),
            'stem_lufs': {k: round(METER.integrated_loudness(x * lin(gain)), 1) if np.abs(x).max() > 0 else None for k, x in stems.items()},
-           'cues_placed': len(placed), 'from_recordings': sum(p['src'] == 'rec' for p in placed), 'music': minfo, 'mix': MIX, 'placed': placed,
+           'density': density, 'cues_placed': len(placed), 'from_recordings': sum(p['src'] == 'rec' for p in placed), 'music': minfo, 'mix': MIX, 'placed': placed,
            'phrases': [[round(p0 + t0, 3), round(p1 + t0, 3)] for p0, p1 in phrases]}
     json.dump(rep, open(od / 'report.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     print(json.dumps({k: rep[k] for k in ('master_gain_db', 'ebur128', 'vref_dbfs', 'stem_lufs', 'cues_placed', 'from_recordings')}, ensure_ascii=False))

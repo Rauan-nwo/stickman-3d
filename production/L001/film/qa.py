@@ -41,7 +41,7 @@ def sheets(video, chs, every=3):
         # 1) каждый every-й кадр каждого плана
         tiles = []
         for s in shots:
-            for fi, im in frames(video, s['start'], min(s['end'], vend), every, os.path.join(QA, 'tmp')):
+            for fi, im in frames(video, s['start'], min(s['end'], vend), every, os.path.join(QA, f'tmp_{os.getpid()}')):
                 tiles.append((s, fi, im))
         cols, w, h, per = 8, 384, 216, 64
         for p in range(0, len(tiles), per):
@@ -59,7 +59,7 @@ def sheets(video, chs, every=3):
             ts = [min(q, vend) for q in ts]
             ims = []
             for t in ts:
-                tmp = os.path.join(QA, 'one.jpg')
+                tmp = os.path.join(QA, f'one_{os.getpid()}.jpg')
                 subprocess.run(['ffmpeg', '-v', 'error', '-y', '-ss', f'{t:.3f}', '-i', video, '-frames:v', '1', '-vf', 'scale=480:270', tmp], check=True)
                 ims.append((t, Image.open(tmp).copy()))
             rows.append((s, ims))

@@ -34,7 +34,7 @@ if wav:
     for li, fw in sorted(film.items()):
         sp = fw[0]['sp']
         if sp == 'NARRATOR' or fw[0]['s'] < T0 - .01 or fw[0]['s'] >= T1: continue
-        a, b = max(0, fw[0]['s'] - T0 - .4), fw[-1]['e'] - T0 + .5; tmp = os.path.join(tempfile.gettempdir(), 'sc_line.wav')
+        a, b = max(0, fw[0]['s'] - T0 - .4), fw[-1]['e'] - T0 + .5; tmp = os.path.join(tempfile.gettempdir(), f'sc_line_{os.getpid()}.wav')
         subprocess.run(['ffmpeg', '-v', 'error', '-y', '-ss', f'{a:.3f}', '-to', f'{b:.3f}', '-i', wav, '-ac', '1', '-ar', '16000', tmp], check=True)
         segs, _ = m.transcribe(tmp, word_timestamps=True, language='en'); got = [(norm(w.word), w.start + a + T0) for s in segs for w in s.words]
         heard = ' '.join(g[0] for g in got); k = 0

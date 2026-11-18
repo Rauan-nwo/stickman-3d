@@ -1,5 +1,6 @@
 // make_timing.mjs: шотлист L001 + черновой голос -> timing.json и план склейки звука для аниматика.
-//   node production/L001/animatic/make_timing.mjs [--lines out/lines_fish.json]   (по умолчанию out/lines_draft.json)
+//   node production/L001/animatic/make_timing.mjs [--lines out/lines_fish.json] [--out animatic/timing.json]
+//   русская версия со своим таймингом:  --lines out/lines_fish_ru.json --out animatic/timing_ru.json  (-> words_ru.json)
 // Пишет timing.json и words.json (слова голоса на шкале фильма: кто, что, когда — для рта героев в film/).
 // Старт плана = начало первого слова его «текста» (поиск последовательно по словам lines_draft.json).
 // Путь коробки (7 планов 3D-boxpath в гл. 6) идёт по готовому видео box_path_v2 (S1..S6 + 3D-хвост): фразы голоса сдвигаются
@@ -10,11 +11,41 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const D = dirname(fileURLToPath(import.meta.url)), L = join(D, '..');
+const norm = w => w.toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9]/g, '');
 const md = readFileSync(join(L, 'shotlist.md'), 'utf8').split(/\r?\n/);
 // источник голоса: --lines <json>, иначе финальный Fish, если он есть (out/lines_fish.json + out/voice_fish_en.mp3), иначе черновой edge-tts
 const LA = process.argv.indexOf('--lines'), LINES_FILE = LA > 0 ? process.argv[LA + 1] : (existsSync(join(L, 'out/lines_fish.json')) ? 'out/lines_fish.json' : 'out/lines_draft.json');
-const AUDIO_FILE = /fish/.test(LINES_FILE) ? 'out/voice_fish_en.mp3' : 'out/voice_draft.mp3';
-const lines = JSON.parse(readFileSync(join(L, LINES_FILE), 'utf8'));
+const OA = process.argv.indexOf('--out'), OUT_FILE = OA > 0 ? process.argv[OA + 1] : 'animatic/timing.json';   // путь от production/L001
+const AUDIO_FILE = /fish_ru/.test(LINES_FILE) ? 'out/voice_fish_ru.mp3' : /fish/.test(LINES_FILE) ? 'out/voice_fish_en.mp3' : 'out/voice_draft.mp3';
+let lines = JSON.parse(readFileSync(join(L, LINES_FILE), 'utf8')), LINES_REF = LINES_FILE;
+// ---- другой язык (строки без слов, например out/lines_fish_ru.json): планы и события привязаны к английским словам, поэтому
+// каждое английское слово переносится на русскую строку — в ту же долю длины строки; число или имя — на место своего
+// русского слова в тексте (по позиции в строке). Дальше всё считается как обычно, но на шкале русского голоса.
+if (!lines[0].words) {
+  const en = JSON.parse(readFileSync(join(L, 'out/lines_fish.json'), 'utf8'));
+  if (en.length !== lines.length) throw new Error(`строк ${lines.length}, в английской дорожке ${en.length}`);
+  const NAMES = { nvidia: 'нвидиа', nvidias: 'нвидиа', jensen: 'дженсен', jensens: 'дженсен', huang: 'хуанг', alice: 'алис', megaspeed: 'мегаспид', megaspeeds: 'мегаспид', beijing: 'пекин', beijings: 'пекин',
+    washington: 'вашингтон', china: 'кита', chinas: 'кита', chinese: 'китайск', singapore: 'сингапур', malaysia: 'малайзи', malaysian: 'малайзи', indonesia: 'индонези', taiwan: 'тайван', taiwanese: 'тайваньск',
+    taipei: 'тайбэ', kentucky: 'кентукки', america: 'америк', american: 'америк', dennys: 'деннис', alibaba: 'алибаб', aivres: 'айврес', inspur: 'инспур', cotton: 'коттон', lutnick: 'лютник', rubio: 'рубио', trump: 'трамп',
+    fbi: 'фбр', cnn: 'си-эн-эн', bloomberg: 'блумберг', axios: 'аксиос', deepseek: 'дипсик', chatgpt: 'чатджипити', microsoft: 'майкрософт', computex: 'компьютекс', commerce: 'торговл', alaska: 'аляск', california: 'калифорни',
+    billion: 'миллиард', million: 'миллион', trillion: 'триллион', percent: 'процент', lobsters: 'лобстер', october: 'октябр', november: 'ноябр', december: 'декабр', april: 'апрел', august: 'август', march: 'март', june: 'июн',
+    january: 'январ', may: 'ма', senator: 'сенатор', president: 'президент', kress: 'кресс', colette: 'колетт', malachowsky: 'малаховски', priem: 'прим', oneida: 'онайда', ceo: 'генеральн' };
+  let hit = 0, all = 0;
+  lines = lines.map((r, i) => {
+    const e = en[i], ed = Math.max(.01, e.end - e.start), rd = r.end - r.start, txt = r.text.toLowerCase(); let last = 0, from = 0;
+    const words = e.words.map(w => {
+      let a = (w.s - e.start) / ed, b = (w.e - e.start) / ed; const k = NAMES[norm(w.w)]; all++;
+      const at = k ? txt.indexOf(k, from) : /^\d/.test(w.w) ? txt.search(/\d/) : -1;
+      if (at >= 0 && Math.abs(at / txt.length - a) < .45) { const len = b - a; a = at / txt.length; b = Math.min(1, a + len); from = at + 1; hit++; }
+      a = Math.max(last, Math.min(a, 1)); b = Math.max(a, Math.min(b, 1)); last = a;
+      return { w: w.w, s: +(r.start + a * rd).toFixed(3), e: +(r.start + b * rd).toFixed(3) };
+    });
+    return { ...r, textEn: e.text, words };
+  });
+  LINES_REF = LINES_FILE.replace(/\.json$/, '_sync.json');
+  writeFileSync(join(L, LINES_REF), JSON.stringify(lines));
+  console.log(`язык: строки ${LINES_FILE} без слов — английские слова перенесены на русскую шкалу (${hit} из ${all} — по своему русскому слову), ${LINES_REF}`);
+}
 
 // ---- шотлист
 const shots = []; let ch = null, chTitle = '';
@@ -27,7 +58,6 @@ const nums = shots.map(s => s.n); if (nums.some((n, i) => n !== i + 1)) throw ne
 const LAST = shots[shots.length - 1].n;
 
 // ---- слова голоса
-const norm = w => w.toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9]/g, '');
 const words = [];
 // edge-tts склеивает «in 1997», «October 29, 2026» в одно слово — делим, время у частей общее
 lines.forEach((l, li) => l.words.forEach(w => w.w.split(/\s+/).forEach((part, pi) => { const k = norm(part); if (k) words.push({ k, w: part, s: w.s, e: w.e, li, sub: pi > 0 }); })));
@@ -51,46 +81,55 @@ for (const s of shots) {
 
 // ---- сдвиги звука (вставки тишины) и времена
 const TITLE_GAP = 1.6;
-const BOX = shots.filter(s => s.ch === 6 && s.loc === '3D-boxpath').map(s => s.n).slice(0, 7), AFTER_BOX = BOX[6] + 1, TITLE_PAUSE = 1.2, MIN = { line: 1.5, card: 1.8, any: 1.3 }, SEG = [0, 2.1, 4.1, 6.3, 8.2, 10.5, 13.3], BOX_END = 17.9, LEAD = .15;
-const inserts = []; let shift = 0, boxStart = null;
-const insertBefore = (wi, need) => {        // тишина в середине паузы перед словом wi
-  const prevE = wi > 0 ? words[wi - 1].e : 0, at = (prevE + words[wi].s) / 2;
-  inserts.push({ at: +at.toFixed(3), dur: +need.toFixed(3) }); shift += need;
+// путь коробки (гл. 6): подпланы идут ПО ГОЛОСУ — каждый начинается на первом слове своей фразы, а кусок готового видео
+// box_path_v2 растягивается под длину плана в film (s.box.from..to). Голос внутри фразы не останавливается.
+const BOX = shots.filter(s => s.ch === 6 && s.loc === '3D-boxpath').map(s => s.n).slice(0, 6), TITLE_PAUSE = 1.2, MIN = { line: 1.5, card: 1.8, any: 1.3 };
+const BOXSEG = [[0, 2.1], [2.1, 4.1], [4.1, 6.3], [8.2, 10.5], [10.5, 13.3], [13.3, 17.9]];   // S1, S2, S3, S5, S6, 3D-хвост (S4 «кран несёт» без голоса убран)
+// ---- где в голос можно вставить тишину (правило 2026-11-18: речь не рвётся)
+//   · только на стыке строк: строки синтезированы отдельно, между ними тишина 0.15–0.2 с — режем в её середине;
+//   · никогда внутри строки (ни между словами, ни на запятой, ни между предложениями одной строки);
+//   · никогда внутри сцены ведущего: HOST записан одним дублем на сцену и играет как записан.
+// Если тишину вставить нельзя, план просто начинается на своём слове (короткий план — повод слить его с соседом в шотлисте).
+const lineOf = k => words[k].li, isHost = li => lines[li].speaker === 'HOST';
+const canInsert = k => k > 0 && lineOf(k) !== lineOf(k - 1) && !(isHost(lineOf(k)) && isHost(lineOf(k - 1))) && words[k].s - words[k - 1].e >= .1;
+const inserts = [], denied = []; let shift = 0;
+const insertBefore = (wi, need, why, must) => {        // тишина в середине естественной паузы перед словом wi
+  if (!(need > 0)) return 0;
+  if (!canInsert(wi)) { if (must) throw new Error(`нельзя вставить тишину (${why}) перед «${words[wi].w}» (строка ${lineOf(wi) + 1}): это середина фразы или дубль ведущего`); denied.push({ wi, need, why }); return 0; }
+  const prevE = words[wi - 1].e, at = (prevE + words[wi].s) / 2;
+  inserts.push({ at: +at.toFixed(3), dur: +need.toFixed(3), gap: +(words[wi].s - prevE).toFixed(3), why, before: `${lineOf(wi) + 1}: ${words[wi].w}` }); shift += need; return need;
 };
-const minPrev = (s, wi, mid) => {   // добор длины предыдущего плана тишиной перед словом wi
+const minPrev = (s, wi, mid) => {   // добор длины предыдущего плана тишиной перед словом wi — только если там стык строк
   const pv = shots[shots.indexOf(s) - 1];
-  if (!pv || pv.start == null || pv.box) return;
+  if (!pv || pv.start == null) return;
   const need = /^[A-Z][A-Z0-9 ]{1,20}:/.test(pv.text) ? MIN.line : pv.loc === 'T-card' ? (pv.toks.length <= 3 ? MIN.line : MIN.card) : pv.loc === '3D-city' ? MIN.card : MIN.any;
   const t0 = mid ? ((wi > 0 ? words[wi - 1].e : 0) + words[wi].s) / 2 + shift : words[wi].s + shift;
-  if (t0 - pv.start < need) insertBefore(wi, need - (t0 - pv.start));
+  if (t0 - pv.start < need) insertBefore(wi, need - (t0 - pv.start), 'мин. длина плана #' + pv.n);
 };
 for (const s of shots) {
   const bi = BOX.indexOf(s.n);
   if (bi >= 0) {
-    if (bi === 0) { boxStart = words[s.wi].s + shift; s.start = boxStart; s.box = { from: 0, to: SEG[1] }; continue; }
-    s.start = boxStart + SEG[bi]; s.box = { from: SEG[bi], to: SEG[bi + 1] ?? BOX_END };
-    if (s.wi != null) { const want = s.start + LEAD, act = words[s.wi].s + shift; if (act < want) insertBefore(s.wi, want - act); }
-    continue;
+    if (s.wi == null) throw new Error(`#${s.n}: подплан пути коробки без голоса — убрать из шотлиста (голос внутри фразы не останавливается)`);
+    if (bi === 0) minPrev(s, s.wi);
+    s.start = words[s.wi].s + shift; s.box = { from: BOXSEG[bi][0], to: BOXSEG[bi][1] }; continue;
   }
   if (s.n === LAST) { s.start = voiceEnd + shift + .4; continue; }
   if (s.n === 1) { s.start = 0; continue; }
-  if (s.wi == null && /^—/.test(s.text)) {   // план без голоса (музыка): тишина длиной listDur перед следующей фразой
+  if (s.wi == null && /^—/.test(s.text)) {   // план без голоса (музыка): тишина длиной listDur перед следующей строкой
     const nx = shots.slice(shots.indexOf(s) + 1).find(x => x.wi != null); minPrev(s, nx.wi, true); const prevE = nx.wi > 0 ? words[nx.wi - 1].e : 0;
-    s.start = (prevE + words[nx.wi].s) / 2 + shift; insertBefore(nx.wi, s.listDur); continue;
+    s.start = (prevE + words[nx.wi].s) / 2 + shift; insertBefore(nx.wi, s.listDur, 'план без голоса #' + s.n, true); continue;
   }
   if (s.wi == null) { console.log('MISSING', s.n, s.text, problems.slice(-3)); process.exit(1); }
   // короткие планы: реплика ≥ 1.5 с, карточка ≥ 1.8 с (из 1–3 слов ≥ 1.5 с), пролёт 3D-city ≥ 1.8 с, прочее ≥ 1.3 с —
-  // недостающее добирается тишиной перед первым словом этого плана (смена говорящего успевает прочитаться)
+  // недостающее добирается тишиной перед первым словом этого плана, ЕСЛИ это стык строк (иначе план остаётся коротким)
   minPrev(s, s.wi, s.loc === 'T-title');
   if (s.loc === 'T-title') {               // тишина перед закадром: титр стоит с середины паузы
     const prevE = s.wi > 0 ? words[s.wi - 1].e : 0, at = (prevE + words[s.wi].s) / 2;
-    s.start = at + shift; insertBefore(s.wi, TITLE_PAUSE); continue;
+    s.start = at + shift; insertBefore(s.wi, TITLE_PAUSE, 'титр главы', true); continue;
   }
   // название ролика встаёт в паузу, не под голос (shot_for_shot, правка 6): тишина перед «But first,»
-  if (/^But first,/.test(s.text)) insertBefore(s.wi, TITLE_GAP);
-  let st = words[s.wi].s + shift;
-  if (boxStart != null && s.n === AFTER_BOX && st < boxStart + BOX_END + .25) { insertBefore(s.wi, boxStart + BOX_END + .25 - st); st = words[s.wi].s + shift - .25; }
-  s.start = st;
+  if (/^But first,/.test(s.text)) insertBefore(s.wi, TITLE_GAP, 'название ролика', true);
+  s.start = words[s.wi].s + shift;
 }
 const total = shots[shots.length - 1].start + 2.0;
 shots.forEach((s, i) => { s.end = i + 1 < shots.length ? shots[i + 1].start : total; s.dur = s.end - s.start; });
@@ -103,6 +142,24 @@ for (let i = 0; i < shots.length; i++) {
 }
 // сдвиг слова по вставкам (для субтитров/проверки)
 const shiftAt = t => inserts.filter(x => x.at <= t).reduce((a, x) => a + x.dur, 0);
+// ---- проверка «речь не рвётся» (сборка падает): 1) каждая вставка — на стыке строк, не в дубле ведущего, в настоящей тишине;
+// 2) внутри каждой строки паузы между словами на шкале фильма те же, что в записи (до 1 мс).
+{
+  const errs = [];
+  for (const x of inserts) {
+    let k = words.findIndex(w => w.s >= x.at); if (k < 0) k = words.length - 1;
+    const inLine = lineOf(k) === lineOf(k - 1), host = isHost(lineOf(k)) && isHost(lineOf(k - 1)), gap = words[k].s - words[k - 1].e;
+    if (inLine) errs.push(`тишина ${x.dur} с ВНУТРИ строки ${lineOf(k) + 1}: «${words[k - 1].w} | ${words[k].w}» (естественная пауза ${gap.toFixed(2)} с)`);
+    else if (host) errs.push(`тишина ${x.dur} с внутри дубля ведущего: строки ${lineOf(k)}–${lineOf(k) + 1}`);
+    else if (gap < .1) errs.push(`тишина ${x.dur} с там, где пауза между строками всего ${gap.toFixed(2)} с: строка ${lineOf(k) + 1}`);
+  }
+  for (let k = 1; k < words.length; k++) if (lineOf(k) === lineOf(k - 1) || (isHost(lineOf(k)) && isHost(lineOf(k - 1)))) {
+    const raw = words[k].s - words[k - 1].e, film = (words[k].s + shiftAt(words[k].s)) - (words[k - 1].e + shiftAt(words[k - 1].e));
+    if (Math.abs(film - raw) > .001) errs.push(`пауза «${words[k - 1].w} | ${words[k].w}» (строка ${lineOf(k) + 1}): в записи ${raw.toFixed(3)} с, в фильме ${film.toFixed(3)} с`);
+  }
+  console.log(`речь: вставок тишины ${inserts.length} (все на стыках строк), отказано во вставке внутри фраз: ${denied.length}; нарушений: ${errs.length}`);
+  if (errs.length) { errs.forEach(e => console.log('  !! ' + e)); console.log('СБОРКА ОСТАНОВЛЕНА: речь рвётся'); process.exit(1); }
+}
 // грамматика камеры: рывок на ударном слове «…» из колонки «камера»; вип-пан — на первом слове второго говорящего
 const absW = k => words[k].s + shiftAt(words[k].s);
 for (let i = 0; i < shots.length; i++) {
@@ -137,15 +194,15 @@ for (let i = 0; i < shots.length; i++) {
 }
 
 const out = {
-  fps: 30, voiceDuration: voiceEnd, total: +total.toFixed(3), inserts, linesFile: LINES_FILE, audioFile: AUDIO_FILE,
+  fps: 30, voiceDuration: voiceEnd, total: +total.toFixed(3), inserts, linesFile: LINES_REF, audioFile: AUDIO_FILE,
   note: 'start/end — секунды аниматика (голос со вставленными паузами inserts: at — время в voice_draft.mp3, dur — тишина)',
   shots: shots.map(s => ({ n: s.n, ch: s.ch, chTitle: s.chTitle, start: +s.start.toFixed(3), end: +s.end.toFixed(3), dur: +s.dur.toFixed(3),
     listDur: s.listDur, loc: s.loc, framing: s.framing, text: s.text, spoken: s.spoken, event: s.event, camera: s.camera, ...(s.box ? { box: s.box } : {}), ...(s.snap != null ? { snap: s.snap, snapWord: s.snapWord } : {}), ...(s.whip ? { whip: s.whip } : {}), ...(s.ev && s.ev.length ? { ev: s.ev } : {}) })),
 };
-writeFileSync(join(D, 'timing.json'), JSON.stringify(out, null, 1));
+writeFileSync(join(L, OUT_FILE), JSON.stringify(out, null, 1));
 // слова на шкале фильма (секунды фильма): рот героя двигается только на своих словах (film/words.js)
-const wordsOut = { lines: LINES_FILE, total: out.total, words: lines.flatMap((l, li) => l.words.map(w => ({ w: w.w, s: +(w.s + shiftAt(w.s)).toFixed(3), e: +(w.e + shiftAt(w.s)).toFixed(3), sp: l.speaker, line: li + 1 }))) };
-writeFileSync(join(D, 'words.json'), JSON.stringify(wordsOut));
+const wordsOut = { lines: LINES_REF, total: out.total, words: lines.flatMap((l, li) => l.words.map(w => ({ w: w.w, s: +(w.s + shiftAt(w.s)).toFixed(3), e: +(w.e + shiftAt(w.s)).toFixed(3), sp: l.speaker, line: li + 1 }))) };
+writeFileSync(join(L, OUT_FILE.replace(/timing/, 'words')), JSON.stringify(wordsOut));
 
 // ---- отчёт
 const r = x => x.toFixed(1);

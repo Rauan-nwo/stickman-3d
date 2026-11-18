@@ -1,5 +1,6 @@
 // film/props.js — 2D-реквизит финала L001 (контур туши, cel-тени, без фототекстур — как герои «Стикман Нуар»).
 // Все функции рисуют в текущем преобразовании ctx: координаты — пиксели плейта (или единицы фигуры, если вызваны из held).
+import { ell } from 'engine';
 const TAU = Math.PI * 2, INK = '#141014', clamp01 = v => Math.max(0, Math.min(1, v));
 const lg = (x, x0, y0, x1, y1, st) => { const g = x.createLinearGradient(x0, y0, x1, y1); st.forEach(([o, c]) => g.addColorStop(o, c)); return g; };
 const rg = (x, cx, cy, r0, r1, st) => { const g = x.createRadialGradient(cx, cy, r0, cx, cy, r1); st.forEach(([o, c]) => g.addColorStop(o, c)); return g; };
@@ -243,5 +244,60 @@ export function tray(ctx, x, y, w) {
   for (const gx of [-w * .25, w * .05, w * .3]) { ctx.save(); ctx.translate(gx, -6); ctx.scale(.5, .5); ctx.beginPath(); ctx.moveTo(-30, -150); ctx.bezierCurveTo(-44, -90, -36, -50, -4, -36); ctx.lineTo(4, -36); ctx.bezierCurveTo(36, -50, 44, -90, 30, -150); ctx.closePath();
     ctx.fillStyle = 'rgba(200,225,240,.5)'; ctx.fill(); ctx.lineWidth = 8; ctx.strokeStyle = INK; ctx.stroke(); ctx.beginPath(); ctx.moveTo(0, -36); ctx.lineTo(0, 0); ctx.stroke(); ctx.restore(); }
   ctx.beginPath(); ctx.ellipse(0, 0, w / 2, w * .08, 0, 0, TAU); ctx.fillStyle = lg(ctx, -w / 2, 0, w / 2, 0, [[0, '#E6E6EA'], [1, '#9A9AA4']]); ctx.fill(); ctx.lineWidth = 5; ctx.strokeStyle = INK; ctx.stroke();
+  ctx.restore();
+}
+
+// ---------- общие для глав 2–9 (владелец — ведущий) ----------
+// резиновый штамп в кисти: ручка вверх, подушка вниз; (x, y) — низ подушки, w — ширина
+export function rubberStamp(ctx, x, y, w) {
+  ctx.save(); ctx.translate(x, y); ctx.lineJoin = 'round';
+  ctx.beginPath(); ctx.roundRect(-w / 2, -w * .32, w, w * .32, w * .06); ctx.fillStyle = '#3a2a22'; ctx.fill(); ctx.lineWidth = w * .06; ctx.strokeStyle = INK; ctx.stroke();
+  ctx.fillStyle = '#C8231F'; ctx.fillRect(-w / 2 + w * .05, -w * .06, w * .9, w * .06);
+  ctx.beginPath(); ctx.roundRect(-w * .12, -w * .95, w * .24, w * .65, w * .1); ctx.fillStyle = '#6a4a2e'; ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.arc(0, -w * 1.02, w * .2, 0, TAU); ctx.fillStyle = '#7a5636'; ctx.fill(); ctx.stroke();
+  ctx.restore();
+}
+// оттиск штампа на листе: (x, y) — центр, w — ширина, text, k 0..1 — проявление (удар)
+export function stampMark(ctx, x, y, w, text, k = 1) {
+  if (k <= 0) return; const s = k < .5 ? 1.4 - .8 * k : 1;
+  ctx.save(); ctx.translate(x, y); ctx.rotate(-.1); ctx.scale(s, s); ctx.globalAlpha = Math.min(1, k * 2) * .9;
+  ctx.strokeStyle = '#C8231F'; ctx.lineWidth = w * .05; ctx.strokeRect(-w / 2, -w * .2, w, w * .4);
+  ctx.fillStyle = '#C8231F'; ctx.font = `900 ${Math.round(w * .2)}px Bahnschrift, 'Arial Black', sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(text, 0, w * .015, w * .9);
+  ctx.restore();
+}
+// мобильный телефон в кисти у уха (стоящий): P — кисть (экран), s — пикселей на единицу фигуры, side — у какого уха (−1 левое)
+export function handsetHeld(ctx, P, s, side = -1) {
+  ctx.save(); ctx.translate(P[0], P[1]); ctx.rotate(side * .18); ctx.scale(s, s); ctx.lineJoin = 'round';
+  ctx.beginPath(); ctx.roundRect(-30, -150, 60, 156, 14); ctx.fillStyle = '#16161c'; ctx.fill(); ctx.lineWidth = 8; ctx.strokeStyle = INK; ctx.stroke();
+  ctx.beginPath(); ctx.roundRect(-20, -138, 40, 132, 8); ctx.fillStyle = 'rgba(120,170,230,.28)'; ctx.fill();
+  ctx.restore(); ell(ctx, P[0], P[1], 12 * s, 12 * s, INK, null);
+}
+// дисковый/кнопочный настольный телефон (кремовый, как на плейте Вашингтона): (x, y) — середина низа корпуса, w — ширина корпуса;
+// onHook — трубка на рычагах; иначе рычаги пустые и от корпуса идёт витой шнур к точке cordTo (экран; кисть с трубкой)
+export function deskPhone(ctx, x, y, w, { onHook = true, cordTo = null, ink = INK } = {}) {
+  const h = w * .42, cream = lg(ctx, 0, y - h, 0, y, [[0, '#F1E3C2'], [1, '#C9B48A']]);
+  ctx.save(); ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  if (cordTo) {                                                                                  // витой шнур: спираль по дуге от корпуса к кисти
+    const a = [x - w * .46, y - h * .25], b = cordTo, m = [(a[0] + b[0]) / 2, Math.max(a[1], b[1]) + w * .35], N = 60;
+    ctx.beginPath(); for (let i = 0; i <= N; i++) { const u = i / N, px = (1 - u) * (1 - u) * a[0] + 2 * u * (1 - u) * m[0] + u * u * b[0], py = (1 - u) * (1 - u) * a[1] + 2 * u * (1 - u) * m[1] + u * u * b[1];
+      const r = w * .028, ph = u * 46; i ? ctx.lineTo(px + Math.cos(ph) * r, py + Math.sin(ph) * r) : ctx.moveTo(px, py); }
+    ctx.lineWidth = w * .022; ctx.strokeStyle = ink; ctx.stroke(); ctx.lineWidth = w * .012; ctx.strokeStyle = '#E4D3AE'; ctx.stroke();
+  }
+  ctx.beginPath(); ctx.moveTo(x - w / 2, y); ctx.lineTo(x - w * .4, y - h); ctx.lineTo(x + w * .4, y - h); ctx.lineTo(x + w / 2, y); ctx.closePath();   // корпус
+  ctx.fillStyle = cream; ctx.fill(); ctx.lineWidth = w * .025; ctx.strokeStyle = ink; ctx.stroke();
+  for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) { ctx.beginPath(); ctx.roundRect(x - w * .17 + c * w * .12, y - h * .78 + r * h * .22, w * .09, h * .15, w * .015); ctx.fillStyle = '#FBF5E6'; ctx.fill(); ctx.lineWidth = w * .012; ctx.stroke(); }
+  for (const sd of [-1, 1]) { ctx.beginPath(); ctx.roundRect(x + sd * w * .3 - w * .05, y - h - w * .08, w * .1, w * .1, w * .02); ctx.fillStyle = '#E4D3AE'; ctx.fill(); ctx.lineWidth = w * .02; ctx.stroke(); }   // рычаги
+  if (onHook) { ctx.beginPath(); ctx.roundRect(x - w * .44, y - h - w * .2, w * .88, w * .12, w * .05); ctx.fillStyle = cream; ctx.fill(); ctx.lineWidth = w * .025; ctx.stroke();
+    for (const sd of [-1, 1]) { ctx.beginPath(); ctx.ellipse(x + sd * w * .38, y - h - w * .12, w * .1, w * .07, 0, 0, TAU); ctx.fillStyle = cream; ctx.fill(); ctx.stroke(); } }
+  ctx.beginPath(); ctx.moveTo(x - w * .36, y - h * .9); ctx.lineTo(x + w * .2, y - h * .9); ctx.lineWidth = w * .015; ctx.strokeStyle = 'rgba(255,255,255,.55)'; ctx.stroke();
+  ctx.restore();
+}
+// лист с чипом на столе (для штампа BLOCKED): центр, ширина, наклон
+export function chipSheet(ctx, x, y, w, a = -.06) {
+  ctx.save(); ctx.translate(x, y); ctx.rotate(a); ctx.scale(1, .55);
+  ctx.beginPath(); ctx.rect(-w / 2, -w * .65, w, w * 1.3); ctx.fillStyle = '#F4EFE2'; ctx.fill(); ctx.lineWidth = w * .02; ctx.strokeStyle = INK; ctx.stroke();
+  ctx.fillStyle = '#1f9a4c'; ctx.beginPath(); ctx.roundRect(-w * .2, -w * .45, w * .4, w * .3, w * .03); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#C9A54A'; for (let i = -2; i <= 2; i++) { ctx.fillRect(i * w * .07 - w * .012, -w * .5, w * .024, w * .05); ctx.fillRect(i * w * .07 - w * .012, -w * .15, w * .024, w * .05); }
+  for (let i = 0; i < 4; i++) { ctx.fillStyle = 'rgba(40,40,60,.35)'; ctx.fillRect(-w * .38, w * (.0 + i * .12), w * (.76 - (i % 2) * .2), w * .04); }
   ctx.restore();
 }
