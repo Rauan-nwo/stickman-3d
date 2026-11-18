@@ -1,0 +1,509 @@
+{
+ "path": "C:/dev/projects/youtube-video/production/L001/sound/music/candidates/inc-chase-pulse.mp3",
+ "start": 20.0,
+ "end": 80.0,
+ "duration": 60.0,
+ "measurements": {
+  "duration": 60.0,
+  "peak_dbfs": -0.3,
+  "true_peak_dbtp": -0.3,
+  "rms_dbfs": -17.8,
+  "lufs": -18.6,
+  "lra_lu": 3.1,
+  "attack_ms": 91.0,
+  "decay_ms": 6516.0,
+  "brightness_hz": 267,
+  "bandwidth_hz": 3225,
+  "noise_floor_dbfs": -29.6,
+  "flatness": 0.0,
+  "harmonic_ratio": 0.793,
+  "onset_count": 191,
+  "onsets_per_s": 3.18,
+  "width": "side/mid -5 dB",
+  "digital_silence_frac": 0.0
+ },
+ "shape": "busy, 3.2 onsets/s, loudness range 3 LU",
+ "top_tags": [
+  {
+   "term": "a big braam",
+   "category": "impacts",
+   "z": 2.44,
+   "cosine": 0.263,
+   "verdict": "weak"
+  },
+  {
+   "term": "a cinematic hit with a long tail",
+   "category": "impacts",
+   "z": 2.33,
+   "cosine": 0.194,
+   "verdict": "weak"
+  },
+  {
+   "term": "a big drum hit",
+   "category": "impacts",
+   "z": 2.04,
+   "cosine": 0.172,
+   "verdict": "weak"
+  },
+  {
+   "term": "a deep cinematic whoosh",
+   "category": "transitions",
+   "z": 2.0,
+   "cosine": 0.189,
+   "verdict": "weak"
+  },
+  {
+   "term": "a deep cinematic boom",
+   "category": "impacts",
+   "z": 1.96,
+   "cosine": 0.169,
+   "verdict": "no match"
+  },
+  {
+   "term": "a rising riser building tension",
+   "category": "transitions",
+   "z": 1.71,
+   "cosine": 0.203,
+   "verdict": "no match"
+  },
+  {
+   "term": "a kick drum",
+   "category": "impacts",
+   "z": 1.62,
+   "cosine": 0.139,
+   "verdict": "no match"
+  },
+  {
+   "term": "a motorcycle revving",
+   "category": "everyday",
+   "z": 1.54,
+   "cosine": 0.14,
+   "verdict": "no match"
+  }
+ ],
+ "music_hints": [
+  {
+   "term": "hip hop beat with heavy bass",
+   "category": "music_genre",
+   "z": 2.51,
+   "cosine": 0.243
+  },
+  {
+   "term": "dark and tense music",
+   "category": "music_mood",
+   "z": 2.5,
+   "cosine": 0.299
+  },
+  {
+   "term": "aggressive music",
+   "category": "music_mood",
+   "z": 2.28,
+   "cosine": 0.257
+  },
+  {
+   "term": "a deep sub bass",
+   "category": "instruments",
+   "z": 2.21,
+   "cosine": 0.232
+  },
+  {
+   "term": "techno music",
+   "category": "music_genre",
+   "z": 2.15,
+   "cosine": 0.238
+  },
+  {
+   "term": "epic trailer music",
+   "category": "music_genre",
+   "z": 2.06,
+   "cosine": 0.267
+  },
+  {
+   "term": "cinematic orchestral music",
+   "category": "music_genre",
+   "z": 2.05,
+   "cosine": 0.236
+  },
+  {
+   "term": "drum and bass music",
+   "category": "music_genre",
+   "z": 1.99,
+   "cosine": 0.195
+  }
+ ],
+ "tags": {
+  "transitions": [
+   {
+    "term": "a deep cinematic whoosh",
+    "z": 2.0,
+    "cosine": 0.189
+   },
+   {
+    "term": "a rising riser building tension",
+    "z": 1.71,
+    "cosine": 0.203
+   },
+   {
+    "term": "a downlifter falling sweep",
+    "z": 1.36,
+    "cosine": 0.154
+   }
+  ],
+  "impacts": [
+   {
+    "term": "a big braam",
+    "z": 2.44,
+    "cosine": 0.263
+   },
+   {
+    "term": "a cinematic hit with a long tail",
+    "z": 2.33,
+    "cosine": 0.194
+   },
+   {
+    "term": "a big drum hit",
+    "z": 2.04,
+    "cosine": 0.172
+   }
+  ],
+  "ui": [
+   {
+    "term": "an error buzz",
+    "z": 0.29,
+    "cosine": 0.022
+   },
+   {
+    "term": "a scroll wheel tick",
+    "z": 0.25,
+    "cosine": 0.073
+   },
+   {
+    "term": "a phone vibration buzz",
+    "z": -0.24,
+    "cosine": -0.044
+   }
+  ],
+  "keyboard": [
+   {
+    "term": "a deep thocky mechanical keyboard",
+    "z": 0.06,
+    "cosine": 0.066
+   },
+   {
+    "term": "an old typewriter",
+    "z": -0.0,
+    "cosine": 0.002
+   },
+   {
+    "term": "a keyboard typing fast",
+    "z": -0.08,
+    "cosine": 0.018
+   }
+  ],
+  "foley": [
+   {
+    "term": "a metal scrape",
+    "z": 1.06,
+    "cosine": 0.066
+   },
+   {
+    "term": "a zipper",
+    "z": 0.96,
+    "cosine": 0.112
+   },
+   {
+    "term": "footsteps on wood",
+    "z": 0.89,
+    "cosine": 0.032
+   }
+  ],
+  "water": [
+   {
+    "term": "being underwater",
+    "z": 1.1,
+    "cosine": 0.114
+   },
+   {
+    "term": "bubbles underwater",
+    "z": 0.32,
+    "cosine": 0.022
+   },
+   {
+    "term": "a liquid bloop",
+    "z": -0.33,
+    "cosine": 0.012
+   }
+  ],
+  "nature": [
+   {
+    "term": "a horse galloping",
+    "z": 1.43,
+    "cosine": 0.122
+   },
+   {
+    "term": "footsteps on grass",
+    "z": 0.45,
+    "cosine": 0.001
+   },
+   {
+    "term": "a small animal running through grass",
+    "z": 0.4,
+    "cosine": 0.031
+   }
+  ],
+  "chimes": [
+   {
+    "term": "church bells",
+    "z": -0.17,
+    "cosine": -0.027
+   },
+   {
+    "term": "a singing bowl",
+    "z": -0.24,
+    "cosine": -0.073
+   },
+   {
+    "term": "a sustained glass harp tone",
+    "z": -0.74,
+    "cosine": -0.119
+   }
+  ],
+  "ambience": [
+   {
+    "term": "an airplane flying overhead",
+    "z": 1.12,
+    "cosine": 0.091
+   },
+   {
+    "term": "an electrical hum",
+    "z": 0.49,
+    "cosine": 0.008
+   },
+   {
+    "term": "birds singing in the morning",
+    "z": 0.47,
+    "cosine": -0.02
+   }
+  ],
+  "everyday": [
+   {
+    "term": "a motorcycle revving",
+    "z": 1.54,
+    "cosine": 0.14
+   },
+   {
+    "term": "a helicopter flying overhead",
+    "z": 1.47,
+    "cosine": 0.151
+   },
+   {
+    "term": "a saw cutting wood",
+    "z": 1.28,
+    "cosine": 0.116
+   }
+  ],
+  "music_genre": [
+   {
+    "term": "hip hop beat with heavy bass",
+    "z": 2.51,
+    "cosine": 0.243
+   },
+   {
+    "term": "techno music",
+    "z": 2.15,
+    "cosine": 0.238
+   },
+   {
+    "term": "epic trailer music",
+    "z": 2.06,
+    "cosine": 0.267
+   }
+  ],
+  "music_mood": [
+   {
+    "term": "dark and tense music",
+    "z": 2.5,
+    "cosine": 0.299
+   },
+   {
+    "term": "aggressive music",
+    "z": 2.28,
+    "cosine": 0.257
+   },
+   {
+    "term": "suspenseful build-up music",
+    "z": 1.87,
+    "cosine": 0.248
+   }
+  ],
+  "instruments": [
+   {
+    "term": "a deep sub bass",
+    "z": 2.21,
+    "cosine": 0.232
+   },
+   {
+    "term": "a punchy kick drum pattern",
+    "z": 1.96,
+    "cosine": 0.146
+   },
+   {
+    "term": "a bass guitar",
+    "z": 1.93,
+    "cosine": 0.218
+   }
+  ],
+  "voice": [
+   {
+    "term": "a man shouting",
+    "z": 0.96,
+    "cosine": -0.034
+   },
+   {
+    "term": "a baby crying",
+    "z": 0.84,
+    "cosine": 0.02
+   },
+   {
+    "term": "a person breathing",
+    "z": 0.83,
+    "cosine": 0.05
+   }
+  ],
+  "quality": [
+   {
+    "term": "a boomy sound",
+    "z": 1.83,
+    "cosine": 0.22
+   },
+   {
+    "term": "a deep sound",
+    "z": 1.19,
+    "cosine": 0.149
+   },
+   {
+    "term": "a hollow sound",
+    "z": 1.11,
+    "cosine": 0.113
+   }
+  ],
+  "production": [
+   {
+    "term": "a professionally mixed and mastered music track",
+    "z": 1.83,
+    "cosine": 0.346
+   },
+   {
+    "term": "a low bitrate mp3 with artifacts",
+    "z": 0.91,
+    "cosine": 0.126
+   },
+   {
+    "term": "a distorted clipped recording",
+    "z": 0.73,
+    "cosine": 0.061
+   }
+  ]
+ },
+ "audioset": [
+  {
+   "label": "Timpani",
+   "p": 0.808
+  },
+  {
+   "label": "Music",
+   "p": 0.731
+  },
+  {
+   "label": "Throbbing",
+   "p": 0.264
+  },
+  {
+   "label": "Electronic music",
+   "p": 0.16
+  },
+  {
+   "label": "Hum",
+   "p": 0.118
+  }
+ ],
+ "character": [],
+ "distinct_windows": [
+  {
+   "start": 30.0,
+   "end": 40.0,
+   "top_tag": {
+    "term": "a cinematic hit with a long tail",
+    "category": "impacts",
+    "z": 2.39,
+    "cosine": 0.199,
+    "verdict": "weak"
+   },
+   "audioset": [
+    {
+     "label": "Music",
+     "p": 0.555
+    },
+    {
+     "label": "Throbbing",
+     "p": 0.264
+    },
+    {
+     "label": "Electronic music",
+     "p": 0.16
+    }
+   ]
+  },
+  {
+   "start": 40.0,
+   "end": 50.0,
+   "top_tag": {
+    "term": "a big braam",
+    "category": "impacts",
+    "z": 2.42,
+    "cosine": 0.256,
+    "verdict": "weak"
+   },
+   "audioset": [
+    {
+     "label": "Music",
+     "p": 0.584
+    },
+    {
+     "label": "Timpani",
+     "p": 0.263
+    },
+    {
+     "label": "Throbbing",
+     "p": 0.17
+    }
+   ]
+  },
+  {
+   "start": 60.0,
+   "end": 70.0,
+   "top_tag": {
+    "term": "a big drum hit",
+    "category": "impacts",
+    "z": 2.6,
+    "cosine": 0.239,
+    "verdict": "plausible"
+   },
+   "audioset": [
+    {
+     "label": "Music",
+     "p": 0.675
+    },
+    {
+     "label": "Throbbing",
+     "p": 0.125
+    },
+    {
+     "label": "Timpani",
+     "p": 0.114
+    }
+   ]
+  }
+ ],
+ "summary": "60.00 s busy, 3.2 onsets/s, loudness range 3 LU. Music (AudioSet Music 0.73). Unvalidated hints - genre: hip hop beat with heavy bass (z +2.5), techno music (z +2.1); mood (wrong for ~1 in 5 tracks in a test): dark and tense music (z +2.5), aggressive music (z +2.2). Sounds most like: a big braam (z +2.4), a cinematic hit with a long tail (z +2.3), a big drum hit (z +2.0) [weak reading]. Other readings: a deep cinematic whoosh (transitions, z +2.0), a motorcycle revving (everyday, z +1.5). AudioSet: Timpani 0.81, Music 0.73, Throbbing 0.26. peak -0.3 dBFS, -18.6 LUFS, brightness 267 Hz, bandwidth 3.2 kHz, side/mid -5 dB. Windows that read differently: 0:30.00-0:40.00 a cinematic hit with a long tail (z +2.3; AudioSet Music 0.56); 0:40.00-0:50.00 a big braam (z +2.4; AudioSet Music 0.58); 1:00.00-1:10.00 a big drum hit (z +2.6; AudioSet Music 0.68)."
+}

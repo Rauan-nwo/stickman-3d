@@ -1,0 +1,432 @@
+{
+ "path": "C:/dev/projects/youtube-video/production/L001/sound/music/candidates/inc-dreamer.mp3",
+ "start": 20.0,
+ "end": 80.0,
+ "duration": 60.0,
+ "measurements": {
+  "duration": 60.0,
+  "peak_dbfs": -1.6,
+  "true_peak_dbtp": -1.6,
+  "rms_dbfs": -20.8,
+  "lufs": -19.0,
+  "lra_lu": 5.9,
+  "attack_ms": 135.0,
+  "brightness_hz": 2794,
+  "bandwidth_hz": 20480,
+  "noise_floor_dbfs": -34.3,
+  "flatness": 0.0019,
+  "harmonic_ratio": 0.776,
+  "onset_count": 223,
+  "onsets_per_s": 3.72,
+  "width": "side/mid -5 dB",
+  "digital_silence_frac": 0.0
+ },
+ "shape": "busy, 3.7 onsets/s, loudness range 6 LU",
+ "top_tags": [
+  {
+   "term": "walking through dry leaves",
+   "category": "nature",
+   "z": 1.78,
+   "cosine": 0.132,
+   "verdict": "no match"
+  },
+  {
+   "term": "paper rustling",
+   "category": "foley",
+   "z": 1.25,
+   "cosine": 0.108,
+   "verdict": "no match"
+  },
+  {
+   "term": "a crackling fire",
+   "category": "ambience",
+   "z": 1.15,
+   "cosine": 0.125,
+   "verdict": "no match"
+  },
+  {
+   "term": "an uplifter sweep",
+   "category": "transitions",
+   "z": 1.15,
+   "cosine": 0.128,
+   "verdict": "no match"
+  },
+  {
+   "term": "a celesta note",
+   "category": "chimes",
+   "z": 1.11,
+   "cosine": 0.16,
+   "verdict": "no match"
+  },
+  {
+   "term": "a music box melody",
+   "category": "chimes",
+   "z": 1.07,
+   "cosine": 0.133,
+   "verdict": "no match"
+  },
+  {
+   "term": "footsteps on wood",
+   "category": "foley",
+   "z": 0.95,
+   "cosine": 0.024,
+   "verdict": "no match"
+  },
+  {
+   "term": "leaves rustling",
+   "category": "nature",
+   "z": 0.87,
+   "cosine": 0.07,
+   "verdict": "no match"
+  }
+ ],
+ "music_hints": [
+  {
+   "term": "sad and melancholic music",
+   "category": "music_mood",
+   "z": 3.47,
+   "cosine": 0.348
+  },
+  {
+   "term": "solo piano music",
+   "category": "music_genre",
+   "z": 3.38,
+   "cosine": 0.325
+  },
+  {
+   "term": "romantic music",
+   "category": "music_mood",
+   "z": 3.33,
+   "cosine": 0.375
+  },
+  {
+   "term": "uplifting and hopeful music",
+   "category": "music_mood",
+   "z": 2.88,
+   "cosine": 0.316
+  },
+  {
+   "term": "inspirational corporate background music",
+   "category": "music_genre",
+   "z": 2.82,
+   "cosine": 0.308
+  },
+  {
+   "term": "jazz music",
+   "category": "music_genre",
+   "z": 2.8,
+   "cosine": 0.249
+  },
+  {
+   "term": "playful children's piano music",
+   "category": "music_genre",
+   "z": 2.7,
+   "cosine": 0.278
+  },
+  {
+   "term": "dreamy and ethereal music",
+   "category": "music_mood",
+   "z": 2.7,
+   "cosine": 0.254
+  }
+ ],
+ "tags": {
+  "transitions": [
+   {
+    "term": "an uplifter sweep",
+    "z": 1.15,
+    "cosine": 0.128
+   },
+   {
+    "term": "a downlifter falling sweep",
+    "z": 0.7,
+    "cosine": 0.077
+   },
+   {
+    "term": "a deep cinematic whoosh",
+    "z": 0.41,
+    "cosine": 0.024
+   }
+  ],
+  "impacts": [
+   {
+    "term": "a big drum hit",
+    "z": 0.43,
+    "cosine": 0.004
+   },
+   {
+    "term": "a cinematic hit with a long tail",
+    "z": 0.38,
+    "cosine": -0.007
+   },
+   {
+    "term": "a wooden knock",
+    "z": 0.13,
+    "cosine": 0.005
+   }
+  ],
+  "ui": [
+   {
+    "term": "a success chime",
+    "z": 0.2,
+    "cosine": 0.084
+   },
+   {
+    "term": "a touchscreen tap",
+    "z": -0.21,
+    "cosine": 0.017
+   },
+   {
+    "term": "a button being pressed",
+    "z": -0.45,
+    "cosine": -0.02
+   }
+  ],
+  "keyboard": [
+   {
+    "term": "a laptop keyboard typing",
+    "z": -0.4,
+    "cosine": 0.005
+   },
+   {
+    "term": "a deep thocky mechanical keyboard",
+    "z": -0.45,
+    "cosine": 0.021
+   },
+   {
+    "term": "slow typing with separate key presses",
+    "z": -0.47,
+    "cosine": 0.002
+   }
+  ],
+  "foley": [
+   {
+    "term": "paper rustling",
+    "z": 1.25,
+    "cosine": 0.108
+   },
+   {
+    "term": "footsteps on wood",
+    "z": 0.95,
+    "cosine": 0.024
+   },
+   {
+    "term": "a finger tapping on wood",
+    "z": 0.84,
+    "cosine": 0.08
+   }
+  ],
+  "water": [
+   {
+    "term": "ice cubes in a glass",
+    "z": -0.16,
+    "cosine": -0.013
+   },
+   {
+    "term": "a waterfall",
+    "z": -0.22,
+    "cosine": 0.013
+   },
+   {
+    "term": "a stream flowing",
+    "z": -0.48,
+    "cosine": -0.014
+   }
+  ],
+  "nature": [
+   {
+    "term": "walking through dry leaves",
+    "z": 1.78,
+    "cosine": 0.132
+   },
+   {
+    "term": "leaves rustling",
+    "z": 0.87,
+    "cosine": 0.07
+   },
+   {
+    "term": "footsteps on grass",
+    "z": 0.81,
+    "cosine": 0.023
+   }
+  ],
+  "chimes": [
+   {
+    "term": "a celesta note",
+    "z": 1.11,
+    "cosine": 0.16
+   },
+   {
+    "term": "a music box melody",
+    "z": 1.07,
+    "cosine": 0.133
+   },
+   {
+    "term": "church bells",
+    "z": 0.7,
+    "cosine": 0.049
+   }
+  ],
+  "ambience": [
+   {
+    "term": "a crackling fire",
+    "z": 1.15,
+    "cosine": 0.125
+   },
+   {
+    "term": "skylarks over a meadow",
+    "z": 0.79,
+    "cosine": 0.063
+   },
+   {
+    "term": "a quiet countryside morning",
+    "z": 0.64,
+    "cosine": 0.003
+   }
+  ],
+  "everyday": [
+   {
+    "term": "a match being struck",
+    "z": 0.84,
+    "cosine": 0.038
+   },
+   {
+    "term": "a vacuum cleaner",
+    "z": 0.83,
+    "cosine": 0.047
+   },
+   {
+    "term": "a saw cutting wood",
+    "z": 0.81,
+    "cosine": 0.057
+   }
+  ],
+  "music_genre": [
+   {
+    "term": "solo piano music",
+    "z": 3.38,
+    "cosine": 0.325
+   },
+   {
+    "term": "inspirational corporate background music",
+    "z": 2.82,
+    "cosine": 0.308
+   },
+   {
+    "term": "jazz music",
+    "z": 2.8,
+    "cosine": 0.249
+   }
+  ],
+  "music_mood": [
+   {
+    "term": "sad and melancholic music",
+    "z": 3.47,
+    "cosine": 0.348
+   },
+   {
+    "term": "romantic music",
+    "z": 3.33,
+    "cosine": 0.375
+   },
+   {
+    "term": "uplifting and hopeful music",
+    "z": 2.88,
+    "cosine": 0.316
+   }
+  ],
+  "instruments": [
+   {
+    "term": "a grand piano",
+    "z": 1.91,
+    "cosine": 0.181
+   },
+   {
+    "term": "a warm analog synth pad",
+    "z": 1.85,
+    "cosine": 0.161
+   },
+   {
+    "term": "an electric piano",
+    "z": 1.66,
+    "cosine": 0.202
+   }
+  ],
+  "voice": [
+   {
+    "term": "a voice-over narration",
+    "z": 0.72,
+    "cosine": 0.028
+   },
+   {
+    "term": "people laughing",
+    "z": 0.29,
+    "cosine": -0.113
+   },
+   {
+    "term": "someone whispering",
+    "z": 0.14,
+    "cosine": -0.046
+   }
+  ],
+  "quality": [
+   {
+    "term": "a warm sound",
+    "z": 1.06,
+    "cosine": 0.159
+   },
+   {
+    "term": "a satisfying sound",
+    "z": 0.26,
+    "cosine": 0.088
+   },
+   {
+    "term": "an airy sound",
+    "z": 0.22,
+    "cosine": 0.001
+   }
+  ],
+  "production": [
+   {
+    "term": "a professionally mixed and mastered music track",
+    "z": 1.22,
+    "cosine": 0.266
+   },
+   {
+    "term": "a low quality recording with hiss",
+    "z": 0.62,
+    "cosine": 0.027
+   },
+   {
+    "term": "a pure sine wave tone",
+    "z": 0.37,
+    "cosine": 0.045
+   }
+  ]
+ },
+ "audioset": [
+  {
+   "label": "Music",
+   "p": 0.795
+  },
+  {
+   "label": "Musical instrument",
+   "p": 0.253
+  },
+  {
+   "label": "Piano",
+   "p": 0.221
+  },
+  {
+   "label": "Heart sounds, heartbeat",
+   "p": 0.218
+  },
+  {
+   "label": "Keyboard (musical)",
+   "p": 0.215
+  }
+ ],
+ "character": [],
+ "distinct_windows": [],
+ "summary": "60.00 s busy, 3.7 onsets/s, loudness range 6 LU. Music (AudioSet Music 0.79). Unvalidated hints - genre: solo piano music (z +3.3), inspirational corporate background music (z +2.8); mood (wrong for ~1 in 5 tracks in a test): sad and melancholic music (z +3.4), romantic music (z +3.3). No sound-effect description stands out (closest: walking through dry leaves z +1.7, paper rustling z +1.2; tentative). AudioSet: Music 0.80, Musical instrument 0.25, Piano 0.22. peak -1.6 dBFS, -19.0 LUFS, brightness 2.8 kHz, bandwidth 20.5 kHz, side/mid -5 dB. Uniform: all 6 analysed 10 s windows read as walking through dry leaves."
+}

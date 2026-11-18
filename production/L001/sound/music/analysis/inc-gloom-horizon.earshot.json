@@ -1,0 +1,479 @@
+{
+ "path": "C:/dev/projects/youtube-video/production/L001/sound/music/candidates/inc-gloom-horizon.mp3",
+ "start": 20.0,
+ "end": 80.0,
+ "duration": 60.0,
+ "measurements": {
+  "duration": 60.0,
+  "peak_dbfs": -0.1,
+  "true_peak_dbtp": -0.1,
+  "rms_dbfs": -17.1,
+  "lufs": -16.2,
+  "lra_lu": 6.9,
+  "attack_ms": 7.0,
+  "brightness_hz": 1145,
+  "bandwidth_hz": 10240,
+  "noise_floor_dbfs": -26.4,
+  "flatness": 0.0002,
+  "harmonic_ratio": 0.677,
+  "onset_count": 107,
+  "onsets_per_s": 1.78,
+  "width": "side/mid -2 dB",
+  "digital_silence_frac": 0.0
+ },
+ "shape": "busy, 1.8 onsets/s, loudness range 7 LU",
+ "top_tags": [
+  {
+   "term": "a rising riser building tension",
+   "category": "transitions",
+   "z": 1.89,
+   "cosine": 0.229,
+   "verdict": "no match"
+  },
+  {
+   "term": "church bells",
+   "category": "chimes",
+   "z": 1.49,
+   "cosine": 0.147,
+   "verdict": "no match"
+  },
+  {
+   "term": "a music box melody",
+   "category": "chimes",
+   "z": 1.39,
+   "cosine": 0.19,
+   "verdict": "no match"
+  },
+  {
+   "term": "keys jingling",
+   "category": "everyday",
+   "z": 1.23,
+   "cosine": 0.12,
+   "verdict": "no match"
+  },
+  {
+   "term": "a forest ambience",
+   "category": "ambience",
+   "z": 1.13,
+   "cosine": 0.115,
+   "verdict": "no match"
+  },
+  {
+   "term": "birds singing in the morning",
+   "category": "ambience",
+   "z": 1.04,
+   "cosine": 0.046,
+   "verdict": "no match"
+  },
+  {
+   "term": "scissors cutting",
+   "category": "foley",
+   "z": 1.01,
+   "cosine": 0.121,
+   "verdict": "no match"
+  },
+  {
+   "term": "a big braam",
+   "category": "impacts",
+   "z": 0.95,
+   "cosine": 0.125,
+   "verdict": "no match"
+  }
+ ],
+ "music_hints": [
+  {
+   "term": "uplifting orchestral film score",
+   "category": "music_genre",
+   "z": 3.45,
+   "cosine": 0.376
+  },
+  {
+   "term": "cinematic orchestral music",
+   "category": "music_genre",
+   "z": 3.41,
+   "cosine": 0.376
+  },
+  {
+   "term": "dark and tense music",
+   "category": "music_mood",
+   "z": 3.24,
+   "cosine": 0.377
+  },
+  {
+   "term": "triumphant and heroic music",
+   "category": "music_mood",
+   "z": 3.04,
+   "cosine": 0.327
+  },
+  {
+   "term": "mysterious music",
+   "category": "music_mood",
+   "z": 2.98,
+   "cosine": 0.371
+  },
+  {
+   "term": "epic trailer music",
+   "category": "music_genre",
+   "z": 2.93,
+   "cosine": 0.359
+  },
+  {
+   "term": "suspenseful build-up music",
+   "category": "music_mood",
+   "z": 2.92,
+   "cosine": 0.358
+  },
+  {
+   "term": "sad and melancholic music",
+   "category": "music_mood",
+   "z": 2.9,
+   "cosine": 0.35
+  }
+ ],
+ "tags": {
+  "transitions": [
+   {
+    "term": "a rising riser building tension",
+    "z": 1.89,
+    "cosine": 0.229
+   },
+   {
+    "term": "a reverse cymbal swell",
+    "z": 0.26,
+    "cosine": 0.055
+   },
+   {
+    "term": "an uplifter sweep",
+    "z": 0.2,
+    "cosine": 0.064
+   }
+  ],
+  "impacts": [
+   {
+    "term": "a big braam",
+    "z": 0.95,
+    "cosine": 0.125
+   },
+   {
+    "term": "a cinematic hit with a long tail",
+    "z": 0.75,
+    "cosine": 0.047
+   },
+   {
+    "term": "a heavy thud",
+    "z": 0.29,
+    "cosine": 0.005
+   }
+  ],
+  "ui": [
+   {
+    "term": "a success chime",
+    "z": 0.41,
+    "cosine": 0.12
+   },
+   {
+    "term": "a notification ding",
+    "z": 0.2,
+    "cosine": 0.054
+   },
+   {
+    "term": "a scroll wheel tick",
+    "z": -0.22,
+    "cosine": 0.04
+   }
+  ],
+  "keyboard": [
+   {
+    "term": "a soft key release click",
+    "z": -0.0,
+    "cosine": 0.017
+   },
+   {
+    "term": "an old typewriter",
+    "z": -0.25,
+    "cosine": -0.009
+   },
+   {
+    "term": "slow typing with separate key presses",
+    "z": -0.33,
+    "cosine": 0.024
+   }
+  ],
+  "foley": [
+   {
+    "term": "scissors cutting",
+    "z": 1.01,
+    "cosine": 0.121
+   },
+   {
+    "term": "footsteps on gravel",
+    "z": 0.71,
+    "cosine": -0.002
+   },
+   {
+    "term": "a metal scrape",
+    "z": 0.52,
+    "cosine": 0.024
+   }
+  ],
+  "water": [
+   {
+    "term": "a stream flowing",
+    "z": -0.74,
+    "cosine": -0.032
+   },
+   {
+    "term": "being underwater",
+    "z": -1.04,
+    "cosine": -0.084
+   },
+   {
+    "term": "ice cubes in a glass",
+    "z": -1.13,
+    "cosine": -0.096
+   }
+  ],
+  "nature": [
+   {
+    "term": "footsteps on grass",
+    "z": 0.92,
+    "cosine": 0.057
+   },
+   {
+    "term": "walking through dry leaves",
+    "z": 0.85,
+    "cosine": 0.077
+   },
+   {
+    "term": "insects buzzing",
+    "z": 0.07,
+    "cosine": 0.009
+   }
+  ],
+  "chimes": [
+   {
+    "term": "church bells",
+    "z": 1.49,
+    "cosine": 0.147
+   },
+   {
+    "term": "a music box melody",
+    "z": 1.39,
+    "cosine": 0.19
+   },
+   {
+    "term": "wind chimes",
+    "z": 0.74,
+    "cosine": 0.107
+   }
+  ],
+  "ambience": [
+   {
+    "term": "a forest ambience",
+    "z": 1.13,
+    "cosine": 0.115
+   },
+   {
+    "term": "birds singing in the morning",
+    "z": 1.04,
+    "cosine": 0.046
+   },
+   {
+    "term": "skylarks over a meadow",
+    "z": 0.87,
+    "cosine": 0.094
+   }
+  ],
+  "everyday": [
+   {
+    "term": "keys jingling",
+    "z": 1.23,
+    "cosine": 0.12
+   },
+   {
+    "term": "a sword being drawn",
+    "z": 0.85,
+    "cosine": 0.071
+   },
+   {
+    "term": "a kettle whistling",
+    "z": 0.57,
+    "cosine": -0.002
+   }
+  ],
+  "music_genre": [
+   {
+    "term": "uplifting orchestral film score",
+    "z": 3.45,
+    "cosine": 0.376
+   },
+   {
+    "term": "cinematic orchestral music",
+    "z": 3.41,
+    "cosine": 0.376
+   },
+   {
+    "term": "epic trailer music",
+    "z": 2.93,
+    "cosine": 0.359
+   }
+  ],
+  "music_mood": [
+   {
+    "term": "dark and tense music",
+    "z": 3.24,
+    "cosine": 0.377
+   },
+   {
+    "term": "triumphant and heroic music",
+    "z": 3.04,
+    "cosine": 0.327
+   },
+   {
+    "term": "mysterious music",
+    "z": 2.98,
+    "cosine": 0.371
+   }
+  ],
+  "instruments": [
+   {
+    "term": "strings ensemble",
+    "z": 2.8,
+    "cosine": 0.324
+   },
+   {
+    "term": "orchestral percussion",
+    "z": 2.69,
+    "cosine": 0.322
+   },
+   {
+    "term": "a choir",
+    "z": 2.0,
+    "cosine": 0.181
+   }
+  ],
+  "voice": [
+   {
+    "term": "a baby crying",
+    "z": 0.72,
+    "cosine": 0.019
+   },
+   {
+    "term": "people laughing",
+    "z": 0.5,
+    "cosine": -0.076
+   },
+   {
+    "term": "singing vocals",
+    "z": 0.5,
+    "cosine": 0.042
+   }
+  ],
+  "quality": [
+   {
+    "term": "a metallic sound",
+    "z": 0.83,
+    "cosine": 0.053
+   },
+   {
+    "term": "a reverberant sound in a large hall",
+    "z": 0.56,
+    "cosine": 0.019
+   },
+   {
+    "term": "a bright sound",
+    "z": 0.51,
+    "cosine": 0.104
+   }
+  ],
+  "production": [
+   {
+    "term": "a professionally mixed and mastered music track",
+    "z": 1.17,
+    "cosine": 0.291
+   },
+   {
+    "term": "a low quality recording with hiss",
+    "z": 0.3,
+    "cosine": 0.017
+   },
+   {
+    "term": "a square wave chiptune blip",
+    "z": 0.09,
+    "cosine": 0.022
+   }
+  ]
+ },
+ "audioset": [
+  {
+   "label": "Music",
+   "p": 0.741
+  },
+  {
+   "label": "Scary music",
+   "p": 0.463
+  },
+  {
+   "label": "Theme music",
+   "p": 0.443
+  },
+  {
+   "label": "Background music",
+   "p": 0.195
+  },
+  {
+   "label": "Soundtrack music",
+   "p": 0.123
+  }
+ ],
+ "character": [],
+ "distinct_windows": [
+  {
+   "start": 20.0,
+   "end": 30.0,
+   "top_tag": {
+    "term": "a rising riser building tension",
+    "category": "transitions",
+    "z": 2.19,
+    "cosine": 0.243,
+    "verdict": "weak"
+   },
+   "audioset": [
+    {
+     "label": "Music",
+     "p": 0.705
+    },
+    {
+     "label": "Scary music",
+     "p": 0.463
+    }
+   ]
+  },
+  {
+   "start": 50.0,
+   "end": 60.0,
+   "top_tag": {
+    "term": "church bells",
+    "category": "chimes",
+    "z": 1.63,
+    "cosine": 0.172,
+    "verdict": "no match"
+   },
+   "audioset": [
+    {
+     "label": "Music",
+     "p": 0.66
+    },
+    {
+     "label": "Theme music",
+     "p": 0.353
+    },
+    {
+     "label": "Background music",
+     "p": 0.164
+    }
+   ]
+  }
+ ],
+ "summary": "60.00 s busy, 1.8 onsets/s, loudness range 7 LU. Music (AudioSet Music 0.74). Unvalidated hints - genre: uplifting orchestral film score (z +3.4), cinematic orchestral music (z +3.4); mood (wrong for ~1 in 5 tracks in a test): dark and tense music (z +3.2), triumphant and heroic music (z +3.0). No sound-effect description stands out (closest: a rising riser building tension z +1.8, church bells z +1.4; tentative). AudioSet: Music 0.74, Scary music 0.46, Theme music 0.44. peak -0.1 dBFS, -16.2 LUFS, brightness 1.1 kHz, bandwidth 10.2 kHz, side/mid -2 dB. Windows that read differently: 0:20.00-0:30.00 a rising riser building tension (z +2.1; AudioSet Music 0.70); 0:50.00-1:00.00 church bells (z +1.6; AudioSet Music 0.66)."
+}

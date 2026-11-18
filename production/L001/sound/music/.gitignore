@@ -1,0 +1,7 @@
+# аудио кандидатов и скачанное сырьё в git не кладём (CLAUDE.md); корневой .gitignore не ловит flac/ogg
+candidates/
+_dl/**/files/
+*.flac
+*.ogg
+*.aiff
+preview/

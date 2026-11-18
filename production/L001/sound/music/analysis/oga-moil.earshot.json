@@ -1,0 +1,484 @@
+{
+ "path": "C:/dev/projects/youtube-video/production/L001/sound/music/candidates/oga-moil.mp3",
+ "start": 20.0,
+ "end": 80.0,
+ "duration": 60.0,
+ "measurements": {
+  "duration": 60.0,
+  "peak_dbfs": -0.1,
+  "true_peak_dbtp": -0.1,
+  "rms_dbfs": -17.1,
+  "lufs": -14.8,
+  "lra_lu": 12.8,
+  "attack_ms": 84.0,
+  "brightness_hz": 377,
+  "bandwidth_hz": 12901,
+  "noise_floor_dbfs": -28.5,
+  "flatness": 0.0,
+  "harmonic_ratio": 0.955,
+  "f0_hz": 59.1,
+  "onset_count": 44,
+  "onsets_per_s": 0.73,
+  "width": "side/mid -1 dB",
+  "digital_silence_frac": 0.0
+ },
+ "shape": "44 separate events, loudness range 13 LU",
+ "top_tags": [
+  {
+   "term": "a reverse cymbal swell",
+   "category": "transitions",
+   "z": 1.86,
+   "cosine": 0.224,
+   "verdict": "no match"
+  },
+  {
+   "term": "a rising riser building tension",
+   "category": "transitions",
+   "z": 1.3,
+   "cosine": 0.19,
+   "verdict": "no match"
+  },
+  {
+   "term": "a singing bowl",
+   "category": "chimes",
+   "z": 1.25,
+   "cosine": 0.104,
+   "verdict": "no match"
+  },
+  {
+   "term": "an uplifter sweep",
+   "category": "transitions",
+   "z": 1.09,
+   "cosine": 0.17,
+   "verdict": "no match"
+  },
+  {
+   "term": "a sustained glass harp tone",
+   "category": "chimes",
+   "z": 1.08,
+   "cosine": 0.093,
+   "verdict": "no match"
+  },
+  {
+   "term": "keys jingling",
+   "category": "everyday",
+   "z": 0.95,
+   "cosine": 0.115,
+   "verdict": "no match"
+  },
+  {
+   "term": "a cinematic hit with a long tail",
+   "category": "impacts",
+   "z": 0.85,
+   "cosine": 0.079,
+   "verdict": "no match"
+  },
+  {
+   "term": "a big drum hit",
+   "category": "impacts",
+   "z": 0.79,
+   "cosine": 0.081,
+   "verdict": "no match"
+  }
+ ],
+ "music_hints": [
+  {
+   "term": "jazz music",
+   "category": "music_genre",
+   "z": 3.81,
+   "cosine": 0.391
+  },
+  {
+   "term": "warm and cozy music",
+   "category": "music_mood",
+   "z": 2.87,
+   "cosine": 0.378
+  },
+  {
+   "term": "sad and melancholic music",
+   "category": "music_mood",
+   "z": 2.64,
+   "cosine": 0.331
+  },
+  {
+   "term": "romantic music",
+   "category": "music_mood",
+   "z": 2.57,
+   "cosine": 0.363
+  },
+  {
+   "term": "mysterious music",
+   "category": "music_mood",
+   "z": 2.54,
+   "cosine": 0.335
+  },
+  {
+   "term": "drum and bass music",
+   "category": "music_genre",
+   "z": 2.49,
+   "cosine": 0.259
+  },
+  {
+   "term": "dreamy and ethereal music",
+   "category": "music_mood",
+   "z": 2.42,
+   "cosine": 0.282
+  },
+  {
+   "term": "calm and relaxing music",
+   "category": "music_mood",
+   "z": 2.34,
+   "cosine": 0.269
+  }
+ ],
+ "tags": {
+  "transitions": [
+   {
+    "term": "a reverse cymbal swell",
+    "z": 1.86,
+    "cosine": 0.224
+   },
+   {
+    "term": "a rising riser building tension",
+    "z": 1.3,
+    "cosine": 0.19
+   },
+   {
+    "term": "an uplifter sweep",
+    "z": 1.09,
+    "cosine": 0.17
+   }
+  ],
+  "impacts": [
+   {
+    "term": "a cinematic hit with a long tail",
+    "z": 0.85,
+    "cosine": 0.079
+   },
+   {
+    "term": "a big drum hit",
+    "z": 0.79,
+    "cosine": 0.081
+   },
+   {
+    "term": "a deep cinematic boom",
+    "z": 0.71,
+    "cosine": 0.08
+   }
+  ],
+  "ui": [
+   {
+    "term": "a phone vibration buzz",
+    "z": 0.29,
+    "cosine": 0.048
+   },
+   {
+    "term": "a success chime",
+    "z": -0.39,
+    "cosine": 0.076
+   },
+   {
+    "term": "a notification ding",
+    "z": -0.45,
+    "cosine": 0.025
+   }
+  ],
+  "keyboard": [
+   {
+    "term": "a deep thocky mechanical keyboard",
+    "z": -0.18,
+    "cosine": 0.087
+   },
+   {
+    "term": "slow typing with separate key presses",
+    "z": -0.33,
+    "cosine": 0.057
+   },
+   {
+    "term": "an old typewriter",
+    "z": -0.61,
+    "cosine": -0.009
+   }
+  ],
+  "foley": [
+   {
+    "term": "scissors cutting",
+    "z": 0.64,
+    "cosine": 0.11
+   },
+   {
+    "term": "glass clinking",
+    "z": 0.64,
+    "cosine": 0.071
+   },
+   {
+    "term": "footsteps on wood",
+    "z": 0.63,
+    "cosine": 0.043
+   }
+  ],
+  "water": [
+   {
+    "term": "being underwater",
+    "z": 0.46,
+    "cosine": 0.088
+   },
+   {
+    "term": "bubbles underwater",
+    "z": 0.07,
+    "cosine": 0.039
+   },
+   {
+    "term": "ice cubes in a glass",
+    "z": -0.02,
+    "cosine": 0.042
+   }
+  ],
+  "nature": [
+   {
+    "term": "digging in soil",
+    "z": 0.31,
+    "cosine": 0.009
+   },
+   {
+    "term": "footsteps on grass",
+    "z": 0.29,
+    "cosine": 0.024
+   },
+   {
+    "term": "walking through dry leaves",
+    "z": 0.28,
+    "cosine": 0.049
+   }
+  ],
+  "chimes": [
+   {
+    "term": "a singing bowl",
+    "z": 1.25,
+    "cosine": 0.104
+   },
+   {
+    "term": "a sustained glass harp tone",
+    "z": 1.08,
+    "cosine": 0.093
+   },
+   {
+    "term": "a music box melody",
+    "z": 0.79,
+    "cosine": 0.155
+   }
+  ],
+  "ambience": [
+   {
+    "term": "an office ambience",
+    "z": 0.46,
+    "cosine": 0.023
+   },
+   {
+    "term": "ocean waves",
+    "z": 0.34,
+    "cosine": 0.117
+   },
+   {
+    "term": "an airplane flying overhead",
+    "z": 0.31,
+    "cosine": 0.05
+   }
+  ],
+  "everyday": [
+   {
+    "term": "keys jingling",
+    "z": 0.95,
+    "cosine": 0.115
+   },
+   {
+    "term": "a knock on a door",
+    "z": 0.56,
+    "cosine": 0.053
+   },
+   {
+    "term": "a saw cutting wood",
+    "z": 0.52,
+    "cosine": 0.078
+   }
+  ],
+  "music_genre": [
+   {
+    "term": "jazz music",
+    "z": 3.81,
+    "cosine": 0.391
+   },
+   {
+    "term": "drum and bass music",
+    "z": 2.49,
+    "cosine": 0.259
+   },
+   {
+    "term": "ambient synth pad music",
+    "z": 2.32,
+    "cosine": 0.246
+   }
+  ],
+  "music_mood": [
+   {
+    "term": "warm and cozy music",
+    "z": 2.87,
+    "cosine": 0.378
+   },
+   {
+    "term": "sad and melancholic music",
+    "z": 2.64,
+    "cosine": 0.331
+   },
+   {
+    "term": "romantic music",
+    "z": 2.57,
+    "cosine": 0.363
+   }
+  ],
+  "instruments": [
+   {
+    "term": "a cymbal roll",
+    "z": 2.03,
+    "cosine": 0.227
+   },
+   {
+    "term": "a warm analog synth pad",
+    "z": 1.88,
+    "cosine": 0.214
+   },
+   {
+    "term": "orchestral percussion",
+    "z": 1.76,
+    "cosine": 0.246
+   }
+  ],
+  "voice": [
+   {
+    "term": "singing vocals",
+    "z": 0.42,
+    "cosine": 0.06
+   },
+   {
+    "term": "a person breathing",
+    "z": 0.27,
+    "cosine": 0.033
+   },
+   {
+    "term": "a voice-over narration",
+    "z": 0.11,
+    "cosine": 0.021
+   }
+  ],
+  "quality": [
+   {
+    "term": "a warm sound",
+    "z": 1.65,
+    "cosine": 0.259
+   },
+   {
+    "term": "a boomy sound",
+    "z": 1.32,
+    "cosine": 0.197
+   },
+   {
+    "term": "a metallic sound",
+    "z": 0.56,
+    "cosine": 0.052
+   }
+  ],
+  "production": [
+   {
+    "term": "a professionally mixed and mastered music track",
+    "z": 1.5,
+    "cosine": 0.339
+   },
+   {
+    "term": "a real recording of a physical object",
+    "z": 0.45,
+    "cosine": 0.134
+   },
+   {
+    "term": "a pure sine wave tone",
+    "z": 0.29,
+    "cosine": 0.083
+   }
+  ]
+ },
+ "audioset": [
+  {
+   "label": "Music",
+   "p": 0.827
+  },
+  {
+   "label": "Ambient music",
+   "p": 0.374
+  },
+  {
+   "label": "New-age music",
+   "p": 0.279
+  },
+  {
+   "label": "Keyboard (musical)",
+   "p": 0.227
+  },
+  {
+   "label": "Musical instrument",
+   "p": 0.219
+  }
+ ],
+ "character": [],
+ "distinct_windows": [
+  {
+   "start": 30.0,
+   "end": 40.0,
+   "top_tag": {
+    "term": "a reverse cymbal swell",
+    "category": "transitions",
+    "z": 2.53,
+    "cosine": 0.308,
+    "verdict": "plausible"
+   },
+   "audioset": [
+    {
+     "label": "Music",
+     "p": 0.827
+    },
+    {
+     "label": "Ambient music",
+     "p": 0.194
+    },
+    {
+     "label": "Musical instrument",
+     "p": 0.182
+    }
+   ]
+  },
+  {
+   "start": 60.0,
+   "end": 70.0,
+   "top_tag": {
+    "term": "church bells",
+    "category": "chimes",
+    "z": 2.04,
+    "cosine": 0.201,
+    "verdict": "weak"
+   },
+   "audioset": [
+    {
+     "label": "Music",
+     "p": 0.713
+    },
+    {
+     "label": "Ambient music",
+     "p": 0.374
+    },
+    {
+     "label": "New-age music",
+     "p": 0.279
+    }
+   ]
+  }
+ ],
+ "summary": "60.00 s 44 separate events, loudness range 13 LU. Music (AudioSet Music 0.83). Unvalidated hints - genre: jazz music (z +3.8), drum and bass music (z +2.4); mood (wrong for ~1 in 5 tracks in a test): warm and cozy music (z +2.8), sad and melancholic music (z +2.6). No sound-effect description stands out (closest: a reverse cymbal swell z +1.8, a rising riser building tension z +1.3; tentative). AudioSet: Music 0.83, Ambient music 0.37, New-age music 0.28. peak -0.1 dBFS, -14.8 LUFS, brightness 377 Hz, bandwidth 12.9 kHz, side/mid -1 dB. Windows that read differently: 0:30.00-0:40.00 a reverse cymbal swell (z +2.5; AudioSet Music 0.83); 1:00.00-1:10.00 church bells (z +2.0; AudioSet Music 0.71)."
+}

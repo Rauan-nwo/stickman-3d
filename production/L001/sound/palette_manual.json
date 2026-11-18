@@ -1,0 +1,1093 @@
+{
+ "_note": "Ручные решения палитры (перекрывают автоматический выбор tools/pick_palette.py). \"класс\": [{\"path\": \"sound/lib/rec/...wav\", \"gain_db\": 0, \"trim\": [a, b], \"loop\": true}] или null (синтез). Подложки amb.* — только здесь. Лицензия каждого файла — в LICENSES.md до использования.",
+ "amb.restaurant": [
+  {
+   "path": "sound/lib/rec/amb/amb_restaurant_04.wav",
+   "src": "rec",
+   "name": "amb_restaurant_04",
+   "z": 6.25
+  }
+ ],
+ "amb.cutlery": [
+  {
+   "path": "sound/lib/rec/amb/amb_cutlery_02.wav",
+   "src": "rec",
+   "name": "amb_cutlery_02",
+   "z": 5.15
+  }
+ ],
+ "amb.rain_window": [
+  {
+   "path": "sound/lib/rec/amb/amb_rain_window_01.wav",
+   "src": "rec",
+   "name": "amb_rain_window_01",
+   "z": 5.03
+  }
+ ],
+ "amb.rain_street": [
+  {
+   "path": "sound/lib/rec/amb/amb_rain_street_03.wav",
+   "src": "rec",
+   "name": "amb_rain_street_03",
+   "z": 3.99
+  }
+ ],
+ "amb.wet_tyres": [
+  {
+   "path": "sound/lib/rec/amb/amb_rain_traffic_02.wav",
+   "src": "rec",
+   "name": "amb_rain_traffic_02",
+   "z": 3.14
+  }
+ ],
+ "amb.rain_car": [
+  {
+   "path": "sound/lib/rec/amb/amb_rain_car_01.wav",
+   "src": "rec",
+   "name": "amb_rain_car_01",
+   "z": 6.13
+  }
+ ],
+ "amb.office_tone": [
+  {
+   "path": "sound/lib/rec/amb/amb_office_tone_01.wav",
+   "src": "rec",
+   "name": "amb_office_tone_01",
+   "z": 4.48
+  }
+ ],
+ "amb.clock": [
+  {
+   "path": "sound/lib/rec/amb/amb_clock_01.wav",
+   "src": "rec",
+   "name": "amb_clock_01",
+   "z": 4.85
+  }
+ ],
+ "amb.drip": [
+  {
+   "path": "sound/lib/rec/amb/amb_drip_01.wav",
+   "src": "rec",
+   "name": "amb_drip_01",
+   "z": 4.84
+  }
+ ],
+ "amb.birds": [
+  {
+   "path": "sound/lib/rec/amb/amb_birds_day_01.wav",
+   "src": "rec",
+   "name": "amb_birds_day_01",
+   "z": 3.59
+  }
+ ],
+ "amb.bar": [
+  {
+   "path": "sound/lib/rec/amb/amb_bar_01.wav",
+   "src": "rec",
+   "name": "amb_bar_01",
+   "z": 5.56
+  }
+ ],
+ "amb.diner": [
+  {
+   "path": "sound/lib/rec/amb/amb_diner_01.wav",
+   "src": "rec",
+   "name": "amb_diner_01",
+   "z": 6.33
+  }
+ ],
+ "amb.dishpit": [
+  {
+   "path": "sound/lib/rec/amb/amb_dishpit_01.wav",
+   "src": "rec",
+   "name": "amb_dishpit_01",
+   "z": 7.82
+  }
+ ],
+ "amb.fluor": [
+  {
+   "path": "sound/lib/rec/amb/amb_fluor_01.wav",
+   "src": "rec",
+   "name": "amb_fluor_01",
+   "z": 4.54
+  }
+ ],
+ "amb.hall": [
+  {
+   "path": "sound/lib/rec/amb/amb_hall_01.wav",
+   "src": "rec",
+   "name": "amb_hall_01",
+   "z": 5.5
+  }
+ ],
+ "amb.hvac": [
+  {
+   "path": "sound/lib/rec/amb/amb_hvac_01.wav",
+   "src": "rec",
+   "name": "amb_hvac_01",
+   "z": 4.78
+  }
+ ],
+ "amb.newsroom": [
+  {
+   "path": "sound/lib/rec/amb/amb_newsroom_01.wav",
+   "src": "rec",
+   "name": "amb_newsroom_01",
+   "z": 5.08
+  }
+ ],
+ "amb.night": [
+  {
+   "path": "sound/lib/rec/amb/amb_night_01.wav",
+   "src": "rec",
+   "name": "amb_night_01",
+   "z": 4.59
+  }
+ ],
+ "amb.port": [
+  {
+   "path": "sound/lib/rec/amb/amb_port_01.wav",
+   "src": "rec",
+   "name": "amb_port_01",
+   "z": 5.14
+  }
+ ],
+ "amb.servers": [
+  {
+   "path": "sound/lib/rec/amb/amb_servers_01.wav",
+   "src": "rec",
+   "name": "amb_servers_01",
+   "z": 4.81
+  }
+ ],
+ "amb.trading": [
+  {
+   "path": "sound/lib/rec/amb/amb_trading_01.wav",
+   "src": "rec",
+   "name": "amb_trading_01",
+   "z": 5.17
+  }
+ ],
+ "amb.trucks": [
+  {
+   "path": "sound/lib/rec/amb/amb_trucks_03.wav",
+   "src": "rec",
+   "name": "amb_trucks_03",
+   "z": 5.9
+  }
+ ],
+ "amb.warehouse": [
+  {
+   "path": "sound/lib/rec/amb/amb_warehouse_02.wav",
+   "src": "rec",
+   "name": "amb_warehouse_02",
+   "z": 3.48
+  }
+ ],
+ "applause": [
+  {
+   "path": "sound/lib/rec/foley/applause_01.wav",
+   "src": "rec",
+   "name": "applause_01",
+   "z": 4.77
+  },
+  {
+   "path": "sound/lib/rec/foley/applause_02.wav",
+   "src": "rec",
+   "name": "applause_02",
+   "z": 4.31
+  }
+ ],
+ "beep": [
+  {
+   "path": "sound/lib/rec/foley/beep_03.wav",
+   "src": "rec",
+   "name": "beep_03",
+   "z": 4.56
+  },
+  {
+   "path": "sound/lib/rec/foley/beep_01.wav",
+   "src": "rec",
+   "name": "beep_01",
+   "z": 4.51
+  },
+  {
+   "path": "sound/lib/rec/foley/beep_02.wav",
+   "src": "rec",
+   "name": "beep_02",
+   "z": 4.46
+  }
+ ],
+ "box.lid": [
+  {
+   "path": "sound/lib/rec/foley/box_lid_01.wav",
+   "src": "rec",
+   "name": "box_lid_01",
+   "z": 5.54
+  },
+  {
+   "path": "sound/lib/rec/foley/box_lid_02.wav",
+   "src": "rec",
+   "name": "box_lid_02",
+   "z": 4.99
+  },
+  {
+   "path": "sound/lib/rec/foley/box_lid_03.wav",
+   "src": "rec",
+   "name": "box_lid_03",
+   "z": 4.32
+  }
+ ],
+ "box.tap": [
+  {
+   "path": "sound/lib/rec/foley/box_tap_01.wav",
+   "src": "rec",
+   "name": "box_tap_01",
+   "z": 3.51
+  },
+  {
+   "path": "sound/lib/rec/foley/box_tap_03.wav",
+   "src": "rec",
+   "name": "box_tap_03",
+   "z": 3.51
+  },
+  {
+   "path": "sound/lib/rec/foley/box_tap_02.wav",
+   "src": "rec",
+   "name": "box_tap_02",
+   "z": 3.23
+  }
+ ],
+ "car.door": [
+  {
+   "path": "sound/lib/rec/foley/car_door_01.wav",
+   "src": "rec",
+   "name": "car_door_01",
+   "z": 4.43
+  },
+  {
+   "path": "sound/lib/rec/foley/car_door_02.wav",
+   "src": "rec",
+   "name": "car_door_02",
+   "z": 4.32
+  },
+  {
+   "path": "sound/lib/rec/foley/car_door_03.wav",
+   "src": "rec",
+   "name": "car_door_03",
+   "z": 4.22
+  }
+ ],
+ "cash": [
+  {
+   "path": "sound/lib/rec/foley/cash_04.wav",
+   "src": "rec",
+   "name": "cash_04",
+   "z": 6.28
+  },
+  {
+   "path": "sound/lib/rec/foley/cash_01.wav",
+   "src": "rec",
+   "name": "cash_01",
+   "z": 4.4
+  },
+  {
+   "path": "sound/lib/rec/foley/cash_02.wav",
+   "src": "rec",
+   "name": "cash_02",
+   "z": 3.76
+  }
+ ],
+ "chair.creak": [
+  {
+   "path": "sound/lib/rec/foley/chair_creak_03.wav",
+   "src": "rec",
+   "name": "chair_creak_03",
+   "z": 4.63
+  },
+  {
+   "path": "sound/lib/rec/foley/chair_creak_01.wav",
+   "src": "rec",
+   "name": "chair_creak_01",
+   "z": 4.34
+  },
+  {
+   "path": "sound/lib/rec/foley/chair_creak_02.wav",
+   "src": "rec",
+   "name": "chair_creak_02",
+   "z": 4.07
+  }
+ ],
+ "chair.scrape": [
+  {
+   "path": "sound/lib/rec/foley/chair_scrape_01.wav",
+   "src": "rec",
+   "name": "chair_scrape_01",
+   "z": 4.13
+  },
+  {
+   "path": "sound/lib/rec/foley/chair_scrape_02.wav",
+   "src": "rec",
+   "name": "chair_scrape_02",
+   "z": 3.78
+  },
+  {
+   "path": "sound/lib/rec/foley/chair_scrape_03.wav",
+   "src": "rec",
+   "name": "chair_scrape_03",
+   "z": 3.64
+  }
+ ],
+ "cloth.rustle": [
+  {
+   "path": "sound/lib/rec/foley/cloth_rustle_01.wav",
+   "src": "rec",
+   "name": "cloth_rustle_01",
+   "z": 4.55
+  },
+  {
+   "path": "sound/lib/rec/foley/cloth_rustle_03.wav",
+   "src": "rec",
+   "name": "cloth_rustle_03",
+   "z": 4.34
+  },
+  {
+   "path": "sound/lib/rec/foley/cloth_rustle_02.wav",
+   "src": "rec",
+   "name": "cloth_rustle_02",
+   "z": 3.66
+  }
+ ],
+ "cloth.slide": [
+  {
+   "path": "sound/lib/rec/foley/cloth_rustle_01.wav",
+   "src": "rec",
+   "name": "cloth_rustle_01",
+   "z": 4.55
+  },
+  {
+   "path": "sound/lib/rec/foley/cloth_rustle_03.wav",
+   "src": "rec",
+   "name": "cloth_rustle_03",
+   "z": 4.34
+  },
+  {
+   "path": "sound/lib/rec/foley/cloth_rustle_02.wav",
+   "src": "rec",
+   "name": "cloth_rustle_02",
+   "z": 3.66
+  }
+ ],
+ "crate.set": [
+  {
+   "path": "sound/lib/rec/foley/crate_set_01.wav",
+   "src": "rec",
+   "name": "crate_set_01",
+   "z": 3.83
+  },
+  {
+   "path": "sound/lib/rec/foley/crate_set_02.wav",
+   "src": "rec",
+   "name": "crate_set_02",
+   "z": 3.83
+  },
+  {
+   "path": "sound/lib/rec/foley/crate_set_03.wav",
+   "src": "rec",
+   "name": "crate_set_03",
+   "z": 3.39
+  }
+ ],
+ "box.set": [
+  {
+   "path": "sound/lib/rec/foley/crate_set_01.wav",
+   "src": "rec",
+   "name": "crate_set_01",
+   "z": 3.83
+  },
+  {
+   "path": "sound/lib/rec/foley/crate_set_02.wav",
+   "src": "rec",
+   "name": "crate_set_02",
+   "z": 3.83
+  },
+  {
+   "path": "sound/lib/rec/foley/crate_set_03.wav",
+   "src": "rec",
+   "name": "crate_set_03",
+   "z": 3.39
+  }
+ ],
+ "crowd.react": [
+  {
+   "path": "sound/lib/rec/foley/crowd_react_02.wav",
+   "src": "rec",
+   "name": "crowd_react_02",
+   "z": 5.05
+  },
+  {
+   "path": "sound/lib/rec/foley/crowd_react_03.wav",
+   "src": "rec",
+   "name": "crowd_react_03",
+   "z": 4.48
+  },
+  {
+   "path": "sound/lib/rec/foley/crowd_react_01.wav",
+   "src": "rec",
+   "name": "crowd_react_01",
+   "z": 4.23
+  }
+ ],
+ "door.slam": [
+  {
+   "path": "sound/lib/rec/foley/door_slam_01.wav",
+   "src": "rec",
+   "name": "door_slam_01",
+   "z": 4.79
+  },
+  {
+   "path": "sound/lib/rec/foley/door_slam_02.wav",
+   "src": "rec",
+   "name": "door_slam_02",
+   "z": 4.73
+  },
+  {
+   "path": "sound/lib/rec/foley/door_slam_03.wav",
+   "src": "rec",
+   "name": "door_slam_03",
+   "z": 4.56
+  }
+ ],
+ "flash.pop": [
+  {
+   "path": "sound/lib/rec/foley/flash_pop_01.wav",
+   "src": "rec",
+   "name": "flash_pop_01",
+   "z": 2.96
+  },
+  {
+   "path": "sound/lib/rec/foley/flash_pop_02.wav",
+   "src": "rec",
+   "name": "flash_pop_02",
+   "z": 2.74
+  },
+  {
+   "path": "sound/lib/rec/foley/flash_pop_03.wav",
+   "src": "rec",
+   "name": "flash_pop_03",
+   "z": 2.07
+  }
+ ],
+ "folder.close": [
+  {
+   "path": "sound/lib/rec/foley/folder_close_02.wav",
+   "src": "rec",
+   "name": "folder_close_02",
+   "z": 2.75
+  },
+  {
+   "path": "sound/lib/rec/foley/folder_close_01.wav",
+   "src": "rec",
+   "name": "folder_close_01",
+   "z": 2.65
+  },
+  {
+   "path": "sound/lib/rec/foley/folder_close_03.wav",
+   "src": "rec",
+   "name": "folder_close_03",
+   "z": 2.07
+  }
+ ],
+ "glass.clink": [
+  {
+   "path": "sound/lib/rec/foley/glass_clink_01.wav",
+   "src": "rec",
+   "name": "glass_clink_01",
+   "z": 5.03
+  },
+  {
+   "path": "sound/lib/rec/foley/glass_clink_02.wav",
+   "src": "rec",
+   "name": "glass_clink_02",
+   "z": 4.85
+  },
+  {
+   "path": "sound/lib/rec/foley/glass_clink_03.wav",
+   "src": "rec",
+   "name": "glass_clink_03",
+   "z": 4.8
+  }
+ ],
+ "headphone": [
+  {
+   "path": "sound/lib/rec/foley/headphone_01.wav",
+   "src": "rec",
+   "name": "headphone_01",
+   "z": 4.72
+  },
+  {
+   "path": "sound/lib/rec/foley/headphone_02.wav",
+   "src": "rec",
+   "name": "headphone_02",
+   "z": 3.76
+  }
+ ],
+ "key.jingle": [
+  {
+   "path": "sound/lib/rec/foley/key_jingle_03.wav",
+   "src": "rec",
+   "name": "key_jingle_03",
+   "z": 5.87
+  },
+  {
+   "path": "sound/lib/rec/foley/key_jingle_02.wav",
+   "src": "rec",
+   "name": "key_jingle_02",
+   "z": 4.78
+  },
+  {
+   "path": "sound/lib/rec/foley/key_jingle_01.wav",
+   "src": "rec",
+   "name": "key_jingle_01",
+   "z": 4.62
+  }
+ ],
+ "keyboard": [
+  {
+   "path": "sound/lib/rec/foley/keyboard_02.wav",
+   "src": "rec",
+   "name": "keyboard_02",
+   "z": 5.16
+  },
+  {
+   "path": "sound/lib/rec/foley/keyboard_01.wav",
+   "src": "rec",
+   "name": "keyboard_01",
+   "z": 5.15
+  },
+  {
+   "path": "sound/lib/rec/foley/keyboard_03.wav",
+   "src": "rec",
+   "name": "keyboard_03",
+   "z": 4.79
+  }
+ ],
+ "knock": [
+  {
+   "path": "sound/lib/rec/foley/knock_01.wav",
+   "src": "rec",
+   "name": "knock_01",
+   "z": 5.06
+  },
+  {
+   "path": "sound/lib/rec/foley/knock_02.wav",
+   "src": "rec",
+   "name": "knock_02",
+   "z": 4.86
+  },
+  {
+   "path": "sound/lib/rec/foley/knock_03.wav",
+   "src": "rec",
+   "name": "knock_03",
+   "z": 4.81
+  }
+ ],
+ "lamp.buzz": [
+  {
+   "path": "sound/lib/rec/tone/lamp_buzz_01.wav",
+   "src": "rec",
+   "name": "lamp_buzz_01",
+   "z": 3.75
+  },
+  {
+   "path": "sound/lib/rec/tone/lamp_buzz_02.wav",
+   "src": "rec",
+   "name": "lamp_buzz_02",
+   "z": 3.69
+  },
+  {
+   "path": "sound/lib/rec/tone/lamp_buzz_03.wav",
+   "src": "rec",
+   "name": "lamp_buzz_03",
+   "z": 3.32
+  }
+ ],
+ "map.route": [
+  {
+   "path": "sound/lib/rec/foley/map_route_03.wav",
+   "src": "rec",
+   "name": "map_route_03",
+   "z": 6.41
+  },
+  {
+   "path": "sound/lib/rec/foley/map_route_01.wav",
+   "src": "rec",
+   "name": "map_route_01",
+   "z": 5.93
+  },
+  {
+   "path": "sound/lib/rec/foley/map_route_02.wav",
+   "src": "rec",
+   "name": "map_route_02",
+   "z": 5.76
+  }
+ ],
+ "marker.write": [
+  {
+   "path": "sound/lib/rec/foley/marker_write_01.wav",
+   "src": "rec",
+   "name": "marker_write_01",
+   "z": 5.93
+  },
+  {
+   "path": "sound/lib/rec/foley/marker_write_03.wav",
+   "src": "rec",
+   "name": "marker_write_03",
+   "z": 5.83
+  },
+  {
+   "path": "sound/lib/rec/foley/marker_write_02.wav",
+   "src": "rec",
+   "name": "marker_write_02",
+   "z": 5.1
+  }
+ ],
+ "marker.line": [
+  {
+   "path": "sound/lib/rec/foley/marker_write_01.wav",
+   "src": "rec",
+   "name": "marker_write_01",
+   "z": 5.93
+  },
+  {
+   "path": "sound/lib/rec/foley/marker_write_03.wav",
+   "src": "rec",
+   "name": "marker_write_03",
+   "z": 5.83
+  },
+  {
+   "path": "sound/lib/rec/foley/marker_write_02.wav",
+   "src": "rec",
+   "name": "marker_write_02",
+   "z": 5.1
+  }
+ ],
+ "marker.hl": [
+  {
+   "path": "sound/lib/rec/foley/marker_write_01.wav",
+   "src": "rec",
+   "name": "marker_write_01",
+   "z": 5.93
+  },
+  {
+   "path": "sound/lib/rec/foley/marker_write_03.wav",
+   "src": "rec",
+   "name": "marker_write_03",
+   "z": 5.83
+  },
+  {
+   "path": "sound/lib/rec/foley/marker_write_02.wav",
+   "src": "rec",
+   "name": "marker_write_02",
+   "z": 5.1
+  }
+ ],
+ "marker.circle": [
+  {
+   "path": "sound/lib/rec/foley/marker_write_01.wav",
+   "src": "rec",
+   "name": "marker_write_01",
+   "z": 5.93
+  },
+  {
+   "path": "sound/lib/rec/foley/marker_write_03.wav",
+   "src": "rec",
+   "name": "marker_write_03",
+   "z": 5.83
+  },
+  {
+   "path": "sound/lib/rec/foley/marker_write_02.wav",
+   "src": "rec",
+   "name": "marker_write_02",
+   "z": 5.1
+  }
+ ],
+ "marker.cross": [
+  {
+   "path": "sound/lib/rec/foley/marker_write_01.wav",
+   "src": "rec",
+   "name": "marker_write_01",
+   "z": 5.93
+  },
+  {
+   "path": "sound/lib/rec/foley/marker_write_03.wav",
+   "src": "rec",
+   "name": "marker_write_03",
+   "z": 5.83
+  },
+  {
+   "path": "sound/lib/rec/foley/marker_write_02.wav",
+   "src": "rec",
+   "name": "marker_write_02",
+   "z": 5.1
+  }
+ ],
+ "paper.handle": [
+  {
+   "path": "sound/lib/rec/foley/paper_handle_01.wav",
+   "src": "rec",
+   "name": "paper_handle_01",
+   "z": 3.35
+  },
+  {
+   "path": "sound/lib/rec/foley/paper_handle_02.wav",
+   "src": "rec",
+   "name": "paper_handle_02",
+   "z": 2.55
+  },
+  {
+   "path": "sound/lib/rec/foley/paper_handle_03.wav",
+   "src": "rec",
+   "name": "paper_handle_03",
+   "z": 2.26
+  }
+ ],
+ "page.turn": [
+  {
+   "path": "sound/lib/rec/foley/paper_handle_01.wav",
+   "src": "rec",
+   "name": "paper_handle_01",
+   "z": 3.35
+  },
+  {
+   "path": "sound/lib/rec/foley/paper_handle_02.wav",
+   "src": "rec",
+   "name": "paper_handle_02",
+   "z": 2.55
+  },
+  {
+   "path": "sound/lib/rec/foley/paper_handle_03.wav",
+   "src": "rec",
+   "name": "paper_handle_03",
+   "z": 2.26
+  }
+ ],
+ "paper.slide": [
+  {
+   "path": "sound/lib/rec/foley/paper_slide_01.wav",
+   "src": "rec",
+   "name": "paper_slide_01",
+   "z": 4.38
+  },
+  {
+   "path": "sound/lib/rec/foley/paper_slide_02.wav",
+   "src": "rec",
+   "name": "paper_slide_02",
+   "z": 4.36
+  },
+  {
+   "path": "sound/lib/rec/foley/paper_slide_03.wav",
+   "src": "rec",
+   "name": "paper_slide_03",
+   "z": 3.43
+  }
+ ],
+ "phone.pickup": [
+  {
+   "path": "sound/lib/rec/foley/phone_pickup_01.wav",
+   "src": "rec",
+   "name": "phone_pickup_01",
+   "z": 3.94
+  },
+  {
+   "path": "sound/lib/rec/foley/phone_pickup_03.wav",
+   "src": "rec",
+   "name": "phone_pickup_03",
+   "z": 3.46
+  },
+  {
+   "path": "sound/lib/rec/foley/phone_pickup_02.wav",
+   "src": "rec",
+   "name": "phone_pickup_02",
+   "z": 3.29
+  }
+ ],
+ "photo.drop": [
+  {
+   "path": "sound/lib/rec/foley/photo_drop_01.wav",
+   "src": "rec",
+   "name": "photo_drop_01",
+   "z": 3.92
+  },
+  {
+   "path": "sound/lib/rec/foley/photo_drop_02.wav",
+   "src": "rec",
+   "name": "photo_drop_02",
+   "z": 3.84
+  },
+  {
+   "path": "sound/lib/rec/foley/photo_drop_03.wav",
+   "src": "rec",
+   "name": "photo_drop_03",
+   "z": 3.7
+  }
+ ],
+ "photo.pat": [
+  {
+   "path": "sound/lib/rec/foley/photo_drop_01.wav",
+   "src": "rec",
+   "name": "photo_drop_01",
+   "z": 3.92
+  },
+  {
+   "path": "sound/lib/rec/foley/photo_drop_02.wav",
+   "src": "rec",
+   "name": "photo_drop_02",
+   "z": 3.84
+  },
+  {
+   "path": "sound/lib/rec/foley/photo_drop_03.wav",
+   "src": "rec",
+   "name": "photo_drop_03",
+   "z": 3.7
+  }
+ ],
+ "paper.place": [
+  {
+   "path": "sound/lib/rec/foley/photo_drop_01.wav",
+   "src": "rec",
+   "name": "photo_drop_01",
+   "z": 3.92
+  },
+  {
+   "path": "sound/lib/rec/foley/photo_drop_02.wav",
+   "src": "rec",
+   "name": "photo_drop_02",
+   "z": 3.84
+  },
+  {
+   "path": "sound/lib/rec/foley/photo_drop_03.wav",
+   "src": "rec",
+   "name": "photo_drop_03",
+   "z": 3.7
+  }
+ ],
+ "ship.horn": [
+  {
+   "path": "sound/lib/rec/foley/ship_horn_03.wav",
+   "src": "rec",
+   "name": "ship_horn_03",
+   "z": 3.64
+  },
+  {
+   "path": "sound/lib/rec/foley/ship_horn_02.wav",
+   "src": "rec",
+   "name": "ship_horn_02",
+   "z": 3.47
+  },
+  {
+   "path": "sound/lib/rec/foley/ship_horn_01.wav",
+   "src": "rec",
+   "name": "ship_horn_01",
+   "z": 3.44
+  }
+ ],
+ "shutter": [
+  {
+   "path": "sound/lib/rec/foley/shutter_01.wav",
+   "src": "rec",
+   "name": "shutter_01",
+   "z": 5.3
+  },
+  {
+   "path": "sound/lib/rec/foley/shutter_03.wav",
+   "src": "rec",
+   "name": "shutter_03",
+   "z": 4.42
+  },
+  {
+   "path": "sound/lib/rec/foley/shutter_02.wav",
+   "src": "rec",
+   "name": "shutter_02",
+   "z": 4.4
+  }
+ ],
+ "stamp": [
+  {
+   "path": "sound/lib/cand/stamp/layer_rec_body_tap.wav",
+   "src": "layer",
+   "name": "layer_rec_body_tap (запись stamp_01 CC0 + синтетический низ + банк tap/table)",
+   "z": 2.79
+  }
+ ],
+ "static": [
+  {
+   "path": "sound/lib/rec/tone/static_03.wav",
+   "src": "rec",
+   "name": "static_03",
+   "z": 4.54
+  },
+  {
+   "path": "sound/lib/rec/tone/static_02.wav",
+   "src": "rec",
+   "name": "static_02",
+   "z": 4.46
+  },
+  {
+   "path": "sound/lib/rec/tone/static_01.wav",
+   "src": "rec",
+   "name": "static_01",
+   "z": 4.08
+  }
+ ],
+ "steps": [
+  {
+   "path": "sound/lib/rec/foley/steps_01.wav",
+   "src": "rec",
+   "name": "steps_01",
+   "z": 5.68
+  },
+  {
+   "path": "sound/lib/rec/foley/steps_02.wav",
+   "src": "rec",
+   "name": "steps_02",
+   "z": 4.72
+  },
+  {
+   "path": "sound/lib/rec/foley/steps_03.wav",
+   "src": "rec",
+   "name": "steps_03",
+   "z": 4.68
+  }
+ ],
+ "string.pull": [
+  {
+   "path": "sound/lib/rec/foley/string_pull_01.wav",
+   "src": "rec",
+   "name": "string_pull_01",
+   "z": 2.54
+  },
+  {
+   "path": "sound/lib/rec/foley/string_pull_02.wav",
+   "src": "rec",
+   "name": "string_pull_02",
+   "z": 2.51
+  }
+ ],
+ "switch.click": [
+  {
+   "path": "sound/lib/rec/foley/switch_click_01.wav",
+   "src": "rec",
+   "name": "switch_click_01",
+   "z": 3.76
+  },
+  {
+   "path": "sound/lib/rec/foley/switch_click_03.wav",
+   "src": "rec",
+   "name": "switch_click_03",
+   "z": 3.18
+  },
+  {
+   "path": "sound/lib/rec/foley/switch_click_02.wav",
+   "src": "rec",
+   "name": "switch_click_02",
+   "z": 3.17
+  }
+ ],
+ "tag.slap": [
+  {
+   "path": "sound/lib/rec/foley/tag_slap_01.wav",
+   "src": "rec",
+   "name": "tag_slap_01",
+   "z": 2.6
+  },
+  {
+   "path": "sound/lib/rec/foley/tag_slap_02.wav",
+   "src": "rec",
+   "name": "tag_slap_02",
+   "z": 2.59
+  }
+ ],
+ "tag.pop": [
+  {
+   "path": "sound/lib/rec/foley/tag_slap_01.wav",
+   "src": "rec",
+   "name": "tag_slap_01",
+   "z": 2.6
+  },
+  {
+   "path": "sound/lib/rec/foley/tag_slap_02.wav",
+   "src": "rec",
+   "name": "tag_slap_02",
+   "z": 2.59
+  }
+ ],
+ "tape.reels": [
+  {
+   "path": "sound/lib/rec/tone/tape_reels_01.wav",
+   "src": "rec",
+   "name": "tape_reels_01",
+   "z": 3.4
+  },
+  {
+   "path": "sound/lib/rec/tone/tape_reels_02.wav",
+   "src": "rec",
+   "name": "tape_reels_02",
+   "z": 2.64
+  }
+ ],
+ "type.bell": [
+  {
+   "path": "sound/lib/rec/foley/type_bell_01.wav",
+   "src": "rec",
+   "name": "type_bell_01",
+   "z": 4.59
+  },
+  {
+   "path": "sound/lib/rec/foley/type_bell_02.wav",
+   "src": "rec",
+   "name": "type_bell_02",
+   "z": 3.87
+  }
+ ],
+ "type.key": [
+  {
+   "path": "sound/lib/rec/foley/type_key_01.wav",
+   "src": "rec",
+   "name": "type_key_01",
+   "z": 4.58
+  },
+  {
+   "path": "sound/lib/rec/foley/type_key_02.wav",
+   "src": "rec",
+   "name": "type_key_02",
+   "z": 4.58
+  },
+  {
+   "path": "sound/lib/rec/foley/type_key_04.wav",
+   "src": "rec",
+   "name": "type_key_04",
+   "z": 4.58
+  }
+ ],
+ "water.splash": [
+  {
+   "path": "sound/lib/rec/foley/water_splash_01.wav",
+   "src": "rec",
+   "name": "water_splash_01",
+   "z": 5.35
+  },
+  {
+   "path": "sound/lib/rec/foley/water_splash_03.wav",
+   "src": "rec",
+   "name": "water_splash_03",
+   "z": 4.89
+  },
+  {
+   "path": "sound/lib/rec/foley/water_splash_02.wav",
+   "src": "rec",
+   "name": "water_splash_02",
+   "z": 4.55
+  }
+ ]
+}

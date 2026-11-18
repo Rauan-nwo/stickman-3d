@@ -7,8 +7,9 @@
 //                    без c3d — прокси аниматика (для быстрых проверок).
 // Сборка: node engine/tools/build.mjs production/L001/film ; рендер глав — node production/L001/film/render.mjs (README.md).
 import { animatic, camOf, FPS, W, H } from '../animatic/core.js';
-import { SHOTS, SKIP_PROPS, RAIN, OVER } from './shots.js';
-import { CLIPS3D, frame0, frames, pad4 } from './clips3d.js';
+import * as ST from './shots.js';
+import { clips3d, frame0, frames, pad4 } from './clips3d.js';
+import { byText } from './keys.js';
 import timing from '../animatic/timing.json';
 
 export default {
@@ -16,6 +17,8 @@ export default {
   options: { debug: '0', f0: '0', f1: '', sheet: '0', solo: '', c3d: '' },
   setup(stage, opt) {
     const solo = opt.solo === 'k' || opt.solo === 'w' ? opt.solo : '';
+    // постановка по ключам 'глава|начало текста' -> по номерам планов текущего timing.json
+    const SHOTS = byText(ST.SHOTS, timing.shots), SKIP_PROPS = byText(ST.SKIP_PROPS, timing.shots), OVER = byText(ST.OVER, timing.shots), CLIPS3D = clips3d(timing.shots), RAIN = ST.RAIN;
     const cams = new Map();
     const camAt = s => { if (!cams.has(s.n)) cams.set(s.n, camOf(s, s.dur)); return cams.get(s.n); };
     // нативные 3D-кадры: путь, предзагрузка (final.mjs ждёт window.__prep3d(i) перед draw(i)), рисование 1:1 без масштаба

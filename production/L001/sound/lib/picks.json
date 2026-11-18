@@ -1,0 +1,1530 @@
+[
+ {
+  "id": "amb_restaurant_01",
+  "need": "amb_restaurant",
+  "cat": "amb",
+  "ov": "102d49e9",
+  "len": 60
+ },
+ {
+  "id": "amb_restaurant_02",
+  "need": "amb_restaurant",
+  "cat": "amb",
+  "ov": "8a6dc17c",
+  "len": 45
+ },
+ {
+  "id": "amb_restaurant_03",
+  "need": "amb_restaurant",
+  "cat": "amb",
+  "ov": "1757658b",
+  "len": 60
+ },
+ {
+  "id": "amb_restaurant_04",
+  "need": "amb_restaurant",
+  "cat": "amb",
+  "ov": "68b91609",
+  "len": 60,
+  "rank_need": "amb_cutlery"
+ },
+ {
+  "id": "amb_cutlery_01",
+  "need": "amb_cutlery",
+  "cat": "amb",
+  "ov": "1870d440",
+  "len": 24,
+  "lufs": -30
+ },
+ {
+  "id": "amb_cutlery_02",
+  "need": "amb_cutlery",
+  "cat": "amb",
+  "ov": "0ddb4273",
+  "len": 60
+ },
+ {
+  "id": "amb_rain_window_01",
+  "need": "amb_rain_window",
+  "cat": "amb",
+  "ov": "3a27b5cf",
+  "len": 60
+ },
+ {
+  "id": "amb_rain_window_02",
+  "need": "amb_rain_window",
+  "cat": "amb",
+  "ov": "f2c5ace2",
+  "len": 60
+ },
+ {
+  "id": "amb_rain_window_03",
+  "need": "amb_rain_window",
+  "cat": "amb",
+  "ov": "c0f69197",
+  "len": 40
+ },
+ {
+  "id": "amb_rain_street_01",
+  "need": "amb_rain_street",
+  "cat": "amb",
+  "ov": "083abdbc",
+  "len": 60
+ },
+ {
+  "id": "amb_rain_street_02",
+  "need": "amb_rain_street",
+  "cat": "amb",
+  "ov": "3611a0ba",
+  "len": 60
+ },
+ {
+  "id": "amb_rain_street_03",
+  "need": "amb_rain_street",
+  "cat": "amb",
+  "ov": "fe5a41e1",
+  "len": 60
+ },
+ {
+  "id": "amb_rain_traffic_01",
+  "need": "amb_wet_tyres",
+  "cat": "amb",
+  "ov": "c0ca9c68",
+  "len": 60
+ },
+ {
+  "id": "amb_rain_traffic_02",
+  "need": "amb_wet_tyres",
+  "cat": "amb",
+  "ov": "b428da49",
+  "len": 60
+ },
+ {
+  "id": "amb_rain_car_01",
+  "need": "amb_rain_car",
+  "cat": "amb",
+  "ov": "85b324d3",
+  "len": 32
+ },
+ {
+  "id": "amb_rain_car_02",
+  "need": "amb_rain_car",
+  "cat": "amb",
+  "ov": "885abb9e",
+  "len": 60
+ },
+ {
+  "id": "amb_rain_car_03",
+  "need": "amb_rain_car",
+  "cat": "amb",
+  "ov": "acecf466",
+  "len": 60
+ },
+ {
+  "id": "amb_office_tone_01",
+  "need": "amb_office_tone",
+  "cat": "amb",
+  "ov": "d03fc899",
+  "len": 60,
+  "lufs": -38
+ },
+ {
+  "id": "amb_office_tone_02",
+  "need": "amb_office_tone",
+  "cat": "amb",
+  "ov": "dbec3c9e",
+  "len": 60,
+  "lufs": -38
+ },
+ {
+  "id": "amb_office_tone_03",
+  "need": "amb_office_tone",
+  "cat": "amb",
+  "ov": "a12472bc",
+  "len": 60,
+  "lufs": -38
+ },
+ {
+  "id": "amb_clock_01",
+  "need": "amb_clock",
+  "cat": "amb",
+  "ov": "3298ebaa",
+  "len": 50,
+  "ticks": true,
+  "lufs": -32
+ },
+ {
+  "id": "amb_clock_02",
+  "need": "amb_clock",
+  "cat": "amb",
+  "ov": "e145fc8d",
+  "len": 50,
+  "ticks": true,
+  "lufs": -32
+ },
+ {
+  "id": "amb_clock_03",
+  "need": "amb_clock",
+  "cat": "amb",
+  "ov": "6decc6c5",
+  "len": 30,
+  "ticks": true,
+  "lufs": -32
+ },
+ {
+  "id": "amb_drip_01",
+  "need": "amb_drip_tiled",
+  "cat": "amb",
+  "ov": "ec421fc9",
+  "len": 60,
+  "xf": 0.5,
+  "lufs": -32
+ },
+ {
+  "id": "amb_drip_02",
+  "need": "amb_drip_tiled",
+  "cat": "amb",
+  "ov": "34b7caec",
+  "len": 32,
+  "xf": 0.5,
+  "lufs": -32
+ },
+ {
+  "id": "amb_drip_03",
+  "need": "amb_drip_tiled",
+  "cat": "amb",
+  "ov": "7b55cb8a",
+  "len": 45,
+  "xf": 0.5,
+  "lufs": -32
+ },
+ {
+  "id": "amb_birds_day_01",
+  "need": "amb_birds_day",
+  "cat": "amb",
+  "ov": "0e2335ff",
+  "len": 60
+ },
+ {
+  "id": "amb_birds_day_02",
+  "need": "amb_birds_day",
+  "cat": "amb",
+  "ov": "87b8f63b",
+  "len": 60
+ },
+ {
+  "id": "shutter_01",
+  "need": "fx_camera_shutter",
+  "cat": "foley",
+  "ov": "11c9a35a",
+  "start": 7.4,
+  "end": 7.7,
+  "note": "один щелчок из серии"
+ },
+ {
+  "id": "shutter_02",
+  "need": "fx_camera_shutter",
+  "cat": "foley",
+  "ov": "3290f0e3"
+ },
+ {
+  "id": "shutter_03",
+  "need": "fx_camera_shutter",
+  "cat": "foley",
+  "ov": "e9f047f1",
+  "start": 10.01,
+  "end": 10.45,
+  "note": "плёночная камера"
+ },
+ {
+  "id": "photo_drop_01",
+  "need": "fx_photo_drop",
+  "cat": "foley",
+  "ov": "dab1815a",
+  "start": 5.72,
+  "end": 6.45,
+  "note": "стопка бумаги на стол"
+ },
+ {
+  "id": "photo_drop_02",
+  "need": "fx_photo_drop",
+  "cat": "foley",
+  "ov": "dab1815a",
+  "start": 1.87,
+  "end": 2.6
+ },
+ {
+  "id": "photo_drop_03",
+  "need": "fx_photo_drop",
+  "cat": "foley",
+  "ov": "92173757",
+  "start": 8.79,
+  "end": 9.4,
+  "note": "журнал на стол"
+ },
+ {
+  "id": "folder_close_01",
+  "need": "fx_folder",
+  "cat": "foley",
+  "ov": "6e94f63c",
+  "start": 1.94,
+  "end": 2.65
+ },
+ {
+  "id": "folder_close_02",
+  "need": "fx_folder",
+  "cat": "foley",
+  "ov": "6e94f63c",
+  "start": 5.52,
+  "end": 6.3
+ },
+ {
+  "id": "folder_close_03",
+  "need": "fx_folder",
+  "cat": "foley",
+  "ov": "065ee250",
+  "start": 7.1,
+  "end": 7.6,
+  "note": "клапан папки"
+ },
+ {
+  "id": "paper_handle_01",
+  "need": "fx_folder",
+  "cat": "foley",
+  "ov": "5d9b3f72",
+  "start": 0.42,
+  "end": 1.42,
+  "class": "paper.handle",
+  "note": "перелистывание"
+ },
+ {
+  "id": "paper_handle_02",
+  "need": "fx_folder",
+  "cat": "foley",
+  "ov": "9837be9e",
+  "class": "paper.handle",
+  "note": "перелистывание"
+ },
+ {
+  "id": "paper_handle_03",
+  "need": "fx_folder",
+  "cat": "foley",
+  "ov": "6e94f63c",
+  "start": 0.19,
+  "end": 0.95,
+  "class": "paper.handle",
+  "note": "папку открывают"
+ },
+ {
+  "id": "paper_slide_01",
+  "need": "fx_paper_slide",
+  "cat": "foley",
+  "ov": "05745fd2",
+  "fo": 40
+ },
+ {
+  "id": "paper_slide_02",
+  "need": "fx_paper_slide",
+  "cat": "foley",
+  "ov": "224c60fe",
+  "start": 0.3,
+  "end": 0.95,
+  "fo": 40,
+  "note": "конверт"
+ },
+ {
+  "id": "paper_slide_03",
+  "need": "fx_paper_slide",
+  "cat": "foley",
+  "ov": "7092906e",
+  "start": 0.13,
+  "end": 0.85,
+  "fo": 40
+ },
+ {
+  "id": "stamp_01",
+  "need": "fx_stamp",
+  "cat": "foley",
+  "ov": "f65de1b6",
+  "note": "глухой удар, не штамп по названию"
+ },
+ {
+  "id": "stamp_02",
+  "need": "fx_stamp",
+  "cat": "foley",
+  "ov": "e5f3310d",
+  "start": 0.74,
+  "end": 1.1,
+  "note": "настоящий штамп"
+ },
+ {
+  "id": "stamp_03",
+  "need": "fx_stamp",
+  "cat": "foley",
+  "ov": "c154424d",
+  "start": 0.98,
+  "end": 1.32,
+  "note": "настоящий штамп"
+ },
+ {
+  "id": "type_key_01",
+  "need": "fx_typewriter",
+  "cat": "foley",
+  "ov": "42279f93",
+  "start": 5.94,
+  "end": 6.24,
+  "note": "одна клавиша"
+ },
+ {
+  "id": "type_key_02",
+  "need": "fx_typewriter",
+  "cat": "foley",
+  "ov": "42279f93",
+  "start": 36.18,
+  "end": 36.47,
+  "note": "одна клавиша"
+ },
+ {
+  "id": "type_key_03",
+  "need": "fx_typewriter",
+  "cat": "foley",
+  "ov": "42279f93",
+  "start": 52.27,
+  "end": 52.57,
+  "note": "одна клавиша"
+ },
+ {
+  "id": "type_key_04",
+  "need": "fx_typewriter",
+  "cat": "foley",
+  "ov": "42279f93",
+  "start": 64.45,
+  "end": 64.73,
+  "note": "одна клавиша"
+ },
+ {
+  "id": "type_key_05",
+  "need": "fx_typewriter",
+  "cat": "foley",
+  "ov": "42279f93",
+  "start": 87.26,
+  "end": 87.6,
+  "note": "одна клавиша"
+ },
+ {
+  "id": "type_key_06",
+  "need": "fx_typewriter",
+  "cat": "foley",
+  "ov": "74a7cc0b",
+  "start": 18.94,
+  "end": 19.2,
+  "note": "одна клавиша"
+ },
+ {
+  "id": "type_key_07",
+  "need": "fx_typewriter",
+  "cat": "foley",
+  "ov": "74a7cc0b",
+  "start": 36.32,
+  "end": 36.57,
+  "note": "одна клавиша"
+ },
+ {
+  "id": "type_key_08",
+  "need": "fx_typewriter",
+  "cat": "foley",
+  "ov": "74a7cc0b",
+  "start": 50.52,
+  "end": 50.8,
+  "note": "одна клавиша"
+ },
+ {
+  "id": "type_bell_01",
+  "need": "fx_typewriter_bell",
+  "cat": "foley",
+  "ov": "b3b9eac2",
+  "start": 0.0,
+  "end": 1.25,
+  "fo": 80,
+  "note": "звонок каретки"
+ },
+ {
+  "id": "type_bell_02",
+  "need": "fx_typewriter_bell",
+  "cat": "foley",
+  "ov": "080573ae",
+  "start": 0.02,
+  "end": 2.2,
+  "fo": 120,
+  "note": "звонок каретки"
+ },
+ {
+  "id": "marker_write_01",
+  "need": "fx_pen_write",
+  "cat": "foley",
+  "ov": "1c26b706",
+  "start": 22.57,
+  "end": 25.6,
+  "fo": 150
+ },
+ {
+  "id": "marker_write_02",
+  "need": "fx_pen_write",
+  "cat": "foley",
+  "ov": "9c22f42c",
+  "start": 5.88,
+  "end": 8.14,
+  "fo": 60
+ },
+ {
+  "id": "marker_write_03",
+  "need": "fx_pen_write",
+  "cat": "foley",
+  "ov": "0b192e99",
+  "start": 50.0,
+  "end": 53.0,
+  "fo": 150,
+  "note": "сплошной росчерк"
+ },
+ {
+  "id": "glass_clink_01",
+  "need": "fx_glass_toast",
+  "cat": "foley",
+  "ov": "2c15f826",
+  "start": 0.0,
+  "end": 1.45,
+  "fo": 120
+ },
+ {
+  "id": "glass_clink_02",
+  "need": "fx_glass_toast",
+  "cat": "foley",
+  "ov": "2c15f826",
+  "start": 2.67,
+  "end": 3.32,
+  "fo": 120
+ },
+ {
+  "id": "glass_clink_03",
+  "need": "fx_glass_toast",
+  "cat": "foley",
+  "ov": "e25560ac",
+  "fo": 150
+ },
+ {
+  "id": "box_tap_01",
+  "need": "fx_box_knock",
+  "cat": "foley",
+  "ov": "f07e0b54",
+  "start": 0.86,
+  "end": 1.12
+ },
+ {
+  "id": "box_tap_02",
+  "need": "fx_box_knock",
+  "cat": "foley",
+  "ov": "f07e0b54",
+  "start": 3.09,
+  "end": 3.39
+ },
+ {
+  "id": "box_tap_03",
+  "need": "fx_box_knock",
+  "cat": "foley",
+  "ov": "f07e0b54",
+  "start": 4.29,
+  "end": 4.65
+ },
+ {
+  "id": "box_lid_01",
+  "need": "fx_box_open",
+  "cat": "foley",
+  "ov": "ad283623",
+  "start": 0.46,
+  "end": 1.66,
+  "fo": 40
+ },
+ {
+  "id": "box_lid_02",
+  "need": "fx_box_open",
+  "cat": "foley",
+  "ov": "0f149280",
+  "fo": 40
+ },
+ {
+  "id": "box_lid_03",
+  "need": "fx_box_open",
+  "cat": "foley",
+  "ov": "163d5d69",
+  "start": 0.06,
+  "end": 1.55,
+  "fo": 40
+ },
+ {
+  "id": "key_jingle_01",
+  "need": "fx_keys",
+  "cat": "foley",
+  "ov": "c27daebb"
+ },
+ {
+  "id": "key_jingle_02",
+  "need": "fx_keys",
+  "cat": "foley",
+  "ov": "d5dc49c5",
+  "start": 0.11,
+  "end": 0.7
+ },
+ {
+  "id": "key_jingle_03",
+  "need": "fx_keys",
+  "cat": "foley",
+  "ov": "97935de3",
+  "start": 1.52,
+  "end": 2.7
+ },
+ {
+  "id": "tag_slap_01",
+  "need": "fx_sticker",
+  "cat": "foley",
+  "kn": "casino-audio/x/Audio/card-place-3.ogg",
+  "note": "карта на стол вместо наклейки"
+ },
+ {
+  "id": "tag_slap_02",
+  "need": "fx_sticker",
+  "cat": "foley",
+  "kn": "casino-audio/x/Audio/card-place-2.ogg",
+  "note": "карта на стол вместо наклейки"
+ },
+ {
+  "id": "switch_click_01",
+  "need": "fx_lamp_switch",
+  "cat": "foley",
+  "ov": "8cb8fb87",
+  "start": 0.34,
+  "end": 0.7
+ },
+ {
+  "id": "switch_click_02",
+  "need": "fx_lamp_switch",
+  "cat": "foley",
+  "ov": "97e34a23",
+  "note": "выключатель торшера"
+ },
+ {
+  "id": "switch_click_03",
+  "need": "fx_lamp_switch",
+  "cat": "foley",
+  "ov": "8cfeb6dc",
+  "start": 1.41,
+  "end": 1.75
+ },
+ {
+  "id": "lamp_buzz_01",
+  "need": "fx_lamp_hum",
+  "cat": "tone",
+  "ov": "68116351",
+  "len": 20
+ },
+ {
+  "id": "lamp_buzz_02",
+  "need": "fx_lamp_hum",
+  "cat": "tone",
+  "ov": "388142c0",
+  "len": 20
+ },
+ {
+  "id": "lamp_buzz_03",
+  "need": "fx_lamp_hum",
+  "cat": "tone",
+  "ov": "df3f1d68",
+  "len": 15
+ },
+ {
+  "id": "tape_reels_01",
+  "need": "fx_tape_reel",
+  "cat": "tone",
+  "ov": "1615d616",
+  "start": 1.6,
+  "len": 4.2,
+  "xf": 0.8,
+  "note": "катушечный магнитофон, ход ленты"
+ },
+ {
+  "id": "tape_reels_02",
+  "need": "fx_tape_reel",
+  "cat": "tone",
+  "ov": "4e857019",
+  "start": 2.0,
+  "len": 12,
+  "xf": 1.5,
+  "note": "перемотка, тон плывёт вверх"
+ },
+ {
+  "id": "headphone_01",
+  "need": "fx_headphones",
+  "cat": "foley",
+  "ov": "a80b5cc3",
+  "start": 23.75,
+  "end": 24.3
+ },
+ {
+  "id": "headphone_02",
+  "need": "fx_headphones",
+  "cat": "foley",
+  "ov": "a80b5cc3",
+  "start": 22.24,
+  "end": 22.95
+ },
+ {
+  "id": "headphone_03",
+  "need": "fx_headphones",
+  "cat": "foley",
+  "ov": "ef209ad3",
+  "start": 1.74,
+  "end": 2.95,
+  "note": "сняли и положили"
+ },
+ {
+  "id": "crate_set_01",
+  "need": "fx_crate_down",
+  "cat": "foley",
+  "ov": "ce271cca",
+  "start": 15.68,
+  "end": 16.12,
+  "note": "пластиковый ящик"
+ },
+ {
+  "id": "crate_set_02",
+  "need": "fx_crate_down",
+  "cat": "foley",
+  "ov": "ce271cca",
+  "start": 18.1,
+  "end": 19.24,
+  "note": "пластиковый ящик"
+ },
+ {
+  "id": "crate_set_03",
+  "need": "fx_crate_down",
+  "cat": "foley",
+  "ov": "b8329694",
+  "start": 3.03,
+  "end": 4.65,
+  "note": "пластиковый ящик"
+ },
+ {
+  "id": "water_splash_01",
+  "need": "fx_mop_bucket",
+  "cat": "foley",
+  "ov": "c568fcba",
+  "start": 28.82,
+  "end": 29.92,
+  "fo": 60
+ },
+ {
+  "id": "water_splash_02",
+  "need": "fx_mop_bucket",
+  "cat": "foley",
+  "ov": "c568fcba",
+  "start": 8.03,
+  "end": 8.99,
+  "fo": 60
+ },
+ {
+  "id": "water_splash_03",
+  "need": "fx_mop_bucket",
+  "cat": "foley",
+  "ov": "7babf7d7",
+  "start": 2.62,
+  "end": 4.4,
+  "fo": 300,
+  "note": "воду льют в ведро"
+ },
+ {
+  "id": "phone_ring_01",
+  "need": "fx_phone_ring",
+  "cat": "foley",
+  "ov": "625a9e12",
+  "start": 0.37,
+  "end": 3.3,
+  "fo": 250,
+  "note": "звонок длиннее, обрезан с затуханием"
+ },
+ {
+  "id": "phone_ring_02",
+  "need": "fx_phone_ring",
+  "cat": "foley",
+  "ov": "aac33631",
+  "start": 0.0,
+  "end": 2.6,
+  "fo": 100,
+  "note": "один звонок целиком"
+ },
+ {
+  "id": "phone_ring_03",
+  "need": "fx_phone_ring",
+  "cat": "foley",
+  "ov": "94dd8923",
+  "start": 0.05,
+  "end": 3.0,
+  "fo": 250,
+  "note": "звонок длиннее, обрезан с затуханием"
+ },
+ {
+  "id": "string_pull_01",
+  "need": "fx_string_taut",
+  "cat": "foley",
+  "ov": "b591e048",
+  "note": "шнурок, не нить"
+ },
+ {
+  "id": "string_pull_02",
+  "need": "fx_string_taut",
+  "cat": "foley",
+  "ov": "9cfa313f",
+  "note": "шнурок, не нить"
+ },
+ {
+  "id": "string_pull_03",
+  "need": "fx_string_taut",
+  "cat": "foley",
+  "ov": "74c97839",
+  "note": "шнурок, не нить"
+ },
+ {
+  "id": "cloth_rustle_01",
+  "need": "fx_leather",
+  "cat": "foley",
+  "ov": "693aaddc",
+  "start": 19.23,
+  "end": 20.25,
+  "fo": 40
+ },
+ {
+  "id": "cloth_rustle_02",
+  "need": "fx_leather",
+  "cat": "foley",
+  "ov": "2f19caf1",
+  "start": 2.3,
+  "end": 3.5,
+  "fo": 60
+ },
+ {
+  "id": "cloth_rustle_03",
+  "need": "fx_leather",
+  "cat": "foley",
+  "ov": "e1104dbe",
+  "start": 20.84,
+  "end": 21.4,
+  "fo": 40
+ },
+ {
+  "id": "chair_creak_01",
+  "need": "fx_chair",
+  "cat": "foley",
+  "ov": "eb8fff9f",
+  "start": 1.8,
+  "end": 2.85,
+  "fo": 40
+ },
+ {
+  "id": "chair_creak_02",
+  "need": "fx_chair",
+  "cat": "foley",
+  "ov": "eb8fff9f",
+  "start": 0.07,
+  "end": 0.6,
+  "fo": 40
+ },
+ {
+  "id": "chair_creak_03",
+  "need": "fx_chair",
+  "cat": "foley",
+  "ov": "3f3370b8",
+  "start": 0.73,
+  "end": 1.3,
+  "fo": 40
+ },
+ {
+  "id": "chair_scrape_01",
+  "need": "fx_chair_scrape",
+  "cat": "foley",
+  "ov": "29e95b75",
+  "fo": 60
+ },
+ {
+  "id": "chair_scrape_02",
+  "need": "fx_chair_scrape",
+  "cat": "foley",
+  "ov": "bb3f6af6",
+  "start": 0.0,
+  "end": 2.3,
+  "fo": 60
+ },
+ {
+  "id": "chair_scrape_03",
+  "need": "fx_chair_scrape",
+  "cat": "foley",
+  "ov": "d27eefc5",
+  "start": 2.07,
+  "end": 4.68,
+  "fo": 60
+ },
+ {
+  "id": "door_slam_01",
+  "need": "fx_door_slam",
+  "cat": "foley",
+  "ov": "4b47bc4b",
+  "fo": 60
+ },
+ {
+  "id": "door_slam_02",
+  "need": "fx_door_slam",
+  "cat": "foley",
+  "ov": "8bc5f9ae",
+  "fo": 60,
+  "note": "деревянная дверь"
+ },
+ {
+  "id": "door_slam_03",
+  "need": "fx_door_slam",
+  "cat": "foley",
+  "ov": "a1c1af85",
+  "start": 5.0,
+  "end": 6.2,
+  "fo": 60
+ },
+ {
+  "id": "knock_01",
+  "need": "fx_door_knock",
+  "cat": "foley",
+  "ov": "d80a3780",
+  "fo": 40
+ },
+ {
+  "id": "knock_02",
+  "need": "fx_door_knock",
+  "cat": "foley",
+  "ov": "6e71b761",
+  "fo": 40,
+  "note": "три удара"
+ },
+ {
+  "id": "knock_03",
+  "need": "fx_door_knock",
+  "cat": "foley",
+  "ov": "e6882b99",
+  "fo": 40,
+  "note": "два удара"
+ },
+ {
+  "id": "steps_01",
+  "need": "fx_steps_hard",
+  "cat": "foley",
+  "ov": "5f736341",
+  "start": 4.06,
+  "end": 6.42,
+  "fo": 40,
+  "note": "кроссовки по камню, несколько шагов"
+ },
+ {
+  "id": "steps_02",
+  "need": "fx_steps_hard",
+  "cat": "foley",
+  "ov": "4888d6af",
+  "start": 1.33,
+  "end": 3.5,
+  "fo": 40,
+  "note": "каблуки, четыре шага"
+ },
+ {
+  "id": "steps_03",
+  "need": "fx_steps_hard",
+  "cat": "foley",
+  "ov": "1fb67590",
+  "start": 18.4,
+  "end": 21.4,
+  "fo": 40,
+  "note": "ботинки, четыре шага"
+ },
+ {
+  "id": "car_door_01",
+  "need": "fx_car_door",
+  "cat": "foley",
+  "ov": "6f54403c",
+  "fo": 40
+ },
+ {
+  "id": "car_door_02",
+  "need": "fx_car_door",
+  "cat": "foley",
+  "ov": "05a3b3da",
+  "fo": 40,
+  "note": "старая машина, с дребезгом"
+ },
+ {
+  "id": "car_door_03",
+  "need": "fx_car_door",
+  "cat": "foley",
+  "ov": "98adac48",
+  "fo": 40
+ },
+ {
+  "id": "keyboard_01",
+  "need": "fx_keyboard",
+  "cat": "foley",
+  "ov": "07c061b3",
+  "start": 1.38,
+  "end": 4.4,
+  "fo": 80
+ },
+ {
+  "id": "keyboard_02",
+  "need": "fx_keyboard",
+  "cat": "foley",
+  "ov": "b9f90a19",
+  "start": 62.5,
+  "end": 65.5,
+  "fo": 80
+ },
+ {
+  "id": "keyboard_03",
+  "need": "fx_keyboard",
+  "cat": "foley",
+  "ov": "f4b353be",
+  "start": 3.0,
+  "end": 6.0,
+  "fo": 80
+ },
+ {
+  "id": "phone_pickup_01",
+  "need": "fx_phone_handset",
+  "cat": "foley",
+  "ov": "4c1e28e5",
+  "start": 1.18,
+  "end": 1.75,
+  "note": "снимают трубку"
+ },
+ {
+  "id": "phone_pickup_02",
+  "need": "fx_phone_handset",
+  "cat": "foley",
+  "ov": "50bb0d13",
+  "start": 2.01,
+  "end": 2.6,
+  "note": "снимают трубку"
+ },
+ {
+  "id": "phone_pickup_03",
+  "need": "fx_phone_handset",
+  "cat": "foley",
+  "ov": "77464e05",
+  "note": "кладут трубку"
+ },
+ {
+  "id": "ship_horn_01",
+  "need": "fx_ship_horn",
+  "cat": "foley",
+  "ov": "641dfcae",
+  "start": 0.3,
+  "end": 5.1,
+  "fo": 500,
+  "note": "гудок 4.8 с, длиннее обычного точечного звука"
+ },
+ {
+  "id": "ship_horn_02",
+  "need": "fx_ship_horn",
+  "cat": "foley",
+  "ov": "0d85c736",
+  "start": 9.9,
+  "end": 14.5,
+  "fo": 1500,
+  "note": "последний гудок с эхом гавани"
+ },
+ {
+  "id": "ship_horn_03",
+  "need": "fx_ship_horn",
+  "cat": "foley",
+  "ov": "7b13ea09",
+  "start": 10.2,
+  "end": 14.6,
+  "fo": 800,
+  "note": "Гамбург, низкий гудок"
+ },
+ {
+  "id": "beep_01",
+  "need": "fx_scanner_beep",
+  "cat": "foley",
+  "ov": "24cfec25",
+  "start": 3.97,
+  "end": 4.3,
+  "note": "один сигнал сканера"
+ },
+ {
+  "id": "beep_02",
+  "need": "fx_scanner_beep",
+  "cat": "foley",
+  "ov": "24cfec25",
+  "start": 15.71,
+  "end": 16.1,
+  "note": "один сигнал сканера"
+ },
+ {
+  "id": "beep_03",
+  "need": "fx_scanner_beep",
+  "cat": "foley",
+  "ov": "24cfec25",
+  "start": 18.85,
+  "end": 19.25,
+  "note": "один сигнал сканера"
+ },
+ {
+  "id": "cash_01",
+  "need": "fx_cash_register",
+  "cat": "foley",
+  "ov": "62dd2f8f",
+  "start": 1.52,
+  "end": 4.48,
+  "fo": 100,
+  "note": "клавиша, звонок, ящик выезжает"
+ },
+ {
+  "id": "cash_02",
+  "need": "fx_cash_register",
+  "cat": "foley",
+  "ov": "62dd2f8f",
+  "start": 10.19,
+  "end": 11.6,
+  "fo": 60,
+  "note": "ящик кассы закрывают"
+ },
+ {
+  "id": "cash_04",
+  "need": "fx_coins",
+  "cat": "foley",
+  "ov": "6b689584",
+  "start": 8.22,
+  "end": 8.75,
+  "fo": 40,
+  "note": "монета падает на стол"
+ },
+ {
+  "id": "flash_pop_01",
+  "need": "fx_flashbulb",
+  "cat": "foley",
+  "ov": "c851221d",
+  "fo": 40,
+  "note": "треск вспышки"
+ },
+ {
+  "id": "flash_pop_02",
+  "need": "fx_flashbulb",
+  "cat": "foley",
+  "ov": "9841d655",
+  "start": 0.57,
+  "end": 1.25,
+  "fo": 40
+ },
+ {
+  "id": "flash_pop_03",
+  "need": "fx_flashbulb",
+  "cat": "foley",
+  "ov": "77bc8c04",
+  "start": 0.95,
+  "end": 1.45,
+  "fo": 60,
+  "note": "хлопок и начало зарядки"
+ },
+ {
+  "id": "crowd_react_01",
+  "need": "fx_crowd_gasp",
+  "cat": "foley",
+  "ov": "a58ceb4d",
+  "fo": 60,
+  "note": "ах, один-два голоса, не зал"
+ },
+ {
+  "id": "crowd_react_02",
+  "need": "fx_crowd_gasp",
+  "cat": "foley",
+  "ov": "64340b35",
+  "fo": 60,
+  "note": "ах, один человек"
+ },
+ {
+  "id": "crowd_react_03",
+  "need": "fx_crowd_gasp",
+  "cat": "foley",
+  "ov": "dc075e45",
+  "fo": 60,
+  "note": "ах, один человек"
+ },
+ {
+  "id": "applause_01",
+  "need": "fx_applause",
+  "cat": "foley",
+  "ov": "baf7990c",
+  "fo": 300,
+  "class": "applause",
+  "note": "аплодисменты 6 с целиком"
+ },
+ {
+  "id": "applause_02",
+  "need": "fx_applause",
+  "cat": "foley",
+  "ov": "d7b70792",
+  "fo": 300,
+  "class": "applause",
+  "note": "аплодисменты 6 с целиком"
+ },
+ {
+  "id": "pin_push_01",
+  "need": "fx_pushpin",
+  "cat": "foley",
+  "ov": "1fd45592",
+  "fo": 40,
+  "note": "кнопка, по названию; earshot не узнал"
+ },
+ {
+  "id": "map_route_01",
+  "need": "fx_pencil_line",
+  "cat": "foley",
+  "ov": "0204df0e",
+  "start": 0.5,
+  "end": 3.2,
+  "fo": 100
+ },
+ {
+  "id": "map_route_02",
+  "need": "fx_pencil_line",
+  "cat": "foley",
+  "ov": "b5090b4a",
+  "start": 2.1,
+  "end": 4.6,
+  "fo": 100
+ },
+ {
+  "id": "map_route_03",
+  "need": "fx_pencil_line",
+  "cat": "foley",
+  "ov": "1ab52f07",
+  "start": 0.05,
+  "end": 2.8,
+  "fo": 100
+ },
+ {
+  "id": "static_01",
+  "need": "fx_radio_static",
+  "cat": "tone",
+  "ov": "bccbee01",
+  "len": 14
+ },
+ {
+  "id": "static_02",
+  "need": "fx_radio_static",
+  "cat": "tone",
+  "ov": "1bfc8a6c",
+  "len": 16,
+  "note": "длинные волны, уровень гуляет"
+ },
+ {
+  "id": "static_03",
+  "need": "fx_radio_static",
+  "cat": "tone",
+  "ov": "a45c7fc4",
+  "start": 0.1,
+  "len": 3.0,
+  "xf": 0.6,
+  "note": "короткий, 3 с"
+ },
+ {
+  "id": "amb_diner_01",
+  "need": "amb_diner",
+  "cat": "amb",
+  "ov": "7d7354a1",
+  "len": 55
+ },
+ {
+  "id": "amb_diner_02",
+  "need": "amb_diner",
+  "cat": "amb",
+  "ov": "127c878f",
+  "len": 60
+ },
+ {
+  "id": "amb_diner_03",
+  "need": "amb_diner",
+  "cat": "amb",
+  "ov": "c3d53e8d",
+  "len": 32
+ },
+ {
+  "id": "amb_dishpit_01",
+  "need": "amb_dishpit",
+  "cat": "amb",
+  "ov": "cbae6ac8",
+  "len": 60
+ },
+ {
+  "id": "amb_dishpit_02",
+  "need": "amb_dishpit",
+  "cat": "amb",
+  "ov": "ed75ec2f",
+  "len": 60
+ },
+ {
+  "id": "amb_dishpit_03",
+  "need": "amb_dishpit",
+  "cat": "amb",
+  "ov": "fc080c1e",
+  "len": 60
+ },
+ {
+  "id": "amb_hall_01",
+  "need": "amb_hall_crowd",
+  "cat": "amb",
+  "ov": "b72ae47f",
+  "len": 60
+ },
+ {
+  "id": "amb_hall_02",
+  "need": "amb_hall_crowd",
+  "cat": "amb",
+  "ov": "48505c77",
+  "len": 60
+ },
+ {
+  "id": "amb_hall_03",
+  "need": "amb_hall_crowd",
+  "cat": "amb",
+  "ov": "0f7c88ac",
+  "len": 22,
+  "note": "исходник 27 с"
+ },
+ {
+  "id": "amb_hvac_01",
+  "need": "amb_hvac",
+  "cat": "amb",
+  "ov": "5c8e4ac1",
+  "len": 60,
+  "lufs": -34
+ },
+ {
+  "id": "amb_hvac_02",
+  "need": "amb_hvac",
+  "cat": "amb",
+  "ov": "efecf55b",
+  "len": 60,
+  "lufs": -34
+ },
+ {
+  "id": "amb_hvac_03",
+  "need": "amb_hvac",
+  "cat": "amb",
+  "ov": "a96295b8",
+  "len": 60,
+  "lufs": -34
+ },
+ {
+  "id": "amb_newsroom_01",
+  "need": "amb_newsroom",
+  "cat": "amb",
+  "ov": "b57c9827",
+  "len": 60,
+  "note": "почта в Венгрии: голоса, не новостная редакция"
+ },
+ {
+  "id": "amb_port_01",
+  "need": "amb_port",
+  "cat": "amb",
+  "ov": "00aa994a",
+  "len": 60
+ },
+ {
+  "id": "amb_port_02",
+  "need": "amb_port",
+  "cat": "amb",
+  "ov": "3dc7d50c",
+  "len": 22,
+  "note": "исходник 27 с"
+ },
+ {
+  "id": "amb_port_03",
+  "need": "amb_port",
+  "cat": "amb",
+  "ov": "baffc8c3",
+  "len": 60,
+  "note": "портовый кран"
+ },
+ {
+  "id": "amb_servers_01",
+  "need": "amb_server",
+  "cat": "amb",
+  "ov": "364a9609",
+  "len": 55,
+  "lufs": -30
+ },
+ {
+  "id": "amb_servers_02",
+  "need": "amb_server",
+  "cat": "amb",
+  "ov": "2c5ab0f6",
+  "len": 50,
+  "lufs": -30
+ },
+ {
+  "id": "amb_servers_03",
+  "need": "amb_server",
+  "cat": "amb",
+  "ov": "34ac07c3",
+  "len": 60,
+  "lufs": -30,
+  "note": "вентилятор кондиционера"
+ },
+ {
+  "id": "amb_warehouse_01",
+  "need": "amb_warehouse",
+  "cat": "amb",
+  "ov": "176e5b5a",
+  "len": 60,
+  "lufs": -32
+ },
+ {
+  "id": "amb_warehouse_02",
+  "need": "amb_warehouse",
+  "cat": "amb",
+  "ov": "92dbbb3e",
+  "len": 50,
+  "lufs": -32
+ },
+ {
+  "id": "amb_warehouse_03",
+  "need": "amb_warehouse",
+  "cat": "amb",
+  "ov": "aba89c4e",
+  "len": 60,
+  "lufs": -32,
+  "note": "тон склада с вентиляцией"
+ },
+ {
+  "id": "amb_fluor_01",
+  "need": "fx_fluor_buzz",
+  "cat": "amb",
+  "ov": "cd796a43",
+  "len": 60,
+  "lufs": -34
+ },
+ {
+  "id": "amb_fluor_02",
+  "need": "fx_fluor_buzz",
+  "cat": "amb",
+  "ov": "6afb0900",
+  "len": 40,
+  "lufs": -34,
+  "note": "электрический гул в метро"
+ },
+ {
+  "id": "amb_fluor_03",
+  "need": "fx_fluor_buzz",
+  "cat": "amb",
+  "ov": "01b6a3c2",
+  "start": 6.0,
+  "len": 44,
+  "lufs": -34,
+  "rank_need": "fx_lamp_hum",
+  "note": "лампа дневного света между щелчками выключателя"
+ },
+ {
+  "id": "amb_bar_01",
+  "need": "amb_bar",
+  "cat": "amb",
+  "ov": "c758c631",
+  "len": 60
+ },
+ {
+  "id": "amb_bar_02",
+  "need": "amb_bar",
+  "cat": "amb",
+  "ov": "10965627",
+  "len": 60
+ },
+ {
+  "id": "amb_bar_03",
+  "need": "amb_bar",
+  "cat": "amb",
+  "ov": "bba773e1",
+  "len": 60
+ },
+ {
+  "id": "amb_night_01",
+  "need": "amb_crickets",
+  "cat": "amb",
+  "ov": "965e8643",
+  "len": 60,
+  "lufs": -30
+ },
+ {
+  "id": "amb_night_02",
+  "need": "amb_crickets",
+  "cat": "amb",
+  "ov": "58ccd0be",
+  "len": 60,
+  "lufs": -30
+ },
+ {
+  "id": "amb_night_03",
+  "need": "amb_crickets",
+  "cat": "amb",
+  "ov": "9f9ad33c",
+  "len": 60,
+  "lufs": -30
+ },
+ {
+  "id": "amb_trading_01",
+  "need": "amb_phones_office",
+  "cat": "amb",
+  "ov": "007add14",
+  "len": 20,
+  "note": "шесть телефонов, исходник 25 с"
+ },
+ {
+  "id": "amb_trading_02",
+  "need": "amb_phones_office",
+  "cat": "amb",
+  "ov": "05cc8d5f",
+  "len": 30
+ },
+ {
+  "id": "amb_trading_03",
+  "need": "amb_phones_office",
+  "cat": "amb",
+  "ov": "4dffb7c2",
+  "len": 10,
+  "xf": 1.5,
+  "note": "исходник 14 с"
+ },
+ {
+  "id": "amb_trucks_01",
+  "need": "amb_trucks",
+  "cat": "amb",
+  "ov": "112efe1d",
+  "len": 28,
+  "note": "дизель на холостых"
+ },
+ {
+  "id": "amb_trucks_02",
+  "need": "amb_trucks",
+  "cat": "amb",
+  "ov": "b7ff3495",
+  "len": 40,
+  "note": "грузовик проезжает"
+ },
+ {
+  "id": "amb_trucks_03",
+  "need": "amb_trucks",
+  "cat": "amb",
+  "ov": "9c3c38c5",
+  "len": 15,
+  "note": "на холостых, исходник 20 с"
+ }
+]

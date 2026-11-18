@@ -1,0 +1,509 @@
+{
+ "path": "C:/dev/projects/youtube-video/production/L001/sound/music/candidates/inc-crypto.mp3",
+ "start": 20.0,
+ "end": 80.0,
+ "duration": 60.0,
+ "measurements": {
+  "duration": 60.0,
+  "peak_dbfs": -5.1,
+  "true_peak_dbtp": -5.1,
+  "rms_dbfs": -18.6,
+  "lufs": -17.3,
+  "lra_lu": 1.9,
+  "attack_ms": 107.0,
+  "brightness_hz": 546,
+  "bandwidth_hz": 3225,
+  "noise_floor_dbfs": -25.3,
+  "flatness": 0.0,
+  "harmonic_ratio": 0.953,
+  "f0_hz": 52.0,
+  "onset_count": 145,
+  "onsets_per_s": 2.42,
+  "width": "side/mid -6 dB",
+  "digital_silence_frac": 0.0
+ },
+ "shape": "busy, 2.4 onsets/s, loudness range 2 LU",
+ "top_tags": [
+  {
+   "term": "a rising riser building tension",
+   "category": "transitions",
+   "z": 1.55,
+   "cosine": 0.243,
+   "verdict": "no match"
+  },
+  {
+   "term": "a singing bowl",
+   "category": "chimes",
+   "z": 1.47,
+   "cosine": 0.153,
+   "verdict": "no match"
+  },
+  {
+   "term": "a deep cinematic boom",
+   "category": "impacts",
+   "z": 1.16,
+   "cosine": 0.146,
+   "verdict": "no match"
+  },
+  {
+   "term": "a saw cutting wood",
+   "category": "everyday",
+   "z": 1.11,
+   "cosine": 0.155,
+   "verdict": "no match"
+  },
+  {
+   "term": "birds singing in the morning",
+   "category": "ambience",
+   "z": 1.07,
+   "cosine": 0.095,
+   "verdict": "no match"
+  },
+  {
+   "term": "a big drum hit",
+   "category": "impacts",
+   "z": 1.04,
+   "cosine": 0.127,
+   "verdict": "no match"
+  },
+  {
+   "term": "a cinematic hit with a long tail",
+   "category": "impacts",
+   "z": 1.03,
+   "cosine": 0.12,
+   "verdict": "no match"
+  },
+  {
+   "term": "a big braam",
+   "category": "impacts",
+   "z": 0.98,
+   "cosine": 0.173,
+   "verdict": "no match"
+  }
+ ],
+ "music_hints": [
+  {
+   "term": "dreamy and ethereal music",
+   "category": "music_mood",
+   "z": 3.47,
+   "cosine": 0.428
+  },
+  {
+   "term": "ambient synth pad music",
+   "category": "music_genre",
+   "z": 2.85,
+   "cosine": 0.339
+  },
+  {
+   "term": "dark and tense music",
+   "category": "music_mood",
+   "z": 2.68,
+   "cosine": 0.373
+  },
+  {
+   "term": "mysterious music",
+   "category": "music_mood",
+   "z": 2.55,
+   "cosine": 0.379
+  },
+  {
+   "term": "sad and melancholic music",
+   "category": "music_mood",
+   "z": 2.51,
+   "cosine": 0.361
+  },
+  {
+   "term": "calm and relaxing music",
+   "category": "music_mood",
+   "z": 2.44,
+   "cosine": 0.319
+  },
+  {
+   "term": "synthwave music",
+   "category": "music_genre",
+   "z": 2.41,
+   "cosine": 0.349
+  },
+  {
+   "term": "cinematic orchestral music",
+   "category": "music_genre",
+   "z": 2.4,
+   "cosine": 0.327
+  }
+ ],
+ "tags": {
+  "transitions": [
+   {
+    "term": "a rising riser building tension",
+    "z": 1.55,
+    "cosine": 0.243
+   },
+   {
+    "term": "a deep cinematic whoosh",
+    "z": 0.91,
+    "cosine": 0.136
+   },
+   {
+    "term": "an uplifter sweep",
+    "z": 0.72,
+    "cosine": 0.158
+   }
+  ],
+  "impacts": [
+   {
+    "term": "a deep cinematic boom",
+    "z": 1.16,
+    "cosine": 0.146
+   },
+   {
+    "term": "a big drum hit",
+    "z": 1.04,
+    "cosine": 0.127
+   },
+   {
+    "term": "a cinematic hit with a long tail",
+    "z": 1.03,
+    "cosine": 0.12
+   }
+  ],
+  "ui": [
+   {
+    "term": "a touchscreen tap",
+    "z": 0.18,
+    "cosine": 0.109
+   },
+   {
+    "term": "a phone vibration buzz",
+    "z": 0.18,
+    "cosine": 0.053
+   },
+   {
+    "term": "a soft UI button tap",
+    "z": 0.1,
+    "cosine": 0.071
+   }
+  ],
+  "keyboard": [
+   {
+    "term": "a deep thocky mechanical keyboard",
+    "z": -0.37,
+    "cosine": 0.079
+   },
+   {
+    "term": "a soft key release click",
+    "z": -0.48,
+    "cosine": 0.012
+   },
+   {
+    "term": "slow typing with separate key presses",
+    "z": -0.65,
+    "cosine": 0.033
+   }
+  ],
+  "foley": [
+   {
+    "term": "footsteps on wood",
+    "z": 0.75,
+    "cosine": 0.074
+   },
+   {
+    "term": "a finger tapping on wood",
+    "z": 0.69,
+    "cosine": 0.134
+   },
+   {
+    "term": "a finger tapping on glass",
+    "z": 0.65,
+    "cosine": 0.148
+   }
+  ],
+  "water": [
+   {
+    "term": "being underwater",
+    "z": 0.85,
+    "cosine": 0.145
+   },
+   {
+    "term": "bubbles underwater",
+    "z": -0.17,
+    "cosine": 0.028
+   },
+   {
+    "term": "a stream flowing",
+    "z": -0.25,
+    "cosine": 0.057
+   }
+  ],
+  "nature": [
+   {
+    "term": "footsteps on grass",
+    "z": 0.42,
+    "cosine": 0.053
+   },
+   {
+    "term": "insects buzzing",
+    "z": -0.16,
+    "cosine": 0.029
+   },
+   {
+    "term": "walking through dry leaves",
+    "z": -0.34,
+    "cosine": 0.003
+   }
+  ],
+  "chimes": [
+   {
+    "term": "a singing bowl",
+    "z": 1.47,
+    "cosine": 0.153
+   },
+   {
+    "term": "a sustained glass harp tone",
+    "z": 0.84,
+    "cosine": 0.094
+   },
+   {
+    "term": "church bells",
+    "z": 0.64,
+    "cosine": 0.11
+   }
+  ],
+  "ambience": [
+   {
+    "term": "birds singing in the morning",
+    "z": 1.07,
+    "cosine": 0.095
+   },
+   {
+    "term": "a forest ambience",
+    "z": 0.84,
+    "cosine": 0.132
+   },
+   {
+    "term": "an electrical hum",
+    "z": 0.74,
+    "cosine": 0.088
+   }
+  ],
+  "everyday": [
+   {
+    "term": "a saw cutting wood",
+    "z": 1.11,
+    "cosine": 0.155
+   },
+   {
+    "term": "a kettle whistling",
+    "z": 0.84,
+    "cosine": 0.07
+   },
+   {
+    "term": "a bird chirping",
+    "z": 0.58,
+    "cosine": 0.054
+   }
+  ],
+  "music_genre": [
+   {
+    "term": "ambient synth pad music",
+    "z": 2.85,
+    "cosine": 0.339
+   },
+   {
+    "term": "synthwave music",
+    "z": 2.41,
+    "cosine": 0.349
+   },
+   {
+    "term": "cinematic orchestral music",
+    "z": 2.4,
+    "cosine": 0.327
+   }
+  ],
+  "music_mood": [
+   {
+    "term": "dreamy and ethereal music",
+    "z": 3.47,
+    "cosine": 0.428
+   },
+   {
+    "term": "dark and tense music",
+    "z": 2.68,
+    "cosine": 0.373
+   },
+   {
+    "term": "mysterious music",
+    "z": 2.55,
+    "cosine": 0.379
+   }
+  ],
+  "instruments": [
+   {
+    "term": "strings ensemble",
+    "z": 1.84,
+    "cosine": 0.279
+   },
+   {
+    "term": "a choir",
+    "z": 1.8,
+    "cosine": 0.209
+   },
+   {
+    "term": "a warm analog synth pad",
+    "z": 1.78,
+    "cosine": 0.238
+   }
+  ],
+  "voice": [
+   {
+    "term": "singing vocals",
+    "z": 1.26,
+    "cosine": 0.161
+   },
+   {
+    "term": "a voice-over narration",
+    "z": 1.21,
+    "cosine": 0.144
+   },
+   {
+    "term": "a baby crying",
+    "z": 0.72,
+    "cosine": 0.064
+   }
+  ],
+  "quality": [
+   {
+    "term": "a warm sound",
+    "z": 1.16,
+    "cosine": 0.241
+   },
+   {
+    "term": "a boomy sound",
+    "z": 1.01,
+    "cosine": 0.194
+   },
+   {
+    "term": "a deep sound",
+    "z": 0.92,
+    "cosine": 0.177
+   }
+  ],
+  "production": [
+   {
+    "term": "a professionally mixed and mastered music track",
+    "z": 1.15,
+    "cosine": 0.334
+   },
+   {
+    "term": "a pure sine wave tone",
+    "z": 0.33,
+    "cosine": 0.103
+   },
+   {
+    "term": "a low bitrate mp3 with artifacts",
+    "z": -0.01,
+    "cosine": 0.09
+   }
+  ]
+ },
+ "audioset": [
+  {
+   "label": "Music",
+   "p": 0.818
+  },
+  {
+   "label": "Ambient music",
+   "p": 0.376
+  },
+  {
+   "label": "New-age music",
+   "p": 0.244
+  },
+  {
+   "label": "Throbbing",
+   "p": 0.24
+  },
+  {
+   "label": "Electronic music",
+   "p": 0.15
+  }
+ ],
+ "character": [],
+ "distinct_windows": [
+  {
+   "start": 20.0,
+   "end": 30.0,
+   "top_tag": {
+    "term": "a rising riser building tension",
+    "category": "transitions",
+    "z": 1.42,
+    "cosine": 0.239,
+    "verdict": "no match"
+   },
+   "audioset": [
+    {
+     "label": "Music",
+     "p": 0.709
+    },
+    {
+     "label": "Throbbing",
+     "p": 0.24
+    },
+    {
+     "label": "Ambient music",
+     "p": 0.153
+    }
+   ]
+  },
+  {
+   "start": 50.0,
+   "end": 60.0,
+   "top_tag": {
+    "term": "a sustained glass harp tone",
+    "category": "chimes",
+    "z": 2.08,
+    "cosine": 0.184,
+    "verdict": "weak"
+   },
+   "audioset": [
+    {
+     "label": "Music",
+     "p": 0.811
+    },
+    {
+     "label": "New-age music",
+     "p": 0.244
+    },
+    {
+     "label": "Ambient music",
+     "p": 0.231
+    }
+   ]
+  },
+  {
+   "start": 70.0,
+   "end": 80.0,
+   "top_tag": {
+    "term": "a singing bowl",
+    "category": "chimes",
+    "z": 1.53,
+    "cosine": 0.165,
+    "verdict": "no match"
+   },
+   "audioset": [
+    {
+     "label": "Music",
+     "p": 0.817
+    },
+    {
+     "label": "Ambient music",
+     "p": 0.237
+    },
+    {
+     "label": "New-age music",
+     "p": 0.159
+    }
+   ]
+  }
+ ],
+ "summary": "60.00 s busy, 2.4 onsets/s, loudness range 2 LU. Music (AudioSet Music 0.82). Unvalidated hints - genre: ambient synth pad music (z +2.8), synthwave music (z +2.4); mood (wrong for ~1 in 5 tracks in a test): dreamy and ethereal music (z +3.4), dark and tense music (z +2.6). No sound-effect description stands out (closest: a rising riser building tension z +1.5, a singing bowl z +1.4; tentative). AudioSet: Music 0.82, Ambient music 0.38, New-age music 0.24. peak -5.1 dBFS, -17.3 LUFS, brightness 546 Hz, bandwidth 3.2 kHz, side/mid -6 dB. Windows that read differently: 0:20.00-0:30.00 a rising riser building tension (z +1.4; AudioSet Music 0.71); 0:50.00-1:00.00 a sustained glass harp tone (z +2.0; AudioSet Music 0.81); 1:10.00-1:20.00 a singing bowl (z +1.5; AudioSet Music 0.82)."
+}

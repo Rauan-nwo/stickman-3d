@@ -21,7 +21,7 @@ export const snapPic = (x, w, h) => { const s = snapshot(); if (!s) { x.fillStyl
 const SI = { street: img(streetPlate) };
 const SA = lazy([SI.street], () => ({ street: SI.street, cloth: masked(SI.street, polyMask([[[1212, 600], [1250, 594], [1380, 594], [1428, 600], [1430, 648], [1210, 648]]])) }));
 const tJ = jensen(), tA = alice(); tJ.spec.shade = noirShade([1, .45]); tA.spec.shade = noirShade([-1, .45]);
-export const STREET = { window: { J: [1200, 627], A: [1447, 627], fs: .17, open: [[1108, 395], [1540, 645]] }, car: [[300, 596], [352, 600]] };   // сидят на нарисованных стульях плейта (подушка y 627); проём — до подоконника (y 645): ноги ниже подоконника скрыты, у стола — скатертью
+export const STREET = { window: { J: [1200, 627], A: [1447, 627], fs: .17, open: [[1108, 395], [1540, 645]] }, carWin: [[256, 574], [292, 574], [322, 586], [346, 604], [340, 612], [256, 612]], agents: [[294, 594, 9, 1], [271, 597, 8.5, 0]] };   // carWin — переднее боковое стекло машины агентов; agents — [x, y, r головы, наушники]   // сидят на нарисованных стульях плейта (подушка y 627); проём — до подоконника (y 645): ноги ниже подоконника скрыты, у стола — скатертью
 export function street(ctx, v, t, o = {}) {
   const a = SA(); if (!a) return;
   if (!o.solo) plate(ctx, a.street, v);
@@ -35,10 +35,27 @@ export function street(ctx, v, t, o = {}) {
   }
   ctx.restore();
   if (!o.solo) plate(ctx, a.cloth, v);
-  // в припаркованной машине: два силуэта голов в окнах и тёплый отсвет магнитофона
-  if (!o.solo) for (const [i, [x, y]] of STREET.car.entries()) { const P = toS(v, [x, y]), r = 15 * v.k;
-    ctx.save(); ctx.fillStyle = 'rgba(8,8,14,.92)'; ctx.beginPath(); ctx.arc(P[0], P[1] - r * .4, r, 0, Math.PI * 2); ctx.fill(); ctx.fillRect(P[0] - r * 1.3, P[1] + r * .2, r * 2.6, r * 1.2);
-    ctx.globalCompositeOperation = 'screen'; ctx.fillStyle = `rgba(255,170,90,${.18 + .06 * Math.sin(t * 3 + i)})`; ctx.beginPath(); ctx.arc(P[0] + r * .8, P[1] + r * .4, r * 1.6, 0, Math.PI * 2); ctx.fill(); ctx.restore(); }
+  // в припаркованной машине: два агента — НЕПРОЗРАЧНЫЕ тёмные силуэты за боковым стеклом (голова и плечи, у водителя наушники),
+  // тонкий тёплый контур со стороны приборной панели (вперёд, вправо), сверху — лёгкий тон стекла и блик: «за стеклом», но не насквозь
+  if (!o.solo) {
+    ctx.save(); ctx.translate(W / 2 - v.cx * v.k, H / 2 - v.cy * v.k); ctx.scale(v.k, v.k);   // дальше — пиксели плейта
+    const win = STREET.carWin; ctx.beginPath(); win.forEach(([x, y], k) => (k ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.closePath(); ctx.save(); ctx.clip();
+    for (const [k, a] of STREET.agents.entries()) {
+      const bob = .6 * Math.sin(t * 1.7 + k * 2), [hx, hy] = [a[0], a[1] + bob], r = a[2];
+      ctx.fillStyle = '#0a0b11';
+      ctx.beginPath(); ctx.ellipse(hx - 1, hy + r * 2.3, r * 1.9, r * 1.35, 0, Math.PI, 0); ctx.lineTo(hx + r * 1.9, hy + r * 4); ctx.lineTo(hx - r * 1.9, hy + r * 4); ctx.closePath(); ctx.fill();   // плечи
+      ctx.beginPath(); ctx.arc(hx, hy, r, 0, Math.PI * 2); ctx.fill();                                                                            // голова
+      ctx.strokeStyle = 'rgba(255,175,95,.75)'; ctx.lineWidth = 1.3; ctx.lineCap = 'round';                                                       // контур от панели
+      ctx.beginPath(); ctx.arc(hx, hy, r - .6, -1.1, 1.0); ctx.stroke(); ctx.beginPath(); ctx.arc(hx - 1, hy + r * 2.3, r * 1.9 - .6, -.9, -.25); ctx.stroke();
+      if (a[3]) { ctx.strokeStyle = '#000'; ctx.lineWidth = 2.2; ctx.beginPath(); ctx.arc(hx, hy, r + 1.2, Math.PI * 1.05, Math.PI * 1.95); ctx.stroke();   // наушники
+        ctx.fillStyle = '#000'; ctx.beginPath(); ctx.ellipse(hx - r * .35, hy + r * .15, r * .3, r * .42, 0, 0, Math.PI * 2); ctx.fill(); }   // чашка у уха (на затылочной стороне)
+    }
+    ctx.restore();
+    ctx.beginPath(); win.forEach(([x, y], k) => (k ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.closePath(); ctx.save(); ctx.clip();
+    ctx.fillStyle = 'rgba(70,120,160,.22)'; ctx.fillRect(200, 560, 200, 60);                                                                      // тон стекла
+    ctx.fillStyle = 'rgba(255,255,255,.10)'; ctx.beginPath(); ctx.moveTo(262, 612); ctx.lineTo(276, 574); ctx.lineTo(284, 574); ctx.lineTo(270, 612); ctx.closePath(); ctx.fill();   // блик
+    ctx.restore(); ctx.restore();
+  }
 }
 
 // ---------- D02-A: под столом рука в чёрной перчатке со стороны Алисы просовывает светящийся чип ----------

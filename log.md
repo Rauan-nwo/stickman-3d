@@ -100,3 +100,6 @@ touched: production/L001/animatic/core.js, production/L001/film/ (final.mjs, aud
 
 ## [2026-11-17 19:10] video | L001 — озвучка: ведущий (Leviticus Cornwall, выбор Рауана) одним дублем на сцену (18–21, 318–320; t 0.5/top_p 0.55, паузы 0.3 с), EN пересобран 17:18.9, изменились только 7 строк ведущего; RU переозвучен родными русскими голосами Fish (cast_ru.json, 49 ролей) — 20:07.7, акцента нет, медиана сходства whisper 1.0, метки вслух не читаются
 touched: production/L001/voice_fish/fish_voice.py, production/L001/voice_fish/cast.json, production/L001/voice_fish/cast_ru.json, production/L001/voice_fish/narration_directed.txt, production/L001/voice_fish/narration_ru_directed.txt, production/L001/voice_fish/host_takes.py, production/L001/voice_fish/host_takes/, production/L001/voice_fish/README.md, production/L001/out/voice_fish_en.mp3, production/L001/out/lines_fish.json, production/L001/out/voice_fish_ru.mp3, production/L001/out/lines_fish_ru.json
+
+## [2026-11-17 19:20] video | L001 звук: исследование (конкурент, лицензии, инструменты), конвейер production/L001/sound (монтажный лист из шотлиста, синтез 100+ классов, прослушивание earshot, сведение −14 LUFS со стемами, самопроверка), пилот гл. 0–1
+touched: production/L001/sound/, wiki/craft/sound-design-longform.md, wiki/craft/stickman-noir.md, index.md

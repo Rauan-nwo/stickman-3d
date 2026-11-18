@@ -75,6 +75,27 @@ python production/L001/film/qa.py opacity <dir_k> <dir_w>
 Перетайминг — только перезапуск: старт планов, рывки, события и рты берутся из `timing.json` и `words.json`,
 в постановке нет ни одной секунды, вписанной руками (кроме долей длины плана, где события нет в голосе).
 
+## Привязка постановки к планам: по тексту, не по номеру
+Шотлист перенумеровывают (341 → 342 → 351 → 352 плана), поэтому постановка привязана к плану ключом `'глава|начало текста плана'`
+(`keys.js`): `shots.js` (`SHOTS`, `OVER`, `SKIP_PROPS`) и `clips3d.js`. Номера планов вычисляются из текущего `timing.json` при сборке.
+После каждого перетайминга или правки шотлиста:
+```
+node production/L001/film/check.mjs --ch 0,1     # каждый ключ находит ровно один план; у каждого плана с героями есть постановка
+```
+Если план разрезали по словам — check покажет, какой ключ потерялся и какие новые планы остались без постановки.
+
+## Перетайминг под новый голос (порядок)
+```
+node production/L001/animatic/make_timing.mjs --lines out/lines_fish.json
+node production/L001/film/check.mjs --ch 0,1
+node engine/tools/build.mjs production/L001/film
+node production/L001/film/final.mjs --ch 0,1          # видео + out/ch0_1_voice.wav и out/ch0_1_tempbed.wav для звукового прохода
+python production/L001/film/verify3d.py production/L001/film/out/ch0_1.mp4
+python production/L001/film/qa.py sheets production/L001/film/out/ch0_1.mp4 0,1
+```
+Экспорт кончается на последнем слове главы + 0.6 с со спадом картинки и звука (`--full-chapter` — до конца главы).
+Только звук заново (без рендера картинки): `final.mjs --ch 0,1 --audio-only --skip-3d`.
+
 ## Конфиги локаций (staging/)
 
 | файл | плейт | герои | свет (noirShade dir) | маски переднего плана | базовые кадры |

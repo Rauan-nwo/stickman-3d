@@ -1,0 +1,298 @@
+{
+ "file": "oga-moil.mp3",
+ "duration_s": 185.08,
+ "samplerate": 44100,
+ "channels": 2,
+ "sounding_from_s": 1.72,
+ "sounding_to_s": 181.0,
+ "lufs_integrated": -15.7,
+ "peak_dbfs": -0.1,
+ "spectrum": {
+  "1_4k_share_pct": 0.36,
+  "1_4k_rel_dB": -24.4,
+  "below_250_share_pct": 68.1,
+  "centroid_median_hz": 514
+ },
+ "key": {
+  "key": "Bb minor",
+  "corr": 0.821,
+  "runner_up": "Eb minor",
+  "runner_up_corr": 0.676
+ },
+ "tempo_bpm": 123.0,
+ "tempo_raw_bpm": 123.0,
+ "tempo_fix": null,
+ "catalog_bpm": null,
+ "pulse_clarity": 0.001,
+ "beat_interval_cv": 0.053,
+ "pulsed": false,
+ "loudness_5s_lufs": [
+  -19.3,
+  -14.4,
+  -15.5,
+  -15.7,
+  -15.2,
+  -14.2,
+  -22.2,
+  -26.4,
+  -10.6,
+  -16.3,
+  -14.1,
+  -15.1,
+  -17.2,
+  -12.3,
+  -13.3,
+  -15.2,
+  -20.9,
+  -28.0,
+  -31.7,
+  -15.8,
+  -13.1,
+  -17.3,
+  -18.9,
+  -15.8,
+  -20.1,
+  -17.6,
+  -14.8,
+  -13.7,
+  -19.6,
+  -21.3,
+  -16.7,
+  -14.2,
+  -14.2,
+  -16.4,
+  -21.1,
+  -31.7,
+  -42.0
+ ],
+ "bar_s": null,
+ "grid_unit": "2s",
+ "sections": [
+  {
+   "label": "A",
+   "start_s": 0.0,
+   "end_s": 14.0,
+   "units": 7,
+   "rel_level_db": -19.8
+  },
+  {
+   "label": "B",
+   "start_s": 14.0,
+   "end_s": 22.0,
+   "units": 4,
+   "rel_level_db": -10.4
+  },
+  {
+   "label": "C",
+   "start_s": 22.0,
+   "end_s": 30.0,
+   "units": 4,
+   "rel_level_db": -10.4
+  },
+  {
+   "label": "D",
+   "start_s": 30.0,
+   "end_s": 44.0,
+   "units": 7,
+   "rel_level_db": -18.2
+  },
+  {
+   "label": "B",
+   "start_s": 44.0,
+   "end_s": 58.0,
+   "units": 7,
+   "rel_level_db": -11.6
+  },
+  {
+   "label": "E",
+   "start_s": 58.0,
+   "end_s": 66.0,
+   "units": 4,
+   "rel_level_db": -11.1
+  },
+  {
+   "label": "F",
+   "start_s": 66.0,
+   "end_s": 74.0,
+   "units": 4,
+   "rel_level_db": -8.9
+  },
+  {
+   "label": "G",
+   "start_s": 74.0,
+   "end_s": 88.0,
+   "units": 7,
+   "rel_level_db": -13.6
+  },
+  {
+   "label": "H",
+   "start_s": 88.0,
+   "end_s": 114.0,
+   "units": 13,
+   "rel_level_db": -28.3
+  },
+  {
+   "label": "I",
+   "start_s": 114.0,
+   "end_s": 124.0,
+   "units": 5,
+   "rel_level_db": -20.0
+  },
+  {
+   "label": "J",
+   "start_s": 124.0,
+   "end_s": 146.0,
+   "units": 11,
+   "rel_level_db": -14.1
+  },
+  {
+   "label": "J",
+   "start_s": 146.0,
+   "end_s": 154.0,
+   "units": 4,
+   "rel_level_db": -14.3
+  },
+  {
+   "label": "K",
+   "start_s": 154.0,
+   "end_s": 174.0,
+   "units": 10,
+   "rel_level_db": -11.0
+  },
+  {
+   "label": "H",
+   "start_s": 174.0,
+   "end_s": 185.08,
+   "units": 5,
+   "rel_level_db": -54.5
+  }
+ ],
+ "novelty_peaks_s": [
+  14.0,
+  22.0,
+  30.0,
+  44.0,
+  58.0,
+  66.0,
+  74.0,
+  88.0,
+  114.0,
+  124.0,
+  146.0,
+  154.0,
+  174.0
+ ],
+ "loops": [
+  {
+   "from_s": 16.0,
+   "to_s": 76.0,
+   "units": 30,
+   "len_s": 60.0,
+   "similarity": 0.797
+  },
+  {
+   "from_s": 102.0,
+   "to_s": 118.0,
+   "units": 8,
+   "len_s": 16.0,
+   "similarity": 0.68
+  },
+  {
+   "from_s": 62.0,
+   "to_s": 78.0,
+   "units": 8,
+   "len_s": 16.0,
+   "similarity": 0.596
+  },
+  {
+   "from_s": 48.0,
+   "to_s": 64.0,
+   "units": 8,
+   "len_s": 16.0,
+   "similarity": 0.571
+  },
+  {
+   "from_s": 16.0,
+   "to_s": 46.0,
+   "units": 15,
+   "len_s": 30.0,
+   "similarity": 0.565
+  },
+  {
+   "from_s": 46.0,
+   "to_s": 76.0,
+   "units": 15,
+   "len_s": 30.0,
+   "similarity": 0.528
+  }
+ ],
+ "section_cut_points_s": [
+  14.0,
+  22.0,
+  30.0,
+  44.0,
+  58.0,
+  66.0,
+  74.0,
+  88.0,
+  114.0,
+  124.0,
+  146.0,
+  154.0,
+  174.0
+ ],
+ "strong_novelty_points_s": [
+  44.0,
+  66.0,
+  86.0,
+  88.0,
+  90.0,
+  124.0,
+  126.0,
+  174.0
+ ],
+ "quiet_bar_starts_s": [
+  2.0,
+  4.0,
+  6.0,
+  8.0,
+  10.0,
+  12.0,
+  14.0,
+  16.0,
+  18.0,
+  20.0,
+  22.0,
+  24.0,
+  26.0,
+  28.0,
+  30.0,
+  32.0,
+  34.0,
+  36.0,
+  38.0,
+  40.0,
+  42.0,
+  44.0,
+  46.0,
+  48.0,
+  50.0,
+  52.0,
+  54.0,
+  56.0,
+  58.0,
+  60.0,
+  64.0,
+  66.0,
+  68.0,
+  70.0,
+  72.0,
+  74.0,
+  76.0,
+  78.0,
+  80.0,
+  82.0
+ ],
+ "phrase_points_s": [],
+ "id": "oga-moil"
+}

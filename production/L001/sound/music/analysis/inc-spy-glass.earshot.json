@@ -1,0 +1,510 @@
+{
+ "path": "C:/dev/projects/youtube-video/production/L001/sound/music/candidates/inc-spy-glass.mp3",
+ "start": 20.0,
+ "end": 80.0,
+ "duration": 60.0,
+ "measurements": {
+  "duration": 60.0,
+  "peak_dbfs": -1.9,
+  "true_peak_dbtp": -1.9,
+  "rms_dbfs": -19.1,
+  "lufs": -17.0,
+  "lra_lu": 6.1,
+  "attack_ms": 0.0,
+  "decay_ms": 524.0,
+  "brightness_hz": 1890,
+  "bandwidth_hz": 16254,
+  "noise_floor_dbfs": -43.7,
+  "flatness": 0.0008,
+  "harmonic_ratio": 0.957,
+  "f0_hz": 97.7,
+  "onset_count": 151,
+  "onsets_per_s": 2.52,
+  "width": "side/mid -5 dB",
+  "digital_silence_frac": 0.0
+ },
+ "shape": "busy, 2.5 onsets/s, loudness range 6 LU",
+ "top_tags": [
+  {
+   "term": "a music box melody",
+   "category": "chimes",
+   "z": 1.5,
+   "cosine": 0.188,
+   "verdict": "no match"
+  },
+  {
+   "term": "keys jingling",
+   "category": "everyday",
+   "z": 1.33,
+   "cosine": 0.118,
+   "verdict": "no match"
+  },
+  {
+   "term": "scissors cutting",
+   "category": "foley",
+   "z": 1.28,
+   "cosine": 0.136,
+   "verdict": "no match"
+  },
+  {
+   "term": "walking through dry leaves",
+   "category": "nature",
+   "z": 1.23,
+   "cosine": 0.104,
+   "verdict": "no match"
+  },
+  {
+   "term": "a reverse cymbal swell",
+   "category": "transitions",
+   "z": 1.05,
+   "cosine": 0.125,
+   "verdict": "no match"
+  },
+  {
+   "term": "lego bricks clicking",
+   "category": "foley",
+   "z": 1.02,
+   "cosine": 0.13,
+   "verdict": "no match"
+  },
+  {
+   "term": "a can opening",
+   "category": "foley",
+   "z": 0.9,
+   "cosine": 0.146,
+   "verdict": "no match"
+  },
+  {
+   "term": "footsteps on wood",
+   "category": "foley",
+   "z": 0.9,
+   "cosine": 0.039,
+   "verdict": "no match"
+  }
+ ],
+ "music_hints": [
+  {
+   "term": "jazz music",
+   "category": "music_genre",
+   "z": 5.5,
+   "cosine": 0.484
+  },
+  {
+   "term": "a cymbal roll",
+   "category": "instruments",
+   "z": 2.94,
+   "cosine": 0.268
+  },
+  {
+   "term": "playful children's piano music",
+   "category": "music_genre",
+   "z": 2.8,
+   "cosine": 0.3
+  },
+  {
+   "term": "orchestral percussion",
+   "category": "instruments",
+   "z": 2.78,
+   "cosine": 0.298
+  },
+  {
+   "term": "mysterious music",
+   "category": "music_mood",
+   "z": 2.53,
+   "cosine": 0.298
+  },
+  {
+   "term": "romantic music",
+   "category": "music_mood",
+   "z": 2.45,
+   "cosine": 0.316
+  },
+  {
+   "term": "sad and melancholic music",
+   "category": "music_mood",
+   "z": 2.45,
+   "cosine": 0.277
+  },
+  {
+   "term": "funk music",
+   "category": "music_genre",
+   "z": 2.38,
+   "cosine": 0.257
+  }
+ ],
+ "tags": {
+  "transitions": [
+   {
+    "term": "a reverse cymbal swell",
+    "z": 1.05,
+    "cosine": 0.125
+   },
+   {
+    "term": "a stick swung fast through the air",
+    "z": 0.26,
+    "cosine": 0.04
+   },
+   {
+    "term": "a quick swipe",
+    "z": 0.03,
+    "cosine": 0.06
+   }
+  ],
+  "impacts": [
+   {
+    "term": "a big drum hit",
+    "z": 0.63,
+    "cosine": 0.042
+   },
+   {
+    "term": "a door slam",
+    "z": 0.51,
+    "cosine": 0.035
+   },
+   {
+    "term": "a metallic clang",
+    "z": 0.13,
+    "cosine": 0.02
+   }
+  ],
+  "ui": [
+   {
+    "term": "a scroll wheel tick",
+    "z": -0.08,
+    "cosine": 0.064
+   },
+   {
+    "term": "a button being pressed",
+    "z": -0.2,
+    "cosine": 0.024
+   },
+   {
+    "term": "a notification ding",
+    "z": -0.21,
+    "cosine": 0.026
+   }
+  ],
+  "keyboard": [
+   {
+    "term": "an old typewriter",
+    "z": 0.6,
+    "cosine": 0.072
+   },
+   {
+    "term": "slow typing with separate key presses",
+    "z": 0.52,
+    "cosine": 0.107
+   },
+   {
+    "term": "a deep thocky mechanical keyboard",
+    "z": 0.02,
+    "cosine": 0.084
+   }
+  ],
+  "foley": [
+   {
+    "term": "scissors cutting",
+    "z": 1.28,
+    "cosine": 0.136
+   },
+   {
+    "term": "lego bricks clicking",
+    "z": 1.02,
+    "cosine": 0.13
+   },
+   {
+    "term": "a can opening",
+    "z": 0.9,
+    "cosine": 0.146
+   }
+  ],
+  "water": [
+   {
+    "term": "water splashing",
+    "z": 0.13,
+    "cosine": 0.023
+   },
+   {
+    "term": "a water drop",
+    "z": 0.12,
+    "cosine": 0.087
+   },
+   {
+    "term": "a dripping tap",
+    "z": 0.07,
+    "cosine": 0.058
+   }
+  ],
+  "nature": [
+   {
+    "term": "walking through dry leaves",
+    "z": 1.23,
+    "cosine": 0.104
+   },
+   {
+    "term": "a tree shaking",
+    "z": 0.59,
+    "cosine": 0.081
+   },
+   {
+    "term": "leaves rustling",
+    "z": 0.49,
+    "cosine": 0.058
+   }
+  ],
+  "chimes": [
+   {
+    "term": "a music box melody",
+    "z": 1.5,
+    "cosine": 0.188
+   },
+   {
+    "term": "a glockenspiel run",
+    "z": 0.74,
+    "cosine": 0.153
+   },
+   {
+    "term": "a sustained glass harp tone",
+    "z": 0.59,
+    "cosine": 0.025
+   }
+  ],
+  "ambience": [
+   {
+    "term": "an office ambience",
+    "z": 0.77,
+    "cosine": 0.024
+   },
+   {
+    "term": "a crackling fire",
+    "z": 0.44,
+    "cosine": 0.085
+   },
+   {
+    "term": "rain on a window",
+    "z": 0.26,
+    "cosine": 0.072
+   }
+  ],
+  "everyday": [
+   {
+    "term": "keys jingling",
+    "z": 1.33,
+    "cosine": 0.118
+   },
+   {
+    "term": "a spray can hissing",
+    "z": 0.74,
+    "cosine": 0.059
+   },
+   {
+    "term": "a cash register",
+    "z": 0.64,
+    "cosine": 0.075
+   }
+  ],
+  "music_genre": [
+   {
+    "term": "jazz music",
+    "z": 5.5,
+    "cosine": 0.484
+   },
+   {
+    "term": "playful children's piano music",
+    "z": 2.8,
+    "cosine": 0.3
+   },
+   {
+    "term": "funk music",
+    "z": 2.38,
+    "cosine": 0.257
+   }
+  ],
+  "music_mood": [
+   {
+    "term": "mysterious music",
+    "z": 2.53,
+    "cosine": 0.298
+   },
+   {
+    "term": "romantic music",
+    "z": 2.45,
+    "cosine": 0.316
+   },
+   {
+    "term": "sad and melancholic music",
+    "z": 2.45,
+    "cosine": 0.277
+   }
+  ],
+  "instruments": [
+   {
+    "term": "a cymbal roll",
+    "z": 2.94,
+    "cosine": 0.268
+   },
+   {
+    "term": "orchestral percussion",
+    "z": 2.78,
+    "cosine": 0.298
+   },
+   {
+    "term": "brass section",
+    "z": 2.35,
+    "cosine": 0.232
+   }
+  ],
+  "voice": [
+   {
+    "term": "a voice-over narration",
+    "z": 0.9,
+    "cosine": 0.063
+   },
+   {
+    "term": "a baby crying",
+    "z": 0.48,
+    "cosine": -0.003
+   },
+   {
+    "term": "a person coughing",
+    "z": 0.29,
+    "cosine": -0.016
+   }
+  ],
+  "quality": [
+   {
+    "term": "a boomy sound",
+    "z": 0.91,
+    "cosine": 0.134
+   },
+   {
+    "term": "a warm sound",
+    "z": 0.7,
+    "cosine": 0.149
+   },
+   {
+    "term": "a metallic sound",
+    "z": 0.49,
+    "cosine": 0.021
+   }
+  ],
+  "production": [
+   {
+    "term": "a professionally mixed and mastered music track",
+    "z": 1.63,
+    "cosine": 0.319
+   },
+   {
+    "term": "a low quality recording with hiss",
+    "z": 0.04,
+    "cosine": -0.0
+   },
+   {
+    "term": "a real recording of a physical object",
+    "z": -0.24,
+    "cosine": 0.053
+   }
+  ]
+ },
+ "audioset": [
+  {
+   "label": "Music",
+   "p": 0.688
+  },
+  {
+   "label": "Double bass",
+   "p": 0.634
+  },
+  {
+   "label": "Cello",
+   "p": 0.333
+  },
+  {
+   "label": "Musical instrument",
+   "p": 0.26
+  },
+  {
+   "label": "Bowed string instrument",
+   "p": 0.256
+  }
+ ],
+ "character": [],
+ "distinct_windows": [
+  {
+   "start": 30.0,
+   "end": 40.0,
+   "top_tag": {
+    "term": "a music box melody",
+    "category": "chimes",
+    "z": 1.89,
+    "cosine": 0.209,
+    "verdict": "no match"
+   },
+   "audioset": [
+    {
+     "label": "Music",
+     "p": 0.404
+    },
+    {
+     "label": "Marimba, xylophone",
+     "p": 0.247
+    },
+    {
+     "label": "Glockenspiel",
+     "p": 0.2
+    }
+   ]
+  },
+  {
+   "start": 60.0,
+   "end": 70.0,
+   "top_tag": {
+    "term": "keys jingling",
+    "category": "everyday",
+    "z": 1.71,
+    "cosine": 0.143,
+    "verdict": "no match"
+   },
+   "audioset": [
+    {
+     "label": "Music",
+     "p": 0.641
+    },
+    {
+     "label": "Double bass",
+     "p": 0.625
+    },
+    {
+     "label": "Cello",
+     "p": 0.246
+    }
+   ]
+  },
+  {
+   "start": 70.0,
+   "end": 80.0,
+   "top_tag": {
+    "term": "paper rustling",
+    "category": "foley",
+    "z": 1.62,
+    "cosine": 0.145,
+    "verdict": "no match"
+   },
+   "audioset": [
+    {
+     "label": "Music",
+     "p": 0.676
+    },
+    {
+     "label": "Double bass",
+     "p": 0.544
+    },
+    {
+     "label": "Cello",
+     "p": 0.331
+    }
+   ]
+  }
+ ],
+ "summary": "60.00 s busy, 2.5 onsets/s, loudness range 6 LU. Music (AudioSet Music 0.69). Unvalidated hints - genre: jazz music (z +5.5), playful children's piano music (z +2.8); mood (wrong for ~1 in 5 tracks in a test): mysterious music (z +2.5), romantic music (z +2.4). No sound-effect description stands out (closest: a music box melody z +1.5, keys jingling z +1.3; tentative). AudioSet: Music 0.69, Double bass 0.63, Cello 0.33. peak -1.9 dBFS, -17.0 LUFS, brightness 1.9 kHz, bandwidth 16.3 kHz, side/mid -5 dB. Windows that read differently: 0:30.00-0:40.00 a music box melody (z +1.8; AudioSet Music 0.40); 1:00.00-1:10.00 keys jingling (z +1.7; AudioSet Music 0.64); 1:10.00-1:20.00 paper rustling (z +1.6; AudioSet Music 0.68)."
+}

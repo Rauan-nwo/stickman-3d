@@ -1,0 +1,433 @@
+{
+ "path": "C:/dev/projects/youtube-video/production/L001/sound/music/candidates/inc-stay-the-course.mp3",
+ "start": 20.0,
+ "end": 80.0,
+ "duration": 60.0,
+ "measurements": {
+  "duration": 60.0,
+  "peak_dbfs": -10.1,
+  "true_peak_dbtp": -10.1,
+  "rms_dbfs": -21.7,
+  "lufs": -21.2,
+  "lra_lu": 1.5,
+  "attack_ms": 4.0,
+  "brightness_hz": 444,
+  "bandwidth_hz": 4063,
+  "noise_floor_dbfs": -28.9,
+  "flatness": 0.0,
+  "harmonic_ratio": 0.97,
+  "f0_hz": 65.4,
+  "onset_count": 144,
+  "onsets_per_s": 2.4,
+  "width": "side/mid -3 dB",
+  "digital_silence_frac": 0.0
+ },
+ "shape": "busy, 2.4 onsets/s, loudness range 2 LU",
+ "top_tags": [
+  {
+   "term": "a rising riser building tension",
+   "category": "transitions",
+   "z": 1.78,
+   "cosine": 0.295,
+   "verdict": "no match"
+  },
+  {
+   "term": "a cinematic hit with a long tail",
+   "category": "impacts",
+   "z": 1.61,
+   "cosine": 0.204,
+   "verdict": "no match"
+  },
+  {
+   "term": "a deep cinematic boom",
+   "category": "impacts",
+   "z": 1.29,
+   "cosine": 0.181,
+   "verdict": "no match"
+  },
+  {
+   "term": "a big braam",
+   "category": "impacts",
+   "z": 1.23,
+   "cosine": 0.219,
+   "verdict": "no match"
+  },
+  {
+   "term": "a deep cinematic whoosh",
+   "category": "transitions",
+   "z": 1.18,
+   "cosine": 0.184,
+   "verdict": "no match"
+  },
+  {
+   "term": "an uplifter sweep",
+   "category": "transitions",
+   "z": 0.99,
+   "cosine": 0.203,
+   "verdict": "no match"
+  },
+  {
+   "term": "a singing bowl",
+   "category": "chimes",
+   "z": 0.92,
+   "cosine": 0.116,
+   "verdict": "no match"
+  },
+  {
+   "term": "church bells",
+   "category": "chimes",
+   "z": 0.91,
+   "cosine": 0.153,
+   "verdict": "no match"
+  }
+ ],
+ "music_hints": [
+  {
+   "term": "dark and tense music",
+   "category": "music_mood",
+   "z": 3.37,
+   "cosine": 0.492
+  },
+  {
+   "term": "dreamy and ethereal music",
+   "category": "music_mood",
+   "z": 3.34,
+   "cosine": 0.465
+  },
+  {
+   "term": "ambient synth pad music",
+   "category": "music_genre",
+   "z": 3.05,
+   "cosine": 0.405
+  },
+  {
+   "term": "cinematic orchestral music",
+   "category": "music_genre",
+   "z": 2.84,
+   "cosine": 0.415
+  },
+  {
+   "term": "uplifting orchestral film score",
+   "category": "music_genre",
+   "z": 2.63,
+   "cosine": 0.387
+  },
+  {
+   "term": "synthwave music",
+   "category": "music_genre",
+   "z": 2.52,
+   "cosine": 0.4
+  },
+  {
+   "term": "strings ensemble",
+   "category": "instruments",
+   "z": 2.47,
+   "cosine": 0.381
+  },
+  {
+   "term": "epic trailer music",
+   "category": "music_genre",
+   "z": 2.35,
+   "cosine": 0.389
+  }
+ ],
+ "tags": {
+  "transitions": [
+   {
+    "term": "a rising riser building tension",
+    "z": 1.78,
+    "cosine": 0.295
+   },
+   {
+    "term": "a deep cinematic whoosh",
+    "z": 1.18,
+    "cosine": 0.184
+   },
+   {
+    "term": "an uplifter sweep",
+    "z": 0.99,
+    "cosine": 0.203
+   }
+  ],
+  "impacts": [
+   {
+    "term": "a cinematic hit with a long tail",
+    "z": 1.61,
+    "cosine": 0.204
+   },
+   {
+    "term": "a deep cinematic boom",
+    "z": 1.29,
+    "cosine": 0.181
+   },
+   {
+    "term": "a big braam",
+    "z": 1.23,
+    "cosine": 0.219
+   }
+  ],
+  "ui": [
+   {
+    "term": "a touchscreen tap",
+    "z": -0.22,
+    "cosine": 0.07
+   },
+   {
+    "term": "a soft UI button tap",
+    "z": -0.26,
+    "cosine": 0.035
+   },
+   {
+    "term": "a chat message pop",
+    "z": -0.44,
+    "cosine": 0.096
+   }
+  ],
+  "keyboard": [
+   {
+    "term": "a deep thocky mechanical keyboard",
+    "z": -0.18,
+    "cosine": 0.1
+   },
+   {
+    "term": "a keyboard typing fast",
+    "z": -0.46,
+    "cosine": 0.034
+   },
+   {
+    "term": "slow typing with separate key presses",
+    "z": -0.49,
+    "cosine": 0.048
+   }
+  ],
+  "foley": [
+   {
+    "term": "a metal scrape",
+    "z": 0.35,
+    "cosine": 0.06
+   },
+   {
+    "term": "footsteps on gravel",
+    "z": 0.33,
+    "cosine": 0.013
+   },
+   {
+    "term": "a finger tapping on glass",
+    "z": 0.21,
+    "cosine": 0.112
+   }
+  ],
+  "water": [
+   {
+    "term": "being underwater",
+    "z": 0.6,
+    "cosine": 0.133
+   },
+   {
+    "term": "bubbles underwater",
+    "z": -0.14,
+    "cosine": 0.033
+   },
+   {
+    "term": "pouring water",
+    "z": -0.46,
+    "cosine": -0.013
+   }
+  ],
+  "nature": [
+   {
+    "term": "footsteps on grass",
+    "z": 0.42,
+    "cosine": 0.063
+   },
+   {
+    "term": "a horse galloping",
+    "z": -0.09,
+    "cosine": 0.029
+   },
+   {
+    "term": "a bird flapping its wings",
+    "z": -0.15,
+    "cosine": 0.013
+   }
+  ],
+  "chimes": [
+   {
+    "term": "a singing bowl",
+    "z": 0.92,
+    "cosine": 0.116
+   },
+   {
+    "term": "church bells",
+    "z": 0.91,
+    "cosine": 0.153
+   },
+   {
+    "term": "a music box melody",
+    "z": -0.06,
+    "cosine": 0.096
+   }
+  ],
+  "ambience": [
+   {
+    "term": "birds singing in the morning",
+    "z": 0.8,
+    "cosine": 0.084
+   },
+   {
+    "term": "a crowd cheering",
+    "z": 0.75,
+    "cosine": 0.071
+   },
+   {
+    "term": "skylarks over a meadow",
+    "z": 0.7,
+    "cosine": 0.137
+   }
+  ],
+  "everyday": [
+   {
+    "term": "a cow mooing",
+    "z": 0.63,
+    "cosine": 0.078
+   },
+   {
+    "term": "a saw cutting wood",
+    "z": 0.49,
+    "cosine": 0.105
+   },
+   {
+    "term": "a helicopter flying overhead",
+    "z": 0.49,
+    "cosine": 0.12
+   }
+  ],
+  "music_genre": [
+   {
+    "term": "ambient synth pad music",
+    "z": 3.05,
+    "cosine": 0.405
+   },
+   {
+    "term": "cinematic orchestral music",
+    "z": 2.84,
+    "cosine": 0.415
+   },
+   {
+    "term": "uplifting orchestral film score",
+    "z": 2.63,
+    "cosine": 0.387
+   }
+  ],
+  "music_mood": [
+   {
+    "term": "dark and tense music",
+    "z": 3.37,
+    "cosine": 0.492
+   },
+   {
+    "term": "dreamy and ethereal music",
+    "z": 3.34,
+    "cosine": 0.465
+   },
+   {
+    "term": "futuristic music",
+    "z": 2.33,
+    "cosine": 0.391
+   }
+  ],
+  "instruments": [
+   {
+    "term": "strings ensemble",
+    "z": 2.47,
+    "cosine": 0.381
+   },
+   {
+    "term": "a choir",
+    "z": 2.11,
+    "cosine": 0.274
+   },
+   {
+    "term": "a warm analog synth pad",
+    "z": 2.09,
+    "cosine": 0.302
+   }
+  ],
+  "voice": [
+   {
+    "term": "singing vocals",
+    "z": 1.84,
+    "cosine": 0.249
+   },
+   {
+    "term": "people laughing",
+    "z": 0.77,
+    "cosine": 0.01
+   },
+   {
+    "term": "a baby crying",
+    "z": 0.69,
+    "cosine": 0.075
+   }
+  ],
+  "quality": [
+   {
+    "term": "a deep sound",
+    "z": 1.0,
+    "cosine": 0.203
+   },
+   {
+    "term": "a warm sound",
+    "z": 0.91,
+    "cosine": 0.234
+   },
+   {
+    "term": "a boomy sound",
+    "z": 0.89,
+    "cosine": 0.198
+   }
+  ],
+  "production": [
+   {
+    "term": "a professionally mixed and mastered music track",
+    "z": 1.12,
+    "cosine": 0.352
+   },
+   {
+    "term": "a low bitrate mp3 with artifacts",
+    "z": 0.19,
+    "cosine": 0.117
+   },
+   {
+    "term": "a pure sine wave tone",
+    "z": 0.13,
+    "cosine": 0.089
+   }
+  ]
+ },
+ "audioset": [
+  {
+   "label": "Music",
+   "p": 0.77
+  },
+  {
+   "label": "Ambient music",
+   "p": 0.603
+  },
+  {
+   "label": "Scary music",
+   "p": 0.173
+  },
+  {
+   "label": "New-age music",
+   "p": 0.128
+  },
+  {
+   "label": "Organ",
+   "p": 0.099
+  }
+ ],
+ "character": [],
+ "distinct_windows": [],
+ "summary": "60.00 s busy, 2.4 onsets/s, loudness range 2 LU. Music (AudioSet Music 0.77). Unvalidated hints - genre: ambient synth pad music (z +3.0), cinematic orchestral music (z +2.8); mood (wrong for ~1 in 5 tracks in a test): dark and tense music (z +3.3), dreamy and ethereal music (z +3.3). No sound-effect description stands out (closest: a rising riser building tension z +1.7, a cinematic hit with a long tail z +1.6; tentative). AudioSet: Music 0.77, Ambient music 0.60, Scary music 0.17. peak -10.1 dBFS, -21.2 LUFS, brightness 444 Hz, bandwidth 4.1 kHz, side/mid -3 dB. Uniform: all 6 analysed 10 s windows read as a rising riser building tension."
+}

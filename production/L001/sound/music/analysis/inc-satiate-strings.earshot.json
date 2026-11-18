@@ -1,0 +1,484 @@
+{
+ "path": "C:/dev/projects/youtube-video/production/L001/sound/music/candidates/inc-satiate-strings.mp3",
+ "start": 20.0,
+ "end": 80.0,
+ "duration": 60.0,
+ "measurements": {
+  "duration": 60.0,
+  "peak_dbfs": -3.1,
+  "true_peak_dbtp": -3.1,
+  "rms_dbfs": -19.9,
+  "lufs": -17.6,
+  "lra_lu": 7.1,
+  "attack_ms": 5.0,
+  "brightness_hz": 1162,
+  "bandwidth_hz": 10240,
+  "noise_floor_dbfs": -29.9,
+  "flatness": 0.0,
+  "harmonic_ratio": 0.995,
+  "f0_hz": 77.0,
+  "onset_count": 325,
+  "onsets_per_s": 5.42,
+  "width": "side/mid 0 dB",
+  "digital_silence_frac": 0.0
+ },
+ "shape": "busy, 5.4 onsets/s, loudness range 7 LU",
+ "top_tags": [
+  {
+   "term": "a rising riser building tension",
+   "category": "transitions",
+   "z": 2.56,
+   "cosine": 0.318,
+   "verdict": "plausible"
+  },
+  {
+   "term": "a sustained glass harp tone",
+   "category": "chimes",
+   "z": 2.02,
+   "cosine": 0.183,
+   "verdict": "weak"
+  },
+  {
+   "term": "a cinematic hit with a long tail",
+   "category": "impacts",
+   "z": 1.71,
+   "cosine": 0.157,
+   "verdict": "no match"
+  },
+  {
+   "term": "a singing bowl",
+   "category": "chimes",
+   "z": 1.66,
+   "cosine": 0.142,
+   "verdict": "no match"
+  },
+  {
+   "term": "church bells",
+   "category": "chimes",
+   "z": 1.54,
+   "cosine": 0.168,
+   "verdict": "no match"
+  },
+  {
+   "term": "skylarks over a meadow",
+   "category": "ambience",
+   "z": 1.31,
+   "cosine": 0.151,
+   "verdict": "no match"
+  },
+  {
+   "term": "a big braam",
+   "category": "impacts",
+   "z": 1.16,
+   "cosine": 0.157,
+   "verdict": "no match"
+  },
+  {
+   "term": "a forest ambience",
+   "category": "ambience",
+   "z": 1.16,
+   "cosine": 0.13,
+   "verdict": "no match"
+  }
+ ],
+ "music_hints": [
+  {
+   "term": "strings ensemble",
+   "category": "instruments",
+   "z": 3.96,
+   "cosine": 0.474
+  },
+  {
+   "term": "cinematic orchestral music",
+   "category": "music_genre",
+   "z": 3.52,
+   "cosine": 0.42
+  },
+  {
+   "term": "uplifting orchestral film score",
+   "category": "music_genre",
+   "z": 3.41,
+   "cosine": 0.404
+  },
+  {
+   "term": "dreamy and ethereal music",
+   "category": "music_mood",
+   "z": 3.38,
+   "cosine": 0.399
+  },
+  {
+   "term": "ambient synth pad music",
+   "category": "music_genre",
+   "z": 3.22,
+   "cosine": 0.354
+  },
+  {
+   "term": "dark and tense music",
+   "category": "music_mood",
+   "z": 3.1,
+   "cosine": 0.393
+  },
+  {
+   "term": "classical string quartet",
+   "category": "music_genre",
+   "z": 3.04,
+   "cosine": 0.332
+  },
+  {
+   "term": "sad and melancholic music",
+   "category": "music_mood",
+   "z": 2.8,
+   "cosine": 0.366
+  }
+ ],
+ "tags": {
+  "transitions": [
+   {
+    "term": "a rising riser building tension",
+    "z": 2.56,
+    "cosine": 0.318
+   },
+   {
+    "term": "a deep cinematic whoosh",
+    "z": 1.12,
+    "cosine": 0.123
+   },
+   {
+    "term": "a reverse cymbal swell",
+    "z": 0.92,
+    "cosine": 0.13
+   }
+  ],
+  "impacts": [
+   {
+    "term": "a cinematic hit with a long tail",
+    "z": 1.71,
+    "cosine": 0.157
+   },
+   {
+    "term": "a big braam",
+    "z": 1.16,
+    "cosine": 0.157
+   },
+   {
+    "term": "a deep cinematic boom",
+    "z": 0.78,
+    "cosine": 0.071
+   }
+  ],
+  "ui": [
+   {
+    "term": "a success chime",
+    "z": -0.01,
+    "cosine": 0.081
+   },
+   {
+    "term": "a notification ding",
+    "z": -0.33,
+    "cosine": 0.002
+   },
+   {
+    "term": "a crisp interface click",
+    "z": -0.46,
+    "cosine": 0.025
+   }
+  ],
+  "keyboard": [
+   {
+    "term": "a keyboard typing fast",
+    "z": -0.17,
+    "cosine": 0.022
+   },
+   {
+    "term": "an old typewriter",
+    "z": -0.24,
+    "cosine": -0.009
+   },
+   {
+    "term": "a laptop keyboard typing",
+    "z": -0.51,
+    "cosine": 0.0
+   }
+  ],
+  "foley": [
+   {
+    "term": "a metal scrape",
+    "z": 0.92,
+    "cosine": 0.073
+   },
+   {
+    "term": "scissors cutting",
+    "z": 0.53,
+    "cosine": 0.081
+   },
+   {
+    "term": "footsteps on gravel",
+    "z": 0.34,
+    "cosine": -0.033
+   }
+  ],
+  "water": [
+   {
+    "term": "pouring water",
+    "z": 0.34,
+    "cosine": 0.028
+   },
+   {
+    "term": "being underwater",
+    "z": 0.15,
+    "cosine": 0.035
+   },
+   {
+    "term": "a stream flowing",
+    "z": -0.05,
+    "cosine": 0.036
+   }
+  ],
+  "nature": [
+   {
+    "term": "walking through dry leaves",
+    "z": 0.4,
+    "cosine": 0.039
+   },
+   {
+    "term": "footsteps on grass",
+    "z": 0.39,
+    "cosine": 0.011
+   },
+   {
+    "term": "insects buzzing",
+    "z": 0.08,
+    "cosine": 0.013
+   }
+  ],
+  "chimes": [
+   {
+    "term": "a sustained glass harp tone",
+    "z": 2.02,
+    "cosine": 0.183
+   },
+   {
+    "term": "a singing bowl",
+    "z": 1.66,
+    "cosine": 0.142
+   },
+   {
+    "term": "church bells",
+    "z": 1.54,
+    "cosine": 0.168
+   }
+  ],
+  "ambience": [
+   {
+    "term": "skylarks over a meadow",
+    "z": 1.31,
+    "cosine": 0.151
+   },
+   {
+    "term": "a forest ambience",
+    "z": 1.16,
+    "cosine": 0.13
+   },
+   {
+    "term": "an airplane flying overhead",
+    "z": 0.96,
+    "cosine": 0.096
+   }
+  ],
+  "everyday": [
+   {
+    "term": "a saw cutting wood",
+    "z": 0.93,
+    "cosine": 0.102
+   },
+   {
+    "term": "a train passing",
+    "z": 0.74,
+    "cosine": 0.065
+   },
+   {
+    "term": "a sword being drawn",
+    "z": 0.54,
+    "cosine": 0.048
+   }
+  ],
+  "music_genre": [
+   {
+    "term": "cinematic orchestral music",
+    "z": 3.52,
+    "cosine": 0.42
+   },
+   {
+    "term": "uplifting orchestral film score",
+    "z": 3.41,
+    "cosine": 0.404
+   },
+   {
+    "term": "ambient synth pad music",
+    "z": 3.22,
+    "cosine": 0.354
+   }
+  ],
+  "music_mood": [
+   {
+    "term": "dreamy and ethereal music",
+    "z": 3.38,
+    "cosine": 0.399
+   },
+   {
+    "term": "dark and tense music",
+    "z": 3.1,
+    "cosine": 0.393
+   },
+   {
+    "term": "sad and melancholic music",
+    "z": 2.8,
+    "cosine": 0.366
+   }
+  ],
+  "instruments": [
+   {
+    "term": "strings ensemble",
+    "z": 3.96,
+    "cosine": 0.474
+   },
+   {
+    "term": "a warm analog synth pad",
+    "z": 2.54,
+    "cosine": 0.289
+   },
+   {
+    "term": "orchestral percussion",
+    "z": 2.21,
+    "cosine": 0.297
+   }
+  ],
+  "voice": [
+   {
+    "term": "singing vocals",
+    "z": 0.87,
+    "cosine": 0.087
+   },
+   {
+    "term": "a voice-over narration",
+    "z": 0.75,
+    "cosine": 0.062
+   },
+   {
+    "term": "people laughing",
+    "z": 0.6,
+    "cosine": -0.06
+   }
+  ],
+  "quality": [
+   {
+    "term": "a reverberant sound in a large hall",
+    "z": 0.91,
+    "cosine": 0.063
+   },
+   {
+    "term": "a long sound",
+    "z": 0.83,
+    "cosine": 0.159
+   },
+   {
+    "term": "a metallic sound",
+    "z": 0.8,
+    "cosine": 0.059
+   }
+  ],
+  "production": [
+   {
+    "term": "a professionally mixed and mastered music track",
+    "z": 1.29,
+    "cosine": 0.315
+   },
+   {
+    "term": "a low bitrate mp3 with artifacts",
+    "z": 0.47,
+    "cosine": 0.1
+   },
+   {
+    "term": "a pure sine wave tone",
+    "z": 0.09,
+    "cosine": 0.039
+   }
+  ]
+ },
+ "audioset": [
+  {
+   "label": "Music",
+   "p": 0.911
+  },
+  {
+   "label": "Sad music",
+   "p": 0.274
+  },
+  {
+   "label": "Background music",
+   "p": 0.172
+  },
+  {
+   "label": "Scary music",
+   "p": 0.152
+  },
+  {
+   "label": "Theme music",
+   "p": 0.136
+  }
+ ],
+ "character": [],
+ "distinct_windows": [
+  {
+   "start": 40.0,
+   "end": 50.0,
+   "top_tag": {
+    "term": "a rising riser building tension",
+    "category": "transitions",
+    "z": 2.4,
+    "cosine": 0.309,
+    "verdict": "weak"
+   },
+   "audioset": [
+    {
+     "label": "Music",
+     "p": 0.845
+    },
+    {
+     "label": "Sad music",
+     "p": 0.213
+    },
+    {
+     "label": "Background music",
+     "p": 0.116
+    }
+   ]
+  },
+  {
+   "start": 60.0,
+   "end": 70.0,
+   "top_tag": {
+    "term": "a sustained glass harp tone",
+    "category": "chimes",
+    "z": 2.64,
+    "cosine": 0.239,
+    "verdict": "plausible"
+   },
+   "audioset": [
+    {
+     "label": "Music",
+     "p": 0.869
+    },
+    {
+     "label": "Sad music",
+     "p": 0.259
+    },
+    {
+     "label": "Musical instrument",
+     "p": 0.107
+    }
+   ]
+  }
+ ],
+ "summary": "60.00 s busy, 5.4 onsets/s, loudness range 7 LU. Music (AudioSet Music 0.91). Unvalidated hints - genre: cinematic orchestral music (z +3.5), uplifting orchestral film score (z +3.4); mood (wrong for ~1 in 5 tracks in a test): dreamy and ethereal music (z +3.3), dark and tense music (z +3.1). Sounds most like: a rising riser building tension (z +2.5), a sustained glass harp tone (z +2.0), a cinematic hit with a long tail (z +1.7) [plausible reading]. Other readings: skylarks over a meadow (ambience, z +1.3). AudioSet: Music 0.91, Sad music 0.27, Background music 0.17. peak -3.1 dBFS, -17.6 LUFS, brightness 1.2 kHz, bandwidth 10.2 kHz, side/mid 0 dB. Windows that read differently: 0:40.00-0:50.00 a rising riser building tension (z +2.4; AudioSet Music 0.84); 1:00.00-1:10.00 a sustained glass harp tone (z +2.6; AudioSet Music 0.87)."
+}

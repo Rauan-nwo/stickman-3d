@@ -1,0 +1,433 @@
+{
+ "path": "C:/dev/projects/youtube-video/production/L001/sound/music/candidates/inc-almost-new.mp3",
+ "start": 20.0,
+ "end": 80.0,
+ "duration": 60.0,
+ "measurements": {
+  "duration": 60.0,
+  "peak_dbfs": -9.8,
+  "true_peak_dbtp": -9.7,
+  "rms_dbfs": -25.9,
+  "lufs": -23.2,
+  "lra_lu": 4.5,
+  "attack_ms": 294.0,
+  "brightness_hz": 732,
+  "bandwidth_hz": 6450,
+  "noise_floor_dbfs": -31.7,
+  "flatness": 0.0,
+  "harmonic_ratio": 0.975,
+  "f0_hz": 77.9,
+  "onset_count": 136,
+  "onsets_per_s": 2.27,
+  "width": "side/mid -4 dB",
+  "digital_silence_frac": 0.0
+ },
+ "shape": "busy, 2.3 onsets/s, loudness range 4 LU",
+ "top_tags": [
+  {
+   "term": "a music box melody",
+   "category": "chimes",
+   "z": 1.36,
+   "cosine": 0.25,
+   "verdict": "no match"
+  },
+  {
+   "term": "church bells",
+   "category": "chimes",
+   "z": 1.03,
+   "cosine": 0.163,
+   "verdict": "no match"
+  },
+  {
+   "term": "a sustained glass harp tone",
+   "category": "chimes",
+   "z": 0.97,
+   "cosine": 0.12,
+   "verdict": "no match"
+  },
+  {
+   "term": "a cinematic hit with a long tail",
+   "category": "impacts",
+   "z": 0.91,
+   "cosine": 0.122,
+   "verdict": "no match"
+  },
+  {
+   "term": "a singing bowl",
+   "category": "chimes",
+   "z": 0.86,
+   "cosine": 0.106,
+   "verdict": "no match"
+  },
+  {
+   "term": "a forest ambience",
+   "category": "ambience",
+   "z": 0.82,
+   "cosine": 0.143,
+   "verdict": "no match"
+  },
+  {
+   "term": "a deep cinematic boom",
+   "category": "impacts",
+   "z": 0.75,
+   "cosine": 0.117,
+   "verdict": "no match"
+  },
+  {
+   "term": "a rising riser building tension",
+   "category": "transitions",
+   "z": 0.68,
+   "cosine": 0.168,
+   "verdict": "no match"
+  }
+ ],
+ "music_hints": [
+  {
+   "term": "sad and melancholic music",
+   "category": "music_mood",
+   "z": 3.59,
+   "cosine": 0.496
+  },
+  {
+   "term": "dreamy and ethereal music",
+   "category": "music_mood",
+   "z": 3.36,
+   "cosine": 0.443
+  },
+  {
+   "term": "dark and tense music",
+   "category": "music_mood",
+   "z": 3.2,
+   "cosine": 0.45
+  },
+  {
+   "term": "solo piano music",
+   "category": "music_genre",
+   "z": 3.03,
+   "cosine": 0.422
+  },
+  {
+   "term": "romantic music",
+   "category": "music_mood",
+   "z": 2.78,
+   "cosine": 0.45
+  },
+  {
+   "term": "mysterious music",
+   "category": "music_mood",
+   "z": 2.68,
+   "cosine": 0.414
+  },
+  {
+   "term": "uplifting and hopeful music",
+   "category": "music_mood",
+   "z": 2.67,
+   "cosine": 0.418
+  },
+  {
+   "term": "a grand piano",
+   "category": "instruments",
+   "z": 2.54,
+   "cosine": 0.351
+  }
+ ],
+ "tags": {
+  "transitions": [
+   {
+    "term": "a rising riser building tension",
+    "z": 0.68,
+    "cosine": 0.168
+   },
+   {
+    "term": "a deep cinematic whoosh",
+    "z": 0.42,
+    "cosine": 0.098
+   },
+   {
+    "term": "a reverse cymbal swell",
+    "z": 0.36,
+    "cosine": 0.119
+   }
+  ],
+  "impacts": [
+   {
+    "term": "a cinematic hit with a long tail",
+    "z": 0.91,
+    "cosine": 0.122
+   },
+   {
+    "term": "a deep cinematic boom",
+    "z": 0.75,
+    "cosine": 0.117
+   },
+   {
+    "term": "a big braam",
+    "z": 0.52,
+    "cosine": 0.137
+   }
+  ],
+  "ui": [
+   {
+    "term": "a soft UI button tap",
+    "z": -0.14,
+    "cosine": 0.054
+   },
+   {
+    "term": "a typing cursor blip",
+    "z": -0.23,
+    "cosine": 0.075
+   },
+   {
+    "term": "a chat message pop",
+    "z": -0.32,
+    "cosine": 0.115
+   }
+  ],
+  "keyboard": [
+   {
+    "term": "slow typing with separate key presses",
+    "z": 0.05,
+    "cosine": 0.112
+   },
+   {
+    "term": "a deep thocky mechanical keyboard",
+    "z": 0.01,
+    "cosine": 0.126
+   },
+   {
+    "term": "a clicky mechanical keyboard",
+    "z": -0.02,
+    "cosine": 0.089
+   }
+  ],
+  "foley": [
+   {
+    "term": "scissors cutting",
+    "z": 0.57,
+    "cosine": 0.134
+   },
+   {
+    "term": "glass clinking",
+    "z": 0.53,
+    "cosine": 0.092
+   },
+   {
+    "term": "a metal scrape",
+    "z": 0.47,
+    "cosine": 0.074
+   }
+  ],
+  "water": [
+   {
+    "term": "ice cubes in a glass",
+    "z": 0.54,
+    "cosine": 0.121
+   },
+   {
+    "term": "pouring water",
+    "z": 0.26,
+    "cosine": 0.069
+   },
+   {
+    "term": "being underwater",
+    "z": 0.11,
+    "cosine": 0.081
+   }
+  ],
+  "nature": [
+   {
+    "term": "digging in soil",
+    "z": -0.37,
+    "cosine": -0.036
+   },
+   {
+    "term": "insects buzzing",
+    "z": -0.4,
+    "cosine": 0.012
+   },
+   {
+    "term": "walking through dry leaves",
+    "z": -0.46,
+    "cosine": -0.003
+   }
+  ],
+  "chimes": [
+   {
+    "term": "a music box melody",
+    "z": 1.36,
+    "cosine": 0.25
+   },
+   {
+    "term": "church bells",
+    "z": 1.03,
+    "cosine": 0.163
+   },
+   {
+    "term": "a sustained glass harp tone",
+    "z": 0.97,
+    "cosine": 0.12
+   }
+  ],
+  "ambience": [
+   {
+    "term": "a forest ambience",
+    "z": 0.82,
+    "cosine": 0.143
+   },
+   {
+    "term": "birds singing in the morning",
+    "z": 0.59,
+    "cosine": 0.058
+   },
+   {
+    "term": "skylarks over a meadow",
+    "z": 0.57,
+    "cosine": 0.121
+   }
+  ],
+  "everyday": [
+   {
+    "term": "applause",
+    "z": 0.32,
+    "cosine": 0.073
+   },
+   {
+    "term": "keys jingling",
+    "z": 0.21,
+    "cosine": 0.073
+   },
+   {
+    "term": "a helicopter flying overhead",
+    "z": 0.17,
+    "cosine": 0.086
+   }
+  ],
+  "music_genre": [
+   {
+    "term": "solo piano music",
+    "z": 3.03,
+    "cosine": 0.422
+   },
+   {
+    "term": "uplifting orchestral film score",
+    "z": 2.52,
+    "cosine": 0.357
+   },
+   {
+    "term": "playful children's piano music",
+    "z": 2.42,
+    "cosine": 0.367
+   }
+  ],
+  "music_mood": [
+   {
+    "term": "sad and melancholic music",
+    "z": 3.59,
+    "cosine": 0.496
+   },
+   {
+    "term": "dreamy and ethereal music",
+    "z": 3.36,
+    "cosine": 0.443
+   },
+   {
+    "term": "dark and tense music",
+    "z": 3.2,
+    "cosine": 0.45
+   }
+  ],
+  "instruments": [
+   {
+    "term": "a grand piano",
+    "z": 2.54,
+    "cosine": 0.351
+   },
+   {
+    "term": "strings ensemble",
+    "z": 1.87,
+    "cosine": 0.3
+   },
+   {
+    "term": "an electric piano",
+    "z": 1.5,
+    "cosine": 0.284
+   }
+  ],
+  "voice": [
+   {
+    "term": "singing vocals",
+    "z": 1.5,
+    "cosine": 0.202
+   },
+   {
+    "term": "children laughing",
+    "z": 1.43,
+    "cosine": 0.114
+   },
+   {
+    "term": "people laughing",
+    "z": 1.35,
+    "cosine": 0.068
+   }
+  ],
+  "quality": [
+   {
+    "term": "a warm sound",
+    "z": 1.53,
+    "cosine": 0.294
+   },
+   {
+    "term": "a bright sound",
+    "z": 0.69,
+    "cosine": 0.178
+   },
+   {
+    "term": "a crisp sound",
+    "z": 0.33,
+    "cosine": 0.114
+   }
+  ],
+  "production": [
+   {
+    "term": "a professionally mixed and mastered music track",
+    "z": 0.95,
+    "cosine": 0.327
+   },
+   {
+    "term": "a pure sine wave tone",
+    "z": -0.12,
+    "cosine": 0.065
+   },
+   {
+    "term": "silence",
+    "z": -0.39,
+    "cosine": 0.064
+   }
+  ]
+ },
+ "audioset": [
+  {
+   "label": "Music",
+   "p": 0.808
+  },
+  {
+   "label": "New-age music",
+   "p": 0.47
+  },
+  {
+   "label": "Ambient music",
+   "p": 0.161
+  },
+  {
+   "label": "Sad music",
+   "p": 0.153
+  },
+  {
+   "label": "Background music",
+   "p": 0.117
+  }
+ ],
+ "character": [],
+ "distinct_windows": [],
+ "summary": "60.00 s busy, 2.3 onsets/s, loudness range 4 LU. Music (AudioSet Music 0.81). Unvalidated hints - genre: solo piano music (z +3.0); mood (wrong for ~1 in 5 tracks in a test): sad and melancholic music (z +3.5), dreamy and ethereal music (z +3.3). No sound-effect description stands out (closest: a music box melody z +1.3, church bells z +1.0; tentative). AudioSet: Music 0.81, New-age music 0.47, Ambient music 0.16. peak -9.8 dBFS, -23.2 LUFS, brightness 732 Hz, bandwidth 6.5 kHz, side/mid -4 dB. Uniform: all 6 analysed 10 s windows read as a music box melody."
+}

@@ -1,0 +1,80 @@
+{
+ "file": "inc-darkness-speaks.mp3",
+ "duration_s": 25.08,
+ "samplerate": 44100,
+ "channels": 2,
+ "sounding_from_s": 1.23,
+ "sounding_to_s": 19.83,
+ "lufs_integrated": -19.8,
+ "peak_dbfs": 0.3,
+ "spectrum": {
+  "1_4k_share_pct": 6.8,
+  "1_4k_rel_dB": -11.7,
+  "below_250_share_pct": 71.1,
+  "centroid_median_hz": 1422
+ },
+ "key": {
+  "key": "Ab major",
+  "corr": 0.789,
+  "runner_up": "Ab minor",
+  "runner_up_corr": 0.636
+ },
+ "tempo_bpm": 123.0,
+ "tempo_raw_bpm": 123.0,
+ "tempo_fix": null,
+ "catalog_bpm": "none",
+ "pulse_clarity": 0.245,
+ "beat_interval_cv": 0.033,
+ "pulsed": false,
+ "loudness_5s_lufs": [
+  -16.7,
+  -20.2,
+  -21.8,
+  -29.8,
+  -58.8
+ ],
+ "bar_s": null,
+ "grid_unit": "2s",
+ "sections": [
+  {
+   "label": "A",
+   "start_s": 0.0,
+   "end_s": 12.0,
+   "units": 6,
+   "rel_level_db": -22.2
+  },
+  {
+   "label": "B",
+   "start_s": 12.0,
+   "end_s": 25.08,
+   "units": 6,
+   "rel_level_db": -44.7
+  }
+ ],
+ "novelty_peaks_s": [
+  12.0
+ ],
+ "loops": [
+  {
+   "from_s": 4.0,
+   "to_s": 20.0,
+   "units": 8,
+   "len_s": 16.0,
+   "similarity": -0.126
+  }
+ ],
+ "section_cut_points_s": [
+  12.0
+ ],
+ "strong_novelty_points_s": [
+  8.0,
+  10.0,
+  12.0,
+  14.0
+ ],
+ "quiet_bar_starts_s": [
+  22.0
+ ],
+ "phrase_points_s": [],
+ "id": "inc-darkness-speaks"
+}

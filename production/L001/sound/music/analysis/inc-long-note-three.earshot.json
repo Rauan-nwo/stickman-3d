@@ -1,0 +1,509 @@
+{
+ "path": "C:/dev/projects/youtube-video/production/L001/sound/music/candidates/inc-long-note-three.mp3",
+ "start": 20.0,
+ "end": 80.0,
+ "duration": 60.0,
+ "measurements": {
+  "duration": 60.0,
+  "peak_dbfs": -12.8,
+  "true_peak_dbtp": -12.8,
+  "rms_dbfs": -29.0,
+  "lufs": -28.1,
+  "lra_lu": 11.0,
+  "attack_ms": 217.0,
+  "brightness_hz": 289,
+  "bandwidth_hz": 4063,
+  "noise_floor_dbfs": -40.5,
+  "flatness": 0.0,
+  "harmonic_ratio": 0.994,
+  "f0_hz": 65.7,
+  "onset_count": 360,
+  "onsets_per_s": 6.0,
+  "width": "side/mid -2 dB",
+  "digital_silence_frac": 0.0
+ },
+ "shape": "busy, 6.0 onsets/s, loudness range 11 LU",
+ "top_tags": [
+  {
+   "term": "a deep cinematic boom",
+   "category": "impacts",
+   "z": 2.09,
+   "cosine": 0.248,
+   "verdict": "weak"
+  },
+  {
+   "term": "a cinematic hit with a long tail",
+   "category": "impacts",
+   "z": 2.01,
+   "cosine": 0.228,
+   "verdict": "weak"
+  },
+  {
+   "term": "a singing bowl",
+   "category": "chimes",
+   "z": 2.01,
+   "cosine": 0.217,
+   "verdict": "weak"
+  },
+  {
+   "term": "a rising riser building tension",
+   "category": "transitions",
+   "z": 1.97,
+   "cosine": 0.294,
+   "verdict": "no match"
+  },
+  {
+   "term": "a deep cinematic whoosh",
+   "category": "transitions",
+   "z": 1.76,
+   "cosine": 0.232,
+   "verdict": "no match"
+  },
+  {
+   "term": "a big braam",
+   "category": "impacts",
+   "z": 1.7,
+   "cosine": 0.255,
+   "verdict": "no match"
+  },
+  {
+   "term": "a sub bass drop",
+   "category": "impacts",
+   "z": 1.64,
+   "cosine": 0.231,
+   "verdict": "no match"
+  },
+  {
+   "term": "an airplane flying overhead",
+   "category": "ambience",
+   "z": 1.33,
+   "cosine": 0.181,
+   "verdict": "no match"
+  }
+ ],
+ "music_hints": [
+  {
+   "term": "dark and tense music",
+   "category": "music_mood",
+   "z": 3.2,
+   "cosine": 0.429
+  },
+  {
+   "term": "ambient synth pad music",
+   "category": "music_genre",
+   "z": 3.04,
+   "cosine": 0.362
+  },
+  {
+   "term": "sad and melancholic music",
+   "category": "music_mood",
+   "z": 2.96,
+   "cosine": 0.412
+  },
+  {
+   "term": "dreamy and ethereal music",
+   "category": "music_mood",
+   "z": 2.86,
+   "cosine": 0.373
+  },
+  {
+   "term": "a warm analog synth pad",
+   "category": "instruments",
+   "z": 2.73,
+   "cosine": 0.34
+  },
+  {
+   "term": "strings ensemble",
+   "category": "instruments",
+   "z": 2.62,
+   "cosine": 0.364
+  },
+  {
+   "term": "cinematic orchestral music",
+   "category": "music_genre",
+   "z": 2.52,
+   "cosine": 0.347
+  },
+  {
+   "term": "calm and relaxing music",
+   "category": "music_mood",
+   "z": 2.29,
+   "cosine": 0.312
+  }
+ ],
+ "tags": {
+  "transitions": [
+   {
+    "term": "a rising riser building tension",
+    "z": 1.97,
+    "cosine": 0.294
+   },
+   {
+    "term": "a deep cinematic whoosh",
+    "z": 1.76,
+    "cosine": 0.232
+   },
+   {
+    "term": "an uplifter sweep",
+    "z": 0.96,
+    "cosine": 0.197
+   }
+  ],
+  "impacts": [
+   {
+    "term": "a deep cinematic boom",
+    "z": 2.09,
+    "cosine": 0.248
+   },
+   {
+    "term": "a cinematic hit with a long tail",
+    "z": 2.01,
+    "cosine": 0.228
+   },
+   {
+    "term": "a big braam",
+    "z": 1.7,
+    "cosine": 0.255
+   }
+  ],
+  "ui": [
+   {
+    "term": "an error buzz",
+    "z": 0.49,
+    "cosine": 0.113
+   },
+   {
+    "term": "a crisp interface click",
+    "z": 0.21,
+    "cosine": 0.154
+   },
+   {
+    "term": "a soft UI button tap",
+    "z": 0.09,
+    "cosine": 0.088
+   }
+  ],
+  "keyboard": [
+   {
+    "term": "a deep thocky mechanical keyboard",
+    "z": -0.32,
+    "cosine": 0.105
+   },
+   {
+    "term": "a soft key release click",
+    "z": -0.63,
+    "cosine": 0.018
+   },
+   {
+    "term": "slow typing with separate key presses",
+    "z": -0.85,
+    "cosine": 0.036
+   }
+  ],
+  "foley": [
+   {
+    "term": "a metal scrape",
+    "z": 0.85,
+    "cosine": 0.116
+   },
+   {
+    "term": "a finger tapping on glass",
+    "z": 0.48,
+    "cosine": 0.148
+   },
+   {
+    "term": "footsteps on wood",
+    "z": 0.28,
+    "cosine": 0.045
+   }
+  ],
+  "water": [
+   {
+    "term": "being underwater",
+    "z": 0.34,
+    "cosine": 0.112
+   },
+   {
+    "term": "a stream flowing",
+    "z": -0.16,
+    "cosine": 0.086
+   },
+   {
+    "term": "pouring water",
+    "z": -0.18,
+    "cosine": 0.035
+   }
+  ],
+  "nature": [
+   {
+    "term": "footsteps on grass",
+    "z": 0.57,
+    "cosine": 0.084
+   },
+   {
+    "term": "insects buzzing",
+    "z": 0.48,
+    "cosine": 0.11
+   },
+   {
+    "term": "a bee flying by",
+    "z": -0.09,
+    "cosine": 0.051
+   }
+  ],
+  "chimes": [
+   {
+    "term": "a singing bowl",
+    "z": 2.01,
+    "cosine": 0.217
+   },
+   {
+    "term": "church bells",
+    "z": 1.0,
+    "cosine": 0.16
+   },
+   {
+    "term": "a sustained glass harp tone",
+    "z": 0.97,
+    "cosine": 0.121
+   }
+  ],
+  "ambience": [
+   {
+    "term": "an airplane flying overhead",
+    "z": 1.33,
+    "cosine": 0.181
+   },
+   {
+    "term": "skylarks over a meadow",
+    "z": 0.95,
+    "cosine": 0.162
+   },
+   {
+    "term": "a forest ambience",
+    "z": 0.82,
+    "cosine": 0.145
+   }
+  ],
+  "everyday": [
+   {
+    "term": "a helicopter flying overhead",
+    "z": 0.83,
+    "cosine": 0.159
+   },
+   {
+    "term": "a saw cutting wood",
+    "z": 0.54,
+    "cosine": 0.115
+   },
+   {
+    "term": "a cow mooing",
+    "z": 0.54,
+    "cosine": 0.072
+   }
+  ],
+  "music_genre": [
+   {
+    "term": "ambient synth pad music",
+    "z": 3.04,
+    "cosine": 0.362
+   },
+   {
+    "term": "cinematic orchestral music",
+    "z": 2.52,
+    "cosine": 0.347
+   },
+   {
+    "term": "uplifting orchestral film score",
+    "z": 2.25,
+    "cosine": 0.317
+   }
+  ],
+  "music_mood": [
+   {
+    "term": "dark and tense music",
+    "z": 3.2,
+    "cosine": 0.429
+   },
+   {
+    "term": "sad and melancholic music",
+    "z": 2.96,
+    "cosine": 0.412
+   },
+   {
+    "term": "dreamy and ethereal music",
+    "z": 2.86,
+    "cosine": 0.373
+   }
+  ],
+  "instruments": [
+   {
+    "term": "a warm analog synth pad",
+    "z": 2.73,
+    "cosine": 0.34
+   },
+   {
+    "term": "strings ensemble",
+    "z": 2.62,
+    "cosine": 0.364
+   },
+   {
+    "term": "a deep sub bass",
+    "z": 2.16,
+    "cosine": 0.292
+   }
+  ],
+  "voice": [
+   {
+    "term": "a voice-over narration",
+    "z": 1.23,
+    "cosine": 0.159
+   },
+   {
+    "term": "singing vocals",
+    "z": 1.21,
+    "cosine": 0.17
+   },
+   {
+    "term": "a man speaking",
+    "z": 0.32,
+    "cosine": -0.022
+   }
+  ],
+  "quality": [
+   {
+    "term": "a deep sound",
+    "z": 1.62,
+    "cosine": 0.259
+   },
+   {
+    "term": "a warm sound",
+    "z": 1.31,
+    "cosine": 0.269
+   },
+   {
+    "term": "a boomy sound",
+    "z": 1.22,
+    "cosine": 0.228
+   }
+  ],
+  "production": [
+   {
+    "term": "a pure sine wave tone",
+    "z": 1.14,
+    "cosine": 0.197
+   },
+   {
+    "term": "a computer-generated electronic tone",
+    "z": 0.85,
+    "cosine": 0.172
+   },
+   {
+    "term": "a square wave chiptune blip",
+    "z": 0.77,
+    "cosine": 0.149
+   }
+  ]
+ },
+ "audioset": [
+  {
+   "label": "Music",
+   "p": 0.829
+  },
+  {
+   "label": "Ambient music",
+   "p": 0.437
+  },
+  {
+   "label": "New-age music",
+   "p": 0.265
+  },
+  {
+   "label": "Sad music",
+   "p": 0.185
+  },
+  {
+   "label": "Synthesizer",
+   "p": 0.085
+  }
+ ],
+ "character": [],
+ "distinct_windows": [
+  {
+   "start": 20.0,
+   "end": 30.0,
+   "top_tag": {
+    "term": "a cinematic hit with a long tail",
+    "category": "impacts",
+    "z": 2.53,
+    "cosine": 0.245,
+    "verdict": "plausible"
+   },
+   "audioset": [
+    {
+     "label": "Music",
+     "p": 0.765
+    },
+    {
+     "label": "Ambient music",
+     "p": 0.428
+    },
+    {
+     "label": "New-age music",
+     "p": 0.148
+    }
+   ]
+  },
+  {
+   "start": 40.0,
+   "end": 50.0,
+   "top_tag": {
+    "term": "a deep cinematic boom",
+    "category": "impacts",
+    "z": 2.29,
+    "cosine": 0.28,
+    "verdict": "weak"
+   },
+   "audioset": [
+    {
+     "label": "Music",
+     "p": 0.829
+    },
+    {
+     "label": "Ambient music",
+     "p": 0.437
+    },
+    {
+     "label": "New-age music",
+     "p": 0.242
+    }
+   ]
+  },
+  {
+   "start": 70.0,
+   "end": 80.0,
+   "top_tag": {
+    "term": "a singing bowl",
+    "category": "chimes",
+    "z": 2.23,
+    "cosine": 0.245,
+    "verdict": "weak"
+   },
+   "audioset": [
+    {
+     "label": "Music",
+     "p": 0.787
+    },
+    {
+     "label": "New-age music",
+     "p": 0.265
+    },
+    {
+     "label": "Ambient music",
+     "p": 0.203
+    }
+   ]
+  }
+ ],
+ "summary": "60.00 s busy, 6.0 onsets/s, loudness range 11 LU. Music (AudioSet Music 0.83). Unvalidated hints - genre: ambient synth pad music (z +3.0), cinematic orchestral music (z +2.5); mood (wrong for ~1 in 5 tracks in a test): dark and tense music (z +3.2), sad and melancholic music (z +2.9). Sounds most like: a deep cinematic boom (z +2.0), a cinematic hit with a long tail (z +2.0), a singing bowl (z +2.0) [weak reading]. Other readings: a rising riser building tension (transitions, z +1.9), an airplane flying overhead (ambience, z +1.3). AudioSet: Music 0.83, Ambient music 0.44, New-age music 0.27. peak -12.8 dBFS, -28.1 LUFS, brightness 289 Hz, bandwidth 4.1 kHz, side/mid -2 dB. Windows that read differently: 0:20.00-0:30.00 a cinematic hit with a long tail (z +2.5; AudioSet Music 0.77); 0:40.00-0:50.00 a deep cinematic boom (z +2.2; AudioSet Music 0.83); 1:10.00-1:20.00 a singing bowl (z +2.2; AudioSet Music 0.79)."
+}

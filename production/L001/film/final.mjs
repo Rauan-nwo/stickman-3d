@@ -11,12 +11,13 @@ import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync, readdirSync
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { chromium } from '../../../engine/node_modules/playwright-core/index.mjs';
-import { CLIPS3D, frame0, frames, pad4 } from './clips3d.js';
+import { clips3d, frame0, frames, pad4 } from './clips3d.js';
 import { voiceTrack, defaultVoice, pilotEnd, mixFinal } from './audio.mjs';
 
 const D = dirname(fileURLToPath(import.meta.url)), L = resolve(D, '..'), ROOT = resolve(D, '../../..'), OUT = join(D, 'out'), TMP = join(OUT, 'tmp');
 const args = process.argv.slice(2), arg = (k, d) => { const i = args.indexOf(k); return i < 0 ? d : args[i + 1]; }, has = k => args.includes(k);
 const timing = JSON.parse(readFileSync(join(L, 'animatic/timing.json'), 'utf8')), words = JSON.parse(readFileSync(join(L, 'animatic/words.json'), 'utf8'));
+const CLIPS3D = clips3d(timing.shots);
 const JOBS = Math.min(2, +arg('--jobs', 2)), CH = arg('--ch', '0,1').split(',').map(Number), NAME = arg('--name', 'ch' + CH.join('_'));
 const VOICE = join(L, arg('--voice', defaultVoice(words.lines)));
 const shots = timing.shots.filter(s => CH.includes(s.ch)), F0 = frame0(shots[0]), FCH = frame0(shots[shots.length - 1]) + frames(shots[shots.length - 1]);

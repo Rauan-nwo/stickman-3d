@@ -1,263 +1,287 @@
 {
  "fps": 30,
- "voiceDuration": 1040.214,
- "total": 1075.91,
+ "voiceDuration": 1038.917,
+ "total": 1078.448,
  "inserts": [
   {
    "at": 14.821,
    "dur": 0.066
   },
   {
-   "at": 37.481,
+   "at": 37.271,
    "dur": 0.39
   },
   {
-   "at": 47.407,
-   "dur": 0.247
+   "at": 44.701,
+   "dur": 0.6
   },
   {
-   "at": 56.646,
-   "dur": 0.42
+   "at": 48.261,
+   "dur": 0.84
   },
   {
-   "at": 60.44,
-   "dur": 0
+   "at": 51.651,
+   "dur": 0.48
   },
   {
-   "at": 63.844,
-   "dur": 1.6
-  },
-  {
-   "at": 70.227,
-   "dur": 1.4
-  },
-  {
-   "at": 91.728,
-   "dur": 0.243
-  },
-  {
-   "at": 104.452,
-   "dur": 0.012
-  },
-  {
-   "at": 109.678,
-   "dur": 0.135
-  },
-  {
-   "at": 111.17,
-   "dur": 0.322
-  },
-  {
-   "at": 153.487,
-   "dur": 0.076
-  },
-  {
-   "at": 172.966,
-   "dur": 0.596
-  },
-  {
-   "at": 181.733,
-   "dur": 0.046
-  },
-  {
-   "at": 208.466,
-   "dur": 0.136
-  },
-  {
-   "at": 228.377,
-   "dur": 0.153
-  },
-  {
-   "at": 256.965,
-   "dur": 1.2
-  },
-  {
-   "at": 272.586,
-   "dur": 0.415
-  },
-  {
-   "at": 289.264,
-   "dur": 0.413
-  },
-  {
-   "at": 290.387,
-   "dur": 0.36
-  },
-  {
-   "at": 291.605,
-   "dur": 0.244
-  },
-  {
-   "at": 292.62,
-   "dur": 0.485
-  },
-  {
-   "at": 311.063,
-   "dur": 0.343
-  },
-  {
-   "at": 338.956,
-   "dur": 0.054
-  },
-  {
-   "at": 340.437,
-   "dur": 0.064
-  },
-  {
-   "at": 342.821,
-   "dur": 1.2
-  },
-  {
-   "at": 359.367,
-   "dur": 0.34
-  },
-  {
-   "at": 360.716,
-   "dur": 0.023
-  },
-  {
-   "at": 361.899,
-   "dur": 0.431
-  },
-  {
-   "at": 365.07,
-   "dur": 0.295
-  },
-  {
-   "at": 407.967,
-   "dur": 0.391
-  },
-  {
-   "at": 437.95,
-   "dur": 0.091
-  },
-  {
-   "at": 437.95,
-   "dur": 2
-  },
-  {
-   "at": 453.034,
-   "dur": 0.324
-  },
-  {
-   "at": 453.846,
-   "dur": 0.632
-  },
-  {
-   "at": 455.281,
-   "dur": 0.097
-  },
-  {
-   "at": 484.964,
-   "dur": 0.256
-  },
-  {
-   "at": 503.913,
-   "dur": 0.845
-  },
-  {
-   "at": 508.624,
-   "dur": 0.159
-  },
-  {
-   "at": 521.947,
-   "dur": 0.143
-  },
-  {
-   "at": 538.872,
-   "dur": 1.2
-  },
-  {
-   "at": 563.817,
-   "dur": 0.891
-  },
-  {
-   "at": 565.316,
+   "at": 54.921,
    "dur": 0.52
   },
   {
-   "at": 566.786,
-   "dur": 2.68
+   "at": 55.701,
+   "dur": 0.52
   },
   {
-   "at": 568.156,
-   "dur": 0.8
+   "at": 58.604,
+   "dur": 0
   },
   {
-   "at": 570.371,
-   "dur": 0.59
+   "at": 62.007,
+   "dur": 1.6
   },
   {
-   "at": 573.754,
-   "dur": 1.392
+   "at": 68.391,
+   "dur": 1.4
   },
   {
-   "at": 576.452,
-   "dur": 0.377
+   "at": 89.892,
+   "dur": 0.242
   },
   {
-   "at": 580.31,
-   "dur": 0.044
+   "at": 102.615,
+   "dur": 0.012
   },
   {
-   "at": 610.814,
-   "dur": 0.225
+   "at": 107.841,
+   "dur": 0.135
   },
   {
-   "at": 611.809,
-   "dur": 0.486
+   "at": 109.334,
+   "dur": 0.321
   },
   {
-   "at": 612.915,
+   "at": 151.651,
+   "dur": 0.077
+  },
+  {
+   "at": 171.13,
+   "dur": 0.597
+  },
+  {
+   "at": 179.897,
+   "dur": 0.045
+  },
+  {
+   "at": 206.629,
+   "dur": 0.136
+  },
+  {
+   "at": 226.541,
+   "dur": 0.153
+  },
+  {
+   "at": 255.128,
+   "dur": 1.2
+  },
+  {
+   "at": 270.75,
+   "dur": 0.415
+  },
+  {
+   "at": 287.427,
+   "dur": 0.414
+  },
+  {
+   "at": 288.55,
+   "dur": 0.359
+  },
+  {
+   "at": 289.769,
+   "dur": 0.245
+  },
+  {
+   "at": 290.784,
+   "dur": 0.485
+  },
+  {
+   "at": 309.226,
    "dur": 0.342
   },
   {
-   "at": 613.886,
-   "dur": 0.517
+   "at": 337.119,
+   "dur": 0.054
   },
   {
-   "at": 663.646,
+   "at": 338.6,
+   "dur": 0.064
+  },
+  {
+   "at": 340.984,
    "dur": 1.2
   },
   {
-   "at": 716.738,
+   "at": 357.53,
+   "dur": 0.341
+  },
+  {
+   "at": 358.879,
+   "dur": 0.022
+  },
+  {
+   "at": 360.063,
+   "dur": 0.431
+  },
+  {
+   "at": 363.234,
+   "dur": 0.294
+  },
+  {
+   "at": 406.131,
+   "dur": 0.39
+  },
+  {
+   "at": 436.113,
+   "dur": 0.091
+  },
+  {
+   "at": 436.113,
+   "dur": 2
+  },
+  {
+   "at": 451.198,
+   "dur": 0.324
+  },
+  {
+   "at": 452.01,
+   "dur": 0.633
+  },
+  {
+   "at": 453.445,
+   "dur": 0.096
+  },
+  {
+   "at": 483.127,
+   "dur": 0.257
+  },
+  {
+   "at": 502.075,
+   "dur": 0.845
+  },
+  {
+   "at": 506.787,
+   "dur": 0.159
+  },
+  {
+   "at": 520.111,
+   "dur": 0.144
+  },
+  {
+   "at": 537.035,
+   "dur": 1.2
+  },
+  {
+   "at": 561.98,
+   "dur": 0.892
+  },
+  {
+   "at": 563.479,
+   "dur": 0.52
+  },
+  {
+   "at": 564.949,
+   "dur": 2.68
+  },
+  {
+   "at": 566.319,
+   "dur": 0.8
+  },
+  {
+   "at": 568.534,
+   "dur": 0.59
+  },
+  {
+   "at": 571.918,
+   "dur": 1.391
+  },
+  {
+   "at": 574.616,
+   "dur": 0.378
+  },
+  {
+   "at": 578.474,
+   "dur": 0.045
+  },
+  {
+   "at": 608.978,
+   "dur": 0.226
+  },
+  {
+   "at": 609.972,
+   "dur": 0.486
+  },
+  {
+   "at": 611.078,
+   "dur": 0.342
+  },
+  {
+   "at": 612.049,
+   "dur": 0.516
+  },
+  {
+   "at": 661.809,
+   "dur": 1.2
+  },
+  {
+   "at": 714.902,
    "dur": 0.3
   },
   {
-   "at": 772.054,
+   "at": 770.217,
    "dur": 0.271
   },
   {
-   "at": 787.084,
+   "at": 785.247,
    "dur": 1.2
   },
   {
-   "at": 824.649,
-   "dur": 0.305
+   "at": 822.813,
+   "dur": 0.304
   },
   {
-   "at": 828.624,
+   "at": 826.786,
    "dur": 0.789
   },
   {
-   "at": 870.663,
+   "at": 868.827,
    "dur": 1.2
   },
   {
-   "at": 890.562,
-   "dur": 0.457
+   "at": 888.725,
+   "dur": 0.458
   },
   {
-   "at": 954.558,
+   "at": 952.72,
    "dur": 0.263
   },
   {
-   "at": 955.564,
+   "at": 953.727,
    "dur": 0.523
   },
   {
-   "at": 986.144,
+   "at": 984.307,
    "dur": 0.077
+  },
+  {
+   "at": 1032.038,
+   "dur": 0.16
+  },
+  {
+   "at": 1034.528,
+   "dur": 0.74
+  },
+  {
+   "at": 1037.078,
+   "dur": 0.64
   }
  ],
  "linesFile": "out/lines_fish.json",
@@ -579,26 +603,55 @@
    "ch": 1,
    "chTitle": "The Office",
    "start": 44.527,
-   "end": 47.107,
-   "dur": 2.58,
-   "listDur": 2.6,
+   "end": 46.027,
+   "dur": 1.5,
+   "listDur": 1.5,
    "loc": "L03-host-office",
    "framing": "общий кабинет",
-   "text": "HOST: Evening. Mind the box,",
-   "spoken": "Evening Mind the box",
-   "event": "лампа щёлкает и загорается; ведущий наклоняется к коробке Nvidia",
-   "camera": "наезд → стоп → рывок на «box»",
-   "snap": 1.66,
-   "snapWord": "box"
+   "text": "HOST: Evening.",
+   "spoken": "Evening",
+   "event": "на «Evening» лампа щёлкает и загорается, свет мигает дважды",
+   "camera": "наезд → стоп → рывок на «Evening»",
+   "snap": 0.25,
+   "snapWord": "Evening",
+   "ev": [
+    {
+     "p": 0,
+     "t": 0
+    }
+   ]
   },
   {
    "n": 20,
    "ch": 1,
    "chTitle": "The Office",
-   "start": 47.107,
-   "end": 48.407,
-   "dur": 1.3,
+   "start": 46.027,
+   "end": 47.367,
+   "dur": 1.34,
    "listDur": 1.3,
+   "loc": "L03-host-office",
+   "framing": "крупно рука на коробке",
+   "text": "Mind the box,",
+   "spoken": "Mind the box",
+   "event": "на «box» ладонь ведущего ложится на крышку коробки NVIDIA, лампа вздрагивает",
+   "camera": "наезд → стоп → рывок на «box»",
+   "snap": 0.62,
+   "snapWord": "box",
+   "ev": [
+    {
+     "p": 0,
+     "t": 0.62
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "ch": 1,
+   "chTitle": "The Office",
+   "start": 47.367,
+   "end": 48.747,
+   "dur": 1.38,
+   "listDur": 1.4,
    "loc": "L03-host-office",
    "framing": "вставка коробка Nvidia",
    "text": "it's expensive.",
@@ -609,52 +662,25 @@
    "snapWord": "expensive"
   },
   {
-   "n": 21,
-   "ch": 1,
-   "chTitle": "The Office",
-   "start": 48.407,
-   "end": 52.574,
-   "dur": 4.167,
-   "listDur": 4.2,
-   "loc": "L03-host-office",
-   "framing": "сверхкрупно ключ",
-   "text": "HOST: Inside, the most wanted chips on Earth.",
-   "spoken": "Inside the most wanted chips on Earth",
-   "event": "крышка коробки приоткрывается, на «chips» изнутри бьёт зелёный свет; латунный ключ поднимается в свет лампы, блик",
-   "camera": "наезд → стоп → рывок на «chips»",
-   "snap": 2.5,
-   "snapWord": "chips",
-   "ev": [
-    {
-     "p": 0,
-     "t": 2.5
-    }
-   ]
-  },
-  {
    "n": 22,
    "ch": 1,
    "chTitle": "The Office",
-   "start": 52.574,
-   "end": 56.269,
-   "dur": 3.695,
-   "listDur": 3.7,
+   "start": 48.747,
+   "end": 50.247,
+   "dur": 1.5,
+   "listDur": 1.5,
    "loc": "L03-host-office",
-   "framing": "вставка ценник на коробке",
-   "text": "HOST: Thirty grand apiece, by the maker's own count.",
-   "spoken": "Thirty grand apiece by the maker's own count",
-   "event": "на «Thirty» на коробку Nvidia садится ценник «$30,000 EACH»; на «maker's» под ценником бирка «SOURCE: NVIDIA»",
-   "camera": "наезд → стоп → рывок на «maker's»",
-   "snap": 2.2,
-   "snapWord": "maker's",
+   "framing": "сверхкрупно ключ",
+   "text": "HOST: Inside,",
+   "spoken": "Inside",
+   "event": "на «Inside» латунный ключ поднимается в свет лампы",
+   "camera": "наезд → стоп → рывок на «Inside»",
+   "snap": 0.25,
+   "snapWord": "Inside",
    "ev": [
     {
      "p": 0,
      "t": 0
-    },
-    {
-     "p": 1,
-     "t": 2.2
     }
    ]
   },
@@ -662,8 +688,81 @@
    "n": 23,
    "ch": 1,
    "chTitle": "The Office",
-   "start": 56.269,
-   "end": 57.769,
+   "start": 50.247,
+   "end": 52.527,
+   "dur": 2.28,
+   "listDur": 2.3,
+   "loc": "L03-host-office",
+   "framing": "крупно зелёный свет из коробки",
+   "text": "the most wanted chips on Earth.",
+   "spoken": "the most wanted chips on Earth",
+   "event": "на «wanted» крышка приоткрывается, из щели бьёт зелёный свет; на «Earth» блик на ключе",
+   "camera": "наезд → стоп → рывок на «Earth»",
+   "snap": 1.28,
+   "snapWord": "Earth",
+   "ev": [
+    {
+     "p": 0,
+     "t": 0.28
+    },
+    {
+     "p": 1,
+     "t": 1.28
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "ch": 1,
+   "chTitle": "The Office",
+   "start": 52.527,
+   "end": 54.027,
+   "dur": 1.5,
+   "listDur": 1.5,
+   "loc": "L03-host-office",
+   "framing": "вставка ценник на коробке",
+   "text": "HOST: Thirty grand apiece,",
+   "spoken": "Thirty grand apiece",
+   "event": "на «Thirty» на коробку Nvidia садится ценник «$30,000 EACH»",
+   "camera": "наезд → стоп → рывок на «apiece»",
+   "snap": 0.68,
+   "snapWord": "apiece",
+   "ev": [
+    {
+     "p": 0,
+     "t": 0
+    }
+   ]
+  },
+  {
+   "n": 25,
+   "ch": 1,
+   "chTitle": "The Office",
+   "start": 54.027,
+   "end": 56.317,
+   "dur": 2.29,
+   "listDur": 2.3,
+   "loc": "L03-host-office",
+   "framing": "сверхкрупно бирка источника",
+   "text": "by the maker's own count.",
+   "spoken": "by the maker's own count",
+   "event": "на «maker's» под ценником подлетает бирка «SOURCE: NVIDIA», щелчок",
+   "camera": "наезд → стоп → рывок на «maker's»",
+   "snap": 0.76,
+   "snapWord": "maker's",
+   "ev": [
+    {
+     "p": 0,
+     "t": 0.76
+    }
+   ]
+  },
+  {
+   "n": 26,
+   "ch": 1,
+   "chTitle": "The Office",
+   "start": 56.317,
+   "end": 57.817,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L03-host-office",
@@ -672,32 +771,65 @@
    "spoken": "And the man at that table",
    "event": "ведущий кладёт ладонь на снимок «Дженсен + Алиса» под лампой",
    "camera": "наезд → стоп → рывок на «table»",
-   "snap": 0.74,
+   "snap": 0.7,
    "snapWord": "table"
   },
   {
-   "n": 24,
+   "n": 27,
    "ch": 1,
    "chTitle": "The Office",
-   "start": 57.769,
-   "end": 60.263,
-   "dur": 2.494,
-   "listDur": 2.5,
+   "start": 57.817,
+   "end": 59.117,
+   "dur": 1.3,
+   "listDur": 1.3,
    "loc": "L03-host-office",
    "framing": "сверхкрупно ключ к камере",
-   "text": "held the key to every one of them.",
-   "spoken": "held the key to every one of them",
-   "event": "ведущий протягивает латунный ключ прямо в объектив, блик на бородке",
-   "camera": "наезд → стоп → рывок на «them»",
-   "snap": 2.08,
-   "snapWord": "them"
+   "text": "held the key",
+   "spoken": "held the key",
+   "event": "на «key» ведущий протягивает латунный ключ прямо в объектив, блик на бородке",
+   "camera": "наезд → стоп → рывок на «key»",
+   "snap": 0.52,
+   "snapWord": "key",
+   "ev": [
+    {
+     "p": 0,
+     "t": 0.52
+    }
+   ]
   },
   {
-   "n": 25,
+   "n": 28,
    "ch": 1,
    "chTitle": "The Office",
-   "start": 60.263,
-   "end": 61.563,
+   "start": 59.117,
+   "end": 60.72,
+   "dur": 1.603,
+   "listDur": 1.6,
+   "loc": "L03-host-office",
+   "framing": "вставка снимок под лампой",
+   "text": "to every one of them.",
+   "spoken": "to every one of them",
+   "event": "на «every» снимок «Дженсен + Алиса» скользит под лампу; на «them» на снимок ложится блик ключа",
+   "camera": "наезд → стоп → рывок на «them»",
+   "snap": 1.18,
+   "snapWord": "them",
+   "ev": [
+    {
+     "p": 0,
+     "t": 0.48
+    },
+    {
+     "p": 1,
+     "t": 1.18
+    }
+   ]
+  },
+  {
+   "n": 29,
+   "ch": 1,
+   "chTitle": "The Office",
+   "start": 60.72,
+   "end": 62.02,
    "dur": 1.3,
    "listDur": 1.3,
    "loc": "T-desk",
@@ -714,12 +846,12 @@
    ]
   },
   {
-   "n": 26,
+   "n": 30,
    "ch": 1,
    "chTitle": "The Office",
-   "start": 61.563,
-   "end": 63.093,
-   "dur": 1.53,
+   "start": 62.02,
+   "end": 63.549,
+   "dur": 1.529,
    "listDur": 1.5,
    "loc": "T-desk",
    "framing": "вставка карточка у пустого стула ресторана",
@@ -737,11 +869,11 @@
    ]
   },
   {
-   "n": 27,
+   "n": 31,
    "ch": 1,
    "chTitle": "The Office",
-   "start": 63.093,
-   "end": 66.841,
+   "start": 63.549,
+   "end": 67.297,
    "dur": 3.748,
    "listDur": 3.7,
    "loc": "3D-phone-desk",
@@ -754,11 +886,11 @@
    "snapWord": "Washington"
   },
   {
-   "n": 28,
+   "n": 32,
    "ch": 1,
    "chTitle": "The Office",
-   "start": 66.841,
-   "end": 69.147,
+   "start": 67.297,
+   "end": 69.603,
    "dur": 2.306,
    "listDur": 2.3,
    "loc": "3D-phone-desk",
@@ -781,11 +913,11 @@
    ]
   },
   {
-   "n": 29,
+   "n": 33,
    "ch": 1,
    "chTitle": "The Office",
-   "start": 69.147,
-   "end": 70.787,
+   "start": 69.603,
+   "end": 71.243,
    "dur": 1.64,
    "listDur": 1.6,
    "loc": "L08-kentucky",
@@ -798,11 +930,11 @@
    "snapWord": "America"
   },
   {
-   "n": 30,
+   "n": 34,
    "ch": 1,
    "chTitle": "The Office",
-   "start": 70.787,
-   "end": 72.951,
+   "start": 71.243,
+   "end": 73.407,
    "dur": 2.163,
    "listDur": 2.2,
    "loc": "L08-kentucky",
@@ -815,11 +947,11 @@
    "snapWord": "Kentucky"
   },
   {
-   "n": 31,
+   "n": 35,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 72.951,
-   "end": 75.054,
+   "start": 73.407,
+   "end": 75.51,
    "dur": 2.103,
    "listDur": 1.4,
    "loc": "T-title",
@@ -830,12 +962,12 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 32,
+   "n": 36,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 75.054,
-   "end": 81.675,
-   "dur": 6.621,
+   "start": 75.51,
+   "end": 82.132,
+   "dur": 6.622,
    "listDur": 6.6,
    "loc": "T-map",
    "framing": "шаблон карта",
@@ -843,7 +975,7 @@
    "spoken": "Jensen was born in Taiwan At nine his parents sent him and his older brother to relatives in America",
    "event": "на «Taiwan» остров вспыхивает, падает пин «TAIWAN»; на «nine» выскакивает мальчик с биркой «AGE 9»; на «brother» рядом встаёт брат в клетчатой рубашке; на «parents» у пина машут две маленькие фигурки; на «relatives» самолётик идёт дугой через Тихий океан, камера за ним",
    "camera": "панорама за самолётом → стоп → рывок на «relatives»",
-   "snap": 4.981,
+   "snap": 4.982,
    "snapWord": "relatives",
    "ev": [
     {
@@ -852,29 +984,29 @@
     },
     {
      "p": 1,
-     "t": 2.181
+     "t": 2.182
     },
     {
      "p": 2,
-     "t": 4.381
+     "t": 4.382
     },
     {
      "p": 3,
-     "t": 2.961
+     "t": 2.962
     },
     {
      "p": 4,
-     "t": 4.981
+     "t": 4.982
     }
    ]
   },
   {
-   "n": 33,
+   "n": 37,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 81.675,
-   "end": 84.154,
-   "dur": 2.479,
+   "start": 82.132,
+   "end": 84.61,
+   "dur": 2.478,
    "listDur": 2.5,
    "loc": "L08-kentucky",
    "framing": "общий школа-интернат в Кентукки",
@@ -896,11 +1028,11 @@
    ]
   },
   {
-   "n": 34,
+   "n": 38,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 84.154,
-   "end": 89.727,
+   "start": 84.61,
+   "end": 90.183,
    "dur": 5.573,
    "listDur": 5.6,
    "loc": "T-desk",
@@ -935,11 +1067,11 @@
    ]
   },
   {
-   "n": 35,
+   "n": 39,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 89.727,
-   "end": 94.483,
+   "start": 90.183,
+   "end": 94.939,
    "dur": 4.756,
    "listDur": 4.8,
    "loc": "L15-relatives",
@@ -949,17 +1081,17 @@
    "event": "дом родственников, тёплый вечер: тётя читает брошюру с фото белого здания и крупным «VERY STRICT»; мальчики сидят на чемоданах → вип-пан со смазом на реплике UNCLE: дядя довольно кивает, хлопает по чемодану",
    "camera": "стоп → вип-пан со смазом на UNCLE",
    "whip": {
-    "t": 2.895,
+    "t": 2.896,
     "from": "AUNT",
     "to": "UNCLE"
    }
   },
   {
-   "n": 36,
+   "n": 40,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 94.483,
-   "end": 96.283,
+   "start": 94.939,
+   "end": 96.739,
    "dur": 1.8,
    "listDur": 1.8,
    "loc": "T-card",
@@ -970,11 +1102,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 37,
+   "n": 41,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 96.283,
-   "end": 98.243,
+   "start": 96.739,
+   "end": 98.699,
    "dur": 1.96,
    "listDur": 2,
    "loc": "T-doc",
@@ -987,12 +1119,12 @@
    "snapWord": "troubled"
   },
   {
-   "n": 38,
+   "n": 42,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 98.243,
-   "end": 100.562,
-   "dur": 2.319,
+   "start": 98.699,
+   "end": 101.017,
+   "dur": 2.318,
    "listDur": 2.3,
    "loc": "L15-relatives",
    "framing": "средний тётя и дядя",
@@ -1010,12 +1142,12 @@
    ]
   },
   {
-   "n": 39,
+   "n": 43,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 100.562,
-   "end": 102.934,
-   "dur": 2.372,
+   "start": 101.017,
+   "end": 103.39,
+   "dur": 2.373,
    "listDur": 2.4,
    "loc": "L08-kentucky",
    "framing": "общий санузел",
@@ -1027,12 +1159,12 @@
    "snapWord": "farm"
   },
   {
-   "n": 40,
+   "n": 44,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 102.934,
-   "end": 106.135,
-   "dur": 3.201,
+   "start": 103.39,
+   "end": 106.59,
+   "dur": 3.2,
    "listDur": 3.2,
    "loc": "L08-kentucky",
    "framing": "крупно юный Дженсен",
@@ -1044,11 +1176,11 @@
    "snapWord": "bathrooms"
   },
   {
-   "n": 41,
+   "n": 45,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 106.135,
-   "end": 107.744,
+   "start": 106.59,
+   "end": 108.199,
    "dur": 1.609,
    "listDur": 1.6,
    "loc": "L08-kentucky",
@@ -1061,11 +1193,11 @@
    "snapWord": "dorm"
   },
   {
-   "n": 42,
+   "n": 46,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 107.744,
-   "end": 109.044,
+   "start": 108.199,
+   "end": 109.499,
    "dur": 1.3,
    "listDur": 1.3,
    "loc": "L08-kentucky",
@@ -1088,11 +1220,11 @@
    ]
   },
   {
-   "n": 43,
+   "n": 47,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 109.044,
-   "end": 113.124,
+   "start": 109.499,
+   "end": 113.579,
    "dur": 4.08,
    "listDur": 4.1,
    "loc": "L08-kentucky",
@@ -1105,11 +1237,11 @@
    "snapWord": "covered"
   },
   {
-   "n": 44,
+   "n": 48,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 113.124,
-   "end": 114.424,
+   "start": 113.579,
+   "end": 114.879,
    "dur": 1.3,
    "listDur": 1.3,
    "loc": "L08-kentucky",
@@ -1122,11 +1254,11 @@
    "snapWord": "couldn't"
   },
   {
-   "n": 45,
+   "n": 49,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 114.424,
-   "end": 116.224,
+   "start": 114.879,
+   "end": 116.679,
    "dur": 1.8,
    "listDur": 1.8,
    "loc": "T-card",
@@ -1137,11 +1269,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 46,
+   "n": 50,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 116.224,
-   "end": 119.889,
+   "start": 116.679,
+   "end": 120.344,
    "dur": 3.665,
    "listDur": 3.7,
    "loc": "L08-kentucky",
@@ -1151,18 +1283,18 @@
    "event": "протягивает книгу → вип-пан со смазом на реплике YOUNG JENSEN: показывает на штангу в углу",
    "camera": "стоп → вип-пан со смазом на YOUNG JENSEN",
    "whip": {
-    "t": 1.485,
+    "t": 1.484,
     "from": "ROOMMATE",
     "to": "YOUNG JENSEN"
    }
   },
   {
-   "n": 47,
+   "n": 51,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 119.889,
-   "end": 121.486,
-   "dur": 1.597,
+   "start": 120.344,
+   "end": 121.94,
+   "dur": 1.596,
    "listDur": 1.6,
    "loc": "L08-kentucky",
    "framing": "вставка рукопожатие",
@@ -1174,11 +1306,11 @@
    "snapWord": "first"
   },
   {
-   "n": 48,
+   "n": 52,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 121.486,
-   "end": 128.535,
+   "start": 121.94,
+   "end": 128.989,
    "dur": 7.049,
    "listDur": 7,
    "loc": "T-split",
@@ -1201,12 +1333,12 @@
    ]
   },
   {
-   "n": 49,
+   "n": 53,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 128.535,
-   "end": 134.124,
-   "dur": 5.589,
+   "start": 128.989,
+   "end": 134.579,
+   "dur": 5.59,
    "listDur": 5.6,
    "loc": "L08-kentucky",
    "framing": "общий новый корпус Huang Hall",
@@ -1232,11 +1364,11 @@
    ]
   },
   {
-   "n": 50,
+   "n": 54,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 134.124,
-   "end": 137.624,
+   "start": 134.579,
+   "end": 138.079,
    "dur": 3.5,
    "listDur": 3.5,
    "loc": "L16-dennys-kitchen",
@@ -1257,12 +1389,12 @@
    ]
   },
   {
-   "n": 51,
+   "n": 55,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 137.624,
-   "end": 140.779,
-   "dur": 3.155,
+   "start": 138.079,
+   "end": 141.233,
+   "dur": 3.154,
    "listDur": 3.2,
    "loc": "L16-dennys-kitchen",
    "framing": "вставка башня тарелок у мойки",
@@ -1284,11 +1416,11 @@
    ]
   },
   {
-   "n": 52,
+   "n": 56,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 140.779,
-   "end": 145.106,
+   "start": 141.233,
+   "end": 145.56,
    "dur": 4.327,
    "listDur": 4.3,
    "loc": "L07-dennys",
@@ -1301,11 +1433,11 @@
    "snapWord": "into"
   },
   {
-   "n": 53,
+   "n": 57,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 145.106,
-   "end": 150.086,
+   "start": 145.56,
+   "end": 150.54,
    "dur": 4.98,
    "listDur": 5,
    "loc": "L07-dennys",
@@ -1318,11 +1450,11 @@
    "snapWord": "two"
   },
   {
-   "n": 54,
+   "n": 58,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 150.086,
-   "end": 153.795,
+   "start": 150.54,
+   "end": 154.249,
    "dur": 3.709,
    "listDur": 3.7,
    "loc": "T-desk",
@@ -1335,12 +1467,12 @@
    "snapWord": "3D"
   },
   {
-   "n": 55,
+   "n": 59,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 153.795,
-   "end": 157.19,
-   "dur": 3.395,
+   "start": 154.249,
+   "end": 157.645,
+   "dur": 3.396,
    "listDur": 3.4,
    "loc": "L07-dennys",
    "framing": "средний официантка → Дженсен-1993 (вип-пан)",
@@ -1355,11 +1487,11 @@
    }
   },
   {
-   "n": 56,
+   "n": 60,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 157.19,
-   "end": 158.69,
+   "start": 157.645,
+   "end": 159.145,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L07-dennys",
@@ -1372,11 +1504,11 @@
    "snapWord": "menu"
   },
   {
-   "n": 57,
+   "n": 61,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 158.69,
-   "end": 165.115,
+   "start": 159.145,
+   "end": 165.57,
    "dur": 6.425,
    "listDur": 6.4,
    "loc": "L07-dennys",
@@ -1399,11 +1531,11 @@
    ]
   },
   {
-   "n": 58,
+   "n": 62,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 165.115,
-   "end": 168.718,
+   "start": 165.57,
+   "end": 169.173,
    "dur": 3.603,
    "listDur": 3.6,
    "loc": "T-card",
@@ -1414,11 +1546,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 59,
+   "n": 63,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 168.718,
-   "end": 175.685,
+   "start": 169.173,
+   "end": 176.14,
    "dur": 6.967,
    "listDur": 7,
    "loc": "T-number",
@@ -1449,12 +1581,12 @@
    ]
   },
   {
-   "n": 60,
+   "n": 64,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 175.685,
-   "end": 177.205,
-   "dur": 1.52,
+   "start": 176.14,
+   "end": 177.661,
+   "dur": 1.521,
    "listDur": 1.5,
    "loc": "L07-dennys",
    "framing": "общий кабинка ночью",
@@ -1466,11 +1598,11 @@
    "snapWord": "last"
   },
   {
-   "n": 61,
+   "n": 65,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 177.205,
-   "end": 178.705,
+   "start": 177.661,
+   "end": 179.161,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L07-dennys",
@@ -1483,11 +1615,11 @@
    "snapWord": "month"
   },
   {
-   "n": 62,
+   "n": 66,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 178.705,
-   "end": 181.706,
+   "start": 179.161,
+   "end": 182.162,
    "dur": 3.001,
    "listDur": 3,
    "loc": "L07-dennys",
@@ -1503,11 +1635,11 @@
    }
   },
   {
-   "n": 63,
+   "n": 67,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 181.706,
-   "end": 186.173,
+   "start": 182.162,
+   "end": 186.629,
    "dur": 4.467,
    "listDur": 4.5,
    "loc": "T-number",
@@ -1530,11 +1662,11 @@
    ]
   },
   {
-   "n": 64,
+   "n": 68,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 186.173,
-   "end": 187.473,
+   "start": 186.629,
+   "end": 187.929,
    "dur": 1.3,
    "listDur": 1.3,
    "loc": "3D-boxpath",
@@ -1551,12 +1683,12 @@
    ]
   },
   {
-   "n": 65,
+   "n": 69,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 187.473,
-   "end": 189.905,
-   "dur": 2.432,
+   "start": 187.929,
+   "end": 190.36,
+   "dur": 2.431,
    "listDur": 2.4,
    "loc": "3D-kitchen",
    "framing": "3D монитор с игрой",
@@ -1566,11 +1698,11 @@
    "camera": "панорама"
   },
   {
-   "n": 66,
+   "n": 70,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 189.905,
-   "end": 195.002,
+   "start": 190.36,
+   "end": 195.457,
    "dur": 5.097,
    "listDur": 5.1,
    "loc": "3D-kitchen",
@@ -1581,12 +1713,12 @@
    "camera": "панорама"
   },
   {
-   "n": 67,
+   "n": 71,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 195.002,
-   "end": 201.92,
-   "dur": 6.918,
+   "start": 195.457,
+   "end": 202.376,
+   "dur": 6.919,
    "listDur": 6.9,
    "loc": "3D-kitchen",
    "framing": "3D отъезд кухня",
@@ -1606,12 +1738,12 @@
    ]
   },
   {
-   "n": 68,
+   "n": 72,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 201.92,
-   "end": 207.251,
-   "dur": 5.331,
+   "start": 202.376,
+   "end": 207.706,
+   "dur": 5.33,
    "listDur": 5.3,
    "loc": "L11-event-hall",
    "framing": "общий маленькая презентация",
@@ -1619,15 +1751,15 @@
    "spoken": "In 2006 Jensen made his biggest bet He released software called CUDA",
    "event": "подпись «2006»; Дженсен на сцене, на экране слайд CUDA, зал полупустой",
    "camera": "наезд → стоп → рывок на «released»",
-   "snap": 3.491,
+   "snap": 3.49,
    "snapWord": "released"
   },
   {
-   "n": 69,
+   "n": 73,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 207.251,
-   "end": 212.497,
+   "start": 207.706,
+   "end": 212.952,
    "dur": 5.246,
    "listDur": 5.2,
    "loc": "L11-event-hall",
@@ -1640,11 +1772,11 @@
    "snapWord": "games"
   },
   {
-   "n": 70,
+   "n": 74,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 212.497,
-   "end": 214.297,
+   "start": 212.952,
+   "end": 214.752,
    "dur": 1.8,
    "listDur": 1.8,
    "loc": "T-card",
@@ -1655,11 +1787,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 71,
+   "n": 75,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 214.297,
-   "end": 216.081,
+   "start": 214.752,
+   "end": 216.536,
    "dur": 1.784,
    "listDur": 1.8,
    "loc": "L11-event-hall",
@@ -1672,11 +1804,11 @@
    "snapWord": "this"
   },
   {
-   "n": 72,
+   "n": 76,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 216.081,
-   "end": 217.61,
+   "start": 216.536,
+   "end": 218.065,
    "dur": 1.529,
    "listDur": 1.5,
    "loc": "L11-event-hall",
@@ -1687,12 +1819,12 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 73,
+   "n": 77,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 217.61,
-   "end": 219.891,
-   "dur": 2.281,
+   "start": 218.065,
+   "end": 220.347,
+   "dur": 2.282,
    "listDur": 2.3,
    "loc": "L11-event-hall",
    "framing": "общий пустой зал",
@@ -1704,11 +1836,11 @@
    "snapWord": "hobby"
   },
   {
-   "n": 74,
+   "n": 78,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 219.891,
-   "end": 223.191,
+   "start": 220.347,
+   "end": 223.647,
    "dur": 3.3,
    "listDur": 3.3,
    "loc": "T-board",
@@ -1719,11 +1851,11 @@
    "camera": "проход камерой по нитям"
   },
   {
-   "n": 75,
+   "n": 79,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 223.191,
-   "end": 226.523,
+   "start": 223.647,
+   "end": 226.979,
    "dur": 3.332,
    "listDur": 3.3,
    "loc": "L06-nvidia-office",
@@ -1736,12 +1868,12 @@
    "snapWord": "Nvidia"
   },
   {
-   "n": 76,
+   "n": 80,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 226.523,
-   "end": 232.923,
-   "dur": 6.4,
+   "start": 226.979,
+   "end": 233.378,
+   "dur": 6.399,
    "listDur": 6.4,
    "loc": "3D-datacenter",
    "framing": "3D суперкомпьютер ряды чипов",
@@ -1767,11 +1899,11 @@
    ]
   },
   {
-   "n": 77,
+   "n": 81,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 232.923,
-   "end": 234.423,
+   "start": 233.378,
+   "end": 234.878,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L06-nvidia-office",
@@ -1784,11 +1916,11 @@
    "snapWord": "deliver"
   },
   {
-   "n": 78,
+   "n": 82,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 234.423,
-   "end": 236.346,
+   "start": 234.878,
+   "end": 236.801,
    "dur": 1.923,
    "listDur": 1.9,
    "loc": "L06-nvidia-office",
@@ -1801,11 +1933,11 @@
    "snapWord": "patient"
   },
   {
-   "n": 79,
+   "n": 83,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 236.346,
-   "end": 242.446,
+   "start": 236.801,
+   "end": 242.901,
    "dur": 6.1,
    "listDur": 6.1,
    "loc": "3D-city",
@@ -1828,11 +1960,11 @@
    ]
   },
   {
-   "n": 80,
+   "n": 84,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 242.446,
-   "end": 244.69,
+   "start": 242.901,
+   "end": 245.145,
    "dur": 2.244,
    "listDur": 2.2,
    "loc": "L06-nvidia-office",
@@ -1843,11 +1975,11 @@
    "camera": "подъём камеры"
   },
   {
-   "n": 81,
+   "n": 85,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 244.69,
-   "end": 247.19,
+   "start": 245.145,
+   "end": 247.645,
    "dur": 2.5,
    "listDur": 2.5,
    "loc": "L11-event-hall",
@@ -1866,11 +1998,11 @@
    ]
   },
   {
-   "n": 82,
+   "n": 86,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 247.19,
-   "end": 248.832,
+   "start": 247.645,
+   "end": 249.287,
    "dur": 1.642,
    "listDur": 1.6,
    "loc": "T-split",
@@ -1883,11 +2015,11 @@
    "snapWord": "phone"
   },
   {
-   "n": 83,
+   "n": 87,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 248.832,
-   "end": 251.628,
+   "start": 249.287,
+   "end": 252.083,
    "dur": 2.796,
    "listDur": 2.8,
    "loc": "L05-beijing",
@@ -1906,11 +2038,11 @@
    ]
   },
   {
-   "n": 84,
+   "n": 88,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 251.628,
-   "end": 253.28,
+   "start": 252.083,
+   "end": 253.735,
    "dur": 1.652,
    "listDur": 1.7,
    "loc": "L04-washington",
@@ -1923,11 +2055,11 @@
    "snapWord": "Huang"
   },
   {
-   "n": 85,
+   "n": 89,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 253.28,
-   "end": 254.927,
+   "start": 253.735,
+   "end": 255.382,
    "dur": 1.647,
    "listDur": 1.6,
    "loc": "L05-beijing",
@@ -1938,12 +2070,12 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 86,
+   "n": 90,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 254.927,
-   "end": 258.487,
-   "dur": 3.56,
+   "start": 255.382,
+   "end": 258.943,
+   "dur": 3.561,
    "listDur": 3.6,
    "loc": "T-card",
    "framing": "шаблон карточка",
@@ -1953,12 +2085,12 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 87,
+   "n": 91,
    "ch": 2,
    "chTitle": "The Man With the Key",
-   "start": 258.487,
-   "end": 262.807,
-   "dur": 4.32,
+   "start": 258.943,
+   "end": 263.262,
+   "dur": 4.319,
    "listDur": 4.3,
    "loc": "L04-washington",
    "framing": "обратная дверь с замком",
@@ -1980,11 +2112,11 @@
    ]
   },
   {
-   "n": 88,
+   "n": 92,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 262.807,
-   "end": 265.606,
+   "start": 263.262,
+   "end": 266.061,
    "dur": 2.799,
    "listDur": 2.8,
    "loc": "T-title",
@@ -1995,12 +2127,12 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 89,
+   "n": 93,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 265.606,
-   "end": 270.322,
-   "dur": 4.716,
+   "start": 266.061,
+   "end": 270.778,
+   "dur": 4.717,
    "listDur": 4.7,
    "loc": "3D-city",
    "framing": "3D пролёт над Вашингтоном",
@@ -2010,12 +2142,12 @@
    "camera": "пролёт вперёд"
   },
   {
-   "n": 90,
+   "n": 94,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 270.322,
-   "end": 274.884,
-   "dur": 4.562,
+   "start": 270.778,
+   "end": 275.339,
+   "dur": 4.561,
    "listDur": 4.6,
    "loc": "T-card",
    "framing": "шаблон карточка",
@@ -2025,12 +2157,12 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 91,
+   "n": 95,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 274.884,
-   "end": 276.961,
-   "dur": 2.077,
+   "start": 275.339,
+   "end": 277.417,
+   "dur": 2.078,
    "listDur": 2.1,
    "loc": "L04-washington",
    "framing": "крупно чиновник",
@@ -2048,11 +2180,11 @@
    ]
   },
   {
-   "n": 92,
+   "n": 96,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 276.961,
-   "end": 278.715,
+   "start": 277.417,
+   "end": 279.171,
    "dur": 1.754,
    "listDur": 1.8,
    "loc": "T-split",
@@ -2063,11 +2195,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 93,
+   "n": 97,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 278.715,
-   "end": 280.215,
+   "start": 279.171,
+   "end": 280.671,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L04-washington",
@@ -2080,12 +2212,12 @@
    "snapWord": "want"
   },
   {
-   "n": 94,
+   "n": 98,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 280.215,
-   "end": 286.636,
-   "dur": 6.421,
+   "start": 280.671,
+   "end": 287.091,
+   "dur": 6.42,
    "listDur": 6.4,
    "loc": "3D-conveyor",
    "framing": "3D конвейер",
@@ -2100,16 +2232,16 @@
     },
     {
      "p": 2,
-     "t": 5.351
+     "t": 5.35
     }
    ]
   },
   {
-   "n": 95,
+   "n": 99,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 286.636,
-   "end": 292.734,
+   "start": 287.091,
+   "end": 293.189,
    "dur": 6.098,
    "listDur": 6.1,
    "loc": "T-number",
@@ -2136,12 +2268,12 @@
    ]
   },
   {
-   "n": 96,
+   "n": 100,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 292.734,
-   "end": 295.787,
-   "dur": 3.053,
+   "start": 293.189,
+   "end": 296.243,
+   "dur": 3.054,
    "listDur": 3.1,
    "loc": "L17-warehouse",
    "framing": "средний поддоны чипов H20",
@@ -2159,11 +2291,11 @@
    ]
   },
   {
-   "n": 97,
+   "n": 101,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 295.787,
-   "end": 297.287,
+   "start": 296.243,
+   "end": 297.743,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L06-nvidia-office",
@@ -2176,11 +2308,11 @@
    "snapWord": "about"
   },
   {
-   "n": 98,
+   "n": 102,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 297.287,
-   "end": 298.787,
+   "start": 297.743,
+   "end": 299.243,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L04-washington",
@@ -2191,11 +2323,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 99,
+   "n": 103,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 298.787,
-   "end": 300.287,
+   "start": 299.243,
+   "end": 300.743,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L06-nvidia-office",
@@ -2208,11 +2340,11 @@
    "snapWord": "really"
   },
   {
-   "n": 100,
+   "n": 104,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 300.287,
-   "end": 301.787,
+   "start": 300.743,
+   "end": 302.243,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L04-washington",
@@ -2223,11 +2355,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 101,
+   "n": 105,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 301.787,
-   "end": 304.469,
+   "start": 302.243,
+   "end": 304.925,
    "dur": 2.682,
    "listDur": 2.7,
    "loc": "L06-nvidia-office",
@@ -2240,12 +2372,12 @@
    "snapWord": "biggest"
   },
   {
-   "n": 102,
+   "n": 106,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 304.469,
-   "end": 309.526,
-   "dur": 5.057,
+   "start": 304.925,
+   "end": 309.983,
+   "dur": 5.058,
    "listDur": 5.1,
    "loc": "T-doc",
    "framing": "шаблон годовой отчёт Nvidia",
@@ -2267,12 +2399,12 @@
    ]
   },
   {
-   "n": 103,
+   "n": 107,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 309.526,
-   "end": 316.289,
-   "dur": 6.763,
+   "start": 309.983,
+   "end": 316.745,
+   "dur": 6.762,
    "listDur": 6.8,
    "loc": "T-number",
    "framing": "шаблон цифра",
@@ -2298,11 +2430,11 @@
    ]
   },
   {
-   "n": 104,
+   "n": 108,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 316.289,
-   "end": 319.113,
+   "start": 316.745,
+   "end": 319.569,
    "dur": 2.824,
    "listDur": 2.8,
    "loc": "L06-nvidia-office",
@@ -2312,17 +2444,17 @@
    "event": "ассистент поднимает пустой график → вип-пан со смазом на реплике JENSEN: щурится, поправляет очки",
    "camera": "стоп → вип-пан со смазом на JENSEN",
    "whip": {
-    "t": 1.483,
+    "t": 1.484,
     "from": "ASSISTANT",
     "to": "JENSEN"
    }
   },
   {
-   "n": 105,
+   "n": 109,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 319.113,
-   "end": 320.613,
+   "start": 319.569,
+   "end": 321.069,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L06-nvidia-office",
@@ -2335,12 +2467,12 @@
    "snapWord": "chart"
   },
   {
-   "n": 106,
+   "n": 110,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 320.613,
-   "end": 322.693,
-   "dur": 2.08,
+   "start": 321.069,
+   "end": 323.148,
+   "dur": 2.079,
    "listDur": 2.1,
    "loc": "L11-event-hall",
    "framing": "средний Дженсен в прожекторе",
@@ -2352,11 +2484,11 @@
    "snapWord": "felt"
   },
   {
-   "n": 107,
+   "n": 111,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 322.693,
-   "end": 326.813,
+   "start": 323.148,
+   "end": 327.268,
    "dur": 4.12,
    "listDur": 4.1,
    "loc": "L11-event-hall",
@@ -2369,11 +2501,11 @@
    "snapWord": "American"
   },
   {
-   "n": 108,
+   "n": 112,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 326.813,
-   "end": 329.746,
+   "start": 327.268,
+   "end": 330.201,
    "dur": 2.933,
    "listDur": 2.9,
    "loc": "L11-event-hall",
@@ -2386,11 +2518,11 @@
    "snapWord": "Chinese"
   },
   {
-   "n": 109,
+   "n": 113,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 329.746,
-   "end": 332.155,
+   "start": 330.201,
+   "end": 332.61,
    "dur": 2.409,
    "listDur": 2.4,
    "loc": "L11-event-hall",
@@ -2413,11 +2545,11 @@
    ]
   },
   {
-   "n": 110,
+   "n": 114,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 332.155,
-   "end": 334.004,
+   "start": 332.61,
+   "end": 334.459,
    "dur": 1.849,
    "listDur": 1.8,
    "loc": "L11-event-hall",
@@ -2436,11 +2568,11 @@
    ]
   },
   {
-   "n": 111,
+   "n": 115,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 334.004,
-   "end": 337.863,
+   "start": 334.459,
+   "end": 338.318,
    "dur": 3.859,
    "listDur": 3.9,
    "loc": "L05-beijing",
@@ -2449,15 +2581,15 @@
    "spoken": "So here was Beijing's problem China couldn't buy the chips",
    "event": "на красном столе коробка с чипами под тем же латунным навесным замком, что на вашингтонской двери; рука дёргает замок — не поддаётся",
    "camera": "наезд → стоп → рывок на «China»",
-   "snap": 1.981,
+   "snap": 1.982,
    "snapWord": "China"
   },
   {
-   "n": 112,
+   "n": 116,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 337.863,
-   "end": 340.903,
+   "start": 338.318,
+   "end": 341.358,
    "dur": 3.04,
    "listDur": 3,
    "loc": "L05-beijing",
@@ -2476,11 +2608,11 @@
    ]
   },
   {
-   "n": 113,
+   "n": 117,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 340.903,
-   "end": 344.376,
+   "start": 341.358,
+   "end": 344.831,
    "dur": 3.473,
    "listDur": 3.5,
    "loc": "L05-beijing",
@@ -2499,11 +2631,11 @@
    ]
   },
   {
-   "n": 114,
+   "n": 118,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 344.376,
-   "end": 347.045,
+   "start": 344.831,
+   "end": 347.5,
    "dur": 2.669,
    "listDur": 2.7,
    "loc": "T-card",
@@ -2514,11 +2646,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 115,
+   "n": 119,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 347.045,
-   "end": 348.545,
+   "start": 347.5,
+   "end": 349,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L05-beijing",
@@ -2531,11 +2663,11 @@
    "snapWord": "chips"
   },
   {
-   "n": 116,
+   "n": 120,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 348.545,
-   "end": 350.045,
+   "start": 349,
+   "end": 350.5,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L05-beijing",
@@ -2554,11 +2686,11 @@
    ]
   },
   {
-   "n": 117,
+   "n": 121,
    "ch": 3,
    "chTitle": "The Locked Door",
-   "start": 350.045,
-   "end": 352.241,
+   "start": 350.5,
+   "end": 352.696,
    "dur": 2.196,
    "listDur": 2.2,
    "loc": "T-card",
@@ -2569,12 +2701,12 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 118,
+   "n": 122,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 352.241,
-   "end": 355.996,
-   "dur": 3.755,
+   "start": 352.696,
+   "end": 356.452,
+   "dur": 3.756,
    "listDur": 3.8,
    "loc": "T-title",
    "framing": "шаблон титр",
@@ -2584,11 +2716,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 119,
+   "n": 123,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 355.996,
-   "end": 358.716,
+   "start": 356.452,
+   "end": 359.172,
    "dur": 2.72,
    "listDur": 2.7,
    "loc": "L09-megaspeed",
@@ -2611,11 +2743,11 @@
    ]
   },
   {
-   "n": 120,
+   "n": 124,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 358.716,
-   "end": 361.256,
+   "start": 359.172,
+   "end": 361.712,
    "dur": 2.54,
    "listDur": 2.5,
    "loc": "T-doc",
@@ -2634,11 +2766,11 @@
    ]
   },
   {
-   "n": 121,
+   "n": 125,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 361.256,
-   "end": 363.776,
+   "start": 361.712,
+   "end": 364.232,
    "dur": 2.52,
    "listDur": 2.5,
    "loc": "T-map",
@@ -2661,12 +2793,12 @@
    ]
   },
   {
-   "n": 122,
+   "n": 126,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 363.776,
-   "end": 366.349,
-   "dur": 2.573,
+   "start": 364.232,
+   "end": 366.804,
+   "dur": 2.572,
    "listDur": 2.6,
    "loc": "L09-megaspeed",
    "framing": "вставка табличка",
@@ -2678,12 +2810,12 @@
    "snapWord": "Megaspeed"
   },
   {
-   "n": 123,
+   "n": 127,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 366.349,
-   "end": 369.067,
-   "dur": 2.718,
+   "start": 366.804,
+   "end": 369.523,
+   "dur": 2.719,
    "listDur": 2.7,
    "loc": "L09-megaspeed",
    "framing": "общий офис Megaspeed",
@@ -2701,11 +2833,11 @@
    ]
   },
   {
-   "n": 124,
+   "n": 128,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 369.067,
-   "end": 370.567,
+   "start": 369.523,
+   "end": 371.023,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L09-megaspeed",
@@ -2718,11 +2850,11 @@
    "snapWord": "business"
   },
   {
-   "n": 125,
+   "n": 129,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 370.567,
-   "end": 372.067,
+   "start": 371.023,
+   "end": 372.523,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L09-megaspeed",
@@ -2735,11 +2867,11 @@
    "snapWord": "games"
   },
   {
-   "n": 126,
+   "n": 130,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 372.067,
-   "end": 373.567,
+   "start": 372.523,
+   "end": 374.023,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L09-megaspeed",
@@ -2750,12 +2882,12 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 127,
+   "n": 131,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 373.567,
-   "end": 375.592,
-   "dur": 2.025,
+   "start": 374.023,
+   "end": 376.047,
+   "dur": 2.024,
    "listDur": 2,
    "loc": "L09-megaspeed",
    "framing": "обратная сотрудник",
@@ -2767,11 +2899,11 @@
    "snapWord": "supercomputers"
   },
   {
-   "n": 128,
+   "n": 132,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 375.592,
-   "end": 377.092,
+   "start": 376.047,
+   "end": 377.547,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L09-megaspeed",
@@ -2782,12 +2914,12 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 129,
+   "n": 133,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 377.092,
-   "end": 378.905,
-   "dur": 1.813,
+   "start": 377.547,
+   "end": 379.359,
+   "dur": 1.812,
    "listDur": 1.8,
    "loc": "L09-megaspeed",
    "framing": "вставка счётчик",
@@ -2799,12 +2931,12 @@
    "snapWord": "bill"
   },
   {
-   "n": 130,
+   "n": 134,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 378.905,
-   "end": 381.375,
-   "dur": 2.47,
+   "start": 379.359,
+   "end": 381.83,
+   "dur": 2.471,
    "listDur": 2.5,
    "loc": "T-card",
    "framing": "шаблон карточка",
@@ -2814,11 +2946,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 131,
+   "n": 135,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 381.375,
-   "end": 386.075,
+   "start": 381.83,
+   "end": 386.53,
    "dur": 4.7,
    "listDur": 4.7,
    "loc": "L09-megaspeed",
@@ -2841,11 +2973,11 @@
    ]
   },
   {
-   "n": 132,
+   "n": 136,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 386.075,
-   "end": 387.869,
+   "start": 386.53,
+   "end": 388.324,
    "dur": 1.794,
    "listDur": 1.8,
    "loc": "L09-megaspeed",
@@ -2858,11 +2990,11 @@
    "snapWord": "nobody"
   },
   {
-   "n": 133,
+   "n": 137,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 387.869,
-   "end": 390.858,
+   "start": 388.324,
+   "end": 391.313,
    "dur": 2.989,
    "listDur": 3,
    "loc": "T-map",
@@ -2875,11 +3007,11 @@
    "snapWord": "Indonesia"
   },
   {
-   "n": 134,
+   "n": 138,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 390.858,
-   "end": 392.899,
+   "start": 391.313,
+   "end": 393.354,
    "dur": 2.041,
    "listDur": 2,
    "loc": "L09-megaspeed",
@@ -2898,12 +3030,12 @@
    ]
   },
   {
-   "n": 135,
+   "n": 139,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 392.899,
-   "end": 396.823,
-   "dur": 3.924,
+   "start": 393.354,
+   "end": 397.277,
+   "dur": 3.923,
    "listDur": 3.9,
    "loc": "T-map",
    "framing": "шаблон карта",
@@ -2925,12 +3057,12 @@
    ]
   },
   {
-   "n": 136,
+   "n": 140,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 396.823,
-   "end": 402.799,
-   "dur": 5.976,
+   "start": 397.277,
+   "end": 403.254,
+   "dur": 5.977,
    "listDur": 6,
    "loc": "L09-megaspeed",
    "framing": "вставка монитор список клиентов",
@@ -2952,12 +3084,12 @@
    ]
   },
   {
-   "n": 137,
+   "n": 141,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 402.799,
-   "end": 407.905,
-   "dur": 5.106,
+   "start": 403.254,
+   "end": 408.359,
+   "dur": 5.105,
    "listDur": 5.1,
    "loc": "T-joke",
    "framing": "общий окно соседа",
@@ -2965,7 +3097,7 @@
    "spoken": "Imagine you're not allowed to own a certain book So your neighbor buys it keeps it in his house",
    "event": "книга за стеклом с замком; сосед покупает её и ставит на свою полку, ночь; на «allowed» на обложке книги защёлкивается замок; на «neighbor» сосед уносит книгу к себе на полку",
    "camera": "отъезд → стоп → рывок на «house»",
-   "snap": 4.446,
+   "snap": 4.445,
    "snapWord": "house",
    "ev": [
     {
@@ -2974,16 +3106,16 @@
     },
     {
      "p": 3,
-     "t": 2.706
+     "t": 2.705
     }
    ]
   },
   {
-   "n": 138,
+   "n": 142,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 407.905,
-   "end": 411.822,
+   "start": 408.359,
+   "end": 412.276,
    "dur": 3.917,
    "listDur": 3.9,
    "loc": "T-joke",
@@ -3006,11 +3138,11 @@
    ]
   },
   {
-   "n": 139,
+   "n": 143,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 411.822,
-   "end": 415.097,
+   "start": 412.276,
+   "end": 415.551,
    "dur": 3.275,
    "listDur": 3.3,
    "loc": "T-card",
@@ -3021,11 +3153,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 140,
+   "n": 144,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 415.097,
-   "end": 416.895,
+   "start": 415.551,
+   "end": 417.349,
    "dur": 1.798,
    "listDur": 1.8,
    "loc": "L09-megaspeed",
@@ -3038,11 +3170,11 @@
    "snapWord": "chips"
   },
   {
-   "n": 141,
+   "n": 145,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 416.895,
-   "end": 418.832,
+   "start": 417.349,
+   "end": 419.286,
    "dur": 1.937,
    "listDur": 1.9,
    "loc": "L09-megaspeed",
@@ -3065,11 +3197,11 @@
    ]
   },
   {
-   "n": 142,
+   "n": 146,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 418.832,
-   "end": 420.332,
+   "start": 419.286,
+   "end": 420.786,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L09-megaspeed",
@@ -3082,11 +3214,11 @@
    "snapWord": "long"
   },
   {
-   "n": 143,
+   "n": 147,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 420.332,
-   "end": 422.564,
+   "start": 420.786,
+   "end": 423.018,
    "dur": 2.232,
    "listDur": 2.2,
    "loc": "L09-megaspeed",
@@ -3105,11 +3237,11 @@
    ]
   },
   {
-   "n": 144,
+   "n": 148,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 422.564,
-   "end": 429.069,
+   "start": 423.018,
+   "end": 429.523,
    "dur": 6.505,
    "listDur": 6.5,
    "loc": "T-doc",
@@ -3132,11 +3264,11 @@
    ]
   },
   {
-   "n": 145,
+   "n": 149,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 429.069,
-   "end": 435.665,
+   "start": 429.523,
+   "end": 436.119,
    "dur": 6.596,
    "listDur": 6.6,
    "loc": "L09-megaspeed",
@@ -3159,12 +3291,12 @@
    ]
   },
   {
-   "n": 146,
+   "n": 150,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 435.665,
-   "end": 438.856,
-   "dur": 3.191,
+   "start": 436.119,
+   "end": 439.309,
+   "dur": 3.19,
    "listDur": 3.2,
    "loc": "L09-megaspeed",
    "framing": "крупно клерк → сотрудник (вип-пан)",
@@ -3189,11 +3321,11 @@
    ]
   },
   {
-   "n": 147,
+   "n": 151,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 438.856,
-   "end": 444.589,
+   "start": 439.309,
+   "end": 445.042,
    "dur": 5.733,
    "listDur": 5.7,
    "loc": "T-number",
@@ -3220,11 +3352,11 @@
    ]
   },
   {
-   "n": 148,
+   "n": 152,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 444.589,
-   "end": 448.341,
+   "start": 445.042,
+   "end": 448.794,
    "dur": 3.752,
    "listDur": 3.8,
    "loc": "L09-megaspeed",
@@ -3247,11 +3379,11 @@
    ]
   },
   {
-   "n": 149,
+   "n": 153,
    "ch": 4,
    "chTitle": "The Cover",
-   "start": 448.341,
-   "end": 450.141,
+   "start": 448.794,
+   "end": 450.594,
    "dur": 1.8,
    "listDur": 1.8,
    "loc": "T-card",
@@ -3262,11 +3394,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 150,
+   "n": 154,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 450.141,
-   "end": 452.85,
+   "start": 450.594,
+   "end": 453.302,
    "dur": 2.709,
    "listDur": 2,
    "loc": "T-title",
@@ -3277,12 +3409,12 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 151,
+   "n": 155,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 452.85,
-   "end": 455.075,
-   "dur": 2.225,
+   "start": 453.302,
+   "end": 455.528,
+   "dur": 2.226,
    "listDur": 2.2,
    "loc": "L11-event-hall",
    "framing": "средний Дженсен в дверях",
@@ -3290,16 +3422,16 @@
    "spoken": "Jensen Huang is not hard to meet",
    "event": "Дженсен в кожанке в открытых дверях зала, машет людям «заходите»",
    "camera": "наезд → стоп → рывок на «hard»",
-   "snap": 1.179,
+   "snap": 1.18,
    "snapWord": "hard"
   },
   {
-   "n": 152,
+   "n": 156,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 455.075,
-   "end": 461.023,
-   "dur": 5.948,
+   "start": 455.528,
+   "end": 461.475,
+   "dur": 5.947,
    "listDur": 5.9,
    "loc": "L11-event-hall",
    "framing": "общий зал с толпой",
@@ -3307,30 +3439,30 @@
    "spoken": "He shakes every hand poses for every selfie and treats big customers like regulars at a diner",
    "event": "очередь к Дженсену, телефоны вверх; на «hand» рукопожатие; на «selfie» вспышка телефона; на «customers» рукопожатие двумя руками, бейдж «CUSTOMER»",
    "camera": "наезд → стоп → рывок на «customers»",
-   "snap": 3.639,
+   "snap": 3.64,
    "snapWord": "customers",
    "ev": [
     {
      "p": 1,
-     "t": 0.559
+     "t": 0.56
     },
     {
      "p": 2,
-     "t": 2.239
+     "t": 2.24
     },
     {
      "p": 3,
-     "t": 3.639
+     "t": 3.64
     }
    ]
   },
   {
-   "n": 153,
+   "n": 157,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 461.023,
-   "end": 466.278,
-   "dur": 5.255,
+   "start": 461.475,
+   "end": 466.731,
+   "dur": 5.256,
    "listDur": 5.3,
    "loc": "T-board",
    "framing": "шаблон доска",
@@ -3341,16 +3473,16 @@
    "ev": [
     {
      "p": 1,
-     "t": 3.779
+     "t": 3.78
     }
    ]
   },
   {
-   "n": 154,
+   "n": 158,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 466.278,
-   "end": 467.778,
+   "start": 466.731,
+   "end": 468.231,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L11-event-hall",
@@ -3359,15 +3491,15 @@
    "spoken": "Can I get a selfie",
    "event": "поднимает телефон",
    "camera": "наезд → стоп → рывок на «selfie»",
-   "snap": 0.439,
+   "snap": 0.44,
    "snapWord": "selfie"
   },
   {
-   "n": 155,
+   "n": 159,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 467.778,
-   "end": 469.278,
+   "start": 468.231,
+   "end": 469.731,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L11-event-hall",
@@ -3380,11 +3512,11 @@
    "snapWord": "course"
   },
   {
-   "n": 156,
+   "n": 160,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 469.278,
-   "end": 470.778,
+   "start": 469.731,
+   "end": 471.231,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L11-event-hall",
@@ -3395,11 +3527,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 157,
+   "n": 161,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 470.778,
-   "end": 472.552,
+   "start": 471.231,
+   "end": 473.005,
    "dur": 1.774,
    "listDur": 1.8,
    "loc": "L11-event-hall",
@@ -3408,15 +3540,15 @@
    "spoken": "Only if it has our chip",
    "event": "маркер расписывается на крышке",
    "camera": "наезд → стоп → рывок на «chip»",
-   "snap": 1.079,
+   "snap": 1.08,
    "snapWord": "chip"
   },
   {
-   "n": 158,
+   "n": 162,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 472.552,
-   "end": 474.922,
+   "start": 473.005,
+   "end": 475.375,
    "dur": 2.37,
    "listDur": 2.4,
    "loc": "T-board",
@@ -3427,12 +3559,12 @@
    "camera": "проход камерой по нитям"
   },
   {
-   "n": 159,
+   "n": 163,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 474.922,
-   "end": 481.204,
-   "dur": 6.282,
+   "start": 475.375,
+   "end": 481.656,
+   "dur": 6.281,
    "listDur": 6.3,
    "loc": "L11-event-hall",
    "framing": "обратная зал",
@@ -3440,25 +3572,25 @@
    "spoken": "In early 2024 she turned up at an Nvidia event in California representing Megaspeed",
    "event": "на «2024» плашка «EARLY 2024 · CALIFORNIA»; Алиса с бейджем садится в зале; на «Megaspeed» бейдж «MEGASPEED» крупно, по сцене проходит Дженсен в кожанке",
    "camera": "наезд → стоп → рывок на «event»",
-   "snap": 2.919,
+   "snap": 2.92,
    "snapWord": "event",
    "ev": [
     {
      "p": 0,
-     "t": 0.379
+     "t": 0.38
     },
     {
      "p": 2,
-     "t": 5.099
+     "t": 5.1
     }
    ]
   },
   {
-   "n": 160,
+   "n": 164,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 481.204,
-   "end": 484.864,
+   "start": 481.656,
+   "end": 485.316,
    "dur": 3.66,
    "listDur": 3.7,
    "loc": "3D-city",
@@ -3469,11 +3601,11 @@
    "camera": "пролёт вперёд"
   },
   {
-   "n": 161,
+   "n": 165,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 484.864,
-   "end": 488.325,
+   "start": 485.316,
+   "end": 488.777,
    "dur": 3.461,
    "listDur": 3.5,
    "loc": "L11-event-hall",
@@ -3482,15 +3614,15 @@
    "spoken": "the giant computer show where Jensen is treated like a rock star",
    "event": "накладка «COMPUTEX 2024»: Дженсен на сцене, на переднем плане поднятые телефоны и вспышки; серия из 6 вспышек по залу",
    "camera": "наезд → стоп → рывок на «Jensen»",
-   "snap": 1.399,
+   "snap": 1.4,
    "snapWord": "Jensen"
   },
   {
-   "n": 162,
+   "n": 166,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 488.325,
-   "end": 491.065,
+   "start": 488.777,
+   "end": 491.517,
    "dur": 2.74,
    "listDur": 2.7,
    "loc": "L10-taipei-bar",
@@ -3499,15 +3631,15 @@
    "spoken": "That same month at a party in the city",
    "event": "общий бар: Дженсен с виски среди гостей",
    "camera": "наезд → стоп → рывок на «party»",
-   "snap": 1.319,
+   "snap": 1.32,
    "snapWord": "party"
   },
   {
-   "n": 163,
+   "n": 167,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 491.065,
-   "end": 496.175,
+   "start": 491.517,
+   "end": 496.627,
    "dur": 5.11,
    "listDur": 5.1,
    "loc": "L10-taipei-bar",
@@ -3516,16 +3648,16 @@
    "spoken": "a camera flashed In the photo standing right beside Jensen is Alice Huang",
    "event": "белая вспышка → стоп-кадр становится отпечатком в такой же рамке, что пустая на столе Алисы; наезд на Алису рядом с Дженсеном; подпись «COMPUTEX PARTY · JUNE 2024»; серия из 6 вспышек по залу",
    "camera": "наезд → стоп → рывок на «standing»",
-   "snap": 2.172,
+   "snap": 2.173,
    "snapWord": "standing"
   },
   {
-   "n": 164,
+   "n": 168,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 496.175,
-   "end": 499.286,
-   "dur": 3.112,
+   "start": 496.627,
+   "end": 499.74,
+   "dur": 3.113,
    "listDur": 3.1,
    "loc": "L10-taipei-bar",
    "framing": "крупно фотограф → Дженсен (вип-пан)",
@@ -3534,23 +3666,23 @@
    "event": "фотограф машет рукой → вип-пан со смазом на реплике JENSEN: подталкивает гостей вперёд; на «front» Алиса выходит вперёд, бейдж MEGASPEED в центре",
    "camera": "стоп → вип-пан со смазом на JENSEN",
    "whip": {
-    "t": 1.503,
+    "t": 1.504,
     "from": "PHOTOGRAPHER",
     "to": "JENSEN"
    },
    "ev": [
     {
      "p": 1,
-     "t": 2.363
+     "t": 2.364
     }
    ]
   },
   {
-   "n": 165,
+   "n": 169,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 499.286,
-   "end": 500.786,
+   "start": 499.74,
+   "end": 501.24,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L10-taipei-bar",
@@ -3563,11 +3695,11 @@
    "snapWord": "GPU"
   },
   {
-   "n": 166,
+   "n": 170,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 500.786,
-   "end": 503.438,
+   "start": 501.24,
+   "end": 503.891,
    "dur": 2.651,
    "listDur": 2.7,
    "loc": "L10-taipei-bar",
@@ -3578,12 +3710,12 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 167,
+   "n": 171,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 503.438,
-   "end": 505.945,
-   "dur": 2.508,
+   "start": 503.891,
+   "end": 506.4,
+   "dur": 2.509,
    "listDur": 2.5,
    "loc": "L10-taipei-bar",
    "framing": "вставка фото в ленте",
@@ -3595,12 +3727,12 @@
    "snapWord": "online"
   },
   {
-   "n": 168,
+   "n": 172,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 505.945,
-   "end": 510.707,
-   "dur": 4.761,
+   "start": 506.4,
+   "end": 511.16,
+   "dur": 4.76,
    "listDur": 4.8,
    "loc": "L10-taipei-bar",
    "framing": "сверху галерея снимков",
@@ -3608,21 +3740,21 @@
    "spoken": "To everyone in that room it was one more snapshot from one more busy night",
    "event": "снимок сжимается в сетку галереи из десятков снимков той ночи; на «night» сетка заполняет кадр",
    "camera": "отъезд → стоп → рывок на «night»",
-   "snap": 4.019,
+   "snap": 4.02,
    "snapWord": "night",
    "ev": [
     {
      "p": 1,
-     "t": 4.019
+     "t": 4.02
     }
    ]
   },
   {
-   "n": 169,
+   "n": 173,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 510.707,
-   "end": 514.429,
+   "start": 511.16,
+   "end": 514.883,
    "dur": 3.723,
    "listDur": 3.7,
    "loc": "T-board",
@@ -3633,11 +3765,11 @@
    "camera": "проход камерой по нитям"
   },
   {
-   "n": 170,
+   "n": 174,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 514.429,
-   "end": 518.945,
+   "start": 514.883,
+   "end": 519.399,
    "dur": 4.516,
    "listDur": 4.5,
    "loc": "T-map",
@@ -3648,11 +3780,11 @@
    "camera": "панорама"
   },
   {
-   "n": 171,
+   "n": 175,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 518.945,
-   "end": 520.445,
+   "start": 519.399,
+   "end": 520.899,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "T-card",
@@ -3663,11 +3795,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 172,
+   "n": 176,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 520.445,
-   "end": 522.204,
+   "start": 520.899,
+   "end": 522.659,
    "dur": 1.759,
    "listDur": 1.8,
    "loc": "L09-megaspeed",
@@ -3680,11 +3812,11 @@
    "snapWord": "Malaysia"
   },
   {
-   "n": 173,
+   "n": 177,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 522.204,
-   "end": 523.768,
+   "start": 522.659,
+   "end": 524.222,
    "dur": 1.564,
    "listDur": 1.6,
    "loc": "L09-megaspeed",
@@ -3695,11 +3827,11 @@
    "camera": "панорама"
   },
   {
-   "n": 174,
+   "n": 178,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 523.768,
-   "end": 525.268,
+   "start": 524.222,
+   "end": 525.722,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L09-megaspeed",
@@ -3710,11 +3842,11 @@
    "camera": "опускание камеры"
   },
   {
-   "n": 175,
+   "n": 179,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 525.268,
-   "end": 530.649,
+   "start": 525.722,
+   "end": 531.103,
    "dur": 5.381,
    "listDur": 5.4,
    "loc": "T-number",
@@ -3723,7 +3855,7 @@
    "spoken": "By the end of 2024 the little company's assets had jumped to about three billion dollars",
    "event": "«$33 MILLION» на том же месте, что в гл. 4; на «jumped» счётчик начинает крутиться; «$3 BILLION» встаёт на «three», плашка «END OF 2024»",
    "camera": "отъезд → стоп → рывок на «three»",
-   "snap": 3.78,
+   "snap": 3.779,
    "snapWord": "three",
    "ev": [
     {
@@ -3732,16 +3864,16 @@
     },
     {
      "p": 2,
-     "t": 3.78
+     "t": 3.779
     }
    ]
   },
   {
-   "n": 176,
+   "n": 180,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 530.649,
-   "end": 534.309,
+   "start": 531.103,
+   "end": 534.763,
    "dur": 3.66,
    "listDur": 3.7,
    "loc": "T-doc",
@@ -3755,17 +3887,17 @@
    "ev": [
     {
      "p": 1,
-     "t": 0.16
+     "t": 0.159
     }
    ]
   },
   {
-   "n": 177,
+   "n": 181,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 534.309,
-   "end": 537.293,
-   "dur": 2.984,
+   "start": 534.763,
+   "end": 537.748,
+   "dur": 2.985,
    "listDur": 3,
    "loc": "L09-megaspeed",
    "framing": "средний банкиры у стекла → банкир 2 (вип-пан)",
@@ -3780,11 +3912,11 @@
    }
   },
   {
-   "n": 178,
+   "n": 182,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 537.293,
-   "end": 538.793,
+   "start": 537.748,
+   "end": 539.248,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L09-megaspeed",
@@ -3795,11 +3927,11 @@
    "camera": "подъём камеры"
   },
   {
-   "n": 179,
+   "n": 183,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 538.793,
-   "end": 540.366,
+   "start": 539.248,
+   "end": 540.821,
    "dur": 1.573,
    "listDur": 1.6,
    "loc": "L09-megaspeed",
@@ -3811,11 +3943,11 @@
    "snap": 0.865
   },
   {
-   "n": 180,
+   "n": 184,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 540.366,
-   "end": 546.046,
+   "start": 540.821,
+   "end": 546.501,
    "dur": 5.68,
    "listDur": 5.7,
    "loc": "T-doc",
@@ -3838,12 +3970,12 @@
    ]
   },
   {
-   "n": 181,
+   "n": 185,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 546.046,
-   "end": 548.185,
-   "dur": 2.139,
+   "start": 546.501,
+   "end": 548.641,
+   "dur": 2.14,
    "listDur": 2.1,
    "loc": "L09-megaspeed",
    "framing": "вставка табличка на двери под залогом",
@@ -3861,12 +3993,12 @@
    ]
   },
   {
-   "n": 182,
+   "n": 186,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 548.185,
-   "end": 553.149,
-   "dur": 4.964,
+   "start": 548.641,
+   "end": 553.604,
+   "dur": 4.963,
    "listDur": 5,
    "loc": "T-joke",
    "framing": "общий пекарня",
@@ -3878,11 +4010,11 @@
    "snapWord": "flour"
   },
   {
-   "n": 183,
+   "n": 187,
    "ch": 5,
    "chTitle": "The Introduction",
-   "start": 553.149,
-   "end": 555.52,
+   "start": 553.604,
+   "end": 555.975,
    "dur": 2.37,
    "listDur": 2.4,
    "loc": "L09-megaspeed",
@@ -3901,12 +4033,12 @@
    ]
   },
   {
-   "n": 184,
+   "n": 188,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 555.52,
-   "end": 559.997,
-   "dur": 4.478,
+   "start": 555.975,
+   "end": 560.453,
+   "dur": 4.479,
    "listDur": 4.5,
    "loc": "T-title",
    "framing": "шаблон титр",
@@ -3916,11 +4048,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 185,
+   "n": 189,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 559.997,
-   "end": 563.897,
+   "start": 560.453,
+   "end": 564.354,
    "dur": 3.9,
    "listDur": 3.9,
    "loc": "T-board",
@@ -3934,7 +4066,7 @@
    "ev": [
     {
      "p": 0,
-     "t": 1.779
+     "t": 1.78
     },
     {
      "p": 1,
@@ -3943,11 +4075,11 @@
    ]
   },
   {
-   "n": 186,
+   "n": 190,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 563.897,
-   "end": 567.209,
+   "start": 564.354,
+   "end": 567.665,
    "dur": 3.312,
    "listDur": 3.3,
    "loc": "L04-washington",
@@ -3961,7 +4093,7 @@
    "ev": [
     {
      "p": 0,
-     "t": 0.62
+     "t": 0.619
     },
     {
      "p": 1,
@@ -3970,11 +4102,11 @@
    ]
   },
   {
-   "n": 187,
+   "n": 191,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 567.209,
-   "end": 569.902,
+   "start": 567.665,
+   "end": 570.359,
    "dur": 2.693,
    "listDur": 2.7,
    "loc": "T-doc",
@@ -3987,11 +4119,11 @@
    "snapWord": "best"
   },
   {
-   "n": 188,
+   "n": 192,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 569.902,
-   "end": 574.5,
+   "start": 570.359,
+   "end": 574.957,
    "dur": 4.598,
    "listDur": 4.6,
    "loc": "T-map",
@@ -4005,21 +4137,21 @@
    "ev": [
     {
      "p": 1,
-     "t": 2.64
+     "t": 2.639
     },
     {
      "p": 2,
-     "t": 3.4
+     "t": 3.399
     }
    ]
   },
   {
-   "n": 189,
+   "n": 193,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 574.5,
-   "end": 576.909,
-   "dur": 2.408,
+   "start": 574.957,
+   "end": 577.364,
+   "dur": 2.407,
    "listDur": 2.4,
    "loc": "L04-washington",
    "framing": "общий кабинет",
@@ -4037,12 +4169,12 @@
    ]
   },
   {
-   "n": 190,
+   "n": 194,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 576.909,
-   "end": 578.807,
-   "dur": 1.899,
+   "start": 577.364,
+   "end": 579.264,
+   "dur": 1.9,
    "listDur": 1.9,
    "loc": "L04-washington",
    "framing": "обратная представитель",
@@ -4050,21 +4182,21 @@
    "spoken": "I'm Aivres California",
    "event": "на груди бейдж «AIVRES · CALIFORNIA», наклеенный криво поверх старого — из-под края торчит «INSP…»; на «California» на груди бейдж «AIVRES · CALIFORNIA»",
    "camera": "панорама → стоп → рывок на «California»",
-   "snap": 0.98,
+   "snap": 0.979,
    "snapWord": "California",
    "ev": [
     {
      "p": 1,
-     "t": 0.98
+     "t": 0.979
     }
    ]
   },
   {
-   "n": 191,
+   "n": 195,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 578.807,
-   "end": 580.574,
+   "start": 579.264,
+   "end": 581.03,
    "dur": 1.767,
    "listDur": 1.8,
    "loc": "L04-washington",
@@ -4073,15 +4205,15 @@
    "spoken": "Then welcome Aivres",
    "event": "сверяет список — строки AIVRES нет; штамп APPROVED",
    "camera": "наезд → стоп → рывок на «Aivres»",
-   "snap": 1.02,
+   "snap": 1.019,
    "snapWord": "Aivres"
   },
   {
-   "n": 192,
+   "n": 196,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 580.574,
-   "end": 582.674,
+   "start": 581.03,
+   "end": 583.13,
    "dur": 2.1,
    "listDur": 2.1,
    "loc": "3D-boxpath",
@@ -4096,11 +4228,11 @@
    }
   },
   {
-   "n": 193,
+   "n": 197,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 582.674,
-   "end": 584.674,
+   "start": 583.13,
+   "end": 585.13,
    "dur": 2,
    "listDur": 2,
    "loc": "3D-boxpath",
@@ -4115,11 +4247,11 @@
    }
   },
   {
-   "n": 194,
+   "n": 198,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 584.674,
-   "end": 586.874,
+   "start": 585.13,
+   "end": 587.33,
    "dur": 2.2,
    "listDur": 2.2,
    "loc": "3D-boxpath",
@@ -4134,11 +4266,11 @@
    }
   },
   {
-   "n": 195,
+   "n": 199,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 586.874,
-   "end": 588.774,
+   "start": 587.33,
+   "end": 589.231,
    "dur": 1.9,
    "listDur": 1.9,
    "loc": "3D-boxpath",
@@ -4153,11 +4285,11 @@
    }
   },
   {
-   "n": 196,
+   "n": 200,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 588.774,
-   "end": 591.074,
+   "start": 589.231,
+   "end": 591.53,
    "dur": 2.3,
    "listDur": 2.3,
    "loc": "3D-boxpath",
@@ -4170,7 +4302,7 @@
     "from": 8.2,
     "to": 10.5
    },
-   "snap": 0.71,
+   "snap": 0.709,
    "snapWord": "customs",
    "ev": [
     {
@@ -4180,11 +4312,11 @@
    ]
   },
   {
-   "n": 197,
+   "n": 201,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 591.074,
-   "end": 593.874,
+   "start": 591.53,
+   "end": 594.33,
    "dur": 2.8,
    "listDur": 2.8,
    "loc": "3D-boxpath",
@@ -4199,11 +4331,11 @@
    }
   },
   {
-   "n": 198,
+   "n": 202,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 593.874,
-   "end": 598.475,
+   "start": 594.33,
+   "end": 598.93,
    "dur": 4.6,
    "listDur": 4.6,
    "loc": "3D-boxpath",
@@ -4218,11 +4350,11 @@
    }
   },
   {
-   "n": 199,
+   "n": 203,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 598.475,
-   "end": 600.251,
+   "start": 598.93,
+   "end": 600.707,
    "dur": 1.777,
    "listDur": 1.8,
    "loc": "L12-customs",
@@ -4235,11 +4367,11 @@
    "snapWord": "please"
   },
   {
-   "n": 200,
+   "n": 204,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 600.251,
-   "end": 601.751,
+   "start": 600.707,
+   "end": 602.207,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L12-customs",
@@ -4250,12 +4382,12 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 201,
+   "n": 205,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 601.751,
-   "end": 604.229,
-   "dur": 2.478,
+   "start": 602.207,
+   "end": 604.687,
+   "dur": 2.479,
    "listDur": 2.5,
    "loc": "L12-customs",
    "framing": "средний таможенник → водитель (вип-пан)",
@@ -4264,27 +4396,27 @@
    "event": "листает накладную → вип-пан со смазом на реплике DRIVER: широко улыбается; на «destination» таможенник листает накладную; на «Malaysia» на накладную падает штамп «MALAYSIA»",
    "camera": "стоп → вип-пан со смазом на DRIVER",
    "whip": {
-    "t": 1.355,
+    "t": 1.356,
     "from": "CUSTOMS",
     "to": "DRIVER"
    },
    "ev": [
     {
      "p": 1,
-     "t": 0.32
+     "t": 0.319
     },
     {
      "p": 2,
-     "t": 1.735
+     "t": 1.736
     }
    ]
   },
   {
-   "n": 202,
+   "n": 206,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 604.229,
-   "end": 605.729,
+   "start": 604.687,
+   "end": 606.187,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L12-customs",
@@ -4297,11 +4429,11 @@
    "snapWord": "Enjoy"
   },
   {
-   "n": 203,
+   "n": 207,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 605.729,
-   "end": 610.909,
+   "start": 606.187,
+   "end": 611.367,
    "dur": 5.18,
    "listDur": 5.2,
    "loc": "T-number",
@@ -4310,25 +4442,25 @@
    "spoken": "One count put the haul at nearly two billion dollars of Nvidia's most advanced chips",
    "event": "бок коробки из пути коробки; на «two» по нему трафаретом ложится «NEARLY $2 BILLION»; на «Nvidia's» рывок-отъезд: это одна коробка в стене таких же",
    "camera": "наезд → стоп → рывок на «Nvidia's»",
-   "snap": 3.08,
+   "snap": 3.079,
    "snapWord": "Nvidia's",
    "ev": [
     {
      "p": 1,
-     "t": 1.58
+     "t": 1.579
     },
     {
      "p": 2,
-     "t": 3.08
+     "t": 3.079
     }
    ]
   },
   {
-   "n": 204,
+   "n": 208,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 610.909,
-   "end": 617.649,
+   "start": 611.367,
+   "end": 618.107,
    "dur": 6.74,
    "listDur": 6.7,
    "loc": "T-doc",
@@ -4337,25 +4469,25 @@
    "spoken": "A later look at trade records found more than four point eight billion dollars of AI equipment with Nvidia inside",
    "event": "журнал торговых записей; на «inside» в колонке CONSIGNEE строки подсвечиваются сверху вниз «MEGASPEED · MALAYSIA»; итог «$4.8 BILLION» встаёт с толчком; на «records» журнал прокручивается вниз",
    "camera": "прокрутка вверх → стоп → рывок на «inside»",
-   "snap": 5.38,
+   "snap": 5.379,
    "snapWord": "inside",
    "ev": [
     {
      "p": 1,
-     "t": 5.38
+     "t": 5.379
     },
     {
      "p": 3,
-     "t": 0.98
+     "t": 0.979
     }
    ]
   },
   {
-   "n": 205,
+   "n": 209,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 617.649,
-   "end": 621.108,
+   "start": 618.107,
+   "end": 621.565,
    "dur": 3.458,
    "listDur": 3.5,
    "loc": "L09-megaspeed",
@@ -4364,12 +4496,12 @@
    "spoken": "all flowing to one company most people had never heard of",
    "event": "табло арендаторов в фойе (D21-B), камера ведёт вниз; на «never» внизу тусклая строка «MEGASPEED · 12F»; на «flowing» стрелки со всех строк табло стекают вниз к одной строке",
    "camera": "панорама вниз → стоп → рывок на «never»",
-   "snap": 2.48,
+   "snap": 2.479,
    "snapWord": "never",
    "ev": [
     {
      "p": 1,
-     "t": 2.48
+     "t": 2.479
     },
     {
      "p": 2,
@@ -4378,11 +4510,11 @@
    ]
   },
   {
-   "n": 206,
+   "n": 210,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 621.108,
-   "end": 628.184,
+   "start": 621.565,
+   "end": 628.641,
    "dur": 7.076,
    "listDur": 7.1,
    "loc": "3D-datacenter",
@@ -4405,11 +4537,11 @@
    ]
   },
   {
-   "n": 207,
+   "n": 211,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 628.184,
-   "end": 631.152,
+   "start": 628.641,
+   "end": 631.61,
    "dur": 2.969,
    "listDur": 3,
    "loc": "3D-datacenter",
@@ -4432,12 +4564,12 @@
    ]
   },
   {
-   "n": 208,
+   "n": 212,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 631.152,
-   "end": 634.889,
-   "dur": 3.736,
+   "start": 631.61,
+   "end": 635.346,
+   "dur": 3.737,
    "listDur": 3.7,
    "loc": "3D-datacenter",
    "framing": "3D вставка коробки в плёнке",
@@ -4445,25 +4577,25 @@
    "spoken": "What they found were servers still sealed in their packaging",
    "event": "фонарь скользит по плёнке на ящиках, сложенных в проходе, тишина; на «sealed» фонарь выхватывает плёнку на коробках; на «packaging» на коробку ложится наклейка «SEALED»",
    "camera": "боковой проезд → стоп → рывок на «sealed»",
-   "snap": 2.04,
+   "snap": 2.039,
    "snapWord": "sealed",
    "ev": [
     {
      "p": 1,
-     "t": 2.04
+     "t": 2.039
     },
     {
      "p": 2,
-     "t": 2.88
+     "t": 2.879
     }
    ]
   },
   {
-   "n": 209,
+   "n": 213,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 634.889,
-   "end": 636.389,
+   "start": 635.346,
+   "end": 636.846,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "3D-datacenter",
@@ -4476,11 +4608,11 @@
    "snapWord": "switched"
   },
   {
-   "n": 210,
+   "n": 214,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 636.389,
-   "end": 637.889,
+   "start": 636.846,
+   "end": 638.346,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "3D-datacenter",
@@ -4493,11 +4625,11 @@
    "snapWord": "wrapped"
   },
   {
-   "n": 211,
+   "n": 215,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 637.889,
-   "end": 639.389,
+   "start": 638.346,
+   "end": 639.846,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "3D-datacenter",
@@ -4506,15 +4638,15 @@
    "spoken": "Since when",
    "event": "крошечный инспектор с фонарём посреди огромного тёмного зала коробок",
    "camera": "панорама → стоп → рывок на «when»",
-   "snap": 0.299,
+   "snap": 0.3,
    "snapWord": "when"
   },
   {
-   "n": 212,
+   "n": 216,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 639.389,
-   "end": 640.889,
+   "start": 639.846,
+   "end": 641.346,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "3D-datacenter",
@@ -4527,11 +4659,11 @@
    "snapWord": "delivery"
   },
   {
-   "n": 213,
+   "n": 217,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 640.889,
-   "end": 647.304,
+   "start": 641.346,
+   "end": 647.762,
    "dur": 6.416,
    "listDur": 6.4,
    "loc": "T-map",
@@ -4540,7 +4672,7 @@
    "spoken": "Still on paper nothing was wrong Every sale went to Singapore or Malaysia never to China",
    "event": "на «paper» въезжает накладная со штампами из пути коробки; на «Singapore» и «Malaysia» садятся стрелки с галочками; на «never» обрубок стрелки к Китаю гаснет, Китай серый",
    "camera": "панорама → стоп → рывок на «never»",
-   "snap": 5.221,
+   "snap": 5.22,
    "snapWord": "never",
    "ev": [
     {
@@ -4549,21 +4681,21 @@
     },
     {
      "p": 1,
-     "t": 3.601
+     "t": 3.6
     },
     {
      "p": 2,
-     "t": 5.221
+     "t": 5.22
     }
    ]
   },
   {
-   "n": 214,
+   "n": 218,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 647.304,
-   "end": 650.744,
-   "dur": 3.439,
+   "start": 647.762,
+   "end": 651.201,
+   "dur": 3.438,
    "listDur": 3.4,
    "loc": "T-doc",
    "framing": "шаблон заявление",
@@ -4585,11 +4717,11 @@
    ]
   },
   {
-   "n": 215,
+   "n": 219,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 650.744,
-   "end": 655.842,
+   "start": 651.201,
+   "end": 656.299,
    "dur": 5.099,
    "listDur": 5.1,
    "loc": "L06-nvidia-office",
@@ -4612,48 +4744,71 @@
    ]
   },
   {
-   "n": 216,
+   "n": 220,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 655.842,
-   "end": 661.51,
-   "dur": 5.668,
-   "listDur": 5.7,
+   "start": 656.299,
+   "end": 658.504,
+   "dur": 2.204,
+   "listDur": 2.2,
    "loc": "L12-customs",
    "framing": "общий таможенный пост",
-   "text": "That's what made it so hard to catch. Ordinary …",
-   "spoken": "That's what made it so hard to catch Ordinary smugglers sweat at customs and some get caught",
-   "event": "контрабандист с раздутым чемоданом потеет у стойки; чемодан лопается по шву, на стойку сыплются чипы, таможенник поднимает бровь; на «catch» контрабандист озирается; на «sweat» с лба капает пот, чемодан трещит по шву",
-   "camera": "наезд → стоп → рывок на «customs»",
-   "snap": 3.603,
-   "snapWord": "customs",
+   "text": "That's what made it so hard to catch.",
+   "spoken": "That's what made it so hard to catch",
+   "event": "контрабандист с раздутым чемоданом у стойки; на «catch» он озирается",
+   "camera": "наезд → стоп → рывок на «catch»",
+   "snap": 1.48,
+   "snapWord": "catch",
    "ev": [
     {
-     "p": 2,
+     "p": 1,
      "t": 1.48
-    },
-    {
-     "p": 3,
-     "t": 2.923
     }
    ]
   },
   {
-   "n": 217,
+   "n": 221,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 661.51,
-   "end": 667.634,
-   "dur": 6.124,
-   "listDur": 6.1,
+   "start": 658.504,
+   "end": 661.967,
+   "dur": 3.464,
+   "listDur": 3.5,
+   "loc": "L12-customs",
+   "framing": "крупно контрабандист потеет",
+   "text": "Ordinary smugglers sweat at customs, and some get …",
+   "spoken": "Ordinary smugglers sweat at customs and some get caught",
+   "event": "на «sweat» капля пота падает на накладную; на «caught» чемодан лопается по шву, рука таможенника ложится на плечо",
+   "camera": "наезд → стоп → рывок на «caught» + толчок",
+   "snap": 2.74,
+   "snapWord": "caught",
+   "ev": [
+    {
+     "p": 0,
+     "t": 0.719
+    },
+    {
+     "p": 1,
+     "t": 2.74
+    }
+   ]
+  },
+  {
+   "n": 222,
+   "ch": 6,
+   "chTitle": "The Pipeline",
+   "start": 661.967,
+   "end": 666.048,
+   "dur": 4.08,
+   "listDur": 4.1,
    "loc": "L12-customs",
    "framing": "вставка ящик с лобстерами",
-   "text": "In 2023, Hong Kong customs found seventy …",
-   "spoken": "In 2023 Hong Kong customs found seventy graphics cards packed among live lobsters",
-   "event": "на «2023» плашка «HONG KONG CUSTOMS · 2023»; на «lobsters» крышка ящика открывается: среди живых лобстеров — видеокарты; на «seventy» бирка «70 GPUs»",
-   "camera": "наезд → стоп → рывок на «lobsters»",
-   "snap": 5.08,
-   "snapWord": "lobsters",
+   "text": "In 2023, Hong Kong customs found seventy graphics …",
+   "spoken": "In 2023 Hong Kong customs found seventy graphics cards",
+   "event": "на «2023» плашка «HONG KONG CUSTOMS · 2023»; на «seventy» бирка «70 GPUs»",
+   "camera": "наезд → стоп → рывок на «seventy»",
+   "snap": 2.72,
+   "snapWord": "seventy",
    "ev": [
     {
      "p": 0,
@@ -4661,20 +4816,39 @@
     },
     {
      "p": 1,
-     "t": 5.08
-    },
-    {
-     "p": 2,
      "t": 2.72
     }
    ]
   },
   {
-   "n": 218,
+   "n": 223,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 667.634,
-   "end": 671.014,
+   "start": 666.048,
+   "end": 668.092,
+   "dur": 2.045,
+   "listDur": 2,
+   "loc": "L12-customs",
+   "framing": "сверхкрупно лобстер с видеокартой",
+   "text": "packed among live lobsters.",
+   "spoken": "packed among live lobsters",
+   "event": "на «lobsters» крышка ящика открывается: лобстер клешнёй сжимает видеокарту",
+   "camera": "наезд → стоп → рывок на «lobsters»",
+   "snap": 1,
+   "snapWord": "lobsters",
+   "ev": [
+    {
+     "p": 0,
+     "t": 1
+    }
+   ]
+  },
+  {
+   "n": 224,
+   "ch": 6,
+   "chTitle": "The Pipeline",
+   "start": 668.092,
+   "end": 671.472,
    "dur": 3.38,
    "listDur": 3.4,
    "loc": "L12-customs",
@@ -4693,12 +4867,12 @@
    ]
   },
   {
-   "n": 219,
+   "n": 225,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 671.014,
-   "end": 674.972,
-   "dur": 3.958,
+   "start": 671.472,
+   "end": 675.429,
+   "dur": 3.957,
    "listDur": 4,
    "loc": "T-number",
    "framing": "шаблон цифра",
@@ -4711,7 +4885,7 @@
    "ev": [
     {
      "p": 0,
-     "t": 0.799
+     "t": 0.8
     },
     {
      "p": 1,
@@ -4720,39 +4894,62 @@
    ]
   },
   {
-   "n": 220,
+   "n": 226,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 674.972,
-   "end": 680.488,
-   "dur": 5.516,
-   "listDur": 5.5,
+   "start": 675.429,
+   "end": 677.689,
+   "dur": 2.26,
+   "listDur": 2.3,
    "loc": "L12-customs",
    "framing": "вставка задержание серверов",
-   "text": "Prosecutors charged one Chinese national over …",
-   "spoken": "Prosecutors charged one Chinese national over nine hundred and seventeen smuggled servers",
-   "event": "таможенники вскрывают ящики, на столе ряды серверов; на «nine» бирка «917 SERVERS SEIZED»; на «smuggled» на ящик падает штамп «SEIZED»",
-   "camera": "наезд → стоп → рывок на «smuggled»",
-   "snap": 3.9,
-   "snapWord": "smuggled",
+   "text": "Prosecutors charged one Chinese national",
+   "spoken": "Prosecutors charged one Chinese national",
+   "event": "таможенники вскрывают ящики; на «national» плашка «CHARGED: CHINESE NATIONAL»",
+   "camera": "наезд → стоп → рывок на «Chinese»",
+   "snap": 1.24,
+   "snapWord": "Chinese",
    "ev": [
     {
      "p": 1,
-     "t": 2.76
-    },
-    {
-     "p": 2,
-     "t": 3.9
+     "t": 1.62
     }
    ]
   },
   {
-   "n": 221,
+   "n": 227,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 680.488,
-   "end": 682.611,
-   "dur": 2.123,
+   "start": 677.689,
+   "end": 680.947,
+   "dur": 3.257,
+   "listDur": 3.3,
+   "loc": "L12-customs",
+   "framing": "общий ряды изъятых серверов",
+   "text": "over nine hundred and seventeen smuggled servers.",
+   "spoken": "over nine hundred and seventeen smuggled servers",
+   "event": "на «nine» бирка «917 SERVERS SEIZED»; на «smuggled» на ящик падает штамп «SEIZED»",
+   "camera": "наезд → стоп → рывок на «smuggled»",
+   "snap": 1.639,
+   "snapWord": "smuggled",
+   "ev": [
+    {
+     "p": 0,
+     "t": 0.5
+    },
+    {
+     "p": 1,
+     "t": 1.639
+    }
+   ]
+  },
+  {
+   "n": 228,
+   "ch": 6,
+   "chTitle": "The Pipeline",
+   "start": 680.947,
+   "end": 683.068,
+   "dur": 2.122,
    "listDur": 2.1,
    "loc": "L12-customs",
    "framing": "средний грузовик",
@@ -4760,15 +4957,15 @@
    "spoken": "This operation never had to sweat",
    "event": "за спиной контрабандиста спокойно проезжает грузовик под поднятым шлагбаумом",
    "camera": "панорама за грузовиком → стоп → рывок на «sweat»",
-   "snap": 1.42,
+   "snap": 1.419,
    "snapWord": "sweat"
   },
   {
-   "n": 222,
+   "n": 229,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 682.611,
-   "end": 685.776,
+   "start": 683.068,
+   "end": 686.233,
    "dur": 3.165,
    "listDur": 3.2,
    "loc": "3D-boxpath",
@@ -4791,11 +4988,11 @@
    ]
   },
   {
-   "n": 223,
+   "n": 230,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 685.776,
-   "end": 688.096,
+   "start": 686.233,
+   "end": 688.553,
    "dur": 2.32,
    "listDur": 2.3,
    "loc": "L02-sg-street",
@@ -4808,11 +5005,11 @@
    "snapWord": "American"
   },
   {
-   "n": 224,
+   "n": 231,
    "ch": 6,
    "chTitle": "The Pipeline",
-   "start": 688.096,
-   "end": 690.357,
+   "start": 688.553,
+   "end": 690.815,
    "dur": 2.261,
    "listDur": 2.3,
    "loc": "L02-sg-street",
@@ -4826,7 +5023,7 @@
    "ev": [
     {
      "p": 1,
-     "t": 0.06
+     "t": 0.059
     },
     {
      "p": 2,
@@ -4835,12 +5032,12 @@
    ]
   },
   {
-   "n": 225,
+   "n": 232,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 690.357,
-   "end": 693.038,
-   "dur": 2.681,
+   "start": 690.815,
+   "end": 693.496,
+   "dur": 2.682,
    "listDur": 2.7,
    "loc": "T-title",
    "framing": "шаблон титр",
@@ -4850,12 +5047,12 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 226,
+   "n": 233,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 693.038,
-   "end": 697.097,
-   "dur": 4.059,
+   "start": 693.496,
+   "end": 697.554,
+   "dur": 4.058,
    "listDur": 4.1,
    "loc": "T-doc",
    "framing": "шаблон заявление",
@@ -4867,11 +5064,11 @@
    "snapWord": "that"
   },
   {
-   "n": 227,
+   "n": 234,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 697.097,
-   "end": 699.223,
+   "start": 697.554,
+   "end": 699.68,
    "dur": 2.126,
    "listDur": 2.1,
    "loc": "T-card",
@@ -4882,11 +5079,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 228,
+   "n": 235,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 699.223,
-   "end": 704.694,
+   "start": 699.68,
+   "end": 705.151,
    "dur": 5.471,
    "listDur": 5.5,
    "loc": "L04-washington",
@@ -4900,11 +5097,11 @@
    "ev": [
     {
      "p": 1,
-     "t": 0.539
+     "t": 0.54
     },
     {
      "p": 2,
-     "t": 1.659
+     "t": 1.66
     },
     {
      "p": 3,
@@ -4913,12 +5110,12 @@
    ]
   },
   {
-   "n": 229,
+   "n": 236,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 704.694,
-   "end": 708.66,
-   "dur": 3.966,
+   "start": 705.151,
+   "end": 709.118,
+   "dur": 3.967,
    "listDur": 4,
    "loc": "L17-warehouse",
    "framing": "средний склад поддоны",
@@ -4926,7 +5123,7 @@
    "spoken": "and Nvidia wrote off billions in chips it suddenly couldn't sell",
    "event": "поддоны зелёных коробок «NVIDIA H20»; на «wrote» на ближнюю коробку падает штамп «WRITTEN OFF»",
    "camera": "отъезд → стоп → рывок на «chips»",
-   "snap": 2.039,
+   "snap": 2.04,
    "snapWord": "chips",
    "ev": [
     {
@@ -4936,11 +5133,11 @@
    ]
   },
   {
-   "n": 230,
+   "n": 237,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 708.66,
-   "end": 713.489,
+   "start": 709.118,
+   "end": 713.947,
    "dur": 4.829,
    "listDur": 4.8,
    "loc": "T-number",
@@ -4949,15 +5146,15 @@
    "spoken": "In August came a deal sales could resume if the government got fifteen percent",
    "event": "«15%»",
    "camera": "наезд → стоп → рывок на «fifteen» + толчок",
-   "snap": 3.519,
+   "snap": 3.52,
    "snapWord": "fifteen"
   },
   {
-   "n": 231,
+   "n": 238,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 713.489,
-   "end": 718.781,
+   "start": 713.947,
+   "end": 719.239,
    "dur": 5.292,
    "listDur": 5.3,
    "loc": "L04-washington",
@@ -4976,12 +5173,12 @@
    ]
   },
   {
-   "n": 232,
+   "n": 239,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 718.781,
-   "end": 720.847,
-   "dur": 2.066,
+   "start": 719.239,
+   "end": 721.304,
+   "dur": 2.065,
    "listDur": 2.1,
    "loc": "L04-washington",
    "framing": "крупно чиновник",
@@ -4989,7 +5186,7 @@
    "spoken": "China chip blocked",
    "event": "перед чиновником лист с рисунком чипа; на «China» он поднимает его к камере; на «blocked» ставит штамп «BLOCKED», удар",
    "camera": "наезд → стоп → рывок на «blocked» + толчок",
-   "snap": 1.299,
+   "snap": 1.3,
    "snapWord": "blocked",
    "ev": [
     {
@@ -4998,16 +5195,16 @@
     },
     {
      "p": 2,
-     "t": 1.299
+     "t": 1.3
     }
    ]
   },
   {
-   "n": 233,
+   "n": 240,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 720.847,
-   "end": 722.59,
+   "start": 721.304,
+   "end": 723.047,
    "dur": 1.743,
    "listDur": 1.7,
    "loc": "L06-nvidia-office",
@@ -5020,12 +5217,12 @@
    "snapWord": "Blocked"
   },
   {
-   "n": 234,
+   "n": 241,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 722.59,
-   "end": 725.784,
-   "dur": 3.194,
+   "start": 723.047,
+   "end": 726.242,
+   "dur": 3.195,
    "listDur": 3.2,
    "loc": "L04-washington",
    "framing": "обратная чиновник",
@@ -5047,11 +5244,11 @@
    ]
   },
   {
-   "n": 235,
+   "n": 242,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 725.784,
-   "end": 727.338,
+   "start": 726.242,
+   "end": 727.796,
    "dur": 1.554,
    "listDur": 1.6,
    "loc": "L06-nvidia-office",
@@ -5064,11 +5261,11 @@
    "snapWord": "Understood"
   },
   {
-   "n": 236,
+   "n": 243,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 727.338,
-   "end": 730.026,
+   "start": 727.796,
+   "end": 730.484,
    "dur": 2.688,
    "listDur": 2.7,
    "loc": "T-split",
@@ -5091,12 +5288,12 @@
    ]
   },
   {
-   "n": 237,
+   "n": 244,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 730.026,
-   "end": 731.978,
-   "dur": 1.952,
+   "start": 730.484,
+   "end": 732.435,
+   "dur": 1.951,
    "listDur": 2,
    "loc": "L06-nvidia-office",
    "framing": "обратная Дженсен",
@@ -5108,11 +5305,11 @@
    "snapWord": "calendar"
   },
   {
-   "n": 238,
+   "n": 245,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 731.978,
-   "end": 736.958,
+   "start": 732.435,
+   "end": 737.415,
    "dur": 4.98,
    "listDur": 5,
    "loc": "L13-newsroom",
@@ -5121,7 +5318,7 @@
    "spoken": "Later when the New York Times checked one of the Chinese firms cleared to handle that chip",
    "event": "на «Times» плашка «SOURCE: THE NEW YORK TIMES»; на «cleared» в списке допущенных фирм одна строка подсвечивается",
    "camera": "наезд → стоп → рывок на «cleared»",
-   "snap": 3.019,
+   "snap": 3.02,
    "snapWord": "cleared",
    "ev": [
     {
@@ -5130,17 +5327,17 @@
     },
     {
      "p": 1,
-     "t": 3.019
+     "t": 3.02
     }
    ]
   },
   {
-   "n": 239,
+   "n": 246,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 736.958,
-   "end": 739.662,
-   "dur": 2.704,
+   "start": 737.415,
+   "end": 740.12,
+   "dur": 2.705,
    "listDur": 2.7,
    "loc": "L05-beijing",
    "framing": "общий пустое здание по адресу",
@@ -5148,25 +5345,25 @@
    "spoken": "its Beijing address was an empty building",
    "event": "на «address» плашка «BEIJING · ADDRESS ON FILE»; на «empty» в окнах ни огонька, табличка на двери пустая",
    "camera": "наезд → стоп → рывок на «empty»",
-   "snap": 1.399,
+   "snap": 1.4,
    "snapWord": "empty",
    "ev": [
     {
      "p": 0,
-     "t": 0.279
+     "t": 0.28
     },
     {
      "p": 1,
-     "t": 1.399
+     "t": 1.4
     }
    ]
   },
   {
-   "n": 240,
+   "n": 247,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 739.662,
-   "end": 743.399,
+   "start": 740.12,
+   "end": 743.857,
    "dur": 3.737,
    "listDur": 3.7,
    "loc": "L11-event-hall",
@@ -5185,11 +5382,11 @@
    ]
   },
   {
-   "n": 241,
+   "n": 248,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 743.399,
-   "end": 745.199,
+   "start": 743.857,
+   "end": 745.658,
    "dur": 1.8,
    "listDur": 1.8,
    "loc": "3D-city",
@@ -5200,12 +5397,12 @@
    "camera": "пролёт вперёд"
   },
   {
-   "n": 242,
+   "n": 249,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 745.199,
-   "end": 748.181,
-   "dur": 2.982,
+   "start": 745.658,
+   "end": 748.639,
+   "dur": 2.981,
    "listDur": 3,
    "loc": "L11-event-hall",
    "framing": "обратная пресса",
@@ -5217,11 +5414,11 @@
    "snapWord": "rules"
   },
   {
-   "n": 243,
+   "n": 250,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 748.181,
-   "end": 750.113,
+   "start": 748.639,
+   "end": 750.571,
    "dur": 1.932,
    "listDur": 1.9,
    "loc": "L11-event-hall",
@@ -5230,21 +5427,21 @@
    "spoken": "The export control was a failure",
    "event": "букет микрофонов, на заднике «COMPUTEX»; на «failure» вспышка и стоп-кадр; серия из 6 вспышек по залу",
    "camera": "наезд → стоп → рывок на «failure»",
-   "snap": 1.2,
+   "snap": 1.199,
    "snapWord": "failure",
    "ev": [
     {
      "p": 1,
-     "t": 1.2
+     "t": 1.199
     }
    ]
   },
   {
-   "n": 244,
+   "n": 251,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 750.113,
-   "end": 754.274,
+   "start": 750.571,
+   "end": 754.731,
    "dur": 4.16,
    "listDur": 4.2,
    "loc": "T-number",
@@ -5253,16 +5450,16 @@
    "spoken": "He warned that China's AI market was heading toward fifty billion dollars",
    "event": "«$50 BILLION»",
    "camera": "отъезд → стоп → рывок на «fifty»",
-   "snap": 2.62,
+   "snap": 2.619,
    "snapWord": "fifty"
   },
   {
-   "n": 245,
+   "n": 252,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 754.274,
-   "end": 756.663,
-   "dur": 2.39,
+   "start": 754.731,
+   "end": 757.121,
+   "dur": 2.391,
    "listDur": 2.4,
    "loc": "T-map",
    "framing": "шаблон карта",
@@ -5272,11 +5469,11 @@
    "camera": "панорама"
   },
   {
-   "n": 246,
+   "n": 253,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 756.663,
-   "end": 760.203,
+   "start": 757.121,
+   "end": 760.661,
    "dur": 3.54,
    "listDur": 3.5,
    "loc": "L10-taipei-bar",
@@ -5294,12 +5491,12 @@
    ]
   },
   {
-   "n": 247,
+   "n": 254,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 760.203,
-   "end": 764.639,
-   "dur": 4.436,
+   "start": 760.661,
+   "end": 765.096,
+   "dur": 4.435,
    "listDur": 4.4,
    "loc": "L02-sg-street",
    "framing": "средний двое в одной машине после ужина",
@@ -5321,11 +5518,11 @@
    ]
   },
   {
-   "n": 248,
+   "n": 255,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 764.639,
-   "end": 766.409,
+   "start": 765.096,
+   "end": 766.865,
    "dur": 1.769,
    "listDur": 1.8,
    "loc": "L05-beijing",
@@ -5338,11 +5535,11 @@
    "snapWord": "Beijing"
   },
   {
-   "n": 249,
+   "n": 256,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 766.409,
-   "end": 768.119,
+   "start": 766.865,
+   "end": 768.576,
    "dur": 1.71,
    "listDur": 1.7,
    "loc": "L05-beijing",
@@ -5355,11 +5552,11 @@
    "snapWord": "valuable"
   },
   {
-   "n": 250,
+   "n": 257,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 768.119,
-   "end": 770.678,
+   "start": 768.576,
+   "end": 771.135,
    "dur": 2.56,
    "listDur": 2.6,
    "loc": "L05-beijing",
@@ -5376,11 +5573,11 @@
    ]
   },
   {
-   "n": 251,
+   "n": 258,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 770.678,
-   "end": 773.813,
+   "start": 771.135,
+   "end": 774.27,
    "dur": 3.135,
    "listDur": 3.1,
    "loc": "L05-beijing",
@@ -5393,11 +5590,11 @@
    "snapWord": "close"
   },
   {
-   "n": 252,
+   "n": 259,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 773.813,
-   "end": 775.62,
+   "start": 774.27,
+   "end": 776.077,
    "dur": 1.806,
    "listDur": 1.8,
    "loc": "T-card",
@@ -5408,11 +5605,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 253,
+   "n": 260,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 775.62,
-   "end": 779.457,
+   "start": 776.077,
+   "end": 779.913,
    "dur": 3.837,
    "listDur": 3.8,
    "loc": "L05-beijing",
@@ -5422,17 +5619,17 @@
    "event": "поднимает фигуру-чип → вип-пан со смазом на реплике OFFICER 2: ставит рядом с фигуркой Дженсена крошечный пустой стул (заход к «пустому стулу» гл. 9)",
    "camera": "стоп → вип-пан со смазом на OFFICER 2",
    "whip": {
-    "t": 1.933,
+    "t": 1.934,
     "from": "OFFICER",
     "to": "OFFICER 2"
    }
   },
   {
-   "n": 254,
+   "n": 261,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 779.457,
-   "end": 783.207,
+   "start": 779.913,
+   "end": 783.663,
    "dur": 3.75,
    "listDur": 3.8,
    "loc": "L09-megaspeed",
@@ -5445,11 +5642,11 @@
    "snapWord": "stopped"
   },
   {
-   "n": 255,
+   "n": 262,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 783.207,
-   "end": 786.433,
+   "start": 783.663,
+   "end": 786.89,
    "dur": 3.227,
    "listDur": 3.2,
    "loc": "L06-nvidia-office",
@@ -5468,11 +5665,11 @@
    ]
   },
   {
-   "n": 256,
+   "n": 263,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 786.433,
-   "end": 791.293,
+   "start": 786.89,
+   "end": 791.75,
    "dur": 4.86,
    "listDur": 4.9,
    "loc": "T-board",
@@ -5484,7 +5681,7 @@
    "ev": [
     {
      "p": 1,
-     "t": 0.14
+     "t": 0.139
     },
     {
      "p": 2,
@@ -5492,17 +5689,17 @@
     },
     {
      "p": 3,
-     "t": 3.64
+     "t": 3.639
     }
    ]
   },
   {
-   "n": 257,
+   "n": 264,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 791.293,
-   "end": 793.854,
-   "dur": 2.561,
+   "start": 791.75,
+   "end": 794.313,
+   "dur": 2.562,
    "listDur": 2.6,
    "loc": "L09-megaspeed",
    "framing": "средний стекло серверной",
@@ -5514,12 +5711,12 @@
    "snapWord": "case"
   },
   {
-   "n": 258,
+   "n": 265,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 793.854,
-   "end": 797.032,
-   "dur": 3.177,
+   "start": 794.313,
+   "end": 797.488,
+   "dur": 3.176,
    "listDur": 3.2,
    "loc": "T-board",
    "framing": "шаблон доска",
@@ -5529,11 +5726,11 @@
    "camera": "проход камерой по нитям"
   },
   {
-   "n": 259,
+   "n": 266,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 797.032,
-   "end": 799.241,
+   "start": 797.488,
+   "end": 799.698,
    "dur": 2.21,
    "listDur": 2.2,
    "loc": "L04-washington",
@@ -5543,17 +5740,17 @@
    "event": "кладёт на стол папку с жёлтым ярлыком «MEGASPEED» и обрывком красной нити; на стене печать Сената, на столе табличка; подпись «SEN. TOM COTTON» → вип-пан со смазом на реплике COMMERCE: за ним матовое стекло двери «DEPARTMENT OF COMMERCE»; та же папка уходит из кадра вправо",
    "camera": "стоп → вип-пан со смазом на COMMERCE",
    "whip": {
-    "t": 1.482,
+    "t": 1.483,
     "from": "SENATOR",
     "to": "COMMERCE"
    }
   },
   {
-   "n": 260,
+   "n": 267,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 799.241,
-   "end": 800.741,
+   "start": 799.698,
+   "end": 801.198,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L04-washington",
@@ -5566,11 +5763,11 @@
    "snapWord": "We'll"
   },
   {
-   "n": 261,
+   "n": 268,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 800.741,
-   "end": 808.441,
+   "start": 801.198,
+   "end": 808.898,
    "dur": 7.7,
    "listDur": 7.7,
    "loc": "3D-datacenter",
@@ -5579,7 +5776,7 @@
    "spoken": "In early 2026 Bloomberg reported Megaspeed's Malaysian landlord a data-center firm backed by Bain Capital",
    "event": "на «Bloomberg» плашка «SOURCE: BLOOMBERG»; на «landlord» на воротах табличка «MEGASPEED»; на «Bain» плашка «BACKED BY BAIN CAPITAL»",
    "camera": "наезд → стоп → рывок на «landlord»",
-   "snap": 3.82,
+   "snap": 3.819,
    "snapWord": "landlord",
    "ev": [
     {
@@ -5588,20 +5785,20 @@
     },
     {
      "p": 1,
-     "t": 3.82
+     "t": 3.819
     },
     {
      "p": 2,
-     "t": 6.54
+     "t": 6.539
     }
    ]
   },
   {
-   "n": 262,
+   "n": 269,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 808.441,
-   "end": 810.33,
+   "start": 808.898,
+   "end": 810.787,
    "dur": 1.889,
    "listDur": 1.9,
    "loc": "3D-datacenter",
@@ -5610,21 +5807,21 @@
    "spoken": "gave its space to another tenant",
    "event": "на «tenant» табличку MEGASPEED снимают, вешают «NEW TENANT»",
    "camera": "наезд → стоп → рывок на «tenant»",
-   "snap": 1.14,
+   "snap": 1.139,
    "snapWord": "tenant",
    "ev": [
     {
      "p": 0,
-     "t": 1.14
+     "t": 1.139
     }
    ]
   },
   {
-   "n": 263,
+   "n": 270,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 810.33,
-   "end": 813.17,
+   "start": 810.787,
+   "end": 813.627,
    "dur": 2.84,
    "listDur": 2.8,
    "loc": "L02-sg-street",
@@ -5637,11 +5834,11 @@
    "snapWord": "listening"
   },
   {
-   "n": 264,
+   "n": 271,
    "ch": 7,
    "chTitle": "The Real Prize",
-   "start": 813.17,
-   "end": 815.567,
+   "start": 813.627,
+   "end": 816.024,
    "dur": 2.396,
    "listDur": 2.4,
    "loc": "L02-sg-street",
@@ -5654,11 +5851,11 @@
    "snapWord": "writing"
   },
   {
-   "n": 265,
+   "n": 272,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 815.567,
-   "end": 819.383,
+   "start": 816.024,
+   "end": 819.84,
    "dur": 3.817,
    "listDur": 3.8,
    "loc": "T-title",
@@ -5669,12 +5866,12 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 266,
+   "n": 273,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 819.383,
-   "end": 824.405,
-   "dur": 5.022,
+   "start": 819.84,
+   "end": 824.863,
+   "dur": 5.023,
    "listDur": 5,
    "loc": "T-doc",
    "framing": "шаблон документ",
@@ -5686,12 +5883,12 @@
    "snapWord": "under"
   },
   {
-   "n": 267,
+   "n": 274,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 824.405,
-   "end": 827.415,
-   "dur": 3.01,
+   "start": 824.863,
+   "end": 827.872,
+   "dur": 3.009,
    "listDur": 3,
    "loc": "L02-sg-street",
    "framing": "вставка бобины",
@@ -5703,11 +5900,11 @@
    "snapWord": "Alice"
   },
   {
-   "n": 268,
+   "n": 275,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 827.415,
-   "end": 834.035,
+   "start": 827.872,
+   "end": 834.492,
    "dur": 6.62,
    "listDur": 6.6,
    "loc": "T-doc",
@@ -5732,11 +5929,11 @@
    ]
   },
   {
-   "n": 269,
+   "n": 276,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 834.035,
-   "end": 837.568,
+   "start": 834.492,
+   "end": 838.025,
    "dur": 3.533,
    "listDur": 3.5,
    "loc": "L18-closed-room",
@@ -5749,11 +5946,11 @@
    "snapWord": "lobbying"
   },
   {
-   "n": 270,
+   "n": 277,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 837.568,
-   "end": 842.908,
+   "start": 838.025,
+   "end": 843.365,
    "dur": 5.34,
    "listDur": 5.3,
    "loc": "T-doc",
@@ -5776,11 +5973,11 @@
    ]
   },
   {
-   "n": 271,
+   "n": 278,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 842.908,
-   "end": 845.376,
+   "start": 843.365,
+   "end": 845.833,
    "dur": 2.468,
    "listDur": 2.5,
    "loc": "L18-closed-room",
@@ -5799,11 +5996,11 @@
    ]
   },
   {
-   "n": 272,
+   "n": 279,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 845.376,
-   "end": 847.351,
+   "start": 845.833,
+   "end": 847.808,
    "dur": 1.975,
    "listDur": 2,
    "loc": "L18-closed-room",
@@ -5822,11 +6019,11 @@
    ]
   },
   {
-   "n": 273,
+   "n": 280,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 847.351,
-   "end": 853.344,
+   "start": 847.808,
+   "end": 853.801,
    "dur": 5.993,
    "listDur": 6,
    "loc": "L05-beijing",
@@ -5853,11 +6050,11 @@
    ]
   },
   {
-   "n": 274,
+   "n": 281,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 853.344,
-   "end": 854.844,
+   "start": 853.801,
+   "end": 855.301,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L18-closed-room",
@@ -5870,12 +6067,12 @@
    "snapWord": "copy"
   },
   {
-   "n": 275,
+   "n": 282,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 854.844,
-   "end": 858.025,
-   "dur": 3.181,
+   "start": 855.301,
+   "end": 858.481,
+   "dur": 3.18,
    "listDur": 3.2,
    "loc": "L18-closed-room",
    "framing": "крупно помощник 2 → помощник 1 (вип-пан)",
@@ -5884,17 +6081,17 @@
    "event": "прижимает папку к груди → вип-пан со смазом на реплике AIDE: понижает голос",
    "camera": "стоп → вип-пан со смазом на AIDE",
    "whip": {
-    "t": 1.654,
+    "t": 1.653,
     "from": "AIDE 2",
     "to": "AIDE"
    }
   },
   {
-   "n": 276,
+   "n": 283,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 858.025,
-   "end": 859.525,
+   "start": 858.481,
+   "end": 859.981,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L18-closed-room",
@@ -5906,12 +6103,12 @@
    "snap": 0.825
   },
   {
-   "n": 277,
+   "n": 284,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 859.525,
-   "end": 863.083,
-   "dur": 3.558,
+   "start": 859.981,
+   "end": 863.54,
+   "dur": 3.559,
    "listDur": 3.6,
    "loc": "T-map",
    "framing": "шаблон карта",
@@ -5921,11 +6118,11 @@
    "camera": "панорама"
   },
   {
-   "n": 278,
+   "n": 285,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 863.083,
-   "end": 867.51,
+   "start": 863.54,
+   "end": 867.967,
    "dur": 4.427,
    "listDur": 4.4,
    "loc": "T-doc",
@@ -5943,7 +6140,7 @@
     },
     {
      "p": 2,
-     "t": 2.819
+     "t": 2.82
     },
     {
      "p": 3,
@@ -5952,12 +6149,12 @@
    ]
   },
   {
-   "n": 279,
+   "n": 286,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 867.51,
-   "end": 872.279,
-   "dur": 4.769,
+   "start": 867.967,
+   "end": 872.736,
+   "dur": 4.768,
    "listDur": 4.8,
    "loc": "L04-washington",
    "framing": "средний салон борта номер один",
@@ -5983,12 +6180,12 @@
    ]
   },
   {
-   "n": 280,
+   "n": 287,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 872.279,
-   "end": 874.675,
-   "dur": 2.396,
+   "start": 872.736,
+   "end": 875.132,
+   "dur": 2.397,
    "listDur": 2.4,
    "loc": "L13-newsroom",
    "framing": "крупно ТВ с президентом",
@@ -6006,12 +6203,12 @@
    ]
   },
   {
-   "n": 281,
+   "n": 288,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 874.675,
-   "end": 880.372,
-   "dur": 5.697,
+   "start": 875.132,
+   "end": 880.828,
+   "dur": 5.696,
    "listDur": 5.7,
    "loc": "L13-newsroom",
    "framing": "вставка печать газеты",
@@ -6033,12 +6230,12 @@
    ]
   },
   {
-   "n": 282,
+   "n": 289,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 880.372,
-   "end": 881.909,
-   "dur": 1.537,
+   "start": 880.828,
+   "end": 882.366,
+   "dur": 1.538,
    "listDur": 1.5,
    "loc": "L13-newsroom",
    "framing": "средний ТВ на колонне",
@@ -6050,12 +6247,12 @@
    "snapWord": "smear"
   },
   {
-   "n": 283,
+   "n": 290,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 881.909,
-   "end": 884.743,
-   "dur": 2.834,
+   "start": 882.366,
+   "end": 885.199,
+   "dur": 2.833,
    "listDur": 2.8,
    "loc": "L13-newsroom",
    "framing": "общий редакция",
@@ -6067,12 +6264,12 @@
    "snapWord": "business"
   },
   {
-   "n": 284,
+   "n": 291,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 884.743,
-   "end": 886.988,
-   "dur": 2.245,
+   "start": 885.199,
+   "end": 887.445,
+   "dur": 2.246,
    "listDur": 2.2,
    "loc": "L13-newsroom",
    "framing": "крупно Дженсен на ТВ",
@@ -6084,11 +6281,11 @@
    "snapWord": "unusual"
   },
   {
-   "n": 285,
+   "n": 292,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 886.988,
-   "end": 890.613,
+   "start": 887.445,
+   "end": 891.07,
    "dur": 3.625,
    "listDur": 3.6,
    "loc": "L13-newsroom",
@@ -6101,12 +6298,12 @@
    "snapWord": "memo's"
   },
   {
-   "n": 286,
+   "n": 293,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 890.613,
-   "end": 895.332,
-   "dur": 4.719,
+   "start": 891.07,
+   "end": 895.788,
+   "dur": 4.718,
    "listDur": 4.7,
    "loc": "T-doc",
    "framing": "шаблон страница меморандума",
@@ -6128,12 +6325,12 @@
    ]
   },
   {
-   "n": 287,
+   "n": 294,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 895.332,
-   "end": 898.09,
-   "dur": 2.758,
+   "start": 895.788,
+   "end": 898.547,
+   "dur": 2.759,
    "listDur": 2.8,
    "loc": "L13-newsroom",
    "framing": "крупно репортёр → редактор (вип-пан)",
@@ -6148,11 +6345,11 @@
    }
   },
   {
-   "n": 288,
+   "n": 295,
    "ch": 8,
    "chTitle": "The Memo",
-   "start": 898.09,
-   "end": 901.439,
+   "start": 898.547,
+   "end": 901.896,
    "dur": 3.349,
    "listDur": 3.3,
    "loc": "L13-newsroom",
@@ -6165,12 +6362,12 @@
    "snapWord": "answer"
   },
   {
-   "n": 289,
+   "n": 296,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 901.439,
-   "end": 905.052,
-   "dur": 3.612,
+   "start": 901.896,
+   "end": 905.509,
+   "dur": 3.613,
    "listDur": 3.6,
    "loc": "T-title",
    "framing": "шаблон титр",
@@ -6180,12 +6377,12 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 290,
+   "n": 297,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 905.052,
-   "end": 911.111,
-   "dur": 6.06,
+   "start": 905.509,
+   "end": 911.567,
+   "dur": 6.059,
    "listDur": 6.1,
    "loc": "L14-front-door",
    "framing": "общий крыльцо",
@@ -6193,7 +6390,7 @@
    "spoken": "When American spies find a foreign agent getting close to an American there's a tool for exactly this",
    "event": "в светящемся окне хозяин и гость смеются за кухонным столом; на «foreign» вокруг гостя в окне рисуется красный круг; на «tool» агент заносит костяшки над дверью",
    "camera": "наезд → стоп → рывок на «close»",
-   "snap": 2.479,
+   "snap": 2.48,
    "snapWord": "close",
    "ev": [
     {
@@ -6207,11 +6404,11 @@
    ]
   },
   {
-   "n": 291,
+   "n": 298,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 911.111,
-   "end": 912.965,
+   "start": 911.567,
+   "end": 913.42,
    "dur": 1.853,
    "listDur": 1.9,
    "loc": "T-doc",
@@ -6230,11 +6427,11 @@
    ]
   },
   {
-   "n": 292,
+   "n": 299,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 912.965,
-   "end": 916.135,
+   "start": 913.42,
+   "end": 916.591,
    "dur": 3.171,
    "listDur": 3.2,
    "loc": "L14-front-door",
@@ -6243,15 +6440,15 @@
    "spoken": "Agents quietly explain who your new friend works for",
    "event": "стук, дверь открывается: мужчина в тапках с кружкой",
    "camera": "наезд → стоп → рывок на «works»",
-   "snap": 2.219,
+   "snap": 2.22,
    "snapWord": "works"
   },
   {
-   "n": 293,
+   "n": 300,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 916.135,
-   "end": 918.456,
+   "start": 916.591,
+   "end": 918.912,
    "dur": 2.32,
    "listDur": 2.3,
    "loc": "L14-front-door",
@@ -6267,12 +6464,12 @@
    }
   },
   {
-   "n": 294,
+   "n": 301,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 918.456,
-   "end": 921.437,
-   "dur": 2.981,
+   "start": 918.912,
+   "end": 921.894,
+   "dur": 2.982,
    "listDur": 3,
    "loc": "L14-front-door",
    "framing": "вставка фото гостя",
@@ -6280,15 +6477,15 @@
    "spoken": "No Your new friend is",
    "event": "агент протягивает фото — на нём тот самый гость из окна",
    "camera": "наезд → стоп → рывок на «friend»",
-   "snap": 1.62,
+   "snap": 1.619,
    "snapWord": "friend"
   },
   {
-   "n": 295,
+   "n": 302,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 921.437,
-   "end": 923.236,
+   "start": 921.894,
+   "end": 923.693,
    "dur": 1.8,
    "listDur": 1.8,
    "loc": "T-card",
@@ -6299,11 +6496,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 296,
+   "n": 303,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 923.236,
-   "end": 928.096,
+   "start": 923.693,
+   "end": 928.553,
    "dur": 4.86,
    "listDur": 4.9,
    "loc": "T-doc",
@@ -6326,11 +6523,11 @@
    ]
   },
   {
-   "n": 297,
+   "n": 304,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 928.096,
-   "end": 931.308,
+   "start": 928.553,
+   "end": 931.765,
    "dur": 3.212,
    "listDur": 3.2,
    "loc": "L04-washington",
@@ -6353,11 +6550,11 @@
    ]
   },
   {
-   "n": 298,
+   "n": 305,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 931.308,
-   "end": 932.87,
+   "start": 931.765,
+   "end": 933.327,
    "dur": 1.562,
    "listDur": 1.6,
    "loc": "L14-front-door",
@@ -6370,12 +6567,12 @@
    "snapWord": "knock"
   },
   {
-   "n": 299,
+   "n": 306,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 932.87,
-   "end": 937.789,
-   "dur": 4.919,
+   "start": 933.327,
+   "end": 938.247,
+   "dur": 4.92,
    "listDur": 4.9,
    "loc": "T-board",
    "framing": "шаблон доска",
@@ -6399,12 +6596,12 @@
    ]
   },
   {
-   "n": 300,
+   "n": 307,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 937.789,
-   "end": 940.11,
-   "dur": 2.32,
+   "start": 938.247,
+   "end": 940.567,
+   "dur": 2.319,
    "listDur": 2.3,
    "loc": "L01-restaurant",
    "framing": "POV объектив агента из-за меню (повтор хука)",
@@ -6416,11 +6613,11 @@
    "snapWord": "table"
   },
   {
-   "n": 301,
+   "n": 308,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 940.11,
-   "end": 946.216,
+   "start": 940.567,
+   "end": 946.673,
    "dur": 6.106,
    "listDur": 6.1,
    "loc": "3D-city",
@@ -6429,7 +6626,7 @@
    "spoken": "That May he even boarded Air Force One in Alaska for the last leg of the president's trip to China",
    "event": "на «May» плашка «MAY 2026»; на «Alaska» плашка «ANCHORAGE, ALASKA»; на «boarded» силуэт в кожанке поднимается по трапу борта номер один; на «China» борт разворачивается на запад",
    "camera": "пролёт вперёд → стоп → рывок на «last»",
-   "snap": 3.74,
+   "snap": 3.739,
    "snapWord": "last",
    "ev": [
     {
@@ -6451,11 +6648,11 @@
    ]
   },
   {
-   "n": 302,
+   "n": 309,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 946.216,
-   "end": 949.485,
+   "start": 946.673,
+   "end": 949.942,
    "dur": 3.269,
    "listDur": 3.3,
    "loc": "L06-nvidia-office",
@@ -6477,11 +6674,11 @@
    ]
   },
   {
-   "n": 303,
+   "n": 310,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 949.485,
-   "end": 952.789,
+   "start": 949.942,
+   "end": 953.246,
    "dur": 3.305,
    "listDur": 3.3,
    "loc": "L06-nvidia-office",
@@ -6500,11 +6697,11 @@
    ]
   },
   {
-   "n": 304,
+   "n": 311,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 952.789,
-   "end": 955.319,
+   "start": 953.246,
+   "end": 955.776,
    "dur": 2.53,
    "listDur": 2.5,
    "loc": "T-card",
@@ -6515,11 +6712,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 305,
+   "n": 312,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 955.319,
-   "end": 957.187,
+   "start": 955.776,
+   "end": 957.644,
    "dur": 1.867,
    "listDur": 1.9,
    "loc": "L06-nvidia-office",
@@ -6532,11 +6729,11 @@
    "snapWord": "wife"
   },
   {
-   "n": 306,
+   "n": 313,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 957.187,
-   "end": 959.788,
+   "start": 957.644,
+   "end": 960.245,
    "dur": 2.602,
    "listDur": 2.6,
    "loc": "T-doc",
@@ -6545,21 +6742,21 @@
    "spoken": "I am proud and grateful to be an American",
    "event": "то же письмо сотрудникам; на «proud» строка подсвечивается; подпись «— JENSEN HUANG, LETTER TO STAFF, NOV 8»",
    "camera": "наезд → стоп → рывок на «American»",
-   "snap": 1.74,
+   "snap": 1.739,
    "snapWord": "American",
    "ev": [
     {
      "p": 1,
-     "t": 0.24
+     "t": 0.239
     }
    ]
   },
   {
-   "n": 307,
+   "n": 314,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 959.788,
-   "end": 964.021,
+   "start": 960.245,
+   "end": 964.478,
    "dur": 4.233,
    "listDur": 4.2,
    "loc": "L06-nvidia-office",
@@ -6572,11 +6769,11 @@
    "snapWord": "investigation"
   },
   {
-   "n": 308,
+   "n": 315,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 964.021,
-   "end": 965.985,
+   "start": 964.478,
+   "end": 966.442,
    "dur": 1.963,
    "listDur": 2,
    "loc": "L04-washington",
@@ -6589,11 +6786,11 @@
    "snapWord": "briefing"
   },
   {
-   "n": 309,
+   "n": 316,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 965.985,
-   "end": 968.448,
+   "start": 966.442,
+   "end": 968.905,
    "dur": 2.464,
    "listDur": 2.5,
    "loc": "T-split",
@@ -6604,12 +6801,12 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 310,
+   "n": 317,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 968.448,
-   "end": 971.25,
-   "dur": 2.802,
+   "start": 968.905,
+   "end": 971.708,
+   "dur": 2.803,
    "listDur": 2.8,
    "loc": "L13-newsroom",
    "framing": "средний ТВ в редакции",
@@ -6627,11 +6824,11 @@
    ]
   },
   {
-   "n": 311,
+   "n": 318,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 971.25,
-   "end": 978.398,
+   "start": 971.708,
+   "end": 978.856,
    "dur": 7.147,
    "listDur": 7.1,
    "loc": "3D-hq-corridor",
@@ -6654,12 +6851,12 @@
    ]
   },
   {
-   "n": 312,
+   "n": 319,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 978.398,
-   "end": 981.885,
-   "dur": 3.487,
+   "start": 978.856,
+   "end": 982.341,
+   "dur": 3.486,
    "listDur": 3.5,
    "loc": "T-doc",
    "framing": "шаблон документ",
@@ -6667,7 +6864,7 @@
    "spoken": "Thirty-three years at the top over in one press release",
    "event": "пресс-релиз; на «release» печать «NVIDIA CORPORATION»",
    "camera": "наезд → стоп → рывок на «Colette»",
-   "snap": 1.918,
+   "snap": 1.917,
    "ev": [
     {
      "p": 1,
@@ -6676,11 +6873,11 @@
    ]
   },
   {
-   "n": 313,
+   "n": 320,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 981.885,
-   "end": 985.972,
+   "start": 982.341,
+   "end": 986.429,
    "dur": 4.088,
    "listDur": 4.1,
    "loc": "L06-nvidia-office",
@@ -6699,11 +6896,11 @@
    ]
   },
   {
-   "n": 314,
+   "n": 321,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 985.972,
-   "end": 987.472,
+   "start": 986.429,
+   "end": 987.929,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L13-newsroom",
@@ -6716,11 +6913,11 @@
    "snapWord": "given"
   },
   {
-   "n": 315,
+   "n": 322,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 987.472,
-   "end": 988.972,
+   "start": 987.929,
+   "end": 989.429,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L06-nvidia-office",
@@ -6731,11 +6928,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 316,
+   "n": 323,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 988.972,
-   "end": 993.522,
+   "start": 989.429,
+   "end": 993.979,
    "dur": 4.55,
    "listDur": 4.5,
    "loc": "L07-dennys",
@@ -6754,11 +6951,11 @@
    ]
   },
   {
-   "n": 317,
+   "n": 324,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 993.522,
-   "end": 996.271,
+   "start": 993.979,
+   "end": 996.728,
    "dur": 2.749,
    "listDur": 2.7,
    "loc": "L07-dennys",
@@ -6777,12 +6974,12 @@
    ]
   },
   {
-   "n": 318,
+   "n": 325,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 996.271,
-   "end": 999.991,
-   "dur": 3.72,
+   "start": 996.728,
+   "end": 1000.449,
+   "dur": 3.721,
    "listDur": 3.7,
    "loc": "T-number",
    "framing": "шаблон цифра",
@@ -6799,17 +6996,17 @@
     },
     {
      "p": 1,
-     "t": 1.559
+     "t": 1.56
     }
    ]
   },
   {
-   "n": 319,
+   "n": 326,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 999.991,
-   "end": 1001.909,
-   "dur": 1.918,
+   "start": 1000.449,
+   "end": 1002.366,
+   "dur": 1.917,
    "listDur": 1.9,
    "loc": "T-card",
    "framing": "шаблон карточка",
@@ -6819,11 +7016,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 320,
+   "n": 327,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 1001.909,
-   "end": 1007.369,
+   "start": 1002.366,
+   "end": 1007.826,
    "dur": 5.46,
    "listDur": 5.5,
    "loc": "L13-newsroom",
@@ -6832,7 +7029,7 @@
    "spoken": "When China's DeepSeek released a cheap AI model in January 2025",
    "event": "на ТВ выпуск; на «DeepSeek» плашка «DEEPSEEK · JAN 2025»; на «cheap» ценник «CHEAP AI MODEL»",
    "camera": "наезд → стоп → рывок на «cheap»",
-   "snap": 1.719,
+   "snap": 1.72,
    "snapWord": "cheap",
    "ev": [
     {
@@ -6841,16 +7038,16 @@
     },
     {
      "p": 2,
-     "t": 1.719
+     "t": 1.72
     }
    ]
   },
   {
-   "n": 321,
+   "n": 328,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 1007.369,
-   "end": 1011.222,
+   "start": 1007.826,
+   "end": 1011.679,
    "dur": 3.853,
    "listDur": 3.9,
    "loc": "T-number",
@@ -6873,11 +7070,11 @@
    ]
   },
   {
-   "n": 322,
+   "n": 329,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 1011.222,
-   "end": 1014.385,
+   "start": 1011.679,
+   "end": 1014.842,
    "dur": 3.163,
    "listDur": 3.2,
    "loc": "L19-trading-desk",
@@ -6900,12 +7097,12 @@
    ]
   },
   {
-   "n": 323,
+   "n": 330,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 1014.385,
-   "end": 1015.95,
-   "dur": 1.565,
+   "start": 1014.842,
+   "end": 1016.408,
+   "dur": 1.566,
    "listDur": 1.6,
    "loc": "L19-trading-desk",
    "framing": "крупно аналитик 1",
@@ -6913,16 +7110,16 @@
    "spoken": "What did the affair cost",
    "event": "трейдерский стол, стена красных тикеров",
    "camera": "наезд → стоп → рывок на «affair»",
-   "snap": 0.519,
+   "snap": 0.52,
    "snapWord": "affair"
   },
   {
-   "n": 324,
+   "n": 331,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 1015.95,
-   "end": 1018.151,
-   "dur": 2.201,
+   "start": 1016.408,
+   "end": 1018.608,
+   "dur": 2.2,
    "listDur": 2.2,
    "loc": "L19-trading-desk",
    "framing": "средний аналитик 2 → аналитик 1 (вип-пан)",
@@ -6937,11 +7134,11 @@
    }
   },
   {
-   "n": 325,
+   "n": 332,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 1018.151,
-   "end": 1019.651,
+   "start": 1018.608,
+   "end": 1020.108,
    "dur": 1.5,
    "listDur": 1.5,
    "loc": "L19-trading-desk",
@@ -6954,11 +7151,11 @@
    "snapWord": "retirement"
   },
   {
-   "n": 326,
+   "n": 333,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 1019.651,
-   "end": 1023.571,
+   "start": 1020.108,
+   "end": 1024.028,
    "dur": 3.92,
    "listDur": 3.9,
    "loc": "T-doc",
@@ -6977,11 +7174,11 @@
    ]
   },
   {
-   "n": 327,
+   "n": 334,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 1023.571,
-   "end": 1026.509,
+   "start": 1024.028,
+   "end": 1026.966,
    "dur": 2.938,
    "listDur": 2.9,
    "loc": "L19-trading-desk",
@@ -7000,11 +7197,11 @@
    ]
   },
   {
-   "n": 328,
+   "n": 335,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 1026.509,
-   "end": 1031.106,
+   "start": 1026.966,
+   "end": 1031.563,
    "dur": 4.597,
    "listDur": 4.6,
    "loc": "T-card",
@@ -7015,11 +7212,11 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 329,
+   "n": 336,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 1031.106,
-   "end": 1035.293,
+   "start": 1031.563,
+   "end": 1035.749,
    "dur": 4.186,
    "listDur": 4.2,
    "loc": "L09-megaspeed",
@@ -7038,12 +7235,12 @@
    ]
   },
   {
-   "n": 330,
+   "n": 337,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 1035.293,
-   "end": 1041.563,
-   "dur": 6.27,
+   "start": 1035.749,
+   "end": 1042.02,
+   "dur": 6.271,
    "listDur": 6.3,
    "loc": "L13-newsroom",
    "framing": "крупно ТВ заголовок",
@@ -7051,12 +7248,12 @@
    "spoken": "CNN later reported that US intelligence isn't sure she spied at all though sources call her a risk",
    "event": "на ТВ экстренный выпуск; на «sure» бегущая строка «US INTEL ISN'T SURE SHE SPIED · SOURCE: CNN»; на «risk» плашка «SOURCES: A RISK»",
    "camera": "наезд → стоп → рывок на «sure»",
-   "snap": 2.939,
+   "snap": 2.94,
    "snapWord": "sure",
    "ev": [
     {
      "p": 1,
-     "t": 2.939
+     "t": 2.94
     },
     {
      "p": 2,
@@ -7065,12 +7262,12 @@
    ]
   },
   {
-   "n": 331,
+   "n": 338,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 1041.563,
-   "end": 1044.352,
-   "dur": 2.79,
+   "start": 1042.02,
+   "end": 1044.81,
+   "dur": 2.789,
    "listDur": 2.8,
    "loc": "T-doc",
    "framing": "шаблон страница паспорта",
@@ -7078,22 +7275,22 @@
    "spoken": "Singapore has barred her from entering the country",
    "event": "страница паспорта с визами; на «barred» на страницу падает штамп запрета въезда",
    "camera": "наезд → стоп → рывок на «entering» + толчок",
-   "snap": 1.499,
+   "snap": 1.5,
    "snapWord": "entering",
    "ev": [
     {
      "p": 1,
-     "t": 0.739
+     "t": 0.74
     }
    ]
   },
   {
-   "n": 332,
+   "n": 339,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 1044.352,
-   "end": 1046.918,
-   "dur": 2.565,
+   "start": 1044.81,
+   "end": 1047.375,
+   "dur": 2.566,
    "listDur": 2.6,
    "loc": "L09-megaspeed",
    "framing": "средний пустое кресло директора",
@@ -7101,16 +7298,16 @@
    "spoken": "Where she is now nobody will say",
    "event": "директорский стол Megaspeed из гл. 4: кресло пустое, на столе четыре дырки от винтов таблички «MANAGING DIRECTOR»; в конце наплыв на стул ресторана",
    "camera": "наезд → стоп → рывок на «nobody»",
-   "snap": 1.26,
+   "snap": 1.259,
    "snapWord": "nobody"
   },
   {
-   "n": 333,
+   "n": 340,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 1046.918,
-   "end": 1048.853,
-   "dur": 1.936,
+   "start": 1047.375,
+   "end": 1049.311,
+   "dur": 1.935,
    "listDur": 1.9,
    "loc": "L01-restaurant",
    "framing": "общий пустой стол",
@@ -7118,12 +7315,12 @@
    "spoken": "Go back to that dinner in Singapore",
    "event": "на «Go» на стол Megaspeed падают и улетают назад три наших снимка: письмо, объектив, тост (D26-B); на «dinner» тост оживает залом: свечи, дождь на окне",
    "camera": "наезд → стоп → рывок на «Singapore»",
-   "snap": 1.039,
+   "snap": 1.04,
    "snapWord": "Singapore",
    "ev": [
     {
      "p": 0,
-     "t": -0.001
+     "t": 0
     },
     {
      "p": 1,
@@ -7132,12 +7329,12 @@
    ]
   },
   {
-   "n": 334,
+   "n": 341,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 1048.853,
-   "end": 1051.783,
-   "dur": 2.929,
+   "start": 1049.311,
+   "end": 1052.24,
+   "dur": 2.93,
    "listDur": 2.9,
    "loc": "L01-restaurant",
    "framing": "вставка бокалы над свечой",
@@ -7145,16 +7342,16 @@
    "spoken": "The candles The toast to good partners",
    "event": "повтор тоста гл. 1 в выцветшем цвете, как память: руки Дженсена (кожанка) и Алисы, бокалы встречаются над свечой",
    "camera": "наезд → стоп → рывок на «partners»",
-   "snap": 2.037,
+   "snap": 2.036,
    "snapWord": "partners"
   },
   {
-   "n": 335,
+   "n": 342,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 1051.783,
-   "end": 1053.388,
-   "dur": 1.605,
+   "start": 1052.24,
+   "end": 1053.844,
+   "dur": 1.604,
    "listDur": 1.6,
    "loc": "L01-restaurant",
    "framing": "средний два пустых стула",
@@ -7162,15 +7359,15 @@
    "spoken": "Both chairs are empty now",
    "event": "та же ось, людей нет: два бокала стоят там, где их держали; салфетка соскальзывает со стула",
    "camera": "наезд → стоп → рывок на «empty»",
-   "snap": 0.699,
+   "snap": 0.7,
    "snapWord": "empty"
   },
   {
-   "n": 336,
+   "n": 343,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 1053.388,
-   "end": 1058.406,
+   "start": 1053.844,
+   "end": 1058.863,
    "dur": 5.019,
    "listDur": 5,
    "loc": "L02-sg-street",
@@ -7183,11 +7380,11 @@
    "snapWord": "never"
   },
   {
-   "n": 337,
+   "n": 344,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 1058.406,
-   "end": 1063.546,
+   "start": 1058.863,
+   "end": 1064.004,
    "dur": 5.14,
    "listDur": 5.1,
    "loc": "3D-city",
@@ -7198,12 +7395,12 @@
    "camera": "подъём и отъезд"
   },
   {
-   "n": 338,
+   "n": 345,
    "ch": 9,
    "chTitle": "The Empty Chair",
-   "start": 1063.546,
-   "end": 1065.831,
-   "dur": 2.284,
+   "start": 1064.004,
+   "end": 1066.289,
+   "dur": 2.285,
    "listDur": 2.3,
    "loc": "T-card",
    "framing": "шаблон карточка",
@@ -7213,75 +7410,158 @@
    "camera": "статично (стоп)"
   },
   {
-   "n": 339,
+   "n": 346,
    "ch": 10,
    "chTitle": "The Office",
-   "start": 1065.831,
-   "end": 1067.983,
-   "dur": 2.153,
-   "listDur": 2.2,
+   "start": 1066.289,
+   "end": 1067.789,
+   "dur": 1.5,
+   "listDur": 1.5,
    "loc": "L03-host-office",
    "framing": "крупно ведущий",
-   "text": "HOST: Some keys are too heavy to carry.",
-   "spoken": "Some keys are too heavy to carry",
+   "text": "HOST: Some keys are",
+   "spoken": "Some keys are",
    "event": "ведущий вертит ключ в пальцах",
-   "camera": "наезд → стоп → рывок на «carry»",
-   "snap": 1.459,
-   "snapWord": "carry"
+   "camera": "наезд → стоп → рывок на «keys»",
+   "snap": 0.319,
+   "snapWord": "keys"
   },
   {
-   "n": 340,
+   "n": 347,
    "ch": 10,
    "chTitle": "The Office",
-   "start": 1067.983,
-   "end": 1070.053,
-   "dur": 2.07,
-   "listDur": 2.1,
+   "start": 1067.789,
+   "end": 1069.519,
+   "dur": 1.73,
+   "listDur": 1.7,
    "loc": "L03-host-office",
-   "framing": "вставка сейф",
-   "text": "HOST: So this one goes in the safe.",
-   "spoken": "So this one goes in the safe",
-   "event": "тот же латунный ключ из гл. 0 ложится в сейф рядом со снимком агентов «Дженсен + Алиса» из #16; дверца закрывается — щелчок (D13-B)",
-   "camera": "наезд → стоп → рывок на «safe»",
-   "snap": 1.32,
-   "snapWord": "safe"
-  },
-  {
-   "n": 341,
-   "ch": 10,
-   "chTitle": "The Office",
-   "start": 1070.053,
-   "end": 1073.91,
-   "dur": 3.857,
-   "listDur": 3.9,
-   "loc": "L03-host-office",
-   "framing": "средний ведущий",
-   "text": "HOST: The question is who opens it next.",
-   "spoken": "The question is who opens it next",
-   "event": "смотрит на карманные часы; на «next» щёлкает крышка часов",
-   "camera": "наезд → стоп → рывок на «next»",
-   "snap": 2.78,
-   "snapWord": "next",
+   "framing": "сверхкрупно ключ в ладони",
+   "text": "too heavy to carry.",
+   "spoken": "too heavy to carry",
+   "event": "на «heavy» ладонь с ключом опускается под тяжестью, блик; на «carry» лампа мигает",
+   "camera": "наезд → стоп → рывок на «heavy»",
+   "snap": 0.25,
+   "snapWord": "heavy",
    "ev": [
     {
+     "p": 0,
+     "t": 0.179
+    },
+    {
      "p": 1,
-     "t": 2.78
+     "t": 0.679
     }
    ]
   },
   {
-   "n": 342,
+   "n": 348,
    "ch": 10,
    "chTitle": "The Office",
-   "start": 1073.91,
-   "end": 1075.91,
+   "start": 1069.519,
+   "end": 1071.019,
+   "dur": 1.5,
+   "listDur": 1.5,
+   "loc": "L03-host-office",
+   "framing": "вставка ключ ложится в сейф",
+   "text": "HOST: So this one",
+   "spoken": "So this one",
+   "event": "на «one» тот же латунный ключ из гл. 0 ложится в сейф рядом со снимком агентов «Дженсен + Алиса» (D13-B)",
+   "camera": "наезд → стоп → рывок на «one»",
+   "snap": 0.519,
+   "snapWord": "one",
+   "ev": [
+    {
+     "p": 0,
+     "t": 0.519
+    }
+   ]
+  },
+  {
+   "n": 349,
+   "ch": 10,
+   "chTitle": "The Office",
+   "start": 1071.019,
+   "end": 1072.709,
+   "dur": 1.69,
+   "listDur": 1.7,
+   "loc": "L03-host-office",
+   "framing": "крупно дверца сейфа",
+   "text": "goes in the safe.",
+   "spoken": "goes in the safe",
+   "event": "на «safe» дверца сейфа захлопывается — щелчок, толчок, лампа вздрагивает",
+   "camera": "наезд → стоп → рывок на «safe» + толчок",
+   "snap": 0.579,
+   "snapWord": "safe",
+   "ev": [
+    {
+     "p": 0,
+     "t": 0.579
+    }
+   ]
+  },
+  {
+   "n": 350,
+   "ch": 10,
+   "chTitle": "The Office",
+   "start": 1072.709,
+   "end": 1074.209,
+   "dur": 1.5,
+   "listDur": 1.5,
+   "loc": "L03-host-office",
+   "framing": "средний ведущий",
+   "text": "HOST: The question is",
+   "spoken": "The question is",
+   "event": "на «question» смотрит на карманные часы, щёлкает крышка",
+   "camera": "наезд → стоп → рывок на «question»",
+   "snap": 0.259,
+   "snapWord": "question",
+   "ev": [
+    {
+     "p": 0,
+     "t": 0.259
+    }
+   ]
+  },
+  {
+   "n": 351,
+   "ch": 10,
+   "chTitle": "The Office",
+   "start": 1074.209,
+   "end": 1076.448,
+   "dur": 2.239,
+   "listDur": 2.2,
+   "loc": "L03-host-office",
+   "framing": "вставка ручка сейфа",
+   "text": "who opens it next.",
+   "spoken": "who opens it next",
+   "event": "на «opens» ручка сейфа сама проворачивается, щелчок замка; на «next» лампа вздрагивает",
+   "camera": "наезд → стоп → рывок на «next»",
+   "snap": 1.259,
+   "snapWord": "next",
+   "ev": [
+    {
+     "p": 0,
+     "t": 0.639
+    },
+    {
+     "p": 1,
+     "t": 1.259
+    }
+   ]
+  },
+  {
+   "n": 352,
+   "ch": 10,
+   "chTitle": "The Office",
+   "start": 1076.448,
+   "end": 1078.448,
    "dur": 2,
    "listDur": 2,
    "loc": "L03-host-office",
    "framing": "общий кабинет",
    "text": "— (без голоса, музыка)",
    "spoken": "",
-   "event": "лампа гаснет на снимке «Дженсен + Алиса» у сейфа, в темноте остаётся блик (D13-B)",
+   "event": "каскад отыгрышей: снимок агентов, ключ, пустой стул, тост — каждый на вспышке; лампа гаснет на снимке «Дженсен + Алиса» у сейфа, в темноте остаётся блик (D13-B)",
    "camera": "отъезд → стоп → рывок на событии"
   }
  ]

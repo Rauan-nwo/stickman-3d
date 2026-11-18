@@ -15,7 +15,7 @@ export const CFG = {
   photo: [905, 556, 92],                      // снимок на столе под лампой: центр, ширина
   lamp: [735, 410],                           // абажур лампы (вспышка включения)
   shade: { dir: [-1, -.55], body: { k: 0 }, head: { k: .42, color: '#4f4a72', shiftU: 52, after: true, glow: { color: '#f3d488', k: .28 } } },
-  views: { wide: { cx: 960, cy: 540, k: 1.02 }, box: { cx: 1285, cy: 480, k: 3.0 }, key: { cx: 1195, cy: 440, k: 2.6 }, tag: { cx: 1285, cy: 480, k: 2.8 }, mid: { cx: 1010, cy: 470, k: 1.85 }, keycam: { cx: 1080, cy: 420, k: 2.3 } },
+  views: { wide: { cx: 960, cy: 540, k: 1.02 }, box: { cx: 1285, cy: 480, k: 3.0 }, key: { cx: 1215, cy: 428, k: 4.4 }, tag: { cx: 1285, cy: 480, k: 2.8 }, mid: { cx: 1010, cy: 470, k: 1.85 }, glow: { cx: 1262, cy: 455, k: 3.2 }, src: { cx: 1296, cy: 512, k: 4.6 }, photo: { cx: 928, cy: 548, k: 5 }, keycam: { cx: 1080, cy: 420, k: 2.3 } },
 };
 const I = { plate: img(officePlate) };
 export const A = lazy([I.plate], () => ({ plate: I.plate, plateB3: blurred(I.plate, 3) }));
@@ -35,7 +35,8 @@ export function office(ctx, v, t, T, o = {}) {
   const a = A(); if (!a) return {};
   if (!o.solo) {
     plate(ctx, o.blur ? a.plateB3 : a.plate, v);
-    if (o.photo) { const [x, y, w] = CFG.photo, P = toS(v, [x, y]); ctx.save(); ctx.translate(P[0], P[1]); ctx.scale(1, .42); polaroid(ctx, 0, 0, w * v.k, -.12, o.photo === true ? null : o.photo, 1); ctx.restore(); }
+    if (o.photo) { const [x0, y, w] = CFG.photo, x = x0 + (o.photoDx || 0), P = toS(v, [x, y]); ctx.save(); ctx.translate(P[0], P[1]); ctx.scale(1, .42); polaroid(ctx, 0, 0, w * v.k, -.12, o.photo === true ? null : o.photo, 1); ctx.restore(); }
+    if (o.photo && o.photoGlint > .01) sparkle(ctx, toS(v, [CFG.photo[0] + (o.photoDx || 0) + 8, CFG.photo[1] - 4]), 38 * v.k, o.photoGlint);   // блик ключа на снимке
     if (o.box) { const [x, y, w] = CFG.box, P = toS(v, [x, y]); nvBox(ctx, P[0], P[1], w * v.k, o.box); }
     if (o.tag) tagOn(ctx, v, o.tag);
     // тени: контакт под ступнями и тень от лампы вперёд-вправо
@@ -77,6 +78,11 @@ function lampState(ctx, v, k, t) {
 }
 export function lampFlare(ctx, v, k) { if (k <= .01) return; const P = toS(v, CFG.lamp); ctx.save(); ctx.globalCompositeOperation = 'screen'; const r = 420 * v.k, g = ctx.createRadialGradient(P[0], P[1] + 40 * v.k, 0, P[0], P[1] + 40 * v.k, r);
   g.addColorStop(0, `rgba(255,240,170,${.6 * k})`); g.addColorStop(.4, `rgba(220,255,170,${.22 * k})`); g.addColorStop(1, 'rgba(200,255,160,0)'); ctx.fillStyle = g; ctx.fillRect(P[0] - r, P[1] - r, r * 2, r * 2); ctx.restore(); }
+// блик-звёздочка (отсвет латунного ключа): центр P (экран), радиус R, k 0..1
+function sparkle(ctx, P, R, k) { ctx.save(); ctx.globalCompositeOperation = 'screen'; const g = ctx.createRadialGradient(P[0], P[1], 0, P[0], P[1], R);
+  g.addColorStop(0, `rgba(255,246,210,${.9 * k})`); g.addColorStop(.3, `rgba(255,214,130,${.4 * k})`); g.addColorStop(1, 'rgba(255,200,110,0)'); ctx.fillStyle = g; ctx.fillRect(P[0] - R, P[1] - R, R * 2, R * 2);
+  ctx.fillStyle = `rgba(255,252,235,${k})`; for (let i = 0; i < 4; i++) { ctx.save(); ctx.translate(P[0], P[1]); ctx.rotate(i * Math.PI / 2 + .35); ctx.beginPath(); ctx.moveTo(0, -R * .8 * k); ctx.lineTo(R * .05, 0); ctx.lineTo(-R * .05, 0); ctx.closePath(); ctx.fill(); ctx.restore(); }
+  ctx.restore(); }
 // ценник на коробке: k 0..1 — прилёт и качание; sub — показана ли бирка SOURCE
 function tagOn(ctx, v, o) {
   if (o.k <= 0) return; const [x, y, w] = CFG.box, top = [x - w * .5 + 14, y - w * .45 * .45];   // ценник висит у полосы, логотип NVIDIA открыт

@@ -1,0 +1,107 @@
+{
+ "file": "inc-gustav-sting.mp3",
+ "duration_s": 18.26,
+ "samplerate": 44100,
+ "channels": 2,
+ "sounding_from_s": 0.0,
+ "sounding_to_s": 12.56,
+ "lufs_integrated": -13.7,
+ "peak_dbfs": 0.3,
+ "spectrum": {
+  "1_4k_share_pct": 1.68,
+  "1_4k_rel_dB": -17.7,
+  "below_250_share_pct": 81.6,
+  "centroid_median_hz": 1429
+ },
+ "key": {
+  "key": "C minor",
+  "corr": 0.603,
+  "runner_up": "C major",
+  "runner_up_corr": 0.485
+ },
+ "tempo_bpm": 129.2,
+ "tempo_raw_bpm": 129.2,
+ "tempo_fix": null,
+ "catalog_bpm": 132.0,
+ "pulse_clarity": 0.579,
+ "beat_interval_cv": 0.029,
+ "pulsed": true,
+ "loudness_5s_lufs": [
+  -14.4,
+  -13.6,
+  -11.8,
+  null
+ ],
+ "downbeat": {
+  "meter": 4,
+  "phase": 0,
+  "score": 0.82,
+  "margin": 0.52
+ },
+ "bar_s": 1.811,
+ "beats_s": [
+  0.07,
+  0.534,
+  0.975,
+  1.44,
+  1.881,
+  2.345,
+  2.786,
+  3.251,
+  3.692,
+  4.156,
+  4.621,
+  5.085,
+  5.503,
+  5.968,
+  6.432,
+  6.896,
+  7.338,
+  7.802,
+  8.243,
+  8.707,
+  9.149,
+  9.613,
+  10.054,
+  10.519,
+  10.96,
+  11.424,
+  11.865,
+  12.33,
+  12.794,
+  13.235,
+  13.7
+ ],
+ "downbeats_s": [
+  0.07,
+  1.881,
+  3.692,
+  5.503,
+  7.338,
+  9.149,
+  10.96,
+  12.794
+ ],
+ "grid_unit": "bar",
+ "sections": [
+  {
+   "label": "A",
+   "start_s": 0.07,
+   "end_s": 18.26,
+   "units": 8,
+   "rel_level_db": -33.0
+  }
+ ],
+ "novelty_peaks_s": [],
+ "loops": [],
+ "section_cut_points_s": [],
+ "strong_novelty_points_s": [],
+ "quiet_bar_starts_s": [
+  12.79
+ ],
+ "phrase_points_s": [
+  0.07,
+  7.34
+ ],
+ "id": "inc-gustav-sting"
+}

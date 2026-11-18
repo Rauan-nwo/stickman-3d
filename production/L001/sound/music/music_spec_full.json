@@ -1,0 +1,79 @@
+{
+ "_note": "ПРЕДЛОЖЕНИЕ на весь фильм (гл. 0–10) в формате sound/music_spec.json. Рабочую спеку пилота (sound/music_spec.json) этот файл не заменяет — её ведёт микшер. Обоснование, таблицы и риски — music/MUSIC.md. Точки фильма — только от глав и меток cues.json (после перетайминга пересчитаются сами); секунды источника — сильные доли и замеренные атаки из music/analysis/<id>.json. Реплики гл. 0 и 1 и первая задержка (video_title) скопированы из sound/music_spec.json в редакции 2026-11-17 21:22 один в один; если та спека ушла вперёд — главнее она. Ключи _note, _why, _alternatives music_plan.py не читает. ВНИМАНИЕ: music_plan.py всегда пишет в sound/music_plan.json — запуск с --spec music/music_spec_full.json перезапишет план пилота.",
+ "_loop_note": "music_plan.py включает петлю, только если отрезок фильма длиннее остатка файла; render.py при этом повторяет кусок [src_in, loop_b], а не [loop_a, loop_b]. Поэтому в гл. 6 и 9 loop_a совпадает с src_in (до 0.02 с) — результат одинаков при любом чтении.",
+ "cues": [
+  {"id": "ch0_tension", "file": "music/candidates/inc-covert-affair.mp3", "from": "film:0", "to": "lastword:0+1.35",
+   "hit": {"film": "lastword:0+0.35", "src": 60.98}, "fade_in": 0.25, "fade_out": 1.0, "gain_db": 0,
+   "why": "шпионское напряжение (A minor, 68 BPM); граница раздела B→C (60.98) ложится сразу после последней реплики главы и гаснет за 1 с — тишина перед щелчком лампы"},
+
+  {"id": "ch1_host", "file": "music/candidates/inc-i-knew-a-guy.mp3", "from": "chapter:1+0.25", "to": "video_title+5.5",
+   "hit": {"film": "video_title", "src": 154.92, "snap": false}, "fade_in": 0.12, "fade_out": 1.5, "gain_db": 0,
+   "why": "нуарный джаз ведущего (D minor, 76 BPM); финальный аккорд трека (154.92, после стоп-тайма) = кадр, где встаёт название ролика"},
+
+  {"id": "ch2_kentucky", "file": "music/candidates/inc-dreamer.mp3", "from": "chapter:2-0.05", "to": "chapter:3",
+   "hit": {"film": "chapter:2", "src": 0.05, "snap": false}, "fade_in": 0.01, "fade_out": "bar", "gain_db": 0,
+   "_why": "тёплое фортепиано (G minor, 99 BPM); первый аккорд трека (атака 0.046 с) — ровно на титр главы 2. Точное попадание без привязки к доле: иначе src_in прилипнет к первой сильной доле 0.673 и атака аккорда срежется. Играет подряд 0.00–189.9 с источника, петля не нужна; конец — в разделе C (173.48–192.66), до тихой коды"},
+
+  {"id": "ch3_locked_door", "file": "music/candidates/inc-stay-the-course.mp3", "from": "chapter:3", "to": "chapter:4",
+   "src_in": 2.067, "fade_in": 0.05, "fade_out": "bar", "gain_db": 0,
+   "_why": "ровный холодный фон с отсчётом секунд (60 BPM); с первой сильной доли трека. Раздел B (18.065) придёт на +16.0 с главы, раздел C (70.078) — на +68.0 с, перед «So here was Beijing's problem» (+71.2 с)"},
+
+  {"id": "ch4_cover", "file": "music/candidates/inc-bass-walker.mp3", "from": "chapter:4", "to": "chapter:5",
+   "src_in": 0.139, "fade_in": 0.03, "fade_out": "bar", "gain_db": 0,
+   "_why": "один шагающий контрабас (112 BPM) — меньше всех мешает речи; с первой сильной доли. Границы разделов сами ложатся на текст: C (34.133) — «and nobody asks why», E (70.031) — «On paper, renting…», F (87.191) — «At the end of 2023…»; конец главы = граница F→G (97.826)"},
+
+  {"id": "ch5_introduction", "file": "music/candidates/inc-deadly-roulette.mp3", "from": "chapter:5", "to": "chapter:6",
+   "src_in": 0.627, "fade_in": 0.03, "fade_out": "bar", "gain_db": 0,
+   "_why": "лаунж-джаз с вибрафоном (103 BPM); с первой сильной доли. Тихий раздел C с сольным вибрафоном (39.845–58.329) ложится на вечеринку в баре Тайбэя (+39.2…+57.7 с главы), возврат D — к «Nobody looked at it twice» (+60.6 с)"},
+
+  {"id": "ch6_pipeline", "file": "music/candidates/inc-chase-pulse.mp3", "from": "chapter:6", "to": "chapter:7",
+   "hit": {"film": "chapter:6+25.0", "src": 35.062}, "loop": [10.077, 108.391], "fade_in": 0.03, "fade_out": "bar", "gain_db": 0,
+   "_why": "низкий ровный пульс (144 BPM по замеру); src_in выходит 10.062 (сильная доля 10.077). Сбивка C (35.062) — на «Follow one box», возврат D (41.726) — в план без голоса с кораблём (+31.7 с), E (48.414) — на «Every step has paperwork» (+38.35 с). Трек (117 с) короче главы (135 с): петля 59 тактов 10.077–108.391 до начала коды"},
+
+  {"id": "ch7_real_prize", "file": "music/candidates/inc-crypto.mp3", "from": "chapter:7", "to": "chapter:8",
+   "src_in": 6.06, "fade_in": 0.05, "fade_out": "bar", "gain_db": 0,
+   "_why": "тёмный таинственный фон (81 BPM); с третьего такта, чтобы раздел D (81.084) пришёл на +75.0 с — «Now look at it from Beijing» (+74.3 с). B (39.079) — на чехарду разрешений (+33.0 с), конец главы — начало раздела F (129.08)"},
+
+  {"id": "ch8_memo", "file": "music/candidates/inc-ossuary-6-air.mp3", "from": "chapter:8", "to": "chapter:9",
+   "hit": {"film": "chapter:8+29.8", "src": 96.25, "snap": false}, "fade_in": 1.0, "fade_out": "bar", "gain_db": 0,
+   "_why": "холодный дрон без слышимого пульса — сетка тактов не нужна, попадание точное. src_in выходит 66.45. Провал почти в тишину 93.5–95.0 с источника ложится на «Officials asked for the name to be unmasked», дрон возвращается в полную громкость (96.25) на «It was Jensen Huang» (+29.8 с главы); второй подъём (137.8) — на «Completely normal…» и «beyond business»"},
+
+  {"id": "ch9_empty_chair", "file": "music/candidates/inc-gloom-horizon.mp3", "from": "chapter:9", "to": "chapter:10",
+   "hit": {"film": "chapter:9+35.99", "src": 39.01}, "loop": [3.019, 98.987], "fade_in": 0.3, "fade_out": "bar", "gain_db": 0,
+   "_why": "скорбные струнные с нарастанием (99 BPM); src_in выходит 3.02 (сильная доля 3.019). Вступление мелодии (39.01) — на «Nobody told the man at the table» (+36.35 с), самый громкий раздел E (72.632) — на «Jensen Huang resigned» (+69.8 с). Трек (128 с) короче главы (164 с): петля 40 тактов 3.019–98.987; второй круг начинается тихим вступлением на падении акций (+96 с), мелодия возвращается к +132 с; затухание в один такт начинается на карточке «who's going to warn them?»"},
+
+  {"id": "ch10_host_outro", "file": "music/candidates/inc-i-knew-a-guy.mp3", "from": "chapter:10-0.71", "to": "end",
+   "hit": {"film": "end-2.0", "src": 154.92, "snap": false}, "fade_in": 0.02, "fade_out": 1.2, "gain_db": 0,
+   "_why": "возврат темы ведущего: последние такты и тот же финальный аккорд (154.92), что стоит на названии ролика, — на начало последнего плана без голоса (end-2.0). src_in выходит 144.051 (сильная доля 144.057). fade_out не «bar»: затухание в такт (3.2 с) съело бы аккорд"}
+ ],
+ "holds": [
+  {"at": "video_title", "pre": 0.25, "post": 3.0, "db": -8},
+  {"at": "chapter:2", "pre": 0.2, "post": 2.0, "db": -8},
+  {"at": "chapter:3", "pre": 0.2, "post": 2.0, "db": -8},
+  {"at": "chapter:4", "pre": 0.2, "post": 2.0, "db": -8},
+  {"at": "chapter:5", "pre": 0.2, "post": 2.0, "db": -8},
+  {"at": "chapter:6", "pre": 0.2, "post": 2.0, "db": -8},
+  {"at": "chapter:7", "pre": 0.2, "post": 2.0, "db": -8},
+  {"at": "chapter:8", "pre": 0.2, "post": 2.0, "db": -8},
+  {"at": "chapter:9", "pre": 0.2, "post": 2.0, "db": -8},
+  {"at": "end-2.0", "pre": 0.2, "post": 2.0, "db": -8}
+ ],
+ "_alternatives": {
+  "_note": "Варианты на пробу. В работу не включены: чтобы попробовать, внести правку в cues. На слух не проверены.",
+  "ch1_enter_on_downbeat": {
+   "changes": {"ch1_host.from": "chapter:1+0.54"},
+   "why": "при том же попадании аккорда 154.92 на название src_in выходит 134.44 — ровно сильная доля 134.444 (сейчас 134.15, за 0.29 с до доли): бас входит с начала такта сразу после «Evening.»"
+  },
+  "ch3_cold_entry_before_title": {
+   "changes": {"ch2_kentucky.to": "chapter:3-16.0", "ch3_locked_door.from": "chapter:3-16.0"},
+   "why": "холодная музыка входит на «Washington picked up the phone» (за 16.0 с до титра главы 3): четыре такта вступления Stay the Course (2.067–18.065), раздел B ровно на титр. Dreamer при этом кончается сразу за границей разделов G→C (173.476)"
+  },
+  "ch9_coda_singapore_callback": {
+   "changes": {"ch9_empty_chair.to": "chapter:10-18.9"},
+   "adds_after": "ch9_empty_chair",
+   "cue": {"id": "ch9_coda", "file": "music/candidates/inc-covert-affair.mp3", "from": "chapter:10-18.9", "to": "chapter:10",
+           "src_in": 170.388, "fade_in": 0.05, "fade_out": "bar", "gain_db": 0},
+   "why": "на «Go back to that dinner in Singapore» возвращается музыка начала ролика — собственная концовка Covert Affair: кода трека (177.424) начинается сразу после «Both chairs are empty now», последние ноты около 185.3 с источника (за 4 с до главы 10), дальше трек гаснет сам"
+  }
+ }
+}

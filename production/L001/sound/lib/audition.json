@@ -1,0 +1,1902 @@
+{
+ "snap": {
+  "desc": "a short fast tight whoosh of a quick camera zoom",
+  "alts": [
+   "a door slam",
+   "a gunshot",
+   "a click"
+  ],
+  "ranked": [
+   {
+    "kind": "bank",
+    "name": "swish/blade",
+    "path": "sound/lib/cand/snap/bank_swish_blade.wav",
+    "z": 2.78,
+    "verdict": "plausible",
+    "margin": null,
+    "summary": "bank_swish_blade.wav: 'a short fast tight whoosh of a quick camera zoom' -> plausible (z +2.7; would rank #4 among 322 vocabulary descriptions; cosine 0.21). Forced choice vs your alternatives: 'a short fast tight whoosh of a quick camera zoom' >99%, 'a door slam' <1%, 'a gunshot' <1%, 'a click' <1%. It sounds most like: 'a fast whoosh' (z +3.9), 'a stick swung fast through the air' (z +3.4), 'a whip pan transition' (z +3.0), 'a snare hit' (z +2.7). Evidence for 'plausible' (held-out library search, ~3% of candidate pairs true): the right kind of sound 41% of the time, the exact variant 22% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/snap/syn_3.wav",
+    "z": 2.6,
+    "verdict": "plausible",
+    "margin": null,
+    "summary": "syn_3.wav: 'a short fast tight whoosh of a quick camera zoom' -> plausible (z +2.6; would rank #10 among 322 vocabulary descriptions; cosine 0.18). Forced choice vs your alternatives: 'a short fast tight whoosh of a quick camera zoom' >99%, 'a door slam' <1%, 'a gunshot' <1%, 'a click' <1%. It sounds most like: 'a fast whoosh' (z +3.4), 'a snare roll' (z +3.2), 'a snare hit' (z +3.2), 'a quick swipe' (z +3.0). Evidence for 'plausible' (held-out library search, ~3% of candidate pairs true): the right kind of sound 41% of the time, the exact variant 22% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/snap/syn_1.wav",
+    "z": 2.57,
+    "verdict": "plausible",
+    "margin": null,
+    "summary": "syn_1.wav: 'a short fast tight whoosh of a quick camera zoom' -> plausible (z +2.5; would rank #11 among 322 vocabulary descriptions; cosine 0.18). Forced choice vs your alternatives: 'a short fast tight whoosh of a quick camera zoom' >99%, 'a door slam' <1%, 'a gunshot' <1%, 'a click' <1%. It sounds most like: 'crisp hi-hats' (z +3.4), 'a snare roll' (z +3.3), 'a snare hit' (z +3.2), 'a fast whoosh' (z +3.1). Evidence for 'plausible' (held-out library search, ~3% of candidate pairs true): the right kind of sound 41% of the time, the exact variant 22% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "whoosh_fast/tight",
+    "path": "sound/lib/cand/snap/bank_whoosh_fast_tight.wav",
+    "z": 2.56,
+    "verdict": "plausible",
+    "margin": null,
+    "summary": "bank_whoosh_fast_tight.wav: 'a short fast tight whoosh of a quick camera zoom' -> plausible (z +2.5; would rank #7 among 322 vocabulary descriptions; cosine 0.21). Forced choice vs your alternatives: 'a short fast tight whoosh of a quick camera zoom' >99%, 'a door slam' <1%, 'a gunshot' <1%, 'a click' <1%. It sounds most like: 'a fast whoosh' (z +4.4), 'a stick swung fast through the air' (z +3.1), 'a whip pan transition' (z +3.1), 'cloth whipping through the air' (z +2.7). Evidence for 'plausible' (held-out library search, ~3% of candidate pairs true): the right kind of sound 41% of the time, the exact variant 22% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "swish/zing",
+    "path": "sound/lib/cand/snap/bank_swish_zing.wav",
+    "z": 2.56,
+    "verdict": "plausible",
+    "margin": null,
+    "summary": "bank_swish_zing.wav: 'a short fast tight whoosh of a quick camera zoom' -> plausible (z +2.5; would rank #7 among 322 vocabulary descriptions; cosine 0.19). Forced choice vs your alternatives: 'a short fast tight whoosh of a quick camera zoom' >99%, 'a door slam' <1%, 'a gunshot' <1%, 'a click' <1%. It sounds most like: 'a fast whoosh' (z +4.5), 'a stick swung fast through the air' (z +3.4), 'a whip pan transition' (z +2.9), 'a short swish' (z +2.8). Evidence for 'plausible' (held-out library search, ~3% of candidate pairs true): the right kind of sound 41% of the time, the exact variant 22% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/snap/syn_2.wav",
+    "z": 2.54,
+    "verdict": "plausible",
+    "margin": null,
+    "summary": "syn_2.wav: 'a short fast tight whoosh of a quick camera zoom' -> plausible (z +2.5; would rank #11 among 322 vocabulary descriptions; cosine 0.17). Forced choice vs your alternatives: 'a short fast tight whoosh of a quick camera zoom' >99%, 'a door slam' <1%, 'a gunshot' <1%, 'a click' <1%. It sounds most like: 'a snare roll' (z +3.3), 'a snare hit' (z +3.3), 'a fast whoosh' (z +3.3), 'a quick swipe' (z +2.9). Evidence for 'plausible' (held-out library search, ~3% of candidate pairs true): the right kind of sound 41% of the time, the exact variant 22% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "swish/flick",
+    "path": "sound/lib/cand/snap/bank_swish_flick.wav",
+    "z": 2.43,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "bank_swish_flick.wav: 'a short fast tight whoosh of a quick camera zoom' -> weak (z +2.4; would rank #6 among 322 vocabulary descriptions; cosine 0.24). Forced choice vs your alternatives: 'a short fast tight whoosh of a quick camera zoom' >99%, 'a door slam' <1%, 'a gunshot' <1%, 'a click' <1%. It sounds most like: 'a box lid closing' (z +3.1), 'a snare hit' (z +2.7), 'a plastic case snapping shut' (z +2.7), 'a punchy impact hit' (z +2.6). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   }
+  ]
+ },
+ "whoosh.whip": {
+  "desc": "a fast whip pan whoosh transition",
+  "alts": [
+   "wind blowing",
+   "a car passing",
+   "a jet plane"
+  ],
+  "ranked": [
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/whoosh.whip/syn_2.wav",
+    "z": 5.36,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "syn_2.wav: 'a fast whip pan whoosh transition' -> strong (z +5.3; would rank #1 among 322 vocabulary descriptions; cosine 0.42). Forced choice vs your alternatives: 'a fast whip pan whoosh transition' >99%, 'wind blowing' <1%, 'a car passing' <1%, 'a jet plane' <1%. It sounds most like: 'a fast whoosh' (z +4.4), 'a stick swung fast through the air' (z +3.7), 'a downlifter falling sweep' (z +3.5), 'a whip pan transition' (z +3.4). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/whoosh.whip/syn_1.wav",
+    "z": 5.34,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "syn_1.wav: 'a fast whip pan whoosh transition' -> strong (z +5.3; would rank #1 among 322 vocabulary descriptions; cosine 0.41). Forced choice vs your alternatives: 'a fast whip pan whoosh transition' >99%, 'wind blowing' <1%, 'a car passing' <1%, 'a jet plane' <1%. It sounds most like: 'a fast whoosh' (z +4.4), 'a stick swung fast through the air' (z +3.8), 'a downlifter falling sweep' (z +3.5), 'a whip pan transition' (z +3.4). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/whoosh.whip/syn_3.wav",
+    "z": 5.3,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "syn_3.wav: 'a fast whip pan whoosh transition' -> strong (z +5.3; would rank #1 among 322 vocabulary descriptions; cosine 0.40). Forced choice vs your alternatives: 'a fast whip pan whoosh transition' >99%, 'wind blowing' <1%, 'a car passing' <1%, 'a jet plane' <1%. It sounds most like: 'a fast whoosh' (z +4.3), 'a stick swung fast through the air' (z +3.6), 'a downlifter falling sweep' (z +3.4), 'a whip pan transition' (z +3.3). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "swish/cane",
+    "path": "sound/lib/cand/whoosh.whip/bank_swish_cane.wav",
+    "z": 5.26,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "bank_swish_cane.wav: 'a fast whip pan whoosh transition' -> strong (z +5.2; would rank #1 among 322 vocabulary descriptions; cosine 0.46). Forced choice vs your alternatives: 'a fast whip pan whoosh transition' >99%, 'wind blowing' <1%, 'a car passing' <1%, 'a jet plane' <1%. It sounds most like: 'a fast whoosh' (z +4.5), 'a stick swung fast through the air' (z +3.6), 'a whip pan transition' (z +3.1), 'cloth whipping through the air' (z +2.6). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "whoosh_fast/crisp",
+    "path": "sound/lib/cand/whoosh.whip/bank_whoosh_fast_crisp.wav",
+    "z": 4.16,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "bank_whoosh_fast_crisp.wav: 'a fast whip pan whoosh transition' -> strong (z +4.1; would rank #1 among 322 vocabulary descriptions; cosine 0.34). Forced choice vs your alternatives: 'a fast whip pan whoosh transition' >99%, 'wind blowing' <1%, 'a car passing' <1%, 'a jet plane' <1%. It sounds most like: 'a fast whoosh' (z +3.7), 'a punchy impact hit' (z +2.8), 'a box lid closing' (z +2.7), 'a whip pan transition' (z +2.5). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "whoosh_fast/sleeve",
+    "path": "sound/lib/cand/whoosh.whip/bank_whoosh_fast_sleeve.wav",
+    "z": 4.15,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "bank_whoosh_fast_sleeve.wav: 'a fast whip pan whoosh transition' -> strong (z +4.1; would rank #2 among 322 vocabulary descriptions; cosine 0.33). Forced choice vs your alternatives: 'a fast whip pan whoosh transition' >99%, 'wind blowing' <1%, 'a car passing' <1%, 'a jet plane' <1%. It sounds most like: 'a fast whoosh' (z +4.3), 'a punchy impact hit' (z +3.2), 'a swoosh passing by' (z +2.7), 'a deep cinematic whoosh' (z +2.6). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "whoosh_fast/whip",
+    "path": "sound/lib/cand/whoosh.whip/bank_whoosh_fast_whip.wav",
+    "z": 3.8,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "bank_whoosh_fast_whip.wav: 'a fast whip pan whoosh transition' -> strong (z +3.8; would rank #1 among 322 vocabulary descriptions; cosine 0.18). Forced choice vs your alternatives: 'a fast whip pan whoosh transition' >99%, 'wind blowing' <1%, 'a car passing' <1%, 'a jet plane' <1%. It sounds most like: 'a snare roll' (z +3.5), 'a record scratch' (z +3.2), 'crisp hi-hats' (z +3.1), 'a digital glitch' (z +2.5). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   }
+  ]
+ },
+ "whoosh.air": {
+  "desc": "a soft airy whoosh of a camera flying through the air",
+  "alts": [
+   "wind blowing",
+   "an explosion",
+   "a car passing"
+  ],
+  "ranked": [
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/whoosh.air/syn_3.wav",
+    "z": 2.23,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "syn_3.wav: 'a soft airy whoosh of a camera flying through the air' -> weak (z +2.2; would rank #14 among 322 vocabulary descriptions; cosine 0.18). Forced choice vs your alternatives: 'a soft airy whoosh of a camera flying through the air' >99%, 'wind blowing' <1%, 'an explosion' <1%, 'a car passing' <1%. It sounds most like: 'a fast whoosh' (z +4.6), 'a downlifter falling sweep' (z +3.5), 'a swoosh passing by' (z +3.4), 'a short swish' (z +3.2). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/whoosh.air/syn_1.wav",
+    "z": 2.21,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "syn_1.wav: 'a soft airy whoosh of a camera flying through the air' -> weak (z +2.2; would rank #14 among 322 vocabulary descriptions; cosine 0.18). Forced choice vs your alternatives: 'a soft airy whoosh of a camera flying through the air' >99%, 'wind blowing' <1%, 'an explosion' <1%, 'a car passing' <1%. It sounds most like: 'a fast whoosh' (z +4.6), 'a downlifter falling sweep' (z +3.5), 'a swoosh passing by' (z +3.3), 'a whip pan transition' (z +3.3). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/whoosh.air/syn_2.wav",
+    "z": 2.21,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "syn_2.wav: 'a soft airy whoosh of a camera flying through the air' -> weak (z +2.2; would rank #14 among 322 vocabulary descriptions; cosine 0.18). Forced choice vs your alternatives: 'a soft airy whoosh of a camera flying through the air' >99%, 'wind blowing' <1%, 'an explosion' <1%, 'a car passing' <1%. It sounds most like: 'a fast whoosh' (z +4.6), 'a downlifter falling sweep' (z +3.4), 'a swoosh passing by' (z +3.4), 'a short swish' (z +3.1). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "whoosh_big/cape",
+    "path": "sound/lib/cand/whoosh.air/bank_whoosh_big_cape.wav",
+    "z": 2.08,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "bank_whoosh_big_cape.wav: 'a soft airy whoosh of a camera flying through the air' -> weak (z +2.0; would rank #16 among 322 vocabulary descriptions; cosine 0.18). Forced choice vs your alternatives: 'a soft airy whoosh of a camera flying through the air' 92%, 'wind blowing' <1%, 'an explosion' 8%, 'a car passing' <1%. It sounds most like: 'a fast whoosh' (z +3.4), 'a punchy impact hit' (z +3.0), 'a big drum hit' (z +2.9), 'cloth whipping through the air' (z +2.8). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "whoosh_big/swell",
+    "path": "sound/lib/cand/whoosh.air/bank_whoosh_big_swell.wav",
+    "z": 2.0,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "bank_whoosh_big_swell.wav: 'a soft airy whoosh of a camera flying through the air' -> weak (z +2.0; would rank #13 among 322 vocabulary descriptions; cosine 0.16). Forced choice vs your alternatives: 'a soft airy whoosh of a camera flying through the air' >99%, 'wind blowing' <1%, 'an explosion' <1%, 'a car passing' <1%. It sounds most like: 'a fast whoosh' (z +4.8), 'a swoosh passing by' (z +3.4), 'a deep cinematic whoosh' (z +3.3), 'cloth whipping through the air' (z +3.1). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "whoosh_big/gust",
+    "path": "sound/lib/cand/whoosh.air/bank_whoosh_big_gust.wav",
+    "z": 1.95,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_whoosh_big_gust.wav: 'a soft airy whoosh of a camera flying through the air' -> no match (z +1.9; would rank #17 among 322 vocabulary descriptions; cosine 0.14). Forced choice vs your alternatives: 'a soft airy whoosh of a camera flying through the air' >99%, 'wind blowing' <1%, 'an explosion' <1%, 'a car passing' <1%. It sounds most like: 'a fast whoosh' (z +4.2), 'a snare roll' (z +3.1), 'a whip pan transition' (z +3.0), 'cloth whipping through the air' (z +2.9)."
+   }
+  ]
+ },
+ "whoosh.zoomin": {
+  "desc": "a reverse whoosh sucking in quickly",
+  "alts": [
+   "a gunshot",
+   "wind blowing",
+   "a vacuum cleaner"
+  ],
+  "ranked": [
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/whoosh.zoomin/syn_1.wav",
+    "z": 4.23,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "syn_1.wav: 'a reverse whoosh sucking in quickly' -> strong (z +4.2; would rank #1 among 322 vocabulary descriptions; cosine 0.36). Forced choice vs your alternatives: 'a reverse whoosh sucking in quickly' >99%, 'a gunshot' <1%, 'wind blowing' <1%, 'a vacuum cleaner' <1%. It sounds most like: 'a fast whoosh' (z +3.5), 'a quick swipe' (z +3.4), 'a whip pan transition' (z +3.3), 'a reverse cymbal swell' (z +3.2). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/whoosh.zoomin/syn_3.wav",
+    "z": 4.16,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "syn_3.wav: 'a reverse whoosh sucking in quickly' -> strong (z +4.1; would rank #1 among 322 vocabulary descriptions; cosine 0.36). Forced choice vs your alternatives: 'a reverse whoosh sucking in quickly' >99%, 'a gunshot' <1%, 'wind blowing' <1%, 'a vacuum cleaner' <1%. It sounds most like: 'a fast whoosh' (z +3.5), 'a quick swipe' (z +3.3), 'a whip pan transition' (z +3.3), 'a short swish' (z +3.1). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/whoosh.zoomin/syn_2.wav",
+    "z": 4.12,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "syn_2.wav: 'a reverse whoosh sucking in quickly' -> strong (z +4.1; would rank #1 among 322 vocabulary descriptions; cosine 0.35). Forced choice vs your alternatives: 'a reverse whoosh sucking in quickly' >99%, 'a gunshot' <1%, 'wind blowing' <1%, 'a vacuum cleaner' <1%. It sounds most like: 'a fast whoosh' (z +3.5), 'a quick swipe' (z +3.4), 'a whip pan transition' (z +3.4), 'a short swish' (z +3.1). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "whoosh_fast/reverse",
+    "path": "sound/lib/cand/whoosh.zoomin/bank_whoosh_fast_reverse.wav",
+    "z": 3.85,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "bank_whoosh_fast_reverse.wav: 'a reverse whoosh sucking in quickly' -> strong (z +3.8; would rank #2 among 322 vocabulary descriptions; cosine 0.35). Forced choice vs your alternatives: 'a reverse whoosh sucking in quickly' >99%, 'a gunshot' <1%, 'wind blowing' <1%, 'a vacuum cleaner' <1%. It sounds most like: 'a fast whoosh' (z +3.8), 'a whip pan transition' (z +2.8), 'a punchy impact hit' (z +2.7), 'a snare hit' (z +2.6). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "reverse_swell/cymbal",
+    "path": "sound/lib/cand/whoosh.zoomin/bank_reverse_swell_cymbal.wav",
+    "z": 1.99,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_reverse_swell_cymbal.wav: 'a reverse whoosh sucking in quickly' -> no match (z +1.9; would rank #8 among 322 vocabulary descriptions; cosine 0.11). Forced choice vs your alternatives: 'a reverse whoosh sucking in quickly' >99%, 'a gunshot' <1%, 'wind blowing' <1%, 'a vacuum cleaner' <1%. It sounds most like: 'a snare roll' (z +3.9), 'crisp hi-hats' (z +3.5), 'a record scratch' (z +3.0), 'a snare hit' (z +2.6)."
+   },
+   {
+    "kind": "bank",
+    "name": "reverse_swell/short",
+    "path": "sound/lib/cand/whoosh.zoomin/bank_reverse_swell_short.wav",
+    "z": 1.52,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_reverse_swell_short.wav: 'a reverse whoosh sucking in quickly' -> no match (z +1.5; would rank #23 among 322 vocabulary descriptions; cosine 0.12). Forced choice vs your alternatives: 'a reverse whoosh sucking in quickly' >99%, 'a gunshot' <1%, 'wind blowing' <1%, 'a vacuum cleaner' <1%. It sounds most like: 'a snare roll' (z +3.6), 'crisp hi-hats' (z +3.2), 'dominoes falling' (z +2.9), 'coins dropping' (z +2.8)."
+   }
+  ]
+ },
+ "hit.punch": {
+  "desc": "a punchy low cinematic hit",
+  "alts": [
+   "a door slam",
+   "a gunshot",
+   "a kick drum"
+  ],
+  "ranked": [
+   {
+    "kind": "bank",
+    "name": "impact/punch",
+    "path": "sound/lib/cand/hit.punch/bank_impact_punch.wav",
+    "z": 3.03,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "bank_impact_punch.wav: 'a punchy low cinematic hit' -> strong (z +3.0; would rank #5 among 322 vocabulary descriptions; cosine 0.19). Forced choice vs your alternatives: 'a punchy low cinematic hit' 14%, 'a door slam' <1%, 'a gunshot' 1%, 'a kick drum' 86%. It sounds most like: 'a kick drum' (z +3.5), 'a snare hit' (z +3.5), 'a punchy kick drum pattern' (z +3.4), 'a big drum hit' (z +3.2). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "sub_drop/punch",
+    "path": "sound/lib/cand/hit.punch/bank_sub_drop_punch.wav",
+    "z": 2.51,
+    "verdict": "plausible",
+    "margin": null,
+    "summary": "bank_sub_drop_punch.wav: 'a punchy low cinematic hit' -> plausible (z +2.5; would rank #6 among 322 vocabulary descriptions; cosine 0.20). Forced choice vs your alternatives: 'a punchy low cinematic hit' 1%, 'a door slam' <1%, 'a gunshot' <1%, 'a kick drum' 99%. It sounds most like: 'a punchy kick drum pattern' (z +4.0), 'a kick drum' (z +3.8), 'a deep sub bass' (z +2.8), 'a punchy impact hit' (z +2.6). Evidence for 'plausible' (held-out library search, ~3% of candidate pairs true): the right kind of sound 41% of the time, the exact variant 22% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/hit.punch/syn_2.wav",
+    "z": 2.46,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "syn_2.wav: 'a punchy low cinematic hit' -> weak (z +2.4; would rank #8 among 322 vocabulary descriptions; cosine 0.13). Forced choice vs your alternatives: 'a punchy low cinematic hit' <1%, 'a door slam' <1%, 'a gunshot' <1%, 'a kick drum' >99%. It sounds most like: 'a punchy kick drum pattern' (z +5.1), 'a kick drum' (z +4.8), 'a punchy impact hit' (z +3.5), 'a big drum hit' (z +2.8). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "cut_hit/punch",
+    "path": "sound/lib/cand/hit.punch/bank_cut_hit_punch.wav",
+    "z": 2.44,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "bank_cut_hit_punch.wav: 'a punchy low cinematic hit' -> weak (z +2.4; would rank #6 among 322 vocabulary descriptions; cosine 0.07). Forced choice vs your alternatives: 'a punchy low cinematic hit' 1%, 'a door slam' <1%, 'a gunshot' <1%, 'a kick drum' 99%. It sounds most like: 'a punchy kick drum pattern' (z +4.6), 'a kick drum' (z +3.8), 'a snare hit' (z +3.5), 'a punchy impact hit' (z +3.1). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/hit.punch/syn_1.wav",
+    "z": 2.41,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "syn_1.wav: 'a punchy low cinematic hit' -> weak (z +2.4; would rank #8 among 322 vocabulary descriptions; cosine 0.13). Forced choice vs your alternatives: 'a punchy low cinematic hit' <1%, 'a door slam' <1%, 'a gunshot' <1%, 'a kick drum' >99%. It sounds most like: 'a punchy kick drum pattern' (z +5.2), 'a kick drum' (z +4.9), 'a punchy impact hit' (z +3.6), 'a snare hit' (z +2.8). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/hit.punch/syn_3.wav",
+    "z": 2.41,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "syn_3.wav: 'a punchy low cinematic hit' -> weak (z +2.4; would rank #8 among 322 vocabulary descriptions; cosine 0.13). Forced choice vs your alternatives: 'a punchy low cinematic hit' <1%, 'a door slam' <1%, 'a gunshot' <1%, 'a kick drum' >99%. It sounds most like: 'a punchy kick drum pattern' (z +5.0), 'a kick drum' (z +4.7), 'a punchy impact hit' (z +3.6), 'a big drum hit' (z +2.8). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "pro_impact/short",
+    "path": "sound/lib/cand/hit.punch/bank_pro_impact_short.wav",
+    "z": 2.18,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "bank_pro_impact_short.wav: 'a punchy low cinematic hit' -> weak (z +2.1; would rank #7 among 322 vocabulary descriptions; cosine 0.19). Forced choice vs your alternatives: 'a punchy low cinematic hit' 3%, 'a door slam' <1%, 'a gunshot' <1%, 'a kick drum' 97%. It sounds most like: 'a punchy kick drum pattern' (z +3.2), 'a kick drum' (z +3.0), 'a record scratch' (z +2.6), 'a snare roll' (z +2.5). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "cut_hit/kick",
+    "path": "sound/lib/cand/hit.punch/bank_cut_hit_kick.wav",
+    "z": 1.57,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_cut_hit_kick.wav: 'a punchy low cinematic hit' -> no match (z +1.5; would rank #16 among 322 vocabulary descriptions; cosine -0.01). Forced choice vs your alternatives: 'a punchy low cinematic hit' <1%, 'a door slam' <1%, 'a gunshot' <1%, 'a kick drum' >99%. It sounds most like: 'a snare hit' (z +4.6), 'a punchy kick drum pattern' (z +3.7), 'a kick drum' (z +3.6), 'a snare roll' (z +3.4)."
+   }
+  ]
+ },
+ "hit.card": {
+  "desc": "a deep soft cinematic boom",
+  "alts": [
+   "thunder",
+   "a door slam",
+   "a kick drum"
+  ],
+  "ranked": [
+   {
+    "kind": "layer",
+    "name": "layer_deep_sub",
+    "path": "sound/lib/cand/hit.card/layer_deep_sub.wav",
+    "z": 1.84,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "layer_deep_sub.wav: 'a deep soft cinematic boom' -> no match (z +1.8; would rank #18 among 322 vocabulary descriptions; cosine 0.09). Forced choice vs your alternatives: 'a deep soft cinematic boom' 1%, 'thunder' <1%, 'a door slam' <1%, 'a kick drum' 99%. It sounds most like: 'a punchy kick drum pattern' (z +3.3), 'a kick drum' (z +3.2), 'a snare roll' (z +2.6), 'a punchy impact hit' (z +2.6)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/hit.card/syn_1.wav",
+    "z": 1.78,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_1.wav: 'a deep soft cinematic boom' -> no match (z +1.7; would rank #14 among 322 vocabulary descriptions; cosine 0.10). Forced choice vs your alternatives: 'a deep soft cinematic boom' <1%, 'thunder' <1%, 'a door slam' <1%, 'a kick drum' >99%. It sounds most like: 'a punchy kick drum pattern' (z +4.4), 'a kick drum' (z +4.3), 'a sub bass drop' (z +3.1), 'a deep sub bass' (z +3.1)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/hit.card/syn_3.wav",
+    "z": 1.76,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_3.wav: 'a deep soft cinematic boom' -> no match (z +1.7; would rank #13 among 322 vocabulary descriptions; cosine 0.10). Forced choice vs your alternatives: 'a deep soft cinematic boom' <1%, 'thunder' <1%, 'a door slam' <1%, 'a kick drum' >99%. It sounds most like: 'a punchy kick drum pattern' (z +4.5), 'a kick drum' (z +4.3), 'a sub bass drop' (z +3.0), 'a deep sub bass' (z +2.9)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/hit.card/syn_2.wav",
+    "z": 1.75,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_2.wav: 'a deep soft cinematic boom' -> no match (z +1.7; would rank #15 among 322 vocabulary descriptions; cosine 0.09). Forced choice vs your alternatives: 'a deep soft cinematic boom' <1%, 'thunder' <1%, 'a door slam' <1%, 'a kick drum' >99%. It sounds most like: 'a punchy kick drum pattern' (z +4.5), 'a kick drum' (z +4.3), 'a sub bass drop' (z +3.1), 'a deep sub bass' (z +3.0)."
+   },
+   {
+    "kind": "bank",
+    "name": "pro_impact/deep",
+    "path": "sound/lib/cand/hit.card/bank_pro_impact_deep.wav",
+    "z": 1.58,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_pro_impact_deep.wav: 'a deep soft cinematic boom' -> no match (z +1.5; would rank #24 among 322 vocabulary descriptions; cosine 0.10). Forced choice vs your alternatives: 'a deep soft cinematic boom' <1%, 'thunder' <1%, 'a door slam' <1%, 'a kick drum' >99%. It sounds most like: 'a punchy kick drum pattern' (z +3.6), 'a kick drum' (z +3.2), 'a punchy impact hit' (z +2.7), 'a heavy thud' (z +2.5)."
+   },
+   {
+    "kind": "bank",
+    "name": "pro_sub_drop/soft",
+    "path": "sound/lib/cand/hit.card/bank_pro_sub_drop_soft.wav",
+    "z": 1.42,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_pro_sub_drop_soft.wav: 'a deep soft cinematic boom' -> no match (z +1.4; would rank #28 among 322 vocabulary descriptions; cosine 0.14). Forced choice vs your alternatives: 'a deep soft cinematic boom' 2%, 'thunder' <1%, 'a door slam' <1%, 'a kick drum' 98%. It sounds most like: 'a deep sub bass' (z +3.6), 'a sub bass drop' (z +3.2), 'a deep cinematic whoosh' (z +2.6), 'a phone vibration buzz' (z +2.5)."
+   },
+   {
+    "kind": "bank",
+    "name": "sub_drop/long",
+    "path": "sound/lib/cand/hit.card/bank_sub_drop_long.wav",
+    "z": 1.38,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_sub_drop_long.wav: 'a deep soft cinematic boom' -> no match (z +1.3; would rank #28 among 322 vocabulary descriptions; cosine 0.09). Forced choice vs your alternatives: 'a deep soft cinematic boom' 0%, 'thunder' <1%, 'a door slam' <1%, 'a kick drum' 100%. It sounds most like: 'a deep sub bass' (z +3.6), 'a sub bass drop' (z +3.2), 'a kick drum' (z +2.8), 'a punchy kick drum pattern' (z +2.7)."
+   },
+   {
+    "kind": "bank",
+    "name": "cut_hit/sub",
+    "path": "sound/lib/cand/hit.card/bank_cut_hit_sub.wav",
+    "z": 1.19,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_cut_hit_sub.wav: 'a deep soft cinematic boom' -> no match (z +1.1; would rank #37 among 322 vocabulary descriptions; cosine -0.03). Forced choice vs your alternatives: 'a deep soft cinematic boom' <1%, 'thunder' <1%, 'a door slam' <1%, 'a kick drum' >99%. It sounds most like: 'a punchy kick drum pattern' (z +4.0), 'a snare hit' (z +3.9), 'a kick drum' (z +3.8), 'a snare roll' (z +2.7)."
+   },
+   {
+    "kind": "bank",
+    "name": "cut_hit/rumble",
+    "path": "sound/lib/cand/hit.card/bank_cut_hit_rumble.wav",
+    "z": 0.19,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_cut_hit_rumble.wav: 'a deep soft cinematic boom' -> no match (z +0.1; would rank #126 among 322 vocabulary descriptions; cosine -0.11). Forced choice vs your alternatives: 'a deep soft cinematic boom' <1%, 'thunder' <1%, 'a door slam' <1%, 'a kick drum' >99%. It sounds most like: 'a punchy kick drum pattern' (z +3.7), 'a snare roll' (z +3.4), 'a kick drum' (z +3.0), 'a record scratch' (z +2.6)."
+   }
+  ]
+ },
+ "sting.title": {
+  "desc": "a dramatic cinematic title hit with a deep boom",
+  "alts": [
+   "thunder",
+   "an explosion",
+   "a gong"
+  ],
+  "ranked": [
+   {
+    "kind": "layer",
+    "name": "layer_boom_chord_air",
+    "path": "sound/lib/cand/sting.title/layer_boom_chord_air.wav",
+    "z": 4.54,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "layer_boom_chord_air.wav: 'a dramatic cinematic title hit with a deep boom' -> strong (z +4.5; would rank #1 among 322 vocabulary descriptions; cosine 0.39). Forced choice vs your alternatives: 'a dramatic cinematic title hit with a deep boom' >99%, 'thunder' <1%, 'an explosion' <1%, 'a gong' <1%. It sounds most like: 'a cinematic hit with a long tail' (z +3.8), 'a deep cinematic boom' (z +3.0), 'a big drum hit' (z +3.0), 'epic trailer music' (z +2.8). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "layer",
+    "name": "layer_boom_chord",
+    "path": "sound/lib/cand/sting.title/layer_boom_chord.wav",
+    "z": 4.06,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "layer_boom_chord.wav: 'a dramatic cinematic title hit with a deep boom' -> strong (z +4.0; would rank #1 among 322 vocabulary descriptions; cosine 0.44). Forced choice vs your alternatives: 'a dramatic cinematic title hit with a deep boom' 99%, 'thunder' <1%, 'an explosion' <1%, 'a gong' 1%. It sounds most like: 'a big drum hit' (z +3.6), 'a cinematic hit with a long tail' (z +3.4), 'a deep cinematic boom' (z +3.1), 'an explosion' (z +2.8). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "impact/deep",
+    "path": "sound/lib/cand/sting.title/bank_impact_deep.wav",
+    "z": 3.61,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "bank_impact_deep.wav: 'a dramatic cinematic title hit with a deep boom' -> strong (z +3.6; would rank #3 among 322 vocabulary descriptions; cosine 0.36). Forced choice vs your alternatives: 'a dramatic cinematic title hit with a deep boom' 96%, 'thunder' <1%, 'an explosion' 4%, 'a gong' <1%. It sounds most like: 'a big drum hit' (z +3.8), 'a cinematic hit with a long tail' (z +3.6), 'an explosion' (z +3.2), 'a deep cinematic boom' (z +2.9). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "impact/classic",
+    "path": "sound/lib/cand/sting.title/bank_impact_classic.wav",
+    "z": 3.55,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "bank_impact_classic.wav: 'a dramatic cinematic title hit with a deep boom' -> strong (z +3.5; would rank #2 among 322 vocabulary descriptions; cosine 0.34). Forced choice vs your alternatives: 'a dramatic cinematic title hit with a deep boom' 99%, 'thunder' <1%, 'an explosion' 1%, 'a gong' <1%. It sounds most like: 'a cinematic hit with a long tail' (z +3.8), 'a big drum hit' (z +3.3), 'a deep cinematic boom' (z +2.9), 'an explosion' (z +2.8). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/sting.title/syn_2.wav",
+    "z": 3.33,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "syn_2.wav: 'a dramatic cinematic title hit with a deep boom' -> strong (z +3.3; would rank #2 among 322 vocabulary descriptions; cosine 0.37). Forced choice vs your alternatives: 'a dramatic cinematic title hit with a deep boom' >99%, 'thunder' <1%, 'an explosion' <1%, 'a gong' <1%. It sounds most like: 'a big drum hit' (z +3.5), 'a deep cinematic boom' (z +3.1), 'a cinematic hit with a long tail' (z +3.0), 'a kick drum' (z +2.7). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/sting.title/syn_3.wav",
+    "z": 3.07,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "syn_3.wav: 'a dramatic cinematic title hit with a deep boom' -> strong (z +3.0; would rank #2 among 322 vocabulary descriptions; cosine 0.35). Forced choice vs your alternatives: 'a dramatic cinematic title hit with a deep boom' 99%, 'thunder' <1%, 'an explosion' <1%, 'a gong' 1%. It sounds most like: 'a big drum hit' (z +3.5), 'a deep cinematic boom' (z +3.0), 'a snare hit' (z +2.9), 'a cinematic hit with a long tail' (z +2.8). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/sting.title/syn_1.wav",
+    "z": 3.06,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "syn_1.wav: 'a dramatic cinematic title hit with a deep boom' -> strong (z +3.0; would rank #3 among 322 vocabulary descriptions; cosine 0.34). Forced choice vs your alternatives: 'a dramatic cinematic title hit with a deep boom' 99%, 'thunder' <1%, 'an explosion' <1%, 'a gong' 1%. It sounds most like: 'a big drum hit' (z +3.5), 'a snare hit' (z +3.0), 'a deep cinematic boom' (z +2.9), 'a kick drum' (z +2.8). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "pro_impact/deep",
+    "path": "sound/lib/cand/sting.title/bank_pro_impact_deep.wav",
+    "z": 1.59,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_pro_impact_deep.wav: 'a dramatic cinematic title hit with a deep boom' -> no match (z +1.5; would rank #22 among 322 vocabulary descriptions; cosine 0.16). Forced choice vs your alternatives: 'a dramatic cinematic title hit with a deep boom' 59%, 'thunder' 38%, 'an explosion' 3%, 'a gong' <1%. It sounds most like: 'a punchy kick drum pattern' (z +3.0), 'a kick drum' (z +2.7), 'crisp hi-hats' (z +2.5), 'a snare roll' (z +2.5)."
+   },
+   {
+    "kind": "bank",
+    "name": "pro_logo_sting/swell_sting",
+    "path": "sound/lib/cand/sting.title/bank_pro_logo_sting_swell_sting.wav",
+    "z": 1.59,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_pro_logo_sting_swell_sting.wav: 'a dramatic cinematic title hit with a deep boom' -> no match (z +1.5; would rank #23 among 322 vocabulary descriptions; cosine 0.11). Forced choice vs your alternatives: 'a dramatic cinematic title hit with a deep boom' 78%, 'thunder' <1%, 'an explosion' <1%, 'a gong' 22%. It sounds most like: 'a reverse cymbal swell' (z +2.9), 'a ukulele' (z +2.8), 'a fast whoosh' (z +2.6), 'a deep cinematic whoosh' (z +2.6)."
+   }
+  ]
+ },
+ "sting.chapter": {
+  "desc": "a dark cinematic piano chord hit with a low boom",
+  "alts": [
+   "a gong",
+   "thunder",
+   "an organ"
+  ],
+  "ranked": [
+   {
+    "kind": "layer",
+    "name": "layer_swell_chord",
+    "path": "sound/lib/cand/sting.chapter/layer_swell_chord.wav",
+    "z": 2.76,
+    "verdict": "plausible",
+    "margin": null,
+    "summary": "layer_swell_chord.wav: 'a dark cinematic piano chord hit with a low boom' -> plausible (z +2.7; would rank #5 among 322 vocabulary descriptions; cosine 0.24). Forced choice vs your alternatives: 'a dark cinematic piano chord hit with a low boom' 67%, 'a gong' 32%, 'thunder' 1%, 'an organ' <1%. It sounds most like: 'a big drum hit' (z +3.8), 'a cinematic hit with a long tail' (z +3.2), 'a deep cinematic boom' (z +2.8), 'an explosion' (z +2.8). Evidence for 'plausible' (held-out library search, ~3% of candidate pairs true): the right kind of sound 41% of the time, the exact variant 22% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "impact/swell",
+    "path": "sound/lib/cand/sting.chapter/bank_impact_swell.wav",
+    "z": 2.2,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "bank_impact_swell.wav: 'a dark cinematic piano chord hit with a low boom' -> weak (z +2.2; would rank #14 among 322 vocabulary descriptions; cosine 0.22). Forced choice vs your alternatives: 'a dark cinematic piano chord hit with a low boom' 99%, 'a gong' <1%, 'thunder' <1%, 'an organ' <1%. It sounds most like: 'a cinematic hit with a long tail' (z +3.8), 'a deep cinematic whoosh' (z +3.0), 'a big drum hit' (z +2.9), 'a deep cinematic boom' (z +2.8). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/sting.chapter/syn_3.wav",
+    "z": 1.71,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_3.wav: 'a dark cinematic piano chord hit with a low boom' -> no match (z +1.7; would rank #18 among 322 vocabulary descriptions; cosine 0.15). Forced choice vs your alternatives: 'a dark cinematic piano chord hit with a low boom' 1%, 'a gong' 99%, 'thunder' <1%, 'an organ' <1%. It sounds most like: 'a bass guitar' (z +3.1), 'a deep sub bass' (z +2.5), 'a sub bass drop' (z +2.4), 'a big drum hit' (z +2.4)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/sting.chapter/syn_1.wav",
+    "z": 1.58,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_1.wav: 'a dark cinematic piano chord hit with a low boom' -> no match (z +1.5; would rank #22 among 322 vocabulary descriptions; cosine 0.15). Forced choice vs your alternatives: 'a dark cinematic piano chord hit with a low boom' 1%, 'a gong' 99%, 'thunder' <1%, 'an organ' <1%. It sounds most like: 'a bass guitar' (z +2.9), 'a deep sub bass' (z +2.8), 'a sub bass drop' (z +2.7), 'a kick drum' (z +2.6)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/sting.chapter/syn_2.wav",
+    "z": 1.42,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_2.wav: 'a dark cinematic piano chord hit with a low boom' -> no match (z +1.4; would rank #29 among 322 vocabulary descriptions; cosine 0.12). Forced choice vs your alternatives: 'a dark cinematic piano chord hit with a low boom' 1%, 'a gong' 99%, 'thunder' <1%, 'an organ' <1%. It sounds most like: 'a bass guitar' (z +2.8), 'a deep sub bass' (z +2.7), 'a sub bass drop' (z +2.7), 'a kick drum' (z +2.7)."
+   },
+   {
+    "kind": "bank",
+    "name": "pro_impact/swell",
+    "path": "sound/lib/cand/sting.chapter/bank_pro_impact_swell.wav",
+    "z": 1.34,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_pro_impact_swell.wav: 'a dark cinematic piano chord hit with a low boom' -> no match (z +1.3; would rank #37 among 322 vocabulary descriptions; cosine 0.11). Forced choice vs your alternatives: 'a dark cinematic piano chord hit with a low boom' 85%, 'a gong' <1%, 'thunder' 14%, 'an organ' <1%. It sounds most like: 'a fast whoosh' (z +3.0), 'a record scratch' (z +2.9), 'a deep cinematic whoosh' (z +2.5), 'a stutter glitch transition' (z +2.3)."
+   },
+   {
+    "kind": "bank",
+    "name": "pro_logo_sting/swell_sting",
+    "path": "sound/lib/cand/sting.chapter/bank_pro_logo_sting_swell_sting.wav",
+    "z": 0.38,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_pro_logo_sting_swell_sting.wav: 'a dark cinematic piano chord hit with a low boom' -> no match (z +0.3; would rank #104 among 322 vocabulary descriptions; cosine -0.01). Forced choice vs your alternatives: 'a dark cinematic piano chord hit with a low boom' 28%, 'a gong' 55%, 'thunder' <1%, 'an organ' 17%. It sounds most like: 'an uplifter sweep' (z +2.9), 'a fast whoosh' (z +2.7), 'a reverse cymbal swell' (z +2.7), 'a downlifter falling sweep' (z +2.7)."
+   },
+   {
+    "kind": "bank",
+    "name": "logo_sting/soft_bloom",
+    "path": "sound/lib/cand/sting.chapter/bank_logo_sting_soft_bloom.wav",
+    "z": -0.01,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_logo_sting_soft_bloom.wav: 'a dark cinematic piano chord hit with a low boom' -> no match (z -0.1; would rank #155 among 322 vocabulary descriptions; cosine -0.01). Forced choice vs your alternatives: 'a dark cinematic piano chord hit with a low boom' 17%, 'a gong' 54%, 'thunder' <1%, 'an organ' 29%. It sounds most like: 'a triangle hit' (z +2.7), 'a success chime' (z +2.7), 'a reverse cymbal swell' (z +2.3), 'crisp hi-hats' (z +2.3)."
+   },
+   {
+    "kind": "bank",
+    "name": "pro_logo_sting/sweep_hit",
+    "path": "sound/lib/cand/sting.chapter/bank_pro_logo_sting_sweep_hit.wav",
+    "z": -0.1,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_pro_logo_sting_sweep_hit.wav: 'a dark cinematic piano chord hit with a low boom' -> no match (z -0.1; would rank #162 among 322 vocabulary descriptions; cosine -0.04). Forced choice vs your alternatives: 'a dark cinematic piano chord hit with a low boom' 24%, 'a gong' 65%, 'thunder' 1%, 'an organ' 10%. It sounds most like: 'a fast whoosh' (z +2.9), 'a short swish' (z +2.4), 'a punchy impact hit' (z +2.4), 'a whip pan transition' (z +2.3)."
+   }
+  ]
+ },
+ "riser.title": {
+  "desc": "a tense cinematic riser building up",
+  "alts": [
+   "a siren",
+   "a jet plane",
+   "wind blowing"
+  ],
+  "ranked": [
+   {
+    "kind": "bank",
+    "name": "riser/tension",
+    "path": "sound/lib/cand/riser.title/bank_riser_tension.wav",
+    "z": 3.04,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "bank_riser_tension.wav: 'a tense cinematic riser building up' -> strong (z +3.0; would rank #4 among 322 vocabulary descriptions; cosine 0.29). Forced choice vs your alternatives: 'a tense cinematic riser building up' >99%, 'a siren' <1%, 'a jet plane' <1%, 'wind blowing' <1%. It sounds most like: 'a reverse cymbal swell' (z +4.0), 'a rising riser building tension' (z +3.3), 'a downlifter falling sweep' (z +3.2), 'an uplifter sweep' (z +2.9). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "riser/swell",
+    "path": "sound/lib/cand/riser.title/bank_riser_swell.wav",
+    "z": 2.79,
+    "verdict": "plausible",
+    "margin": null,
+    "summary": "bank_riser_swell.wav: 'a tense cinematic riser building up' -> plausible (z +2.7; would rank #4 among 322 vocabulary descriptions; cosine 0.31). Forced choice vs your alternatives: 'a tense cinematic riser building up' >99%, 'a siren' <1%, 'a jet plane' <1%, 'wind blowing' <1%. It sounds most like: 'a reverse cymbal swell' (z +4.8), 'a sword being drawn' (z +3.0), 'crisp hi-hats' (z +2.8), 'a cinematic hit with a long tail' (z +2.7). Evidence for 'plausible' (held-out library search, ~3% of candidate pairs true): the right kind of sound 41% of the time, the exact variant 22% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/riser.title/syn_3.wav",
+    "z": 2.49,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "syn_3.wav: 'a tense cinematic riser building up' -> weak (z +2.4; would rank #7 among 322 vocabulary descriptions; cosine 0.27). Forced choice vs your alternatives: 'a tense cinematic riser building up' >99%, 'a siren' <1%, 'a jet plane' <1%, 'wind blowing' <1%. It sounds most like: 'a reverse cymbal swell' (z +3.7), 'an uplifter sweep' (z +3.7), 'a downlifter falling sweep' (z +3.3), 'a quick swipe' (z +2.9). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/riser.title/syn_1.wav",
+    "z": 2.44,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "syn_1.wav: 'a tense cinematic riser building up' -> weak (z +2.4; would rank #7 among 322 vocabulary descriptions; cosine 0.27). Forced choice vs your alternatives: 'a tense cinematic riser building up' >99%, 'a siren' <1%, 'a jet plane' <1%, 'wind blowing' <1%. It sounds most like: 'a reverse cymbal swell' (z +3.7), 'an uplifter sweep' (z +3.6), 'a downlifter falling sweep' (z +3.3), 'a quick swipe' (z +2.9). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/riser.title/syn_2.wav",
+    "z": 2.44,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "syn_2.wav: 'a tense cinematic riser building up' -> weak (z +2.4; would rank #8 among 322 vocabulary descriptions; cosine 0.27). Forced choice vs your alternatives: 'a tense cinematic riser building up' >99%, 'a siren' <1%, 'a jet plane' <1%, 'wind blowing' <1%. It sounds most like: 'a reverse cymbal swell' (z +3.7), 'an uplifter sweep' (z +3.6), 'a downlifter falling sweep' (z +3.3), 'a quick swipe' (z +3.0). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "riser/dark",
+    "path": "sound/lib/cand/riser.title/bank_riser_dark.wav",
+    "z": 1.75,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_riser_dark.wav: 'a tense cinematic riser building up' -> no match (z +1.7; would rank #17 among 322 vocabulary descriptions; cosine 0.19). Forced choice vs your alternatives: 'a tense cinematic riser building up' >99%, 'a siren' <1%, 'a jet plane' <1%, 'wind blowing' <1%. It sounds most like: 'a fast whoosh' (z +4.4), 'a downlifter falling sweep' (z +3.2), 'a stick swung fast through the air' (z +3.1), 'cloth whipping through the air' (z +3.1)."
+   },
+   {
+    "kind": "bank",
+    "name": "riser/build",
+    "path": "sound/lib/cand/riser.title/bank_riser_build.wav",
+    "z": 1.39,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_riser_build.wav: 'a tense cinematic riser building up' -> no match (z +1.3; would rank #28 among 322 vocabulary descriptions; cosine 0.19). Forced choice vs your alternatives: 'a tense cinematic riser building up' >99%, 'a siren' <1%, 'a jet plane' <1%, 'wind blowing' <1%. It sounds most like: 'a fast whoosh' (z +3.2), 'a swoosh passing by' (z +2.7), 'an old typewriter' (z +2.5), 'a whip pan transition' (z +2.3)."
+   },
+   {
+    "kind": "bank",
+    "name": "pro_riser/roll",
+    "path": "sound/lib/cand/riser.title/bank_pro_riser_roll.wav",
+    "z": 1.07,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_pro_riser_roll.wav: 'a tense cinematic riser building up' -> no match (z +1.0; would rank #42 among 322 vocabulary descriptions; cosine 0.12). Forced choice vs your alternatives: 'a tense cinematic riser building up' 92%, 'a siren' <1%, 'a jet plane' 8%, 'wind blowing' <1%. It sounds most like: 'a snare roll' (z +3.8), 'a stutter glitch transition' (z +2.6), 'a tape stop slowing down' (z +2.6), 'a snare hit' (z +2.3)."
+   }
+  ]
+ },
+ "shutter": {
+  "desc": "a mechanical film camera shutter click",
+  "alts": [
+   "a gunshot",
+   "a stapler",
+   "a keyboard key press"
+  ],
+  "ranked": [
+   {
+    "kind": "bank",
+    "name": "shutter/snap",
+    "path": "sound/lib/cand/shutter/bank_shutter_snap.wav",
+    "z": 1.49,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_shutter_snap.wav: 'a mechanical film camera shutter click' -> no match (z +1.4; would rank #24 among 322 vocabulary descriptions; cosine 0.11). Forced choice vs your alternatives: 'a mechanical film camera shutter click' 20%, 'a gunshot' 8%, 'a stapler' 68%, 'a keyboard key press' 4%. It sounds most like: 'a can opening' (z +2.7), 'a crisp interface click' (z +2.6), 'a snare hit' (z +2.4), 'a wooden block hit' (z +2.4)."
+   },
+   {
+    "kind": "layer",
+    "name": "layer_snap_mirror",
+    "path": "sound/lib/cand/shutter/layer_snap_mirror.wav",
+    "z": 1.21,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "layer_snap_mirror.wav: 'a mechanical film camera shutter click' -> no match (z +1.2; would rank #45 among 322 vocabulary descriptions; cosine 0.09). Forced choice vs your alternatives: 'a mechanical film camera shutter click' <1%, 'a gunshot' <1%, 'a stapler' 99%, 'a keyboard key press' 1%. It sounds most like: 'a quick swipe' (z +2.7), 'a box lid closing' (z +2.7), 'a crisp interface click' (z +2.7), 'a can opening' (z +2.6)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/shutter/syn_3.wav",
+    "z": 0.55,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_3.wav: 'a mechanical film camera shutter click' -> no match (z +0.5; would rank #90 among 322 vocabulary descriptions; cosine 0.04). Forced choice vs your alternatives: 'a mechanical film camera shutter click' 25%, 'a gunshot' 46%, 'a stapler' 16%, 'a keyboard key press' 13%. It sounds most like: 'a wooden block hit' (z +4.6), 'a snare hit' (z +4.4), 'a snare roll' (z +2.6), 'a cork pop' (z +2.5)."
+   },
+   {
+    "kind": "bank",
+    "name": "shutter/mirror",
+    "path": "sound/lib/cand/shutter/bank_shutter_mirror.wav",
+    "z": 0.52,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_shutter_mirror.wav: 'a mechanical film camera shutter click' -> no match (z +0.5; would rank #83 among 322 vocabulary descriptions; cosine 0.04). Forced choice vs your alternatives: 'a mechanical film camera shutter click' <1%, 'a gunshot' 8%, 'a stapler' 92%, 'a keyboard key press' 0%. It sounds most like: 'a box lid closing' (z +3.4), 'a snare hit' (z +3.4), 'a wooden block hit' (z +3.3), 'a plastic object falling on a table' (z +2.3)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/shutter/syn_2.wav",
+    "z": 0.33,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_2.wav: 'a mechanical film camera shutter click' -> no match (z +0.3; would rank #114 among 322 vocabulary descriptions; cosine 0.02). Forced choice vs your alternatives: 'a mechanical film camera shutter click' 8%, 'a gunshot' 71%, 'a stapler' 8%, 'a keyboard key press' 13%. It sounds most like: 'a snare hit' (z +4.3), 'a wooden block hit' (z +4.0), 'a snare roll' (z +2.9), 'a chat message pop' (z +2.5)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/shutter/syn_1.wav",
+    "z": 0.16,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_1.wav: 'a mechanical film camera shutter click' -> no match (z +0.1; would rank #131 among 322 vocabulary descriptions; cosine 0.00). Forced choice vs your alternatives: 'a mechanical film camera shutter click' 11%, 'a gunshot' 69%, 'a stapler' 7%, 'a keyboard key press' 13%. It sounds most like: 'a snare hit' (z +4.8), 'a wooden block hit' (z +3.9), 'a snare roll' (z +3.2), 'a punchy kick drum pattern' (z +2.6)."
+   },
+   {
+    "kind": "bank",
+    "name": "shutter/dslr",
+    "path": "sound/lib/cand/shutter/bank_shutter_dslr.wav",
+    "z": 0.16,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_shutter_dslr.wav: 'a mechanical film camera shutter click' -> no match (z +0.1; would rank #123 among 322 vocabulary descriptions; cosine 0.01). Forced choice vs your alternatives: 'a mechanical film camera shutter click' <1%, 'a gunshot' 92%, 'a stapler' 7%, 'a keyboard key press' 1%. It sounds most like: 'a snare hit' (z +3.7), 'a punchy impact hit' (z +3.5), 'a wooden block hit' (z +3.3), 'a box lid closing' (z +3.2)."
+   },
+   {
+    "kind": "bank",
+    "name": "shutter/film",
+    "path": "sound/lib/cand/shutter/bank_shutter_film.wav",
+    "z": -0.83,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_shutter_film.wav: 'a mechanical film camera shutter click' -> no match (z -0.9; would rank #254 among 322 vocabulary descriptions; cosine -0.09). Forced choice vs your alternatives: 'a mechanical film camera shutter click' <1%, 'a gunshot' 68%, 'a stapler' 28%, 'a keyboard key press' 4%. It sounds most like: 'a wooden block hit' (z +4.7), 'a snare hit' (z +4.2), 'a box lid closing' (z +2.5), 'a bubble pop' (z +2.5)."
+   }
+  ]
+ },
+ "type.run": {
+  "desc": "an old mechanical typewriter typing",
+  "alts": [
+   "a keyboard typing",
+   "a clock ticking",
+   "rain"
+  ],
+  "ranked": [
+   {
+    "kind": "bank",
+    "name": "typing_key/thock",
+    "path": "sound/lib/cand/type.run/bank_typing_key_thock.wav",
+    "z": 1.68,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_typing_key_thock.wav: 'an old mechanical typewriter typing' -> no match (z +1.6; would rank #17 among 322 vocabulary descriptions; cosine 0.14). Forced choice vs your alternatives: 'an old mechanical typewriter typing' 29%, 'a keyboard typing' 62%, 'a clock ticking' 9%, 'rain' <1%. It sounds most like: 'a single mechanical keyboard key press' (z +4.7), 'a soft key release click' (z +3.5), 'an enter key press' (z +2.8), 'a punchy impact hit' (z +2.5)."
+   },
+   {
+    "kind": "bank",
+    "name": "typing_key/crisp",
+    "path": "sound/lib/cand/type.run/bank_typing_key_crisp.wav",
+    "z": 1.66,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_typing_key_crisp.wav: 'an old mechanical typewriter typing' -> no match (z +1.6; would rank #14 among 322 vocabulary descriptions; cosine 0.14). Forced choice vs your alternatives: 'an old mechanical typewriter typing' 72%, 'a keyboard typing' 15%, 'a clock ticking' 13%, 'rain' <1%. It sounds most like: 'a single mechanical keyboard key press' (z +4.3), 'a soft key release click' (z +3.3), 'a punchy impact hit' (z +2.7), 'an enter key press' (z +2.4)."
+   },
+   {
+    "kind": "bank",
+    "name": "pro_typing_run/tick",
+    "path": "sound/lib/cand/type.run/bank_pro_typing_run_tick.wav",
+    "z": 1.62,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_pro_typing_run_tick.wav: 'an old mechanical typewriter typing' -> no match (z +1.6; would rank #25 among 322 vocabulary descriptions; cosine 0.19). Forced choice vs your alternatives: 'an old mechanical typewriter typing' 12%, 'a keyboard typing' 83%, 'a clock ticking' 2%, 'rain' 3%. It sounds most like: 'a ratchet clicking' (z +4.2), 'a pen click' (z +3.2), 'lego bricks clicking' (z +3.1), 'a scroll wheel tick' (z +2.9)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/type.run/syn_3.wav",
+    "z": 1.61,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_3.wav: 'an old mechanical typewriter typing' -> no match (z +1.6; would rank #21 among 322 vocabulary descriptions; cosine 0.06). Forced choice vs your alternatives: 'an old mechanical typewriter typing' 88%, 'a keyboard typing' 10%, 'a clock ticking' 2%, 'rain' <1%. It sounds most like: 'an error buzz' (z +2.6), 'a snare roll' (z +2.4), 'a digital glitch' (z +2.2), 'a record scratch' (z +2.2)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/type.run/syn_1.wav",
+    "z": 1.52,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_1.wav: 'an old mechanical typewriter typing' -> no match (z +1.5; would rank #24 among 322 vocabulary descriptions; cosine 0.05). Forced choice vs your alternatives: 'an old mechanical typewriter typing' 88%, 'a keyboard typing' 10%, 'a clock ticking' 1%, 'rain' <1%. It sounds most like: 'an error buzz' (z +2.6), 'a snare roll' (z +2.4), 'a marimba' (z +2.1), 'a digital glitch' (z +2.1)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/type.run/syn_2.wav",
+    "z": 1.32,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_2.wav: 'an old mechanical typewriter typing' -> no match (z +1.3; would rank #34 among 322 vocabulary descriptions; cosine 0.03). Forced choice vs your alternatives: 'an old mechanical typewriter typing' 83%, 'a keyboard typing' 13%, 'a clock ticking' 3%, 'rain' 1%. It sounds most like: 'a wooden block hit' (z +2.4), 'a snare roll' (z +2.4), 'an error buzz' (z +2.2), 'bubbles underwater' (z +2.1)."
+   },
+   {
+    "kind": "bank",
+    "name": "pro_typing_run/soft",
+    "path": "sound/lib/cand/type.run/bank_pro_typing_run_soft.wav",
+    "z": 0.79,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_pro_typing_run_soft.wav: 'an old mechanical typewriter typing' -> no match (z +0.7; would rank #56 among 322 vocabulary descriptions; cosine 0.09). Forced choice vs your alternatives: 'an old mechanical typewriter typing' 12%, 'a keyboard typing' 10%, 'a clock ticking' 74%, 'rain' 4%. It sounds most like: 'crisp hi-hats' (z +4.4), 'a quick swipe' (z +2.8), 'a punchy kick drum pattern' (z +2.5), 'a ratchet clicking' (z +2.4)."
+   }
+  ]
+ },
+ "glint": {
+  "desc": "a tiny bright glass ting sparkle",
+  "alts": [
+   "a bell",
+   "a phone notification",
+   "a triangle"
+  ],
+  "ranked": [
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/glint/syn_3.wav",
+    "z": 3.01,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "syn_3.wav: 'a tiny bright glass ting sparkle' -> strong (z +3.0; would rank #5 among 322 vocabulary descriptions; cosine 0.27). Forced choice vs your alternatives: 'a tiny bright glass ting sparkle' 49%, 'a bell' 1%, 'a phone notification' <1%, 'a triangle' 51%. It sounds most like: 'a triangle hit' (z +4.2), 'a glass ting' (z +3.6), 'a bicycle bell' (z +3.2), 'a small bell' (z +3.1). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "pro_shimmer/m1",
+    "path": "sound/lib/cand/glint/bank_pro_shimmer_m1.wav",
+    "z": 2.77,
+    "verdict": "plausible",
+    "margin": null,
+    "summary": "bank_pro_shimmer_m1.wav: 'a tiny bright glass ting sparkle' -> plausible (z +2.7; would rank #3 among 322 vocabulary descriptions; cosine 0.29). Forced choice vs your alternatives: 'a tiny bright glass ting sparkle' >99%, 'a bell' <1%, 'a phone notification' <1%, 'a triangle' <1%. It sounds most like: 'ice cubes in a glass' (z +4.4), 'a squishy wet squelch' (z +2.9), 'bubbles underwater' (z +2.6), 'pouring water' (z +2.5). Evidence for 'plausible' (held-out library search, ~3% of candidate pairs true): the right kind of sound 41% of the time, the exact variant 22% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/glint/syn_2.wav",
+    "z": 2.75,
+    "verdict": "plausible",
+    "margin": null,
+    "summary": "syn_2.wav: 'a tiny bright glass ting sparkle' -> plausible (z +2.7; would rank #6 among 322 vocabulary descriptions; cosine 0.24). Forced choice vs your alternatives: 'a tiny bright glass ting sparkle' 30%, 'a bell' 1%, 'a phone notification' <1%, 'a triangle' 70%. It sounds most like: 'a triangle hit' (z +4.1), 'a glass ting' (z +3.4), 'a bicycle bell' (z +3.2), 'a small bell' (z +3.1). Evidence for 'plausible' (held-out library search, ~3% of candidate pairs true): the right kind of sound 41% of the time, the exact variant 22% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "shimmer/m0",
+    "path": "sound/lib/cand/glint/bank_shimmer_m0.wav",
+    "z": 2.5,
+    "verdict": "plausible",
+    "margin": null,
+    "summary": "bank_shimmer_m0.wav: 'a tiny bright glass ting sparkle' -> plausible (z +2.5; would rank #7 among 322 vocabulary descriptions; cosine 0.25). Forced choice vs your alternatives: 'a tiny bright glass ting sparkle' 99%, 'a bell' <1%, 'a phone notification' <1%, 'a triangle' 1%. It sounds most like: 'a success chime' (z +4.0), 'a magic sparkle chime' (z +3.5), 'cheerful ukulele music' (z +3.2), 'coins dropping' (z +2.7). Evidence for 'plausible' (held-out library search, ~3% of candidate pairs true): the right kind of sound 41% of the time, the exact variant 22% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/glint/syn_1.wav",
+    "z": 2.47,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "syn_1.wav: 'a tiny bright glass ting sparkle' -> weak (z +2.4; would rank #6 among 322 vocabulary descriptions; cosine 0.22). Forced choice vs your alternatives: 'a tiny bright glass ting sparkle' 6%, 'a bell' 1%, 'a phone notification' <1%, 'a triangle' 93%. It sounds most like: 'a triangle hit' (z +4.4), 'a bicycle bell' (z +3.3), 'a small bell' (z +3.2), 'a glass ting' (z +3.2). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "mallet/glock",
+    "path": "sound/lib/cand/glint/bank_mallet_glock.wav",
+    "z": 2.14,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "bank_mallet_glock.wav: 'a tiny bright glass ting sparkle' -> weak (z +2.1; would rank #14 among 322 vocabulary descriptions; cosine 0.20). Forced choice vs your alternatives: 'a tiny bright glass ting sparkle' 82%, 'a bell' 9%, 'a phone notification' 1%, 'a triangle' 8%. It sounds most like: 'a success chime' (z +3.2), 'a glass ting' (z +2.9), 'a doorbell' (z +2.7), 'a kalimba note' (z +2.6). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "notify/mid_tine",
+    "path": "sound/lib/cand/glint/bank_notify_mid_tine.wav",
+    "z": 1.12,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_notify_mid_tine.wav: 'a tiny bright glass ting sparkle' -> no match (z +1.1; would rank #45 among 322 vocabulary descriptions; cosine 0.13). Forced choice vs your alternatives: 'a tiny bright glass ting sparkle' 9%, 'a bell' 47%, 'a phone notification' 1%, 'a triangle' 43%. It sounds most like: 'a wooden block hit' (z +2.9), 'a glass ting' (z +2.3), 'an alarm clock beeping' (z +2.3), 'a triangle hit' (z +2.3)."
+   },
+   {
+    "kind": "bank",
+    "name": "pro_click/tink",
+    "path": "sound/lib/cand/glint/bank_pro_click_tink.wav",
+    "z": 0.03,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_pro_click_tink.wav: 'a tiny bright glass ting sparkle' -> no match (z +0.0; would rank #143 among 322 vocabulary descriptions; cosine -0.02). Forced choice vs your alternatives: 'a tiny bright glass ting sparkle' 4%, 'a bell' 1%, 'a phone notification' <1%, 'a triangle' 96%. It sounds most like: 'crisp hi-hats' (z +3.5), 'a snare hit' (z +3.1), 'a punchy kick drum pattern' (z +3.0), 'a wooden block hit' (z +3.0)."
+   }
+  ]
+ },
+ "tablet.ping": {
+  "desc": "a soft notification chime",
+  "alts": [
+   "a doorbell",
+   "a phone ringing",
+   "a bell"
+  ],
+  "ranked": [
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/tablet.ping/syn_1.wav",
+    "z": 2.2,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "syn_1.wav: 'a soft notification chime' -> weak (z +2.2; would rank #15 among 322 vocabulary descriptions; cosine 0.20). Forced choice vs your alternatives: 'a soft notification chime' 23%, 'a doorbell' 75%, 'a phone ringing' 0%, 'a bell' 2%. It sounds most like: 'a success chime' (z +3.3), 'a music box melody' (z +2.9), 'a music box' (z +2.8), 'a notification ding' (z +2.7). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/tablet.ping/syn_2.wav",
+    "z": 2.2,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "syn_2.wav: 'a soft notification chime' -> weak (z +2.2; would rank #15 among 322 vocabulary descriptions; cosine 0.20). Forced choice vs your alternatives: 'a soft notification chime' 23%, 'a doorbell' 75%, 'a phone ringing' 0%, 'a bell' 2%. It sounds most like: 'a success chime' (z +3.3), 'a music box melody' (z +2.9), 'a music box' (z +2.8), 'a notification ding' (z +2.7). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/tablet.ping/syn_3.wav",
+    "z": 2.2,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "syn_3.wav: 'a soft notification chime' -> weak (z +2.2; would rank #15 among 322 vocabulary descriptions; cosine 0.20). Forced choice vs your alternatives: 'a soft notification chime' 23%, 'a doorbell' 75%, 'a phone ringing' 0%, 'a bell' 2%. It sounds most like: 'a success chime' (z +3.3), 'a music box melody' (z +2.9), 'a music box' (z +2.8), 'a notification ding' (z +2.7). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "notify/mid_wood",
+    "path": "sound/lib/cand/tablet.ping/bank_notify_mid_wood.wav",
+    "z": 1.56,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_notify_mid_wood.wav: 'a soft notification chime' -> no match (z +1.5; would rank #25 among 322 vocabulary descriptions; cosine 0.14). Forced choice vs your alternatives: 'a soft notification chime' 1%, 'a doorbell' 89%, 'a phone ringing' <1%, 'a bell' 10%. It sounds most like: 'a triangle hit' (z +2.9), 'a success chime' (z +2.8), 'a doorbell' (z +2.6), 'a glass ting' (z +2.5)."
+   },
+   {
+    "kind": "bank",
+    "name": "pro_notify/ding_1930",
+    "path": "sound/lib/cand/tablet.ping/bank_pro_notify_ding_1930.wav",
+    "z": 1.42,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_pro_notify_ding_1930.wav: 'a soft notification chime' -> no match (z +1.4; would rank #26 among 322 vocabulary descriptions; cosine 0.12). Forced choice vs your alternatives: 'a soft notification chime' 3%, 'a doorbell' 91%, 'a phone ringing' 1%, 'a bell' 4%. It sounds most like: 'a chat message pop' (z +2.8), 'a success chime' (z +2.7), 'an alarm clock beeping' (z +2.7), 'a bicycle bell' (z +2.6)."
+   },
+   {
+    "kind": "bank",
+    "name": "notify/m2",
+    "path": "sound/lib/cand/tablet.ping/bank_notify_m2.wav",
+    "z": 1.2,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_notify_m2.wav: 'a soft notification chime' -> no match (z +1.2; would rank #37 among 322 vocabulary descriptions; cosine 0.11). Forced choice vs your alternatives: 'a soft notification chime' <1%, 'a doorbell' 98%, 'a phone ringing' <1%, 'a bell' 2%. It sounds most like: 'a kalimba note' (z +3.6), 'a doorbell' (z +3.0), 'a glass ting' (z +3.0), 'a marimba' (z +2.8)."
+   }
+  ]
+ },
+ "tag.pop": {
+  "desc": "a small paper label popping onto a board",
+  "alts": [
+   "a balloon pop",
+   "a gunshot",
+   "a click"
+  ],
+  "ranked": [
+   {
+    "kind": "bank",
+    "name": "pro_pop/thup",
+    "path": "sound/lib/cand/tag.pop/bank_pro_pop_thup.wav",
+    "z": 0.78,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_pro_pop_thup.wav: 'a small paper label popping onto a board' -> no match (z +0.7; would rank #61 among 322 vocabulary descriptions; cosine 0.09). Forced choice vs your alternatives: 'a small paper label popping onto a board' 20%, 'a balloon pop' 80%, 'a gunshot' 0%, 'a click' <1%. It sounds most like: 'a wooden block hit' (z +4.5), 'a kick drum' (z +3.4), 'a punchy kick drum pattern' (z +3.3), 'a punchy impact hit' (z +3.2)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/tag.pop/syn_2.wav",
+    "z": 0.76,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_2.wav: 'a small paper label popping onto a board' -> no match (z +0.7; would rank #65 among 322 vocabulary descriptions; cosine 0.07). Forced choice vs your alternatives: 'a small paper label popping onto a board' 1%, 'a balloon pop' 99%, 'a gunshot' <1%, 'a click' <1%. It sounds most like: 'a snare hit' (z +4.4), 'a wooden block hit' (z +2.4), 'a cork pop' (z +2.4), 'crisp hi-hats' (z +2.4)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/tag.pop/syn_3.wav",
+    "z": 0.74,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_3.wav: 'a small paper label popping onto a board' -> no match (z +0.7; would rank #66 among 322 vocabulary descriptions; cosine 0.07). Forced choice vs your alternatives: 'a small paper label popping onto a board' <1%, 'a balloon pop' 99%, 'a gunshot' <1%, 'a click' <1%. It sounds most like: 'a snare hit' (z +4.4), 'a snare roll' (z +2.5), 'crisp hi-hats' (z +2.5), 'a cork pop' (z +2.4)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/tag.pop/syn_1.wav",
+    "z": 0.73,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_1.wav: 'a small paper label popping onto a board' -> no match (z +0.7; would rank #63 among 322 vocabulary descriptions; cosine 0.07). Forced choice vs your alternatives: 'a small paper label popping onto a board' <1%, 'a balloon pop' 100%, 'a gunshot' <1%, 'a click' <1%. It sounds most like: 'a snare hit' (z +4.6), 'a snare roll' (z +2.6), 'a punchy kick drum pattern' (z +2.6), 'a cork pop' (z +2.5)."
+   },
+   {
+    "kind": "bank",
+    "name": "pop/0",
+    "path": "sound/lib/cand/tag.pop/bank_pop_0.wav",
+    "z": 0.6,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_pop_0.wav: 'a small paper label popping onto a board' -> no match (z +0.6; would rank #73 among 322 vocabulary descriptions; cosine 0.11). Forced choice vs your alternatives: 'a small paper label popping onto a board' 5%, 'a balloon pop' 90%, 'a gunshot' <1%, 'a click' 6%. It sounds most like: 'a cork pop' (z +4.4), 'a bubble pop' (z +4.2), 'a mouth pop' (z +4.0), 'a suction cup pop' (z +3.1)."
+   },
+   {
+    "kind": "bank",
+    "name": "swipe/paper",
+    "path": "sound/lib/cand/tag.pop/bank_swipe_paper.wav",
+    "z": 0.57,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_swipe_paper.wav: 'a small paper label popping onto a board' -> no match (z +0.5; would rank #83 among 322 vocabulary descriptions; cosine 0.06). Forced choice vs your alternatives: 'a small paper label popping onto a board' <1%, 'a balloon pop' >99%, 'a gunshot' <1%, 'a click' <1%. It sounds most like: 'a punchy impact hit' (z +3.6), 'a fast whoosh' (z +3.4), 'a box lid closing' (z +2.7), 'a snare hit' (z +2.6)."
+   },
+   {
+    "kind": "bank",
+    "name": "ui_pop/soft",
+    "path": "sound/lib/cand/tag.pop/bank_ui_pop_soft.wav",
+    "z": -0.81,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_ui_pop_soft.wav: 'a small paper label popping onto a board' -> no match (z -0.9; would rank #252 among 322 vocabulary descriptions; cosine -0.09). Forced choice vs your alternatives: 'a small paper label popping onto a board' 1%, 'a balloon pop' 85%, 'a gunshot' 3%, 'a click' 12%. It sounds most like: 'an error buzz' (z +3.1), 'a snare hit' (z +2.9), 'a wooden block hit' (z +2.7), 'a digital glitch' (z +2.3)."
+   }
+  ]
+ },
+ "ui.slide": {
+  "desc": "a soft quick swoosh",
+  "alts": [
+   "wind blowing",
+   "a whip crack",
+   "paper rustling"
+  ],
+  "ranked": [
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/ui.slide/syn_1.wav",
+    "z": 0.81,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_1.wav: 'a soft quick swoosh' -> no match (z +0.8; would rank #59 among 322 vocabulary descriptions; cosine 0.03). Forced choice vs your alternatives: 'a soft quick swoosh' <1%, 'wind blowing' <1%, 'a whip crack' >99%, 'paper rustling' <1%. It sounds most like: 'crisp hi-hats' (z +3.7), 'a snare roll' (z +3.5), 'a fast whoosh' (z +3.5), 'a whip pan transition' (z +3.1)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/ui.slide/syn_2.wav",
+    "z": 0.72,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_2.wav: 'a soft quick swoosh' -> no match (z +0.7; would rank #62 among 322 vocabulary descriptions; cosine 0.02). Forced choice vs your alternatives: 'a soft quick swoosh' <1%, 'wind blowing' <1%, 'a whip crack' >99%, 'paper rustling' <1%. It sounds most like: 'crisp hi-hats' (z +3.5), 'a snare roll' (z +3.5), 'a fast whoosh' (z +3.5), 'a whip pan transition' (z +3.1)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/ui.slide/syn_3.wav",
+    "z": 0.63,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_3.wav: 'a soft quick swoosh' -> no match (z +0.6; would rank #69 among 322 vocabulary descriptions; cosine -0.01). Forced choice vs your alternatives: 'a soft quick swoosh' <1%, 'wind blowing' <1%, 'a whip crack' >99%, 'paper rustling' <1%. It sounds most like: 'crisp hi-hats' (z +3.7), 'a snare roll' (z +3.5), 'a fast whoosh' (z +3.4), 'a whip pan transition' (z +3.2)."
+   },
+   {
+    "kind": "bank",
+    "name": "swipe/paper",
+    "path": "sound/lib/cand/ui.slide/bank_swipe_paper.wav",
+    "z": 0.55,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_swipe_paper.wav: 'a soft quick swoosh' -> no match (z +0.5; would rank #80 among 322 vocabulary descriptions; cosine -0.04). Forced choice vs your alternatives: 'a soft quick swoosh' <1%, 'wind blowing' <1%, 'a whip crack' >99%, 'paper rustling' <1%. It sounds most like: 'a punchy impact hit' (z +3.8), 'a fast whoosh' (z +3.4), 'a box lid closing' (z +2.6), 'a punchy kick drum pattern' (z +2.6)."
+   },
+   {
+    "kind": "bank",
+    "name": "swipe/glide",
+    "path": "sound/lib/cand/ui.slide/bank_swipe_glide.wav",
+    "z": 0.23,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_swipe_glide.wav: 'a soft quick swoosh' -> no match (z +0.2; would rank #116 among 322 vocabulary descriptions; cosine -0.07). Forced choice vs your alternatives: 'a soft quick swoosh' <1%, 'wind blowing' <1%, 'a whip crack' >99%, 'paper rustling' <1%. It sounds most like: 'a fast whoosh' (z +3.2), 'a box lid closing' (z +3.1), 'a snare roll' (z +3.0), 'a snare hit' (z +2.9)."
+   },
+   {
+    "kind": "bank",
+    "name": "swish/soft",
+    "path": "sound/lib/cand/ui.slide/bank_swish_soft.wav",
+    "z": 0.08,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_swish_soft.wav: 'a soft quick swoosh' -> no match (z +0.0; would rank #145 among 322 vocabulary descriptions; cosine -0.05). Forced choice vs your alternatives: 'a soft quick swoosh' <1%, 'wind blowing' <1%, 'a whip crack' >99%, 'paper rustling' <1%. It sounds most like: 'a box lid closing' (z +3.3), 'a snare hit' (z +3.2), 'a fast whoosh' (z +2.7), 'a punchy impact hit' (z +2.7)."
+   }
+  ]
+ },
+ "box.tap": {
+  "desc": "a finger tapping on a cardboard box",
+  "alts": [
+   "a door knock",
+   "a drum",
+   "footsteps"
+  ],
+  "ranked": [
+   {
+    "kind": "bank",
+    "name": "tap/knuckle",
+    "path": "sound/lib/cand/box.tap/bank_tap_knuckle.wav",
+    "z": 2.17,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "bank_tap_knuckle.wav: 'a finger tapping on a cardboard box' -> weak (z +2.1; would rank #8 among 322 vocabulary descriptions; cosine 0.18). Forced choice vs your alternatives: 'a finger tapping on a cardboard box' 5%, 'a door knock' <1%, 'a drum' 95%, 'footsteps' <1%. It sounds most like: 'a wooden block hit' (z +3.9), 'a kick drum' (z +3.4), 'a punchy kick drum pattern' (z +3.2), 'a punchy impact hit' (z +3.0). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "tap/table",
+    "path": "sound/lib/cand/box.tap/bank_tap_table.wav",
+    "z": 1.59,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_tap_table.wav: 'a finger tapping on a cardboard box' -> no match (z +1.5; would rank #18 among 322 vocabulary descriptions; cosine 0.13). Forced choice vs your alternatives: 'a finger tapping on a cardboard box' 3%, 'a door knock' <1%, 'a drum' 97%, 'footsteps' <1%. It sounds most like: 'a punchy impact hit' (z +4.0), 'a wooden block hit' (z +3.8), 'a kick drum' (z +3.6), 'a punchy kick drum pattern' (z +3.5)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/box.tap/syn_3.wav",
+    "z": 1.16,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_3.wav: 'a finger tapping on a cardboard box' -> no match (z +1.1; would rank #37 among 322 vocabulary descriptions; cosine 0.04). Forced choice vs your alternatives: 'a finger tapping on a cardboard box' <1%, 'a door knock' <1%, 'a drum' >99%, 'footsteps' <1%. It sounds most like: 'a snare hit' (z +4.1), 'a punchy impact hit' (z +3.8), 'a kick drum' (z +3.5), 'a punchy kick drum pattern' (z +3.4)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/box.tap/syn_1.wav",
+    "z": 1.12,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_1.wav: 'a finger tapping on a cardboard box' -> no match (z +1.1; would rank #41 among 322 vocabulary descriptions; cosine 0.03). Forced choice vs your alternatives: 'a finger tapping on a cardboard box' <1%, 'a door knock' <1%, 'a drum' >99%, 'footsteps' <1%. It sounds most like: 'a snare hit' (z +4.1), 'a punchy impact hit' (z +3.7), 'a kick drum' (z +3.5), 'a punchy kick drum pattern' (z +3.4)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/box.tap/syn_2.wav",
+    "z": 1.0,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_2.wav: 'a finger tapping on a cardboard box' -> no match (z +1.0; would rank #44 among 322 vocabulary descriptions; cosine 0.01). Forced choice vs your alternatives: 'a finger tapping on a cardboard box' 0%, 'a door knock' <1%, 'a drum' 100%, 'footsteps' <1%. It sounds most like: 'a snare hit' (z +4.1), 'a punchy impact hit' (z +3.7), 'a kick drum' (z +3.4), 'a punchy kick drum pattern' (z +3.3)."
+   },
+   {
+    "kind": "bank",
+    "name": "pro_tap/knock",
+    "path": "sound/lib/cand/box.tap/bank_pro_tap_knock.wav",
+    "z": 0.56,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_pro_tap_knock.wav: 'a finger tapping on a cardboard box' -> no match (z +0.5; would rank #90 among 322 vocabulary descriptions; cosine 0.02). Forced choice vs your alternatives: 'a finger tapping on a cardboard box' <1%, 'a door knock' <1%, 'a drum' >99%, 'footsteps' <1%. It sounds most like: 'a punchy kick drum pattern' (z +4.6), 'a kick drum' (z +4.3), 'a snare hit' (z +3.5), 'a punchy impact hit' (z +3.4)."
+   },
+   {
+    "kind": "bank",
+    "name": "knock/desk",
+    "path": "sound/lib/cand/box.tap/bank_knock_desk.wav",
+    "z": 0.11,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_knock_desk.wav: 'a finger tapping on a cardboard box' -> no match (z +0.1; would rank #138 among 322 vocabulary descriptions; cosine -0.02). Forced choice vs your alternatives: 'a finger tapping on a cardboard box' <1%, 'a door knock' <1%, 'a drum' >99%, 'footsteps' <1%. It sounds most like: 'a snare hit' (z +3.8), 'a punchy impact hit' (z +3.1), 'a snare roll' (z +2.8), 'an error buzz' (z +2.5)."
+   }
+  ]
+ },
+ "switch.click": {
+  "desc": "a desk lamp switch click",
+  "alts": [
+   "a gunshot",
+   "a keyboard key press",
+   "a stapler"
+  ],
+  "ranked": [
+   {
+    "kind": "bank",
+    "name": "fit/snap/switch_flip",
+    "path": "sound/lib/cand/switch.click/bank_fit_snap_switch_flip.wav",
+    "z": 1.98,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_fit_snap_switch_flip.wav: 'a desk lamp switch click' -> no match (z +1.9; would rank #11 among 322 vocabulary descriptions; cosine 0.21). Forced choice vs your alternatives: 'a desk lamp switch click' 41%, 'a gunshot' <1%, 'a keyboard key press' 16%, 'a stapler' 43%. It sounds most like: 'crisp hi-hats' (z +3.6), 'a soft key release click' (z +3.2), 'a triangle hit' (z +2.9), 'a single mechanical keyboard key press' (z +2.8)."
+   },
+   {
+    "kind": "bank",
+    "name": "toggle/rocker",
+    "path": "sound/lib/cand/switch.click/bank_toggle_rocker.wav",
+    "z": 1.94,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_toggle_rocker.wav: 'a desk lamp switch click' -> no match (z +1.9; would rank #18 among 322 vocabulary descriptions; cosine 0.21). Forced choice vs your alternatives: 'a desk lamp switch click' 9%, 'a gunshot' 1%, 'a keyboard key press' 3%, 'a stapler' 87%. It sounds most like: 'a snare hit' (z +3.2), 'a camera shutter click' (z +2.7), 'a soft key release click' (z +2.4), 'a can opening' (z +2.4)."
+   },
+   {
+    "kind": "bank",
+    "name": "toggle/on",
+    "path": "sound/lib/cand/switch.click/bank_toggle_on.wav",
+    "z": 1.7,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_toggle_on.wav: 'a desk lamp switch click' -> no match (z +1.7; would rank #25 among 322 vocabulary descriptions; cosine 0.20). Forced choice vs your alternatives: 'a desk lamp switch click' 6%, 'a gunshot' 0%, 'a keyboard key press' 9%, 'a stapler' 85%. It sounds most like: 'a crisp interface click' (z +2.5), 'a toggle switch click' (z +2.5), 'a plastic case snapping shut' (z +2.3), 'a snare hit' (z +2.3)."
+   },
+   {
+    "kind": "bank",
+    "name": "toggle/latch",
+    "path": "sound/lib/cand/switch.click/bank_toggle_latch.wav",
+    "z": 1.61,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_toggle_latch.wav: 'a desk lamp switch click' -> no match (z +1.6; would rank #26 among 322 vocabulary descriptions; cosine 0.19). Forced choice vs your alternatives: 'a desk lamp switch click' 90%, 'a gunshot' 1%, 'a keyboard key press' 7%, 'a stapler' 2%. It sounds most like: 'a quick swipe' (z +3.7), 'a snare hit' (z +3.0), 'crisp hi-hats' (z +2.8), 'a stick swung fast through the air' (z +2.5)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/switch.click/syn_3.wav",
+    "z": 1.22,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_3.wav: 'a desk lamp switch click' -> no match (z +1.2; would rank #40 among 322 vocabulary descriptions; cosine 0.09). Forced choice vs your alternatives: 'a desk lamp switch click' 93%, 'a gunshot' <1%, 'a keyboard key press' 5%, 'a stapler' 1%. It sounds most like: 'a wooden block hit' (z +4.2), 'a kalimba note' (z +2.4), 'a snare hit' (z +2.4), 'a bubble pop' (z +2.3)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/switch.click/syn_1.wav",
+    "z": 1.18,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_1.wav: 'a desk lamp switch click' -> no match (z +1.1; would rank #38 among 322 vocabulary descriptions; cosine 0.10). Forced choice vs your alternatives: 'a desk lamp switch click' 94%, 'a gunshot' 1%, 'a keyboard key press' 4%, 'a stapler' 1%. It sounds most like: 'a wooden block hit' (z +3.9), 'a bubble pop' (z +2.7), 'a kalimba note' (z +2.5), 'a chat message pop' (z +2.2)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/switch.click/syn_2.wav",
+    "z": 1.14,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_2.wav: 'a desk lamp switch click' -> no match (z +1.1; would rank #40 among 322 vocabulary descriptions; cosine 0.10). Forced choice vs your alternatives: 'a desk lamp switch click' 91%, 'a gunshot' 2%, 'a keyboard key press' 6%, 'a stapler' 2%. It sounds most like: 'a wooden block hit' (z +3.8), 'a bubble pop' (z +2.7), 'a snare hit' (z +2.4), 'a kalimba note' (z +2.4)."
+   }
+  ]
+ },
+ "stamp": {
+  "desc": "a rubber stamp slammed onto paper on a wooden desk",
+  "alts": [
+   "a door slam",
+   "a gunshot",
+   "a book dropped"
+  ],
+  "ranked": [
+   {
+    "kind": "layer",
+    "name": "layer_rec_body_tap",
+    "path": "sound/lib/cand/stamp/layer_rec_body_tap.wav",
+    "z": 2.79,
+    "verdict": "plausible",
+    "margin": null,
+    "summary": "layer_rec_body_tap.wav: 'a rubber stamp slammed onto paper on a wooden desk' -> plausible (z +2.7; would rank #5 among 322 vocabulary descriptions; cosine 0.23). Forced choice vs your alternatives: 'a rubber stamp slammed onto paper on a wooden desk' 98%, 'a door slam' <1%, 'a gunshot' <1%, 'a book dropped' 2%. It sounds most like: 'a kick drum' (z +3.8), 'a punchy impact hit' (z +3.7), 'a punchy kick drum pattern' (z +3.0), 'a box lid closing' (z +2.8). Evidence for 'plausible' (held-out library search, ~3% of candidate pairs true): the right kind of sound 41% of the time, the exact variant 22% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "tap/table",
+    "path": "sound/lib/cand/stamp/bank_tap_table.wav",
+    "z": 2.64,
+    "verdict": "plausible",
+    "margin": null,
+    "summary": "bank_tap_table.wav: 'a rubber stamp slammed onto paper on a wooden desk' -> plausible (z +2.6; would rank #7 among 322 vocabulary descriptions; cosine 0.21). Forced choice vs your alternatives: 'a rubber stamp slammed onto paper on a wooden desk' 98%, 'a door slam' <1%, 'a gunshot' <1%, 'a book dropped' 2%. It sounds most like: 'a punchy kick drum pattern' (z +4.0), 'a kick drum' (z +3.8), 'a punchy impact hit' (z +3.8), 'a wooden block hit' (z +3.5). Evidence for 'plausible' (held-out library search, ~3% of candidate pairs true): the right kind of sound 41% of the time, the exact variant 22% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "layer",
+    "name": "layer_rec_body",
+    "path": "sound/lib/cand/stamp/layer_rec_body.wav",
+    "z": 2.63,
+    "verdict": "plausible",
+    "margin": null,
+    "summary": "layer_rec_body.wav: 'a rubber stamp slammed onto paper on a wooden desk' -> plausible (z +2.6; would rank #6 among 322 vocabulary descriptions; cosine 0.22). Forced choice vs your alternatives: 'a rubber stamp slammed onto paper on a wooden desk' 98%, 'a door slam' <1%, 'a gunshot' <1%, 'a book dropped' 2%. It sounds most like: 'a kick drum' (z +3.6), 'a punchy impact hit' (z +3.4), 'a punchy kick drum pattern' (z +2.7), 'a box lid closing' (z +2.7). Evidence for 'plausible' (held-out library search, ~3% of candidate pairs true): the right kind of sound 41% of the time, the exact variant 22% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "rec",
+    "name": "rec_stamp_01",
+    "path": "sound/lib/cand/stamp/rec_stamp_01.wav",
+    "z": 2.39,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "rec_stamp_01.wav: 'a rubber stamp slammed onto paper on a wooden desk' -> weak (z +2.3; would rank #9 among 322 vocabulary descriptions; cosine 0.23). Forced choice vs your alternatives: 'a rubber stamp slammed onto paper on a wooden desk' 52%, 'a door slam' 7%, 'a gunshot' <1%, 'a book dropped' 41%. It sounds most like: 'a punchy impact hit' (z +3.6), 'a kick drum' (z +3.4), 'a heavy thud' (z +3.1), 'a big drum hit' (z +2.8). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/stamp/syn_1.wav",
+    "z": 2.09,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "syn_1.wav: 'a rubber stamp slammed onto paper on a wooden desk' -> weak (z +2.0; would rank #15 among 322 vocabulary descriptions; cosine 0.07). Forced choice vs your alternatives: 'a rubber stamp slammed onto paper on a wooden desk' 92%, 'a door slam' 2%, 'a gunshot' 1%, 'a book dropped' 5%. It sounds most like: 'a snare hit' (z +4.3), 'a punchy kick drum pattern' (z +3.8), 'a kick drum' (z +3.3), 'a snare roll' (z +3.0). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "layer",
+    "name": "layer_syn_body_tap",
+    "path": "sound/lib/cand/stamp/layer_syn_body_tap.wav",
+    "z": 1.88,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "layer_syn_body_tap.wav: 'a rubber stamp slammed onto paper on a wooden desk' -> no match (z +1.8; would rank #18 among 322 vocabulary descriptions; cosine 0.07). Forced choice vs your alternatives: 'a rubber stamp slammed onto paper on a wooden desk' 91%, 'a door slam' 1%, 'a gunshot' 1%, 'a book dropped' 7%. It sounds most like: 'a snare hit' (z +4.1), 'a punchy kick drum pattern' (z +3.9), 'a kick drum' (z +3.4), 'a snare roll' (z +2.9)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/stamp/syn_3.wav",
+    "z": 1.81,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_3.wav: 'a rubber stamp slammed onto paper on a wooden desk' -> no match (z +1.8; would rank #17 among 322 vocabulary descriptions; cosine 0.03). Forced choice vs your alternatives: 'a rubber stamp slammed onto paper on a wooden desk' 86%, 'a door slam' 3%, 'a gunshot' 2%, 'a book dropped' 8%. It sounds most like: 'a snare hit' (z +4.4), 'a punchy kick drum pattern' (z +3.8), 'a kick drum' (z +3.3), 'a snare roll' (z +3.2)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/stamp/syn_2.wav",
+    "z": 1.75,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_2.wav: 'a rubber stamp slammed onto paper on a wooden desk' -> no match (z +1.7; would rank #17 among 322 vocabulary descriptions; cosine 0.04). Forced choice vs your alternatives: 'a rubber stamp slammed onto paper on a wooden desk' 87%, 'a door slam' 4%, 'a gunshot' 2%, 'a book dropped' 6%. It sounds most like: 'a snare hit' (z +4.1), 'a punchy kick drum pattern' (z +3.7), 'a kick drum' (z +3.2), 'a snare roll' (z +3.1)."
+   },
+   {
+    "kind": "layer",
+    "name": "layer_tap_body_paper",
+    "path": "sound/lib/cand/stamp/layer_tap_body_paper.wav",
+    "z": 1.71,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "layer_tap_body_paper.wav: 'a rubber stamp slammed onto paper on a wooden desk' -> no match (z +1.7; would rank #16 among 322 vocabulary descriptions; cosine 0.06). Forced choice vs your alternatives: 'a rubber stamp slammed onto paper on a wooden desk' 85%, 'a door slam' 5%, 'a gunshot' 2%, 'a book dropped' 7%. It sounds most like: 'a punchy kick drum pattern' (z +4.2), 'a snare hit' (z +3.9), 'a kick drum' (z +3.8), 'a punchy impact hit' (z +3.4)."
+   },
+   {
+    "kind": "bank",
+    "name": "cut_hit/punch",
+    "path": "sound/lib/cand/stamp/bank_cut_hit_punch.wav",
+    "z": 1.34,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_cut_hit_punch.wav: 'a rubber stamp slammed onto paper on a wooden desk' -> no match (z +1.3; would rank #33 among 322 vocabulary descriptions; cosine -0.01). Forced choice vs your alternatives: 'a rubber stamp slammed onto paper on a wooden desk' 21%, 'a door slam' 15%, 'a gunshot' 63%, 'a book dropped' 1%. It sounds most like: 'a punchy kick drum pattern' (z +4.6), 'a kick drum' (z +3.8), 'a snare hit' (z +3.5), 'a punchy impact hit' (z +3.1)."
+   },
+   {
+    "kind": "bank",
+    "name": "knock/desk",
+    "path": "sound/lib/cand/stamp/bank_knock_desk.wav",
+    "z": 1.29,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_knock_desk.wav: 'a rubber stamp slammed onto paper on a wooden desk' -> no match (z +1.2; would rank #37 among 322 vocabulary descriptions; cosine 0.08). Forced choice vs your alternatives: 'a rubber stamp slammed onto paper on a wooden desk' 50%, 'a door slam' 3%, 'a gunshot' 31%, 'a book dropped' 16%. It sounds most like: 'a snare hit' (z +3.8), 'a punchy impact hit' (z +3.1), 'a snare roll' (z +2.8), 'an error buzz' (z +2.5)."
+   },
+   {
+    "kind": "bank",
+    "name": "impact/punch",
+    "path": "sound/lib/cand/stamp/bank_impact_punch.wav",
+    "z": 0.74,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_impact_punch.wav: 'a rubber stamp slammed onto paper on a wooden desk' -> no match (z +0.7; would rank #69 among 322 vocabulary descriptions; cosine -0.01). Forced choice vs your alternatives: 'a rubber stamp slammed onto paper on a wooden desk' 8%, 'a door slam' 15%, 'a gunshot' 75%, 'a book dropped' 2%. It sounds most like: 'a snare hit' (z +4.4), 'a punchy kick drum pattern' (z +3.8), 'a kick drum' (z +3.6), 'a snare roll' (z +3.2)."
+   }
+  ]
+ },
+ "phone.ring": {
+  "desc": "an old telephone bell ringing",
+  "alts": [
+   "a bicycle bell",
+   "an alarm clock",
+   "a doorbell"
+  ],
+  "ranked": [
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/phone.ring/syn_2.wav",
+    "z": 3.1,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "syn_2.wav: 'an old telephone bell ringing' -> strong (z +3.1; would rank #2 among 322 vocabulary descriptions; cosine 0.24). Forced choice vs your alternatives: 'an old telephone bell ringing' 12%, 'a bicycle bell' 2%, 'an alarm clock' 67%, 'a doorbell' 19%. It sounds most like: 'a success chime' (z +3.1), 'a glockenspiel run' (z +2.7), 'a glockenspiel' (z +2.6), 'a doorbell' (z +2.5). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/phone.ring/syn_3.wav",
+    "z": 3.09,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "syn_3.wav: 'an old telephone bell ringing' -> strong (z +3.0; would rank #2 among 322 vocabulary descriptions; cosine 0.24). Forced choice vs your alternatives: 'an old telephone bell ringing' 13%, 'a bicycle bell' 2%, 'an alarm clock' 64%, 'a doorbell' 21%. It sounds most like: 'a success chime' (z +3.1), 'a glockenspiel run' (z +2.7), 'a glockenspiel' (z +2.6), 'a doorbell' (z +2.5). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/phone.ring/syn_1.wav",
+    "z": 3.07,
+    "verdict": "strong",
+    "margin": null,
+    "summary": "syn_1.wav: 'an old telephone bell ringing' -> strong (z +3.0; would rank #2 among 322 vocabulary descriptions; cosine 0.24). Forced choice vs your alternatives: 'an old telephone bell ringing' 12%, 'a bicycle bell' 2%, 'an alarm clock' 66%, 'a doorbell' 20%. It sounds most like: 'a success chime' (z +3.1), 'a glockenspiel run' (z +2.7), 'a glockenspiel' (z +2.6), 'a doorbell' (z +2.5). Evidence for 'strong' (held-out library search, ~3% of candidate pairs true): the right kind of sound 98% of the time, the exact variant 61% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   }
+  ]
+ },
+ "glass.clink": {
+  "desc": "two wine glasses clinking in a toast",
+  "alts": [
+   "a bell",
+   "a spoon on a cup",
+   "a triangle"
+  ],
+  "ranked": [
+   {
+    "kind": "bank",
+    "name": "fit/bell/small_bell",
+    "path": "sound/lib/cand/glass.clink/bank_fit_bell_small_bell.wav",
+    "z": 2.71,
+    "verdict": "plausible",
+    "margin": null,
+    "summary": "bank_fit_bell_small_bell.wav: 'two wine glasses clinking in a toast' -> plausible (z +2.7; would rank #7 among 322 vocabulary descriptions; cosine 0.24). Forced choice vs your alternatives: 'two wine glasses clinking in a toast' 6%, 'a bell' 3%, 'a spoon on a cup' 1%, 'a triangle' 90%. It sounds most like: 'a triangle hit' (z +4.1), 'a glass ting' (z +3.9), 'a kalimba note' (z +3.0), 'ice cubes in a glass' (z +2.8). Evidence for 'plausible' (held-out library search, ~3% of candidate pairs true): the right kind of sound 41% of the time, the exact variant 22% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/glass.clink/syn_3.wav",
+    "z": 2.04,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "syn_3.wav: 'two wine glasses clinking in a toast' -> weak (z +2.0; would rank #21 among 322 vocabulary descriptions; cosine 0.17). Forced choice vs your alternatives: 'two wine glasses clinking in a toast' <1%, 'a bell' 26%, 'a spoon on a cup' <1%, 'a triangle' 74%. It sounds most like: 'a triangle hit' (z +3.4), 'a success chime' (z +3.1), 'a small bell' (z +3.1), 'a kalimba note' (z +3.1). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/glass.clink/syn_1.wav",
+    "z": 1.71,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_1.wav: 'two wine glasses clinking in a toast' -> no match (z +1.7; would rank #26 among 322 vocabulary descriptions; cosine 0.14). Forced choice vs your alternatives: 'two wine glasses clinking in a toast' <1%, 'a bell' 19%, 'a spoon on a cup' <1%, 'a triangle' 81%. It sounds most like: 'a triangle hit' (z +3.4), 'a success chime' (z +3.3), 'a kalimba note' (z +2.9), 'a small bell' (z +2.9)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/glass.clink/syn_2.wav",
+    "z": 1.55,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_2.wav: 'two wine glasses clinking in a toast' -> no match (z +1.5; would rank #27 among 322 vocabulary descriptions; cosine 0.13). Forced choice vs your alternatives: 'two wine glasses clinking in a toast' <1%, 'a bell' 24%, 'a spoon on a cup' <1%, 'a triangle' 76%. It sounds most like: 'a triangle hit' (z +3.3), 'a success chime' (z +3.1), 'a small bell' (z +2.9), 'bells' (z +2.8)."
+   }
+  ]
+ },
+ "marker.write": {
+  "desc": "a marker pen writing on paper",
+  "alts": [
+   "paper rustling",
+   "scratching",
+   "a pencil writing"
+  ],
+  "ranked": [
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/marker.write/syn_3.wav",
+    "z": 0.61,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_3.wav: 'a marker pen writing on paper' -> no match (z +0.6; would rank #79 among 322 vocabulary descriptions; cosine 0.04). Forced choice vs your alternatives: 'a marker pen writing on paper' <1%, 'paper rustling' 1%, 'scratching' 99%, 'a pencil writing' <1%. It sounds most like: 'crisp hi-hats' (z +3.6), 'a snare roll' (z +3.4), 'a spray can hissing' (z +3.2), 'an uplifter sweep' (z +2.8)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/marker.write/syn_1.wav",
+    "z": 0.47,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_1.wav: 'a marker pen writing on paper' -> no match (z +0.4; would rank #90 among 322 vocabulary descriptions; cosine 0.03). Forced choice vs your alternatives: 'a marker pen writing on paper' <1%, 'paper rustling' 3%, 'scratching' 96%, 'a pencil writing' <1%. It sounds most like: 'a snare roll' (z +3.6), 'crisp hi-hats' (z +3.6), 'a spray can hissing' (z +3.4), 'an uplifter sweep' (z +2.7)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/marker.write/syn_2.wav",
+    "z": 0.4,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_2.wav: 'a marker pen writing on paper' -> no match (z +0.4; would rank #96 among 322 vocabulary descriptions; cosine 0.01). Forced choice vs your alternatives: 'a marker pen writing on paper' <1%, 'paper rustling' 3%, 'scratching' 97%, 'a pencil writing' <1%. It sounds most like: 'crisp hi-hats' (z +3.6), 'a snare roll' (z +3.5), 'a spray can hissing' (z +3.2), 'an uplifter sweep' (z +2.6)."
+   }
+  ]
+ },
+ "paper.slide": {
+  "desc": "a sheet of paper sliding across a desk",
+  "alts": [
+   "wind blowing",
+   "cloth rustling",
+   "sandpaper"
+  ],
+  "ranked": [
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/paper.slide/syn_2.wav",
+    "z": 1.68,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_2.wav: 'a sheet of paper sliding across a desk' -> no match (z +1.6; would rank #23 among 322 vocabulary descriptions; cosine 0.08). Forced choice vs your alternatives: 'a sheet of paper sliding across a desk' 20%, 'wind blowing' <1%, 'cloth rustling' 39%, 'sandpaper' 41%. It sounds most like: 'a snare roll' (z +3.3), 'a snare hit' (z +3.0), 'a record scratch' (z +2.9), 'a body falling on the ground' (z +2.3)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/paper.slide/syn_3.wav",
+    "z": 1.65,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_3.wav: 'a sheet of paper sliding across a desk' -> no match (z +1.6; would rank #26 among 322 vocabulary descriptions; cosine 0.08). Forced choice vs your alternatives: 'a sheet of paper sliding across a desk' 27%, 'wind blowing' <1%, 'cloth rustling' 49%, 'sandpaper' 24%. It sounds most like: 'a snare roll' (z +3.4), 'a snare hit' (z +3.2), 'a record scratch' (z +2.8), 'a gust of wind rushing past' (z +2.4)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/paper.slide/syn_1.wav",
+    "z": 1.43,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_1.wav: 'a sheet of paper sliding across a desk' -> no match (z +1.4; would rank #28 among 322 vocabulary descriptions; cosine 0.07). Forced choice vs your alternatives: 'a sheet of paper sliding across a desk' 7%, 'wind blowing' <1%, 'cloth rustling' 21%, 'sandpaper' 72%. It sounds most like: 'a snare roll' (z +3.6), 'a record scratch' (z +3.1), 'a snare hit' (z +3.1), 'a crackling fire' (z +2.3)."
+   },
+   {
+    "kind": "bank",
+    "name": "swipe/velvet",
+    "path": "sound/lib/cand/paper.slide/bank_swipe_velvet.wav",
+    "z": 0.84,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_swipe_velvet.wav: 'a sheet of paper sliding across a desk' -> no match (z +0.8; would rank #60 among 322 vocabulary descriptions; cosine 0.07). Forced choice vs your alternatives: 'a sheet of paper sliding across a desk' 31%, 'wind blowing' <1%, 'cloth rustling' 24%, 'sandpaper' 46%. It sounds most like: 'a fast whoosh' (z +3.7), 'a punchy impact hit' (z +3.4), 'a box lid closing' (z +2.6), 'a whip pan transition' (z +2.6)."
+   },
+   {
+    "kind": "bank",
+    "name": "swipe/paper",
+    "path": "sound/lib/cand/paper.slide/bank_swipe_paper.wav",
+    "z": 0.4,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_swipe_paper.wav: 'a sheet of paper sliding across a desk' -> no match (z +0.4; would rank #104 among 322 vocabulary descriptions; cosine -0.02). Forced choice vs your alternatives: 'a sheet of paper sliding across a desk' <1%, 'wind blowing' <1%, 'cloth rustling' 73%, 'sandpaper' 27%. It sounds most like: 'a punchy impact hit' (z +3.2), 'a fast whoosh' (z +3.2), 'a body falling on the ground' (z +2.7), 'cloth whipping through the air' (z +2.7)."
+   }
+  ]
+ },
+ "photo.drop": {
+  "desc": "a photograph dropping onto a table",
+  "alts": [
+   "a book dropped",
+   "a slap",
+   "a door knock"
+  ],
+  "ranked": [
+   {
+    "kind": "bank",
+    "name": "swipe/paper",
+    "path": "sound/lib/cand/photo.drop/bank_swipe_paper.wav",
+    "z": 0.82,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_swipe_paper.wav: 'a photograph dropping onto a table' -> no match (z +0.8; would rank #57 among 322 vocabulary descriptions; cosine 0.06). Forced choice vs your alternatives: 'a photograph dropping onto a table' <1%, 'a book dropped' 98%, 'a slap' 2%, 'a door knock' <1%. It sounds most like: 'a punchy impact hit' (z +3.6), 'a fast whoosh' (z +3.4), 'a box lid closing' (z +2.7), 'a snare hit' (z +2.6)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/photo.drop/syn_3.wav",
+    "z": 0.09,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_3.wav: 'a photograph dropping onto a table' -> no match (z +0.0; would rank #130 among 322 vocabulary descriptions; cosine -0.01). Forced choice vs your alternatives: 'a photograph dropping onto a table' <1%, 'a book dropped' 1%, 'a slap' 99%, 'a door knock' <1%. It sounds most like: 'crisp hi-hats' (z +4.6), 'a snare hit' (z +3.5), 'a digital glitch' (z +2.6), 'a snare roll' (z +2.6)."
+   },
+   {
+    "kind": "bank",
+    "name": "tap/table",
+    "path": "sound/lib/cand/photo.drop/bank_tap_table.wav",
+    "z": 0.03,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_tap_table.wav: 'a photograph dropping onto a table' -> no match (z +0.0; would rank #150 among 322 vocabulary descriptions; cosine 0.00). Forced choice vs your alternatives: 'a photograph dropping onto a table' <1%, 'a book dropped' 10%, 'a slap' 90%, 'a door knock' <1%. It sounds most like: 'a punchy impact hit' (z +4.0), 'a wooden block hit' (z +3.8), 'a kick drum' (z +3.6), 'a punchy kick drum pattern' (z +3.5)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/photo.drop/syn_2.wav",
+    "z": -0.32,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_2.wav: 'a photograph dropping onto a table' -> no match (z -0.4; would rank #183 among 322 vocabulary descriptions; cosine -0.06). Forced choice vs your alternatives: 'a photograph dropping onto a table' <1%, 'a book dropped' 0%, 'a slap' 99%, 'a door knock' <1%. It sounds most like: 'crisp hi-hats' (z +4.6), 'a snare hit' (z +3.2), 'a punchy kick drum pattern' (z +2.5), 'a snare roll' (z +2.5)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/photo.drop/syn_1.wav",
+    "z": -0.37,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_1.wav: 'a photograph dropping onto a table' -> no match (z -0.4; would rank #199 among 322 vocabulary descriptions; cosine -0.07). Forced choice vs your alternatives: 'a photograph dropping onto a table' <1%, 'a book dropped' 1%, 'a slap' 99%, 'a door knock' <1%. It sounds most like: 'crisp hi-hats' (z +4.8), 'a snare hit' (z +3.4), 'a snare roll' (z +2.7), 'a punchy kick drum pattern' (z +2.4)."
+   }
+  ]
+ },
+ "key.jingle": {
+  "desc": "keys jingling",
+  "alts": [
+   "coins jingling",
+   "a bell",
+   "chains rattling"
+  ],
+  "ranked": [
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/key.jingle/syn_2.wav",
+    "z": 1.53,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_2.wav: 'keys jingling' -> no match (z +1.5; would rank #31 among 322 vocabulary descriptions; cosine 0.08). Forced choice vs your alternatives: 'keys jingling' 1%, 'coins jingling' 97%, 'a bell' 1%, 'chains rattling' 2%. It sounds most like: 'a magic sparkle chime' (z +4.0), 'a success chime' (z +3.3), 'a notification ding' (z +3.0), 'a glissando on bar chimes' (z +2.9)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/key.jingle/syn_1.wav",
+    "z": 1.49,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_1.wav: 'keys jingling' -> no match (z +1.4; would rank #30 among 322 vocabulary descriptions; cosine 0.08). Forced choice vs your alternatives: 'keys jingling' 1%, 'coins jingling' 92%, 'a bell' 6%, 'chains rattling' 2%. It sounds most like: 'a magic sparkle chime' (z +4.1), 'a success chime' (z +3.3), 'a notification ding' (z +3.1), 'a glissando on bar chimes' (z +3.0)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/key.jingle/syn_3.wav",
+    "z": 1.18,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_3.wav: 'keys jingling' -> no match (z +1.1; would rank #39 among 322 vocabulary descriptions; cosine 0.04). Forced choice vs your alternatives: 'keys jingling' 2%, 'coins jingling' 80%, 'a bell' 14%, 'chains rattling' 5%. It sounds most like: 'a magic sparkle chime' (z +3.6), 'a notification ding' (z +2.9), 'a success chime' (z +2.9), 'a glissando on bar chimes' (z +2.7)."
+   }
+  ]
+ },
+ "af.beep": {
+  "desc": "a camera autofocus beep",
+  "alts": [
+   "a microwave beep",
+   "a phone notification",
+   "an alarm"
+  ],
+  "ranked": [
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/af.beep/syn_1.wav",
+    "z": 2.42,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "syn_1.wav: 'a camera autofocus beep' -> weak (z +2.4; would rank #9 among 322 vocabulary descriptions; cosine 0.26). Forced choice vs your alternatives: 'a camera autofocus beep' 16%, 'a microwave beep' 1%, 'a phone notification' <1%, 'an alarm' 82%. It sounds most like: 'an error buzz' (z +2.8), 'an alarm clock beeping' (z +2.5), 'a chat message pop' (z +2.5), 'a digital glitch' (z +2.3). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/af.beep/syn_2.wav",
+    "z": 2.42,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "syn_2.wav: 'a camera autofocus beep' -> weak (z +2.4; would rank #9 among 322 vocabulary descriptions; cosine 0.26). Forced choice vs your alternatives: 'a camera autofocus beep' 16%, 'a microwave beep' 1%, 'a phone notification' <1%, 'an alarm' 82%. It sounds most like: 'an error buzz' (z +2.8), 'an alarm clock beeping' (z +2.5), 'a chat message pop' (z +2.5), 'a digital glitch' (z +2.3). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/af.beep/syn_3.wav",
+    "z": 2.42,
+    "verdict": "weak",
+    "margin": null,
+    "summary": "syn_3.wav: 'a camera autofocus beep' -> weak (z +2.4; would rank #9 among 322 vocabulary descriptions; cosine 0.26). Forced choice vs your alternatives: 'a camera autofocus beep' 16%, 'a microwave beep' 1%, 'a phone notification' <1%, 'an alarm' 82%. It sounds most like: 'an error buzz' (z +2.8), 'an alarm clock beeping' (z +2.5), 'a chat message pop' (z +2.5), 'a digital glitch' (z +2.3). Evidence for 'weak' (held-out library search, ~3% of candidate pairs true): the right kind of sound 28% of the time, the exact variant 17% (a close variant such as an Enter key for a spacebar counts as wrong then)."
+   },
+   {
+    "kind": "bank",
+    "name": "pro_notify/ding_2296",
+    "path": "sound/lib/cand/af.beep/bank_pro_notify_ding_2296.wav",
+    "z": 1.28,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_pro_notify_ding_2296.wav: 'a camera autofocus beep' -> no match (z +1.2; would rank #36 among 322 vocabulary descriptions; cosine 0.14). Forced choice vs your alternatives: 'a camera autofocus beep' 37%, 'a microwave beep' 3%, 'a phone notification' 2%, 'an alarm' 57%. It sounds most like: 'a triangle hit' (z +2.8), 'a glass ting' (z +2.7), 'a chat message pop' (z +2.5), 'a bicycle bell' (z +2.5)."
+   },
+   {
+    "kind": "bank",
+    "name": "hover_tick/ping",
+    "path": "sound/lib/cand/af.beep/bank_hover_tick_ping.wav",
+    "z": 0.19,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_hover_tick_ping.wav: 'a camera autofocus beep' -> no match (z +0.1; would rank #129 among 322 vocabulary descriptions; cosine 0.03). Forced choice vs your alternatives: 'a camera autofocus beep' 1%, 'a microwave beep' <1%, 'a phone notification' <1%, 'an alarm' 98%. It sounds most like: 'lego bricks clicking' (z +2.9), 'a triangle hit' (z +2.7), 'ice cubes in a glass' (z +2.5), 'a wooden block hit' (z +2.4)."
+   }
+  ]
+ },
+ "water.splash": {
+  "desc": "a mop splashing into a bucket of water",
+  "alts": [
+   "rain",
+   "a toilet flush",
+   "pouring water"
+  ],
+  "ranked": [
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/water.splash/syn_1.wav",
+    "z": 1.51,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_1.wav: 'a mop splashing into a bucket of water' -> no match (z +1.5; would rank #19 among 322 vocabulary descriptions; cosine 0.03). Forced choice vs your alternatives: 'a mop splashing into a bucket of water' 78%, 'rain' 13%, 'a toilet flush' 1%, 'pouring water' 7%. It sounds most like: 'a snare roll' (z +3.8), 'a snare hit' (z +3.7), 'crisp hi-hats' (z +3.4), 'a digital glitch' (z +2.1)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/water.splash/syn_3.wav",
+    "z": 1.14,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_3.wav: 'a mop splashing into a bucket of water' -> no match (z +1.1; would rank #36 among 322 vocabulary descriptions; cosine 0.00). Forced choice vs your alternatives: 'a mop splashing into a bucket of water' 39%, 'rain' 49%, 'a toilet flush' 2%, 'pouring water' 10%. It sounds most like: 'a snare roll' (z +3.9), 'a snare hit' (z +3.5), 'crisp hi-hats' (z +3.0), 'a digital glitch' (z +2.4)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/water.splash/syn_2.wav",
+    "z": 1.1,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_2.wav: 'a mop splashing into a bucket of water' -> no match (z +1.1; would rank #42 among 322 vocabulary descriptions; cosine -0.01). Forced choice vs your alternatives: 'a mop splashing into a bucket of water' 32%, 'rain' 45%, 'a toilet flush' 3%, 'pouring water' 20%. It sounds most like: 'a snare roll' (z +3.7), 'a snare hit' (z +3.3), 'crisp hi-hats' (z +3.1), 'an error buzz' (z +2.2)."
+   },
+   {
+    "kind": "bank",
+    "name": "drip/drop",
+    "path": "sound/lib/cand/water.splash/bank_drip_drop.wav",
+    "z": 0.08,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_drip_drop.wav: 'a mop splashing into a bucket of water' -> no match (z +0.0; would rank #140 among 322 vocabulary descriptions; cosine -0.09). Forced choice vs your alternatives: 'a mop splashing into a bucket of water' 40%, 'rain' 16%, 'a toilet flush' 30%, 'pouring water' 14%. It sounds most like: 'a snare hit' (z +2.9), 'a wooden block hit' (z +2.9), 'a chat message pop' (z +2.6), 'a success chime' (z +2.5)."
+   }
+  ]
+ },
+ "string.pull": {
+  "desc": "a string being pulled tight with friction",
+  "alts": [
+   "a violin",
+   "a zipper",
+   "scratching"
+  ],
+  "ranked": [
+   {
+    "kind": "bank",
+    "name": "pro_zip/arc",
+    "path": "sound/lib/cand/string.pull/bank_pro_zip_arc.wav",
+    "z": 1.0,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_pro_zip_arc.wav: 'a string being pulled tight with friction' -> no match (z +1.0; would rank #50 among 322 vocabulary descriptions; cosine 0.06). Forced choice vs your alternatives: 'a string being pulled tight with friction' 4%, 'a violin' 11%, 'a zipper' 86%, 'scratching' <1%. It sounds most like: 'a balloon squeak' (z +4.1), 'a baby crying' (z +2.7), 'a finger squeaking on glass' (z +2.7), 'a record scratch' (z +2.6)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/string.pull/syn_3.wav",
+    "z": 0.84,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_3.wav: 'a string being pulled tight with friction' -> no match (z +0.8; would rank #66 among 322 vocabulary descriptions; cosine 0.04). Forced choice vs your alternatives: 'a string being pulled tight with friction' 2%, 'a violin' <1%, 'a zipper' 16%, 'scratching' 82%. It sounds most like: 'crisp hi-hats' (z +3.5), 'a snare roll' (z +3.4), 'a record scratch' (z +3.0), 'an error buzz' (z +2.6)."
+   },
+   {
+    "kind": "bank",
+    "name": "pro_zip/down_warm",
+    "path": "sound/lib/cand/string.pull/bank_pro_zip_down_warm.wav",
+    "z": 0.78,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_pro_zip_down_warm.wav: 'a string being pulled tight with friction' -> no match (z +0.7; would rank #73 among 322 vocabulary descriptions; cosine -0.00). Forced choice vs your alternatives: 'a string being pulled tight with friction' 18%, 'a violin' 5%, 'a zipper' 77%, 'scratching' <1%. It sounds most like: 'a man shouting' (z +2.4), 'a baby crying' (z +2.4), 'a balloon squeak' (z +2.4), 'an error buzz' (z +2.3)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/string.pull/syn_1.wav",
+    "z": 0.45,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_1.wav: 'a string being pulled tight with friction' -> no match (z +0.4; would rank #96 among 322 vocabulary descriptions; cosine 0.00). Forced choice vs your alternatives: 'a string being pulled tight with friction' 1%, 'a violin' <1%, 'a zipper' 4%, 'scratching' 95%. It sounds most like: 'crisp hi-hats' (z +3.7), 'a snare roll' (z +3.3), 'a record scratch' (z +3.1), 'an error buzz' (z +2.5)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/string.pull/syn_2.wav",
+    "z": 0.22,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_2.wav: 'a string being pulled tight with friction' -> no match (z +0.2; would rank #114 among 322 vocabulary descriptions; cosine -0.02). Forced choice vs your alternatives: 'a string being pulled tight with friction' 0%, 'a violin' <1%, 'a zipper' 6%, 'scratching' 93%. It sounds most like: 'crisp hi-hats' (z +3.9), 'a snare roll' (z +3.3), 'a record scratch' (z +3.1), 'an error buzz' (z +2.6)."
+   }
+  ]
+ },
+ "pin.pop": {
+  "desc": "a small pop of a pin dropping onto a map",
+  "alts": [
+   "a balloon pop",
+   "a click",
+   "a water drop"
+  ],
+  "ranked": [
+   {
+    "kind": "syn",
+    "name": "syn_3",
+    "path": "sound/lib/cand/pin.pop/syn_3.wav",
+    "z": 0.7,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_3.wav: 'a small pop of a pin dropping onto a map' -> no match (z +0.7; would rank #72 among 322 vocabulary descriptions; cosine 0.10). Forced choice vs your alternatives: 'a small pop of a pin dropping onto a map' 9%, 'a balloon pop' 72%, 'a click' 9%, 'a water drop' 10%. It sounds most like: 'a punchy kick drum pattern' (z +3.7), 'a kick drum' (z +3.2), 'a bubble pop' (z +2.6), 'an explosion' (z +2.2)."
+   },
+   {
+    "kind": "bank",
+    "name": "pop/2",
+    "path": "sound/lib/cand/pin.pop/bank_pop_2.wav",
+    "z": 0.66,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_pop_2.wav: 'a small pop of a pin dropping onto a map' -> no match (z +0.6; would rank #65 among 322 vocabulary descriptions; cosine 0.07). Forced choice vs your alternatives: 'a small pop of a pin dropping onto a map' 1%, 'a balloon pop' 43%, 'a click' <1%, 'a water drop' 56%. It sounds most like: 'a cork pop' (z +4.1), 'a bubble pop' (z +3.8), 'a mouth pop' (z +3.0), 'a glass ting' (z +2.6)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_1",
+    "path": "sound/lib/cand/pin.pop/syn_1.wav",
+    "z": 0.65,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_1.wav: 'a small pop of a pin dropping onto a map' -> no match (z +0.6; would rank #76 among 322 vocabulary descriptions; cosine 0.10). Forced choice vs your alternatives: 'a small pop of a pin dropping onto a map' 7%, 'a balloon pop' 76%, 'a click' 9%, 'a water drop' 8%. It sounds most like: 'a punchy kick drum pattern' (z +3.7), 'a kick drum' (z +3.3), 'a bubble pop' (z +2.5), 'a punchy impact hit' (z +2.2)."
+   },
+   {
+    "kind": "syn",
+    "name": "syn_2",
+    "path": "sound/lib/cand/pin.pop/syn_2.wav",
+    "z": 0.6,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "syn_2.wav: 'a small pop of a pin dropping onto a map' -> no match (z +0.6; would rank #78 among 322 vocabulary descriptions; cosine 0.09). Forced choice vs your alternatives: 'a small pop of a pin dropping onto a map' 6%, 'a balloon pop' 79%, 'a click' 9%, 'a water drop' 6%. It sounds most like: 'a punchy kick drum pattern' (z +3.7), 'a kick drum' (z +3.3), 'a bubble pop' (z +2.5), 'a punchy impact hit' (z +2.2)."
+   },
+   {
+    "kind": "bank",
+    "name": "drip/bloop",
+    "path": "sound/lib/cand/pin.pop/bank_drip_bloop.wav",
+    "z": -0.75,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_drip_bloop.wav: 'a small pop of a pin dropping onto a map' -> no match (z -0.8; would rank #237 among 322 vocabulary descriptions; cosine -0.11). Forced choice vs your alternatives: 'a small pop of a pin dropping onto a map' <1%, 'a balloon pop' >99%, 'a click' <1%, 'a water drop' <1%. It sounds most like: 'a snare hit' (z +3.9), 'a snare roll' (z +3.4), 'a wooden block hit' (z +2.5), 'a record scratch' (z +2.4)."
+   },
+   {
+    "kind": "bank",
+    "name": "pro_pop/boop",
+    "path": "sound/lib/cand/pin.pop/bank_pro_pop_boop.wav",
+    "z": -0.75,
+    "verdict": "no match",
+    "margin": null,
+    "summary": "bank_pro_pop_boop.wav: 'a small pop of a pin dropping onto a map' -> no match (z -0.8; would rank #250 among 322 vocabulary descriptions; cosine -0.03). Forced choice vs your alternatives: 'a small pop of a pin dropping onto a map' 1%, 'a balloon pop' 53%, 'a click' 36%, 'a water drop' 10%. It sounds most like: 'a punchy kick drum pattern' (z +4.4), 'a wooden block hit' (z +3.9), 'a kick drum' (z +3.7), 'a snare hit' (z +3.3)."
+   }
+  ]
+ }
+}

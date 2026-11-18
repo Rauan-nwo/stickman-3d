@@ -35,12 +35,13 @@ def frames(video, t0, t1, every, tmp, w=384, h=216):
     fs = sorted(os.listdir(tmp)); return [(f0 + i * every, Image.open(os.path.join(tmp, f)).copy()) for i, f in enumerate(fs)]
 
 def sheets(video, chs, every=3):
+    vend = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', video], capture_output=True, text=True).stdout) - .07   # экспорт кончается раньше конца главы (граница фразы)
     for ch in chs:
         shots = [s for s in SH if s['ch'] == ch]
         # 1) каждый every-й кадр каждого плана
         tiles = []
         for s in shots:
-            for fi, im in frames(video, s['start'], s['end'], every, os.path.join(QA, 'tmp')):
+            for fi, im in frames(video, s['start'], min(s['end'], vend), every, os.path.join(QA, 'tmp')):
                 tiles.append((s, fi, im))
         cols, w, h, per = 8, 384, 216, 64
         for p in range(0, len(tiles), per):
@@ -55,6 +56,7 @@ def sheets(video, chs, every=3):
         for s in shots:
             ev = s.get('snap') or (s.get('whip') or {}).get('t') or s['dur'] * .5
             ts = [s['start'] + .05, s['start'] + min(ev + .12, s['dur'] - .1), s['end'] - .07]
+            ts = [min(q, vend) for q in ts]
             ims = []
             for t in ts:
                 tmp = os.path.join(QA, 'one.jpg')

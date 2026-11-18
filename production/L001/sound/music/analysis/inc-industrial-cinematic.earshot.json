@@ -1,0 +1,484 @@
+{
+ "path": "C:/dev/projects/youtube-video/production/L001/sound/music/candidates/inc-industrial-cinematic.mp3",
+ "start": 20.0,
+ "end": 80.0,
+ "duration": 60.0,
+ "measurements": {
+  "duration": 60.0,
+  "peak_dbfs": -3.0,
+  "true_peak_dbtp": -3.0,
+  "rms_dbfs": -17.7,
+  "lufs": -16.9,
+  "lra_lu": 4.6,
+  "attack_ms": 232.0,
+  "brightness_hz": 705,
+  "bandwidth_hz": 12901,
+  "noise_floor_dbfs": -25.2,
+  "flatness": 0.0002,
+  "harmonic_ratio": 0.903,
+  "f0_hz": 55.3,
+  "onset_count": 338,
+  "onsets_per_s": 5.63,
+  "width": "side/mid -3 dB",
+  "digital_silence_frac": 0.0
+ },
+ "shape": "busy, 5.6 onsets/s, loudness range 5 LU",
+ "top_tags": [
+  {
+   "term": "a rising riser building tension",
+   "category": "transitions",
+   "z": 1.66,
+   "cosine": 0.27,
+   "verdict": "no match"
+  },
+  {
+   "term": "a big braam",
+   "category": "impacts",
+   "z": 1.61,
+   "cosine": 0.251,
+   "verdict": "no match"
+  },
+  {
+   "term": "a big drum hit",
+   "category": "impacts",
+   "z": 1.61,
+   "cosine": 0.2,
+   "verdict": "no match"
+  },
+  {
+   "term": "a cinematic hit with a long tail",
+   "category": "impacts",
+   "z": 1.45,
+   "cosine": 0.176,
+   "verdict": "no match"
+  },
+  {
+   "term": "a deep cinematic boom",
+   "category": "impacts",
+   "z": 1.09,
+   "cosine": 0.15,
+   "verdict": "no match"
+  },
+  {
+   "term": "a deep cinematic whoosh",
+   "category": "transitions",
+   "z": 0.95,
+   "cosine": 0.151,
+   "verdict": "no match"
+  },
+  {
+   "term": "a snare hit",
+   "category": "impacts",
+   "z": 0.87,
+   "cosine": 0.106,
+   "verdict": "no match"
+  },
+  {
+   "term": "skylarks over a meadow",
+   "category": "ambience",
+   "z": 0.86,
+   "cosine": 0.148,
+   "verdict": "no match"
+  }
+ ],
+ "music_hints": [
+  {
+   "term": "triumphant and heroic music",
+   "category": "music_mood",
+   "z": 3.19,
+   "cosine": 0.419
+  },
+  {
+   "term": "dark and tense music",
+   "category": "music_mood",
+   "z": 3.09,
+   "cosine": 0.44
+  },
+  {
+   "term": "cinematic orchestral music",
+   "category": "music_genre",
+   "z": 2.98,
+   "cosine": 0.411
+  },
+  {
+   "term": "epic trailer music",
+   "category": "music_genre",
+   "z": 2.96,
+   "cosine": 0.438
+  },
+  {
+   "term": "inspirational corporate background music",
+   "category": "music_genre",
+   "z": 2.91,
+   "cosine": 0.441
+  },
+  {
+   "term": "energetic and driving music",
+   "category": "music_mood",
+   "z": 2.84,
+   "cosine": 0.395
+  },
+  {
+   "term": "uplifting orchestral film score",
+   "category": "music_genre",
+   "z": 2.81,
+   "cosine": 0.388
+  },
+  {
+   "term": "aggressive music",
+   "category": "music_mood",
+   "z": 2.62,
+   "cosine": 0.369
+  }
+ ],
+ "tags": {
+  "transitions": [
+   {
+    "term": "a rising riser building tension",
+    "z": 1.66,
+    "cosine": 0.27
+   },
+   {
+    "term": "a deep cinematic whoosh",
+    "z": 0.95,
+    "cosine": 0.151
+   },
+   {
+    "term": "an uplifter sweep",
+    "z": 0.83,
+    "cosine": 0.179
+   }
+  ],
+  "impacts": [
+   {
+    "term": "a big braam",
+    "z": 1.61,
+    "cosine": 0.251
+   },
+   {
+    "term": "a big drum hit",
+    "z": 1.61,
+    "cosine": 0.2
+   },
+   {
+    "term": "a cinematic hit with a long tail",
+    "z": 1.45,
+    "cosine": 0.176
+   }
+  ],
+  "ui": [
+   {
+    "term": "a touchscreen tap",
+    "z": -0.24,
+    "cosine": 0.069
+   },
+   {
+    "term": "a soft UI button tap",
+    "z": -0.47,
+    "cosine": 0.014
+   },
+   {
+    "term": "a scroll wheel tick",
+    "z": -0.6,
+    "cosine": 0.044
+   }
+  ],
+  "keyboard": [
+   {
+    "term": "a deep thocky mechanical keyboard",
+    "z": -0.29,
+    "cosine": 0.088
+   },
+   {
+    "term": "slow typing with separate key presses",
+    "z": -0.65,
+    "cosine": 0.032
+   },
+   {
+    "term": "an old typewriter",
+    "z": -0.71,
+    "cosine": -0.015
+   }
+  ],
+  "foley": [
+   {
+    "term": "a metal scrape",
+    "z": 0.47,
+    "cosine": 0.07
+   },
+   {
+    "term": "a drawer closing",
+    "z": 0.4,
+    "cosine": 0.139
+   },
+   {
+    "term": "scissors cutting",
+    "z": 0.4,
+    "cosine": 0.112
+   }
+  ],
+  "water": [
+   {
+    "term": "being underwater",
+    "z": -0.07,
+    "cosine": 0.056
+   },
+   {
+    "term": "a stream flowing",
+    "z": -0.63,
+    "cosine": 0.019
+   },
+   {
+    "term": "bubbles underwater",
+    "z": -0.68,
+    "cosine": -0.024
+   }
+  ],
+  "nature": [
+   {
+    "term": "footsteps on grass",
+    "z": 0.27,
+    "cosine": 0.044
+   },
+   {
+    "term": "a bird flapping its wings",
+    "z": 0.03,
+    "cosine": 0.033
+   },
+   {
+    "term": "walking through dry leaves",
+    "z": -0.06,
+    "cosine": 0.034
+   }
+  ],
+  "chimes": [
+   {
+    "term": "church bells",
+    "z": 0.36,
+    "cosine": 0.088
+   },
+   {
+    "term": "a singing bowl",
+    "z": 0.12,
+    "cosine": 0.024
+   },
+   {
+    "term": "a celesta note",
+    "z": 0.05,
+    "cosine": 0.131
+   }
+  ],
+  "ambience": [
+   {
+    "term": "skylarks over a meadow",
+    "z": 0.86,
+    "cosine": 0.148
+   },
+   {
+    "term": "birds singing in the morning",
+    "z": 0.74,
+    "cosine": 0.071
+   },
+   {
+    "term": "an airplane flying overhead",
+    "z": 0.45,
+    "cosine": 0.087
+   }
+  ],
+  "everyday": [
+   {
+    "term": "a helicopter flying overhead",
+    "z": 0.66,
+    "cosine": 0.135
+   },
+   {
+    "term": "a saw cutting wood",
+    "z": 0.65,
+    "cosine": 0.118
+   },
+   {
+    "term": "fireworks exploding",
+    "z": 0.48,
+    "cosine": 0.06
+   }
+  ],
+  "music_genre": [
+   {
+    "term": "cinematic orchestral music",
+    "z": 2.98,
+    "cosine": 0.411
+   },
+   {
+    "term": "epic trailer music",
+    "z": 2.96,
+    "cosine": 0.438
+   },
+   {
+    "term": "inspirational corporate background music",
+    "z": 2.91,
+    "cosine": 0.441
+   }
+  ],
+  "music_mood": [
+   {
+    "term": "triumphant and heroic music",
+    "z": 3.19,
+    "cosine": 0.419
+   },
+   {
+    "term": "dark and tense music",
+    "z": 3.09,
+    "cosine": 0.44
+   },
+   {
+    "term": "energetic and driving music",
+    "z": 2.84,
+    "cosine": 0.395
+   }
+  ],
+  "instruments": [
+   {
+    "term": "strings ensemble",
+    "z": 2.23,
+    "cosine": 0.338
+   },
+   {
+    "term": "orchestral percussion",
+    "z": 2.19,
+    "cosine": 0.342
+   },
+   {
+    "term": "brass section",
+    "z": 1.59,
+    "cosine": 0.248
+   }
+  ],
+  "voice": [
+   {
+    "term": "a voice-over narration",
+    "z": 1.06,
+    "cosine": 0.14
+   },
+   {
+    "term": "singing vocals",
+    "z": 0.81,
+    "cosine": 0.126
+   },
+   {
+    "term": "a man shouting",
+    "z": 0.46,
+    "cosine": -0.022
+   }
+  ],
+  "quality": [
+   {
+    "term": "a boomy sound",
+    "z": 0.96,
+    "cosine": 0.2
+   },
+   {
+    "term": "a warm sound",
+    "z": 0.58,
+    "cosine": 0.192
+   },
+   {
+    "term": "a metallic sound",
+    "z": 0.53,
+    "cosine": 0.076
+   }
+  ],
+  "production": [
+   {
+    "term": "a professionally mixed and mastered music track",
+    "z": 1.49,
+    "cosine": 0.383
+   },
+   {
+    "term": "a pure sine wave tone",
+    "z": -0.2,
+    "cosine": 0.052
+   },
+   {
+    "term": "a robotic synthetic sound",
+    "z": -0.47,
+    "cosine": 0.098
+   }
+  ]
+ },
+ "audioset": [
+  {
+   "label": "Music",
+   "p": 0.838
+  },
+  {
+   "label": "Scary music",
+   "p": 0.252
+  },
+  {
+   "label": "Soundtrack music",
+   "p": 0.142
+  },
+  {
+   "label": "Ambient music",
+   "p": 0.128
+  },
+  {
+   "label": "Theme music",
+   "p": 0.097
+  }
+ ],
+ "character": [],
+ "distinct_windows": [
+  {
+   "start": 40.0,
+   "end": 50.0,
+   "top_tag": {
+    "term": "a rising riser building tension",
+    "category": "transitions",
+    "z": 1.6,
+    "cosine": 0.249,
+    "verdict": "no match"
+   },
+   "audioset": [
+    {
+     "label": "Music",
+     "p": 0.812
+    },
+    {
+     "label": "Scary music",
+     "p": 0.247
+    },
+    {
+     "label": "Soundtrack music",
+     "p": 0.137
+    }
+   ]
+  },
+  {
+   "start": 70.0,
+   "end": 80.0,
+   "top_tag": {
+    "term": "a big drum hit",
+    "category": "impacts",
+    "z": 1.92,
+    "cosine": 0.217,
+    "verdict": "no match"
+   },
+   "audioset": [
+    {
+     "label": "Music",
+     "p": 0.838
+    },
+    {
+     "label": "Soundtrack music",
+     "p": 0.138
+    },
+    {
+     "label": "Scary music",
+     "p": 0.104
+    }
+   ]
+  }
+ ],
+ "summary": "60.00 s busy, 5.6 onsets/s, loudness range 5 LU. Music (AudioSet Music 0.84). Unvalidated hints - genre: cinematic orchestral music (z +2.9), epic trailer music (z +2.9); mood (wrong for ~1 in 5 tracks in a test): triumphant and heroic music (z +3.1), dark and tense music (z +3.0). No sound-effect description stands out (closest: a rising riser building tension z +1.6, a big braam z +1.6; tentative). AudioSet: Music 0.84, Scary music 0.25, Soundtrack music 0.14. peak -3.0 dBFS, -16.9 LUFS, brightness 705 Hz, bandwidth 12.9 kHz, side/mid -3 dB. Windows that read differently: 0:40.00-0:50.00 a rising riser building tension (z +1.6; AudioSet Music 0.81); 1:10.00-1:20.00 a big drum hit (z +1.9; AudioSet Music 0.84)."
+}

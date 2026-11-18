@@ -1,0 +1,323 @@
+{
+ "file": "inc-interloper.mp3",
+ "duration_s": 262.66,
+ "samplerate": 44100,
+ "channels": 2,
+ "sounding_from_s": 2.02,
+ "sounding_to_s": 259.11,
+ "lufs_integrated": -21.1,
+ "peak_dbfs": -0.1,
+ "spectrum": {
+  "1_4k_share_pct": 1.2,
+  "1_4k_rel_dB": -19.2,
+  "below_250_share_pct": 95.1,
+  "centroid_median_hz": 382
+ },
+ "key": {
+  "key": "C# minor",
+  "corr": 0.371,
+  "runner_up": "A major",
+  "runner_up_corr": 0.216
+ },
+ "tempo_bpm": 136.0,
+ "tempo_raw_bpm": 136.0,
+ "tempo_fix": null,
+ "catalog_bpm": "none",
+ "pulse_clarity": 0.13,
+ "beat_interval_cv": 0.06,
+ "pulsed": false,
+ "loudness_5s_lufs": [
+  -23.8,
+  -23.0,
+  -22.6,
+  -20.1,
+  -20.5,
+  -20.5,
+  -21.8,
+  -15.4,
+  -24.8,
+  -24.4,
+  -20.8,
+  -20.7,
+  -25.6,
+  -23.9,
+  -19.5,
+  -23.2,
+  -18.7,
+  -19.7,
+  -18.7,
+  -18.3,
+  -17.1,
+  -21.3,
+  -20.3,
+  -18.1,
+  -19.9,
+  -17.1,
+  -22.6,
+  -24.2,
+  -24.5,
+  -24.3,
+  -23.4,
+  -23.1,
+  -22.7,
+  -23.4,
+  -22.9,
+  -22.1,
+  -24.2,
+  -22.6,
+  -22.8,
+  -23.2,
+  -24.2,
+  -23.9,
+  -24.0,
+  -23.9,
+  -22.9,
+  -23.4,
+  -24.2,
+  -24.8,
+  -20.5,
+  -19.1,
+  -17.3,
+  -39.8,
+  null
+ ],
+ "bar_s": null,
+ "grid_unit": "2s",
+ "sections": [
+  {
+   "label": "A",
+   "start_s": 0.0,
+   "end_s": 38.0,
+   "units": 19,
+   "rel_level_db": -18.5
+  },
+  {
+   "label": "B",
+   "start_s": 38.0,
+   "end_s": 54.0,
+   "units": 8,
+   "rel_level_db": -27.4
+  },
+  {
+   "label": "C",
+   "start_s": 54.0,
+   "end_s": 76.0,
+   "units": 11,
+   "rel_level_db": -16.5
+  },
+  {
+   "label": "D",
+   "start_s": 76.0,
+   "end_s": 126.0,
+   "units": 25,
+   "rel_level_db": -11.6
+  },
+  {
+   "label": "E",
+   "start_s": 126.0,
+   "end_s": 138.0,
+   "units": 6,
+   "rel_level_db": -13.1
+  },
+  {
+   "label": "F",
+   "start_s": 138.0,
+   "end_s": 152.0,
+   "units": 7,
+   "rel_level_db": -14.4
+  },
+  {
+   "label": "G",
+   "start_s": 152.0,
+   "end_s": 166.0,
+   "units": 7,
+   "rel_level_db": -13.4
+  },
+  {
+   "label": "H",
+   "start_s": 166.0,
+   "end_s": 178.0,
+   "units": 6,
+   "rel_level_db": -13.4
+  },
+  {
+   "label": "I",
+   "start_s": 178.0,
+   "end_s": 198.0,
+   "units": 10,
+   "rel_level_db": -13.7
+  },
+  {
+   "label": "J",
+   "start_s": 198.0,
+   "end_s": 206.0,
+   "units": 4,
+   "rel_level_db": -14.0
+  },
+  {
+   "label": "I",
+   "start_s": 206.0,
+   "end_s": 220.0,
+   "units": 7,
+   "rel_level_db": -13.9
+  },
+  {
+   "label": "K",
+   "start_s": 220.0,
+   "end_s": 228.0,
+   "units": 4,
+   "rel_level_db": -13.4
+  },
+  {
+   "label": "L",
+   "start_s": 228.0,
+   "end_s": 242.0,
+   "units": 7,
+   "rel_level_db": -14.5
+  },
+  {
+   "label": "M",
+   "start_s": 242.0,
+   "end_s": 252.0,
+   "units": 5,
+   "rel_level_db": -11.4
+  },
+  {
+   "label": "N",
+   "start_s": 252.0,
+   "end_s": 262.66,
+   "units": 5,
+   "rel_level_db": -41.2
+  }
+ ],
+ "novelty_peaks_s": [
+  38.0,
+  54.0,
+  76.0,
+  126.0,
+  138.0,
+  152.0,
+  166.0,
+  178.0,
+  198.0,
+  206.0,
+  220.0,
+  228.0,
+  242.0,
+  252.0
+ ],
+ "loops": [
+  {
+   "from_s": 6.0,
+   "to_s": 66.0,
+   "units": 30,
+   "len_s": 60.0,
+   "similarity": 0.881
+  },
+  {
+   "from_s": 86.0,
+   "to_s": 102.0,
+   "units": 8,
+   "len_s": 16.0,
+   "similarity": 0.808
+  },
+  {
+   "from_s": 92.0,
+   "to_s": 122.0,
+   "units": 15,
+   "len_s": 30.0,
+   "similarity": 0.699
+  },
+  {
+   "from_s": 194.0,
+   "to_s": 210.0,
+   "units": 8,
+   "len_s": 16.0,
+   "similarity": 0.696
+  },
+  {
+   "from_s": 100.0,
+   "to_s": 116.0,
+   "units": 8,
+   "len_s": 16.0,
+   "similarity": 0.692
+  },
+  {
+   "from_s": 182.0,
+   "to_s": 212.0,
+   "units": 15,
+   "len_s": 30.0,
+   "similarity": 0.671
+  }
+ ],
+ "section_cut_points_s": [
+  38.0,
+  54.0,
+  76.0,
+  126.0,
+  138.0,
+  152.0,
+  166.0,
+  178.0,
+  198.0,
+  206.0,
+  220.0,
+  228.0,
+  242.0,
+  252.0
+ ],
+ "strong_novelty_points_s": [
+  36.0,
+  38.0,
+  40.0,
+  76.0,
+  126.0,
+  240.0,
+  242.0,
+  244.0
+ ],
+ "quiet_bar_starts_s": [
+  2.0,
+  4.0,
+  6.0,
+  8.0,
+  10.0,
+  12.0,
+  14.0,
+  18.0,
+  20.0,
+  22.0,
+  24.0,
+  26.0,
+  28.0,
+  30.0,
+  32.0,
+  34.0,
+  36.0,
+  38.0,
+  40.0,
+  44.0,
+  46.0,
+  48.0,
+  52.0,
+  56.0,
+  58.0,
+  60.0,
+  62.0,
+  64.0,
+  66.0,
+  68.0,
+  70.0,
+  72.0,
+  74.0,
+  76.0,
+  78.0,
+  80.0,
+  82.0,
+  84.0,
+  86.0,
+  88.0
+ ],
+ "phrase_points_s": [],
+ "id": "inc-interloper"
+}

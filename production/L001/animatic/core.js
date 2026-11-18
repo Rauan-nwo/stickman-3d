@@ -91,9 +91,9 @@ const SPOTS = {
   box: { a: [.4, .6], b: [.62, .6], prop: [.5, .55] },
 };
 // вставки: [x, y] точка на плейте, третьим — другой плейт той же локации (табличка на двери — на обратном плейте и т. п.)
-const PROP_AT = { 21: [.6, .42], 44: [.8, .32], 87: [.6, .42], 105: [.52, .66], 122: [.38, .42, 'bg_megaspeed_reverse'], 129: [.82, .56], 145: [.38, .42, 'bg_megaspeed_reverse'], 157: [.52, .55],
-  125: [.3, .62, 'bg_megaspeed_office'], 134: [.33, .4, 'bg_megaspeed_office'], 142: [.33, .5, 'bg_megaspeed_office'], 178: [.33, .5, 'bg_megaspeed_office'], 183: [.2, .6, 'bg_megaspeed_reverse'], 205: [.6, .4, 'bg_megaspeed_reverse'],
-  167: [.5, .55], 174: [.25, .62], 202: [.72, .62], 231: [.4, .3, 'bg_washington_reverse'], 276: [.6, .42], 281: [.3, .7], 288: [.3, .7], 325: [.66, .62], 340: [.88, .36], 69: [.55, .32] };
+const PROP_AT = { 22: [.6, .42], 48: [.8, .32], 91: [.6, .42], 109: [.52, .66], 126: [.38, .42, 'bg_megaspeed_reverse'], 133: [.82, .56], 149: [.38, .42, 'bg_megaspeed_reverse'], 161: [.52, .55],
+  129: [.3, .62, 'bg_megaspeed_office'], 138: [.33, .4, 'bg_megaspeed_office'], 146: [.33, .5, 'bg_megaspeed_office'], 182: [.33, .5, 'bg_megaspeed_office'], 187: [.2, .6, 'bg_megaspeed_reverse'], 209: [.6, .4, 'bg_megaspeed_reverse'],
+  171: [.5, .55], 178: [.25, .62], 206: [.72, .62], 238: [.4, .3, 'bg_washington_reverse'], 283: [.6, .42], 288: [.3, .7], 295: [.3, .7], 332: [.66, .62], 349: [.88, .36], 73: [.55, .32] };
 const LOCP = { 'L01-restaurant': ['restaurant', 'restaurant_reverse'], 'L02-sg-street': ['bg_singapore_street'], 'L03-host-office': ['host_office'],
   'L04-washington': ['bg_washington_cold', 'bg_washington_reverse'], 'L05-beijing': ['bg_beijing_office'], 'L06-nvidia-office': ['bg_nvidia_office_dry', 'bg_nvidia_office_reverse'],
   'L07-dennys': ['bg_diner_day'], 'L08-kentucky': ['bg_kentucky_day'], 'L09-megaspeed': ['bg_megaspeed_office', 'bg_megaspeed_reverse'],
@@ -352,7 +352,7 @@ export function animatic(stage, opt, HK = {}) {
       const ovl = HK.over && HK.over(s); if (ovl) ovl(ctx, s, t, d, API);
       if (/титр ролика/.test(s.framing)) videoTitle(ctx, t, d);
       // подписи
-      const lt = LOWER[s.n]; if (lt) lt.forEach(([name, role, at], i) => T.lowerThird(ctx, t, { name, role, at: at * d, out: lt[i + 1] ? lt[i + 1][2] * d - .1 : null }));
+      const lt = LOWER[s.n]; if (lt) lt.forEach(([name, role, at], i) => T.lowerThird(ctx, t, { name, role, at: at * d, out: lt[i + 1] ? lt[i + 1][2] * d - .1 : s.whip ? s.whip.t - .5 : null }));   // плашка уходит до вип-пана на другого
       if (YEAR[s.n]) { ctx.save(); ctx.font = `bold 64px 'Courier New', monospace`; ctx.fillStyle = 'rgba(241,230,204,.9)'; ctx.globalAlpha = clamp(t / .4); ctx.fillText(YEAR[s.n], 90, 140); ctx.restore(); }
     }
     // переходы (conf.js TRANS) + засвет перед титром главы
@@ -487,10 +487,12 @@ export function animatic(stage, opt, HK = {}) {
         if (sib && p.q === p.e.quotes[0] && t > p.e.t + .45) return;           // «SEND» → «SENT»: второе сменяет первое
         if (sib && p.q !== p.e.quotes[0] && t <= p.e.t + .45) return;
         const onClip = !!CLIP_OF(s), wallB = s.loc === 'L04-washington' && /вставка доска/.test(s.framing), px = wallB ? W * .8 : s.loc === 'T-doc' ? W * .835 : s.loc === 'T-number' ? W * .8 : onClip ? W * .2 : W / 2, py = wallB ? H * .45 : s.loc === 'T-number' ? H * .4 : onClip ? H * .12 : H * .2;   // на цифре — справа от числа; на готовой 3D-сцене — в углу
-        prop(ctx, p.q, p.e.kind, px, py + (k % 4) * 104, t - p.e.t, /^T-(doc|number)$/.test(s.loc) ? 560 : onClip ? 700 : W - 120); });   // у документа — на правом поле, не на шапке   // на цифре — под числом, не на шапке
+        prop(ctx, p.q, p.e.kind, px, py + (k % 4) * 124, t - p.e.t, /^T-(doc|number)$/.test(s.loc) ? 560 : onClip ? 700 : W - 120); });   // у документа — на правом поле, не на шапке   // на цифре — под числом, не на шапке
       // заметка о действии: одна, текущая
       let cur = null; for (const e of ev) if (t >= e.t) cur = e;
       if (cur && !HK.final && opt.sheet !== '1' && !(/титр ролика/.test(s.framing) && t > d - 1.9)) note(ctx, cur.note, t - cur.t);   // под названием ролика заметок нет
+      for (const e of ev) if (/лампа (мигает|вздрагивает|щёлкает)|свет мигает/.test(e.note)) lampFlicker(ctx, t - e.t);
+      if (/каскад отыгрышей/.test(s.event)) callbacks(ctx, t);
       const fl = /вспышк|щелч|затвор|flash|фотограф|селфи/i.test(s.event + s.framing) && !/фоторамк|без вспыш/.test(s.event);
       const flh = HK.flash ? HK.flash(s) : null;
       if (flh ?? fl) flash(ctx, W * .62, H * .38, t, s.snap ?? d * .45);
@@ -530,6 +532,17 @@ export function animatic(stage, opt, HK = {}) {
       ctx.save(); ctx.globalCompositeOperation = 'lighter';
       const g = ctx.createRadialGradient(x, y, 0, x, y, 900); g.addColorStop(0, `rgba(255,255,255,${.95 * k * (1 - u)})`); g.addColorStop(1, 'rgba(255,255,255,0)');
       ctx.fillStyle = g; ctx.fillRect(0, 0, W, H); ctx.fillStyle = `rgba(255,255,255,${.35 * k * (1 - u)})`; ctx.fillRect(0, 0, W, H); ctx.restore();
+    }
+    function lampFlicker(ctx, u) {          // лампа мигает: два провала света за 0.3 с
+      if (u < 0 || u > .3) return; const a = (u < .07 || (u > .14 && u < .2)) ? .55 : .12;
+      ctx.save(); ctx.fillStyle = `rgba(0,0,0,${a})`; ctx.fillRect(0, 0, W, H); ctx.restore();
+    }
+    function callbacks(ctx, t) {            // финал: снимок агентов, ключ, пустой стул, тост — по 0.28 с на вспышке, перед тем как гаснет лампа
+      const seq = [['restaurant', 'THE PHOTO'], ['host_office', 'THE KEY'], ['bg_desk_restaurant_top', 'THE EMPTY CHAIR'], ['restaurant_reverse', 'THE TOAST']];
+      const k = Math.floor((t - .15) / .28); if (t < .15 || k >= seq.length) return; const u = (t - .15) - k * .28, [key, lab] = seq[k];
+      drawImg(ctx, I[key], plateView(1.25 + .06 * u / .28, [.5, .5]));
+      ctx.save(); ctx.fillStyle = `rgba(255,255,255,${Math.max(0, .9 - u * 6)})`; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = 'rgba(0,0,0,.6)'; ctx.fillRect(0, H - 120, W, 120); ctx.fillStyle = '#f1e6cc'; ctx.font = "600 52px Georgia, serif"; ctx.textAlign = 'center'; ctx.fillText(lab, W / 2, H - 45); ctx.restore();
     }
     function snapsBack(ctx, t) {              // D26-B: три наших снимка (письмо, объектив, тост) падают на стол и улетают назад
       ['LETTER · NOV 8', "AGENT'S LENS", 'THE TOAST'].forEach((lab, i) => {
@@ -591,7 +604,8 @@ export function animatic(stage, opt, HK = {}) {
       if (sz === 'top') { key = 'bg_desk_topdown'; if (s.loc === 'L05-beijing') tint = 'rgba(200,90,80,1)'; }
       if (sz === 'ins' && PROP_AT[s.n] && PROP_AT[s.n][2]) key = /7ROAD|7Road/.test(s.framing + ' ' + s.event) ? 'bg_megaspeed_reverse_7road' : PROP_AT[s.n][2];
       const name = sp || nameOf(s), sizeK = sz === 'rev' && /^обратная (\S+)/.test(s.framing) && nameOf(s) ? 'ms' : sz;
-      let focus = sz === 'ins' ? (PROP_AT[s.n] || SPOTS[key].prop) : name ? spotFor(key, name.split(' · ')[0]) : [.5, .5];
+      let focus = sz === 'ins' ? (PROP_AT[s.n] || (s.loc === 'L03-host-office' && /сейф/.test(s.framing) ? [.88, .36] : SPOTS[key].prop)) : name ? spotFor(key, name.split(' · ')[0]) : [.5, .5];
+      if (s.loc === 'L03-host-office' && /сейф/.test(s.framing)) focus = [.88, .36];   // сейф — справа у стены, при любой крупности
       const lensPov = sz === 'pov' && s.loc === 'L01-restaurant';      // объектив агента в зале: смотрит на их стол, а не в окно
       if (sz === 'pov') focus = lensPov ? [.5, .64] : [.89, .38];
       let wu = null, WA, WB;
@@ -620,7 +634,7 @@ export function animatic(stage, opt, HK = {}) {
       if (lensPov) tag3d(ctx, "AGENT'S LENS from behind the menu: Jensen + Alice at their table");
       if (sz === 'ins' && /край стола/.test(s.framing)) chipUnderTable(ctx, t, s.snap ?? d * .5);
       if (s.loc === 'L03-host-office') hostProps(ctx, s, t, d, sz);
-      if (sz === 'ins' && /монитор|экран|планшет|график|селфи|ноутбук/.test(s.framing)) screen(ctx, t);
+      if (sz === 'ins' && /монитор|экран|планшет|график|селфи|ноутбук/.test(s.framing)) screen(ctx, t, s);
       if (sz === 'ins' && /вставка доска/.test(s.framing) && s.loc === 'L04-washington') whiteboard(ctx, t);
       if (sz === 'ins' && /ящик стола/.test(s.framing)) drawer(ctx, t, s.snap ?? d * .5);
       if (sz === 'ins' && /шахмат|ворот/.test(s.framing) && s.loc === 'L05-beijing') { ctx.save(); ctx.translate(W / 2, H / 2); ctx.scale(1.25, 1.25); ctx.translate(-W / 2, -H / 2); chess(ctx, t, d); ctx.restore(); }
@@ -664,7 +678,7 @@ export function animatic(stage, opt, HK = {}) {
     function hostProps(ctx, s, t, d, sz) {      // кабинет ведущего: коробка Nvidia и латунный ключ, которых нет на плейте
       const f = s.framing + ' ' + s.event;
       if (/коробк/.test(s.framing) || (sz === 'ws' && /коробк/.test(f))) {
-        const bx = sz === 'ins' ? W * .5 : W * .56, by = sz === 'ins' ? H * .58 : H * .52, sc = sz === 'ins' ? 1 : .32, tap = /стучит/.test(f) && Math.sin(t * 22) > .6 ? 4 : 0;
+        const near = sz === 'ins' || sz === 'cu' || sz === 'xcu', bx = near ? W * .5 : W * .56, by = near ? H * .58 : H * .52, sc = near ? 1 : .32, tap = /стучит/.test(f) && Math.sin(t * 22) > .6 ? 4 : 0;
         ctx.save(); ctx.translate(bx, by + tap); ctx.scale(sc, sc); ctx.fillStyle = '#121214'; ctx.strokeStyle = '#3a3a40'; ctx.lineWidth = 6;
         ctx.beginPath(); ctx.roundRect(-330, -170, 660, 340, 14); ctx.fill(); ctx.stroke(); ctx.fillStyle = '#76b900'; ctx.fillRect(-330, -30, 660, 60);
         ctx.fillStyle = '#f1f1f1'; ctx.font = "800 64px Bahnschrift, sans-serif"; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('NVIDIA', 0, -95); ctx.restore();
@@ -677,9 +691,18 @@ export function animatic(stage, opt, HK = {}) {
         const gl = .5 + .5 * Math.sin(t * 5); ctx.fillStyle = `rgba(255,250,220,${.5 * gl})`; ctx.beginPath(); ctx.arc(-138, -22, 10, 0, 6.283); ctx.fill(); ctx.restore();
       }
     }
-    function screen(ctx, t) {                    // экран/монитор/планшет крупно: рамка; на нём — вещи из колонки «событие»
+    function screen(ctx, t, s) {                 // экран/монитор/планшет крупно: рамка; на нём — вещи из колонки «событие»
       ctx.save(); ctx.fillStyle = '#0d0f14'; ctx.strokeStyle = '#2e3340'; ctx.lineWidth = 14; ctx.beginPath(); ctx.roundRect(W * .2, H * .1, W * .6, H * .62, 22); ctx.fill(); ctx.stroke();
-      ctx.fillStyle = 'rgba(80,160,220,.16)'; ctx.fillRect(W * .2 + 20, H * .1 + 20, W * .6 - 40, H * .62 - 40); ctx.restore();
+      const x0 = W * .2 + 20, y0 = H * .1 + 20, w = W * .6 - 40, h = H * .62 - 40;
+      if (s && /кадр ТВ/.test(s.framing) && ok(I.bg_taipei_bar_dry)) {   // кадр ТВ: ужин в Тайбэе, зерно, подпись канала
+        const im = I.bg_taipei_bar_dry; ctx.save(); ctx.beginPath(); ctx.rect(x0, y0, w, h); ctx.clip(); ctx.filter = 'saturate(.6) contrast(1.1)';
+        ctx.drawImage(im, 0, 0, im.naturalWidth, im.naturalHeight, x0 - t * 12, y0, w * 1.1, h * 1.1); ctx.filter = 'none';
+        for (let k = 0; k < 2; k++) { ctx.fillStyle = 'rgba(10,10,14,.75)'; ctx.beginPath(); ctx.arc(x0 + w * (.42 + k * .14), y0 + h * .55, 36, 0, 6.283); ctx.fill(); ctx.fillRect(x0 + w * (.42 + k * .14) - 40, y0 + h * .55 + 30, 80, 120); }
+        ctx.fillStyle = 'rgba(255,255,255,.05)'; for (let y = y0; y < y0 + h; y += 4) ctx.fillRect(x0, y, w, 1);
+        ctx.fillStyle = '#b3121b'; ctx.fillRect(x0, y0 + h - 70, w, 70); ctx.fillStyle = '#fff'; ctx.font = "700 34px 'Segoe UI', sans-serif"; ctx.textBaseline = 'middle';
+        ctx.fillText('TAIPEI · JUNE 2024 · GROUP DINNER', x0 + 24, y0 + h - 35); ctx.restore();
+      } else { ctx.fillStyle = 'rgba(80,160,220,.16)'; ctx.fillRect(x0, y0, w, h); }
+      ctx.restore();
     }
     function drawer(ctx, t, tS) {           // ящик стола выдвигается к камере, в нём зелёная коробочка с чипом; на ударном слове крышка открывается
       const k = outCubic(clamp(t / Math.max(.4, tS))), y = lerp(H * .62, H * .5, k);
