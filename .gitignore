@@ -7,6 +7,8 @@ raw/_secrets/
 *.wav
 *.mp3
 *.m4a
+*.flac
+*.ogg
 *.aep
 *.prproj
 production/**/renders/

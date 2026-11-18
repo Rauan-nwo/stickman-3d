@@ -35,7 +35,7 @@ film/out/<name>.mp4 ─ python sound/vis.py ─> out/vis_<name>.json (покад
 ## Команды (из `production/L001`)
 
 ```
-node sound/cues.mjs --ch 0,1
+node sound/cues.mjs --ch 0,1          # --cut-all — звук и на склейках внутри одной сцены (по умолчанию они немые)
 C:/dev/tools/sound-venv/Scripts/python.exe sound/music_plan.py
 C:/dev/tools/sound-venv/Scripts/python.exe sound/render.py --name ch0_1 --frames film/out/ch0_1.frames.json --video film/out/ch0_1.mp4
 C:/dev/tools/sound-venv/Scripts/python.exe sound/vis.py film/out/ch0_1.mp4 sound/out/vis_ch0_1.json

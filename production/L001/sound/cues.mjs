@@ -4,7 +4,7 @@
 // ручная постановка звука для планов с настоящими героями (cues_manual.mjs: время — по формулам film/shots.js).
 // Секунд в коде нет: всё считается из animatic/timing.json и animatic/words.json; перетайминг — просто перезапуск.
 //
-//   node production/L001/sound/cues.mjs [--ch 0,1]      -> sound/cues.json (все главы) + sound/CUES.md (таблица по --ch)
+//   node production/L001/sound/cues.mjs [--ch 0,1] [--cut-all]   -> sound/cues.json (все главы) + sound/CUES.md (таблица по --ch)
 //
 // Запись звука (cue): t — секунда фильма, в которую звук должен «попасть» (кадр события); align — какая точка звука
 // ставится на t: onset (атака удара), apex (пик свиста), end (конец райзера), span (звук длится dur с t);
@@ -34,6 +34,7 @@ const SKIP_PROPS = (() => {   // ключи — номер плана или 'г
 
 const args = process.argv.slice(2), arg = (k, d) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : d; };
 const CH = arg('--ch', '0,1').split(',').map(Number);
+const CUT_ALL = args.includes('--cut-all');   // звук и на склейках внутри одной сцены (по умолчанию они немые: их держит подложка)
 
 // ---------- слова ----------
 const norm = w => w.toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9$%]/g, '');
@@ -199,6 +200,7 @@ shots.forEach((s, i) => {
     else if (s.loc.startsWith('3D-') && !pv.loc.startsWith('3D-')) add(s, { t: T + 1 / FPS, vt: T, snd: 'whoosh.air', align: 'apex', kind: 'transition', what: `${what}: в 3D`, vis: 'cut' });
     else if (isPlace(s.loc) && isPlace(pv.loc) && bedOf(s) !== bedOf(pv)) add(s, { t: T + 1 / FPS, vt: T, snd: 'whoosh.cut', align: 'apex', kind: 'transition', what: `${what}: смена места`, vis: 'cut' });
     else if (!/^T-/.test(s.loc) && /^T-(doc|card|map|board|number|split|joke|desk)$/.test(pv.loc)) add(s, { t: T + 1 / FPS, vt: T, snd: 'whoosh.cut', gain: -3, align: 'apex', kind: 'transition', what: `${what}: из вставки обратно в сцену`, vis: 'cut' });
+    else if (CUT_ALL) add(s, { t: T + 1 / FPS, vt: T, snd: 'whoosh.cut', gain: -8, align: 'apex', kind: 'transition', what: `${what}: склейка внутри сцены (--cut-all)`, vis: 'cut' });
     if (tr === 'speed') add(s, { t: T + (s.snap ?? d * .4) + .1, snd: 'whoosh.speed', align: 'apex', kind: 'transition', what: 'линии скорости', vis: 'motion' });
   }
   // засвет в конце плана перед белым переходом — райзер ставится выше (end на склейке)

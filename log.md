@@ -103,3 +103,6 @@ touched: production/L001/voice_fish/fish_voice.py, production/L001/voice_fish/ca
 
 ## [2026-11-17 19:20] video | L001 звук: исследование (конкурент, лицензии, инструменты), конвейер production/L001/sound (монтажный лист из шотлиста, синтез 100+ классов, прослушивание earshot, сведение −14 LUFS со стемами, самопроверка), пилот гл. 0–1
 touched: production/L001/sound/, wiki/craft/sound-design-longform.md, wiki/craft/stickman-noir.md, index.md
+
+## [2026-11-18 09:50] video | L001 звук, пилот гл. 0–1 на новой картинке: 143 звука (53 из записей CC0/слоёв), библиотека 184 записи CC0 с реестром лицензий, музыка по тактам (Covert Affair, I Knew a Guy — CC BY 4.0), мастер −14.0 LUFS / −1.3 dBTP, 67 из 67 событий в ±1 кадр, WER микса 0.5 %; варианты полный и скромный; русский голос в картинку по английскому таймингу не влезает (отчёт RU_FIT.md); замер конкурента и правила — wiki
+touched: production/L001/sound/ (cues.mjs, cues_manual.mjs, synth.py, render.py, check.py, vis.py, music_plan.py, ru_fit.py, tools/, lib/, music/, competitor/, LICENSES.md, CUES.md, README.md), production/L001/film/out/ch0_1_sound.mp4, ch0_1_sound_lean.mp4, wiki/craft/sound-design-longform.md, wiki/craft/stickman-noir.md, index.md, .gitignore

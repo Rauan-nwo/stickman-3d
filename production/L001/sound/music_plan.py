@@ -67,7 +67,7 @@ def resolve(p, C):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument('--spec', default=str(HERE / 'music_spec.json')); ap.add_argument('--grid', action='store_true')
+    ap = argparse.ArgumentParser(); ap.add_argument('--spec', default=str(HERE / 'music_spec.json')); ap.add_argument('--grid', action='store_true'); ap.add_argument('--out', default=str(HERE / 'music_plan.json'))
     a = ap.parse_args()
     spec = json.load(open(a.spec, encoding='utf-8')); C = json.load(open(HERE / 'cues.json', encoding='utf-8'))
     gcache, segs = {}, []
@@ -93,7 +93,7 @@ def main():
         t = resolve(h['at'], C); holds.append({'t0': round(t - h.get('pre', .3), 3), 't1': round(t + h.get('post', 2), 3), 'db': h.get('db', -4)})
     out = {'note': 'music_plan.py из music_spec.json — не править руками', 'segments': segs, 'holds': holds,
            'grids': {k: {kk: v for kk, v in g.items() if kk != 'beats'} for k, g in gcache.items()}}
-    json.dump(out, open(HERE / 'music_plan.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    json.dump(out, open(a.out, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     for s in segs: print(f"{s['id']}: {s['file']} src {s['src_in']:.2f}->{s['src_out']:.2f} film {s['film_in']:.2f}->{s['film_out']:.2f} bpm {s['bpm']} bar {s['bar']}")
     if a.grid:
         for k, g in gcache.items(): print(k, 'bpm', g['bpm'], 'bar', g['bar'], 'downbeats', g['downbeats'][:16])

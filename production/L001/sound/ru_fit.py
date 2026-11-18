@@ -44,6 +44,16 @@ def main():
     en_t, ru_t = sum(x['en'] for x in rows), sum(x['ru'] for x in rows)
     od = HERE / 'out' / a.name; od.mkdir(parents=True, exist_ok=True)
     ok = not bad
+    proj = []   # что даёт принятая в проекте укладка (fish_voice_ru_place.py: ускорение до ×1.3 и сдвиг следующих строк)
+    rp = L / 'out/voice_ru_report.json'
+    if rp.exists():
+        R = [x for x in json.load(open(rp, encoding='utf-8'))['lines'] if x['target'] < t1]
+        if R:
+            lim = max(x['tempo'] for x in R); worst = max(R, key=lambda x: x['shift'])
+            proj = [f'Проектная укладка `fish_voice_ru_place.py` (`out/voice_ru.mp3`, ускорение до ×{lim:.2f}) на этом куске: '
+                    f'{sum(x["tempo"] >= lim - .001 for x in R)} строк из {len(R)} на пределе ускорения, {sum(x["shift"] > .25 for x in R)} строк начинаются позже своего плана '
+                    f'больше чем на 0.25 с (худшая — строка {worst["line"]}, {worst["speaker"]}: +{worst["shift"]:.2f} с), последняя строка кончается на '
+                    f'{R[-1]["end"]:.2f} с при конце куска {t1:.2f} с' + (' — **обрывается на полуслове**.' if R[-1]['end'] > t1 + .05 else '.'), '']
     md = [f'# Русский голос на картинке {a.name} — влезает ли', '',
           f'Окно 0–{min(t1, rows[-1]["film_start"] + rows[-1]["slot"]):.2f} с, строк {len(rows)}. Английская речь {en_t:.1f} с, русская {ru_t:.1f} с '
           f'(**×{ru_t / en_t:.2f}**). Допустимое ускорение ≤ ×{a.max_tempo}.', '',
@@ -52,7 +62,7 @@ def main():
            f'без ускорения голос отстаёт от картинки до {max(x["late_if_untouched"] for x in rows):.1f} с и кончается на '
            f'{prev_end:.1f} с при длине куска {min(t1, 1e8):.1f} с. Вариант с русским голосом на этой картинке не собран — '
            'русской версии нужен свой тайминг картинки (make_timing по русским строкам) или более короткий русский текст.'), '',
-          '| строка | кто | старт в фильме | окно, с | EN, с | RU, с | лишнее, с | нужно ускорение | текст |', '|---|---|---|---|---|---|---|---|---|']
+          *proj, '| строка | кто | старт в фильме | окно, с | EN, с | RU, с | лишнее, с | нужно ускорение | текст |', '|---|---|---|---|---|---|---|---|---|']
     for x in rows:
         md.append(f'| {x["line"]} | {x["speaker"]} | {x["film_start"]:.2f} | {x["slot"]:.2f} | {x["en"]:.2f} | {x["ru"]:.2f} | {max(0, x["over"]):.2f} | '
                   f'{"**×%.2f**" % x["tempo_needed"] if x["tempo_needed"] > a.max_tempo else "×%.2f" % max(1, x["tempo_needed"])} | {x["text"][:70]} |')

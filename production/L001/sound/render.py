@@ -391,8 +391,8 @@ def render_music(plan, t0, n, mask, voice_lufs, marks):
         if fo: y[-fo:] *= np.linspace(1, 0, fo)[:, None]
         Lm = METER.integrated_loudness(y) if len(y) > SR else -30
         y = y * lin(voice_lufs - Lm + seg.get('gain_db', 0))
-        i0 = int(round((seg['film_in'] - t0) * SR)); j0 = max(0, -i0)
-        if i0 < n: out[max(0, i0):max(0, i0) + len(y) - j0] += y[j0:j0 + n - max(0, i0)].astype(np.float32)
+        i0 = int(round((seg['film_in'] - t0) * SR)); a0 = max(0, i0); j0 = a0 - i0; Lc = min(len(y) - j0, n - a0)   # часть отрезка внутри окна
+        if Lc > 0: out[a0:a0 + Lc] += y[j0:j0 + Lc].astype(np.float32)
         info.append({**seg, 'lufs_src': round(Lm, 1)})
     if not plan.get('segments'): return out, info, None
     # сайдчейн: под речью music_speech_db, в паузах music_pause_db; подъёмы в точках плана (стинги)
@@ -468,6 +468,7 @@ def main():
     ap.add_argument('--name', default='ch0_1'); ap.add_argument('--t0', type=float, default=None); ap.add_argument('--t1', type=float, default=None)
     ap.add_argument('--frames', default=None); ap.add_argument('--video', default=None); ap.add_argument('--voice', default='out/voice_fish_en.mp3')
     ap.add_argument('--no-music', action='store_true'); ap.add_argument('--lean', action='store_true', help='скромный вариант: без мелких звуков')
+    ap.add_argument('--music-plan', default=str(HERE / 'music_plan.json'))
     ap.add_argument('--voice-wav', default=None, help='готовый голос на шкале фильма (напр. русский из ru_fit.py); речь ищется по огибающей')
     ap.add_argument('--suffix', default='_sound', help='хвост имени видео: <видео><suffix>.mp4')
     ap.add_argument('--tail-fade', type=float, default=.4, help='спад в конце куска, с (0 — без спада)')
@@ -481,7 +482,7 @@ def main():
         fr = json.load(open(a.frames)); t0 = fr['F0'] / 30 if t0 is None else t0; t1 = fr['F1'] / 30 if t1 is None else t1
     t0 = t0 or 0.0; t1 = t1 or timing['total']; n = int(round((t1 - t0) * SR))
     rec_map = json.load(open(HERE / 'palette_rec.json', encoding='utf-8')) if (HERE / 'palette_rec.json').exists() else {}
-    plan = {} if a.no_music or not (HERE / 'music_plan.json').exists() else json.load(open(HERE / 'music_plan.json', encoding='utf-8'))
+    plan = {} if a.no_music or not Path(a.music_plan).exists() else json.load(open(a.music_plan, encoding='utf-8'))
     od = HERE / 'out' / a.name; od.mkdir(parents=True, exist_ok=True)
 
     if a.voice_wav:
