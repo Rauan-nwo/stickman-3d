@@ -100,9 +100,12 @@ C:/dev/tools/sound-venv/Scripts/python.exe sound/master_full.py --lang ru [--vid
 
 ## Проверка на «голоса» в фоне
 
-Крики, вопли, плач, визг, мяуканье, сирены в записях и синтезе:
+Крики, вопли, плач, визг, мяуканье, блеяние, совы, сирены в записях и синтезе. Важно: `earshot` AST.probs ждёт звук **48 кГц**
+(сам переводит в 16 кГц); подать 16 кГц — модель слышит всё в 3 раза выше, оценки ложные. Флаг в сумме без голоса —
+сверить по стемам и pyin (настоящий выкрик — голосовая высота 250–1500 Гц), прежде чем что-то убирать.
 ```
 C:/dev/tools/earshot/.venv/Scripts/python.exe sound/tools/library_scan.py --synth        # вся библиотека + классы синтеза -> lib/vocal_scan.json
 C:/dev/tools/sound-venv/Scripts/python.exe -I sound/tools/apply_scan.py [--dry]          # убрать помеченное, журнал в LICENSES.md, пересборка палитры
-C:/dev/tools/earshot/.venv/Scripts/python.exe sound/tools/verify_vocals.py sound/out/ch0_1 --t1 10   # микс: окна 1 с, без голоса < 0.10 (вся глава: --t1 99999 --hop .5 --rest-only)
+C:/dev/tools/earshot/.venv/Scripts/python.exe sound/tools/verify_vocals.py sound/out/ch0_1 --t1 10   # микс: окна 1 с, без голоса < 0.10 (вся глава: --t1 99999 --rest-only)
+bash sound/tools/chapter_runner.sh ch4_6 ch7_8 ch9_10 ch0_1 ch2_3      # главы по мере готовности картинки, по одной: do_chapter + проверка голосов
 ```

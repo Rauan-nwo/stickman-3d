@@ -1,0 +1,4 @@
+[
+ { "out": "raw/bg_oneida_gate.png", "promptFile": "prompts/bg_oneida_gate.txt", "refs": ["raw/bg_kentucky_day.png"], "refMode": "material" },
+ { "out": "raw/bg_huang_hall.png", "promptFile": "prompts/bg_huang_hall.txt", "refs": ["raw/bg_kentucky_day.png"], "refMode": "material" }
+]

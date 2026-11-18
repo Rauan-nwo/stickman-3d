@@ -25,13 +25,12 @@ CC0 с OpenGameArt (`oga-*`) и своя музыка по `music/SUNO_BRIEF.md`
 
 ## Удалено после проверки на крики и визг
 
-Проверка 2026-11-18: каждая запись прослушана классификатором AudioSet (AST, окна 1–5 с, `tools/library_scan.py`); убраны записи, где крик/вопль/плач/стон, визг/мяуканье/вой/лай или сирена выше порога (подложки, окна 5 с: 0.08 / 0.10 / 0.08 в помещении, 0.12 на улице; короткие звуки, окна 1 с: 0.15 / 0.15 / 0.12–0.20). Поводом стал непонятный звук «крик что ли» в начале пилота, который услышал Рауан. Полные цифры — `lib/vocal_scan.json`.
+Проверка 2026-11-18 (`tools/library_scan.py`, AudioSet AST, вход 48 кГц): короткий звук — одним окном целиком, подложка — окнами 5 с. Убрано: крик/вопль/плач/стон ≥ 0.15, визг/мяуканье/блеяние/вой/лай/сова ≥ 0.15, сирена ≥ 0.20 (в помещении ≥ 0.12), плюс записи, убранные по прослушке. Поводом стал непонятный звук «крик что ли» в начале пилота, который услышал Рауан. Первый проход того же дня подавал классификатору 16 кГц вместо 48 кГц (звук в 3 раза выше) — по нему были ошибочно убраны `amb_diner_01`, `amb_port_03`, `phone_ring_02`, `ship_horn_01`; они возвращены. Полные цифры — `lib/vocal_scan.json`.
 
-| запись | автор | страница | что услышано |
+| запись | автор | страница | почему |
 |---|---|---|---|
-| `amb_birds_day_02` | felix.blume | https://freesound.org/people/felix.blume/sounds/328295 | animal Owl 0.158 @10.0s |
-| `amb_diner_01` | ViaTorci | https://freesound.org/people/ViaTorci/sounds/66789 | animal Squeal 0.18 @45.0s |
-| `amb_port_03` | sinewave1kHz | https://freesound.org/people/sinewave1kHz/sounds/207386 | siren Emergency vehicle 0.191 @15.0s |
-| `amb_restaurant_04` | kyles | https://freesound.org/people/kyles/sounds/455727 | animal Squeal 0.133 @0.0s |
-| `phone_ring_02` | meisterleise | https://freesound.org/people/meisterleise/sounds/332073 | animal Squeal 0.612 @0.0s |
-| `ship_horn_01` | Kinoton | https://freesound.org/people/Kinoton/sounds/352374 | siren Siren 0.391 @3.0s |
+| `amb_birds_day_02` | felix.blume | https://freesound.org/people/felix.blume/sounds/328295 | Owl 0.29 (окна 5 с, @10 с) |
+| `amb_cutlery_02` | Berwitz | https://freesound.org/people/Berwitz/sounds/263584 | animal Meow 0.199 @15.0s |
+| `amb_night_01` | PhilllChabbb | https://freesound.org/people/PhilllChabbb/sounds/245834 | animal Owl 0.243 @55.0s |
+| `amb_night_02` | kyles | https://freesound.org/people/kyles/sounds/450556 | animal Owl 0.159 @55.0s |
+| `amb_restaurant_04` | kyles | https://freesound.org/people/kyles/sounds/455727 | тот самый «крик» в начале пилота: блеющий выкрик в гуле зала на 0.5–1.0 с (окна 1 с: Sheep 0.09, Meow 0.07, Animal 0.08; старый микс: Bleat 0.12, Sheep 0.10) |

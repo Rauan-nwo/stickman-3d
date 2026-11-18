@@ -159,10 +159,10 @@
  ],
  "amb.restaurant": [
   {
-   "path": "sound/lib/rec/amb/amb_restaurant_02.wav",
+   "path": "sound/lib/rec/amb/amb_restaurant_01.wav",
    "src": "rec",
-   "name": "amb_restaurant_02",
-   "z": 5.33
+   "name": "amb_restaurant_01",
+   "z": 5.05
   }
  ],
  "amb.cutlery": [
@@ -183,10 +183,10 @@
  ],
  "amb.rain_street": [
   {
-   "path": "sound/lib/rec/amb/amb_rain_street_03.wav",
+   "path": "sound/lib/rec/amb/amb_rain_street_01.wav",
    "src": "rec",
-   "name": "amb_rain_street_03",
-   "z": 3.99
+   "name": "amb_rain_street_01",
+   "z": 3.27
   }
  ],
  "amb.wet_tyres": [
@@ -199,10 +199,10 @@
  ],
  "amb.rain_car": [
   {
-   "path": "sound/lib/rec/amb/amb_rain_car_01.wav",
+   "path": "sound/lib/rec/amb/amb_rain_car_03.wav",
    "src": "rec",
-   "name": "amb_rain_car_01",
-   "z": 6.13
+   "name": "amb_rain_car_03",
+   "z": 5.3
   }
  ],
  "amb.office_tone": [
@@ -215,10 +215,10 @@
  ],
  "amb.clock": [
   {
-   "path": "sound/lib/rec/amb/amb_clock_03.wav",
+   "path": "sound/lib/rec/amb/amb_clock_01.wav",
    "src": "rec",
-   "name": "amb_clock_03",
-   "z": 3.59
+   "name": "amb_clock_01",
+   "z": 4.85
   }
  ],
  "amb.drip": [
@@ -239,18 +239,18 @@
  ],
  "amb.bar": [
   {
-   "path": "sound/lib/rec/amb/amb_bar_03.wav",
+   "path": "sound/lib/rec/amb/amb_bar_01.wav",
    "src": "rec",
-   "name": "amb_bar_03",
-   "z": 4.94
+   "name": "amb_bar_01",
+   "z": 5.56
   }
  ],
  "amb.diner": [
   {
-   "path": "sound/lib/rec/amb/amb_diner_03.wav",
+   "path": "sound/lib/rec/amb/amb_diner_01.wav",
    "src": "rec",
-   "name": "amb_diner_03",
-   "z": 5.65
+   "name": "amb_diner_01",
+   "z": 6.33
   }
  ],
  "amb.dishpit": [
@@ -263,26 +263,26 @@
  ],
  "amb.fluor": [
   {
-   "path": "sound/lib/rec/amb/amb_fluor_01.wav",
+   "path": "sound/lib/rec/amb/amb_fluor_02.wav",
    "src": "rec",
-   "name": "amb_fluor_01",
-   "z": 4.54
+   "name": "amb_fluor_02",
+   "z": 3.3
   }
  ],
  "amb.hall": [
   {
-   "path": "sound/lib/rec/amb/amb_hall_01.wav",
+   "path": "sound/lib/rec/amb/amb_hall_03.wav",
    "src": "rec",
-   "name": "amb_hall_01",
-   "z": 5.5
+   "name": "amb_hall_03",
+   "z": 4.36
   }
  ],
  "amb.hvac": [
   {
-   "path": "sound/lib/rec/amb/amb_hvac_02.wav",
+   "path": "sound/lib/rec/amb/amb_hvac_01.wav",
    "src": "rec",
-   "name": "amb_hvac_02",
-   "z": 4.17
+   "name": "amb_hvac_01",
+   "z": 4.78
   }
  ],
  "amb.newsroom": [
@@ -303,10 +303,10 @@
  ],
  "amb.port": [
   {
-   "path": "sound/lib/rec/amb/amb_port_01.wav",
+   "path": "sound/lib/rec/amb/amb_port_03.wav",
    "src": "rec",
-   "name": "amb_port_01",
-   "z": 5.14
+   "name": "amb_port_03",
+   "z": 2.81
   }
  ],
  "amb.servers": [
@@ -327,10 +327,10 @@
  ],
  "amb.trucks": [
   {
-   "path": "sound/lib/rec/amb/amb_trucks_03.wav",
+   "path": "sound/lib/rec/amb/amb_trucks_01.wav",
    "src": "rec",
-   "name": "amb_trucks_03",
-   "z": 5.9
+   "name": "amb_trucks_01",
+   "z": 4.49
   }
  ],
  "amb.warehouse": [
@@ -981,6 +981,12 @@
    "src": "rec",
    "name": "ship_horn_02",
    "z": 3.47
+  },
+  {
+   "path": "sound/lib/rec/foley/ship_horn_01.wav",
+   "src": "rec",
+   "name": "ship_horn_01",
+   "z": 3.44
   }
  ],
  "static": [

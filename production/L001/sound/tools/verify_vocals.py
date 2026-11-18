@@ -29,16 +29,17 @@ def main():
     rd = lambda k: sf.read(str(d / f'{k}.wav'), dtype='float32', always_2d=True)
     mix, sr = rd('mix'); rest = sum(rd(k)[0] for k in ('music', 'sfx', 'amb'))
     for name, x in ((() if a.rest_only else (('mix', mix),)) + (('без голоса', rest),)):
-        x16 = librosa.resample(x.mean(1)[:int(a.t1 * sr)], orig_sr=sr, target_sr=16000)
-        hop = a.hop if len(x16) <= 120 * 16000 else max(a.hop, 1.0)   # длинная глава — окна 1 с встык (каждая секунда, вдвое дешевле)
-        st = list(range(0, len(x16) - 16000 + 1, int(hop * 16000))); P = m.probs([x16[s:s + 16000] for s in st], reduce='max')
+        xm = x.mean(1)[:int(a.t1 * sr)]
+        x48 = librosa.resample(xm, orig_sr=sr, target_sr=48000) if sr != 48000 else xm   # earshot ждёт 48 кГц
+        hop = a.hop if len(x48) <= 120 * 48000 else max(a.hop, 1.0)   # длинная глава — окна 1 с встык
+        st = list(range(0, len(x48) - 48000 + 1, int(hop * 48000))); P = m.probs([x48[s:s + 48000] for s in st], reduce='max')
         rows = []
         for k, s in enumerate(st):
             g = {}
             for grp in ('human', 'animal', 'siren', 'laugh'):
                 ii = [m.index[l] for l in GROUPS[grp] if l in m.index]; j = int(np.argmax(P[k][ii])); g[grp] = (GROUPS[grp][j] if GROUPS[grp][j] in m.index else '?', round(float(P[k][ii][j]), 3))
             top = [(m.labels[i], round(float(P[k][i]), 2)) for i in np.argsort(-P[k])[:3]]
-            rows.append({'t': round(s / 16000, 2), **{k2: v for k2, v in g.items()}, 'top': top})
+            rows.append({'t': round(s / 48000, 2), **{k2: v for k2, v in g.items()}, 'top': top})
         worst = {grp: max(rows, key=lambda r: r[grp][1]) for grp in ('human', 'animal', 'siren', 'laugh')}
         ok = all(worst[g][g][1] < a.thr for g in worst if g != 'laugh')   # смех зала — только отчёт
         res[name] = {'ok': ok, 'worst': {g: {'t': worst[g]['t'], 'label': worst[g][g][0], 'p': worst[g][g][1]} for g in worst}, 'windows': rows}

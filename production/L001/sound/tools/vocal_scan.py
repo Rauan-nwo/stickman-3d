@@ -37,7 +37,8 @@ def main():
         x16 = librosa.resample(x, orig_sr=sr, target_sr=16000) if sr != 16000 else x
         W, H = int(a.win * 16000), int(a.hop * 16000)
         starts = list(range(0, max(1, len(x16) - W + 1), H)) or [0]
-        segs = [x16[s:s + W] for s in starts]
+        x48 = librosa.resample(x, orig_sr=sr, target_sr=48000) if sr != 48000 else x   # earshot AST ждёт 48 кГц (pyin ниже — 16 кГц)
+        segs = [x48[s * 3:s * 3 + W * 3] for s in starts]
         P = m.probs(segs, reduce='max')
         f0, vflag, vprob = librosa.pyin(x16, fmin=200, fmax=1600, sr=16000, frame_length=1024, hop_length=160)
         hits = []

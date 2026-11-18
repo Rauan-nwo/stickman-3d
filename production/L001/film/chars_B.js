@@ -165,6 +165,7 @@ export function person(ctx, v, t, T, o) {
   Object.assign(p, { blink: o.blinkOff ? 0 : blinkAt(t + seed * .7, seed), view: o.view || 'threeQuarter', facing: o.facing ?? 1, stance: o.stance || (pin === 'seat' ? 'sitR' : 'stand'), look: o.look || p.look || [0, 0] });
   p.bob = (p.bob || 0) * .3; p.sq = (p.sq || 0) * .3; p.lean = (p.lean || 0) * .35 + (o.lean || 0); p.tilt = (p.tilt || 0) * .5 + (o.tilt || 0);
   if (o.turn) p.turn = o.turn;
+  if (o.pose) Object.assign(p, o.pose);   // поправки позы (dy — сдвиг фигуры: садится и т.п.)
   p.mouth = o.mouth || (o.laugh ? p.mouth : mouthOf(o.sp, T, o.rest || (p.mouth === 'O' ? 'O' : p.mouth), seed));
   if (o.eyes) p.eyes = o.eyes; if (o.brows) p.brows = o.brows;
   const hand = (side, m) => {

@@ -24,8 +24,11 @@ import { inOutExpo, gauss, env, W_, W0, shake, whipPlates, focusBox, freezeFrame
 
 
 // ---- Пекин/Вашингтон: точки плейтов и мелочи (ведущий) ----
-const BJ_LAMP = [960, 225], BJ_BOX = [700, 778], WA_LOCK = [1120, 464], WA_DOOR = [1386, 120, 760];   // лампа над столом; коробка на столе (низ-центр); замок на двери; правая кромка двери: x, верх, низ
+const BJ_LAMP = [960, 225], BJ_BOX = [720, 790], BJ_SH = { L: [858, 650], R: [952, 650] }, WA_LOCK = [1120, 464], WA_DOOR = [1386, 120, 760];   // лампа над столом; коробка на столе (низ-центр); замок на двери; правая кромка двери: x, верх, низ
 function bjOfficer(ctx, v, t, T, o) { let r = {}; silhouette(ctx, c => { r = BJ.seated(c, v, t, T, { ...o, solo: true, shade: false }); }, { col: '#160909', rim: 'rgba(255,140,100,.55)', rimDir: [0, -1] }); return r; }
+// рука-силуэт поверх коробки: от плеча (точка плейта) к кисти в экранной точке P — кисть на замке видна (коробку рисуем после стола)
+function reachArm(ctx, v, sh, P, k = 1) { if (k <= .02) return; const S0 = toS(v, sh), Q = [lerp(S0[0], P[0], k), lerp(S0[1], P[1], k)], w = 16 * .66 * v.k; ctx.save(); ctx.strokeStyle = '#160909'; ctx.lineCap = 'round'; ctx.lineWidth = w; ctx.beginPath(); ctx.moveTo(S0[0], S0[1]); ctx.quadraticCurveTo((S0[0] + Q[0]) / 2, Math.max(S0[1], Q[1]) + 30 * v.k, Q[0], Q[1]); ctx.stroke(); ctx.fillStyle = '#160909'; ctx.beginPath(); ctx.arc(Q[0], Q[1], 12 * .66 * v.k, 0, 6.28); ctx.fill(); ctx.restore(); }
+const lockPt = (v, jerk = 0) => { const P = toS(v, BJ_BOX), w = 230 * v.k; return [P[0], P[1] - w * .32 + w * .06 - 64 * w / 420 + jerk * w / 420]; };   // дужка замка на коробке (экран)
 function hands(ctx, r) { if (r.hl) for (const P of [r.hl, r.hr]) { ctx.fillStyle = '#160909'; ctx.beginPath(); ctx.arc(P[0], P[1], 12 * r.s, 0, Math.PI * 2); ctx.fill(); } }   // кисти поверх стола (силуэтом)
 function lampFlare(ctx, P, R, k) { if (k <= .01) return; ctx.save(); ctx.globalCompositeOperation = 'screen'; const g = ctx.createRadialGradient(P[0], P[1] + R * .15, 0, P[0], P[1] + R * .15, R); g.addColorStop(0, `rgba(255,200,120,${.6 * k})`); g.addColorStop(1, 'rgba(255,160,90,0)'); ctx.fillStyle = g; ctx.fillRect(P[0] - R, P[1] - R, 2 * R, 2 * R); ctx.restore(); }
 // коробка с чипами под навесным замком: на столе (плейт BJ, низ-центр BJ_BOX) или в экранной точке at с масштабом sc
@@ -45,8 +48,6 @@ function clipping(c, w, h) { c.fillStyle = '#e9e2cf'; c.fillRect(0, 0, w, h); B.
 function pinHead(ctx, x, y, k) { if (k <= .05) return; ctx.save(); ctx.fillStyle = '#c8312b'; ctx.strokeStyle = '#141014'; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, y, 14 * Math.min(1, k), 0, 6.28); ctx.fill(); ctx.stroke(); ctx.restore(); }
 function redArrow(ctx, a, b, k) { const x = lerp(a[0], b[0], k), y = lerp(a[1], b[1], k); ctx.save(); ctx.strokeStyle = '#d0302a'; ctx.fillStyle = '#d0302a'; ctx.lineWidth = 12; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(x, y); ctx.stroke();
   if (k > .9) { const an = Math.atan2(b[1] - a[1], b[0] - a[0]); ctx.translate(x, y); ctx.rotate(an); ctx.beginPath(); ctx.moveTo(18, 0); ctx.lineTo(-22, -20); ctx.lineTo(-22, 20); ctx.closePath(); ctx.fill(); } ctx.restore(); }
-// рука офицера в рукаве (тёмно-красный, как силуэт) ведёт стрелку: от правого нижнего края кадра
-function insertSleeveIn(ctx, t, tb) { const k = clamp((t - tb + .1) / .45); if (k <= 0) return; const P = [lerp(1150, 1500, k), lerp(640, 820, k)]; B.insertSleeve(ctx, P, [W + 260, H + 200], 26, B.CLOTH.officer, null); }
 // отрывной календарь у двери (обратная точка WA): «SEP 2022» срывается на «October», под ним «OCT 2022»
 function wallCal(ctx, v, t, to) { const P = toS(v, [1530, 600]), w = 150 * v.k, h = 190 * v.k, u = clamp((t - to) / .5);
   const page = (lbl, dx, dy, a, al) => { ctx.save(); ctx.globalAlpha = al; ctx.translate(P[0] + dx, P[1] + dy); ctx.rotate(a); ctx.fillStyle = '#f2ece0'; ctx.strokeStyle = '#141014'; ctx.lineWidth = 3 * v.k; ctx.fillRect(-w / 2, -h / 2, w, h); ctx.strokeRect(-w / 2, -h / 2, w, h); ctx.fillStyle = '#b4302a'; ctx.fillRect(-w / 2, -h / 2, w, h * .26); B.txt(ctx, lbl, 0, 0, h * .22, { align: 'center', w: 800, max: w * .9 }); ctx.restore(); };
@@ -95,10 +96,10 @@ export const SHOTS = {
   '2|OFFICER: Find out who else calls': x => { const { ctx, t, T, cam, solo } = x, v = BJ.view('mid', cam, .2), put = E.inOutCubic(clamp((t - .15) / .8));   // ОБЩИЙ: силуэт кладёт одиночный портрет Дженсена в раскрытую папку на столе
     const P0 = [1080, 778], P1 = [830, 812], Pp = [lerp(P0[0], P1[0], put), lerp(P0[1], P1[1], put) - 26 * Math.sin(Math.PI * put)];
     ctx.save(); shake(ctx, cam); BJ.widePlate(ctx, v, 0, solo);
-    const r = bjOfficer(ctx, v, t, T, { C: OFF1, sp: 'OFFICER', keys: [[0, 'neutral']], R: { k: put < 1 ? 1 : 1 - clamp((t - .95) / .4), to: Pp } });
+    const hold = put < 1 ? 1 : 1 - E.inOutCubic(clamp((t - .95) / .4));
+    bjOfficer(ctx, v, t, T, { C: OFF1, sp: 'OFFICER', keys: [[0, 'neutral']], R: { k: .5 * hold, to: [1000, 700] } });
     BJ.deskFront(ctx, v, 0, solo);
-    if (!solo) { openFolder(ctx, v, P1); const P = toS(v, Pp); ctx.save(); ctx.translate(P[0], P[1]); ctx.scale(1, .55); B.photo(ctx, 0, 0, 120 * v.k, -.06 + .1 * (1 - put), jPic(0)); ctx.restore(); }
-    hands(ctx, r);
+    if (!solo) { openFolder(ctx, v, P1); const P = toS(v, Pp); ctx.save(); ctx.translate(P[0], P[1]); ctx.scale(1, .8); B.photo(ctx, 0, 0, 170 * v.k, -.06 + .1 * (1 - put), jPic(0)); ctx.restore(); reachArm(ctx, v, BJ_SH.R, [P[0] + 60 * v.k, P[1] - 30 * v.k], hold); }
     ctx.restore(); },
   '2|Because in October 2022, Washington': x => { const { ctx, t, cam, solo } = x, to = W_(x, 'October', 1.4), ts = W_(x, 'slammed', 3.2);   // ОБРАТНАЯ: дверь захлопывается; на «October» срывается лист «SEP 2022» — под ним «OCT 2022»; на «slammed» замок щёлкает, толчок; наезд до скважины
     const pin = E.inOutCubic(clamp((t - ts - .25) / 1.0)), v = lerpView(WA.view('rev', cam, .2), cover({ cx: WA_LOCK[0], cy: WA_LOCK[1] + 10, k: 3.4 }), pin);
@@ -116,19 +117,19 @@ export const SHOTS = {
   "3|So here was Beijing's problem": x => { const { ctx, t, T, cam, solo } = x, v = BJ.view('mid', cam, .2), tb = W_(x, 'buy', 1.9);   // ОБЩИЙ: на красном столе коробка с чипами под тем же латунным замком; рука дёргает замок — не поддаётся
     const reach = E.outCubic(clamp((t - tb + .5) / .4)), jerk = t > tb ? 10 * Math.abs(Math.sin((t - tb) * 18)) * Math.exp(-(t - tb) * 3) : 0;
     ctx.save(); shake(ctx, cam); BJ.widePlate(ctx, v, 0, solo);
-    const r = bjOfficer(ctx, v, t, T, { C: OFF1, keys: [[0, 'neutral']], lean: .08 * reach, L: { k: reach, to: [BJ_BOX[0], BJ_BOX[1] - 44 + jerk / v.k] } });
+    bjOfficer(ctx, v, t, T, { C: OFF1, keys: [[0, 'neutral']], lean: .08 * reach, L: { k: .6 * reach, to: [800, 700] } });
     BJ.deskFront(ctx, v, 0, solo); if (!solo) lockBox(ctx, v, jerk);
-    hands(ctx, r);
+    reachArm(ctx, v, BJ_SH.L, lockPt(v, jerk), reach);
     ctx.restore(); },
   '3|But it could try to get close': x => { const { ctx, t, T, cam, solo } = x, v = BJ.view('mid', cam, .2), tm = W_(x, 'made', 2.4), slide = E.inOutCubic(clamp((t - .1) / .7)), circ = clamp((t - .9) / .9);   // СРЕДНИЙ двое: офицер подвигает фото Дженсена к коробке и обводит лицо красным; на «made» на фото у пояса блестит латунный ключ
     const PH = [lerp(1130, 980, slide), 808];
     ctx.save(); shake(ctx, cam); BJ.widePlate(ctx, v, 0, solo);
     silhouette(ctx, c => { BJ.standing(c, v, t, T, { C: OFF2, at: 'side', solo: true, shade: false, keys: [[0, 'neutral']], view: 'threeQuarter', facing: 1, look: [.6, .5] }); }, { col: '#1c0a0a', rim: 'rgba(255,140,100,.5)', rimDir: [1, -.4] });
     const pen = circ > 0 && circ < 1 ? [PH[0] + 30 * Math.cos(circ * 6.28), PH[1] - 18 + 12 * Math.sin(circ * 6.28)] : PH;
-    const r = bjOfficer(ctx, v, t, T, { C: OFF1, keys: [[0, 'neutral']], R: { k: 1, to: pen } });
+    bjOfficer(ctx, v, t, T, { C: OFF1, keys: [[0, 'neutral']], R: { k: .5, to: [1000, 700] } });
     BJ.deskFront(ctx, v, 0, solo);
-    if (!solo) { lockBox(ctx, v, 0); const P = toS(v, PH); ctx.save(); ctx.translate(P[0], P[1]); ctx.scale(1, .55); B.photo(ctx, 0, 0, 130 * v.k, -.05, jPic(gauss(t, tm + .06, .18))); B.redCircle(ctx, 0, -130 * v.k * .2, 34 * v.k, 30 * v.k, circ, 4 * v.k); ctx.restore(); }
-    hands(ctx, r); if (r.hr && circ > 0 && circ < 1) redPencil(ctx, r.hr, r.s);
+    if (!solo) { lockBox(ctx, v, 0); const P = toS(v, PH); ctx.save(); ctx.translate(P[0], P[1]); ctx.scale(1, .8); B.photo(ctx, 0, 0, 150 * v.k, -.05, jPic(gauss(t, tm + .06, .18))); B.redCircle(ctx, 0, -130 * v.k * .2, 34 * v.k, 30 * v.k, circ, 4 * v.k); ctx.restore(); }
+    if (!solo) { const P = toS(v, pen), Q = [P[0], P[1] - (circ > 0 && circ < 1 ? 40 : 10) * v.k]; reachArm(ctx, v, BJ_SH.R, Q, 1); if (circ > 0 && circ < 1) redPencil(ctx, Q, .66 * v.k); }
     ctx.restore(); },
   '3|the same man arguing with Washington': x => { const { ctx, t, cam, solo } = x, tb = W_(x, 'buy', 2.6), pin = E.outBack(clamp((t - .2) / .35)), arr = clamp((t - tb + .1) / .45);   // ВСТАВКА сверху: к фото Дженсена подкалывают вырезку (Дженсен у микрофона, за ним купол Капитолия); на «buy» красная стрелка от вырезки к коробке под замком
     if (solo) return; ctx.save(); shake(ctx, cam); BJ.widePlate(ctx, cover({ cx: 860, cy: 800, k: 3.2 * (1 + (cam.z - 1) * .5) }), 8, false);
@@ -138,22 +139,21 @@ export const SHOTS = {
     pinHead(ctx, 840, 420, pin);
     lockBox(ctx, null, 0, [1560, 900], 1.5);
     if (arr > 0) redArrow(ctx, [1150, 640], [1500, 820], arr);
-    insertSleeveIn(ctx, t, tb);
     ctx.restore(); },
   "3|OFFICER: We can't buy his chips": x => { const { ctx, t, T, cam, solo } = x, v = BJ.view('mid', cam, .2), tap = t > .3 ? Math.max(0, Math.sin((t - .3) * 9)) : 0;   // СРЕДНИЙ офицер 1 стучит пальцем по замку на коробке
     ctx.save(); shake(ctx, cam); BJ.widePlate(ctx, v, 3, solo);
-    const r = bjOfficer(ctx, v, t, T, { C: OFF1, sp: 'OFFICER', keys: [[0, 'neutral']], lean: .08, L: { k: E.outCubic(clamp(t / .3)), to: [BJ_BOX[0] + 4, BJ_BOX[1] - 48 - 14 * tap] } });
+    const k = E.outCubic(clamp(t / .3)); bjOfficer(ctx, v, t, T, { C: OFF1, sp: 'OFFICER', keys: [[0, 'neutral']], lean: .08, L: { k: .6 * k, to: [800, 700] } });
     BJ.deskFront(ctx, v, 3, solo); if (!solo) lockBox(ctx, v, tap > .9 ? 2 : 0);
-    hands(ctx, r);
+    const L = lockPt(v); reachArm(ctx, v, BJ_SH.L, [L[0] + 4 * v.k, L[1] + 14 * v.k - 18 * v.k * tap], k);
     ctx.restore(); },
   '3|OFFICER 2: Then become his customer': x => { const { ctx, t, T, cam, solo } = x, v = BJ.view('mid', cam, .2), tc = W_(x, 'customer', .95), card = E.outCubic(clamp((t - .05) / .35)), form = E.outBack(clamp((t - tc) / .3)), tap = t > tc + .3 ? Math.max(0, Math.sin((t - tc - .3) * 10)) : 0;   // СРЕДНИЙ офицер 2: чистая визитка на фото Дженсена; на «customer» рядом ложится бланк PURCHASE ORDER, палец стучит по пустой строке
     const PH = [980, 808], FO = [1150, 806];
     ctx.save(); shake(ctx, cam); BJ.widePlate(ctx, v, 0, solo);
     const r = bjOfficer(ctx, v, t, T, { C: OFF2, sp: 'OFFICER 2', keys: [[0, 'neutral']], R: { k: 1, to: form > .5 ? [FO[0] - 10, FO[1] - 6 - 10 * tap] : [PH[0], PH[1] - 8] } });
     BJ.deskFront(ctx, v, 0, solo);
-    if (!solo) { lockBox(ctx, v, 0); const P = toS(v, PH); ctx.save(); ctx.translate(P[0], P[1]); ctx.scale(1, .55); B.photo(ctx, 0, 0, 130 * v.k, -.05, jPic(0));
+    if (!solo) { lockBox(ctx, v, 0); const P = toS(v, PH); ctx.save(); ctx.translate(P[0], P[1]); ctx.scale(1, .8); B.photo(ctx, 0, 0, 150 * v.k, -.05, jPic(0));
       ctx.translate(0, lerp(-200, 10, card) * v.k); ctx.rotate(.08); ctx.fillStyle = '#f6f3ea'; ctx.strokeStyle = '#141014'; ctx.lineWidth = 2 * v.k; ctx.fillRect(-46 * v.k, -26 * v.k, 92 * v.k, 52 * v.k); ctx.strokeRect(-46 * v.k, -26 * v.k, 92 * v.k, 52 * v.k); ctx.restore();
-      if (form > 0) { const F = toS(v, FO); ctx.save(); ctx.translate(F[0], F[1] + (1 - form) * 120 * v.k); ctx.scale(1, .55); PA.form(ctx, 0, 0, 170 * v.k, .04, { title: 'PURCHASE ORDER', field: 'BUYER:', value: '', u: 1, hi: tap }); ctx.restore(); } }
+      if (form > 0) { const F = toS(v, FO); ctx.save(); ctx.translate(F[0], F[1] + (1 - form) * 120 * v.k); ctx.scale(1, .55); PA.form(ctx, 0, 0, 230 * v.k, .04, { title: 'PURCHASE ORDER', field: 'BUYER:', value: '', u: 1, hi: tap }); ctx.restore(); } }
     hands(ctx, r);
     ctx.restore(); },
   // --- A --- (рабочий A: L11 зал гл. 2–3, L06 кабинет Nvidia, L17 склад; помощники и импорты — блок «--- A ---» после SHOTS)
@@ -283,7 +283,7 @@ export const SHOTS = {
 };
 export const OVER = {
 };
-export const SKIP_PROPS = { "3|OFFICIAL: Your best chips can't go": /BLOCKED/ };
+export const SKIP_PROPS = { '2|Because in October 2022, Washington': /OCT 2022/, '3|OFFICER 2: Then become his customer': /PURCHASE ORDER/, '3|the same man arguing with Washington': /./, '3|But it could try to get close': /./, "3|OFFICIAL: Your best chips can't go": /BLOCKED/ };
 export const RAIN = null;   // или s => true/false/undefined — переопределение дождя для планов главы
 
 // --- A --- импорты и помощники рабочего A для его планов гл. 2–3 (имена с префиксом A_, чтобы не пересекаться с импортами ведущего)

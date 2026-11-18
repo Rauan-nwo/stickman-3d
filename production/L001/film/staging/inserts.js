@@ -71,7 +71,7 @@ export function chipUnder(ctx, t, k, pulse, o = {}) {
   ctx.beginPath(); ctx.roundRect(W * .2, H * .36, 70, H * .7, 20); ctx.fill(); ctx.stroke();                                         // ножка-тумба стола
   ctx.beginPath(); ctx.ellipse(W * .2 + 35, H * .98, 180, 26, 0, 0, Math.PI * 2); ctx.fill();
   // чип в кисти (кисть-точка в перчатке, манжета уходит вправо — со стороны Алисы)
-  chip(ctx, x - 205, y - 8, .9, -.08, gl);
+  chip(ctx, x - 100, y - 4, .9, -.08, gl);                                   // кисть-перчатка перекрывает правый край чипа: чип в хвате, а не висит рядом
   gloveDot(ctx, x, y, 92, -.3, [-.7, -.7]);
   // скатерть сверху: свес с фестонами, сквозь ткань пробивается зелёный свет чипа
   ctx.save(); ctx.fillStyle = '#EDE3D2'; ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(W, 0); ctx.lineTo(W, H * .34);

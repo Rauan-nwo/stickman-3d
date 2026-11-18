@@ -135,7 +135,7 @@ const STEP = 300;                                                      // дли
 function taipeiFootage(ctx, t, d, tc, cam) {
   const a = TPA(); if (!a) return; const z = 1 + (cam.z - 1) * .4; ctx.save(); ctx.translate(W / 2, H / 2); ctx.scale(z, z); ctx.translate(-W / 2, -H / 2);
   plate(ctx, a.p, { cx: 960, cy: 540, k: 1 });
-  const s = .4, tW = tc - 1.6, dOpen = E.inOutCubic(clamp((t - tW) / .3)) * (1 - E.inOutCubic(clamp((t - (tc - .35)) / .25))), go = E.inCubic(clamp((t - tc) / 1.2)), dx = go * 1400;
+  const s = .4, tW = tc - 1.6, dOpen = E.inOutCubic(clamp((t - tW) / .3)) * (1 - E.inOutCubic(clamp((t - (tc - .35)) / .25))), go = Math.pow(clamp((t - tc) / .65), 2), dx = go * 1500;
   const doorX = carPt(.40, 0)[0], feetY = SED.y + 26;
   const fig = (C, lead, tIn) => {                                       // lead — отставание по пути (px), tIn — начало посадки
     const xEnd = doorX - lead * .15, x0 = xEnd - 620 - lead, walkT = clamp(t / Math.max(.3, tW)), x = lerp(x0, xEnd, walkT), ph = (x - x0) / (STEP * s);

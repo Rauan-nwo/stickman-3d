@@ -201,3 +201,23 @@ export function officer() {
   c.spec.rig = { ...c.spec.rig, plantLegs: .02, armLayer: 'front' };
   return c;
 }
+
+// ROOMMATE (гл. 2, Кентукки): 17 лет, огромный рядом с 9-летним Дженсеном (ставится крупнее — fs ×1.35), бритая голова-ёжик,
+// тёмно-серая майка, татуировки на груди и плечах (чернильные завитки), шрам на щеке; бинт на руке рисует постановка (кисть-точка)
+export function roommate() {
+  const c = jensen({
+    name: 'roommate', hat: { type: 'L_inspector' }, colors: { hair: '#5a3a24' }, shoe: '#2a2420',
+    face: { restMouth: 'flat', browCol: '#2a211c', eyes: [{ x: -44, y: -6, rx: 8, ry: 9, lw: 6, tilt: 0 }, { x: 44, y: -6, rx: 8, ry: 9, lw: 6, tilt: 0 }] },
+    body: {
+      fillRadial: { at: [-44, -76], r0: 12, to: [-8, -10], r1: 205, stops: [[0, '#6a6a70'], [.5, '#47474e'], [1, '#26262c']] },
+      inside: [cloth((x, S, VW) => {
+        const ink = S.colors.ink;
+        if (isBack(VW)) return;
+        poly(x, [[-60, -160], [-20, -160], [-34, -110]], '#E8D2B8', ink, 3); poly(x, [[60, -160], [20, -160], [34, -110]], '#E8D2B8', ink, 3);   // голые плечи у лямок майки
+        for (const sx of [-1, 1]) { path(x, [[sx * 52, -150], [sx * 70, -130, sx * 54, -112], [sx * 40, -100, sx * 58, -88]], 4, 'rgba(30,40,70,.9)'); }   // тату на плечах
+      })],
+    },
+  });
+  c.spec.rig = { ...c.spec.rig, plantLegs: .02, armLayer: 'front' };
+  return c;
+}

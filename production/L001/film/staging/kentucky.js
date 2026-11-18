@@ -29,13 +29,14 @@ export function dorm(ctx, v, t, T, o = {}) {
   if (!o.solo) plate(ctx, a.dorm, v);
   const F = toS(v, c.feet), s = c.fs * v.k, [tx, ty, tw, th] = c.trunk, TP = toS(v, [tx, ty]);
   if (!o.solo) { contact(ctx, F[0], F[1] + 3 * s, 140 * s, 20 * s, .55, .2); contact(ctx, TP[0], TP[1] + 2 * s, tw * .62 * s, 22 * s, .55, .2); }
-  if (!o.solo) trunk(ctx, TP[0], TP[1], tw * s, th * s);
+  if (!o.solo && !o.noTrunk) trunk(ctx, TP[0], TP[1], tw * s, th * s);
   const S = YJ.spec, p = act(t, o.keys || [[0, 'neutral']]);
   Object.assign(p, { blink: blinkAt(t, 6), view: 'threeQuarter', facing: 1, stance: 'stand', look: o.look || [.4, -.3] });
   p.bob = (p.bob || 0) * .4; p.sq = (p.sq || 0) * .4; p.lean = (p.lean || 0) * .4 + .03; p.tilt = (p.tilt || 0) * .5;
   // правая рука держит боковую ручку сундука (сундук справа; ручка — на его левом боку, на уровне кисти)
   const shR = shoulder(S, 1), handle = [(TP[0] - tw * .5 * s - F[0]) / s + 10, -(th * .5)];
-  p.arms = [{ to: restHand(S, -1), w: 11 }, { to: arcHand(shR, restHand(S, 1), [Math.min(handle[0], shR[0] + 200), Math.max(-430, Math.min(-300, handle[1]))], o.grip ?? 1), w: 11 }];
+  const toFigD = P => [(P[0] - c.feet[0]) / c.fs, (P[1] - c.feet[1]) / c.fs];
+  p.arms = [{ to: restHand(S, -1), w: 11 }, { to: o.point ? arcHand(shR, restHand(S, 1), toFigD(o.point), clamp(o.pointK ?? 1)) : arcHand(shR, restHand(S, 1), [Math.min(handle[0], shR[0] + 200), Math.max(-430, Math.min(-300, handle[1]))], o.grip ?? 1), w: 11 }];   // point — показывает рукой на точку плейта
   fig(ctx, YJ, p, v, c.feet, c.fs, 'feet');
 }
 // санузел-вставка: детская рука хватает швабру; k 0..1 — подход кисти; splash 0..1 — брызги из ведра
@@ -73,7 +74,7 @@ function mop(ctx, v, lift, tilt) {
 }
 export function bathMid(ctx, v, t, T, o = {}) {
   const a = A(), c = CFG.bathMid; if (!a) return;
-  if (!o.solo) plate(ctx, a.bath, v);
+  if (!o.solo && !o.noPlate) plate(ctx, a.bath, v);
   const fall = E.inCubic(clamp((t - (o.drop - .14)) / .14)), lift = c.mop.lift * (1 - fall);          // падение 4 кадра, с ускорением
   const F = toS(v, c.feet), s = c.fs * v.k;
   if (!o.solo) contact(ctx, F[0], F[1] + 3 * s, 130 * s, 20 * s, .5, .25);
@@ -84,9 +85,9 @@ export function bathMid(ctx, v, t, T, o = {}) {
   if (u > 0 && u < 1 && !o.solo) for (let i = 0; i < 14; i++) { const an = -Math.PI / 2 + ((i * .618) % 1 - .5) * 2, sp = 280 + 110 * ((i * 37) % 5) / 5;
     const P = toS(v, [960 + Math.cos(an) * sp * u, 676 + Math.sin(an) * sp * u + 900 * u * u]); ctx.fillStyle = `rgba(200,232,245,${.9 * (1 - u)})`; ctx.beginPath(); ctx.ellipse(P[0], P[1], 6 * v.k, 9 * v.k, an, 0, Math.PI * 2); ctx.fill(); }
   // мальчик: до падения держит швабру над ведром (правая рука на черенке), отпускает; на «Kentucky» тянется вверх и берёт черенок выше головы
-  const S = YB.spec, p = act(t, [[0, 'neutral'], [o.drop + .05, 'shock'], [o.drop + .5, 'neutral']]);
+  const S = YB.spec, p = act(t, o.keys || [[0, 'neutral'], [o.drop + .05, 'shock'], [o.drop + .5, 'neutral']]);
   Object.assign(p, { blink: blinkAt(t, 6), view: 'threeQuarter', facing: 1, stance: 'stand' });
-  p.bob = (p.bob || 0) * .3; p.sq = (p.sq || 0) * .3; p.lean = (p.lean || 0) * .3; p.tilt = (p.tilt || 0) * .4; p.hatDy = 0; p.look = [.5, t < o.grab ? .2 : -.6];
+  p.bob = (p.bob || 0) * .3; p.sq = (p.sq || 0) * .3; p.lean = (p.lean || 0) * .3; p.tilt = (p.tilt || 0) * .4; p.hatDy = 0; p.look = o.look || [.5, t < o.grab ? .2 : -.6];
   const toFig = P => [(P[0] - c.feet[0]) / c.fs, (P[1] - c.feet[1]) / c.fs];
   const shR = shoulder(S, 1), hold = toFig(handleAt(c.feet[1] - 470 * c.fs - lift)), grabP = toFig(handleAt(c.feet[1] - 620 * c.fs));
   let kR, toR;
@@ -95,4 +96,107 @@ export function bathMid(ctx, v, t, T, o = {}) {
   else { kR = E.outBack(clamp((t - (o.grab - .3)) / .3)); toR = grabP; }                                  // тянется вверх и берёт
   p.arms = [{ to: restHand(S, -1), w: 11 }, { to: arcHand(shR, restHand(S, 1), toR, kR), w: 11 }];
   fig(ctx, YB, p, v, c.feet, c.fs, 'feet');
+}
+
+// ================= гл. 2: санузел (окно, ряд кабинок, отрывной календарь), спальня (сосед), вставки книги и рукопожатия =================
+import { roommate } from '../chars.js';
+CFG.bathWin = [702, 196, 1190, 426];                 // стекло окна санузла (плейт bath): x0, y0, x1, y1; линия поля ~ y 380
+CFG.stalls = [1250, 40, 1920, 1000];                 // кадр кабинок справа (плейт bath) — источник для «ряда до горизонта»
+CFG.roomBed = { seat: [420, 706], fs: .86, light: [.45, -.9], sag: [400, 712, 190] };   // нижняя койка слева (bg_dorm_room): сиденье, масштаб, прогиб (x, y, ширина)
+CFG.barbell = [1270, 770];                           // штанга на полу спальни
+const RM = roommate(); RM.spec.shade = noirShade(CFG.roomBed.light, { warm: '#ffd89a' });
+export const CAST2 = { RM };
+const INK = '#1C1418';
+
+// мальчики идут в поле за окном (крошечные силуэты с вилами), последний — брат в клетчатой рубашке оглядывается на look (с)
+export function boysInWindow(ctx, v, t, look) {
+  const [x0, y0, x1, y1] = CFG.bathWin, A0 = toS(v, [x0, y0]), A1 = toS(v, [x1, y1]), s = v.k;
+  ctx.save(); ctx.beginPath(); ctx.rect(A0[0], A0[1], A1[0] - A0[0], A1[1] - A0[1]); ctx.clip();
+  for (let i = 0; i < 6; i++) {
+    const x = x0 - 60 + 80 * t - i * 84, y = 418 - i * 1.5, P = toS(v, [x, y]), h = (i === 5 ? 56 : 62) * s, ph = t * 7 + i;
+    const brother = i === 5, turn = brother ? clamp((t - look) / .25) : 0;
+    ctx.strokeStyle = '#2a2a24'; ctx.lineWidth = 3 * s; ctx.lineCap = 'round';
+    for (const sg of [-1, 1]) { ctx.beginPath(); ctx.moveTo(P[0], P[1] - h * .45); ctx.lineTo(P[0] + sg * Math.sin(ph) * h * .18, P[1]); ctx.stroke(); }   // ноги-шаги
+    ctx.fillStyle = brother ? '#b4302a' : '#5a5a4c'; ctx.beginPath(); ctx.roundRect(P[0] - h * .16, P[1] - h * .82, h * .32, h * .4, 3 * s); ctx.fill();
+    if (brother) { ctx.strokeStyle = 'rgba(255,230,200,.7)'; ctx.lineWidth = 1.2 * s; for (const q of [-.08, .06]) { ctx.beginPath(); ctx.moveTo(P[0] + q * h, P[1] - h * .82); ctx.lineTo(P[0] + q * h, P[1] - h * .42); ctx.stroke(); } }   // клетка
+    ctx.fillStyle = brother && turn > .5 ? '#f2e8d6' : '#2a2a24'; ctx.beginPath(); ctx.arc(P[0], P[1] - h * .95, h * .14, 0, 6.28); ctx.fill();
+    if (brother && turn > .5) { ctx.strokeStyle = INK; ctx.lineWidth = 1.5 * s; ctx.stroke(); }
+    ctx.strokeStyle = '#3a2a1a'; ctx.lineWidth = 2 * s; ctx.beginPath(); ctx.moveTo(P[0] + h * .1, P[1] - h * .7); ctx.lineTo(P[0] + h * .55, P[1] - h * 1.25); ctx.stroke();   // вилы на плече
+    for (const q of [-.06, 0, .06]) { ctx.beginPath(); ctx.moveTo(P[0] + h * (.55 + q), P[1] - h * (1.25 + q * .3)); ctx.lineTo(P[0] + h * (.62 + q), P[1] - h * 1.42); ctx.stroke(); }
+  }
+  ctx.restore();
+}
+// юный Дженсен стоит на плитке у ведра плейта (санузел), смотрит look; o = { keys, look, hold: швабра в руке (lift) }
+export function boyByBucket(ctx, v, t, T, o = {}) {
+  const c = CFG.bathMid, S = YB.spec, F = toS(v, c.feet), s = c.fs * v.k;
+  if (!o.solo) contact(ctx, F[0], F[1] + 3 * s, 130 * s, 20 * s, .5, .25);
+  const p = act(t, o.keys || [[0, 'neutral']]); Object.assign(p, { blink: blinkAt(t, 6), view: 'threeQuarter', facing: o.facing ?? 1, stance: 'stand', look: o.look || [.4, 0] });
+  p.bob = (p.bob || 0) * .3; p.sq = (p.sq || 0) * .3; p.lean = (p.lean || 0) * .3; p.tilt = (p.tilt || 0) * .4;
+  const toFig = P => [(P[0] - c.feet[0]) / c.fs, (P[1] - c.feet[1]) / c.fs], shR = shoulder(S, 1);
+  p.arms = [{ to: restHand(S, -1), w: 11 }, { to: o.handTo ? arcHand(shR, restHand(S, 1), toFig(o.handTo), 1) : restHand(S, 1), w: 11 }];
+  fig(ctx, YB, p, v, c.feet, c.fs, 'feet');
+}
+// «каждый санузел»: кабинки справа повторяются, уменьшаясь к окну (ряд до горизонта); двери хлопают по очереди от дальней к ближней
+export function stallRow(ctx, v, t, n = 7, t0 = .05, dt = .16) {
+  const a = A(); if (!a) return; const [sx0, sy0, sx1, sy1] = CFG.stalls, VP = toS(v, [940, 330]);
+  for (let i = n - 1; i >= 1; i--) {
+    const k = Math.pow(.6, i), D0 = toS(v, [sx0, sy0]), D1 = toS(v, [sx1, sy1]);
+    const x0 = VP[0] + (D0[0] - VP[0]) * k, y0 = VP[1] + (D0[1] - VP[1]) * k, w = (D1[0] - D0[0]) * k, h = (D1[1] - D0[1]) * k;
+    const ts = t0 + (n - 1 - i) * dt, u = (t - ts) / .2, j = u > 0 && u < 1 ? Math.sin(u * 30) * (1 - u) * 6 * k * v.k : 0;
+    ctx.save(); ctx.drawImage(stallSoft(a), x0 + j, y0, w, h);
+    ctx.fillStyle = `rgba(30,24,20,${(.18 + .1 * i).toFixed(2)})`; ctx.fillRect(x0 + j, y0, w, h); ctx.restore();   // дальние — темнее (воздух)
+  }
+}
+// копия кабинок с мягкими краями слева и сверху (без шва-прямоугольника у копий)
+let SF = null; function stallSoft(a) { if (SF) return SF; const [sx0, sy0, sx1, sy1] = CFG.stalls, w = sx1 - sx0, h = sy1 - sy0; SF = document.createElement('canvas'); SF.width = w; SF.height = h; const x = SF.getContext('2d'); x.drawImage(a.bath, sx0, sy0, w, h, 0, 0, w, h);
+  x.globalCompositeOperation = 'destination-in'; let g = x.createLinearGradient(0, 0, w * .3, 0); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,1)'); x.fillStyle = g; x.fillRect(0, 0, w, h);
+  g = x.createLinearGradient(0, 0, 0, h * .15); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,1)'); x.fillStyle = g; x.fillRect(0, 0, w, h); return SF; }
+// отрывной календарь на стене: дни MON..SUN срываются по одному с tA до tB; на tB падает SUN
+export function dayPad(ctx, P, w, t, tA, tB) {
+  const days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'], h = w * 1.2, n = days.length;
+  const idx = t < tA ? 0 : Math.min(n - 1, Math.floor((t - tA) / Math.max(.05, (tB - tA)) * (n - 1)));
+  const page = (lbl, dx, dy, a, al) => { ctx.save(); ctx.globalAlpha = al; ctx.translate(P[0] + dx, P[1] + dy); ctx.rotate(a); ctx.fillStyle = '#f4efe2'; ctx.strokeStyle = INK; ctx.lineWidth = w * .03; ctx.fillRect(-w / 2, -h / 2, w, h); ctx.strokeRect(-w / 2, -h / 2, w, h);
+    ctx.fillStyle = '#b4302a'; ctx.fillRect(-w / 2, -h / 2, w, h * .22); ctx.fillStyle = INK; ctx.font = `900 ${Math.round(w * .32)}px 'Courier New', monospace`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(lbl, 0, h * .08); ctx.restore(); };
+  if (idx + 1 < n) page(days[idx + 1], 0, 0, 0, 1); else page(days[n - 1], 0, 0, 0, 1);
+  const seg = (tB - tA) / (n - 1), u = idx < n - 1 ? ((t - tA) - idx * seg) / seg : 1;
+  if (t >= tA && idx < n - 1) page(days[idx], w * 1.4 * u * u, w * 2.6 * u * u, 1.2 * u, 1 - u); else if (t < tA) page(days[0], 0, 0, 0, 1);
+  if (t >= tB) { const u2 = clamp((t - tB) / .35); page('SUN', 0, w * 3 * u2 * u2, .3 * u2, 1 - u2 * .2); }
+}
+// сосед садится на нижнюю койку, койка прогибается. o = { sit 0..1, keys, look, R: {k, to} — правая кисть к точке плейта, book (кисть держит книгу) }
+export function roommateBed(ctx, v, t, T, o = {}) {
+  const a = A(), c = CFG.roomBed; if (!a) return {};
+  if (!o.solo) plate(ctx, a.dorm, v);
+  const sit = clamp(o.sit ?? 1), bounce = sit >= 1 ? Math.sin(Math.min(1, (t - (o.tSit ?? 0)) * 3) * Math.PI) * 6 * Math.exp(-(t - (o.tSit ?? 0)) * 2) : 0, sag = 22 * sit + bounce;
+  if (!o.solo) { const P = toS(v, [c.sag[0], c.sag[1]]), w = c.sag[2] * v.k; ctx.save(); ctx.fillStyle = 'rgba(40,20,10,.35)'; ctx.beginPath(); ctx.ellipse(P[0], P[1] + sag * .3 * v.k, w * .6, sag * .8 * v.k + 1, 0, 0, Math.PI); ctx.fill(); ctx.restore(); }   // прогиб матраса
+  const seat = [c.seat[0], c.seat[1] + sag * .6 - 60 * (1 - sit)], S = RM.spec;
+  const p = act(t, o.keys || [[0, 'neutral']]); Object.assign(p, { blink: blinkAt(t, 4), view: 'threeQuarter', facing: 1, stance: 'sitR', look: o.look || [.5, .1] }); if (p.mouth === 'smile' || !p.mouth) p.mouth = 'flat';   // хмурый, не улыбается
+  p.bob = (p.bob || 0) * .3; p.sq = (p.sq || 0) * .3; p.lean = (p.lean || 0) * .3 + .05; p.tilt = (p.tilt || 0) * .4;
+  const toFig = P => [(P[0] - seat[0]) / c.fs, (P[1] - seat[1]) / c.fs], shR = shoulder(S, 1), shL = shoulder(S, -1);
+  const R = o.R && o.R.k > .001 ? arcHand(shR, restHand(S, 1), toFig(o.R.to), o.R.k) : restHand(S, 1);
+  p.arms = [{ to: restHand(S, -1), w: 13 }, { to: R, w: 13 }];
+  fig(ctx, RM, p, v, seat, c.fs, 'seat');
+  if (!o.solo) { const F = toS(v, [seat[0] + 70, 905]); contact(ctx, F[0], F[1], 160 * c.fs * v.k, 20 * c.fs * v.k, .5, .2); }
+  const hp = q => toS(v, [seat[0] + (q[0] - S.pins.seat[0]) * c.fs, seat[1] + (q[1] - S.pins.seat[1]) * c.fs]);
+  const out = { hl: hp(p.arms[0].to), hr: hp(R), s: c.fs * v.k };
+  bandage(ctx, out.hl, out.s);
+  return out;
+}
+// бинт на запястье (левая кисть соседа): белая манжета-повязка у кисти
+export function bandage(ctx, P, s) { ctx.save(); ctx.translate(P[0], P[1] - 22 * s); ctx.fillStyle = '#f4f1ea'; ctx.strokeStyle = INK; ctx.lineWidth = 3 * s; ctx.beginPath(); ctx.roundRect(-15 * s, -12 * s, 30 * s, 22 * s, 5 * s); ctx.fill(); ctx.stroke();
+  ctx.strokeStyle = 'rgba(120,110,100,.6)'; ctx.lineWidth = 1.5 * s; for (const q of [-4, 3]) { ctx.beginPath(); ctx.moveTo(-14 * s, q * s); ctx.lineTo(14 * s, q * s + 3 * s); ctx.stroke(); } ctx.restore(); }
+// книга (обложка «A B C»): центр, ширина, поворот a (рад) — вверх ногами = π
+export function book(ctx, P, w, a) { const h = w * .72; ctx.save(); ctx.translate(P[0], P[1]); ctx.rotate(a);
+  ctx.fillStyle = '#2f5f8a'; ctx.strokeStyle = INK; ctx.lineWidth = w * .025; ctx.beginPath(); ctx.roundRect(-w / 2, -h / 2, w, h, w * .03); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#f2e8d0'; ctx.fillRect(-w * .44, -h * .3, w * .88, h * .6); ctx.strokeRect(-w * .44, -h * .3, w * .88, h * .6);
+  ctx.fillStyle = INK; ctx.font = `900 ${Math.round(h * .32)}px Georgia, serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('A B C', 0, h * .02);
+  ctx.fillStyle = '#e0b040'; ctx.beginPath(); ctx.arc(-w * .3, h * .17, h * .07, 0, 6.28); ctx.fill(); ctx.restore(); }
+// рука во вставке: рукав от края кадра к кисти. kind: 'kid' — полосатая футболка Дженсена; 'big' — голое плечо соседа с тату и бинтом
+export function insertArm(ctx, from, P, s, kind) { const dx = P[0] - from[0], dy = P[1] - from[1], l = Math.hypot(dx, dy) || 1, a = Math.atan2(dy, dx), r = (kind === 'big' ? 26 : 15) * s;
+  ctx.save(); ctx.translate(from[0], from[1]); ctx.rotate(a); ctx.lineJoin = 'round';
+  if (kind === 'kid') { ctx.fillStyle = '#E9DFC8'; ctx.strokeStyle = INK; ctx.lineWidth = 5 * s; ctx.beginPath(); ctx.roundRect(-40 * s, -r * 1.5, l - r * 1.2 + 40 * s, r * 3, r * .8); ctx.fill(); ctx.stroke(); ctx.save(); ctx.clip(); ctx.fillStyle = 'rgba(46,92,160,.8)'; for (let q = -40; q < l / s; q += 50) ctx.fillRect(q * s, -r * 1.5, 18 * s, r * 3); ctx.restore(); }
+  else { ctx.fillStyle = '#E8D2B8'; ctx.strokeStyle = INK; ctx.lineWidth = 5 * s; ctx.beginPath(); ctx.roundRect(-40 * s, -r * 1.1, l - r * .8 + 40 * s, r * 2.2, r); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = 'rgba(30,40,70,.85)'; ctx.lineWidth = 4 * s; ctx.beginPath(); ctx.moveTo(l * .25, -r * .5); ctx.quadraticCurveTo(l * .32, r * .6, l * .4, -r * .2); ctx.quadraticCurveTo(l * .46, -r * .8, l * .52, r * .3); ctx.stroke(); }   // тату
+  ctx.restore();
+  ell(ctx, P[0], P[1], r, r, INK, null);
+  if (kind === 'big') bandage(ctx, [P[0] - Math.cos(a) * r * 1.6, P[1] - Math.sin(a) * r * 1.6 + 22 * s], s * 1.6);
 }

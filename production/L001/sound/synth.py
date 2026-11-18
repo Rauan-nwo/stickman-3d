@@ -346,11 +346,29 @@ def hum(dur=3.0, f=120, harm=(1, .5, .25, .12), noise_amt=.15, seed=1):
     return norm(y, .5)
 
 
-def motor(dur=3.0, seed=1, f0=320, f1=420):
-    t = tvec(dur); f = f0 + (f1 - f0) * np.sin(np.pi * t / dur)
-    ph = 2 * np.pi * np.cumsum(f) / SR
-    y = np.sin(ph) + .5 * np.sin(2 * ph) + .25 * np.sin(3.01 * ph) + .4 * bp(noise(len(t), seed), 300, 3000)
+def motor(dur=3.0, seed=1, f0=110, f1=None):
+    """электромотор (погрузчик, лента): ровный гул постоянной высоты + шорох щёток и подшипников, громкость растёт и спадает.
+    Высота не скользит: прежний вариант (тон 320→420→320 Гц) AudioSet слышал как сирену гражданской обороны 0.57."""
+    t = tvec(dur); rng = np.random.default_rng(seed)
+    ph = 2 * np.pi * f0 * t * (1 + .004 * np.sin(2 * np.pi * .7 * t + rng.uniform(0, 6)))   # дрожь ±0.4 %, не глиссандо
+    hum = np.sin(ph) + .45 * np.sin(2 * ph) + .2 * np.sin(3 * ph) + .1 * np.sin(5 * ph)
+    brush = bp(noise(len(t), seed, 'pink'), 1200, 6000) * (.7 + .3 * np.sin(2 * np.pi * 23 * t))
+    rumble = lp(noise(len(t), seed + 1), 180)
+    y = .8 * hum + .35 * brush + .5 * rumble
     return norm(y * np.sin(np.pi * t / dur) ** .5, .6)
+
+
+def fax_feed(dur=1.5, seed=1):
+    """факс тянет бланк: ровный низкий гул шагового мотора, тики шагов ~38 Гц, шорох бумаги по валику.
+    Без тона, скользящего по высоте (старый вариант — 900→1100→900 Гц — AudioSet слышал как сирену 0.43)."""
+    t = tvec(dur); rng = np.random.default_rng(seed)
+    hum = .35 * np.sin(2 * np.pi * 95 * t) + .18 * np.sin(2 * np.pi * 190 * t)
+    tick = np.zeros(len(t)); step = int(SR / 38)
+    for i in range(int(.04 * SR), len(t), step): tick[i:i + 40] += np.exp(-np.arange(min(40, len(t) - i)) / 8) * (1 + .2 * rng.standard_normal())
+    tick = bp(tick, 1500, 6000)
+    rasp = bp(noise(len(t), seed, 'pink'), 2500, 9000) * (.6 + .4 * np.sin(2 * np.pi * 3.1 * t + rng.uniform(0, 6)))
+    env = np.minimum(1, t / .06) * np.minimum(1, (dur - t) / .12)
+    return norm((hum + .8 * tick + .5 * rasp) * env, .6)
 
 
 def servo(dur=1.0, seed=1):
@@ -571,7 +589,7 @@ GEN = {   # имя -> (функция(seed) -> массив); длительны
     'drip': lambda s, d=None: pin_pop(s),
     'pen.drop': lambda s, d=None: knock(s, 1200, 2, .09),
     'cash': lambda s, d=None: key_jingle(s, .2),
-    'fax': lambda s, d=1.5: motor(d or 1.5, s, 900, 1100),
+    'fax': lambda s, d=1.5: fax_feed(d or 1.5, s),
     'keyboard': lambda s, d=1.0: type_run(max(4, int((d or 1) * 9)), d or 1.0, s),
     'applause': lambda s, d=2.5: rain_synth(d or 2.5, s, 400, 5000),
     'crowd.react': lambda s, d=1.5: lp(noise(int((d or 1.5) * SR), s, 'pink'), 1200) * np.sin(np.pi * tvec(d or 1.5) / (d or 1.5)),

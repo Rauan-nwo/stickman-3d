@@ -2,7 +2,7 @@
 
 Сгенерирован `node production/L001/sound/cues.mjs` из `animatic/timing.json`, `animatic/words.json`, `animatic/conf.js` и ручной постановки `cues_manual.mjs`. Не править руками.
 
-Всего звуков: **1175**; по типам: caption 8, foley 153, camera 320, transition 231, template 182, event 255, title 26. Подложек (сегментов амбиенса): 215.
+Всего звуков: **1168**; по типам: caption 8, foley 154, camera 320, transition 231, template 182, event 247, title 26. Подложек (сегментов амбиенса): 215.
 
 ## По главам
 
@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | 0 | A Table in Singapore | 0:00.00–0:44.53 | 80 | 107.8 |
 | 1 | The Office | 0:44.53–1:10.45 | 53 | 122.7 |
-| 2 | The Man With the Key | 1:10.45–4:20.30 | 184 | 58.1 |
+| 2 | The Man With the Key | 1:10.45–4:20.30 | 177 | 55.9 |
 | 3 | The Locked Door | 4:20.30–5:49.74 | 84 | 56.4 |
 | 4 | The Cover | 5:49.74–7:27.63 | 100 | 61.3 |
 | 5 | The Introduction | 7:27.63–9:13.01 | 124 | 70.6 |
