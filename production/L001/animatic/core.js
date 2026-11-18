@@ -161,6 +161,19 @@ function CLIP_OF(s) {
   if (s.loc === 'L01-restaurant' && /вставка бокалы/.test(f)) return ['probe', 6.8, 8.8];
   return null;
 }
+// удары камеры по словам (s.beats из make_timing: колонка «камера» «удары ×N» / «удары по словам»): перекадровка ВСЕГО кадра
+// (и в аниматике, и в фильме — поверх постановки плана) за 8 кадров на ударном слове. Кадр поочерёдно встаёт в две точки:
+// A — ближе (×1.10) со сдвигом в одну сторону, B — ×1.05 со сдвигом в другую; сдвиг не больше (z−1)/2 — край плейта не виден.
+// Только геометрия: яркость не меняется. На шаблонах — вдвое мягче (подписи у краёв), на 3D-клипах и карточках — нет
+const BEAT_T = 8 / 30, inOutCubic = k => (k <= 0 ? 0 : k >= 1 ? 1 : k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2);
+function beatXf(s, t) {
+  if (!s.beats || /^T-(card|title)$/.test(s.loc) || s.loc.startsWith('3D-') || CLIP_OF(s)) return null;
+  const amp = /^T-/.test(s.loc) ? .5 : 1, dir = s.n % 2 ? 1 : -1, hard = /удары по словам/.test(s.camera);   // «по словам» (ведущий) — сильнее: A ×1.14, B ×1.06
+  const st = i => (i < 0 ? [1, 0] : i % 2 ? (hard ? [1.06, -.025 * dir] : [1.05, -.02 * dir]) : (hard ? [1.14, .05 * dir] : [1.10, .035 * dir]));
+  let z = 1, ox = 0;
+  s.beats.forEach((b, i) => { const k = inOutCubic((t - b.t) / BEAT_T); if (k <= 0) return; const [z0, o0] = st(i - 1), [z1, o1] = st(i); z = lerp(z0, z1, k); ox = lerp(o0, o1, k); });
+  return z === 1 && ox === 0 ? null : { z: 1 + (z - 1) * amp, ox: ox * amp };
+}
 function camOf(s, d) {
   const c = s.camera.toLowerCase();
   const kind = /вип-пан/.test(c) ? 'whip' : /статично/.test(c) ? 'static' : /панорам|проезд|пролёт|подъём|опускани|прокрутк|поворот|наклон|проход/.test(c) ? 'pan' : /рывок/.test(c) ? 'snap' : 'push';
@@ -181,8 +194,11 @@ function camOf(s, d) {
     if (kind === 'pan') { const k = ease(t / (d * .85)); z = 1 + .06 * k; ox = dx * (k - .5) * (hot ? 2.6 : 2); oy = dy * (k - .5) * (hot ? 2.6 : 2); }
     else if (kind !== 'static') { const k = outCubic(t / settle), u = Math.max(0, t - settle); z = (pull ? lerp(1.12, 1, k) : lerp(1, 1.1, k)) * (1 + creep * u); ox = dir * drift * u; oy = -.25 * drift * u; }
     const sz = s.snap != null && kind !== 'static' ? 1 + SNAP_Z * outExpo((t - s.snap) / SNAP_T) : 1;
+    // второй и следующие рывки на ударных словах (s.snaps): камера перекадрируется рывком — сдвиг 7 % ширины за 5 кадров
+    // в сторону, противоположную прошлому, и дожим 4 %; без изменения яркости
+    let rz = 1; if (s.snaps && kind !== 'static') s.snaps.forEach((p, i) => { const k = outExpo((t - p.t) / SNAP_T); ox += (i % 2 ? 1 : -1) * dir * .07 * k; rz *= 1 + .04 * k; });
     const sh = kick && t > ts && t < ts + .35 ? 14 * Math.sin((t - ts) * 60) * (1 - (t - ts) / .35) : 0;
-    return { z: z * sz, snapZ: sz, dx: ox, dy: oy, rot: 0, sh, kind };
+    return { z: z * sz * rz, snapZ: sz * rz, dx: ox, dy: oy, rot: 0, sh, kind };
   };
 }
 
@@ -320,6 +336,7 @@ export function animatic(stage, opt, HK = {}) {
       const tZ = sZ * (/^T-(doc|number|board|map|split|joke)$/.test(s.loc) && cam.kind !== 'static' ? Math.min(/^T-(board|map)$/.test(s.loc) ? 1.2 : 1.12, cam.z / cam.snapZ) : 1);
       const snapWrap = f => { ctx.save(); if (tZ !== 1) { ctx.translate(W / 2, H / 2); ctx.scale(tZ, tZ); ctx.translate(-W / 2, -H / 2); } f(); ctx.restore(); };
       ctx.save();
+      const bx = beatXf(s, t); if (bx) { ctx.translate(W / 2 + bx.ox * W, H / 2); ctx.scale(bx.z, bx.z); ctx.translate(-W / 2, -H / 2); }   // удар камеры на слове (s.beats)
       if (/^T-(map|board|doc|split|desk|number)$/.test(s.loc) && cam.sh) ctx.translate(cam.sh, cam.sh * .5);   // толчок на событии шаблона
       const custT = /^T-desk$/.test(s.loc) && HK.plate && HK.plate(s);
       if (custT) custT(ctx, s, t, d, sz, cam, sp, API); else switch (s.loc) {

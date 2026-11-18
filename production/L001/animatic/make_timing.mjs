@@ -177,6 +177,10 @@ for (let i = 0; i < shots.length; i++) {
     }
     s.snap = +Math.min(Math.max(t, .25), s.dur - .2).toFixed(3);
     if (k >= 0) s.snapWord = words[k].w.replace(/^[^A-Za-z0-9$]+|[^A-Za-z0-9%]+$/g, '');
+    // второй и следующие рывки: «рывок на «A» и «B»» — каждое следующее ударное слово, не раньше 0.45 с после предыдущего
+    const more = [...s.camera.matchAll(/ и «([^»]+)»/g)].map(x => norm(x[1].split(/\s+/)[0])); let prevT = s.snap;
+    for (const key2 of more) { for (let q = s.wi; q < to; q++) if (words[q].k === key2) { const t2 = absW(q) - s.start;
+      if (t2 > prevT + .45 && t2 < s.dur - .2) { (s.snaps ||= []).push({ t: +t2.toFixed(3), w: words[q].w.replace(/^[^A-Za-z0-9$]+|[^A-Za-z0-9%]+$/g, '') }); prevT = t2; break; } } }
   } else if (/рывок на событии/.test(s.camera)) s.snap = +(s.dur * .55).toFixed(3);
   // события по словам: часть колонки «событие» вида «на «слово» …» встаёт на время этого слова
   s.ev = [];
@@ -192,13 +196,34 @@ for (let i = 0; i < shots.length; i++) {
       s.whip = { t: +(absW(q) - s.start).toFixed(3), from: sp0, to: lines[words[q].li].speaker }; break;
     }
   }
+  // удары камеры по словам (колонка «камера»): «удары по словам» — на каждом ударном слове фразы (не чаще 0.3 с; удар может совпасть с событием — тогда он даёт движение камеры, а не лишнее событие);
+  // «удары ×N» — на N самых ударных словах (длинные, числа, имена), не чаще 0.6 с. Не ближе 0.35 с к рывку, вип-пану и событиям
+  // плана — каждый удар отдельное событие. Рисует core.js (beatXf): перекадровка всего кадра, без изменения яркости
+  const bm = !/статично/.test(s.camera) && s.camera.match(/удары (по словам|×(\d+))/);
+  if (bm) {
+    const STOP = new Set('the and was are him her his hers who one but for its our you has had not all can did get got how out say see she too two way why yes any off own that this with from they them their there then than have were what when where which while your into been just also only some more most like over very about after before because could would should every those these other'.split(' '));
+    const busy = (bm[2] ? [s.snap, ...(s.snaps || []).map(x => x.t), ...s.ev.map(e => e.t), s.whip && s.whip.t] : [s.snap, s.whip && s.whip.t]).filter(x => x != null);
+    const cand = [];
+    for (let q = s.wi; q < to; q++) {
+      const w = words[q].w.replace(/^[^A-Za-z0-9$]+|[^A-Za-z0-9%]+$/g, ''), t = absW(q) - s.start;
+      if (t < .25 || t > s.dur - .3 || (w.length < (bm[2] ? 4 : 3) && !/\d/.test(w)) || STOP.has(w.toLowerCase())) continue;
+      cand.push({ t, w, sc: w.length + (/\d|\$/.test(w) ? 4 : 0) + (/^[A-Z]/.test(w) && q > s.wi ? 2 : 0) });
+    }
+    const N = bm[2] ? +bm[2] : 99, gap = bm[2] ? .6 : .3, near = bm[2] ? .35 : .15, pick = [];
+    for (const c of bm[2] ? [...cand].sort((a, b) => b.sc - a.sc) : cand) {
+      if (pick.length >= N) break;
+      if (busy.some(x => Math.abs(x - c.t) < near) || pick.some(p => Math.abs(p.t - c.t) < gap)) continue;
+      pick.push(c);
+    }
+    if (pick.length) s.beats = pick.sort((a, b) => a.t - b.t).map(p => ({ t: +p.t.toFixed(3), w: p.w }));
+  }
 }
 
 const out = {
   fps: 30, voiceDuration: voiceEnd, total: +total.toFixed(3), inserts, linesFile: LINES_REF, audioFile: AUDIO_FILE,
   note: 'start/end — секунды аниматика (голос со вставленными паузами inserts: at — время в voice_draft.mp3, dur — тишина)',
   shots: shots.map(s => ({ n: s.n, ch: s.ch, chTitle: s.chTitle, start: +s.start.toFixed(3), end: +s.end.toFixed(3), dur: +s.dur.toFixed(3),
-    listDur: s.listDur, loc: s.loc, framing: s.framing, text: s.text, spoken: s.spoken, event: s.event, camera: s.camera, ...(s.box ? { box: s.box } : {}), ...(s.snap != null ? { snap: s.snap, snapWord: s.snapWord } : {}), ...(s.whip ? { whip: s.whip } : {}), ...(s.ev && s.ev.length ? { ev: s.ev } : {}) })),
+    listDur: s.listDur, loc: s.loc, framing: s.framing, text: s.text, spoken: s.spoken, event: s.event, camera: s.camera, ...(s.box ? { box: s.box } : {}), ...(s.snap != null ? { snap: s.snap, snapWord: s.snapWord } : {}), ...(s.snaps ? { snaps: s.snaps } : {}), ...(s.beats ? { beats: s.beats } : {}), ...(s.whip ? { whip: s.whip } : {}), ...(s.ev && s.ev.length ? { ev: s.ev } : {}) })),
 };
 writeFileSync(join(L, OUT_FILE), JSON.stringify(out, null, 1));
 // слова на шкале фильма (секунды фильма): рот героя двигается только на своих словах (film/words.js)
