@@ -10,6 +10,10 @@
 Пишет voice_fish/host_takes/<n>_<голос>.mp3 и host_takes/takes.json (id, speed, темп, высота голоса по репликам).
 Сборка 2026-11-17: дубли Leviticus и Brian British взяты из прогона без [break] между репликами (текст DIRECTED без
 [break]; ровнее по темпу), Old radio и David — из прогона с [break] (текущий DIRECTED); см. text_variant в takes.json.
+
+ВНИМАНИЕ (2026-11-18): вырезка ниже стоит с -ss/-to ПОСЛЕ -i, поэтому реплики идут встык с паузами дубля внутри
+(между репликами получается пауза дубля + 0.3 с = 0.7–0.9 с). Именно так звучали пробы, из которых Рауан выбрал дубль 1,
+поэтому здесь не исправлено; в fish_voice.py (scene_cut) для новых сцен разрез уже правильный.
 """
 import json, os, re, subprocess, sys, statistics
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
