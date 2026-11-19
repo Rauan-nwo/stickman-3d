@@ -62,14 +62,28 @@ def banner(bg_path, title_box, layout=None):
     while ImageFont.truetype(FONT2, s2).getlength(slogan) > (x1 - x0): s2 -= 2
     f2 = ImageFont.truetype(FONT2, s2); sb = d.textbbox((0, 0), slogan, font=f2)
     th, sh, gap = tb[3] - tb[1], sb[3] - sb[1], 28
-    ty = y0 + ((y1 - y0) - (th + gap + sh)) // 2 - tb[1]
+    BTN = 92 + 34 if SUBSCRIBE else 0          # кнопка + отступ — в общей высоте блока
+    while th + gap + sh + BTN > (y1 - y0) - 50 and size > 120:   # блок целиком влезает в зону всех устройств
+        size -= 8; f = ImageFont.truetype(FONT, size); tb = d.textbbox((0, 0), title, font=f); th = tb[3] - tb[1]
+    ty = y0 + ((y1 - y0) - (th + gap + sh + BTN)) // 2 - tb[1]
     tx = x0 + ((x1 - x0) - (tb[2] - tb[0])) // 2 - tb[0]
     shadow_text(d, (tx, ty), title, f, WHITE, 12)
-    q = ImageFont.truetype(FONT, size); qx = tx + f.getlength('huh')                 # знак вопроса — золотом
+    tx = x0 + ((x1 - x0) - (tb[2] - tb[0])) // 2 - tb[0]; q = ImageFont.truetype(FONT, size); qx = tx + f.getlength('huh')                 # знак вопроса — золотом
     d.text((qx, ty), '?', font=q, fill=GOLD, stroke_width=12, stroke_fill=INK)
     sx = x0 + ((x1 - x0) - (sb[2] - sb[0])) // 2 - sb[0]; sy = ty + tb[3] + gap - sb[1]
     shadow_text(d, (sx, sy), slogan, f2, GOLD, 5)
+    if SUBSCRIBE:   # красная кнопка SUBSCRIBE под слоганом (в зоне всех устройств)
+        f3 = ImageFont.truetype(FONT, 54); bw = f3.getlength('SUBSCRIBE') + 150; bh = 92
+        bx = x0 + ((x1 - x0) - bw) / 2; by = sy + sb[3] + 34
+        d.rounded_rectangle((bx + 6, by + 8, bx + bw + 6, by + bh + 8), 20, fill=(0, 0, 0))
+        d.rounded_rectangle((bx, by, bx + bw, by + bh), 20, fill=(222, 28, 36), outline=INK, width=5)
+        cx, cy = bx + 58, by + bh / 2   # значок «play»
+        d.polygon([(cx - 16, cy - 20), (cx - 16, cy + 20), (cx + 20, cy)], fill=WHITE)
+        d.text((bx + 96, cy), 'SUBSCRIBE', font=f3, fill=WHITE, anchor='lm')
     return im
+
+
+SUBSCRIBE = False
 
 
 def zones(im):
@@ -92,13 +106,14 @@ def avatar(src):
 if __name__ == '__main__':
     ap = argparse.ArgumentParser(); ap.add_argument('--avatar', default='avatar_v1.png'); ap.add_argument('--bg', default='banner_bg.png')
     ap.add_argument('--title', default='530,1160', help='x0,x1 полосы текста внутри зоны 507–2053')
+    ap.add_argument('--subscribe', action='store_true'); ap.add_argument('--out', default='banner_2560x1440')
     ap.add_argument('--layout', default='1.45,236,139', help='scale,xo,yo картинки на холсте (ведущий в зоне 1546×423)')
     a = ap.parse_args()
     if os.path.exists(os.path.join(D, a.bg)):
-        x0, x1 = map(int, a.title.split(','))
-        b = banner(os.path.join(D, a.bg), (x0, x1), tuple(float(v) if i == 0 else int(v) for i, v in enumerate(a.layout.split(',')))); b.save(os.path.join(D, 'banner_2560x1440.jpg'), quality=93, optimize=True)
-        zones(b).resize((1280, 720), Image.LANCZOS).save(os.path.join(D, 'banner_zones_preview.png'))
-        print('banner', os.path.getsize(os.path.join(D, 'banner_2560x1440.jpg')) // 1024, 'КБ')
+        SUBSCRIBE = a.subscribe; x0, x1 = map(int, a.title.split(','))
+        b = banner(os.path.join(D, a.bg), (x0, x1), tuple(float(v) if i == 0 else int(v) for i, v in enumerate(a.layout.split(',')))); b.save(os.path.join(D, a.out + '.jpg'), quality=93, optimize=True); b.crop(SAFE).save(os.path.join(D, a.out + '_mobile_view.png'))
+        zones(b).resize((1280, 720), Image.LANCZOS).save(os.path.join(D, a.out + '_zones_preview.png'))
+        print('banner', a.out, os.path.getsize(os.path.join(D, a.out + '.jpg')) // 1024, 'КБ')
     if os.path.exists(os.path.join(D, a.avatar)):
         av, pv = avatar(os.path.join(D, a.avatar)); n = os.path.splitext(a.avatar)[0]
         av.save(os.path.join(D, f'{n}_800.png')); pv.save(os.path.join(D, f'{n}_preview.png')); print('avatar ok', n)

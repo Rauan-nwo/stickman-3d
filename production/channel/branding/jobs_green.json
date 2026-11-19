@@ -1,0 +1,11 @@
+[
+ {
+  "out": "banner_green_sofa.png",
+  "promptFile": "prompts/banner_green_sofa.txt",
+  "refs": [
+   "refs/host_safe.png",
+   "refs/host_cu.png"
+  ],
+  "refMode": "match"
+ }
+]
