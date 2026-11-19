@@ -1,0 +1,186 @@
+[
+ {
+  "out": "assets/raw/bg_nasdaq_stage.png",
+  "promptFile": "prompts/bg_nasdaq_stage.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_trading_floor.png",
+  "promptFile": "prompts/bg_trading_floor.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_starbase_office.png",
+  "promptFile": "prompts/bg_starbase_office.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_mit_stage_2014.png",
+  "promptFile": "prompts/bg_mit_stage_2014.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_openai_2015_office.png",
+  "promptFile": "prompts/bg_openai_2015_office.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_openai_2020_night.png",
+  "promptFile": "prompts/bg_openai_2020_night.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_anthropic_2021_tiny.png",
+  "promptFile": "prompts/bg_anthropic_2021_tiny.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_anthropic_office.png",
+  "promptFile": "prompts/bg_anthropic_office.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_xai_office_night.png",
+  "promptFile": "prompts/bg_xai_office_night.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_tv_studio_2023.png",
+  "promptFile": "prompts/bg_tv_studio_2023.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_courtroom.png",
+  "promptFile": "prompts/bg_courtroom.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_bahamas_office_2022.png",
+  "promptFile": "prompts/bg_bahamas_office_2022.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_prison_tv_room.png",
+  "promptFile": "prompts/bg_prison_tv_room.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_colossus_exterior.png",
+  "promptFile": "prompts/bg_colossus_exterior.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_colossus_interior.png",
+  "promptFile": "prompts/bg_colossus_interior.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_spacex_boardroom.png",
+  "promptFile": "prompts/bg_spacex_boardroom.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_meeting_room.png",
+  "promptFile": "prompts/bg_meeting_room.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_dealbook_stage.png",
+  "promptFile": "prompts/bg_dealbook_stage.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_cnbc_set.png",
+  "promptFile": "prompts/bg_cnbc_set.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_altman_window.png",
+  "promptFile": "prompts/bg_altman_window.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_empty_stadium.png",
+  "promptFile": "prompts/bg_empty_stadium.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_gold_rush_town.png",
+  "promptFile": "prompts/bg_gold_rush_town.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_boxing_gym.png",
+  "promptFile": "prompts/bg_boxing_gym.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ }
+]
