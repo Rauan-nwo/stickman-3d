@@ -157,3 +157,6 @@ touched: production/L002/outline.md
 
 ## [2026-11-20 01:30] video | L002 факт-чек (25 расхождений разобраны, первичка SEC: проспекты Anthropic и SpaceX, 10-Q SpaceX, 8-K Nvidia) и сценарий EN, черновик 3 + перевод для Рауана: ~2500 слов ≈ 16 мин, реплик 10.1/мин, карточек 1.9/мин, цифр 3.4/100; Grok — ключ истории, линия Маск ↔ Амодеи, отступления о мотивах через улики
 touched: raw/research/2026-11-19-l002-factcheck.md, production/L002/{script.md,script_ru.md}
+
+## [2026-11-20 03:30] video | L002 голос EN (Fish, 380 строк, 15:13, 41 роль, каст по рисунку, без клонов реальных людей), 23 фона (13 приняты, 10 на перегенерации — сингапурский пейзаж из эталона), герои по фото
+touched: production/L002/{voice_fish/,narration.txt,make_narration.py,prompts/,assets/}

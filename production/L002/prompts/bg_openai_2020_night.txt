@@ -4,4 +4,6 @@ STYLE: hand-painted 2D animation background, like a high-end animated series or 
 
 REFERENCE: the attached image is the approved background of this series. Match its painted style exactly — same outline weight, same flat cel fills, same haze — so this plate looks like the same animated world. Do NOT copy its content or layout. No signage with readable letters, no logos, no brand marks, no people, no silhouettes of people. Screens and boards are blank or show only abstract shapes (text is added later).
 
-FRAMING: the same kind of small loft startup office as a 2020 night scene: desks, a whiteboard (blank), cardboard boxes on a desk being packed, one desk lamp on, city lights through the windows. Space for three standing figures holding boxes.
+FRAMING: the same kind of small loft startup office as a 2020 night scene: desks, a whiteboard (blank), cardboard boxes on a desk being packed, one desk lamp on, city lights through the windows. Space for three standing figures holding boxes. Through the windows: the San Francisco skyline at night with the Salesforce tower and the Bay Bridge lights (NOT Singapore).
+
+IMPORTANT: do NOT draw Singapore landmarks — no Marina Bay Sands hotel (three towers with a ship on top), no Ferris wheel, no lotus-shaped museum. The reference image is a Singapore restaurant only for STYLE; this location is in the USA.

@@ -1,0 +1,380 @@
+{
+ "MUSK": [
+  {
+   "label": "Ethan",
+   "id": "536d3a5e000945adb7038665781a4aca"
+  },
+  {
+   "label": "Jordan",
+   "id": "79d0bd3e4e5444b18f7b6d89b5927bf1"
+  },
+  {
+   "label": "WNBA VOICEOVER",
+   "id": "fb7ec16ca51a45a5a4db881244d7990a"
+  },
+  {
+   "label": "Vox",
+   "id": "3a8c604ba88044f4a6c9d356c9a45cdf"
+  },
+  {
+   "label": "Deep",
+   "id": "bb742915b1fa41b389a850b11efae0c8"
+  },
+  {
+   "label": "Male",
+   "id": "470bba6afe5a4a9885aba40ca5028f53"
+  },
+  {
+   "label": "Mp40",
+   "id": "e978dba06f7047a787221160b3e2daa0"
+  }
+ ],
+ "DARIO": [
+  {
+   "label": "History Voice",
+   "id": "fbac16744ffa49a9a51c29b1bf19242a"
+  },
+  {
+   "label": "CALM- NORMAL",
+   "id": "0b74ead073f2474a904f69033535b98e"
+  },
+  {
+   "label": "Nerd",
+   "id": "afe32b3355474a9bb6c99e5a45a7e837"
+  },
+  {
+   "label": "async hazmat suit",
+   "id": "bd07dce9ce3240b2ae98bbc6c7d9a533"
+  },
+  {
+   "label": "Stickzy ",
+   "id": "55046bd7267d4a618380d1e8f93a056a"
+  },
+  {
+   "label": "alex",
+   "id": "1d52151a55eb4878a997bd06e816b5f6"
+  }
+ ],
+ "DANIELA": [
+  {
+   "label": "Glinda",
+   "id": "c8f64deb39914cfca7f47ccfc3bca82f"
+  },
+  {
+   "label": "Natasa",
+   "id": "bcc5879c8dc9493aa192c1b4f7716a34"
+  },
+  {
+   "label": "Soft",
+   "id": "d46efea6abbc4c1e97cef112f0f12d7c"
+  },
+  {
+   "label": "Female Voice",
+   "id": "2a9605eeafe84974b5b20628d42c0060"
+  },
+  {
+   "label": "Woman woman woman ",
+   "id": "47cea757dbce4d3594f300d8899434c0"
+  },
+  {
+   "label": "Nancy",
+   "id": "cf1dddc9fe5b4e62acba83a163bbe4da"
+  },
+  {
+   "label": "Bella",
+   "id": "4c7e8d91253145b582ff36622ecf193c"
+  }
+ ],
+ "ALTMAN": [
+  {
+   "label": "Christopher",
+   "id": "5242b14421644f79967a481e5debed0b"
+  },
+  {
+   "label": "Calm(Male)",
+   "id": "2b18ea87004f453b8b79aed6ff125176"
+  },
+  {
+   "label": "Felix",
+   "id": "2b48984c48aa4f228dc31c90044e6ed3"
+  },
+  {
+   "label": "2d",
+   "id": "8dfeb3c56b39438f950f95bf121ed0fb"
+  },
+  {
+   "label": "calm",
+   "id": "57c0c11acb8149ea93074362b310929d"
+  }
+ ],
+ "SBF": [
+  {
+   "label": "Nerd",
+   "id": "8c9c3eafbea24016bca9f49ec209d012"
+  },
+  {
+   "label": "Nerd",
+   "id": "467e68c990b0404ba54e38bebc4fb5d6"
+  },
+  {
+   "label": "Adam ",
+   "id": "8f0d80aa445544ff82d1237bbba7e270"
+  },
+  {
+   "label": "Just Many",
+   "id": "52a238a0e70c4e589bd41561d26e7a08"
+  },
+  {
+   "label": "Alex American Young male ",
+   "id": "078eaa5208ca42a1909d2e6fac9c93f7"
+  },
+  {
+   "label": "NERD CK",
+   "id": "64e236afbebb43949b4efc5deffc21a6"
+  }
+ ],
+ "GROK": [
+  {
+   "label": "Lans",
+   "id": "b743cc6093ec48aa869133ee542fcdfc"
+  },
+  {
+   "label": "facty! fact attack adventures ",
+   "id": "f8fb3d11726f44849b9ebc07f499abe6"
+  },
+  {
+   "label": "youthful male robot",
+   "id": "6a34f272acc04453bc40fec158287a30"
+  },
+  {
+   "label": "steavo",
+   "id": "2a2d3ad1c9904c7e908a31c3ba9c47e4"
+  },
+  {
+   "label": "Verity",
+   "id": "906b8b47c30d4ba2a7f1287773e8a3ed"
+  },
+  {
+   "label": "Robot",
+   "id": "41d617b2d1e04f86ac3131566d610b58"
+  }
+ ],
+ "TRADER": [
+  {
+   "label": "Energetic Male",
+   "id": "802e3bc2b27e49c2995d23ef70e6ac89"
+  }
+ ],
+ "TRADER 2": [
+  {
+   "label": "Friendly Women",
+   "id": "b545c585f631496c914815291da4e893"
+  }
+ ],
+ "AIDE": [
+  {
+   "label": "Paula",
+   "id": "c2623f0c075b4492ac367989aee1576f"
+  }
+ ],
+ "STUDENT": [
+  {
+   "label": "natasha - valley",
+   "id": "f80f728df4c243bca79cd8dd0b57cac4"
+  }
+ ],
+ "REPORTER": [
+  {
+   "label": "Adam",
+   "id": "722523118ee94709b661502c76b016b7"
+  }
+ ],
+ "USER": [
+  {
+   "label": "boy",
+   "id": "d9ce1833c191476db346efb50aa20722"
+  }
+ ],
+ "WORKER": [
+  {
+   "label": "adam adam",
+   "id": "9259a7392c454a1eb6436141abb5a558"
+  }
+ ],
+ "FOREMAN": [
+  {
+   "label": "BOOK RECORD REGULAR",
+   "id": "f8dfe9c83081432386f143e2fe9767ef"
+  }
+ ],
+ "ENGINEER": [
+  {
+   "label": "Alex",
+   "id": "b5f4515fd395410b9ed3aef6fa51d9a0"
+  }
+ ],
+ "ENGINEER 2": [
+  {
+   "label": "Women KatKat",
+   "id": "bddf65d5a84c4a9aa36b7136bdac57a9"
+  }
+ ],
+ "COACH": [
+  {
+   "label": "Tom Pearl",
+   "id": "f4923bed889f48c79ebb455e6c45e9f5"
+  }
+ ],
+ "BOXER": [
+  {
+   "label": "twixxel",
+   "id": "c4abc633681445679b9a95075f4fab6e"
+  },
+  {
+   "label": "Mark",
+   "id": "edb4d200ed2f4eb8b9b58dd042e21c6a"
+  }
+ ],
+ "ASSISTANT": [
+  {
+   "label": "Hannah",
+   "id": "9a9cf47702da476aa4629e2506d4a857"
+  }
+ ],
+ "CUSTOMER": [
+  {
+   "label": "ADAM VOICE",
+   "id": "6f6dafad66b0404f8478cc88389ff53c"
+  }
+ ],
+ "CLERK": [
+  {
+   "label": "Sheila",
+   "id": "f3a2b90078d54a65af4b95f63bc7798e"
+  }
+ ],
+ "BUYER": [
+  {
+   "label": "Valentino",
+   "id": "d6cc48df129d45b18d5fe1afb76c1a92"
+  }
+ ],
+ "LAWYER": [
+  {
+   "label": "Measured Storyteller",
+   "id": "8906b5268cae414fb9b8d3da6e84413d"
+  }
+ ],
+ "INMATE": [
+  {
+   "label": "Marcus the worm",
+   "id": "8bed0e9b444046e2bf72da4b251d9a1d"
+  }
+ ],
+ "NEIGHBOR": [
+  {
+   "label": "Hello. My name is Mrs. Doris.",
+   "id": "22abe36238b34095bae8985ab6133bd0"
+  }
+ ],
+ "NEIGHBOR 2": [
+  {
+   "label": "old man (calm friendly)",
+   "id": "f4011527d52045bebe004aa874695276"
+  }
+ ],
+ "GUARD": [
+  {
+   "label": "Psychological",
+   "id": "c8c398f58ea74012969c3d9e51dd086c"
+  }
+ ],
+ "CHIP": [
+  {
+   "label": "twixxel",
+   "id": "c4abc633681445679b9a95075f4fab6e"
+  }
+ ],
+ "CHIP 2": [
+  {
+   "label": "Gigi",
+   "id": "091cad5003ed4e90826a92e1fadde278"
+  }
+ ],
+ "USHER": [
+  {
+   "label": "Lisa",
+   "id": "d85e5484b8794626975d69b6ab27ac0c"
+  }
+ ],
+ "ACCOUNTANT": [
+  {
+   "label": "w2w",
+   "id": "4746f1b456494387993af9041d0516c4"
+  }
+ ],
+ "ACCOUNTANT 2": [
+  {
+   "label": "Upbeat Woman",
+   "id": "e107ce68d2a64e928c3a674781ce9d56"
+  }
+ ],
+ "BOARD MEMBER": [
+  {
+   "label": "Woman (professional deep)",
+   "id": "e5653035f4bd402da1762114d0587e29"
+  }
+ ],
+ "STAFFER": [
+  {
+   "label": "Nex Watch TV",
+   "id": "eebc395fe36b45a8b313fca358c34a92"
+  }
+ ],
+ "STAFFER 2": [
+  {
+   "label": "Sarah",
+   "id": "933563129e564b19a115bedd57b7406a"
+  }
+ ],
+ "AMAZON BANKER": [
+  {
+   "label": "Documentary",
+   "id": "c3958f083c2d407982263c77cfa831e3"
+  }
+ ],
+ "GOOGLE BANKER": [
+  {
+   "label": "Abby: English Woman (US) - Aud",
+   "id": "f6a19fe5ab494e1fa51bb1476d583a44"
+  }
+ ],
+ "INTERVIEWER": [
+  {
+   "label": "Narration",
+   "id": "0af969cba6c24e74b5600d6df78e8975"
+  }
+ ],
+ "SBF_CALM": [
+  {
+   "label": "Adam",
+   "id": "8f0d80aa445544ff82d1237bbba7e270",
+   "line": "SBF_CALM"
+  },
+  {
+   "label": "Nerd467",
+   "id": "467e68c990b0404ba54e38bebc4fb5d6",
+   "line": "SBF_CALM"
+  },
+  {
+   "label": "NERD CK",
+   "id": "64e236afbebb43949b4efc5deffc21a6",
+   "line": "SBF_CALM"
+  },
+  {
+   "label": "Alex American Young male",
+   "id": "078eaa5208ca42a1909d2e6fac9c93f7",
+   "line": "SBF_CALM"
+  }
+ ]
+}

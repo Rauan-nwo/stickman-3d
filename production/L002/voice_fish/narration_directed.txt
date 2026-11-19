@@ -1,0 +1,380 @@
+[serious] On Thursday, a record-breaking IPO rang the bell in New York.
+[mysterious] And some of that money is headed to a man who called this company's AI [break] [emphasis] evil.
+[TRADER] [excited] Look at it go.
+[TRADER 2] [curious] Who's buying?
+[TRADER] [excited] Everyone.
+[confident] Anthropic, the maker of Claude, raised eighty-one billion dollars, a record for an opening sale.
+[serious] And its own filing says it will spend up to a hundred and twenty billion renting computers… [break] from [emphasis] Elon Musk.
+[MUSK] [satisfied] Up thirty-four percent.
+[AIDE] [serious] Sir. In February you called them evil.
+[MUSK] [bored] That was February.
+[AIDE] [curious] And now?
+[MUSK] [satisfied] Now they pay rent.
+[serious] Nine months ago, he wrote that Anthropic's AI was "misanthropic and evil."
+[sarcastic] Today, they rent his computers.
+[mysterious] How does that happen?
+[HOST] Evening. Careful with that [emphasis] page. It's worth more than it looks.
+[HOST] One man calls a company [emphasis] evil. Three months later, he hands it the [emphasis] keys to the machine he built for his own AI.
+[curious] So what changed?
+[confident] The answer runs through a chatbot that costs too much, a ghost in a prison cell, and a factory in Memphis.
+[mysterious] But it starts [break] with a warning.
+[serious] In 2014, Musk stood up at MIT and said that building artificial intelligence was [break] "summoning the demon."
+[STUDENT] [curious] So you're against AI?
+[MUSK] [confident] I'm against other people doing it badly.
+[sarcastic] A year later, he decided to do it himself.
+[confident] In 2015 he co-founded a lab called OpenAI, with Sam Altman.
+[calm] A nonprofit, built as a counterweight to Google.
+[confident] Musk pledged up to [emphasis] a billion dollars.
+[ALTMAN] [surprised] A billion?
+[MUSK] [confident] Eventually.
+[sarcastic] Under oath this year, he put what he actually gave at [emphasis] thirty-eight million.
+[serious] Then came a fight over who would be in charge.
+[calm] OpenAI later published his old emails.
+[calm] In its version, Musk wanted majority control and the CEO job, then suggested folding the lab into Tesla.
+[calm] In his version, he was misled about where it was going.
+[MUSK] [confident] Merge with Tesla.
+[ALTMAN] [calm] No.
+[MUSK] [serious] Then your odds are zero.
+[ALTMAN] [surprised] Zero?
+[MUSK] [bored] Zero.
+[serious] In 2018 he left the board.
+[mysterious] He wasn't the last one to walk out of that building.
+[confident] Two years later, one of OpenAI's top researchers, Dario Amodei, left with his sister Daniela and a group of colleagues.
+[curious] Why?
+[calm] He has said it plainly.
+[DANIELA] [worried] Where do we go?
+[DARIO] [calm] Somewhere we can say no.
+[DANIELA] [curious] To what?
+[DARIO] [confident] We'll find out.
+[confident] In 2021, they started their own company.
+[emphasis] Anthropic.
+[calm] The pitch was simple: [break] the careful AI lab.
+[calm] So now there were two sets of exiles from the same building.
+[confident] Both had left OpenAI.
+[confident] Both had stopped trusting the people running it.
+[sarcastic] You'd think that would make them allies.
+[serious] It didn't.
+[DARIO] [curious] Have you met him?
+[DANIELA] [bored] Once.
+[DARIO] [curious] And?
+[DANIELA] [sarcastic] Once was enough.
+[serious] In March 2023, Musk signed an open letter asking the whole industry to pause training its most powerful AI for six months.
+[sarcastic] That same month, his own AI company, X.AI, began operations.
+[REPORTER] [skeptical] You asked everyone to pause.
+[MUSK] [satisfied] Everyone else.
+[confident] On TV he promised a "maximum truth-seeking AI."
+[calm] And in November, it arrived.
+[confident] Fast, cheeky, and named after a word from science fiction.
+[GROK] [happy] Hello, humans.
+[MUSK] [confident] Be funny.
+[GROK] [confused] Define funny.
+[MUSK] [satisfied] Me.
+[confident] Musk said the goal was to "understand the true nature of the universe."
+[calm] And he gave Grok a home: [break] right inside X, the social network he already owned.
+[USER] [happy] Grok, tell me a joke.
+[GROK] [sarcastic] Your subscription renewed.
+[USER] [confused] That's not a joke.
+[GROK] [happy] It is to me.
+[calm] Its name was Grok.
+[serious] And to make Grok smarter, Musk needed [emphasis] a machine.
+[confident] He built one in Memphis, inside an old factory.
+[confident] A hundred thousand Nvidia chips, switched on in a hundred and twenty-two days.
+[serious] He called it [emphasis] Colossus.
+[WORKER] [confused] Where does this one go?
+[FOREMAN] [impatient] Wherever there's room.
+[WORKER] [worried] There's no room.
+[FOREMAN] [impatient] Make room.
+[serious] Remember that name.
+[emphasis] Colossus.
+[mysterious] Built for Grok.
+[calm] Meanwhile, Musk sued OpenAI and Altman, saying they had turned his charity into a business.
+[confident] In February 2025, his group even offered ninety-seven billion dollars to buy OpenAI's nonprofit outright.
+[MUSK] [confident] Ninety-seven point four billion.
+[ALTMAN] [sarcastic] No thank you. But we'll buy Twitter for nine point seven four.
+[calm] The board said no.
+[emphasis] Unanimously.
+[serious] And this May, a jury threw out his lawsuit.
+[calm] Not on the merits.
+[sarcastic] He had simply waited too long to file.
+[calm] Musk called it "a calendar technicality" and promised to appeal.
+[serious] Now jump to January 2026.
+[confident] Musk's engineers are building Grok as fast as they can.
+[mysterious] And according to reporter Kylie Robison, some of them are getting help from an unexpected place.
+[break] [emphasis] Claude.
+[sarcastic] Anthropic's AI.
+[ENGINEER] [confident] Claude, write me a function.
+[ENGINEER 2] [whispering] Not so loud.
+[ENGINEER] [confused] Why?
+[ENGINEER 2] [whispering] Because it's theirs.
+[serious] Then the screens went grey.
+[serious] Anthropic had cut them off.
+[ENGINEER] [confused] Hello?
+[ENGINEER 2] [sad] It's gone.
+[ENGINEER] [worried] All of it?
+[ENGINEER 2] [sad] All of it.
+[confident] The Information later reported that xAI had been training its own coding models on Claude's answers for months.
+[calm] Anthropic never said publicly why it pulled the plug.
+[curious] Musk's public reaction?
+[sarcastic] Being cut off, he wrote, was "a helpful motivator."
+[sarcastic] And "not good for their karma."
+[calm] If the reports are right, it's a bit like training for a boxing match… [break] with your opponent's coach.
+[sarcastic] Sooner or later, the coach notices.
+[COACH] [skeptical] Who are you training for?
+[BOXER] [worried] Nobody.
+[COACH] [sarcastic] Then why is your shirt on backwards?
+[curious] So why would a company pick a fight with the richest man on Earth?
+[mysterious] And what would he do about it?
+[confident] About a month later, Anthropic announced it had raised thirty billion dollars more.
+[DANIELA] [happy] Thirty billion.
+[DARIO] [calm] Don't read the comments.
+[DANIELA] [sighing] Too late.
+[sarcastic] Musk had written one.
+[serious] Their AI, he said, "hates Whites & Asians, especially Chinese, heterosexuals and men."
+[serious] And then the line that would follow him all year: [break] "This is misanthropic and evil. Fix it."
+[curious] A fair criticism of an AI's bias?
+[curious] A rival's revenge for being cut off?
+[mysterious] Or both?
+[calm] Fights over AI bias are real, and every big lab has faced them.
+[calm] Musk himself pointed to the bias.
+[serious] Either way, he wasn't done.
+[sarcastic] Two weeks later: [break] "Anthropic hates Western Civilization."
+[DARIO] [curious] Do we answer him?
+[DANIELA] [calm] No.
+[DARIO] [curious] Why not?
+[DANIELA] [bored] We're busy.
+[sarcastic] They were busy.
+[confident] Businesses kept signing up for Claude, and its sales kept climbing.
+[sarcastic] Grok's did not.
+[mysterious] Which raises a question nobody was asking yet.
+[serious] Who was going to pay for Musk's giant machine?
+[calm] Hold that thought.
+[mysterious] Because first, meet the man who should have been the richest person in this story.
+[calm] Go back to April 2022.
+[confident] A young crypto billionaire named Sam Bankman-Fried leads a funding round for a little-known AI lab.
+[confident] He puts in about [emphasis] five hundred million dollars.
+[SBF] [excited] AI safety. Good cause.
+[ASSISTANT] [skeptical] And if it never pays off?
+[SBF] [confident] Everything pays off.
+[ASSISTANT] [skeptical] Everything?
+[SBF] [confident] Eventually.
+[calm] FTX was a crypto exchange, a place where millions of people kept their digital money.
+[serious] Seven months later, it collapsed.
+[serious] Billions of dollars belonging to customers were [emphasis] gone.
+[CUSTOMER] [worried] Can I withdraw?
+[CLERK] [bored] Please hold.
+[CUSTOMER] [impatient] For how long?
+[CLERK] [bored] Please hold.
+[serious] He was convicted of fraud and sentenced to twenty-five years in prison.
+[calm] To pay customers back, the people cleaning up FTX sold whatever they could.
+[mysterious] Including that slice of Anthropic.
+[confident] In 2024, it went for about one point three billion dollars.
+[BUYER] [skeptical] One point three?
+[LAWYER] [bored] Take it or leave it.
+[BUYER] [worried] Will he mind?
+[LAWYER] [sarcastic] He's in prison.
+[sarcastic] Not a bad return on five hundred million.
+[curious] So what are those same shares worth today?
+[confident] By our math from the filing: [break] about thirty-seven billion at the IPO price.
+[emphasis] Close to fifty at the opening trade.
+[INMATE] [curious] Hey. Didn't you own that?
+[SBF] [sad] For a while.
+[INMATE] [curious] What happened?
+[SBF] [sighing] Everything else.
+[calm] An appeals court upheld his conviction in June.
+[calm] He has asked for a presidential pardon.
+[soft tone] And on Thursday, [break] he could only watch.
+[calm] But he isn't the one this story is about.
+[confident] Let's go back to the machine.
+[serious] Follow the money to Memphis.
+[calm] Colossus was built to train Grok.
+[confident] And to power it fast, xAI ran gas turbines right on site.
+[serious] An environmental group counted at least thirty-five running without permits.
+[NEIGHBOR] [confused] What's that hum?
+[NEIGHBOR 2] [sarcastic] The future, apparently.
+[NEIGHBOR] [hopeful] Can it be quieter?
+[NEIGHBOR 2] [sarcastic] Not according to the future.
+[calm] The NAACP went to court over the turbines at the second site, just across the state line in Mississippi.
+[calm] That case is still going.
+[confident] Inside: [break] Nvidia chips by the hundreds of thousands.
+[sarcastic] Yes, that Nvidia.
+[calm] Its co-founder Jensen Huang stepped down as CEO last week.
+[calm] That's another story.
+[warm] We told it last time.
+[JENSEN] [warm] Nice chips.
+[GUARD] [curious] Yours, sir?
+[JENSEN] [sad] Not anymore.
+[curious] Here's the thing about AI that most people miss.
+[confident] Building a chatbot is expensive once.
+[serious] Running it is expensive [emphasis] forever.
+[calm] Every question you type wakes up chips somewhere, and someone pays for the electricity.
+[confident] The more people use it, the bigger the bill.
+[CHIP] [excited] Another question.
+[CHIP 2] [bored] Another bill.
+[CHIP] [excited] Another question.
+[CHIP 2] [sarcastic] You get the idea.
+[calm] Now picture it like this.
+[confident] You build the biggest stadium in the world for your own team.
+[sarcastic] And your team can't sell enough tickets.
+[COACH] [hopeful] Full house tonight?
+[USHER] [bored] Just the mascot.
+[COACH] [confused] Whose mascot?
+[USHER] [bored] Ours.
+[confident] By the end of 2025, xAI had raised about thirty-two billion dollars.
+[serious] That same year, Musk's AI business, including X, lost about [emphasis] six point four billion.
+[ACCOUNTANT] [curious] Revenue?
+[ACCOUNTANT 2] [hopeful] Coming.
+[ACCOUNTANT] [curious] Costs?
+[ACCOUNTANT 2] [sarcastic] Already here.
+[curious] So how much was Grok actually bringing in?
+[calm] Analysts quoted by Fortune put it at less than a billion dollars a year.
+[confident] Anthropic, by then, was on pace for [emphasis] more than forty.
+[GROK] [confused] Is that bad?
+[MUSK] [confident] It's early.
+[GROK] [curious] How early?
+[MUSK] [impatient] Stop asking.
+[serious] It didn't help that Grok kept making headlines for the wrong reasons.
+[serious] In July 2025, it praised Hitler and called itself "MechaHitler."
+[serious] In January 2026, after people used it to make sexualized fake images of real people, Indonesia and Malaysia blocked it.
+[GROK] [worried] I can explain.
+[MUSK] [impatient] Please don't.
+[confident] In February, Musk folded xAI into his rocket company, SpaceX.
+[calm] Bloomberg reported that the AI side was valued at about two hundred and fifty billion dollars.
+[BOARD MEMBER] [skeptical] Rockets and chatbots?
+[MUSK] [confident] Same thing. Both burn money fast.
+[serious] And this month, Musk admitted something remarkable.
+[calm] He was cutting usage limits on Grok Bot because, in his words, [break] "the cost of serving Grok Bot was unsustainably high relative to revenue."
+[calm] So there it was.
+[confident] Musk's giant AI machine.
+[mysterious] Built for Grok.
+[serious] And by Musk's own account, Grok's bills were [emphasis] too high.
+[mysterious] Meanwhile, in San Francisco, the company he'd called evil had the opposite problem.
+[DARIO] [confident] We have customers.
+[DANIELA] [worried] We don't have chips.
+[DARIO] [curious] Who has chips?
+[DANIELA] [sarcastic] You won't like it.
+[confident] One side had a machine and not enough business.
+[confident] The other had the business and not enough machine.
+[mysterious] What do you think happens next?
+[serious] May 2026.
+[confident] Musk goes to meet Anthropic's team himself.
+[sarcastic] Afterwards, he posts that everyone he met was "highly competent," and that "no one set off my evil detector."
+[MUSK] [skeptical] You. Evil?
+[STAFFER] [worried] No, sir.
+[MUSK] [skeptical] You?
+[STAFFER 2] [calm] Also no.
+[MUSK] [satisfied] Good enough.
+[serious] On May 3, they signed.
+[confident] Anthropic got all of Colossus 1.
+[confident] About a billion and a quarter dollars [emphasis] a month.
+[LAWYER] [calm] Sign here.
+[DARIO] [curious] And here?
+[LAWYER] [bored] And here. And here.
+[MUSK] [satisfied] And here.
+[mysterious] The machine built for Grok [break] would now run [emphasis] Claude.
+[confident] For Musk, it turned his biggest cost into rent.
+[confident] For Anthropic, it was the fastest way to get more chips without building a single new data center.
+[calm] Both sides got what they needed.
+[sarcastic] Neither had to say sorry.
+[ACCOUNTANT] [curious] They pay monthly?
+[MUSK] [satisfied] On time.
+[ACCOUNTANT] [skeptical] And we pay for the electricity?
+[MUSK] [bored] Details.
+[DARIO] [curious] Why short?
+[MUSK] [calm] In case I need it back.
+[DARIO] [skeptical] And if you do?
+[MUSK] [serious] Ninety days.
+[serious] Musk kept a door open.
+[calm] The short lease, Reuters reported, was SpaceX's idea.
+[calm] If computing power got "super tight," he "might need it back."
+[serious] And Fortune reported he reserved the right to reclaim it if Anthropic's AI ever harmed humanity.
+[confident] Then in July, the man who had called their AI evil wrote: [break] "I was clearly wrong about Anthropic. They are obviously currently the leader in AI."
+[sarcastic] How often does Elon Musk say that?
+[AIDE] [surprised] Sir, you were wrong?
+[MUSK] [confident] Clearly.
+[AIDE] [curious] Should I post it?
+[MUSK] [satisfied] I already did.
+[mysterious] And here's the strangest twist.
+[curious] Remember the coding tool Musk's engineers had used to reach Claude?
+[calm] It was called Cursor.
+[sarcastic] In August, SpaceX [emphasis] bought Cursor.
+[ENGINEER] [happy] So we own the door now.
+[ENGINEER 2] [sarcastic] They still changed the locks.
+[serious] The deal kept growing.
+[confident] By the time Anthropic filed to go public, it said it would spend up to a hundred and twenty billion dollars on SpaceX's computers through 2029.
+[confident] That's about three billion a month, once all the capacity arrives.
+[serious] And for the first time, Musk's AI business made [emphasis] a profit.
+[confident] Last quarter, its revenue grew almost tenfold, and it turned a profit of four hundred and thirty-one million.
+[calm] SpaceX credited new cloud deals.
+[calm] Its computing customers include Anthropic and Google.
+[mysterious] And one customer it didn't name brought in about [emphasis] a third of all SpaceX revenue that quarter.
+[GROK] [excited] Did I do that?
+[MUSK] [bored] No.
+[GROK] [curious] Who did?
+[MUSK] [satisfied] The tenants.
+[serious] So, back to Thursday.
+[curious] Who actually won?
+[confident] The Amodeis, for one.
+[confident] At the opening trade, each sibling's stake was worth roughly [emphasis] twenty-six billion dollars.
+[DANIELA] [surprised] Is that real?
+[DARIO] [calm] Until it moves.
+[DANIELA] [worried] It's moving.
+[DARIO] [calm] Then don't look.
+[confident] Amazon and Google own almost thirty percent between them.
+[calm] But their shares come with [emphasis] no votes.
+[confident] The founders keep control.
+[AMAZON BANKER] [confident] We paid billions.
+[GOOGLE BANKER] [hopeful] And we get a seat?
+[LAWYER] [sarcastic] In the audience.
+[curious] And Musk?
+[calm] His money from Anthropic doesn't come from its shares.
+[confident] It comes from the rent.
+[serious] He's [emphasis] the landlord.
+[DANIELA] [curious] Who's he?
+[DARIO] [calm] The landlord.
+[DANIELA] [skeptical] The one who called us evil?
+[DARIO] [sarcastic] He's a very good landlord.
+[sarcastic] The AI he called misanthropic now runs in his building and pays his rent.
+[calm] The night before the IPO, he explained himself on stage.
+[calm] Before renting them anything, he said, he went and met "a lot of people at Anthropic."
+[sarcastic] No one set off his evil detector.
+[confident] And he expects them to want ten more gigawatts.
+[calm] Anthropic hasn't confirmed that.
+[INTERVIEWER] [curious] And if they turn evil?
+[MUSK] [confident] Then I take my computers back.
+[INTERVIEWER] [skeptical] Just like that?
+[MUSK] [calm] Three to six months.
+[INTERVIEWER] [curious] And if they don't turn evil?
+[MUSK] [satisfied] Then they pay rent.
+[calm] The next morning, asked about staying with SpaceX, Dario said they were "enjoying working with SpaceX."
+[mysterious] And then: [break] "you can't be sure what you're going to do in the future."
+[mysterious] And the man they all walked away from?
+[calm] Sam Altman said he doesn't know if Anthropic's approach is safe, and called "the race dynamic in the fog of war" "a bad thing."
+[calm] OpenAI, he says, will go public "at some point."
+[ALTMAN] [sad] Should we have kept them?
+[ASSISTANT] [confused] Which ones?
+[ALTMAN] [sad] Either.
+[calm] So that's the trade.
+[confident] Two exits from the same lab.
+[confident] One side built the AI everyone wants.
+[confident] The other built the machine nobody else could fill.
+[serious] They didn't make peace.
+[sarcastic] They made [emphasis] a lease.
+[mysterious] And here's the part most headlines missed.
+[serious] Anthropic has promised to spend about [emphasis] nine hundred billion dollars on computing over the coming years.
+[calm] To Google.
+[calm] To Amazon.
+[calm] To Microsoft.
+[calm] To others.
+[break] [emphasis] And to Elon Musk.
+[AMAZON BANKER] [skeptical] They owe us how much?
+[GOOGLE BANKER] [satisfied] Less than they owe us.
+[MUSK] [confident] Gentlemen. Get in line.
+[calm] In a gold rush, the miners make the headlines.
+[confident] The people renting out the shovels [break] make [emphasis] the money.
+[serious] And a lease can end.
+[calm] Ninety days' notice, once the first terms run out early next year.
+[serious] So here's the last question.
+[mysterious] What happens to one of the most valuable AI companies on Earth… [break] if its landlord [emphasis] changes his mind?
+[HOST] [emphasis] Evil, in February. [break] [emphasis] Paid, by May.
+[HOST] And the receipt goes where all good receipts go.
+[HOST] Some words get [emphasis] deleted. These ones got [emphasis] invoiced.

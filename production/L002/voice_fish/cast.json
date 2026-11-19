@@ -1,0 +1,333 @@
+{
+ "_note": "Голоса L002 в Fish Audio. NARRATOR, HOST, JENSEN — как в L001 (выбор Рауана 2026-11-17). Остальные 40 ролей подобраны 2026-11-20 из публичной библиотеки Fish по одной пробе на кандидата (cast_probe.py, out/cast_probe/): без клонов знаменитостей, реальных людей и персонажей игр/аниме; пол и возраст — по рисунку героя (сценарий), проверены по высоте голоса; у каждой роли свой голос, собеседники в сценке разведены по высоте и тембру. f0_hz — медианная высота (YIN) на пробе; f0_track_hz — медиана по репликам роли в готовой дорожке. Режиссура — метки S2 в narration_directed.txt.",
+ "model": "s2.1-pro-free (бесплатная; платная s2.1-pro отвечает 402)",
+ "NARRATOR": {
+  "id": "e686ae649ee44f219a108aacba206c1a",
+  "name": "Calm Storyteller",
+  "speed": 0.96,
+  "temperature": 0.75,
+  "top_p": 0.75,
+  "f0_track_hz": 92
+ },
+ "HOST": {
+  "id": "5a6774c58559475dac02eb2c91b26437",
+  "name": "Leviticus Cornwall",
+  "speed": 1.08,
+  "temperature": 0.5,
+  "top_p": 0.55,
+  "scene_tag": "[confident]",
+  "note": "выбор Рауана 2026-11-17 (дубль 1, клон персонажа RDR2 — риск принят). Каждая сцена ведущего — один запрос (scene_tag на весь дубль, в строках только [emphasis]/[break]), режется по словам whisper, паузы 0.3 с",
+  "f0_track_hz": 239
+ },
+ "JENSEN": {
+  "id": "b7204d4e40ef4a548c7c8547b7f73492",
+  "name": "Alok",
+  "speed": 1.0,
+  "note": "как в L001 (Alok); камео Дженсена Хуанга",
+  "f0_track_hz": 108
+ },
+ "MUSK": {
+  "id": "79d0bd3e4e5444b18f7b6d89b5927bf1",
+  "name": "Jordan",
+  "speed": 1.0,
+  "f0_hz": 101,
+  "note": "мужской, ~55, зрелый, напористый (Fish preset «A motivational speaker»), сухие реплики звучат невозмутимо",
+  "f0_track_hz": 106
+ },
+ "DARIO": {
+  "id": "fbac16744ffa49a9a51c29b1bf19242a",
+  "name": "History Voice",
+  "speed": 1.0,
+  "f0_hz": 126,
+  "note": "мужской, ~43, спокойный, тёплый, вдумчивый, размеренный",
+  "f0_track_hz": 142
+ },
+ "DANIELA": {
+  "id": "4c7e8d91253145b582ff36622ecf193c",
+  "name": "Bella",
+  "speed": 1.0,
+  "f0_hz": 234,
+  "note": "женский, ~39, тёплый, уверенный, с сухой иронией («cocky, confident»); в L001 — WAITRESS",
+  "f0_track_hz": 229
+ },
+ "ALTMAN": {
+  "id": "5242b14421644f79967a481e5debed0b",
+  "name": "Christopher",
+  "speed": 1.0,
+  "f0_hz": 154,
+  "note": "мужской, ~41, мягкий, тихий, с придыханием (soft-spoken)",
+  "f0_track_hz": 132
+ },
+ "SBF": {
+  "id": "467e68c990b0404ba54e38bebc4fb5d6",
+  "name": "Nerd",
+  "speed": 1.1,
+  "f0_hz": 167,
+  "note": "мужской, ~30, молодой, небрежный разговорный «ботан»; speed 1.1 — быстрый",
+  "f0_track_hz": 186
+ },
+ "GROK": {
+  "id": "f8fb3d11726f44849b9ebc07f499abe6",
+  "name": "facty! fact attack adventures",
+  "speed": 1.0,
+  "f0_hz": 276,
+  "note": "игривый, бодрый, дерзкий, гендерно-нейтральный (в библиотеке — nonbinary); не роботизированный — запасной «youthful male robot» 6a34f272acc04453bc40fec158287a30",
+  "f0_track_hz": 244
+ },
+ "TRADER": {
+  "id": "802e3bc2b27e49c2995d23ef70e6ac89",
+  "name": "Energetic Male",
+  "speed": 1.0,
+  "f0_hz": 234,
+  "note": "мужской, молодой, бодрый; в L001 — CUSTOMER",
+  "f0_track_hz": 224
+ },
+ "TRADER 2": {
+  "id": "b545c585f631496c914815291da4e893",
+  "name": "Friendly Women",
+  "speed": 1.0,
+  "f0_hz": 258,
+  "note": "женский, молодой, яркий; в L001 — FAN 2",
+  "f0_track_hz": 167
+ },
+ "AIDE": {
+  "id": "c2623f0c075b4492ac367989aee1576f",
+  "name": "Paula",
+  "speed": 1.0,
+  "f0_hz": 188,
+  "note": "женский, деловой, ровный (помощница Маска); в L001 — ASSISTANT",
+  "f0_track_hz": 235
+ },
+ "STUDENT": {
+  "id": "f80f728df4c243bca79cd8dd0b57cac4",
+  "name": "natasha - valley",
+  "speed": 1.0,
+  "f0_hz": 232,
+  "note": "женский, молодой (студентка)",
+  "f0_track_hz": 276
+ },
+ "REPORTER": {
+  "id": "722523118ee94709b661502c76b016b7",
+  "name": "Adam",
+  "speed": 1.0,
+  "f0_hz": 129,
+  "note": "мужской, молодой, энергичный; в L001 — REPORTER",
+  "f0_track_hz": 140
+ },
+ "USER": {
+  "id": "d9ce1833c191476db346efb50aa20722",
+  "name": "boy",
+  "speed": 1.0,
+  "f0_hz": 205,
+  "note": "мужской, молодой, расслабленный; в L001 — ROOMMATE",
+  "f0_track_hz": 144
+ },
+ "WORKER": {
+  "id": "9259a7392c454a1eb6436141abb5a558",
+  "name": "adam adam",
+  "speed": 1.0,
+  "f0_hz": 170,
+  "note": "мужской, молодой; в L001 — DRIVER",
+  "f0_track_hz": 144
+ },
+ "FOREMAN": {
+  "id": "f8dfe9c83081432386f143e2fe9767ef",
+  "name": "BOOK RECORD REGULAR",
+  "speed": 1.0,
+  "f0_hz": 78,
+  "note": "мужской, зрелый, низкий с хрипотцой; в L001 — UNCLE",
+  "f0_track_hz": 92
+ },
+ "ENGINEER": {
+  "id": "b5f4515fd395410b9ed3aef6fa51d9a0",
+  "name": "Alex",
+  "speed": 1.0,
+  "f0_hz": 140,
+  "note": "мужской, молодой, энергичный; в L001 — FAN",
+  "f0_track_hz": 158
+ },
+ "ENGINEER 2": {
+  "id": "bddf65d5a84c4a9aa36b7136bdac57a9",
+  "name": "Women KatKat",
+  "speed": 1.0,
+  "f0_hz": 291,
+  "note": "женский, молодой, звонкий",
+  "f0_track_hz": 235
+ },
+ "COACH": {
+  "id": "f4923bed889f48c79ebb455e6c45e9f5",
+  "name": "Tom Pearl",
+  "speed": 1.0,
+  "f0_hz": 148,
+  "note": "мужской, низкий с хрипотцой (тренер боксёра и тренер команды — одна роль); в L001 — SALESMAN",
+  "f0_track_hz": 143
+ },
+ "BOXER": {
+  "id": "078eaa5208ca42a1909d2e6fac9c93f7",
+  "name": "Alex American Young male",
+  "speed": 1.0,
+  "f0_hz": 205,
+  "note": "мужской, молодой, быстрый",
+  "f0_track_hz": 99
+ },
+ "ASSISTANT": {
+  "id": "9a9cf47702da476aa4629e2506d4a857",
+  "name": "Hannah",
+  "speed": 1.0,
+  "f0_hz": 271,
+  "note": "женский, деловой, звонкий (ассистент SBF и ассистент Альтмана — одна роль); в L001 — CLERK",
+  "f0_track_hz": 271
+ },
+ "CUSTOMER": {
+  "id": "6f6dafad66b0404f8478cc88389ff53c",
+  "name": "ADAM VOICE",
+  "speed": 1.0,
+  "f0_hz": 208,
+  "note": "мужской, молодой, яркий, нетерпеливый",
+  "f0_track_hz": 131
+ },
+ "CLERK": {
+  "id": "f3a2b90078d54a65af4b95f63bc7798e",
+  "name": "Sheila",
+  "speed": 1.0,
+  "f0_hz": 234,
+  "note": "женский, молодой, американский, скучающий",
+  "f0_track_hz": 296
+ },
+ "BUYER": {
+  "id": "d6cc48df129d45b18d5fe1afb76c1a92",
+  "name": "Valentino",
+  "speed": 1.0,
+  "f0_hz": 113,
+  "note": "мужской, низкий, «дорогой»; в L001 — INVESTOR",
+  "f0_track_hz": 109
+ },
+ "LAWYER": {
+  "id": "8906b5268cae414fb9b8d3da6e84413d",
+  "name": "Measured Storyteller",
+  "speed": 1.0,
+  "f0_hz": 190,
+  "note": "женский, зрелый, ровный, сухой (все три сценки с юристом)",
+  "f0_track_hz": 163
+ },
+ "INMATE": {
+  "id": "8bed0e9b444046e2bf72da4b251d9a1d",
+  "name": "Marcus the worm",
+  "speed": 1.0,
+  "f0_hz": 104,
+  "note": "мужской, низкий, гладкий; в L001 — RENTER",
+  "f0_track_hz": 102
+ },
+ "NEIGHBOR": {
+  "id": "22abe36238b34095bae8985ab6133bd0",
+  "name": "Hello. My name is Mrs. Doris. How are you?",
+  "speed": 1.0,
+  "f0_hz": 230,
+  "note": "женский, пожилой, тёплый",
+  "f0_track_hz": 195
+ },
+ "NEIGHBOR 2": {
+  "id": "f4011527d52045bebe004aa874695276",
+  "name": "old man (calm friendly)",
+  "speed": 1.0,
+  "f0_hz": 121,
+  "note": "мужской, пожилой, спокойный; в L001 — BANKER 2",
+  "f0_track_hz": 128
+ },
+ "GUARD": {
+  "id": "c8c398f58ea74012969c3d9e51dd086c",
+  "name": "Psychological",
+  "speed": 1.0,
+  "f0_hz": 80,
+  "note": "мужской, низкий, серьёзный; в L001 — OFFICER",
+  "f0_track_hz": 89
+ },
+ "CHIP": {
+  "id": "c4abc633681445679b9a95075f4fab6e",
+  "name": "twixxel",
+  "speed": 1.0,
+  "f0_hz": 104,
+  "note": "мужской, молодой, живой (первый чип)",
+  "f0_track_hz": 100
+ },
+ "CHIP 2": {
+  "id": "091cad5003ed4e90826a92e1fadde278",
+  "name": "Gigi",
+  "speed": 1.0,
+  "f0_hz": 258,
+  "note": "женский, высокий, яркий (второй чип)",
+  "f0_track_hz": 294
+ },
+ "USHER": {
+  "id": "d85e5484b8794626975d69b6ab27ac0c",
+  "name": "Lisa",
+  "speed": 1.0,
+  "f0_hz": 213,
+  "note": "женский, молодой (билетёрша)",
+  "f0_track_hz": 208
+ },
+ "ACCOUNTANT": {
+  "id": "4746f1b456494387993af9041d0516c4",
+  "name": "w2w",
+  "speed": 1.0,
+  "f0_hz": 139,
+  "note": "мужской, спокойный; в L001 — ACCOUNTANT",
+  "f0_track_hz": 130
+ },
+ "ACCOUNTANT 2": {
+  "id": "e107ce68d2a64e928c3a674781ce9d56",
+  "name": "Upbeat Woman",
+  "speed": 1.0,
+  "f0_hz": 291,
+  "note": "женский, бодрый; в L001 — ACCOUNTANT 2",
+  "f0_track_hz": 254
+ },
+ "BOARD MEMBER": {
+  "id": "e5653035f4bd402da1762114d0587e29",
+  "name": "Woman (professional deep)",
+  "speed": 1.0,
+  "f0_hz": 198,
+  "note": "женский, зрелый, авторитетный; в L001 — BOARD",
+  "f0_track_hz": 165
+ },
+ "STAFFER": {
+  "id": "eebc395fe36b45a8b313fca358c34a92",
+  "name": "Nex Watch TV",
+  "speed": 1.0,
+  "f0_hz": 155,
+  "note": "мужской, молодой, дружелюбный; в L001 — STAFFER",
+  "f0_track_hz": 167
+ },
+ "STAFFER 2": {
+  "id": "47cea757dbce4d3594f300d8899434c0",
+  "name": "Woman woman woman",
+  "speed": 1.0,
+  "f0_hz": 254,
+  "note": "женский, тёплый, уверенный",
+  "f0_track_hz": 308
+ },
+ "AMAZON BANKER": {
+  "id": "c3958f083c2d407982263c77cfa831e3",
+  "name": "Documentary",
+  "speed": 1.0,
+  "f0_hz": 103,
+  "note": "мужской, зрелый, британский; в L001 — BANKER",
+  "f0_track_hz": 114
+ },
+ "GOOGLE BANKER": {
+  "id": "d46efea6abbc4c1e97cef112f0f12d7c",
+  "name": "Soft",
+  "speed": 1.0,
+  "f0_hz": 239,
+  "note": "женский, тёплый, разговорный",
+  "f0_track_hz": 219
+ },
+ "INTERVIEWER": {
+  "id": "bcc5879c8dc9493aa192c1b4f7716a34",
+  "name": "Natasa",
+  "speed": 1.0,
+  "f0_hz": 242,
+  "note": "женский, профессиональный, тёплый (ведущая на сцене DealBook, безымянная)",
+  "f0_track_hz": 232
+ }
+}

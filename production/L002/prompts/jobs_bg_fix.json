@@ -1,0 +1,82 @@
+[
+ {
+  "out": "assets/raw/bg_anthropic_2021_tiny_v2.png",
+  "promptFile": "prompts/bg_anthropic_2021_tiny.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_boxing_gym_v2.png",
+  "promptFile": "prompts/bg_boxing_gym.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_cnbc_set_v2.png",
+  "promptFile": "prompts/bg_cnbc_set.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_empty_stadium_v2.png",
+  "promptFile": "prompts/bg_empty_stadium.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_meeting_room_v2.png",
+  "promptFile": "prompts/bg_meeting_room.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_openai_2015_office_v2.png",
+  "promptFile": "prompts/bg_openai_2015_office.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_openai_2020_night_v2.png",
+  "promptFile": "prompts/bg_openai_2020_night.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_tv_studio_2023_v2.png",
+  "promptFile": "prompts/bg_tv_studio_2023.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_xai_office_night_v2.png",
+  "promptFile": "prompts/bg_xai_office_night.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ },
+ {
+  "out": "assets/raw/bg_trading_floor_v2.png",
+  "promptFile": "prompts/bg_trading_floor.txt",
+  "refs": [
+   "refs/bg_restaurant_v2.png"
+  ],
+  "refMode": "material"
+ }
+]
