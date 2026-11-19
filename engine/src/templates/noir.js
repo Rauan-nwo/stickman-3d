@@ -81,7 +81,8 @@ export function grain(ctx, W, H, t, k = .07) {
     for (let i = 0; i < w * h; i++) { const v = 128 + (r() + r() + r() - 1.5) * 120; im.data[i * 4] = im.data[i * 4 + 1] = im.data[i * 4 + 2] = v; im.data[i * 4 + 3] = 255; }
     x.putImageData(im, 0, 0);
   });
-  const f = Math.floor(t * 12), r = rng(f * 7 + 3), ox = -Math.floor(r() * S), oy = -Math.floor(r() * S);
+  // зерно НЕПОДВИЖНО (как пыль на объективе): раньше узор менялся 12 раз/с — «кипящее» зерно на всех карточках T-*, правило L001 QA §9
+  const r = rng(3), ox = -Math.floor(r() * S), oy = -Math.floor(r() * S);
   ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalCompositeOperation = 'overlay'; ctx.globalAlpha = k;
   for (let y = oy; y < H; y += S) for (let x = ox; x < W; x += S) ctx.drawImage(tile, x, y);
   ctx.restore();

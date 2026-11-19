@@ -1,7 +1,7 @@
 // templates/captions.js: плашка «имя — роль» и крупная цифра.
 //   lowerThird(ctx, t, { name, role, x, y, at, out, point })   — плашка тушью с янтарными линейками выезжает слева,
 //        роль набивается на пишмашинке; point: [x, y] — тонкая выноска к герою (как подписи у конкурента)
-//   bigNumber(ctx, t, { from, to, label, at, countDur, strike })  — число отсчитывает от from к to
+//   bigNumber(ctx, t, { from, to, label, at, countDur, strike, tickHz })  — число отсчитывает от from к to (tickHz — смена цифр N раз/с)
 //        (в логарифме, если разница больше 20 раз: $33 MILLION -> $3 BILLION; 95% -> 0% — линейно);
 //        событие: приземление — удар с отскоком, красная черта под числом, толчок камеры, старое значение зачёркнуто
 //        '1 MONTH' — с пробелом (без from не считается); не-число ('ONE MONTH') — текстом, впечатывается в at;
@@ -100,16 +100,24 @@ export function bigNumber(ctx, t, o = {}) {
   // отсчёт — только число к числу; '1 MONTH' без from не считается (0 MONTH -> 1 MONTH нелепо), текст — никогда
   const counting = !ticker && !A.text && !B.text && (o.from != null || !B.word);
   const countDur = counting ? (o.countDur ?? 1.3) : (o.countDur ?? .12), tLand = at + countDur;
-  const k = E.inOutCubic(clamp((t - at) / countDur));
+  // tickHz — счётчик меняет цифры не каждый кадр, а N раз в секунду (как механический табло): крупные цифры, сменяясь каждый кадр,
+  //   давали «пилу» яркости всего кадра (ворота мерцания L001). По умолчанию — как раньше (каждый кадр).
+  const tq = o.tickHz && counting && t > at && t < tLand ? at + Math.floor((t - at) * o.tickHz) / o.tickHz : t;
+  const k = E.inOutCubic(clamp((tq - at) / countDur));
   let main, unit = '';
   if (counting) {
     const log = A.value > 0 && B.value > 0 && Math.max(A.value / B.value, B.value / A.value) > 20;
     const v = k >= 1 ? B.value : log ? Math.exp(lerp(Math.log(A.value), Math.log(B.value), k)) : lerp(A.value, B.value, k);
     // какие единицы показывать: крупнейшая из встречающихся, в которую число уже «доросло»
-    const units = [A, B].filter(p => p.mult > 1).sort((a, b) => b.mult - a.mult);
-    const U = k >= 1 ? B : (units.find(u => v >= u.mult) || units[units.length - 1] || B);
+    //   по ходу счёта — стандартная лестница MILLION/BILLION/TRILLION (или M/B/T, если так написано в to); ниже миллиона — просто число
+    //   с запятыми. Раньше '$0' -> '$50 BILLION' начинался с «$0 BILLION» (единица цели при нуле) — нелепо.
+    const big = A.mult > 1 || B.mult > 1, abbr = big && (B.mult > 1 ? B : A).unit.length <= 1;
+    const std = !big ? [] : (abbr ? [['T', 1e12], ['B', 1e9], ['M', 1e6]] : [['TRILLION', 1e12], ['BILLION', 1e9], ['MILLION', 1e6]]).map(([unit, mult]) => ({ pre: B.pre || A.pre, unit, mult, sep: ' ' }));
+    const units = [A, B].filter(p => p.mult > 1).concat(std).sort((a, b) => b.mult - a.mult);
+    const plain = { pre: B.pre || A.pre, unit: '', mult: 1, sep: '' };
+    const U = k >= 1 ? B : k <= 0 ? A : (units.find(u => v >= u.mult) || (big ? plain : units[units.length - 1] || B));
     const shown = v / U.mult, dec = k >= 1 ? B.dec : k <= 0 ? A.dec : shown < 10 && U.mult > 1 ? 1 : 0;
-    main = (U.pre || B.pre) + fmt(k <= 0 ? A.num : k >= 1 ? B.num : shown, dec, B.comma || A.comma) + (U.mult > 1 ? '' : U.sep + U.unit);
+    main = (U.pre || B.pre) + fmt(k <= 0 ? A.num : k >= 1 ? B.num : shown, dec, B.comma || A.comma || U === plain) + (U.mult > 1 ? '' : U.sep + U.unit);
     unit = U.mult > 1 ? U.unit.toUpperCase() : '';
   } else {                                                                     // текстом: до удара — from (если задан), после — to
     const fin = B.text ? String(to) : B.pre + fmt(B.num, B.dec, B.comma) + (B.mult > 1 ? '' : B.sep + B.unit);

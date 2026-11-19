@@ -165,7 +165,7 @@ export const SHOTS = {
     const g = gesture(t, tr, { lead: .2, rise: .3, hold: 1.2, fall: .4 });
     ctx.save(); shake(ctx, cam); A_EH.plate(ctx, v, 'wide', 0, solo);
     if (!solo) { A_scr(ctx, v, ['CUDA', 'PARALLEL COMPUTING ON THE GPU'], 1); A_screenFlash(ctx, v, gauss(t, tr + .05, .12) * .5); }
-    A_EH.standing(ctx, A_JH, v, t, T, { at: [1240, 700], which: 'stage', f: -1, view: 'threeQuarter', keys: [[0, 'smile']], look: [-.3 - .4 * g.body, 0], solo, L: { k: g.hand, to: [1120, 520] } });
+    A_EH.standing(ctx, A_JH, v, t, T, { at: [1340, 700], which: 'stage', f: -1, view: 'threeQuarter', keys: [[0, 'smile']], look: [-.3 - .4 * g.body, 0], solo, L: { k: g.hand, to: [1215, 520] } });
     if (!solo) A_heads(ctx, v, [[420, 770, 22], [1300, 772, 22], [1610, 800, 27]]);
     ctx.restore(); },
   '2|so scientists could put all those cooks': x => { const { ctx, t, cam, solo } = x, tm = W_(x, 'math', 3.28), tg = W_(x, 'games', 4.38), v = camView(A_EH.views.screen, cam, .1);   // ВСТАВКА экран: слайд меняется — маленькие повара из кухни → формулы; на «games» геймпад в углу

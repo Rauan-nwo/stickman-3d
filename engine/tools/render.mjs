@@ -31,7 +31,7 @@ const page = await browser.newPage();
 const errors = [], warns = [];
 page.on('pageerror', e => errors.push(e.message));
 page.on('console', m => { if (m.type() === 'error') warns.push(m.text()); });
-await page.goto(pathToFileURL(resolve(pagePath)).href + '?render' + sets.map(s => '&' + s).join(''));
+await page.goto(pathToFileURL(resolve(pagePath)).href + '?render' + sets.map(s => '&' + s).join(''), { timeout: 180000 });   // большие страницы (150+ МБ) под нагрузкой грузятся дольше 30 с
 const info = await page.evaluate(() => {
   const c = document.querySelector('canvas');
   return { FRAMES: window.FRAMES, FPS: window.FPS, CUES: window.CUES, GL: window.GL_INFO, w: c?.width, h: c?.height, hasDraw: typeof window.draw === 'function' };

@@ -122,8 +122,11 @@ export const SHOTS = {
   '9|about a suspected Chinese spy': x => { const { ctx, t, T, cam, solo } = x, v = WA.view('mid', cam), ts = W_(x, 'spy', 1.54), tc = W_(x, 'circle', 2.44);   // средний: агент ФБР кладёт на стол фото силуэта с плашкой; на «circle» вокруг силуэта красный круг. Агент стоит ЗА столом на полу: низ корпуса у линии столешницы (было at y 880 — ноги стояли на стопке книг, замечание Рауана)
     const put = E.outCubic(clamp((t - ts + .4) / .4));
     ctx.save(); shake(ctx, cam); WA.widePlate(ctx, v, 0, solo);
-    ctx.save(); { const yc = toS(v, [0, 764])[1]; ctx.beginPath(); ctx.rect(0, 0, W, yc); ctx.clip(); }   // агент стоит ЗА столом: ниже столешницы и стопки книг его не видно
-    const r = person(ctx, v, t, T, { C: FBI, at: [1255, 955], fs: .6, view: 'threeQuarter', facing: -1, light: [-1, .1], keys: [[0, 'neutral']], look: [-.6, .5], lean: -.08 * (1 - put * .5), L: { k: 1 - put * .6, to: [1060, 800] } }); ctx.restore();
+    ctx.save(); { const yc = toS(v, [0, 800])[1]; ctx.beginPath(); ctx.rect(0, 0, W, yc); ctx.clip(); }   // агент стоит ЗА столом: ниже задней кромки столешницы (y 800 плейта) его не видно
+    const r = person(ctx, v, t, T, { C: FBI, at: [1255, 1000], fs: .6, view: 'threeQuarter', facing: -1, light: [-1, .1], keys: [[0, 'neutral']], look: [-.6, .5], lean: -.08 * (1 - put * .5), L: { k: 1 - put * .6, to: [1060, 800] } }); ctx.restore();
+    // стопка книг на столе — поверх агента (перерисовка плейта по её контуру): корпус уходит ЗА книги, а не стоит на них (замечание Рауана №7, 19.11;
+    //   прежняя обрезка по верху стопки давала круглый низ корпуса прямо на книгах)
+    if (!solo) { ctx.save(); ctx.beginPath(); [[1198, 754], [1214, 741], [1532, 739], [1558, 768], [1558, 878], [1198, 878]].forEach((P, i) => { const S = toS(v, P); i ? ctx.lineTo(...S) : ctx.moveTo(...S); }); ctx.closePath(); ctx.clip(); WA.widePlate(ctx, v, 0, solo); ctx.restore(); }
     WA.seated(ctx, v, t, T, { C: CONG15, solo, noPlate: true, keys: [[0, 'neutral'], [ts + .3, 'nervous']], look: [.2, .6],
       deskTop: (c, vv) => { const P = toS(vv, [lerp(1080, 1010, put), lerp(770, 812, put)]); c.save(); c.translate(P[0], P[1]); c.scale(1, lerp(.8, .5, put)); B.photo(c, 0, 0, 150 * vv.k, .08, spyPic(clamp((t - tc) / .5))); c.restore(); } });
     ctx.restore(); },

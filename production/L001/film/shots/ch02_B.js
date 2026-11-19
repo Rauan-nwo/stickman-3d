@@ -67,7 +67,7 @@ export const s54 = x => { const { ctx, t, T, cam, solo, s } = x, v = DN.view('wi
 export const s55 = x => { const { ctx, t, T, cam, solo } = x, v = DN.view('wide', cam, .3);   // трое садятся в кабинку; на стекле SAN JOSE; подписи по очереди (ядро)
   const sit = q => ({ dy: -110 * (1 - E.outBack(clamp((t - q) / .45))) });
   ctx.save(); shake(ctx, cam);
-  DN.booth(ctx, v, t, T, { solo, under: (c, vv) => glassText(c, vv, 'SAN JOSE', [960, 120]), seated: { L1: { C: J93, keys: [[0, 'smile']], look: [.5, 0], pose: sit(.1) }, L2: { C: CU, keys: [[0, 'smile']], look: [.6, .1], pose: sit(.35) }, R1: { C: CH, at: R1AT, keys: [[0, 'neutral']], look: [-.6, 0], pose: sit(.6) } } });   // кружки — нарисованные на плейте
+  DN.booth(ctx, v, t, T, { solo, under: (c, vv) => glassText(c, vv, 'SAN JOSE', [960, 300]), seated: { L1: { C: J93, keys: [[0, 'smile']], look: [.5, 0], pose: sit(.1) }, L2: { C: CU, keys: [[0, 'smile']], look: [.6, .1], pose: sit(.35) }, R1: { C: CH, at: R1AT, keys: [[0, 'neutral']], look: [-.6, 0], pose: sit(.6) } } });   // кружки — нарисованные на плейте
   ctx.restore(); };
 export const s57 = x => { const { ctx, t, T, cam, solo, s, d } = x, tw = s.whip?.t ?? d * .45, wu = inOutExpo((t - tw + .1) / WHIP_DUR);   // официантка щёлкает ручкой над блокнотом -> вип-пан -> Дженсен стучит пальцем по салфетке с кубом
   const v = lerpView(DN.view('aisleR', { ...cam, dx: 0 }), DN.view('L1', { ...cam, dx: 0 }), clamp(wu)), click = gauss(t, .45, .05) > .5, tap = Math.abs(Math.sin(Math.max(0, t - tw - .2) * 10)) * (t > tw + .2 ? 1 : 0);

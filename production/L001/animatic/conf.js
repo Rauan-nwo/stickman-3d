@@ -31,7 +31,7 @@ export const MAPS = {
     pins: [{ id: 'us', label: '← U.S. COMPANIES', at: [196, 36], t0: d * .05, side: -1 }],
     routes: [{ from: [196, 36], to: [104, 33], t0: d * .15, t1: d * .6, bend: -.15, stop: .8, arrow: true }], border: { id: 'china', t0: d * .62 } }),
   34: d => ({ view: { c: [150, 28], span: 90 }, focus: [150, 30],
-    labels: [{ text: 'TAIWAN', at: [121, 21.2], size: 26 }, { text: 'AGE 9 + BROTHER', at: [128, 27], size: 24 }, { text: 'PACIFIC OCEAN', at: [160, 18], size: 30, color: 'rgba(127,184,255,.45)' }],
+    labels: [{ text: 'AGE 9 + BROTHER', at: [131, 20.5], size: 24 }, { text: 'PACIFIC OCEAN', at: [160, 18], size: 30, color: 'rgba(127,184,255,.45)' }],
     pins: [{ id: 'tw', label: 'TAIWAN', at: 'taipei', t0: d * .05 }, { id: 'ky', label: 'ONEIDA, KENTUCKY →', at: [190, 37], t0: d * .75, side: -1 }],
     routes: [{ from: 'taipei', to: [190, 37], t0: d * .12, t1: d * .7, bend: -.25, plane: true }] }),
   135: d => ({ view: { c: [106, 3], span: 30 }, focus: [105, 0],
