@@ -1,0 +1,29 @@
+[
+ {
+  "out": "avatar_v1.png",
+  "refs": [
+   "refs/host_cu.png",
+   "refs/host_safe.png"
+  ],
+  "refMode": "match",
+  "promptFile": "prompts/avatar_v1.txt"
+ },
+ {
+  "out": "avatar_v2.png",
+  "refs": [
+   "refs/host_cu.png",
+   "refs/host_safe.png"
+  ],
+  "refMode": "match",
+  "promptFile": "prompts/avatar_v2.txt"
+ },
+ {
+  "out": "banner_bg.png",
+  "refs": [
+   "refs/host_safe.png",
+   "refs/office_style.png"
+  ],
+  "refMode": "match",
+  "promptFile": "prompts/banner_bg.txt"
+ }
+]
