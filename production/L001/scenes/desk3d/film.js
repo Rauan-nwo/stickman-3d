@@ -156,12 +156,23 @@ export default {
     const ringK = t => { if (t < .35) return 0; const c = (t - .35) % 2.0; if (c > 1.0) return 0; return Math.min(1, c / .05) * Math.min(1, (1.0 - c) / .08); };
     const jig = (t, s) => Math.sin(t * 2 * PI * 22 + s) * .6 + Math.sin(t * 2 * PI * 31 + s * 2.3) * .4;
 
-    // камера: медленный наезд с лёгким подъёмом к телефону; плавные разгон и торможение
-    const CAM = [
-      [0, [.16, 1.17, 1.32, .02, .86, -.12, 38]],
-      [DUR * .5, [.13, 1.13, 1.18, .03, .862, -.12, 37.5]],
-      [DUR, [.1, 1.09, 1.03, .04, .865, -.12, 37]],
-    ];
+    // камера (2026-11-19, по решению Рауана — настоящие 3D-пролёты в главах ведущего): дубль #29+#30 (≈6.07 с).
+    //   0–1.6 с   быстрый влёт к звонящему телефону издалека и сверху-справа (пик ~50 %/с, плавный разгон и посадка);
+    //   1.6–3.7   медленный наезд (как раньше) — под ним собирается название ролика;
+    //   3.7–5.1  #30 «камера падает на папку»: перелёт вниз-вправо к стопке папок с красными лентами;
+    //   5.1–5.3  дожим; с «table» (~5.31) — разгон в папку до склейки («пролетает сквозь снимок»).
+    // Каждый отрезок — smootherstep (старт и посадка без рывка); последний — только разгон (u²). Пики по замеру ≤ ~55 %/с. Длина дубля любая (--set dur).
+    const A0 = [.16, 1.17, 1.32, .02, .86, -.12, 38], B0 = [.1, 1.09, 1.03, .04, .865, -.12, 37];
+    const FAR = [.9, 1.6, 2.95, .14, .87, -.14, 38];
+    const C0 = [.26, 1.175, .87, .41, .824, -.11, 37], D0 = [.28, 1.165, .83, .43, .822, -.11, 36.8], E0 = [.36, 1.12, .62, .48, .815, -.1, 36.5];
+    const sstep = k => { k = Math.min(1, Math.max(0, k)); return k * k * k * (k * (k * 6 - 15) + 10); };
+    const KEYS = [[0, FAR], [1.6, A0], [DUR * .61, B0], [DUR * .84, C0], [DUR * .875, D0], [DUR, E0]];
+    const camAt = t => {
+      let i = 0; while (i + 2 < KEYS.length && t >= KEYS[i + 1][0]) i++;
+      const [ta, a] = KEYS[i], [tb, b] = KEYS[i + 1], u = Math.min(1, Math.max(0, (t - ta) / (tb - ta)));
+      const e = i === KEYS.length - 2 ? u * u : sstep(u), v = a.map((x, j) => x + (b[j] - x) * e);
+      return { pos: v.slice(0, 3), target: v.slice(3, 6), fov: v[6], roll: 0 };
+    };
     const LOOK = noirLook({ fogColor: 0x0b1730, fogDensity: .09, bloom: .55, bloomThreshold: .9, bloomRadius: .55,
       grade: { sat: .9, tint: [.93, .99, 1.09], lift: [.01, .016, .038], contrast: 1.06 } });
     const set = { group: G, look: LOOK, tick() { wall.ready(); } };
@@ -170,7 +181,7 @@ export default {
     return {
       duration: DUR,
       scenes: [{
-        id: 'desk', from: 0, to: DUR, set, camera: t => camSpline(CAM, t),
+        id: 'desk', from: 0, to: DUR, set, camera: camAt,
         update(t) {
           const k = ringK(t);
           // трубка подпрыгивает на рычагах: крен и подскок, в паузах лежит ровно

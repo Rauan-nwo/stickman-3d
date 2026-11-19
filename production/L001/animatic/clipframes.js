@@ -424,6 +424,61 @@ import desk3d_68 from './tmp/clips/desk3d/c0069.jpg';
 import desk3d_69 from './tmp/clips/desk3d/c0070.jpg';
 import desk3d_70 from './tmp/clips/desk3d/c0071.jpg';
 import desk3d_71 from './tmp/clips/desk3d/c0072.jpg';
+import desk3d_72 from './tmp/clips/desk3d/c0073.jpg';
+import city_sg_out_0 from './tmp/clips/city_sg_out/c0001.jpg';
+import city_sg_out_1 from './tmp/clips/city_sg_out/c0002.jpg';
+import city_sg_out_2 from './tmp/clips/city_sg_out/c0003.jpg';
+import city_sg_out_3 from './tmp/clips/city_sg_out/c0004.jpg';
+import city_sg_out_4 from './tmp/clips/city_sg_out/c0005.jpg';
+import city_sg_out_5 from './tmp/clips/city_sg_out/c0006.jpg';
+import city_sg_out_6 from './tmp/clips/city_sg_out/c0007.jpg';
+import city_sg_out_7 from './tmp/clips/city_sg_out/c0008.jpg';
+import city_sg_out_8 from './tmp/clips/city_sg_out/c0009.jpg';
+import city_sg_out_9 from './tmp/clips/city_sg_out/c0010.jpg';
+import city_sg_out_10 from './tmp/clips/city_sg_out/c0011.jpg';
+import city_sg_out_11 from './tmp/clips/city_sg_out/c0012.jpg';
+import city_sg_out_12 from './tmp/clips/city_sg_out/c0013.jpg';
+import city_sg_out_13 from './tmp/clips/city_sg_out/c0014.jpg';
+import city_sg_out_14 from './tmp/clips/city_sg_out/c0015.jpg';
+import city_sg_out_15 from './tmp/clips/city_sg_out/c0016.jpg';
+import city_sg_out_16 from './tmp/clips/city_sg_out/c0017.jpg';
+import city_sg_out_17 from './tmp/clips/city_sg_out/c0018.jpg';
+import city_sg_out_18 from './tmp/clips/city_sg_out/c0019.jpg';
+import city_sg_out_19 from './tmp/clips/city_sg_out/c0020.jpg';
+import city_sg_out_20 from './tmp/clips/city_sg_out/c0021.jpg';
+import city_sg_out_21 from './tmp/clips/city_sg_out/c0022.jpg';
+import city_sg_out_22 from './tmp/clips/city_sg_out/c0023.jpg';
+import city_sg_out_23 from './tmp/clips/city_sg_out/c0024.jpg';
+import city_sg_out_24 from './tmp/clips/city_sg_out/c0025.jpg';
+import city_sg_out_25 from './tmp/clips/city_sg_out/c0026.jpg';
+import city_sg_out_26 from './tmp/clips/city_sg_out/c0027.jpg';
+import city_sg_out_27 from './tmp/clips/city_sg_out/c0028.jpg';
+import city_sg_out_28 from './tmp/clips/city_sg_out/c0029.jpg';
+import city_sg_out_29 from './tmp/clips/city_sg_out/c0030.jpg';
+import city_sg_out_30 from './tmp/clips/city_sg_out/c0031.jpg';
+import city_sg_out_31 from './tmp/clips/city_sg_out/c0032.jpg';
+import city_sg_out_32 from './tmp/clips/city_sg_out/c0033.jpg';
+import city_sg_out_33 from './tmp/clips/city_sg_out/c0034.jpg';
+import city_sg_out_34 from './tmp/clips/city_sg_out/c0035.jpg';
+import city_sg_out_35 from './tmp/clips/city_sg_out/c0036.jpg';
+import city_sg_out_36 from './tmp/clips/city_sg_out/c0037.jpg';
+import city_sg_out_37 from './tmp/clips/city_sg_out/c0038.jpg';
+import city_sg_out_38 from './tmp/clips/city_sg_out/c0039.jpg';
+import city_sg_out_39 from './tmp/clips/city_sg_out/c0040.jpg';
+import city_sg_out_40 from './tmp/clips/city_sg_out/c0041.jpg';
+import city_sg_out_41 from './tmp/clips/city_sg_out/c0042.jpg';
+import city_sg_out_42 from './tmp/clips/city_sg_out/c0043.jpg';
+import city_sg_out_43 from './tmp/clips/city_sg_out/c0044.jpg';
+import city_sg_out_44 from './tmp/clips/city_sg_out/c0045.jpg';
+import city_sg_out_45 from './tmp/clips/city_sg_out/c0046.jpg';
+import city_sg_out_46 from './tmp/clips/city_sg_out/c0047.jpg';
+import city_sg_out_47 from './tmp/clips/city_sg_out/c0048.jpg';
+import city_sg_out_48 from './tmp/clips/city_sg_out/c0049.jpg';
+import city_sg_out_49 from './tmp/clips/city_sg_out/c0050.jpg';
+import city_sg_out_50 from './tmp/clips/city_sg_out/c0051.jpg';
+import city_sg_out_51 from './tmp/clips/city_sg_out/c0052.jpg';
+import city_sg_out_52 from './tmp/clips/city_sg_out/c0053.jpg';
+import city_sg_out_53 from './tmp/clips/city_sg_out/c0054.jpg';
 import conveyor_0 from './tmp/clips/conveyor/c0001.jpg';
 import conveyor_1 from './tmp/clips/conveyor/c0002.jpg';
 import conveyor_2 from './tmp/clips/conveyor/c0003.jpg';
@@ -1106,7 +1161,8 @@ export default {
   city_washington: [city_washington_0, city_washington_1, city_washington_2, city_washington_3, city_washington_4, city_washington_5, city_washington_6, city_washington_7, city_washington_8, city_washington_9, city_washington_10, city_washington_11, city_washington_12, city_washington_13, city_washington_14, city_washington_15, city_washington_16, city_washington_17, city_washington_18, city_washington_19, city_washington_20, city_washington_21, city_washington_22, city_washington_23, city_washington_24, city_washington_25, city_washington_26, city_washington_27, city_washington_28, city_washington_29, city_washington_30, city_washington_31, city_washington_32, city_washington_33, city_washington_34, city_washington_35, city_washington_36, city_washington_37, city_washington_38, city_washington_39, city_washington_40, city_washington_41, city_washington_42, city_washington_43, city_washington_44, city_washington_45, city_washington_46, city_washington_47, city_washington_48, city_washington_49, city_washington_50, city_washington_51, city_washington_52, city_washington_53, city_washington_54, city_washington_55, city_washington_56, city_washington_57, city_washington_58],
   city_taipei: [city_taipei_0, city_taipei_1, city_taipei_2, city_taipei_3, city_taipei_4, city_taipei_5, city_taipei_6, city_taipei_7, city_taipei_8, city_taipei_9, city_taipei_10, city_taipei_11, city_taipei_12, city_taipei_13, city_taipei_14, city_taipei_15, city_taipei_16, city_taipei_17, city_taipei_18, city_taipei_19, city_taipei_20, city_taipei_21, city_taipei_22, city_taipei_23, city_taipei_24, city_taipei_25, city_taipei_26, city_taipei_27, city_taipei_28, city_taipei_29, city_taipei_30, city_taipei_31, city_taipei_32, city_taipei_33, city_taipei_34, city_taipei_35, city_taipei_36, city_taipei_37, city_taipei_38, city_taipei_39],
   city_final: [city_final_0, city_final_1, city_final_2, city_final_3, city_final_4, city_final_5, city_final_6, city_final_7, city_final_8, city_final_9, city_final_10, city_final_11, city_final_12, city_final_13, city_final_14, city_final_15, city_final_16, city_final_17, city_final_18, city_final_19, city_final_20, city_final_21, city_final_22, city_final_23, city_final_24, city_final_25, city_final_26, city_final_27, city_final_28, city_final_29, city_final_30, city_final_31, city_final_32, city_final_33, city_final_34, city_final_35, city_final_36, city_final_37, city_final_38, city_final_39, city_final_40, city_final_41, city_final_42, city_final_43, city_final_44, city_final_45, city_final_46, city_final_47, city_final_48, city_final_49, city_final_50, city_final_51, city_final_52],
-  desk3d: [desk3d_0, desk3d_1, desk3d_2, desk3d_3, desk3d_4, desk3d_5, desk3d_6, desk3d_7, desk3d_8, desk3d_9, desk3d_10, desk3d_11, desk3d_12, desk3d_13, desk3d_14, desk3d_15, desk3d_16, desk3d_17, desk3d_18, desk3d_19, desk3d_20, desk3d_21, desk3d_22, desk3d_23, desk3d_24, desk3d_25, desk3d_26, desk3d_27, desk3d_28, desk3d_29, desk3d_30, desk3d_31, desk3d_32, desk3d_33, desk3d_34, desk3d_35, desk3d_36, desk3d_37, desk3d_38, desk3d_39, desk3d_40, desk3d_41, desk3d_42, desk3d_43, desk3d_44, desk3d_45, desk3d_46, desk3d_47, desk3d_48, desk3d_49, desk3d_50, desk3d_51, desk3d_52, desk3d_53, desk3d_54, desk3d_55, desk3d_56, desk3d_57, desk3d_58, desk3d_59, desk3d_60, desk3d_61, desk3d_62, desk3d_63, desk3d_64, desk3d_65, desk3d_66, desk3d_67, desk3d_68, desk3d_69, desk3d_70, desk3d_71],
+  desk3d: [desk3d_0, desk3d_1, desk3d_2, desk3d_3, desk3d_4, desk3d_5, desk3d_6, desk3d_7, desk3d_8, desk3d_9, desk3d_10, desk3d_11, desk3d_12, desk3d_13, desk3d_14, desk3d_15, desk3d_16, desk3d_17, desk3d_18, desk3d_19, desk3d_20, desk3d_21, desk3d_22, desk3d_23, desk3d_24, desk3d_25, desk3d_26, desk3d_27, desk3d_28, desk3d_29, desk3d_30, desk3d_31, desk3d_32, desk3d_33, desk3d_34, desk3d_35, desk3d_36, desk3d_37, desk3d_38, desk3d_39, desk3d_40, desk3d_41, desk3d_42, desk3d_43, desk3d_44, desk3d_45, desk3d_46, desk3d_47, desk3d_48, desk3d_49, desk3d_50, desk3d_51, desk3d_52, desk3d_53, desk3d_54, desk3d_55, desk3d_56, desk3d_57, desk3d_58, desk3d_59, desk3d_60, desk3d_61, desk3d_62, desk3d_63, desk3d_64, desk3d_65, desk3d_66, desk3d_67, desk3d_68, desk3d_69, desk3d_70, desk3d_71, desk3d_72],
+  city_sg_out: [city_sg_out_0, city_sg_out_1, city_sg_out_2, city_sg_out_3, city_sg_out_4, city_sg_out_5, city_sg_out_6, city_sg_out_7, city_sg_out_8, city_sg_out_9, city_sg_out_10, city_sg_out_11, city_sg_out_12, city_sg_out_13, city_sg_out_14, city_sg_out_15, city_sg_out_16, city_sg_out_17, city_sg_out_18, city_sg_out_19, city_sg_out_20, city_sg_out_21, city_sg_out_22, city_sg_out_23, city_sg_out_24, city_sg_out_25, city_sg_out_26, city_sg_out_27, city_sg_out_28, city_sg_out_29, city_sg_out_30, city_sg_out_31, city_sg_out_32, city_sg_out_33, city_sg_out_34, city_sg_out_35, city_sg_out_36, city_sg_out_37, city_sg_out_38, city_sg_out_39, city_sg_out_40, city_sg_out_41, city_sg_out_42, city_sg_out_43, city_sg_out_44, city_sg_out_45, city_sg_out_46, city_sg_out_47, city_sg_out_48, city_sg_out_49, city_sg_out_50, city_sg_out_51, city_sg_out_52, city_sg_out_53],
   conveyor: [conveyor_0, conveyor_1, conveyor_2, conveyor_3, conveyor_4, conveyor_5, conveyor_6, conveyor_7, conveyor_8, conveyor_9, conveyor_10, conveyor_11, conveyor_12, conveyor_13, conveyor_14, conveyor_15, conveyor_16, conveyor_17, conveyor_18, conveyor_19, conveyor_20, conveyor_21, conveyor_22, conveyor_23, conveyor_24, conveyor_25, conveyor_26, conveyor_27, conveyor_28, conveyor_29, conveyor_30, conveyor_31, conveyor_32, conveyor_33, conveyor_34, conveyor_35, conveyor_36, conveyor_37, conveyor_38, conveyor_39, conveyor_40, conveyor_41, conveyor_42, conveyor_43, conveyor_44, conveyor_45, conveyor_46, conveyor_47, conveyor_48, conveyor_49, conveyor_50, conveyor_51, conveyor_52, conveyor_53, conveyor_54, conveyor_55, conveyor_56, conveyor_57, conveyor_58, conveyor_59, conveyor_60, conveyor_61, conveyor_62, conveyor_63, conveyor_64, conveyor_65, conveyor_66, conveyor_67, conveyor_68, conveyor_69, conveyor_70, conveyor_71, conveyor_72, conveyor_73, conveyor_74, conveyor_75, conveyor_76],
   city_towers: [city_towers_0, city_towers_1, city_towers_2, city_towers_3, city_towers_4, city_towers_5, city_towers_6, city_towers_7, city_towers_8, city_towers_9, city_towers_10, city_towers_11, city_towers_12, city_towers_13, city_towers_14, city_towers_15, city_towers_16, city_towers_17, city_towers_18, city_towers_19, city_towers_20, city_towers_21, city_towers_22, city_towers_23, city_towers_24, city_towers_25],
   city_towers_5t: [city_towers_5t_0, city_towers_5t_1, city_towers_5t_2, city_towers_5t_3, city_towers_5t_4, city_towers_5t_5, city_towers_5t_6, city_towers_5t_7, city_towers_5t_8, city_towers_5t_9, city_towers_5t_10, city_towers_5t_11, city_towers_5t_12, city_towers_5t_13, city_towers_5t_14, city_towers_5t_15, city_towers_5t_16, city_towers_5t_17, city_towers_5t_18, city_towers_5t_19, city_towers_5t_20, city_towers_5t_21, city_towers_5t_22, city_towers_5t_23, city_towers_5t_24, city_towers_5t_25, city_towers_5t_26, city_towers_5t_27, city_towers_5t_28, city_towers_5t_29, city_towers_5t_30, city_towers_5t_31, city_towers_5t_32, city_towers_5t_33, city_towers_5t_34, city_towers_5t_35, city_towers_5t_36, city_towers_5t_37, city_towers_5t_38, city_towers_5t_39, city_towers_5t_40, city_towers_5t_41, city_towers_5t_42, city_towers_5t_43, city_towers_5t_44, city_towers_5t_45, city_towers_5t_46, city_towers_5t_47, city_towers_5t_48, city_towers_5t_49, city_towers_5t_50, city_towers_5t_51, city_towers_5t_52, city_towers_5t_53, city_towers_5t_54, city_towers_5t_55, city_towers_5t_56, city_towers_5t_57, city_towers_5t_58, city_towers_5t_59, city_towers_5t_60, city_towers_5t_61, city_towers_5t_62, city_towers_5t_63, city_towers_5t_64, city_towers_5t_65, city_towers_5t_66, city_towers_5t_67, city_towers_5t_68, city_towers_5t_69],

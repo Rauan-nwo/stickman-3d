@@ -1,7 +1,7 @@
 {
  "fps": 30,
  "voiceDuration": 1207.704,
- "total": 1234.196,
+ "total": 1238.696,
  "inserts": [
   {
    "at": 46.704,
@@ -396,9 +396,15 @@
    "text": "He's Jensen Huang, the man in the leather jacket …",
    "spoken": "He's Jensen Huang the man in the leather jacket who runs Nvidia",
    "event": "смеётся, блик на кожанке; подпись «JENSEN HUANG — CEO, NVIDIA»",
-   "camera": "наезд → стоп → рывок на «jacket»",
+   "camera": "наезд → стоп → рывок на «jacket» и «Nvidia»",
    "snap": 3.108,
-   "snapWord": "jacket"
+   "snapWord": "jacket",
+   "snaps": [
+    {
+     "t": 5.078,
+     "w": "Nvidia"
+    }
+   ]
   },
   {
    "n": 6,
@@ -445,9 +451,15 @@
    "text": "Her company is one of his biggest customers in Asia.",
    "spoken": "Her company is one of his biggest customers in Asia",
    "event": "у её стула два зелёных ящика с полосой и бирка «VIP CUSTOMER»; она пододвигает к Дженсену папку с заказом",
-   "camera": "отъезд → стоп → рывок на «customers»",
+   "camera": "отъезд → стоп → рывок на «customers» и «Asia»",
    "snap": 2.077,
-   "snapWord": "customers"
+   "snapWord": "customers",
+   "snaps": [
+    {
+     "t": 3.317,
+     "w": "Asia"
+    }
+   ]
   },
   {
    "n": 9,
@@ -514,7 +526,17 @@
    "text": "And across the street, someone is listening.",
    "spoken": "And across the street someone is listening",
    "event": "проезд от окна ресторана через мокрую улицу к припаркованной машине",
-   "camera": "проезд вправо"
+   "camera": "проезд вправо + удары ×2",
+   "beats": [
+    {
+     "t": 0.506,
+     "w": "street"
+    },
+    {
+     "t": 1.771,
+     "w": "listening"
+    }
+   ]
   },
   {
    "n": 13,
@@ -529,9 +551,25 @@
    "text": "American intelligence has been tapping her calls …",
    "spoken": "American intelligence has been tapping her calls for more than a year",
    "event": "агенты в наушниках, крутятся бобины; на коробке с плёнками бирки месяцев JAN…DEC — записей больше чем на год",
-   "camera": "наезд → стоп → рывок на «calls»",
+   "camera": "наезд → стоп → рывок на «calls» и «year» + удары ×2",
    "snap": 2.164,
-   "snapWord": "calls"
+   "snapWord": "calls",
+   "snaps": [
+    {
+     "t": 3.313,
+     "w": "year"
+    }
+   ],
+   "beats": [
+    {
+     "t": 0.451,
+     "w": "intelligence"
+    },
+    {
+     "t": 1.488,
+     "w": "tapping"
+    }
+   ]
   },
   {
    "n": 14,
@@ -546,9 +584,15 @@
    "text": "AGENT: She's talking to an American.",
    "spoken": "She's talking to an American",
    "event": "прижимает наушник",
-   "camera": "наезд → стоп → рывок на «American»",
+   "camera": "наезд → стоп → рывок на «American» + удары ×2",
    "snap": 0.788,
-   "snapWord": "American"
+   "snapWord": "American",
+   "beats": [
+    {
+     "t": 0.33,
+     "w": "talking"
+    }
+   ]
   },
   {
    "n": 15,
@@ -577,10 +621,16 @@
    "framing": "вставка снимки на столике агента",
    "text": "AGENT: The one in the jacket.",
    "spoken": "The one in the jacket",
-   "event": "щелчок затвора — на столик агента рядом с меню один на другой падают снимки «Дженсен + Алиса»",
-   "camera": "наезд → стоп → рывок на «jacket»",
+   "event": "щелчок затвора — на столик агента рядом с меню один на другой падают снимки «Дженсен + Алиса»; на «one» на верхний снимок падает красный штамп «THE JACKET»",
+   "camera": "наезд → стоп → рывок на «jacket» + удары ×2",
    "snap": 0.619,
-   "snapWord": "jacket"
+   "snapWord": "jacket",
+   "ev": [
+    {
+     "p": 1,
+     "t": 0.138
+    }
+   ]
   },
   {
    "n": 17,
@@ -595,7 +645,7 @@
    "text": "Jensen has no idea.",
    "spoken": "Jensen has no idea",
    "event": "Дженсен в фокусе смеётся, откидывается на спинку; на переднем плане размыто — край меню и объектив агента: он ничего не подозревает",
-   "camera": "наезд → стоп → рывок на «idea»",
+   "camera": "наезд → стоп → рывок на «idea» + удары ×2",
    "snap": 0.934,
    "snapWord": "idea"
   },
@@ -611,13 +661,19 @@
    "framing": "средний агенты в салоне (вип-пан)",
    "text": "AGENT 2: Do we warn him? AGENT: Not tonight.",
    "spoken": "Do we warn him Not tonight",
-   "event": "в машине: на планшет приходит снимок из зала; агент 2 опускает наушники → вип-пан со смазом к агенту 1: он кладёт распечатку снимка в папку «SUBJECT: ALICE HUANG» и закрывает её",
-   "camera": "стоп → вип-пан со смазом на AGENT",
+   "event": "в машине: на планшет приходит снимок из зала; на «warn» на планшете всплывает кнопка «SEND WARNING», палец агента замирает над ней; агент 2 опускает наушники → вип-пан со смазом к агенту 1: он кладёт распечатку снимка в папку «SUBJECT: ALICE HUANG» и закрывает её",
+   "camera": "стоп → вип-пан со смазом на AGENT + удары ×2",
    "whip": {
     "t": 1.356,
     "from": "AGENT 2",
     "to": "AGENT"
-   }
+   },
+   "ev": [
+    {
+     "p": 1,
+     "t": 0.286
+    }
+   ]
   },
   {
    "n": 19,
@@ -632,7 +688,7 @@
    "text": "HOST: Evening.",
    "spoken": "Evening",
    "event": "на «Evening» лампа щёлкает и загорается, свет мигает дважды",
-   "camera": "наезд → стоп → рывок на «Evening»",
+   "camera": "наезд → стоп → рывок на «Evening» + удары по словам",
    "snap": 0.25,
    "snapWord": "Evening",
    "ev": [
@@ -655,7 +711,7 @@
    "text": "Mind the box,",
    "spoken": "Mind the box",
    "event": "на «box» ладонь ведущего ложится на крышку коробки NVIDIA, лампа вздрагивает",
-   "camera": "наезд → стоп → рывок на «box»",
+   "camera": "наезд → стоп → рывок на «box» + удары по словам",
    "snap": 0.633,
    "snapWord": "box",
    "ev": [
@@ -678,7 +734,7 @@
    "text": "it's expensive.",
    "spoken": "it's expensive",
    "event": "палец ведущего стучит по крышке коробки — тук-тук, с крышки слетает пыль",
-   "camera": "наезд → стоп → рывок на «expensive»",
+   "camera": "наезд → стоп → рывок на «expensive» + удары по словам",
    "snap": 0.25,
    "snapWord": "expensive"
   },
@@ -695,9 +751,25 @@
    "text": "HOST: Inside, the most wanted chips on Earth.",
    "spoken": "Inside the most wanted chips on Earth",
    "event": "на «Inside» латунный ключ поднимается в свет лампы; на «wanted» крышка приоткрывается, из щели бьёт зелёный свет; на «Earth» блик на ключе",
-   "camera": "наезд → стоп → рывок на «wanted»",
+   "camera": "наезд → стоп → рывок на «wanted» и «Earth» + удары по словам",
    "snap": 1.025,
    "snapWord": "wanted",
+   "snaps": [
+    {
+     "t": 2.116,
+     "w": "Earth"
+    }
+   ],
+   "beats": [
+    {
+     "t": 1.375,
+     "w": "chips"
+    },
+    {
+     "t": 2.116,
+     "w": "Earth"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -726,9 +798,15 @@
    "text": "HOST: Thirty grand apiece,",
    "spoken": "Thirty grand apiece",
    "event": "на «Thirty» на коробку Nvidia садится ценник «$30,000 EACH»",
-   "camera": "наезд → стоп → рывок на «apiece»",
+   "camera": "наезд → стоп → рывок на «apiece» + удары по словам",
    "snap": 0.854,
    "snapWord": "apiece",
+   "beats": [
+    {
+     "t": 0.377,
+     "w": "grand"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -749,9 +827,21 @@
    "text": "by the maker's own count.",
    "spoken": "by the maker's own count",
    "event": "на «maker's» под ценником подлетает бирка «SOURCE: NVIDIA», щелчок",
-   "camera": "наезд → стоп → рывок на «maker's»",
+   "camera": "наезд → стоп → рывок на «maker's» и «count» + удары по словам",
    "snap": 0.954,
    "snapWord": "maker's",
+   "snaps": [
+    {
+     "t": 1.733,
+     "w": "count"
+    }
+   ],
+   "beats": [
+    {
+     "t": 1.733,
+     "w": "count"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -772,9 +862,19 @@
    "text": "HOST: And the man at that table held the key",
    "spoken": "And the man at that table held the key",
    "event": "на «table» ведущий кладёт ладонь на снимок «Дженсен + Алиса»; на «key» протягивает латунный ключ в объектив, блик на бородке",
-   "camera": "наезд → стоп → рывок на «key»",
+   "camera": "наезд → стоп → рывок на «key» + удары по словам",
    "snap": 1.472,
    "snapWord": "key",
+   "beats": [
+    {
+     "t": 0.275,
+     "w": "man"
+    },
+    {
+     "t": 0.687,
+     "w": "table"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -799,7 +899,7 @@
    "text": "to every one of them.",
    "spoken": "to every one of them",
    "event": "на «every» снимок «Дженсен + Алиса» скользит под лампу; на «them» на снимок ложится блик ключа",
-   "camera": "наезд → стоп → рывок на «them»",
+   "camera": "наезд → стоп → рывок на «them» + удары по словам",
    "snap": 1.158,
    "snapWord": "them",
    "ev": [
@@ -826,7 +926,17 @@
    "text": "So how did China get someone",
    "spoken": "So how did China get someone",
    "event": "их стол сверху: свеча, бокалы, тарелки; у места Дженсена карточка «JENSEN HUANG»; напротив пустой стул и ПУСТАЯ карточка; на «China» с края кадра тянется красная нить с биркой «BEIJING» и завязывается на пустой карточке (D14-A, карточки мест)",
-   "camera": "медленный поворот",
+   "camera": "медленный поворот + удары по словам",
+   "beats": [
+    {
+     "t": 0.595,
+     "w": "China"
+    },
+    {
+     "t": 1.113,
+     "w": "someone"
+    }
+   ],
    "ev": [
     {
      "p": 3,
@@ -847,9 +957,15 @@
    "text": "into the seat next to him?",
    "spoken": "into the seat next to him",
    "event": "на «seat» на пустую карточку падает красный штамп «RESERVED» с толчком камеры, нить BEIJING натягивается",
-   "camera": "наезд → стоп → рывок на «seat»",
+   "camera": "наезд → стоп → рывок на «seat» + удары по словам",
    "snap": 0.436,
    "snapWord": "seat",
+   "beats": [
+    {
+     "t": 0.654,
+     "w": "next"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -914,9 +1030,15 @@
    "text": "His first job in America was",
    "spoken": "His first job in America was",
    "event": "юный Дженсен с чемоданом выше себя у ворот школы-интерната; плашка «KENTUCKY»",
-   "camera": "наезд → стоп → рывок на «America»",
+   "camera": "наезд → стоп → рывок на «America» + удары по словам",
    "snap": 1.506,
-   "snapWord": "America"
+   "snapWord": "America",
+   "beats": [
+    {
+     "t": 0.417,
+     "w": "job"
+    }
+   ]
   },
   {
    "n": 32,
@@ -931,9 +1053,15 @@
    "text": "scrubbing toilets in Kentucky.",
    "spoken": "scrubbing toilets in Kentucky",
    "event": "швабра падает в ведро, брызги (тёплый день); детская рука берёт швабру выше себя",
-   "camera": "наезд → стоп → рывок на «Kentucky»",
+   "camera": "наезд → стоп → рывок на «Kentucky» + удары по словам",
    "snap": 1.645,
-   "snapWord": "Kentucky"
+   "snapWord": "Kentucky",
+   "beats": [
+    {
+     "t": 0.564,
+     "w": "toilets"
+    }
+   ]
   },
   {
    "n": 33,
@@ -1307,9 +1435,15 @@
    "text": "Decades later he'd put it simply: he used to …",
    "spoken": "Decades later he'd put it simply he used to clean bathrooms and later he ran one of the most valuable companies on Earth",
    "event": "надпись «DECADES LATER»; на «bathrooms» слева проявляется маленький Дженсен со шваброй; на «ran» справа — взрослый Дженсен на сцене у микрофона, руки в стороны (D15-B)",
-   "camera": "наезд → стоп → рывок на «bathrooms»",
+   "camera": "наезд → стоп → рывок на «bathrooms» и «Earth»",
    "snap": 3.517,
    "snapWord": "bathrooms",
+   "snaps": [
+    {
+     "t": 8.058,
+     "w": "Earth"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -1417,9 +1551,15 @@
    "text": "In 1993 he walked back into one, this time as a …",
    "spoken": "In 1993 he walked back into one this time as a customer",
    "event": "звенит колокольчик, входит взрослый Дженсен, официантка протягивает ему меню — он клиент; подпись «1993»",
-   "camera": "наезд → стоп → рывок на «into»",
+   "camera": "наезд → стоп → рывок на «into» и «customer»",
    "snap": 2.012,
-   "snapWord": "into"
+   "snapWord": "into",
+   "snaps": [
+    {
+     "t": 3.808,
+     "w": "customer"
+    }
+   ]
   },
   {
    "n": 55,
@@ -1434,9 +1574,15 @@
    "text": "In a booth in San Jose, he and two …",
    "spoken": "In a booth in San Jose he and two engineer friends Chris Malachowsky and Curtis Priem",
    "event": "трое садятся в кабинку; на стекле «SAN JOSE»; подписи «CHRIS MALACHOWSKY», «CURTIS PRIEM» появляются по очереди",
-   "camera": "наезд → стоп → рывок на «two»",
+   "camera": "наезд → стоп → рывок на «two» и «Malachowsky»",
    "snap": 2.133,
-   "snapWord": "two"
+   "snapWord": "two",
+   "snaps": [
+    {
+     "t": 3.777,
+     "w": "Malachowsky"
+    }
+   ]
   },
   {
    "n": 56,
@@ -1451,7 +1597,7 @@
    "text": "planned a company that would build chips for 3D …",
    "spoken": "planned a company that would build chips for 3D graphics",
    "event": "столик Denny's сверху: красно-кремовый пластик, три кружки, кетчуп; рука рисует на салфетке квадрат-чип, из него вырастает каркасный куб, рядом «3D»",
-   "camera": "наезд → стоп → рывок на «3D»",
+   "camera": "наезд → стоп → рывок на «3D» и «graphics»",
    "snap": 3.312,
    "snapWord": "3D"
   },
@@ -1505,9 +1651,15 @@
    "text": "Thirty years later, Denny's hung a plaque over …",
    "spoken": "Thirty years later Denny's hung a plaque over that booth calling it the booth that launched a trillion-dollar company",
    "event": "на «plaque» над той же кабинкой привинчивают табличку «THE BOOTH THAT LAUNCHED A $1 TRILLION COMPANY»; на «trillion-dollar» плашка «2023»",
-   "camera": "наезд → стоп → рывок на «calling»",
+   "camera": "наезд → стоп → рывок на «calling» и «trillion-dollar»",
    "snap": 3.139,
    "snapWord": "calling",
+   "snaps": [
+    {
+     "t": 5.354,
+     "w": "trillion-dollar"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -1547,9 +1699,15 @@
    "text": "When its make-or-break chip finally shipped in 1997, the …",
    "spoken": "When its make-or-break chip finally shipped in 1997 the company had cash for about one more month of salaries",
    "event": "на «shipped» снизу въезжает коробка с зелёной полосой; на «1997» на неё шлёпается бирка «1997»; на «finally» листок календаря перечёркивается; на «month» падает штамп «ONE MORE MONTH», из-под штампа вылетает одна купюра",
-   "camera": "наезд → стоп → рывок на «month» + толчок",
+   "camera": "наезд → стоп → рывок на «month» и «salaries» + толчок",
    "snap": 7.111,
    "snapWord": "month",
+   "snaps": [
+    {
+     "t": 7.687,
+     "w": "salaries"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -1636,9 +1794,15 @@
    "text": "He's said ever since that Nvidia is always …",
    "spoken": "He's said ever since that Nvidia is always thirty days from going out of business",
    "event": "на «thirty» встаёт «30 DAYS»; на «business» отрывной листок пытается сорваться и возвращается на 30",
-   "camera": "наезд → стоп → рывок на «thirty»",
+   "camera": "наезд → стоп → рывок на «thirty» и «business»",
    "snap": 2.007,
    "snapWord": "thirty",
+   "snaps": [
+    {
+     "t": 3.517,
+     "w": "business"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -1900,7 +2064,7 @@
    "text": "CUSTOMER: How soon can you deliver?",
    "spoken": "How soon can you deliver",
    "event": "учёный стоит перед столом и стучит по часам",
-   "camera": "наезд → стоп → рывок на «deliver»",
+   "camera": "наезд → стоп → рывок на «deliver» + удары ×2",
    "snap": 0.808,
    "snapWord": "deliver"
   },
@@ -1917,7 +2081,7 @@
    "text": "SALESMAN: How patient are you?",
    "spoken": "How patient are you",
    "event": "продавец переворачивает песочные часы, песок только начинает сыпаться",
-   "camera": "наезд → стоп → рывок на «patient»",
+   "camera": "наезд → стоп → рывок на «patient» + удары ×2",
    "snap": 0.905,
    "snapWord": "patient"
   },
@@ -1961,7 +2125,13 @@
    "text": "and Jensen became the man with the key.",
    "spoken": "and Jensen became the man with the key",
    "event": "пола кожанки, на поясе тот же латунный ключ, что у ведущего, ловит свет; камера поднимается к лицу Дженсена",
-   "camera": "подъём камеры"
+   "camera": "подъём камеры + удары ×2",
+   "beats": [
+    {
+     "t": 0.329,
+     "w": "became"
+    }
+   ]
   },
   {
    "n": 83,
@@ -1976,9 +2146,15 @@
    "text": "When he talked about who should be allowed to buy …",
    "spoken": "When he talked about who should be allowed to buy them",
    "event": "Дженсен у трибуны; за ним экран: очередь у турникета; на «allowed» первый проходит, перед вторым опускается планка (D16-C)",
-   "camera": "наезд → стоп → рывок на «allowed»",
+   "camera": "наезд → стоп → рывок на «allowed» + удары ×2",
    "snap": 1.57,
    "snapWord": "allowed",
+   "beats": [
+    {
+     "t": 0.27,
+     "w": "talked"
+    }
+   ],
    "ev": [
     {
      "p": 2,
@@ -1999,7 +2175,7 @@
    "text": "Washington picked up the phone.",
    "spoken": "Washington picked up the phone",
    "event": "слева Вашингтон: помощник снимает трубку звонящего телефона; справа Пекин: тень смотрит на фото Дженсена",
-   "camera": "наезд → стоп → рывок на «phone»",
+   "camera": "наезд → стоп → рывок на «phone» + удары ×2",
    "snap": 1.001,
    "snapWord": "phone"
   },
@@ -2016,9 +2192,15 @@
    "text": "So, it turned out, did Beijing.",
    "spoken": "So it turned out did Beijing",
    "event": "пекинская тёмно-красная половина сплита наползает на вашингтонскую (D21-B); на «Beijing» рывок, лампа над столом вспыхивает",
-   "camera": "наезд → стоп → рывок на «Beijing»",
+   "camera": "наезд → стоп → рывок на «Beijing» + удары ×2",
    "snap": 1.435,
    "snapWord": "Beijing",
+   "beats": [
+    {
+     "t": 0.574,
+     "w": "turned"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -2039,9 +2221,15 @@
    "text": "AIDE: Get me Jensen Huang.",
    "spoken": "Get me Jensen Huang",
    "event": "помощник с трубкой у уха разворачивается к окну (холодный синий)",
-   "camera": "наезд → стоп → рывок на «Huang»",
+   "camera": "наезд → стоп → рывок на «Huang» + удары ×2",
    "snap": 1.519,
-   "snapWord": "Huang"
+   "snapWord": "Huang",
+   "beats": [
+    {
+     "t": 0.828,
+     "w": "Jensen"
+    }
+   ]
   },
   {
    "n": 87,
@@ -2086,9 +2274,21 @@
    "text": "Because in October 2022, Washington slammed a door.",
    "spoken": "Because in October 2022 Washington slammed a door",
    "event": "тяжёлая дверь захлопывается; на «October» рядом с дверью срывается лист календаря «OCT 2022»; на «slammed» замок щёлкает, толчок; наезд до скважины — под тот же ключ",
-   "camera": "наезд → стоп → рывок на «slammed» + толчок",
+   "camera": "наезд → стоп → рывок на «slammed» и «door» + толчок + удары ×2",
    "snap": 3.01,
    "snapWord": "slammed",
+   "snaps": [
+    {
+     "t": 3.801,
+     "w": "door"
+    }
+   ],
+   "beats": [
+    {
+     "t": 2.569,
+     "w": "Washington"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -2158,7 +2358,7 @@
    "text": "OFFICIAL: Your best chips can't go to China.",
    "spoken": "Your best chips can't go to China",
    "event": "говорит в трубку, папка с красной лентой; на «can't» шлёпает красный штамп «BLOCKED» на лист с чипом",
-   "camera": "наезд → стоп → рывок на «China»",
+   "camera": "наезд → стоп → рывок на «China» + удары ×2",
    "snap": 1.169,
    "snapWord": "China",
    "ev": [
@@ -2196,7 +2396,7 @@
    "text": "OFFICIAL: The ones they want.",
    "spoken": "The ones they want",
    "event": "за ним дверь с навесным замком",
-   "camera": "наезд → стоп → рывок на «want»",
+   "camera": "наезд → стоп → рывок на «want» + удары ×2",
    "snap": 0.458,
    "snapWord": "want"
   },
@@ -2238,9 +2438,25 @@
    "text": "So Nvidia made an even slower one. In April …",
    "spoken": "So Nvidia made an even slower one In April 2025 that one was blocked as well",
    "event": "на «slower» маленький чип въезжает в кадр; «APRIL 2025» встаёт на «2025»; на «blocked» падает штамп «BLOCKED»",
-   "camera": "наезд → стоп → рывок на «2025» + толчок",
+   "camera": "наезд → стоп → рывок на «2025» и «blocked» + толчок + удары ×2",
    "snap": 3.068,
    "snapWord": "2025",
+   "snaps": [
+    {
+     "t": 5.003,
+     "w": "blocked"
+    }
+   ],
+   "beats": [
+    {
+     "t": 0.374,
+     "w": "Nvidia"
+    },
+    {
+     "t": 5.441,
+     "w": "well"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -2269,9 +2485,15 @@
    "text": "and Nvidia took a five-and-a-half-billion-dollar …",
    "spoken": "and Nvidia took a five-and-a-half-billion-dollar charge",
    "event": "поддоны с зелёными коробками H20 стоят без движения; на «charge» на ближний поддон падает штамп «$5.5B WRITE-OFF», толчок",
-   "camera": "наезд → стоп → рывок на «charge» + толчок",
+   "camera": "наезд → стоп → рывок на «charge» + толчок + удары ×2",
    "snap": 1.752,
    "snapWord": "charge",
+   "beats": [
+    {
+     "t": 0.766,
+     "w": "five-and-a-half-billion-dollar"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -2292,7 +2514,7 @@
    "text": "JENSEN: What about this one?",
    "spoken": "What about this one",
    "event": "пальцы Дженсена держат перед трубкой крошечный чип",
-   "camera": "наезд → стоп → рывок на «about»",
+   "camera": "наезд → стоп → рывок на «about» + удары ×2",
    "snap": 0.25,
    "snapWord": "about"
   },
@@ -2324,7 +2546,7 @@
    "text": "JENSEN: It's really slow.",
    "spoken": "It's really slow",
    "event": "дует на чип",
-   "camera": "наезд → стоп → рывок на «really»",
+   "camera": "наезд → стоп → рывок на «really» + удары ×2",
    "snap": 0.281,
    "snapWord": "really"
   },
@@ -2356,9 +2578,15 @@
    "text": "China had been one of Nvidia's biggest markets.",
    "spoken": "China had been one of Nvidia's biggest markets",
    "event": "настенный график продаж Nvidia по регионам: столбик CHINA высокий и светится",
-   "camera": "наезд → стоп → рывок на «biggest»",
+   "camera": "наезд → стоп → рывок на «biggest» + удары ×2",
    "snap": 1.756,
-   "snapWord": "biggest"
+   "snapWord": "biggest",
+   "beats": [
+    {
+     "t": 1.115,
+     "w": "Nvidia's"
+    }
+   ]
   },
   {
    "n": 104,
@@ -2373,9 +2601,15 @@
    "text": "Nvidia's own filings showed seventeen billion …",
    "spoken": "Nvidia's own filings showed seventeen billion dollars of sales in China in one year",
    "event": "годовой отчёт Nvidia; на «filings» плашка «SOURCE: NVIDIA 10-K»; на «seventeen» строка «CHINA · $17 BILLION» подсвечивается",
-   "camera": "наезд → стоп → рывок на «billion»",
+   "camera": "наезд → стоп → рывок на «billion» + удары ×2",
    "snap": 3.932,
    "snapWord": "billion",
+   "beats": [
+    {
+     "t": 4.554,
+     "w": "year"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -2400,9 +2634,19 @@
    "text": "In Jensen's own words, Nvidia's share of China's …",
    "spoken": "In Jensen's own words Nvidia's share of China's AI chip market went from ninety-five percent to zero",
    "event": "на «words» печатается подпись «— JENSEN HUANG»; «95%» встаёт на «ninety-five»; на «zero» цифра падает до «0%»",
-   "camera": "наезд → стоп → рывок на «zero»",
+   "camera": "наезд → стоп → рывок на «zero» + удары ×2",
    "snap": 6.711,
    "snapWord": "zero",
+   "beats": [
+    {
+     "t": 2.191,
+     "w": "Nvidia's"
+    },
+    {
+     "t": 2.876,
+     "w": "China's"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -2431,7 +2675,17 @@
    "text": "ASSISTANT: Here's our China business. …",
    "spoken": "Here's our China business I don't see anything",
    "event": "ассистент поднимает пустой график → вип-пан со смазом на реплике JENSEN: щурится, поправляет очки",
-   "camera": "стоп → вип-пан со смазом на JENSEN",
+   "camera": "стоп → вип-пан со смазом на JENSEN + удары ×2",
+   "beats": [
+    {
+     "t": 0.788,
+     "w": "business"
+    },
+    {
+     "t": 2.335,
+     "w": "anything"
+    }
+   ],
    "whip": {
     "t": 1.743,
     "from": "ASSISTANT",
@@ -2451,7 +2705,7 @@
    "text": "ASSISTANT: That's the chart.",
    "spoken": "That's the chart",
    "event": "тот же настенный график, что был высоким: столбик CHINA пуст; палец стучит по пустой оси",
-   "camera": "наезд → стоп → рывок на «chart»",
+   "camera": "наезд → стоп → рывок на «chart» + удары ×2",
    "snap": 0.51,
    "snapWord": "chart"
   },
@@ -2468,7 +2722,7 @@
    "text": "Jensen didn't hide how he felt.",
    "spoken": "Jensen didn't hide how he felt",
    "event": "Дженсен в кожанке входит в луч прожектора",
-   "camera": "наезд → стоп → рывок на «felt»",
+   "camera": "наезд → стоп → рывок на «felt» + удары ×2",
    "snap": 0.923,
    "snapWord": "felt"
   },
@@ -2485,9 +2739,19 @@
    "text": "On stage after stage, he argued that the rules …",
    "spoken": "On stage after stage he argued that the rules were hurting American companies",
    "event": "Дженсен у микрофона; баннер за его спиной дважды сменяется — три разных ивента подряд",
-   "camera": "отъезд → стоп → рывок на «American»",
+   "camera": "отъезд → стоп → рывок на «American» + удары ×2",
    "snap": 3.69,
-   "snapWord": "American"
+   "snapWord": "American",
+   "beats": [
+    {
+     "t": 1.911,
+     "w": "argued"
+    },
+    {
+     "t": 3.254,
+     "w": "hurting"
+    }
+   ]
   },
   {
    "n": 110,
@@ -2502,9 +2766,19 @@
    "text": "and handing the market to Chinese rivals.",
    "spoken": "and handing the market to Chinese rivals",
    "event": "на большом экране за сценой пирог рынка переезжает от зелёного чипа к безымянному красному чипу (без логотипов)",
-   "camera": "наезд → стоп → рывок на «Chinese»",
+   "camera": "наезд → стоп → рывок на «Chinese» + удары ×2",
    "snap": 1.592,
-   "snapWord": "Chinese"
+   "snapWord": "Chinese",
+   "beats": [
+    {
+     "t": 0.637,
+     "w": "handing"
+    },
+    {
+     "t": 2.184,
+     "w": "rivals"
+    }
+   ]
   },
   {
    "n": 111,
@@ -2519,9 +2793,15 @@
    "text": "Let American chips compete everywhere.",
    "spoken": "Let American chips compete everywhere",
    "event": "Дженсен у микрофона, строку читает рассказчик (D17-C); на «compete» за его спиной на экране печатается «COMPETE»; на «everywhere» экран зеленеет картой мира, вспышки фотографов из зала",
-   "camera": "наезд → стоп → рывок на «everywhere»",
+   "camera": "наезд → стоп → рывок на «everywhere» + удары ×2",
    "snap": 1.614,
    "snapWord": "everywhere",
+   "beats": [
+    {
+     "t": 0.372,
+     "w": "American"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -2546,7 +2826,7 @@
    "text": "JENSEN: They're nanoseconds behind us.",
    "spoken": "They're nanoseconds behind us",
    "event": "Дженсен у микрофона, подпись «JENSEN HUANG»; на «nanoseconds» на экране за ним секундомер «0.000000001 s»",
-   "camera": "наезд → стоп → рывок на «behind»",
+   "camera": "наезд → стоп → рывок на «behind» + удары ×2",
    "snap": 1.361,
    "snapWord": "behind",
    "ev": [
@@ -2569,9 +2849,19 @@
    "text": "So here was Beijing's problem. China couldn't buy the …",
    "spoken": "So here was Beijing's problem China couldn't buy the chips",
    "event": "на красном столе коробка с чипами под тем же латунным навесным замком, что на вашингтонской двери; рука дёргает замок — не поддаётся",
-   "camera": "наезд → стоп → рывок на «China»",
+   "camera": "наезд → стоп → рывок на «China» + удары ×2",
    "snap": 2.171,
-   "snapWord": "China"
+   "snapWord": "China",
+   "beats": [
+    {
+     "t": 1.526,
+     "w": "Beijing's"
+    },
+    {
+     "t": 3.312,
+     "w": "chips"
+    }
+   ]
   },
   {
    "n": 114,
@@ -2586,9 +2876,15 @@
    "text": "But it could try to get close to the man who made …",
    "spoken": "But it could try to get close to the man who made them",
    "event": "офицер подвигает фото Дженсена к коробке под замком и обводит лицо красным карандашом; на «made» на фото у пояса блестит тот же латунный ключ",
-   "camera": "наезд → стоп → рывок на «made»",
+   "camera": "наезд → стоп → рывок на «made» + удары ×2",
    "snap": 2.522,
    "snapWord": "made",
+   "beats": [
+    {
+     "t": 1.208,
+     "w": "close"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -2609,9 +2905,19 @@
    "text": "the same man arguing with Washington about who …",
    "spoken": "the same man arguing with Washington about who gets to buy them",
    "event": "к фото Дженсена подкалывают газетную вырезку: Дженсен у микрофона, за ним купол Капитолия; на «buy» офицер ведёт красную стрелку от вырезки к коробке под замком",
-   "camera": "наезд → стоп → рывок на «Washington»",
+   "camera": "наезд → стоп → рывок на «Washington» + удары ×2",
    "snap": 1.921,
    "snapWord": "Washington",
+   "beats": [
+    {
+     "t": 0.815,
+     "w": "arguing"
+    },
+    {
+     "t": 3.047,
+     "w": "gets"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -2647,7 +2953,7 @@
    "text": "OFFICER: We can't buy his chips.",
    "spoken": "We can't buy his chips",
    "event": "стучит пальцем по замку на коробке",
-   "camera": "наезд → стоп → рывок на «chips»",
+   "camera": "наезд → стоп → рывок на «chips» + удары ×2",
    "snap": 1.104,
    "snapWord": "chips"
   },
@@ -2664,9 +2970,15 @@
    "text": "OFFICER 2: Then become his customer.",
    "spoken": "Then become his customer",
    "event": "кладёт чистую визитку на фото Дженсена; на «customer» рядом ложится бланк «PURCHASE ORDER · BUYER: ___», палец стучит по пустой строке",
-   "camera": "наезд → стоп → рывок на «customer»",
+   "camera": "наезд → стоп → рывок на «customer» + удары ×2",
    "snap": 1.076,
    "snapWord": "customer",
+   "beats": [
+    {
+     "t": 0.285,
+     "w": "become"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -2717,9 +3029,25 @@
    "text": "a small Singapore company called 7Road …",
    "spoken": "a small Singapore company called 7Road International",
    "event": "на «7Road» над дверью загорается табличка «7ROAD INTERNATIONAL»; на «March» плашка «MARCH 2023 · SINGAPORE»; на «Singapore» за окном вспыхивает Марина-Бэй",
-   "camera": "наезд → стоп → рывок на «7Road»",
+   "camera": "наезд → стоп → рывок на «7Road» и «International» + удары ×3",
    "snap": 1.895,
    "snapWord": "7Road",
+   "snaps": [
+    {
+     "t": 2.63,
+     "w": "International"
+    }
+   ],
+   "beats": [
+    {
+     "t": 0.829,
+     "w": "company"
+    },
+    {
+     "t": 1.516,
+     "w": "called"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -2744,9 +3072,15 @@
    "text": "registered back in 2015 as",
    "spoken": "registered back in 2015 as",
    "event": "регистрационная карточка компании 7ROAD INTERNATIONAL; на «2015» печатается дата «REGISTERED 2015»",
-   "camera": "наезд → стоп → рывок на «2015»",
+   "camera": "наезд → стоп → рывок на «2015» + удары ×3",
    "snap": 1.564,
    "snapWord": "2015",
+   "beats": [
+    {
+     "t": 0.901,
+     "w": "back"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -2767,9 +3101,21 @@
    "text": "the overseas arm of a Chinese video game business,",
    "spoken": "the overseas arm of a Chinese video game business",
    "event": "на «overseas» от значка геймпада в Китае отрывается копия с табличкой «7ROAD» и едет по линии в Сингапур; на «arm» она приземляется с облачком пыли",
-   "camera": "панорама → стоп → рывок на «video»",
+   "camera": "панорама → стоп → рывок на «video» и «business» + удары ×3",
    "snap": 1.612,
    "snapWord": "video",
+   "snaps": [
+    {
+     "t": 2.63,
+     "w": "business"
+    }
+   ],
+   "beats": [
+    {
+     "t": 2.157,
+     "w": "game"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -2794,9 +3140,15 @@
    "text": "got a new name: Megaspeed.",
    "spoken": "got a new name Megaspeed",
    "event": "табличка «7ROAD» откручивается, на её место — «MEGASPEED»",
-   "camera": "наезд → стоп → рывок на «Megaspeed»",
+   "camera": "наезд → стоп → рывок на «Megaspeed» + удары ×3",
    "snap": 2.157,
-   "snapWord": "Megaspeed"
+   "snapWord": "Megaspeed",
+   "beats": [
+    {
+     "t": 1.042,
+     "w": "name"
+    }
+   ]
   },
   {
    "n": 125,
@@ -2811,9 +3163,19 @@
    "text": "Its new managing director was Alice Huang.",
    "spoken": "Its new managing director was Alice Huang",
    "event": "Алиса входит и садится в кресло; на «director» наезд к настольной табличке «MANAGING DIRECTOR · ALICE HUANG»",
-   "camera": "наезд → стоп → рывок на «Alice»",
+   "camera": "наезд → стоп → рывок на «Alice» + удары ×3",
    "snap": 2.769,
    "snapWord": "Alice",
+   "beats": [
+    {
+     "t": 0.482,
+     "w": "managing"
+    },
+    {
+     "t": 3.207,
+     "w": "Huang"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -2833,8 +3195,8 @@
    "framing": "крупно клерк",
    "text": "CLERK: Previous business?",
    "spoken": "Previous business",
-   "event": "заносит ручку над формой, поле «PREVIOUS BUSINESS» читается",
-   "camera": "наезд → стоп → рывок на «business»",
+   "event": "заносит ручку над формой, поле «PREVIOUS BUSINESS» читается; следом ручка вписывает маркером «GAMES»",
+   "camera": "наезд → стоп → рывок на «business» + удары ×3",
    "snap": 0.487,
    "snapWord": "business"
   },
@@ -2850,8 +3212,8 @@
    "framing": "вставка джойстик",
    "text": "STAFFER: Video games.",
    "spoken": "Video games",
-   "event": "сотрудник прячет игровой джойстик в ящик стола",
-   "camera": "наезд → стоп → рывок на «games»",
+   "event": "сотрудник прячет игровой джойстик в ящик стола; следом на ящик стола падает штамп «ARCHIVED»",
+   "camera": "наезд → стоп → рывок на «games» + удары ×3",
    "snap": 0.25,
    "snapWord": "games"
   },
@@ -2867,7 +3229,7 @@
    "framing": "крупно клерк",
    "text": "CLERK: New business?",
    "spoken": "New business",
-   "event": "переворачивает страницу формы, поле «NEW BUSINESS»",
+   "event": "переворачивает страницу формы, поле «NEW BUSINESS»; следом на старое поле падает штамп «CHANGED»",
    "camera": "статично (стоп)"
   },
   {
@@ -2882,8 +3244,8 @@
    "framing": "обратная сотрудник",
    "text": "STAFFER: Now, supercomputers.",
    "spoken": "Now supercomputers",
-   "event": "показывает за стекло на серверную",
-   "camera": "панорама → стоп → рывок на «supercomputers»",
+   "event": "показывает за стекло на серверную; следом на стекле серверной табличка «SUPERCOMPUTERS»",
+   "camera": "панорама → стоп → рывок на «supercomputers» + удары ×3",
    "snap": 0.446,
    "snapWord": "supercomputers"
   },
@@ -2899,8 +3261,14 @@
    "framing": "средний клерк и сотрудник",
    "text": "CLERK: Big change.",
    "spoken": "Big change",
-   "event": "оба в кадре: клерк поднимает бровь на гору коробок за стеклом серверной",
-   "camera": "статично (стоп)"
+   "event": "оба в кадре: клерк поднимает бровь на гору коробок за стеклом серверной; на «change» на форму падает штамп «APPROVED»",
+   "camera": "статично (стоп)",
+   "ev": [
+    {
+     "p": 1,
+     "t": 0.347
+    }
+   ]
   },
   {
    "n": 131,
@@ -2915,9 +3283,15 @@
    "text": "STAFFER: Bigger electricity bill.",
    "spoken": "Bigger electricity bill",
    "event": "стрелка счётчика электричества улетает вправо",
-   "camera": "наезд → стоп → рывок на «bill» + толчок",
+   "camera": "наезд → стоп → рывок на «bill» + толчок + удары ×3",
    "snap": 0.976,
-   "snapWord": "bill"
+   "snapWord": "bill",
+   "beats": [
+    {
+     "t": 0.412,
+     "w": "electricity"
+    }
+   ]
   },
   {
    "n": 132,
@@ -2947,9 +3321,19 @@
    "text": "That's the perfect business for buying chips, because a …",
    "spoken": "That's the perfect business for buying chips because a cloud company needs mountains of them",
    "event": "за стеклом растёт гора коробок до потолка; на «perfect» на стекле серверной наклейка «CLOUD COMPUTING»; на «mountains» за стеклом растёт гора коробок до потолка",
-   "camera": "подъём камеры → стоп → рывок на «mountains»",
+   "camera": "подъём камеры → стоп → рывок на «mountains» + удары ×3",
    "snap": 3.881,
    "snapWord": "mountains",
+   "beats": [
+    {
+     "t": 1.396,
+     "w": "buying"
+    },
+    {
+     "t": 3.142,
+     "w": "company"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -2974,7 +3358,7 @@
    "text": "and nobody asks why.",
    "spoken": "and nobody asks why",
    "event": "курьер ввозит ещё одну стопку коробок; ресепшн, не поднимая глаз, штампует «RECEIVED»",
-   "camera": "наезд → стоп → рывок на «nobody»",
+   "camera": "наезд → стоп → рывок на «nobody» + удары ×3",
    "snap": 0.308,
    "snapWord": "nobody"
   },
@@ -2991,9 +3375,15 @@
    "text": "The data centers sat in Malaysia and Indonesia.",
    "spoken": "The data centers sat in Malaysia and Indonesia",
    "event": "пины Малайзия и Индонезия втыкаются в карту",
-   "camera": "панорама → стоп → рывок на «Indonesia»",
+   "camera": "панорама → стоп → рывок на «Indonesia» + удары ×3",
    "snap": 2.165,
-   "snapWord": "Indonesia"
+   "snapWord": "Indonesia",
+   "beats": [
+    {
+     "t": 1.42,
+     "w": "Malaysia"
+    }
+   ]
   },
   {
    "n": 136,
@@ -3008,9 +3398,19 @@
    "text": "Not one chip had to enter China.",
    "spoken": "Not one chip had to enter China",
    "event": "карта Малайзии и Китая на стене офиса; на «Not» на Китай бьёт красный штамп «NOT ONE CHIP», Китай темнеет",
-   "camera": "наезд → стоп → рывок на «enter» + толчок",
+   "camera": "наезд → стоп → рывок на «enter» + толчок + удары ×3",
    "snap": 1.606,
    "snapWord": "enter",
+   "beats": [
+    {
+     "t": 0.587,
+     "w": "chip"
+    },
+    {
+     "t": 2.446,
+     "w": "China"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -3031,9 +3431,29 @@
    "text": "Chinese customers could simply rent the computing power over …",
    "spoken": "Chinese customers could simply rent the computing power over the internet",
    "event": "коробки стопкой у пина в Малайзии; на «rent» пунктир идёт к Китаю и упирается в границу; на «internet» по линии бегут огоньки, у пина тикает «PER HOUR» (D19-A)",
-   "camera": "панорама → стоп → рывок на «rent»",
+   "camera": "панорама → стоп → рывок на «rent» и «computing» + удары ×3",
    "snap": 1.685,
    "snapWord": "rent",
+   "snaps": [
+    {
+     "t": 2.311,
+     "w": "computing"
+    }
+   ],
+   "beats": [
+    {
+     "t": 0.337,
+     "w": "customers"
+    },
+    {
+     "t": 1.324,
+     "w": "simply"
+    },
+    {
+     "t": 2.72,
+     "w": "power"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -3058,9 +3478,23 @@
    "text": "According to the Financial Times, its biggest …",
    "spoken": "According to the Financial Times its biggest customer from the start was the Chinese giant Alibaba",
    "event": "на мониторе список клиентов MEGASPEED; на «Times» плашка «SOURCE: FINANCIAL TIMES»; на «Alibaba» первая строка «ALIBABA» подсвечивается",
-   "camera": "наезд → стоп → рывок на «Alibaba»",
+   "camera": "наезд → стоп → рывок на «Alibaba» + удары ×3",
    "snap": 5.878,
    "snapWord": "Alibaba",
+   "beats": [
+    {
+     "t": 2.442,
+     "w": "customer"
+    },
+    {
+     "t": 3.473,
+     "w": "start"
+    },
+    {
+     "t": 4.689,
+     "w": "Chinese"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -3085,9 +3519,23 @@
    "text": "Imagine you're not allowed to own a certain book. …",
    "spoken": "Imagine you're not allowed to own a certain book So your neighbor buys it keeps it in his house",
    "event": "книга за стеклом с замком; сосед покупает её и ставит на свою полку, ночь; на «allowed» на обложке книги защёлкивается замок; на «neighbor» сосед уносит книгу к себе на полку",
-   "camera": "отъезд → стоп → рывок на «house»",
+   "camera": "отъезд → стоп → рывок на «house» + удары ×3",
    "snap": 5.996,
    "snapWord": "house",
+   "beats": [
+    {
+     "t": 0.486,
+     "w": "you're"
+    },
+    {
+     "t": 2.367,
+     "w": "certain"
+    },
+    {
+     "t": 5.327,
+     "w": "keeps"
+    }
+   ],
    "ev": [
     {
      "p": 2,
@@ -3112,9 +3560,21 @@
    "text": "and lets you read it through the window, one …",
    "spoken": "and lets you read it through the window one page at a time for a fee",
    "event": "сосед прижимает страницу к стеклу, ребёнок светит фонариком, монета падает в банку «PER PAGE»; на «window» луч фонарика сквозь стекло ложится на страницу; на «fee» монета падает в банку «PER PAGE»",
-   "camera": "наезд → стоп → рывок на «page»",
+   "camera": "наезд → стоп → рывок на «page» и «time» + удары ×3",
    "snap": 2.028,
    "snapWord": "page",
+   "snaps": [
+    {
+     "t": 2.632,
+     "w": "time"
+    }
+   ],
+   "beats": [
+    {
+     "t": 0.496,
+     "w": "read"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -3153,10 +3613,16 @@
    "framing": "крупно покупатель на мониторе",
    "text": "RENTER: Can we buy your chips?",
    "spoken": "Can we buy your chips",
-   "event": "покупатель в окне видеозвонка на мониторе представителя, подносит к веб-камере чемодан денег",
-   "camera": "наезд → стоп → рывок на «chips»",
+   "event": "покупатель в окне видеозвонка на мониторе представителя, подносит к веб-камере чемодан денег; на «buy» на чемодане бирка «CASH»",
+   "camera": "наезд → стоп → рывок на «chips» + удары ×3",
    "snap": 0.786,
-   "snapWord": "chips"
+   "snapWord": "chips",
+   "ev": [
+    {
+     "p": 1,
+     "t": 0.262
+    }
+   ]
   },
   {
    "n": 143,
@@ -3171,7 +3637,7 @@
    "text": "REP: No. You can borrow them.",
    "spoken": "No You can borrow them",
    "event": "на «borrow» поднимает к камере ценник «RENT · PER HOUR»; на «No» представитель качает головой",
-   "camera": "панорама → стоп → рывок на «borrow»",
+   "camera": "панорама → стоп → рывок на «borrow» + удары ×3",
    "snap": 1.051,
    "snapWord": "borrow",
    "ev": [
@@ -3197,8 +3663,8 @@
    "framing": "вставка монитор видеозвонка",
    "text": "RENTER: For how long?",
    "spoken": "For how long",
-   "event": "окно видеозвонка на мониторе: покупатель наклоняется к веб-камере",
-   "camera": "наезд → стоп → рывок на «long»",
+   "event": "окно видеозвонка на мониторе: покупатель наклоняется к веб-камере; следом над окном звонка маркером «HOW LONG?»",
+   "camera": "наезд → стоп → рывок на «long» + удары ×3",
    "snap": 0.25,
    "snapWord": "long"
   },
@@ -3215,7 +3681,7 @@
    "text": "REP: By the hour. Or the year.",
    "spoken": "By the hour Or the year",
    "event": "щёлкает таймером; на «year» табло перескакивает «1 HR» → «1 YR», за стеклом ряд за рядом загораются серверы",
-   "camera": "наезд → стоп → рывок на «year»",
+   "camera": "наезд → стоп → рывок на «year» + удары ×3",
    "snap": 1.322,
    "snapWord": "year",
    "ev": [
@@ -3238,9 +3704,29 @@
    "text": "On paper, renting computing power isn't exporting chips, and …",
    "spoken": "On paper renting computing power isn't exporting chips and Megaspeed has always said it follows the law",
    "event": "договор аренды мощности; на «exporting» строки подчёркиваются; на «Megaspeed» печать компании «SIGNED»",
-   "camera": "наезд → стоп → рывок на «Megaspeed»",
+   "camera": "наезд → стоп → рывок на «Megaspeed» и «follows» + удары ×3",
    "snap": 4.67,
    "snapWord": "Megaspeed",
+   "snaps": [
+    {
+     "t": 6.563,
+     "w": "follows"
+    }
+   ],
+   "beats": [
+    {
+     "t": 1.303,
+     "w": "computing"
+    },
+    {
+     "t": 2.483,
+     "w": "isn't"
+    },
+    {
+     "t": 5.604,
+     "w": "always"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -3265,9 +3751,29 @@
    "text": "After eight months, Alice Huang stepped down as managing …",
    "spoken": "After eight months Alice Huang stepped down as managing director but by most accounts she kept a leading role",
    "event": "табличка «MANAGING DIRECTOR · ALICE HUANG» из #111 на двери; на «stepped» её откручивают, остаются две дырки; на «role» силуэт в кресле за стеклом не двигается",
-   "camera": "наезд → стоп → рывок на «director»",
+   "camera": "наезд → стоп → рывок на «director» и «accounts» + удары ×3",
    "snap": 3.747,
    "snapWord": "director",
+   "snaps": [
+    {
+     "t": 5.98,
+     "w": "accounts"
+    }
+   ],
+   "beats": [
+    {
+     "t": 0.59,
+     "w": "months"
+    },
+    {
+     "t": 1.379,
+     "w": "Alice"
+    },
+    {
+     "t": 2.721,
+     "w": "down"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -3292,7 +3798,17 @@
    "text": "CLERK: New title for Alice? …",
    "spoken": "New title for Alice Same office though",
    "event": "держит новую пустую табличку → вип-пан со смазом на реплике STAFFER: кивает на то же кресло; на «title» клерк поднимает пустую табличку; на «office» сотрудник кивает на тот же кабинет за стеклом",
-   "camera": "стоп → вип-пан со смазом на STAFFER",
+   "camera": "стоп → вип-пан со смазом на STAFFER + удары ×3",
+   "beats": [
+    {
+     "t": 0.725,
+     "w": "Alice"
+    },
+    {
+     "t": 2.141,
+     "w": "though"
+    }
+   ],
    "whip": {
     "t": 1.504,
     "from": "CLERK",
@@ -3322,9 +3838,25 @@
    "text": "At the end of 2023, the company's filings showed …",
    "spoken": "At the end of 2023 the company's filings showed about thirty-three million dollars in assets",
    "event": "на «2023» плашка «END OF 2023»; «$33 MILLION» встаёт на «thirty-three»; на «assets» между двумя соседними лавками въезжает крошечная витрина «MEGASPEED»",
-   "camera": "наезд → стоп → рывок на «thirty-three»",
+   "camera": "наезд → стоп → рывок на «thirty-three» и «million» + удары ×3",
    "snap": 4.368,
    "snapWord": "thirty-three",
+   "snaps": [
+    {
+     "t": 5.893,
+     "w": "million"
+    }
+   ],
+   "beats": [
+    {
+     "t": 2.559,
+     "w": "company's"
+    },
+    {
+     "t": 3.179,
+     "w": "filings"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -3353,9 +3885,25 @@
    "text": "Not the kind whose people end up in photos …",
    "spoken": "Not the kind whose people end up in photos next to the boss of Nvidia",
    "event": "на столе пустая фоторамка — медленный наезд на неё (в гл. 5 в такой же рамке застынет фото с вечеринки); на «photos» на столе пустая фоторамка; на «boss» рамка медленно поворачивается к камере",
-   "camera": "наезд → стоп → рывок на «photos»",
+   "camera": "наезд → стоп → рывок на «photos» и «Nvidia» + удары ×3",
    "snap": 2.001,
    "snapWord": "photos",
+   "snaps": [
+    {
+     "t": 3.979,
+     "w": "Nvidia"
+    }
+   ],
+   "beats": [
+    {
+     "t": 0.901,
+     "w": "people"
+    },
+    {
+     "t": 2.402,
+     "w": "next"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -3410,9 +3958,15 @@
    "text": "Jensen Huang is not hard to meet.",
    "spoken": "Jensen Huang is not hard to meet",
    "event": "Дженсен в кожанке в открытых дверях зала, машет людям «заходите»",
-   "camera": "наезд → стоп → рывок на «hard»",
+   "camera": "наезд → стоп → рывок на «hard» + удары ×1",
    "snap": 1.467,
-   "snapWord": "hard"
+   "snapWord": "hard",
+   "beats": [
+    {
+     "t": 0.637,
+     "w": "Huang"
+    }
+   ]
   },
   {
    "n": 154,
@@ -3427,9 +3981,15 @@
    "text": "He shakes every hand, poses for every selfie, and …",
    "spoken": "He shakes every hand poses for every selfie and treats big customers like regulars at a diner",
    "event": "очередь к Дженсену, телефоны вверх; на «hand» рукопожатие; на «selfie» вспышка телефона; на «customers» рукопожатие двумя руками, бейдж «CUSTOMER»",
-   "camera": "наезд → стоп → рывок на «customers»",
+   "camera": "наезд → стоп → рывок на «customers» + удары ×1",
    "snap": 5.362,
    "snapWord": "customers",
+   "beats": [
+    {
+     "t": 6.599,
+     "w": "regulars"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -3458,7 +4018,13 @@
    "text": "Nvidia later said meeting customers is simply part of …",
    "spoken": "Nvidia later said meeting customers is simply part of his job thousands of them a year",
    "event": "плашка «NVIDIA STATEMENT»; на «thousands» стена бейджей участников размножается на весь кадр",
-   "camera": "проход камерой по нитям",
+   "camera": "проход камерой по нитям + удары ×1",
+   "beats": [
+    {
+     "t": 0.996,
+     "w": "customers"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -3479,7 +4045,7 @@
    "text": "FAN: Can I get a selfie?",
    "spoken": "Can I get a selfie",
    "event": "поднимает телефон",
-   "camera": "наезд → стоп → рывок на «selfie»",
+   "camera": "наезд → стоп → рывок на «selfie» + удары ×1",
    "snap": 0.416,
    "snapWord": "selfie"
   },
@@ -3496,7 +4062,7 @@
    "text": "JENSEN: Of course.",
    "spoken": "Of course",
    "event": "экран телефона: вспышка селфи, Дженсен в кожанке и фанат в кадре",
-   "camera": "наезд → стоп → рывок на «course»",
+   "camera": "наезд → стоп → рывок на «course» + удары ×1",
    "snap": 0.25,
    "snapWord": "course"
   },
@@ -3528,7 +4094,7 @@
    "text": "JENSEN: Only if it has our chip.",
    "spoken": "Only if it has our chip",
    "event": "маркер расписывается на крышке",
-   "camera": "наезд → стоп → рывок на «chip»",
+   "camera": "наезд → стоп → рывок на «chip» + удары ×1",
    "snap": 1.077,
    "snapWord": "chip"
   },
@@ -3545,7 +4111,13 @@
    "text": "Alice Huang was one of those thousands.",
    "spoken": "Alice Huang was one of those thousands",
    "event": "та же стена бейджей: наезд на один — «ALICE HUANG — MEGASPEED», он загорается красным",
-   "camera": "проход камерой по нитям"
+   "camera": "проход камерой по нитям + удары ×1",
+   "beats": [
+    {
+     "t": 1.659,
+     "w": "thousands"
+    }
+   ]
   },
   {
    "n": 161,
@@ -3560,9 +4132,15 @@
    "text": "In early 2024, she turned up at an Nvidia event in …",
    "spoken": "In early 2024 she turned up at an Nvidia event in California representing Megaspeed",
    "event": "на «2024» плашка «EARLY 2024 · CALIFORNIA»; Алиса с бейджем садится в зале; на «Megaspeed» бейдж «MEGASPEED» крупно, по сцене проходит Дженсен в кожанке",
-   "camera": "наезд → стоп → рывок на «event»",
+   "camera": "наезд → стоп → рывок на «event» + удары ×1",
    "snap": 3.497,
    "snapWord": "event",
+   "beats": [
+    {
+     "t": 4.04,
+     "w": "California"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -3602,9 +4180,15 @@
    "text": "the giant computer show where Jensen is treated like …",
    "spoken": "the giant computer show where Jensen is treated like a rock star",
    "event": "накладка «COMPUTEX 2024»: Дженсен на сцене, на переднем плане поднятые телефоны и вспышки; серия из 6 вспышек по залу",
-   "camera": "наезд → стоп → рывок на «Jensen»",
+   "camera": "наезд → стоп → рывок на «Jensen» + удары ×1",
    "snap": 1.855,
-   "snapWord": "Jensen"
+   "snapWord": "Jensen",
+   "beats": [
+    {
+     "t": 0.448,
+     "w": "computer"
+    }
+   ]
   },
   {
    "n": 164,
@@ -3619,9 +4203,15 @@
    "text": "That same month, at a party in the city,",
    "spoken": "That same month at a party in the city",
    "event": "общий бар: Дженсен с виски среди гостей",
-   "camera": "наезд → стоп → рывок на «party»",
+   "camera": "наезд → стоп → рывок на «party» + удары ×1",
    "snap": 1.33,
-   "snapWord": "party"
+   "snapWord": "party",
+   "beats": [
+    {
+     "t": 0.403,
+     "w": "month"
+    }
+   ]
   },
   {
    "n": 165,
@@ -3636,9 +4226,15 @@
    "text": "a camera flashed. In the photo, standing right …",
    "spoken": "a camera flashed In the photo standing right beside Jensen is Alice Huang",
    "event": "белая вспышка → стоп-кадр становится отпечатком в такой же рамке, что пустая на столе Алисы; наезд на Алису рядом с Дженсеном; подпись «COMPUTEX PARTY · JUNE 2024»; серия из 6 вспышек по залу",
-   "camera": "наезд → стоп → рывок на «standing»",
+   "camera": "наезд → стоп → рывок на «standing» + удары ×1",
    "snap": 2.339,
-   "snapWord": "standing"
+   "snapWord": "standing",
+   "beats": [
+    {
+     "t": 3.23,
+     "w": "Jensen"
+    }
+   ]
   },
   {
    "n": 166,
@@ -3653,7 +4249,13 @@
    "text": "PHOTOGRAPHER: Everyone, squeeze in! …",
    "spoken": "Everyone squeeze in Customers in the front",
    "event": "фотограф машет рукой → вип-пан со смазом на реплике JENSEN: подталкивает гостей вперёд; на «front» Алиса выходит вперёд, бейдж MEGASPEED в центре",
-   "camera": "стоп → вип-пан со смазом на JENSEN",
+   "camera": "стоп → вип-пан со смазом на JENSEN + удары ×1",
+   "beats": [
+    {
+     "t": 0.333,
+     "w": "squeeze"
+    }
+   ],
    "whip": {
     "t": 1.403,
     "from": "PHOTOGRAPHER",
@@ -3679,7 +4281,7 @@
    "text": "PHOTOGRAPHER: Say \"GPU\"!",
    "spoken": "Say GPU",
    "event": "видоискатель фотоаппарата: в рамке Дженсен и Алиса стоят рядом",
-   "camera": "наезд → стоп → рывок на «GPU»",
+   "camera": "наезд → стоп → рывок на «GPU» + удары ×1",
    "snap": 0.291,
    "snapWord": "GPU"
   },
@@ -3711,9 +4313,15 @@
    "text": "A company later posted the picture online.",
    "spoken": "A company later posted the picture online",
    "event": "фото с вечеринки появляется в ленте на экране телефона, палец пролистывает дальше",
-   "camera": "наезд → стоп → рывок на «online»",
+   "camera": "наезд → стоп → рывок на «online» + удары ×1",
    "snap": 2.223,
-   "snapWord": "online"
+   "snapWord": "online",
+   "beats": [
+    {
+     "t": 1.839,
+     "w": "picture"
+    }
+   ]
   },
   {
    "n": 170,
@@ -3728,9 +4336,15 @@
    "text": "To everyone in that room, it was one more …",
    "spoken": "To everyone in that room it was one more snapshot from one more busy night",
    "event": "снимок сжимается в сетку галереи из десятков снимков той ночи; на «night» сетка заполняет кадр",
-   "camera": "отъезд → стоп → рывок на «night»",
+   "camera": "отъезд → стоп → рывок на «night» + удары ×1",
    "snap": 4.383,
    "snapWord": "night",
+   "beats": [
+    {
+     "t": 2.486,
+     "w": "snapshot"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -3751,7 +4365,13 @@
    "text": "Nobody looked at it twice. Later, a lot of …",
    "spoken": "Nobody looked at it twice Later a lot of people would",
    "event": "фото прикалывается к пустой доске расследования, красная нить свисает, ни к чему не привязана",
-   "camera": "проход камерой по нитям"
+   "camera": "проход камерой по нитям + удары ×1",
+   "beats": [
+    {
+     "t": 2.222,
+     "w": "Later"
+    }
+   ]
   },
   {
    "n": 172,
@@ -3766,7 +4386,13 @@
    "text": "Because that same month, Megaspeed's sister company in Malaysia …",
    "spoken": "Because that same month Megaspeed's sister company in Malaysia started buying",
    "event": "пин «MEGASPEED» в Сингапуре → новый пин «MEGASPEED · MALAYSIA» в Куала-Лумпуре с меткой «JUNE 2024»; из него вылетают листы заказов",
-   "camera": "панорама"
+   "camera": "панорама + удары ×1",
+   "beats": [
+    {
+     "t": 2.804,
+     "w": "Megaspeed's"
+    }
+   ]
   },
   {
    "n": 173,
@@ -3796,9 +4422,15 @@
    "text": "ACCOUNTANT: Another order from Malaysia.",
    "spoken": "Another order from Malaysia",
    "event": "отрывает лист, читается «PURCHASE ORDER · FROM: MEGASPEED (MALAYSIA) · SERVERS»",
-   "camera": "наезд → стоп → рывок на «Malaysia»",
+   "camera": "наезд → стоп → рывок на «Malaysia» + удары ×1",
    "snap": 1.023,
-   "snapWord": "Malaysia"
+   "snapWord": "Malaysia",
+   "beats": [
+    {
+     "t": 0.366,
+     "w": "order"
+    }
+   ]
   },
   {
    "n": 175,
@@ -3813,7 +4445,13 @@
    "text": "ACCOUNTANT 2: Didn't they order yesterday?",
    "spoken": "Didn't they order yesterday",
    "event": "заваленная бумагой, поднимает голову",
-   "camera": "панорама"
+   "camera": "панорама + удары ×1",
+   "beats": [
+    {
+     "t": 0.773,
+     "w": "yesterday"
+    }
+   ]
   },
   {
    "n": 176,
@@ -3828,7 +4466,13 @@
    "text": "ACCOUNTANT: That was the small one.",
    "spoken": "That was the small one",
    "event": "лента бумаги стекает на пол",
-   "camera": "опускание камеры"
+   "camera": "опускание камеры + удары ×1",
+   "beats": [
+    {
+     "t": 0.547,
+     "w": "small"
+    }
+   ]
   },
   {
    "n": 177,
@@ -3843,9 +4487,15 @@
    "text": "By the end of 2024, the little company's assets …",
    "spoken": "By the end of 2024 the little company's assets had jumped to about three billion dollars",
    "event": "«$33 MILLION» на том же месте, что в гл. 4; на «jumped» счётчик начинает крутиться; «$3 BILLION» встаёт на «three», плашка «END OF 2024»",
-   "camera": "отъезд → стоп → рывок на «three»",
+   "camera": "отъезд → стоп → рывок на «three» + удары ×1",
    "snap": 4.183,
    "snapWord": "three",
+   "beats": [
+    {
+     "t": 2.28,
+     "w": "company's"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -3870,9 +4520,15 @@
    "text": "Its revenue that year: about two hundred …",
    "spoken": "Its revenue that year about two hundred ninety-four million",
    "event": "выписка MEGASPEED 2024: строка ASSETS «~$3 BILLION»; на «revenue» рядом встаёт строка «REVENUE · $294 MILLION», столбик выручки крошечный рядом с активами",
-   "camera": "наезд → стоп → рывок на «hundred»",
+   "camera": "наезд → стоп → рывок на «hundred» + удары ×1",
    "snap": 2.069,
    "snapWord": "hundred",
+   "beats": [
+    {
+     "t": 2.442,
+     "w": "ninety-four"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -3893,7 +4549,13 @@
    "text": "BANKER: Last year, a small firm. …",
    "spoken": "Last year a small firm And this year",
    "event": "двое смотрят за стекло на серверную → вип-пан со смазом на реплике BANKER 2: поворачивает голову",
-   "camera": "стоп → вип-пан со смазом на BANKER 2",
+   "camera": "стоп → вип-пан со смазом на BANKER 2 + удары ×1",
+   "beats": [
+    {
+     "t": 1.004,
+     "w": "small"
+    }
+   ],
    "whip": {
     "t": 2.084,
     "from": "BANKER",
@@ -3913,7 +4575,13 @@
    "text": "BANKER: Ninety times bigger.",
    "spoken": "Ninety times bigger",
    "event": "на планшете банкира два столбика: маленький «2023» и огромный «2024», подпись «×90»",
-   "camera": "подъём камеры"
+   "camera": "подъём камеры + удары ×1",
+   "beats": [
+    {
+     "t": 0.809,
+     "w": "bigger"
+    }
+   ]
   },
   {
    "n": 181,
@@ -3928,8 +4596,14 @@
    "text": "BANKER 2: Did they sell a hit game?",
    "spoken": "Did they sell a hit game",
    "event": "роняет ручку",
-   "camera": "наезд → стоп → рывок на «2»",
-   "snap": 1.543
+   "camera": "наезд → стоп → рывок на «2» + удары ×1",
+   "snap": 1.543,
+   "beats": [
+    {
+     "t": 0.485,
+     "w": "sell"
+    }
+   ]
   },
   {
    "n": 182,
@@ -3944,9 +4618,15 @@
    "text": "The Financial Times later reported that its …",
    "spoken": "The Financial Times later reported that its Malaysian arm had borrowed from an Alibaba subsidiary",
    "event": "договор займа; на «Times» плашка «SOURCE: FINANCIAL TIMES»; на «borrowed» строки LENDER и BORROWER подсвечиваются",
-   "camera": "наезд → стоп → рывок на «borrowed»",
+   "camera": "наезд → стоп → рывок на «borrowed» + удары ×1",
    "snap": 3.319,
    "snapWord": "borrowed",
+   "beats": [
+    {
+     "t": 2.351,
+     "w": "Malaysian"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -3971,9 +4651,15 @@
    "text": "pledging the whole business as collateral.",
    "spoken": "pledging the whole business as collateral",
    "event": "на «collateral» на табличку MEGASPEED на двери ложится штамп «COLLATERAL: ENTIRE BUSINESS»",
-   "camera": "наезд → стоп → рывок на «collateral» + толчок",
+   "camera": "наезд → стоп → рывок на «collateral» + толчок + удары ×1",
    "snap": 1.05,
    "snapWord": "collateral",
+   "beats": [
+    {
+     "t": 0.378,
+     "w": "business"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -3994,9 +4680,15 @@
    "text": "If a corner bakery grew like that in a …",
    "spoken": "If a corner bakery grew like that in a year the neighbors would start asking about the flour",
    "event": "сначала один мешок муки у крошечной двери; мешки растут до крыши и заваливают дверь, соседи подходят и заглядывают",
-   "camera": "отъезд → стоп → рывок на «flour»",
+   "camera": "отъезд → стоп → рывок на «flour» + удары ×1",
    "snap": 4.648,
-   "snapWord": "flour"
+   "snapWord": "flour",
+   "beats": [
+    {
+     "t": 2.833,
+     "w": "neighbors"
+    }
+   ]
   },
   {
    "n": 185,
@@ -4011,9 +4703,15 @@
    "text": "So where was all that hardware coming from?",
    "spoken": "So where was all that hardware coming from",
    "event": "в серверной ящик с биркой «FROM: ________»; на «from» бирка качается",
-   "camera": "наезд → стоп → рывок на «from»",
+   "camera": "наезд → стоп → рывок на «from» + удары ×1",
    "snap": 1.766,
    "snapWord": "from",
+   "beats": [
+    {
+     "t": 0.918,
+     "w": "hardware"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -4049,9 +4747,19 @@
    "text": "Aivres is the American arm of Inspur, a Chinese …",
    "spoken": "Aivres is the American arm of Inspur a Chinese server giant",
    "event": "на «Inspur» карточка «INSPUR · CHINA» втрое больше AIVRES; на «giant» стрелка к «AIVRES · CALIFORNIA»",
-   "camera": "проход камерой по нитям → стоп → рывок на «giant»",
+   "camera": "проход камерой по нитям → стоп → рывок на «giant» + удары ×2",
    "snap": 4.118,
    "snapWord": "giant",
+   "beats": [
+    {
+     "t": 0.733,
+     "w": "American"
+    },
+    {
+     "t": 3.124,
+     "w": "Chinese"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -4076,7 +4784,7 @@
    "text": "that the United States had put on its trade …",
    "spoken": "that the United States had put on its trade blacklist",
    "event": "на «United» папка «INSPUR GROUP» ложится на стол; на «blacklist» чиновник бьёт штамп «BLACKLIST», толчок",
-   "camera": "наезд → стоп → рывок на «blacklist» + толчок",
+   "camera": "наезд → стоп → рывок на «blacklist» + толчок + удары ×2",
    "snap": 2.656,
    "snapWord": "blacklist",
    "ev": [
@@ -4103,9 +4811,15 @@
    "text": "Inspur couldn't buy Nvidia's best chips.",
    "spoken": "Inspur couldn't buy Nvidia's best chips",
    "event": "страница «US TRADE BLACKLIST»: строка INSPUR подчёркнута, рядом пометка «NO NVIDIA CHIPS»",
-   "camera": "наезд → стоп → рывок на «best»",
+   "camera": "наезд → стоп → рывок на «best» + удары ×2",
    "snap": 2.147,
-   "snapWord": "best"
+   "snapWord": "best",
+   "beats": [
+    {
+     "t": 0.361,
+     "w": "couldn't"
+    }
+   ]
   },
   {
    "n": 190,
@@ -4120,9 +4834,19 @@
    "text": "Its American branch could, and it built them into …",
    "spoken": "Its American branch could and it built them into servers and shipped them abroad",
    "event": "стрелка из Калифорнии через океан заканчивается булавкой MALAYSIA — отсюда начнётся путь одной коробки; на «servers» коробки собираются в серверную стойку; на «shipped» стойка уезжает по линии через океан",
-   "camera": "панорама → стоп → рывок на «abroad»",
+   "camera": "панорама → стоп → рывок на «abroad» + удары ×2",
    "snap": 4.995,
    "snapWord": "abroad",
+   "beats": [
+    {
+     "t": 0.44,
+     "w": "American"
+    },
+    {
+     "t": 2.6,
+     "w": "built"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -4147,9 +4871,15 @@
    "text": "CLERK: Inspur? You're blacklisted.",
    "spoken": "Inspur You're blacklisted",
    "event": "палец чиновника ведёт по странице толстой папки чёрного списка и останавливается на обведённой строке INSPUR; на «blacklisted» чиновник шлёпает штамп «BLACKLISTED» на папку",
-   "camera": "наезд → стоп → рывок на «blacklisted»",
+   "camera": "наезд → стоп → рывок на «blacklisted» + удары ×2",
    "snap": 1.074,
    "snapWord": "blacklisted",
+   "beats": [
+    {
+     "t": 0.5,
+     "w": "You're"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -4170,9 +4900,15 @@
    "text": "REP: I'm Aivres. California.",
    "spoken": "I'm Aivres California",
    "event": "на груди бейдж «AIVRES · CALIFORNIA», наклеенный криво поверх старого — из-под края торчит «INSP…»; на «California» на груди бейдж «AIVRES · CALIFORNIA»",
-   "camera": "панорама → стоп → рывок на «California»",
+   "camera": "панорама → стоп → рывок на «California» + удары ×2",
    "snap": 1.055,
    "snapWord": "California",
+   "beats": [
+    {
+     "t": 0.264,
+     "w": "Aivres"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -4193,9 +4929,15 @@
    "text": "CLERK: Then welcome, Aivres.",
    "spoken": "Then welcome Aivres",
    "event": "сверяет список — строки AIVRES нет; штамп APPROVED",
-   "camera": "наезд → стоп → рывок на «Aivres»",
+   "camera": "наезд → стоп → рывок на «Aivres» + удары ×2",
    "snap": 1.486,
-   "snapWord": "Aivres"
+   "snapWord": "Aivres",
+   "beats": [
+    {
+     "t": 0.267,
+     "w": "welcome"
+    }
+   ]
   },
   {
    "n": 194,
@@ -4332,7 +5074,7 @@
    "text": "CUSTOMS: Destination, please?",
    "spoken": "Destination please",
    "event": "грузовик подъезжает к шлагбауму",
-   "camera": "наезд → стоп → рывок на «please»",
+   "camera": "наезд → стоп → рывок на «please» + удары ×2",
    "snap": 0.813,
    "snapWord": "please"
   },
@@ -4364,7 +5106,7 @@
    "text": "CUSTOMS: Final destination? …",
    "spoken": "Final destination Still Malaysia",
    "event": "листает накладную → вип-пан со смазом на реплике DRIVER: широко улыбается; на «destination» таможенник листает накладную; на «Malaysia» на накладную падает штамп «MALAYSIA»",
-   "camera": "стоп → вип-пан со смазом на DRIVER",
+   "camera": "стоп → вип-пан со смазом на DRIVER + удары ×2",
    "whip": {
     "t": 1.935,
     "from": "CUSTOMS",
@@ -4394,7 +5136,7 @@
    "text": "CUSTOMS: Enjoy your stay.",
    "spoken": "Enjoy your stay",
    "event": "штамп по накладной, шлагбаум поднимается",
-   "camera": "наезд → стоп → рывок на «Enjoy» + толчок",
+   "camera": "наезд → стоп → рывок на «Enjoy» + толчок + удары ×2",
    "snap": 0.636,
    "snapWord": "stay"
   },
@@ -4411,9 +5153,19 @@
    "text": "One count put the haul at nearly two billion …",
    "spoken": "One count put the haul at nearly two billion dollars of Nvidia's most advanced chips",
    "event": "бок коробки из пути коробки; на «two» по нему трафаретом ложится «NEARLY $2 BILLION»; на «Nvidia's» рывок-отъезд: это одна коробка в стене таких же",
-   "camera": "наезд → стоп → рывок на «Nvidia's»",
+   "camera": "наезд → стоп → рывок на «Nvidia's» + удары ×2",
    "snap": 5.553,
    "snapWord": "Nvidia's",
+   "beats": [
+    {
+     "t": 1.208,
+     "w": "haul"
+    },
+    {
+     "t": 2.711,
+     "w": "billion"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -4438,9 +5190,19 @@
    "text": "A later look at trade records found more than …",
    "spoken": "A later look at trade records found more than four point eight billion dollars of AI equipment with Nvidia inside",
    "event": "журнал торговых записей; на «inside» в колонке CONSIGNEE строки подсвечиваются сверху вниз «MEGASPEED · MALAYSIA»; итог «$4.8 BILLION» встаёт с толчком; на «records» журнал прокручивается вниз",
-   "camera": "прокрутка вверх → стоп → рывок на «inside»",
+   "camera": "прокрутка вверх → стоп → рывок на «inside» + удары ×2",
    "snap": 8.172,
    "snapWord": "inside",
+   "beats": [
+    {
+     "t": 1.958,
+     "w": "found"
+    },
+    {
+     "t": 5.875,
+     "w": "equipment"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -4465,9 +5227,19 @@
    "text": "all flowing to one company most people had never …",
    "spoken": "all flowing to one company most people had never heard of",
    "event": "табло арендаторов в фойе (D21-B), камера ведёт вниз; на «never» внизу тусклая строка «MEGASPEED · 12F»; на «flowing» стрелки со всех строк табло стекают вниз к одной строке",
-   "camera": "панорама вниз → стоп → рывок на «never»",
+   "camera": "панорама вниз → стоп → рывок на «never» + удары ×2",
    "snap": 3.326,
    "snapWord": "never",
+   "beats": [
+    {
+     "t": 1.288,
+     "w": "company"
+    },
+    {
+     "t": 2.522,
+     "w": "people"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -4641,9 +5413,19 @@
    "text": "Still, on paper, nothing was wrong. Every sale went …",
    "spoken": "Still on paper nothing was wrong Every sale went to Singapore or Malaysia never to China",
    "event": "на «paper» въезжает накладная со штампами из пути коробки; на «Singapore» и «Malaysia» садятся стрелки с галочками; на «never» обрубок стрелки к Китаю гаснет, Китай серый",
-   "camera": "панорама → стоп → рывок на «never»",
+   "camera": "панорама → стоп → рывок на «never» + удары ×2",
    "snap": 6.002,
    "snapWord": "never",
+   "beats": [
+    {
+     "t": 1.628,
+     "w": "nothing"
+    },
+    {
+     "t": 5.24,
+     "w": "Malaysia"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -4672,9 +5454,15 @@
    "text": "Megaspeed said every review found no violations.",
    "spoken": "Megaspeed said every review found no violations",
    "event": "заявление «MEGASPEED STATEMENT»: строка «every review found no violations» подчёркивается — это слова компании; на «review» строка подсвечивается; на «violations» печать «NO VIOLATIONS FOUND»",
-   "camera": "наезд → стоп → рывок на «found»",
+   "camera": "наезд → стоп → рывок на «found» + удары ×2",
    "snap": 1.705,
    "snapWord": "found",
+   "beats": [
+    {
+     "t": 0.51,
+     "w": "said"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -4699,9 +5487,19 @@
    "text": "Jensen later said Nvidia had studied all its deployments. …",
    "spoken": "Jensen later said Nvidia had studied all its deployments We counted every one",
    "event": "Дженсен в кожанке жмёт счётчик, иконки чипов отмечаются одна за другой; на «one» последний щелчок, плашка «JENSEN HUANG»; на «deployments» счётчик щёлкает",
-   "camera": "наезд → стоп → рывок на «deployments»",
+   "camera": "наезд → стоп → рывок на «deployments» + удары ×2",
    "snap": 2.968,
    "snapWord": "deployments",
+   "beats": [
+    {
+     "t": 1.734,
+     "w": "Nvidia"
+    },
+    {
+     "t": 4.206,
+     "w": "counted"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -4726,9 +5524,19 @@
    "text": "That's what made it so hard to catch.",
    "spoken": "That's what made it so hard to catch",
    "event": "контрабандист с раздутым чемоданом у стойки; на «catch» он озирается",
-   "camera": "наезд → стоп → рывок на «catch»",
+   "camera": "наезд → стоп → рывок на «catch» + удары ×2",
    "snap": 2.131,
    "snapWord": "catch",
+   "beats": [
+    {
+     "t": 0.518,
+     "w": "made"
+    },
+    {
+     "t": 1.411,
+     "w": "hard"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -4749,9 +5557,19 @@
    "text": "Ordinary smugglers sweat at customs, and some get …",
    "spoken": "Ordinary smugglers sweat at customs and some get caught",
    "event": "на «sweat» капля пота падает на накладную; на «caught» чемодан лопается по шву, рука таможенника ложится на плечо",
-   "camera": "наезд → стоп → рывок на «caught» + толчок",
+   "camera": "наезд → стоп → рывок на «caught» + толчок + удары ×2",
    "snap": 3.862,
    "snapWord": "caught",
+   "beats": [
+    {
+     "t": 0.451,
+     "w": "smugglers"
+    },
+    {
+     "t": 1.973,
+     "w": "customs"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -4776,9 +5594,19 @@
    "text": "In 2023, Hong Kong customs found seventy graphics …",
    "spoken": "In 2023 Hong Kong customs found seventy graphics cards",
    "event": "на «2023» плашка «HONG KONG CUSTOMS · 2023»; на «seventy» бирка «70 GPUs»",
-   "camera": "наезд → стоп → рывок на «seventy»",
+   "camera": "наезд → стоп → рывок на «seventy» + удары ×2",
    "snap": 3.118,
    "snapWord": "seventy",
+   "beats": [
+    {
+     "t": 2.132,
+     "w": "customs"
+    },
+    {
+     "t": 3.668,
+     "w": "graphics"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -4803,9 +5631,15 @@
    "text": "packed among live lobsters.",
    "spoken": "packed among live lobsters",
    "event": "на «lobsters» крышка ящика открывается: лобстер клешнёй сжимает видеокарту",
-   "camera": "наезд → стоп → рывок на «lobsters»",
+   "camera": "наезд → стоп → рывок на «lobsters» + удары ×2",
    "snap": 1.4,
    "snapWord": "lobsters",
+   "beats": [
+    {
+     "t": 0.413,
+     "w": "among"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -4826,9 +5660,19 @@
    "text": "Another ring, broken up in December 2025,",
    "spoken": "Another ring broken up in December 2025",
    "event": "таможенники в жилетах выносят ящики; на «December» плашка «RING BROKEN UP · DEC 2025»",
-   "camera": "наезд → стоп → рывок на «December»",
+   "camera": "наезд → стоп → рывок на «December» + удары ×2",
    "snap": 1.698,
    "snapWord": "December",
+   "beats": [
+    {
+     "t": 0.355,
+     "w": "ring"
+    },
+    {
+     "t": 1.044,
+     "w": "broken"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -4849,9 +5693,15 @@
    "text": "had moved at least a hundred and sixty million …",
    "spoken": "had moved at least a hundred and sixty million dollars of Nvidia chips",
    "event": "«$160 MILLION» встаёт на «hundred»; на «chips» по цифре ложится штамп «SMUGGLED»",
-   "camera": "наезд → стоп → рывок на «million»",
+   "camera": "наезд → стоп → рывок на «million» и «Nvidia» + удары ×2",
    "snap": 2.977,
    "snapWord": "million",
+   "beats": [
+    {
+     "t": 1.333,
+     "w": "sixty"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -4876,9 +5726,15 @@
    "text": "Prosecutors charged one Chinese national",
    "spoken": "Prosecutors charged one Chinese national",
    "event": "таможенники вскрывают ящики; на «national» плашка «CHARGED: CHINESE NATIONAL»",
-   "camera": "наезд → стоп → рывок на «Chinese»",
+   "camera": "наезд → стоп → рывок на «Chinese» + удары ×2",
    "snap": 1.43,
    "snapWord": "Chinese",
+   "beats": [
+    {
+     "t": 0.508,
+     "w": "charged"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -4899,9 +5755,21 @@
    "text": "over nine hundred and seventeen smuggled servers.",
    "spoken": "over nine hundred and seventeen smuggled servers",
    "event": "на «nine» бирка «917 SERVERS SEIZED»; на «smuggled» на ящик падает штамп «SEIZED»",
-   "camera": "наезд → стоп → рывок на «smuggled»",
+   "camera": "наезд → стоп → рывок на «smuggled» и «servers» + удары ×2",
    "snap": 1.892,
    "snapWord": "smuggled",
+   "snaps": [
+    {
+     "t": 2.653,
+     "w": "servers"
+    }
+   ],
+   "beats": [
+    {
+     "t": 1.377,
+     "w": "seventeen"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -4926,9 +5794,15 @@
    "text": "This operation never had to sweat.",
    "spoken": "This operation never had to sweat",
    "event": "за спиной контрабандиста спокойно проезжает грузовик под поднятым шлагбаумом",
-   "camera": "панорама за грузовиком → стоп → рывок на «sweat»",
+   "camera": "панорама за грузовиком → стоп → рывок на «sweat» + удары ×2",
    "snap": 1.458,
-   "snapWord": "sweat"
+   "snapWord": "sweat",
+   "beats": [
+    {
+     "t": 0.513,
+     "w": "never"
+    }
+   ]
   },
   {
    "n": 226,
@@ -4970,9 +5844,19 @@
    "text": "But in the eyes of American intelligence,",
    "spoken": "But in the eyes of American intelligence",
    "event": "рука агента кладёт снимок «Дженсен + Алиса» из гл. 1 поверх таможенной накладной; накладная уходит в тень",
-   "camera": "наезд → стоп → рывок на «American»",
+   "camera": "наезд → стоп → рывок на «American» + удары ×2",
    "snap": 0.813,
-   "snapWord": "American"
+   "snapWord": "American",
+   "beats": [
+    {
+     "t": 0.263,
+     "w": "eyes"
+    },
+    {
+     "t": 1.205,
+     "w": "intelligence"
+    }
+   ]
   },
   {
    "n": 228,
@@ -4987,9 +5871,15 @@
    "text": "the chips were never the real prize.",
    "spoken": "the chips were never the real prize",
    "event": "камера въезжает в снимок на панели машины (D21-B); на «chips» накладная съезжает вниз из кадра; на «prize» остаётся лицо на снимке",
-   "camera": "наезд → стоп → рывок на «prize»",
+   "camera": "наезд → стоп → рывок на «prize» + удары ×2",
    "snap": 1.316,
    "snapWord": "prize",
+   "beats": [
+    {
+     "t": 0.68,
+     "w": "never"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -5029,9 +5919,21 @@
    "text": "its customers never get anything that matters for …",
    "spoken": "its customers never get anything that matters for national security",
    "event": "заявление «NVIDIA STATEMENT»: ручка подчёркивает строку «nothing that matters for national security» — это слова компании",
-   "camera": "наезд → стоп → рывок на «that»",
+   "camera": "наезд → стоп → рывок на «that» и «national» + удары ×1",
    "snap": 2.959,
-   "snapWord": "that"
+   "snapWord": "that",
+   "snaps": [
+    {
+     "t": 4.219,
+     "w": "national"
+    }
+   ],
+   "beats": [
+    {
+     "t": 0.755,
+     "w": "customers"
+    }
+   ]
   },
   {
    "n": 231,
@@ -5061,9 +5963,21 @@
    "text": "Because Washington could not make up its mind. In …",
    "spoken": "Because Washington could not make up its mind In April 2025 the China chip was blocked",
    "event": "чиновник у белой доски; на «could» «ALLOWED» зачёркивается и пишется «BLOCKED»; на «mind» маркер тянется обратно к ALLOWED; на «blocked» BLOCKED подчёркнут дважды",
-   "camera": "наезд → стоп → рывок на «2025»",
+   "camera": "наезд → стоп → рывок на «2025» и «China» + удары ×1",
    "snap": 3.289,
    "snapWord": "2025",
+   "snaps": [
+    {
+     "t": 4.908,
+     "w": "China"
+    }
+   ],
+   "beats": [
+    {
+     "t": 1.368,
+     "w": "make"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -5092,9 +6006,21 @@
    "text": "and Nvidia wrote off billions in chips it suddenly …",
    "spoken": "and Nvidia wrote off billions in chips it suddenly couldn't sell",
    "event": "поддоны зелёных коробок «NVIDIA H20»; на «wrote» на ближнюю коробку падает штамп «WRITTEN OFF»",
-   "camera": "отъезд → стоп → рывок на «chips»",
+   "camera": "отъезд → стоп → рывок на «chips» и «suddenly» + удары ×1",
    "snap": 2.231,
    "snapWord": "chips",
+   "snaps": [
+    {
+     "t": 2.799,
+     "w": "suddenly"
+    }
+   ],
+   "beats": [
+    {
+     "t": 1.553,
+     "w": "billions"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -5115,9 +6041,15 @@
    "text": "In August came a deal: sales could resume if …",
    "spoken": "In August came a deal sales could resume if the government got fifteen percent",
    "event": "«15%»",
-   "camera": "наезд → стоп → рывок на «fifteen» + толчок",
+   "camera": "наезд → стоп → рывок на «fifteen» + толчок + удары ×1",
    "snap": 5.048,
-   "snapWord": "fifteen"
+   "snapWord": "fifteen",
+   "beats": [
+    {
+     "t": 4.245,
+     "w": "government"
+    }
+   ]
   },
   {
    "n": 235,
@@ -5132,9 +6064,21 @@
    "text": "In December, the president went further and allowed a …",
    "spoken": "In December the president went further and allowed a stronger chip for twenty-five percent",
    "event": "вставка: на доске под «APR: BLOCKED» и «AUG: 15%» места не осталось; на «twenty-five» мелом прямо на стене рядом с доской «DEC: 25%» — без общего плана стены (D08-B)",
-   "camera": "наезд → стоп → рывок на «twenty-five»",
+   "camera": "наезд → стоп → рывок на «twenty-five» и «percent» + удары ×1",
    "snap": 4.923,
    "snapWord": "twenty-five",
+   "snaps": [
+    {
+     "t": 5.62,
+     "w": "percent"
+    }
+   ],
+   "beats": [
+    {
+     "t": 1.163,
+     "w": "president"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -5155,7 +6099,7 @@
    "text": "OFFICIAL: China chip: blocked.",
    "spoken": "China chip blocked",
    "event": "перед чиновником лист с рисунком чипа; на «China» он поднимает его к камере; на «blocked» ставит штамп «BLOCKED», удар",
-   "camera": "наезд → стоп → рывок на «blocked» + толчок",
+   "camera": "наезд → стоп → рывок на «blocked» + толчок + удары ×1",
    "snap": 1.307,
    "snapWord": "blocked",
    "ev": [
@@ -5182,7 +6126,7 @@
    "text": "JENSEN: Understood. Blocked.",
    "spoken": "Understood Blocked",
    "event": "зелёная коробочка чипа ложится в ящик стола; на стене календарь открыт на APR",
-   "camera": "наезд → стоп → рывок на «Blocked»",
+   "camera": "наезд → стоп → рывок на «Blocked» + удары ×1",
    "snap": 1.094,
    "snapWord": "Blocked"
   },
@@ -5199,9 +6143,15 @@
    "text": "OFFICIAL: Now allowed. Fifteen percent, please.",
    "spoken": "Now allowed Fifteen percent please",
    "event": "на «Fifteen» дописывается «15%» поверх; на «please» в кадр выезжает раскрытая ладонь чиновника",
-   "camera": "наезд → стоп → рывок на «Fifteen»",
+   "camera": "наезд → стоп → рывок на «Fifteen» и «please» + удары ×1",
    "snap": 1.506,
    "snapWord": "Fifteen",
+   "snaps": [
+    {
+     "t": 2.307,
+     "w": "please"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -5226,7 +6176,7 @@
    "text": "JENSEN: Wait. Understood?",
    "spoken": "Wait Understood",
    "event": "достаёт ту же коробочку обратно; календарь на стене уже AUG",
-   "camera": "наезд → стоп → рывок на «Understood»",
+   "camera": "наезд → стоп → рывок на «Understood» + удары ×1",
    "snap": 0.629,
    "snapWord": "Understood"
   },
@@ -5243,9 +6193,15 @@
    "text": "OFFICIAL: Stronger chip allowed. Bigger cut.",
    "spoken": "Stronger chip allowed Bigger cut",
    "event": "сплит: слева чиновник у окна, справа Дженсен с трубкой; на «Stronger» Дженсен поднимает чип выше; на «cut» слева на стекле окна пишется «25%» (D08-B, без общего плана стены)",
-   "camera": "наезд → стоп → рывок на «cut»",
+   "camera": "наезд → стоп → рывок на «cut» + удары ×1",
    "snap": 2.267,
    "snapWord": "cut",
+   "beats": [
+    {
+     "t": 0.727,
+     "w": "allowed"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -5270,9 +6226,15 @@
    "text": "JENSEN: Does anyone have a calendar?",
    "spoken": "Does anyone have a calendar",
    "event": "календарь на стене сам перелистывается до DEC",
-   "camera": "отъезд → стоп → рывок на «calendar»",
+   "camera": "отъезд → стоп → рывок на «calendar» + удары ×1",
    "snap": 1.439,
-   "snapWord": "calendar"
+   "snapWord": "calendar",
+   "beats": [
+    {
+     "t": 0.672,
+     "w": "anyone"
+    }
+   ]
   },
   {
    "n": 242,
@@ -5287,9 +6249,15 @@
    "text": "Later, when the New York Times checked one of the …",
    "spoken": "Later when the New York Times checked one of the Chinese firms cleared to handle that chip",
    "event": "на «Times» плашка «SOURCE: THE NEW YORK TIMES»; на «cleared» в списке допущенных фирм одна строка подсвечивается",
-   "camera": "наезд → стоп → рывок на «cleared»",
+   "camera": "наезд → стоп → рывок на «cleared» и «handle»",
    "snap": 3.544,
    "snapWord": "cleared",
+   "snaps": [
+    {
+     "t": 4.366,
+     "w": "handle"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -5314,9 +6282,15 @@
    "text": "its Beijing address was an empty building.",
    "spoken": "its Beijing address was an empty building",
    "event": "на «address» плашка «BEIJING · ADDRESS ON FILE»; на «empty» в окнах ни огонька, табличка на двери пустая",
-   "camera": "наезд → стоп → рывок на «empty»",
+   "camera": "наезд → стоп → рывок на «empty» + удары ×1",
    "snap": 1.643,
    "snapWord": "empty",
+   "beats": [
+    {
+     "t": 1.995,
+     "w": "building"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -5341,9 +6315,15 @@
    "text": "Through every twist, Jensen made the same case, loudly.",
    "spoken": "Through every twist Jensen made the same case loudly",
    "event": "Дженсен у микрофонов в той же позе (D21-B); баннер за ним щёлкает «APR 2025» → «AUG 2025» → «DEC 2025»; на «loudly» вспышки фотографов",
-   "camera": "наезд → стоп → рывок на «loudly»",
+   "camera": "наезд → стоп → рывок на «loudly» + удары ×1",
    "snap": 3.506,
    "snapWord": "loudly",
+   "beats": [
+    {
+     "t": 1.688,
+     "w": "Jensen"
+    }
+   ],
    "ev": [
     {
      "p": 2,
@@ -5379,9 +6359,15 @@
    "text": "he told reporters exactly what he thought of the …",
    "spoken": "he told reporters exactly what he thought of the rules",
    "event": "вид со сцены в зал: ряды прессы, поднятые телефоны, вспышки; серия из 6 вспышек по залу",
-   "camera": "наезд → стоп → рывок на «rules»",
+   "camera": "наезд → стоп → рывок на «rules» + удары ×1",
    "snap": 2.554,
-   "snapWord": "rules"
+   "snapWord": "rules",
+   "beats": [
+    {
+     "t": 0.316,
+     "w": "reporters"
+    }
+   ]
   },
   {
    "n": 247,
@@ -5396,9 +6382,15 @@
    "text": "JENSEN: The export control was a failure.",
    "spoken": "The export control was a failure",
    "event": "букет микрофонов, на заднике «COMPUTEX»; на «failure» вспышка и стоп-кадр; серия из 6 вспышек по залу",
-   "camera": "наезд → стоп → рывок на «failure»",
+   "camera": "наезд → стоп → рывок на «failure» + удары ×1",
    "snap": 1.337,
    "snapWord": "failure",
+   "beats": [
+    {
+     "t": 0.423,
+     "w": "control"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -5419,9 +6411,21 @@
    "text": "He warned that China's AI market was heading toward …",
    "spoken": "He warned that China's AI market was heading toward fifty billion dollars",
    "event": "«$50 BILLION»",
-   "camera": "отъезд → стоп → рывок на «fifty»",
+   "camera": "отъезд → стоп → рывок на «fifty» и «billion» + удары ×1",
    "snap": 3.377,
-   "snapWord": "fifty"
+   "snapWord": "fifty",
+   "snaps": [
+    {
+     "t": 4.028,
+     "w": "billion"
+    }
+   ],
+   "beats": [
+    {
+     "t": 1.364,
+     "w": "China's"
+    }
+   ]
   },
   {
    "n": 249,
@@ -5436,7 +6440,13 @@
    "text": "and American companies were locked out of it.",
    "spoken": "and American companies were locked out of it",
    "event": "Китай залит цветом; стрелки «U.S. COMPANIES» из Калифорнии упираются в границу, на ней защёлкивается замок",
-   "camera": "панорама"
+   "camera": "панорама + удары ×1",
+   "beats": [
+    {
+     "t": 0.619,
+     "w": "companies"
+    }
+   ]
   },
   {
    "n": 250,
@@ -5451,8 +6461,20 @@
    "text": "Footage aired later by a Taiwanese channel shows …",
    "spoken": "Footage aired later by a Taiwanese channel shows the two Huangs",
    "event": "на экране кадр ТВ; на «Taiwanese» плашка «SOURCE: TAIWANESE TV»",
-   "camera": "наезд → стоп → рывок на «car»",
+   "camera": "наезд → стоп → рывок на «car» и «Huangs» + удары ×1",
    "snap": 2.226,
+   "snaps": [
+    {
+     "t": 3.545,
+     "w": "Huangs"
+    }
+   ],
+   "beats": [
+    {
+     "t": 0.457,
+     "w": "aired"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -5473,9 +6495,15 @@
    "text": "leaving a group dinner in Taipei that same month, …",
    "spoken": "leaving a group dinner in Taipei that same month in the same car",
    "event": "кадр ТВ: на «Taipei» плашка «TAIPEI · JUNE 2024»; на «car» двое садятся в одну машину, дверь закрывается",
-   "camera": "наезд → стоп → рывок на «car»",
+   "camera": "наезд → стоп → рывок на «car» + удары ×1",
    "snap": 4.23,
    "snapWord": "car",
+   "beats": [
+    {
+     "t": 0.937,
+     "w": "dinner"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -5500,9 +6528,15 @@
    "text": "Now look at it from Beijing.",
    "spoken": "Now look at it from Beijing",
    "event": "офицер садится к шахматной доске",
-   "camera": "наезд → стоп → рывок на «Beijing»",
+   "camera": "наезд → стоп → рывок на «Beijing» + удары ×1",
    "snap": 1.694,
-   "snapWord": "Beijing"
+   "snapWord": "Beijing",
+   "beats": [
+    {
+     "t": 0.27,
+     "w": "look"
+    }
+   ]
   },
   {
    "n": 253,
@@ -5517,9 +6551,15 @@
    "text": "One chip is valuable.",
    "spoken": "One chip is valuable",
    "event": "на краю доски фигура-чип: зелёная плата на подставке пешки с бумажным ценником «$$$»",
-   "camera": "наезд → стоп → рывок на «valuable»",
+   "camera": "наезд → стоп → рывок на «valuable» + удары ×1",
    "snap": 1.068,
-   "snapWord": "valuable"
+   "snapWord": "valuable",
+   "beats": [
+    {
+     "t": 0.254,
+     "w": "chip"
+    }
+   ]
   },
   {
    "n": 254,
@@ -5534,7 +6574,13 @@
    "text": "But one conversation between Jensen and the White …",
    "spoken": "But one conversation between Jensen and the White House",
    "event": "рука ставит фигурку Дженсена (чёрная кожанка) рядом с фигуркой Белого дома; на «conversation» между ними встаёт фишка-облачко «…» (D22-C)",
-   "camera": "медленный поворот",
+   "camera": "медленный поворот + удары ×1",
+   "beats": [
+    {
+     "t": 1.178,
+     "w": "Jensen"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -5555,9 +6601,21 @@
    "text": "could open or close an entire market.",
    "spoken": "could open or close an entire market",
    "event": "на краю доски маленькие воротца «CHINA · $50B» с навесным замком из гл. 3; замок щёлкает — открылся, закрылся",
-   "camera": "наезд → стоп → рывок на «close»",
+   "camera": "наезд → стоп → рывок на «close» и «entire» + удары ×1",
    "snap": 1.082,
-   "snapWord": "close"
+   "snapWord": "close",
+   "snaps": [
+    {
+     "t": 1.791,
+     "w": "entire"
+    }
+   ],
+   "beats": [
+    {
+     "t": 0.512,
+     "w": "open"
+    }
+   ]
   },
   {
    "n": 256,
@@ -5587,7 +6645,13 @@
    "text": "OFFICER: A chip, or a conversation? …",
    "spoken": "A chip or a conversation The conversation It's cheaper",
    "event": "поднимает фигуру-чип → вип-пан со смазом на реплике OFFICER 2: ставит рядом с фигуркой Дженсена крошечный пустой стул (заход к «пустому стулу» гл. 9)",
-   "camera": "стоп → вип-пан со смазом на OFFICER 2",
+   "camera": "стоп → вип-пан со смазом на OFFICER 2 + удары ×1",
+   "beats": [
+    {
+     "t": 0.839,
+     "w": "conversation"
+    }
+   ],
    "whip": {
     "t": 1.59,
     "from": "OFFICER",
@@ -5607,9 +6671,21 @@
    "text": "Then Megaspeed suddenly went quiet and stopped placing orders.",
    "spoken": "Then Megaspeed suddenly went quiet and stopped placing orders",
    "event": "из факса ползёт бланк «PURCHASE ORDER — NVIDIA» и останавливается на полпути; лампочка телефона мигает без ответа; свет в серверной гаснет",
-   "camera": "отъезд → стоп → рывок на «stopped»",
+   "camera": "отъезд → стоп → рывок на «stopped» и «orders» + удары ×1",
    "snap": 2.68,
-   "snapWord": "stopped"
+   "snapWord": "stopped",
+   "snaps": [
+    {
+     "t": 3.486,
+     "w": "orders"
+    }
+   ],
+   "beats": [
+    {
+     "t": 0.611,
+     "w": "Megaspeed"
+    }
+   ]
   },
   {
    "n": 259,
@@ -5624,9 +6700,15 @@
    "text": "Nvidia later said it had cut Megaspeed off itself.",
    "spoken": "Nvidia later said it had cut Megaspeed off itself",
    "event": "на столе Nvidia папка «MEGASPEED · ORDERS»; на «cut» на неё падает штамп «ACCOUNT CLOSED», толчок",
-   "camera": "наезд → стоп → рывок на «cut» + толчок",
+   "camera": "наезд → стоп → рывок на «cut» + толчок + удары ×1",
    "snap": 1.401,
    "snapWord": "cut",
+   "beats": [
+    {
+     "t": 2.643,
+     "w": "Megaspeed"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -5647,7 +6729,13 @@
    "text": "That October, Senator Tom Cotton asked the Commerce Department …",
    "spoken": "That October Senator Tom Cotton asked the Commerce Department to investigate it",
    "event": "красная нить MEGASPEED; на «October» к узлу SENATE прикалывается бирка «OCT 2025»; на «Cotton» всплывает плашка «SEN. TOM COTTON»; на «investigate» нить натягивается к COMMERCE",
-   "camera": "проход камерой по нитям",
+   "camera": "проход камерой по нитям + удары ×1",
+   "beats": [
+    {
+     "t": 3.165,
+     "w": "Department"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -5676,9 +6764,15 @@
    "text": "and Singapore police opened a case of their own.",
    "spoken": "and Singapore police opened a case of their own",
    "event": "по стеклу серверной и коробкам снизу с улицы проходит красно-синий отсвет полицейской мигалки (ресторан и машину агентов здесь не показываем)",
-   "camera": "наезд → стоп → рывок на «case»",
+   "camera": "наезд → стоп → рывок на «case» + удары ×1",
    "snap": 1.477,
-   "snapWord": "case"
+   "snapWord": "case",
+   "beats": [
+    {
+     "t": 0.374,
+     "w": "police"
+    }
+   ]
   },
   {
    "n": 262,
@@ -5693,7 +6787,13 @@
    "text": "Then the Commerce probe was handed over to the …",
    "spoken": "Then the Commerce probe was handed over to the Justice Department",
    "event": "нить COMMERCE → JUSTICE, красная обводка",
-   "camera": "проход камерой по нитям"
+   "camera": "проход камерой по нитям + удары ×1",
+   "beats": [
+    {
+     "t": 2.896,
+     "w": "Department"
+    }
+   ]
   },
   {
    "n": 263,
@@ -5708,7 +6808,13 @@
    "text": "SENATOR: Look into Megaspeed. …",
    "spoken": "Look into Megaspeed We're looking",
    "event": "кладёт на стол папку с жёлтым ярлыком «MEGASPEED» и обрывком красной нити; на стене печать Сената, на столе табличка; подпись «SEN. TOM COTTON» → вип-пан со смазом на реплике COMMERCE: за ним матовое стекло двери «DEPARTMENT OF COMMERCE»; та же папка уходит из кадра вправо",
-   "camera": "стоп → вип-пан со смазом на COMMERCE",
+   "camera": "стоп → вип-пан со смазом на COMMERCE + удары ×1",
+   "beats": [
+    {
+     "t": 1.018,
+     "w": "Megaspeed"
+    }
+   ],
    "whip": {
     "t": 1.846,
     "from": "SENATOR",
@@ -5728,7 +6834,7 @@
    "text": "JUSTICE: We'll take it from here.",
    "spoken": "We'll take it from here",
    "event": "та же папка входит слева; печать с весами, дверь на цепи; забирает папку под мышку",
-   "camera": "отъезд → стоп → рывок на «We'll»",
+   "camera": "отъезд → стоп → рывок на «We'll» + удары ×1",
    "snap": 0.623,
    "snapWord": "here"
   },
@@ -5799,9 +6905,15 @@
    "text": "And by then, the people listening to Alice Huang's …",
    "spoken": "And by then the people listening to Alice Huang's calls",
    "event": "те же агенты из гл. 1 в наушниках, крутятся бобины, по стеклу дождь, за ним размытое окно ресторана",
-   "camera": "наезд → стоп → рывок на «listening»",
+   "camera": "наезд → стоп → рывок на «listening» + удары ×1",
    "snap": 1.547,
-   "snapWord": "listening"
+   "snapWord": "listening",
+   "beats": [
+    {
+     "t": 3.026,
+     "w": "Huang's"
+    }
+   ]
   },
   {
    "n": 268,
@@ -5816,9 +6928,15 @@
    "text": "had put everything in writing.",
    "spoken": "had put everything in writing",
    "event": "толстая папка «TRANSCRIPTS» с закладками JAN…DEC захлопывается на пассажирском сиденье",
-   "camera": "наезд → стоп → рывок на «writing» + толчок",
+   "camera": "наезд → стоп → рывок на «writing» + толчок + удары ×1",
    "snap": 1.747,
-   "snapWord": "writing"
+   "snapWord": "writing",
+   "beats": [
+    {
+     "t": 0.824,
+     "w": "everything"
+    }
+   ]
   },
   {
    "n": 269,
@@ -5848,9 +6966,19 @@
    "text": "a highly classified memo was written under the watch …",
    "spoken": "a highly classified memo was written under the watch of Secretary of State Marco Rubio",
    "event": "папка TOP SECRET скользит на стол; подпись «MARCO RUBIO — SECRETARY OF STATE»",
-   "camera": "наезд → стоп → рывок на «under»",
+   "camera": "наезд → стоп → рывок на «under» + удары ×2",
    "snap": 2.083,
-   "snapWord": "under"
+   "snapWord": "under",
+   "beats": [
+    {
+     "t": 0.453,
+     "w": "classified"
+    },
+    {
+     "t": 3.17,
+     "w": "Secretary"
+    }
+   ]
   },
   {
    "n": 271,
@@ -5865,9 +6993,19 @@
    "text": "It was built on electronic surveillance of Alice Huang.",
    "spoken": "It was built on electronic surveillance of Alice Huang",
    "event": "крупно бобины магнитофона и бирка «LINE 2»; агент снимает наушники (руки в кадре)",
-   "camera": "наезд → стоп → рывок на «Alice»",
+   "camera": "наезд → стоп → рывок на «Alice» + удары ×2",
    "snap": 2.368,
-   "snapWord": "Alice"
+   "snapWord": "Alice",
+   "beats": [
+    {
+     "t": 1.071,
+     "w": "surveillance"
+    },
+    {
+     "t": 2.816,
+     "w": "Huang"
+    }
+   ]
   },
   {
    "n": 272,
@@ -5882,7 +7020,17 @@
    "text": "Its conclusion: China's Ministry of State Security had recruited …",
    "spoken": "Its conclusion China's Ministry of State Security had recruited her to gather information on American AI chips",
    "event": "на «conclusion» строки подсвечиваются маркером одна за другой; на «Ministry» красная ручка подчёркивает строку; на «chips» на полях печать «TOP SECRET»",
-   "camera": "прокрутка вниз",
+   "camera": "прокрутка вниз + удары ×2",
+   "beats": [
+    {
+     "t": 5.945,
+     "w": "information"
+    },
+    {
+     "t": 7.018,
+     "w": "American"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -5911,9 +7059,19 @@
    "text": "and to nudge Jensen to keep lobbying for looser …",
    "spoken": "and to nudge Jensen to keep lobbying for looser rules",
    "event": "вторая страница меморандума: к строке «…to nudge Jensen to keep lobbying for looser rules» скрепкой приколот кадр Дженсена у стены микрофонов (из Тайбэя); маркер ведёт по строке — так сказано в меморандуме",
-   "camera": "наезд → стоп → рывок на «lobbying»",
+   "camera": "наезд → стоп → рывок на «lobbying» + удары ×2",
    "snap": 2.357,
-   "snapWord": "lobbying"
+   "snapWord": "lobbying",
+   "beats": [
+    {
+     "t": 0.998,
+     "w": "Jensen"
+    },
+    {
+     "t": 3.195,
+     "w": "looser"
+    }
+   ]
   },
   {
    "n": 274,
@@ -5928,9 +7086,19 @@
    "text": "According to CNN, the intercepts first referred …",
    "spoken": "According to CNN the intercepts first referred only to a U.S person",
    "event": "сводка перехвата; на «CNN» плашка «SOURCE: CNN»; на «person» строка «A U.S. PERSON» под чёрной плашкой",
-   "camera": "наезд → стоп → рывок на «person»",
+   "camera": "наезд → стоп → рывок на «person» + удары ×2",
    "snap": 3.82,
    "snapWord": "person",
+   "beats": [
+    {
+     "t": 1.493,
+     "w": "intercepts"
+    },
+    {
+     "t": 2.211,
+     "w": "referred"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -5955,9 +7123,15 @@
    "text": "Officials asked for the name to be unmasked.",
    "spoken": "Officials asked for the name to be unmasked",
    "event": "двое над сводкой; на «unmasked» один тянет чёрную плашку вверх",
-   "camera": "наезд → стоп → рывок на «unmasked»",
+   "camera": "наезд → стоп → рывок на «unmasked» + удары ×2",
    "snap": 1.474,
    "snapWord": "unmasked",
+   "beats": [
+    {
+     "t": 0.97,
+     "w": "name"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -5978,7 +7152,7 @@
    "text": "It was Jensen Huang.",
    "spoken": "It was Jensen Huang",
    "event": "на «Jensen» чёрная плашка срывается: под ней «JENSEN HUANG»",
-   "camera": "наезд → стоп → рывок на «Huang» + толчок",
+   "camera": "наезд → стоп → рывок на «Huang» + толчок + удары ×2",
    "snap": 1.402,
    "snapWord": "Huang",
    "ev": [
@@ -6001,9 +7175,19 @@
    "text": "The Ministry of State Security is China's main …",
    "spoken": "The Ministry of State Security is China's main spy service working both abroad and at home",
    "event": "на «Ministry» силуэт здания без вывески, плашка «MINISTRY OF STATE SECURITY (MSS)»; на «abroad» от здания расходятся линии по карте мира; на «home» — по Китаю",
-   "camera": "наезд → стоп → рывок на «home»",
+   "camera": "наезд → стоп → рывок на «home» + удары ×2",
    "snap": 7,
    "snapWord": "home",
+   "beats": [
+    {
+     "t": 1.093,
+     "w": "Security"
+    },
+    {
+     "t": 4.178,
+     "w": "China's"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -6032,7 +7216,7 @@
    "text": "AIDE: Who gets a copy?",
    "spoken": "Who gets a copy",
    "event": "комната без окон, над дверью красная лампа «CLASSIFIED — IN USE», круглый стол под одной лампой; копии «1 of 6 … 6 of 6» раздаются по шести местам (рифма со столом ужина)",
-   "camera": "наезд → стоп → рывок на «copy»",
+   "camera": "наезд → стоп → рывок на «copy» + удары ×2",
    "snap": 0.639,
    "snapWord": "copy"
   },
@@ -6049,7 +7233,13 @@
    "text": "AIDE 2: Only the top clearances. …",
    "spoken": "Only the top clearances Does Jensen get one",
    "event": "прижимает папку к груди → вип-пан со смазом на реплике AIDE: понижает голос",
-   "camera": "стоп → вип-пан со смазом на AIDE",
+   "camera": "стоп → вип-пан со смазом на AIDE + удары ×2",
+   "beats": [
+    {
+     "t": 0.637,
+     "w": "clearances"
+    }
+   ],
    "whip": {
     "t": 1.6,
     "from": "AIDE 2",
@@ -6069,7 +7259,7 @@
    "text": "AIDE 2: He's in it.",
    "spoken": "He's in it",
    "event": "палец на строке «JENSEN HUANG»",
-   "camera": "наезд → стоп → рывок на «2»",
+   "camera": "наезд → стоп → рывок на «2» + удары ×2",
    "snap": 0.826
   },
   {
@@ -6085,7 +7275,17 @@
    "text": "The memo went around before the president's trip to …",
    "spoken": "The memo went around before the president's trip to Beijing in May",
    "event": "у метки «WASHINGTON» папка TOP SECRET веером расходится на копии, затем самолётик летит Вашингтон → Пекин",
-   "camera": "панорама"
+   "camera": "панорама + удары ×2",
+   "beats": [
+    {
+     "t": 1.639,
+     "w": "president's"
+    },
+    {
+     "t": 3.365,
+     "w": "Beijing"
+    }
+   ]
   },
   {
    "n": 282,
@@ -6100,9 +7300,19 @@
    "text": "According to Axios, even Commerce Secretary Howard …",
    "spoken": "According to Axios even Commerce Secretary Howard Lutnick got a copy",
    "event": "лист рассылки меморандума; на «Axios» плашка «SOURCE: AXIOS»; на «Lutnick» подсвечивается строка «SECRETARY OF COMMERCE · H. LUTNICK»; на «copy» на лист ложится штамп копии",
-   "camera": "наезд → стоп → рывок на «copy»",
+   "camera": "наезд → стоп → рывок на «copy» + удары ×2",
    "snap": 4.227,
    "snapWord": "copy",
+   "beats": [
+    {
+     "t": 1.6,
+     "w": "even"
+    },
+    {
+     "t": 3.154,
+     "w": "Secretary"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -6131,9 +7341,19 @@
    "text": "CNN reported that Rubio briefed the president …",
    "spoken": "CNN reported that Rubio briefed the president himself aboard Air Force One",
    "event": "на «CNN» плашка «SOURCE: CNN»; на «Rubio» плашка «MARCO RUBIO · SECRETARY OF STATE»; на «Air» в иллюминаторе крыло с надписью «UNITED STATES OF AMERICA»",
-   "camera": "наезд → стоп → рывок на «Air»",
+   "camera": "наезд → стоп → рывок на «Air» + удары ×2",
    "snap": 2.752,
    "snapWord": "Air",
+   "beats": [
+    {
+     "t": 1.913,
+     "w": "president"
+    },
+    {
+     "t": 3.109,
+     "w": "Force"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -6280,9 +7500,19 @@
    "text": "And the memo said one more thing: the relationship …",
    "spoken": "And the memo said one more thing the relationship had gone beyond business",
    "event": "страница меморандума (D25-C); на «beyond» строка подсвечивается; на «business» из-под страницы выскальзывает снимок ужина",
-   "camera": "наезд → стоп → рывок на «business» + толчок",
+   "camera": "наезд → стоп → рывок на «business» + толчок + удары ×2",
    "snap": 4.428,
    "snapWord": "business",
+   "beats": [
+    {
+     "t": 1.381,
+     "w": "thing"
+    },
+    {
+     "t": 2.809,
+     "w": "relationship"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -6359,9 +7589,19 @@
    "text": "When American spies find a foreign agent getting close …",
    "spoken": "When American spies find a foreign agent getting close to an American there's a tool for exactly this",
    "event": "в светящемся окне хозяин и гость смеются за кухонным столом; на «foreign» вокруг гостя в окне рисуется красный круг; на «tool» агент заносит костяшки над дверью",
-   "camera": "наезд → стоп → рывок на «close»",
+   "camera": "наезд → стоп → рывок на «close» + удары ×2",
    "snap": 2.963,
    "snapWord": "close",
+   "beats": [
+    {
+     "t": 0.342,
+     "w": "American"
+    },
+    {
+     "t": 4.155,
+     "w": "American"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -6386,7 +7626,7 @@
    "text": "It's called a defensive briefing.",
    "spoken": "It's called a defensive briefing",
    "event": "обложка папки; на «defensive» падает штамп «DEFENSIVE BRIEFING», толчок",
-   "camera": "наезд → стоп → рывок на «briefing» + толчок",
+   "camera": "наезд → стоп → рывок на «briefing» + толчок + удары ×2",
    "snap": 1.116,
    "snapWord": "briefing",
    "ev": [
@@ -6409,9 +7649,15 @@
    "text": "Agents quietly explain who your new friend works for.",
    "spoken": "Agents quietly explain who your new friend works for",
    "event": "стук, дверь открывается: мужчина в тапках с кружкой",
-   "camera": "наезд → стоп → рывок на «works»",
+   "camera": "наезд → стоп → рывок на «works» + удары ×2",
    "snap": 2.931,
-   "snapWord": "works"
+   "snapWord": "works",
+   "beats": [
+    {
+     "t": 0.37,
+     "w": "quietly"
+    }
+   ]
   },
   {
    "n": 297,
@@ -6426,7 +7672,17 @@
    "text": "AGENT: Got a minute? …",
    "spoken": "Got a minute Am I in trouble",
    "event": "показывает удостоверение → вип-пан со смазом на реплике CITIZEN: кружка дрожит",
-   "camera": "стоп → вип-пан со смазом на CITIZEN",
+   "camera": "стоп → вип-пан со смазом на CITIZEN + удары ×2",
+   "beats": [
+    {
+     "t": 0.43,
+     "w": "minute"
+    },
+    {
+     "t": 1.709,
+     "w": "trouble"
+    }
+   ],
    "whip": {
     "t": 1.23,
     "from": "AGENT",
@@ -6446,7 +7702,7 @@
    "text": "AGENT: No. Your new friend is.",
    "spoken": "No Your new friend is",
    "event": "агент протягивает фото — на нём тот самый гость из окна",
-   "camera": "наезд → стоп → рывок на «friend»",
+   "camera": "наезд → стоп → рывок на «friend» + удары ×2",
    "snap": 1.655,
    "snapWord": "friend"
   },
@@ -6478,9 +7734,19 @@
    "text": "In 2015, the FBI gave exactly that briefing to a …",
    "spoken": "In 2015 the FBI gave exactly that briefing to a California congressman",
    "event": "папка ФБР; на «2015» плашка «2015»; на «congressman» строка «A CALIFORNIA CONGRESSMAN»",
-   "camera": "наезд → стоп → рывок на «congressman»",
+   "camera": "наезд → стоп → рывок на «congressman» + удары ×2",
    "snap": 4.83,
    "snapWord": "congressman",
+   "beats": [
+    {
+     "t": 2.529,
+     "w": "exactly"
+    },
+    {
+     "t": 3.418,
+     "w": "briefing"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -6505,9 +7771,15 @@
    "text": "about a suspected Chinese spy in his circle.",
    "spoken": "about a suspected Chinese spy in his circle",
    "event": "на «spy» агент кладёт на стол фото силуэта с плашкой «SUSPECTED CHINESE INTELLIGENCE OFFICER»; на «circle» вокруг силуэта рисуется красный круг",
-   "camera": "наезд → стоп → рывок на «spy»",
+   "camera": "наезд → стоп → рывок на «spy» + удары ×2",
    "snap": 1.754,
    "snapWord": "spy",
+   "beats": [
+    {
+     "t": 0.865,
+     "w": "suspected"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -6532,7 +7804,7 @@
    "text": "Jensen never got that knock.",
    "spoken": "Jensen never got that knock",
    "event": "та же плита, но это дом Дженсена: на почтовом ящике «HUANG», на вешалке за стеклом двери кожанка; фонарь горит, никто не стучит, мотылёк у лампы",
-   "camera": "наезд → стоп → рывок на «knock»",
+   "camera": "наезд → стоп → рывок на «knock» + удары ×2",
    "snap": 1.238,
    "snapWord": "knock"
   },
@@ -6549,7 +7821,17 @@
    "text": "The people who knew listened to the calls, wrote …",
    "spoken": "The people who knew listened to the calls wrote the memo and briefed the White House",
    "event": "на «calls» прикалывается карточка «ЗВОНКИ»; на «memo» — «МЕМО»; на «White» — «БЕЛЫЙ ДОМ»; потом стоп на фото Дженсена: его нить висит свободно",
-   "camera": "проход камерой по нитям",
+   "camera": "проход камерой по нитям + удары ×2",
+   "beats": [
+    {
+     "t": 1.273,
+     "w": "listened"
+    },
+    {
+     "t": 4.221,
+     "w": "briefed"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -6578,9 +7860,15 @@
    "text": "Nobody told the man at the table.",
    "spoken": "Nobody told the man at the table",
    "event": "D11-B: тот же объектив из-за меню, тот же стол, что на 0:04: рамка фокуса на Дженсене, он смеётся и поднимает бокал; щелчок затвора — кадр застывает снимком",
-   "camera": "наезд → стоп → рывок на «table»",
+   "camera": "наезд → стоп → рывок на «table» + удары ×2",
    "snap": 1.816,
-   "snapWord": "table"
+   "snapWord": "table",
+   "beats": [
+    {
+     "t": 0.345,
+     "w": "told"
+    }
+   ]
   },
   {
    "n": 305,
@@ -6630,8 +7918,14 @@
    "text": "On November 8, Jensen wrote a letter to his staff.",
    "spoken": "On November 8 Jensen wrote a letter to his staff",
    "event": "на ноутбуке письмо, силуэт Дженсена у тёмного окна; на «November» впечатывается дата «Nov 8»; на «staff» печатается «To: ALL STAFF»",
-   "camera": "наезд → стоп → рывок на «admitted»",
+   "camera": "наезд → стоп → рывок на «admitted» + удары ×2",
    "snap": 2.206,
+   "beats": [
+    {
+     "t": 1.196,
+     "w": "Jensen"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -6656,9 +7950,15 @@
    "text": "In it, he admitted he had been unfaithful to his …",
    "spoken": "In it he admitted he had been unfaithful to his wife",
    "event": "на «admitted» курсор жмёт «SEND» → «SENT»",
-   "camera": "наезд → стоп → рывок на «wife»",
+   "camera": "наезд → стоп → рывок на «wife» + удары ×2",
    "snap": 2.446,
    "snapWord": "wife",
+   "beats": [
+    {
+     "t": 1.353,
+     "w": "unfaithful"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -6694,7 +7994,7 @@
    "text": "JENSEN: I was unfaithful to my wife.",
    "spoken": "I was unfaithful to my wife",
    "event": "опускает глаза, лампа тускнеет",
-   "camera": "наезд → стоп → рывок на «wife»",
+   "camera": "наезд → стоп → рывок на «wife» + удары ×2",
    "snap": 0.944,
    "snapWord": "wife"
   },
@@ -6711,9 +8011,15 @@
    "text": "JENSEN: I am proud and grateful to be an American.",
    "spoken": "I am proud and grateful to be an American",
    "event": "то же письмо сотрудникам; на «proud» строка подсвечивается; подпись «— JENSEN HUANG, LETTER TO STAFF, NOV 8»",
-   "camera": "наезд → стоп → рывок на «American»",
+   "camera": "наезд → стоп → рывок на «American» + удары ×2",
    "snap": 2.282,
    "snapWord": "American",
+   "beats": [
+    {
+     "t": 1.127,
+     "w": "grateful"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -6734,9 +8040,19 @@
    "text": "Then everything moved at once. BOARD: We're opening an …",
    "spoken": "Then everything moved at once We're opening an independent investigation",
    "event": "член совета кладёт папку на стол Дженсена; кадр сжимается в левое окно триптиха",
-   "camera": "наезд → стоп → рывок на «investigation»",
+   "camera": "наезд → стоп → рывок на «investigation» + удары ×2",
    "snap": 3.059,
-   "snapWord": "investigation"
+   "snapWord": "investigation",
+   "beats": [
+    {
+     "t": 1.928,
+     "w": "We're"
+    },
+    {
+     "t": 2.611,
+     "w": "independent"
+    }
+   ]
   },
   {
    "n": 312,
@@ -6751,9 +8067,15 @@
    "text": "CONGRESSMAN: We'd like a closed-door briefing.",
    "spoken": "We'd like a closed-door briefing",
    "event": "закрывает дверь с табличкой «CLOSED BRIEFING»; кадр сжимается в среднее окно триптиха",
-   "camera": "наезд → стоп → рывок на «briefing»",
+   "camera": "наезд → стоп → рывок на «briefing» + удары ×2",
    "snap": 1.241,
-   "snapWord": "briefing"
+   "snapWord": "briefing",
+   "beats": [
+    {
+     "t": 0.558,
+     "w": "closed-door"
+    }
+   ]
   },
   {
    "n": 313,
@@ -6833,8 +8155,14 @@
    "text": "Thirty-three years at the top, over in one press …",
    "spoken": "Thirty-three years at the top over in one press release",
    "event": "пресс-релиз; на «release» печать «NVIDIA CORPORATION»",
-   "camera": "наезд → стоп → рывок на «Colette»",
+   "camera": "наезд → стоп → рывок на «Colette» + удары ×2",
    "snap": 2.465,
+   "beats": [
+    {
+     "t": 0.469,
+     "w": "years"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -6855,9 +8183,19 @@
    "text": "Chief financial officer Colette Kress became …",
    "spoken": "Chief financial officer Colette Kress became interim CEO",
    "event": "в дверях кабинета силуэт; на «Colette» подпись «COLETTE KRESS · INTERIM CEO»",
-   "camera": "наезд → стоп → рывок на «became»",
+   "camera": "наезд → стоп → рывок на «became» + удары ×2",
    "snap": 1.825,
    "snapWord": "became",
+   "beats": [
+    {
+     "t": 0.494,
+     "w": "officer"
+    },
+    {
+     "t": 1.464,
+     "w": "Kress"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -6910,9 +8248,19 @@
    "text": "In San Jose, the Denny's where Nvidia began …",
    "spoken": "In San Jose the Denny's where Nvidia began took down its plaque that day",
    "event": "та же кабинка из гл. 2; на «plaque» табличку «THE BOOTH THAT LAUNCHED A $1 TRILLION COMPANY» откручивают, на стене остаются две дырки",
-   "camera": "наезд → стоп → рывок на «plaque»",
+   "camera": "наезд → стоп → рывок на «plaque» + удары ×2",
    "snap": 3.807,
    "snapWord": "plaque",
+   "beats": [
+    {
+     "t": 1.337,
+     "w": "Denny's"
+    },
+    {
+     "t": 3.155,
+     "w": "Nvidia"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -6933,9 +8281,19 @@
    "text": "A day later, Denny's said it would put it back.",
    "spoken": "A day later Denny's said it would put it back",
    "event": "на «back» табличку прикручивают обратно, толчок; плашка «A DAY LATER»",
-   "camera": "наезд → стоп → рывок на «back» + толчок",
+   "camera": "наезд → стоп → рывок на «back» + толчок + удары ×2",
    "snap": 2.744,
    "snapWord": "back",
+   "beats": [
+    {
+     "t": 0.8,
+     "w": "Denny's"
+    },
+    {
+     "t": 1.538,
+     "w": "said"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -6956,9 +8314,19 @@
    "text": "That day, Nvidia's stock fell as much as fourteen …",
    "spoken": "That day Nvidia's stock fell as much as fourteen percent",
    "event": "на «stock» на график NVDA ложится «PRESS RELEASE · NOV 12»; на «fell» линия краснеет и проваливается, счётчик −1…−14 %; тикер «NVDA −14%»",
-   "camera": "наезд → стоп → рывок на «fourteen» + толчок",
+   "camera": "наезд → стоп → рывок на «fourteen» + толчок + удары ×2",
    "snap": 2.655,
    "snapWord": "fourteen",
+   "beats": [
+    {
+     "t": 1.051,
+     "w": "Nvidia's"
+    },
+    {
+     "t": 3.277,
+     "w": "percent"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -6998,9 +8366,15 @@
    "text": "When China's DeepSeek released a cheap AI model in …",
    "spoken": "When China's DeepSeek released a cheap AI model in January 2025",
    "event": "на ТВ выпуск; на «DeepSeek» плашка «DEEPSEEK · JAN 2025»; на «cheap» ценник «CHEAP AI MODEL»",
-   "camera": "наезд → стоп → рывок на «cheap»",
+   "camera": "наезд → стоп → рывок на «cheap» и «2025»",
    "snap": 1.886,
    "snapWord": "cheap",
+   "snaps": [
+    {
+     "t": 3.838,
+     "w": "2025"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -7025,9 +8399,21 @@
    "text": "Nvidia lost nearly six hundred billion dollars in …",
    "spoken": "Nvidia lost nearly six hundred billion dollars in a single day",
    "event": "«−$589 BILLION» встаёт на «six»; на «day» плашка «ONE DAY»",
-   "camera": "наезд → стоп → рывок на «dollars» + толчок",
+   "camera": "наезд → стоп → рывок на «dollars» и «single» + толчок + удары ×2",
    "snap": 3.074,
    "snapWord": "dollars",
+   "snaps": [
+    {
+     "t": 3.559,
+     "w": "single"
+    }
+   ],
+   "beats": [
+    {
+     "t": 1.19,
+     "w": "nearly"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -7052,9 +8438,21 @@
    "text": "And its next earnings report was due five days …",
    "spoken": "And its next earnings report was due five days later",
    "event": "настольный календарь у тикера NVDA; на «earnings» обводится дата «EARNINGS»; на «five» ниже щёлкает «IN 5 DAYS»",
-   "camera": "наезд → стоп → рывок на «five»",
+   "camera": "наезд → стоп → рывок на «five» и «later» + удары ×2",
    "snap": 1.761,
    "snapWord": "five",
+   "snaps": [
+    {
+     "t": 2.329,
+     "w": "later"
+    }
+   ],
+   "beats": [
+    {
+     "t": 0.776,
+     "w": "report"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -7079,7 +8477,7 @@
    "text": "ANALYST: What did the affair cost?",
    "spoken": "What did the affair cost",
    "event": "трейдерский стол, стена красных тикеров",
-   "camera": "наезд → стоп → рывок на «affair»",
+   "camera": "наезд → стоп → рывок на «affair» + удары ×2",
    "snap": 0.621,
    "snapWord": "affair"
   },
@@ -7096,7 +8494,17 @@
    "text": "ANALYST 2: About fourteen percent. …",
    "spoken": "About fourteen percent Of him",
    "event": "разворачивается на стуле → вип-пан со смазом на реплике ANALYST: моргает",
-   "camera": "стоп → вип-пан со смазом на ANALYST",
+   "camera": "стоп → вип-пан со смазом на ANALYST + удары ×2",
+   "beats": [
+    {
+     "t": 0.3,
+     "w": "fourteen"
+    },
+    {
+     "t": 1.389,
+     "w": "percent"
+    }
+   ],
    "whip": {
     "t": 2.118,
     "from": "ANALYST 2",
@@ -7116,7 +8524,7 @@
    "text": "ANALYST 2: Of your retirement fund.",
    "spoken": "Of your retirement fund",
    "event": "экран «YOUR RETIREMENT ACCOUNT — S&P 500 INDEX FUND»: зелёный кусок NVDA краснеет «−14%», палец стучит по нему",
-   "camera": "наезд → стоп → рывок на «retirement»",
+   "camera": "наезд → стоп → рывок на «retirement» + удары ×2",
    "snap": 0.25,
    "snapWord": "retirement"
   },
@@ -7133,9 +8541,15 @@
    "text": "Nvidia is one of the largest companies in the S&P …",
    "spoken": "Nvidia is one of the largest companies in the S&P 500",
    "event": "круговая диаграмма S&P 500; на «largest» кусок «NVDA» выдвигается",
-   "camera": "наезд → стоп → рывок на «companies»",
+   "camera": "наезд → стоп → рывок на «companies» + удары ×2",
    "snap": 1.499,
    "snapWord": "companies",
+   "beats": [
+    {
+     "t": 3.332,
+     "w": "500"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -7156,9 +8570,15 @@
    "text": "the index behind millions of retirement savings.",
    "spoken": "the index behind millions of retirement savings",
    "event": "на «retirement» на экране пенсионного счёта плашка «401(K) · IRA», кусок NVDA подсвечен",
-   "camera": "наезд → стоп → рывок на «retirement»",
+   "camera": "наезд → стоп → рывок на «retirement» + удары ×2",
    "snap": 1.745,
    "snapWord": "retirement",
+   "beats": [
+    {
+     "t": 1.029,
+     "w": "millions"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -7194,9 +8614,19 @@
    "text": "Megaspeed now says she left the company in …",
    "spoken": "Megaspeed now says she left the company in August 2025",
    "event": "на столе заявление «MEGASPEED STATEMENT»; на «August» печатается «LEFT: AUGUST 2025»",
-   "camera": "наезд → стоп → рывок на «August»",
+   "camera": "наезд → стоп → рывок на «August» + удары ×2",
    "snap": 2.82,
    "snapWord": "August",
+   "beats": [
+    {
+     "t": 0.494,
+     "w": "says"
+    },
+    {
+     "t": 1.621,
+     "w": "company"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -7217,9 +8647,15 @@
    "text": "CNN later reported that US intelligence isn't …",
    "spoken": "CNN later reported that US intelligence isn't sure she spied at all though sources call her a risk",
    "event": "на ТВ экстренный выпуск; на «sure» бегущая строка «US INTEL ISN'T SURE SHE SPIED · SOURCE: CNN»; на «risk» плашка «SOURCES: A RISK»",
-   "camera": "наезд → стоп → рывок на «sure»",
+   "camera": "наезд → стоп → рывок на «sure» и «sources»",
    "snap": 3.615,
    "snapWord": "sure",
+   "snaps": [
+    {
+     "t": 5.943,
+     "w": "sources"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -7244,9 +8680,15 @@
    "text": "Singapore has barred her from entering the country.",
    "spoken": "Singapore has barred her from entering the country",
    "event": "страница паспорта с визами; на «barred» на страницу падает штамп запрета въезда",
-   "camera": "наезд → стоп → рывок на «entering» + толчок",
+   "camera": "наезд → стоп → рывок на «entering» и «country» + толчок + удары ×2",
    "snap": 1.539,
    "snapWord": "entering",
+   "snaps": [
+    {
+     "t": 2.114,
+     "w": "country"
+    }
+   ],
    "ev": [
     {
      "p": 1,
@@ -7267,7 +8709,7 @@
    "text": "Where she is now, nobody will say.",
    "spoken": "Where she is now nobody will say",
    "event": "директорский стол Megaspeed из гл. 4: кресло пустое, на столе четыре дырки от винтов таблички «MANAGING DIRECTOR»; в конце наплыв на стул ресторана",
-   "camera": "наезд → стоп → рывок на «nobody»",
+   "camera": "наезд → стоп → рывок на «nobody» + удары ×2",
    "snap": 1.321,
    "snapWord": "nobody"
   },
@@ -7284,7 +8726,7 @@
    "text": "Go back to that dinner in Singapore.",
    "spoken": "Go back to that dinner in Singapore",
    "event": "на «Go» на стол Megaspeed падают и улетают назад три наших снимка: письмо, объектив, тост (D26-B); на «dinner» тост оживает залом: свечи, дождь на окне",
-   "camera": "наезд → стоп → рывок на «Singapore»",
+   "camera": "наезд → стоп → рывок на «Singapore» + удары ×2",
    "snap": 1.585,
    "snapWord": "Singapore",
    "ev": [
@@ -7311,9 +8753,15 @@
    "text": "The candles. The toast to good partners.",
    "spoken": "The candles The toast to good partners",
    "event": "повтор тоста гл. 1 в выцветшем цвете, как память: руки Дженсена (кожанка) и Алисы, бокалы встречаются над свечой",
-   "camera": "наезд → стоп → рывок на «partners»",
+   "camera": "наезд → стоп → рывок на «partners» + удары ×2",
    "snap": 2.043,
-   "snapWord": "partners"
+   "snapWord": "partners",
+   "beats": [
+    {
+     "t": 0.927,
+     "w": "toast"
+    }
+   ]
   },
   {
    "n": 339,
@@ -7328,7 +8776,7 @@
    "text": "Both chairs are empty now.",
    "spoken": "Both chairs are empty now",
    "event": "та же ось, людей нет: два бокала стоят там, где их держали; салфетка соскальзывает со стула",
-   "camera": "наезд → стоп → рывок на «empty»",
+   "camera": "наезд → стоп → рывок на «empty» + удары ×2",
    "snap": 0.813,
    "snapWord": "empty"
   },
@@ -7345,9 +8793,25 @@
    "text": "America watched that table for more than a year …",
    "spoken": "America watched that table for more than a year and never said a word to the man sitting at it",
    "event": "отъезд через окно на улицу: машины агентов нет, на мокром асфальте сухой прямоугольник на месте её стоянки",
-   "camera": "отъезд → стоп → рывок на «never»",
+   "camera": "отъезд → стоп → рывок на «never» и «sitting» + удары ×2",
    "snap": 3.099,
-   "snapWord": "never"
+   "snapWord": "never",
+   "snaps": [
+    {
+     "t": 4.544,
+     "w": "sitting"
+    }
+   ],
+   "beats": [
+    {
+     "t": 0.419,
+     "w": "watched"
+    },
+    {
+     "t": 1.095,
+     "w": "table"
+    }
+   ]
   },
   {
    "n": 341,
@@ -7392,7 +8856,7 @@
    "text": "HOST: Some keys are",
    "spoken": "Some keys are",
    "event": "ведущий вертит ключ в пальцах",
-   "camera": "наезд → стоп → рывок на «keys»",
+   "camera": "наезд → стоп → рывок на «keys» + удары по словам",
    "snap": 0.303,
    "snapWord": "keys"
   },
@@ -7409,9 +8873,15 @@
    "text": "too heavy to carry.",
    "spoken": "too heavy to carry",
    "event": "на «heavy» ладонь с ключом опускается под тяжестью, блик; на «carry» лампа мигает",
-   "camera": "наезд → стоп → рывок на «heavy»",
+   "camera": "наезд → стоп → рывок на «heavy» + удары по словам",
    "snap": 0.25,
    "snapWord": "heavy",
+   "beats": [
+    {
+     "t": 0.644,
+     "w": "carry"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -7436,9 +8906,15 @@
    "text": "HOST: So this one goes in the safe.",
    "spoken": "So this one goes in the safe",
    "event": "на «one» тот же латунный ключ из гл. 0 ложится в сейф рядом со снимком агентов «Дженсен + Алиса» (D13-B); на «safe» дверца сейфа захлопывается — щелчок, толчок, лампа вздрагивает",
-   "camera": "наезд → стоп → рывок на «safe» + толчок",
+   "camera": "наезд → стоп → рывок на «safe» + толчок + удары по словам",
    "snap": 1.286,
    "snapWord": "safe",
+   "beats": [
+    {
+     "t": 0.73,
+     "w": "goes"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -7463,9 +8939,21 @@
    "text": "HOST: The question is who opens it next.",
    "spoken": "The question is who opens it next",
    "event": "на «question» щёлкает крышка карманных часов; на «opens» ручка сейфа сама проворачивается, щелчок замка; на «next» лампа вздрагивает",
-   "camera": "наезд → стоп → рывок на «opens»",
+   "camera": "наезд → стоп → рывок на «opens» и «next» + удары по словам",
    "snap": 1.29,
    "snapWord": "opens",
+   "snaps": [
+    {
+     "t": 1.823,
+     "w": "next"
+    }
+   ],
+   "beats": [
+    {
+     "t": 1.823,
+     "w": "next"
+    }
+   ],
    "ev": [
     {
      "p": 0,
@@ -7494,7 +8982,22 @@
    "text": "— (без голоса, музыка)",
    "spoken": "",
    "event": "каскад отыгрышей: снимок агентов, ключ, пустой стул, тост — каждый на вспышке; лампа гаснет на снимке «Дженсен + Алиса» у сейфа, в темноте остаётся блик (D13-B)",
-   "camera": "отъезд → стоп → рывок на событии"
+   "camera": "отъезд → стоп → рывок на событии + удары по словам"
+  },
+  {
+   "n": 348,
+   "ch": 10,
+   "chTitle": "The Office",
+   "start": 1234.196,
+   "end": 1238.696,
+   "dur": 4.5,
+   "listDur": 4.5,
+   "loc": "3D-city",
+   "framing": "3D отъезд от ресторана над Марина-Бэй",
+   "text": "— (музыка: отъезд над Сингапуром)",
+   "spoken": "",
+   "event": "после того как лампа гаснет — склейка на ночной Сингапур: тот самый ресторан с пустым столиком у воды, камера плавно отъезжает назад и вверх над заливом, Марина-Бэй и колесо обозрения в ночной мороси; остановка на панораме (3D city: singapore, rev=1 — влёт из гл. 0 в обратную сторону)",
+   "camera": "статично — движение внутри 3D-сцены: отъезд с разгоном и торможением (пик ~50 %/с)"
   }
  ]
 }

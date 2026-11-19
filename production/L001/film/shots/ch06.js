@@ -8,6 +8,8 @@ import * as CAR from '../staging/car.js';
 import * as IN from '../staging/inserts.js';
 import * as PR from '../props.js';
 import { inOutExpo, gauss, env, W_, W0, shake, whipPlates, focusBox, freezeFrame, candle, V, WHIP_DUR, wordAt, lineSpan } from './common.js';
+import { camA, plaqueA } from '../staging/camA.js';
+const KO = { t: 385 };   // макушка чиновника (Вашингтон, стол) — в кадре при полном наезде
 import * as CU from '../staging/customs.js';
 import * as PA from '../props_A.js';
 import { WA } from '../staging/washington.js';
@@ -40,21 +42,21 @@ function driverInCab(ctx, t, T, o) {
 
 export const SHOTS = {
   // ---------- Вашингтон: чёрный список ----------
-  '6|that the United States had put': x => { const { ctx, t, T, cam, solo } = x, v = WA.view('cu', cam), tu = W_(x, 'United', .62), tb = W_(x, 'blacklist', 2.26);   // ВСТАВКА: на «United» папка INSPUR GROUP ложится на стол; на «blacklist» чиновник бьёт штамп BLACKLIST, толчок
+  '6|that the United States had put': x => { const { ctx, t, T, cam, solo } = x, v = camA(WA.cfg.views.cu, cam, 220, KO), tu = W_(x, 'United', .62), tb = W_(x, 'blacklist', 2.26);   // ВСТАВКА: на «United» папка INSPUR GROUP ложится на стол; на «blacklist» чиновник бьёт штамп BLACKLIST, толчок
     const drop = E.outBack(clamp((t - tu) / .3)), k = env(t, tb - .35, tb + .45, .22, .25);
     ctx.save(); shake(ctx, cam);
     WA.seated(ctx, v, t, T, { C: CLERK, solo, blur: 3, keys: [[0, 'neutral']], look: [.1, .5], R: { k, to: [1015, 816 - 30 * (1 - k)] },
       deskTop: (c, vv) => { if (drop <= 0) return; const P = toS(vv, [975, 800 - 120 * (1 - drop)]); folder(c, P[0], P[1], 200 * vv.k, 'INSPUR GROUP'); if (t > tb) PR.stampMark(c, P[0] + 40 * vv.k, P[1] + 16 * vv.k, 80 * vv.k, 'BLACKLIST', clamp((t - tb) / .12)); },
       heldR: k > .2 ? (c, P, s) => PR.rubberStamp(c, P[0], P[1] + 18 * s, 80 * s) : null });
     ctx.restore(); },
-  "6|CLERK: Inspur? You're blacklisted": x => { const { ctx, t, T, cam, solo } = x, v = WA.view('mid', cam), tb = W_(x, 'blacklisted', 1.2);   // СРЕДНИЙ: палец чиновника ведёт по странице папки чёрного списка до строки INSPUR; на «blacklisted» штамп BLACKLISTED
+  "6|CLERK: Inspur? You're blacklisted": x => { const { ctx, t, T, cam, solo } = x, v = camA(WA.cfg.views.mid, cam, 220, KO), tb = W_(x, 'blacklisted', 1.2);   // СРЕДНИЙ: палец чиновника ведёт по странице папки чёрного списка до строки INSPUR; на «blacklisted» штамп BLACKLISTED
     const run = E.inOutCubic(clamp(t / Math.max(.4, tb - .5))), k = env(t, tb - .3, tb + .5, .2, .25);
     ctx.save(); shake(ctx, cam);
     WA.seated(ctx, v, t, T, { C: CLERK, sp: 'CLERK', solo, keys: [[0, 'neutral']], look: [-.1, .55], L: { k: 1, to: [880, lerp(800, 822, run)] }, R: { k, to: [990, 800 - 30 * (1 - k)] },
       deskTop: (c, vv) => { const P = toS(vv, [905, 818]); binder(c, P[0], P[1], 230 * vv.k, run); const Q = toS(vv, [1010, 826]); folder(c, Q[0], Q[1], 150 * vv.k, 'INSPUR GROUP'); if (t > tb) PR.stampMark(c, Q[0], Q[1], 120 * vv.k, 'BLACKLISTED', clamp((t - tb) / .12)); },
       heldR: k > .2 ? (c, P, s) => PR.rubberStamp(c, P[0], P[1] + 18 * s, 80 * s) : null });
     ctx.restore(); },
-  "6|REP: I'm Aivres. California": x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 1060, cy: 560, k: 2.5 }, cam, .1), tc = W_(x, 'California', .98);   // ОБРАТНАЯ: представитель у двери, на груди бейдж AIVRES · CALIFORNIA криво поверх старого — торчит INSP…; на «California» хлопает по бейджу
+  "6|REP: I'm Aivres. California": x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 1060, cy: 560, k: 2.5 }, cam, 220, { t: 350 }), tc = W_(x, 'California', .98);   // ОБРАТНАЯ: представитель у двери, на груди бейдж AIVRES · CALIFORNIA криво поверх старого — торчит INSP…; на «California» хлопает по бейджу
     const pat = env(t, tc - .25, tc + .35, .18, .25);
     ctx.save(); shake(ctx, cam);
     WA.revPlate(ctx, v, 0, solo);
@@ -62,7 +64,7 @@ export const SHOTS = {
     if (!solo) { const q = bodyPt(AV.spec, r.p, [36, -470]), c = toS(v, [1060 + q[0] * .5, 790 + q[1] * .5]); repBadge(ctx, c[0], c[1], 120 * r.s, t); }
     WA.revFront(ctx, v, 0, solo);
     ctx.restore(); },
-  '6|CLERK: Then welcome, Aivres': x => { const { ctx, t, T, cam, solo } = x, v = WA.view('cu', cam), ta = W_(x, 'Aivres', 1.02);   // КРУПНО чиновник: сверяет список — строки AIVRES нет; на «Aivres» штамп APPROVED
+  '6|CLERK: Then welcome, Aivres': x => { const { ctx, t, T, cam, solo } = x, v = camA(WA.cfg.views.cu, cam, 220, KO), ta = W_(x, 'Aivres', 1.02);   // КРУПНО чиновник: сверяет список — строки AIVRES нет; на «Aivres» штамп APPROVED
     const k = env(t, ta - .3, ta + .5, .2, .25);
     ctx.save(); shake(ctx, cam);
     WA.seated(ctx, v, t, T, { C: CLERK, sp: 'CLERK', solo, blur: 3, keys: [[0, 'neutral']], look: [-.05, .5], L: { k: 1, to: [880, lerp(806, 826, clamp(t / .9))] }, R: { k, to: [1000, 800 - 30 * (1 - k)] },
@@ -70,7 +72,7 @@ export const SHOTS = {
       heldR: k > .2 ? (c, P, s) => PR.rubberStamp(c, P[0], P[1] + 18 * s, 80 * s) : null });
     ctx.restore(); },
   // ---------- таможня: грузовик с накладной ----------
-  '6|CUSTOMS: Destination, please': x => { const { ctx, t, T, cam, solo } = x, v = camView(CU.views.wide, cam, .25), tp = W_(x, 'please', .96);   // ОБЩИЙ пост: грузовик подъезжает к шлагбауму; таможенник в окне будки
+  '6|CUSTOMS: Destination, please': x => { const { ctx, t, T, cam, solo } = x, v = camA(CU.views.wide, cam, 220, { r: 1560, mr: 150 }), tp = W_(x, 'please', .96);   // ОБЩИЙ пост: грузовик подъезжает к шлагбауму; таможенник в окне будки
     const y = lerp(1180, 800, E.outCubic(clamp(t / Math.max(.4, tp))));
     ctx.save(); shake(ctx, cam); CU.gate(ctx, v, 0, solo); CU.arm(ctx, v, 0, solo);
     CU.officer(ctx, CS, v, t, T, { solo, f: -1, look: [-.6, .1] });
@@ -83,13 +85,13 @@ export const SHOTS = {
   '6|CUSTOMS: Final destination': x => { const { ctx, t, T, cam, solo, s } = x, tw = s.whip?.t ?? 1.36, td = W_(x, 'destination', .32), tm = W_(x, 'Malaysia', 1.74);   // СРЕДНИЙ таможенник листает накладную -> вип-пан -> водитель широко улыбается; на «Malaysia» на накладную падает штамп MALAYSIA
     const page = E.inOutCubic(clamp((t - td) / .4));
     whipPlates(ctx, t, tw,
-      () => { const v = camView(CU.views.booth, { ...cam, dx: 0 }, .1); CU.gate(ctx, v, 0, solo);
+      () => { const v = camA(CU.views.booth, { ...cam, dx: 0 }); CU.gate(ctx, v, 0, solo);
         const r = CU.officer(ctx, CS, v, t, T, { solo, f: -1, look: [-.2, .6], view: null, L: { k: 1, to: [1470, 668] }, R: { k: 1, to: [1535, 664] } });
         if (!solo) { const P = toS(v, [1500, 672]); ctx.save(); ctx.translate(P[0], P[1]); ctx.scale(1, .5); PA.waybill(ctx, 0, 0, 170 * v.k * .45, 0, { page }); ctx.restore(); } void r; },
       () => { driverInCab(ctx, t, T, { solo, cab: [-160, 1640, 1500], keys: [[0, 'laugh']], look: [.5, -.05], R: { k: 1, to: [1260, 500] },
         heldR: (c, h, sc) => PA.waybill(c, h[0] + 80 * sc, h[1] - 70 * sc, 220 * sc, .1, { stamps: [{ text: 'MALAYSIA', u: t > tm ? clamp((t - tm) / .5) + .01 : 0, y: 40 * sc }] }) }); });
   },
-  '6|CUSTOMS: Enjoy your stay': x => { const { ctx, t, T, cam, solo } = x, v = camView(CU.views.stamp, cam, .1), te = Math.max(.12, W_(x, 'Enjoy', 0) + .12);   // ВСТАВКА штамп: удар штампом по накладной на стойке, толчок; шлагбаум поднимается
+  '6|CUSTOMS: Enjoy your stay': x => { const { ctx, t, T, cam, solo } = x, v = camA(CU.views.stamp, cam), te = Math.max(.12, W_(x, 'Enjoy', 0) + .12);   // ВСТАВКА штамп: удар штампом по накладной на стойке, толчок; шлагбаум поднимается
     const k = env(t, te - .22, te + .25, .16, .2), up = E.inOutCubic(clamp((t - te - .2) / .9));
     ctx.save(); shake(ctx, cam); CU.gate(ctx, v, 0, solo); CU.arm(ctx, v, up, solo);
     CU.officer(ctx, CS, v, t, T, { solo, f: -1, view: null, look: [-.1, .7], R: { k: 1, to: [1450, 668 - 40 * (1 - k)] }, L: { k: 1, to: [1520, 670] },
@@ -106,22 +108,23 @@ export const SHOTS = {
     PA.tenantBoard(ctx, W / 2, 900, 900, rows, clamp((t - tf) / 2), t > tn ? (t < tn + .08 ? 1 : t < tn + .14 ? .3 : 1) : 0);
     ctx.restore(); },
   // ---------- Nvidia: «мы пересчитали» ----------
-  '6|Jensen later said Nvidia': x => { const { ctx, t, T, cam, solo } = x, v = NV.view('cu', cam), td = W_(x, 'deployments', 2.5), to = W_(x, 'one', 4.27);   // КРУПНО Дженсен жмёт счётчик-кликер, иконки чипов отмечаются одна за другой; на «one» последний щелчок
+  '6|Jensen later said Nvidia': x => { const { ctx, t, T, cam, solo } = x, v = camA(NV.cfg.views.cu, cam, 220, { t: 372 }), td = W_(x, 'deployments', 2.5), to = W_(x, 'one', 4.27);   // КРУПНО Дженсен жмёт счётчик-кликер, иконки чипов отмечаются одна за другой; на «one» последний щелчок
     const clicks = [td, ...[0, 1, 2, 3, 4].map(i => lerp(td + .35, to - .25, i / 4)), to], n = clicks.filter(q => t >= q).length, press = Math.max(...clicks.map(q => gauss(t, q, .05)));
     ctx.save(); shake(ctx, cam);
     NV.seated(ctx, v, t, T, { C: JH, sp: 'JENSEN', solo, blur: 3, keys: [[0, 'neutral']], look: [.15, .35], R: { k: 1, to: [985, 640] },
       deskTop: (c, vv) => { const P = toS(vv, [905, 688]); chipChecks(c, P[0], P[1], 140 * vv.k, n, clicks.length); },
       heldR: (c, P, s) => tally(c, P[0], P[1] - 4 * s, 34 * s, press, n) });
+    if (!solo) plaqueA(ctx, 'JENSEN HUANG', 420, 210, t - to);   // плашка слева от головы, не на волосах (место подписи ядра занято головой)
     ctx.restore(); },
   // ---------- таможня: контрабандисты ----------
-  "6|That's what made it so hard": x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 1340, cy: 640, k: 1.55 }, cam, .25), tc = W_(x, 'catch', 1.48);   // ОБЩИЙ пост: контрабандист с раздутым чемоданом у стойки; на «catch» озирается
+  "6|That's what made it so hard": x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 1340, cy: 640, k: 1.55 }, cam), tc = W_(x, 'catch', 1.48);   // ОБЩИЙ пост: контрабандист с раздутым чемоданом у стойки; на «catch» озирается
     const look = t < tc ? .5 : Math.sin((t - tc) * 11) * .8;
     ctx.save(); shake(ctx, cam); CU.gate(ctx, v, 0, solo); CU.arm(ctx, v, 0, solo);
     CU.officer(ctx, CS, v, t, T, { solo, f: -1, look: [-.5, .2] });
     if (!solo) { const P = toS(v, [1180, 796]); PA.suitcase(ctx, P[0], P[1], 120 * v.k, t); }
     CU.standAt(ctx, SM, v, t, T, { at: [1265, 796], f: 1, keys: [[0, 'nervous']], look: [look, .05], solo, L: { k: 1, to: [1205, 735] } });
     ctx.restore(); },
-  '6|Ordinary smugglers sweat': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 1310, cy: 610, k: 3.3 }, cam, .1), ts = W_(x, 'sweat', .72), tc = W_(x, 'caught', 2.74);   // КРУПНО контрабандист потеет: на «sweat» капля падает на накладную; на «caught» чемодан лопается, рука таможенника ложится на плечо
+  '6|Ordinary smugglers sweat': x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 1310, cy: 610, k: 3.3 }, cam, 220, { r: 1520, mr: 100, t: 500 }), ts = W_(x, 'sweat', .72), tc = W_(x, 'caught', 2.74);   // КРУПНО контрабандист потеет: на «sweat» капля падает на накладную; на «caught» чемодан лопается, рука таможенника ложится на плечо
     const grab = E.outBack(clamp((t - tc + .05) / .25)), burst = clamp((t - tc) / .5);
     ctx.save(); shake(ctx, cam); CU.gate(ctx, v, 4, solo);
     const r = CU.officer(ctx, CS, v, t, T, { solo, f: -1, look: [-.6, .2], at: [1470, 770], out: 'L', L: { k: grab, to: [1335, 640] } });
@@ -149,7 +152,7 @@ export const SHOTS = {
     ctx.restore();
     ctx.save(); const g = ctx.createRadialGradient(W / 2, H * .3, 0, W / 2, H * .3, 900 * op + 1); g.addColorStop(0, `rgba(255,240,200,${.25 * op})`); g.addColorStop(1, 'rgba(255,240,200,0)'); ctx.fillStyle = g; ctx.globalCompositeOperation = 'screen'; ctx.fillRect(0, 0, W, H); ctx.restore();
     if (op < 1) { ctx.save(); ctx.translate(0, -H * 1.05 * op); ctx.fillStyle = '#8a6038'; ctx.fillRect(-20, -20, W + 40, H + 40); for (let i = 1; i < 6; i++) PA.inkLine(ctx, [[0, i * H / 6], [W, i * H / 6 + 10]], 6, '#3a2410'); ctx.fillStyle = 'rgba(255,240,200,.85)'; ctx.fillRect(0, H + 10, W, 14); ctx.restore(); } },
-  '6|Another ring, broken up': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 1150, cy: 650, k: 1.35 }, cam, .25);   // ОБЩИЙ рейд таможни: таможенники в жилетах выносят ящики
+  '6|Another ring, broken up': x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 1150, cy: 650, k: 1.35 }, cam);   // ОБЩИЙ рейд таможни: таможенники в жилетах выносят ящики
     const lift = E.outCubic(clamp(t / .6));
     ctx.save(); shake(ctx, cam); CU.gate(ctx, v, 0, solo); CU.arm(ctx, v, 0, solo);
     if (!solo) for (const [x0, y0, n] of [[1350, 800, 3], [1460, 805, 2], [1240, 812, 2]]) for (let i = 0; i < n; i++) { const P = toS(v, [x0, y0 - i * .55 * CU.mAt(y0) * .9]); PA.crate(ctx, P[0], P[1], .9 * CU.mAt(y0) * v.k, .55 * CU.mAt(y0) * v.k, { d: 30 * v.k, label: 'SEIZED' }); }
@@ -159,22 +162,23 @@ export const SHOTS = {
     CU.standAt(ctx, RD[1], v, t, T, { at: [1180, y + 6], f: -1, keys: [[0, 'neutral']], look: [-.5, .2], solo, L: { k: 1, to: [1090, y - 300 * .9 * CU.fsAt(y) - 40 * lift] } });
     CU.standAt(ctx, RD[2], v, t, T, { at: [700, 820], f: 1, keys: [[0, 'neutral']], look: [.6, 0], solo, R: { k: 1, to: [760, 700] }, held: { R: (c, h, s) => clipboardB(c, h, s) } });
     ctx.restore(); },
-  '6|Prosecutors charged one Chinese': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 1000, cy: 700, k: 2.0 }, cam, .1), tp = Math.min(1.0, x.d * .45);   // ВСТАВКА задержание: таможенник вскрывает ящик ломом — внутри сервер
+  '6|Prosecutors charged one Chinese': x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 1000, cy: 700, k: 2.0 }, cam, 220, { t: 478 }), tp = Math.min(1.0, x.d * .45), tnat = W_(x, 'national', 1.6);   // ВСТАВКА задержание: таможенник вскрывает ящик ломом — внутри сервер
     const pry = E.inOutCubic(clamp(t / tp)), pop = clamp((t - tp) / .3), y = 900;
     ctx.save(); shake(ctx, cam); CU.gate(ctx, v, 4, solo);
     if (!solo) { const P = toS(v, [900, y]), m = CU.mAt(y) * v.k; PA.crate(ctx, P[0], P[1], 1.2 * m, .6 * m, { lid: pop, d: .5 * m, label: 'SEIZED', inside: (c, w, d) => { if (pop > 0) PA.serverTop(c, w, d); } }); }
     const tip = toS(v, [960 - 30 * pry, y - .6 * CU.mAt(y) - 12]);
     CU.standAt(ctx, RD[0], v, t, T, { at: [1080, y + 10], f: -1, keys: [[0, 'neutral']], look: [-.6, .5], lean: -.08 - .06 * pry, solo,
       L: { k: 1, to: [1000, y - .6 * CU.mAt(y) - 40 + 20 * pry] }, R: { k: 1, to: [1030, y - .6 * CU.mAt(y) - 70 + 30 * pry] }, held: { L: (c, h, s) => PA.crowbar(c, tip[0], tip[1], s * 1.4, Math.atan2(h[1] - tip[1], h[0] - tip[0])) } });
+    if (!solo) plaqueA(ctx, 'CHARGED: CHINESE NATIONAL', 1390, 400, t - tnat);   // справа от головы таможенника, не на лице
     ctx.restore(); },
-  '6|over nine hundred and seventeen': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 900, cy: 640, k: 1.25 }, cam, .25), tn = W_(x, 'nine', .5), ts = W_(x, 'smuggled', 1.64);   // ОБЩИЙ ряды изъятых серверов: на «nine» бирка 917 SERVERS SEIZED; на «smuggled» штамп SEIZED на ящик
+  '6|over nine hundred and seventeen': x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 900, cy: 640, k: 1.25 }, cam, 220, { b: 885, mb: 60 }), tn = W_(x, 'nine', .5), ts = W_(x, 'smuggled', 1.64);   // ОБЩИЙ ряды изъятых серверов: на «nine» бирка 917 SERVERS SEIZED; на «smuggled» штамп SEIZED на ящик
     ctx.save(); shake(ctx, cam); CU.gate(ctx, v, 0, solo); CU.arm(ctx, v, 0, solo);
     if (!solo) { for (let r = 0; r < 6; r++) { const y = 690 + r * 42, m = CU.mAt(y); for (let c = -3; c <= 3; c++) { const P = toS(v, [CU.laneX(y, -.03) - 20 + c * 1.25 * m, y]); PA.crate(ctx, P[0], P[1], 1.05 * m * v.k, .55 * m * v.k, { d: .25 * m * v.k }); } }
       const fy = 940, fm = CU.mAt(fy), F = toS(v, [820, fy]); PA.crate(ctx, F[0], F[1], 1.2 * fm * v.k, .62 * fm * v.k, { d: .3 * fm * v.k });
       PA.stampMark(ctx, F[0] - .32 * fm * v.k, F[1] - .25 * fm * v.k, .5 * fm * v.k, 'SEIZED', -.1, t - ts);
       const k = E.outBack(clamp((t - tn) / .3)); if (k > 0) PA.hangTag(ctx, F[0] + .35 * fm * v.k, F[1] - .62 * fm * v.k - 200 * (1 - k), 330, Math.sin(t * 3) * .05, '917 SERVERS SEIZED'); }
     ctx.restore(); },
-  '6|This operation never had to sweat': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 1080, cy: 640, k: 1.5 }, cam, .3);   // СРЕДНИЙ: за спиной задержанного контрабандиста спокойно проезжает грузовик под поднятым шлагбаумом
+  '6|This operation never had to sweat': x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 1080, cy: 640, k: 1.5 }, cam);   // СРЕДНИЙ: за спиной задержанного контрабандиста спокойно проезжает грузовик под поднятым шлагбаумом
     const y = lerp(860, 690, E.inOutSine(clamp(t / x.d)));
     ctx.save(); shake(ctx, cam); CU.gate(ctx, v, 0, solo); CU.arm(ctx, v, 1, solo);
     CU.truckAt(ctx, v, y, { solo, lights: 1 });
@@ -183,7 +187,7 @@ export const SHOTS = {
     CU.standAt(ctx, CS2, v, t, T, { at: [1360, 806], f: -1, view: 'threeQuarter', keys: [[0, 'neutral']], look: [-.5, .1], solo, L: { k: 1, to: [1290, 655] } });
     void sm; ctx.restore(); },
   // ---------- салон агентов ----------
-  '6|But in the eyes of American intelligence': x => { const { ctx, t, T, cam, solo } = x, v = camView(CAR.views.a2, cam, .3), ta = W_(x, 'American', .72);   // СРЕДНИЙ салон: на накладную в руке AGENT 2 ложится снимок «Дженсен + Алиса»; накладная уходит в тень
+  '6|But in the eyes of American intelligence': x => { const { ctx, t, T, cam, solo } = x, v = camA(CAR.views.a2, cam), ta = W_(x, 'American', .72);   // СРЕДНИЙ салон: на накладную в руке AGENT 2 ложится снимок «Дженсен + Алиса»; накладная уходит в тень
     const land = E.outBack(clamp((t - (ta - .3)) / .3));
     ctx.save(); shake(ctx, cam);
     CAR.car(ctx, v, t, T, { solo, reelsAng: T * 3.2,
@@ -236,7 +240,7 @@ export const OVER = {
 };
 export const SKIP_PROPS = {
   '6|that the United States had put': /INSPUR|BLACKLIST/, "6|CLERK: Inspur? You're blacklisted": /BLACKLISTED|INSPUR/, "6|REP: I'm Aivres. California": /AIVRES|INSP/,
-  '6|CUSTOMS: Final destination': /MALAYSIA/, '6|all flowing to one company': /MEGASPEED/, '6|In 2023, Hong Kong customs found': /70 GPU/, '6|over nine hundred and seventeen': /917|SEIZED/, '6|One count put the haul': /NEARLY|$2 BILLION/,
+  '6|CUSTOMS: Final destination': /MALAYSIA/, '6|all flowing to one company': /MEGASPEED/, '6|In 2023, Hong Kong customs found': /70 GPU/, '6|Jensen later said Nvidia': /JENSEN HUANG/, '6|Prosecutors charged one Chinese': /CHARGED/, '6|over nine hundred and seventeen': /917|SEIZED/, '6|One count put the haul': /NEARLY|$2 BILLION/,
 };
 export const RAIN = s => (/L09|L10|L12/.test(s.loc) ? false : undefined);   // в офисе, баре и на таможне дождя поверх кадра нет
 

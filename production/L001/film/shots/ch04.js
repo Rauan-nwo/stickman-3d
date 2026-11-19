@@ -5,6 +5,7 @@ import { clamp, lerp, E, gesture } from 'engine';
 import { W, H, camView, toS, lerpView, cover } from '../staging/common.js';
 import * as PR from '../props.js';
 import { inOutExpo, gauss, env, W_, W0, shake, whipPlates, focusBox, freezeFrame, candle, V, WHIP_DUR, wordAt, lineSpan } from './common.js';
+import { camA, zoomAt, plaqueA } from '../staging/camA.js';
 import * as MS from '../staging/megaspeed.js';
 import * as PA from '../props_A.js';
 import { alice } from 'engine';
@@ -57,7 +58,8 @@ function callScene(t, T, o) {
     const hold = clamp(o.case || 0);
     const P = person(c, RT, v, t, T, { at: [960, 1010], fs: .62, pin: 'feet', f: 1, view: null, sp: 'RENTER', keys: [[0, 'smug']], look: [0, .1], shade: shadeOf([-1, -.5], '#ffb070'), shadow: false,
       R: { k: hold, to: [1045, 770 + 220 * (1 - hold) / (3 * .62)] }, L: { k: hold, to: [875, 770 + 220 * (1 - hold) / (3 * .62)] } });
-    void P; if (hold > .02) { const p = toS(v, [960, 790 - 40 * hold]), w = 210 * v.k * .62; c.save(); c.translate(p[0], p[1] + 220 * (1 - hold)); PA.rrect(c, -w / 2, -w * .42, w, w * .5, w * .04, '#3a2416', '#141014', w * .02); for (let r = 0; r < 2; r++) for (let k = 0; k < 4; k++) { const bx = -w * .44 + k * w * .22, by = -w * .38 + r * w * .22; PA.rrect(c, bx, by, w * .2, w * .19, w * .01, '#7aa86a', '#141014', w * .006); c.fillStyle = '#E8E0C0'; c.fillRect(bx + w * .075, by, w * .05, w * .19); } PA.rrect(c, -w / 2, w * .08, w, w * .06, w * .02, '#2a1a0e', '#141014', w * .015); c.restore();
+    void P; if (hold > .02) { const p = toS(v, [960, 790 - 40 * hold]), w = 210 * v.k * .62; c.save(); c.translate(p[0], p[1] + 220 * (1 - hold)); PA.rrect(c, -w / 2, -w * .42, w, w * .5, w * .04, '#3a2416', '#141014', w * .02); for (let r = 0; r < 2; r++) for (let k = 0; k < 4; k++) { const bx = -w * .44 + k * w * .22, by = -w * .38 + r * w * .22; PA.rrect(c, bx, by, w * .2, w * .19, w * .01, '#7aa86a', '#141014', w * .006); c.fillStyle = '#E8E0C0'; c.fillRect(bx + w * .075, by, w * .05, w * .19); } PA.rrect(c, -w / 2, w * .08, w, w * .06, w * .02, '#2a1a0e', '#141014', w * .015);
+      if (o.tag > 0) { c.globalAlpha = clamp(o.tag); PA.hangTag(c, w * .3, -w * .42, w * .46, .14, 'CASH'); c.globalAlpha = 1; } c.restore();
       for (const q of [[875, 770], [1045, 770]]) { const h = toS(v, q); ell(c, h[0], h[1] + 220 * (1 - hold), 12 * .62 * v.k, 12 * .62 * v.k, '#141014', null); } }
     c.fillStyle = 'rgba(0,0,0,.35)'; c.fillRect(0, 0, 1920, 70); c.fillStyle = '#ff4a3a'; c.beginPath(); c.arc(50, 35, 13, 0, 6.283); c.fill();
     PA.label(c, 'VIDEO CALL · ENCRYPTED', 80, 36, 30, '#e8e0d0', { align: 'left' }); PA.label(c, '00:0' + Math.floor(3 + T % 6), 1840, 36, 30, '#e8e0d0');
@@ -74,12 +76,13 @@ function callMonitor(ctx, v, t, T, cam, o) {
 
 export const SHOTS = {
   // ---------- 7ROAD → MEGASPEED ----------
-  '4|a small Singapore company called 7Road': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 900, cy: 470, k: 1.3 }, cam, .3), t7 = W_(x, '7Road', 1.6), tS = W_(x, 'Singapore', .4);   // ОБРАТНАЯ: дверь 7ROAD; на «7Road» над дверью загорается вывеска; на «Singapore» вспыхивает окно
+  '4|a small Singapore company called 7Road': x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 900, cy: 470, k: 1.3 }, cam, 220, { t: 135, l: 495 }), t7 = W_(x, '7Road', 1.6), tS = W_(x, 'Singapore', .4);   // ОБРАТНАЯ: дверь 7ROAD; на «7Road» над дверью загорается вывеска; на «Singapore» вспыхивает окно
     ctx.save(); shake(ctx, cam); MS.room(ctx, v, 'R7', 0, solo);
     if (!solo) { const fl = gauss(t, tS + .1, .14); if (fl > .01) { const a = toS(v, [1000, 150]), b = toS(v, [1700, 600]); ctx.save(); ctx.globalCompositeOperation = 'screen'; ctx.fillStyle = `rgba(255,230,190,${.55 * fl})`; ctx.fillRect(a[0], a[1], b[0] - a[0], b[1] - a[1]); ctx.restore(); }
-      const lit = t < t7 ? 0 : t < t7 + .06 ? 1 : t < t7 + .12 ? .25 : 1; sign(ctx, v, '7ROAD INTERNATIONAL', lit); }
+      const lit = t < t7 ? 0 : t < t7 + .06 ? 1 : t < t7 + .12 ? .25 : 1; sign(ctx, v, '7ROAD INTERNATIONAL', lit);
+      plaqueA(ctx, 'MARCH 2023 · SINGAPORE', 700, 950, t - W_(x, 'March', 1.2)); }   // плашка внизу: место подписи ядра (верх) занимает вывеска
     ctx.restore(); },
-  '4|got a new name: Megaspeed': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 667, cy: 300, k: 2.4 }, cam, .2), tm = W_(x, 'Megaspeed', 1.58), tOff = Math.max(.35, tm - 1.0);   // ВСТАВКА вывеска: 7ROAD откручивается и падает, на её место въезжает MEGASPEED
+  '4|got a new name: Megaspeed': x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 667, cy: 300, k: 2.4 }, cam), tm = W_(x, 'Megaspeed', 1.58), tOff = Math.max(.35, tm - 1.0);   // ВСТАВКА вывеска: 7ROAD откручивается и падает, на её место въезжает MEGASPEED
     ctx.save(); shake(ctx, cam); MS.room(ctx, v, 'R7', 0, solo);
     if (!solo) { const u = clamp((t - tOff) / .45), ang = E.inCubic(clamp(u * 1.6)) * .9, fall = E.inCubic(clamp((u - .55) / .45)) * 700;
       if (u < 1) { const P = toS(v, [667 - 165, 186]); ctx.save(); ctx.translate(P[0], P[1] + fall * v.k * .5); ctx.rotate(ang); PA.signBox(ctx, 165 * v.k, 0, 330 * v.k, '7ROAD INTERNATIONAL', 1 - u * .8); ctx.restore(); }
@@ -87,21 +90,21 @@ export const SHOTS = {
       const k = E.outBack(clamp((t - (tm - .45)) / .4)); if (k > 0) sign(ctx, v, 'MEGASPEED', t > tm ? 1 : .15, 0, -260 * (1 - k)); }
     ctx.restore(); },
   '4|Its new managing director': x => { const { ctx, t, T, cam, solo } = x, td = W_(x, 'director', .64), ta = W_(x, 'Alice', 1.72);   // ОБЩИЙ офис: Алиса у своего кресла, рука на спинке; на «director» наезд к табличке на столе
-    const u = E.inOutCubic(clamp((t - td) / .55)), v = camView(lerpView(MV.oWide, { cx: 560, cy: 660, k: 1.32 }, u), cam, .2);
+    const u = E.inOutCubic(clamp((t - td) / .55)), v = camA(lerpView(MV.oWide, { cx: 560, cy: 660, k: 1.32 }, u), cam);
     ctx.save(); shake(ctx, cam); MS.room(ctx, v, 'O', 0, solo);
     if (!solo) { const P = toS(v, [300, 724]); PA.deskPlate(ctx, P[0], P[1], 230 * v.k, 'MANAGING DIRECTOR', 'ALICE HUANG', { a: -.05 }); }
     const turn = E.inOutCubic(clamp((t - (ta - .5)) / .5));
     MS.stand(ctx, AL, v, t, T, { at: [760, 905], f: -1, keys: [[0, 'smug']], look: [lerp(.6, -.15, turn), lerp(-.3, .05, turn)], L: { k: 1, to: [655, 632] }, solo });
     ctx.restore(); },
   // ---------- регистрация: клерк и сотрудник ----------
-  '4|CLERK: Previous business': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 900, cy: 600, k: 1.75 }, cam, .15), tb = W_(x, 'business', .34);   // КРУПНО клерк: заносит ручку над формой, поле PREVIOUS BUSINESS
+  '4|CLERK: Previous business': x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 900, cy: 600, k: 1.75 }, cam), tb = W_(x, 'business', .34);   // КРУПНО клерк: заносит ручку над формой, поле PREVIOUS BUSINESS
     const up = 1 - .35 * E.inOutCubic(clamp((t - tb) / .3));
     ctx.save(); shake(ctx, cam);
     MS.deskShot(ctx, v, t, T, { C: CL, bg: 'R', seat: [900, 820], fs: .55, sp: 'CLERK', look: [.05, .55], keys: [[0, 'neutral']], solo,
       deskTop: (c, vv, g) => { const P = toS(vv, g.on(40, .35)); c.save(); c.translate(P[0], P[1]); c.scale(1, .62); PA.form(c, 0, 0, 260 * g.fs * vv.k, -.04, { field: 'PREVIOUS BUSINESS:', hi: .6 }); c.restore(); },
       R: { k: 1, to: [g0(900, 820, .55, 70, -40 - 60 * up)[0], g0(900, 820, .55, 70, -40 - 60 * up)[1]] }, heldR: (c, h, s) => PA.penTool(c, h[0], h[1], s * 1.1, 2.1) });
     ctx.restore(); },
-  '4|STAFFER: Video games': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 1000, cy: 650, k: 1.55 }, cam, .15), tg = W_(x, 'games', .34);   // ВСТАВКА джойстик: сотрудник прячет геймпад в ящик стола и задвигает его
+  '4|STAFFER: Video games': x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 1000, cy: 650, k: 1.55 }, cam), tg = W_(x, 'games', .34);   // ВСТАВКА джойстик: сотрудник прячет геймпад в ящик стола и задвигает его
     const down = E.inOutCubic(clamp((t - (tg - .3)) / .3)), shut = E.inCubic(clamp((t - (tg + .2)) / .25)), open = clamp(down * 1.6) * (1 - shut), inDrawer = t > tg + .05;
     const seat = [960, 790], fs = .5, g = MS.deskGeo(seat, fs);
     ctx.save(); shake(ctx, cam);
@@ -119,7 +122,7 @@ export const SHOTS = {
         c.restore(); },
       R: { k: 1, to: lerpP(g0(900, 820, .55, 150, -10), g0(900, 820, .55, -60, -40), flip) } });
   },
-  '4|STAFFER: Now, supercomputers': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 610, cy: 625, k: 1.15 }, cam, .3), ts = W_(x, 'supercomputers', .64);   // ОБРАТНАЯ: сотрудник показывает за стекло на серверную
+  '4|STAFFER: Now, supercomputers': x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 610, cy: 625, k: 1.15 }, cam), ts = W_(x, 'supercomputers', .64);   // ОБРАТНАЯ: сотрудник показывает за стекло на серверную
     const pt = gesture(t, ts - .1, { lead: .25, rise: .3, hold: 9, fall: .3 });
     ctx.save(); shake(ctx, cam); MS.room(ctx, v, 'R', 0, solo); if (!solo) sign(ctx, v, 'MEGASPEED', 1);
     MS.stand(ctx, ST, v, t, T, { at: [640, 915], f: -1, sp: 'STAFFER', light: 'R', keys: [[0, 'smile']], L: { k: .25 + .75 * pt.hand, to: [330, 470] }, look: [lerp(.2, -.7, pt.body), -.1], lean: -.04 * pt.body, solo });
@@ -130,19 +133,20 @@ export const SHOTS = {
     MS.stand(ctx, ST, v, t, T, { at: [1000, 1035], f: 1, light: [1, -.2], keys: [[0, 'smile']], look: [.6, 0], solo, seed: 2 });
     MS.stand(ctx, CL, v, t, T, { at: [1240, 1010], f: 1, light: [1, -.2], sp: 'CLERK', keys: [[0, 'neutral'], [.12, 'shock'], [1.2, 'neutral']], look: [.7, -.25], tilt: -.04, solo,
       L: { k: 1, to: [1180, 760] }, held: { L: (c, h, s) => clipboardA(c, h, s) } });
+    if (!solo) { const tc = W_(x, 'change', 1.0); if (t >= tc) PA.stampMark(ctx, 1500, 330, 420, 'APPROVED', -.12, t - tc); }   // штамп справа над коробками, не на лице клерка (место штампа ядра — её лицо)
   },
-  '4|STAFFER: Bigger electricity bill': x => { const { ctx, t, cam, solo } = x, tb = W_(x, 'bill', .9), v = camView({ cx: 140, cy: 330, k: 2.2 }, cam, .1);   // ВСТАВКА счётчик: на «bill» стрелка улетает вправо до упора, толчок
+  '4|STAFFER: Bigger electricity bill': x => { const { ctx, t, cam, solo } = x, tb = W_(x, 'bill', .9), v = camA({ cx: 140, cy: 330, k: 2.2 }, cam);   // ВСТАВКА счётчик: на «bill» стрелка улетает вправо до упора, толчок
     ctx.save(); shake(ctx, cam); MS.room(ctx, v, 'O', 8, solo);
     if (!solo) { const u = t < tb ? .28 + .06 * t : .34 + .64 * E.outBack(clamp((t - tb) / .25)) + .02 * Math.sin(t * 40) * clamp(t - tb); const z = cam.z;
       ctx.save(); ctx.translate(W / 2, H / 2); ctx.scale(z, z); PA.meter(ctx, 0, -20, 300, Math.min(1.04, u), gauss(t, tb + .25, .3)); ctx.restore(); }
     ctx.restore(); },
   // ---------- серверная: «облачная» компания ----------
-  "4|That's the perfect business": x => { const { ctx, t, cam, solo } = x, tp = W_(x, 'perfect', .34), tm = W_(x, 'mountains', 3.78), v = camView({ cx: 1430, cy: 560, k: 1.42 }, cam, .25);   // СРЕДНИЙ серверная: на «perfect» наклейка CLOUD COMPUTING на стекле; к «mountains» коробки за стеклом до потолка
+  "4|That's the perfect business": x => { const { ctx, t, cam, solo } = x, tp = W_(x, 'perfect', .34), tm = W_(x, 'mountains', 3.78), v = camA({ cx: 1430, cy: 560, k: 1.42 }, cam);   // СРЕДНИЙ серверная: на «perfect» наклейка CLOUD COMPUTING на стекле; к «mountains» коробки за стеклом до потолка
     ctx.save(); shake(ctx, cam); MS.room(ctx, v, 'O', 0, solo);
     if (!solo) { glassBoxes(ctx, v, .2 + .8 * E.inOutCubic(clamp((t - .3) / Math.max(.5, tm - .3))), t); glassOver(ctx, v, MS.A());
       const P = toS(v, [1290, 470]); PA.glassSticker(ctx, P[0], P[1], 300 * v.k, 'CLOUD COMPUTING', clamp((t - tp) / .2)); }
     ctx.restore(); },
-  '4|and nobody asks why': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 900, cy: 560, k: 1.15 }, cam, .3), tn = W_(x, 'nobody', .3);   // ОБЩИЙ от двери: курьер ввозит коробки, ресепшн, не поднимая глаз, штампует RECEIVED
+  '4|and nobody asks why': x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 900, cy: 560, k: 1.15 }, cam), tn = W_(x, 'nobody', .3);   // ОБЩИЙ от двери: курьер ввозит коробки, ресепшн, не поднимая глаз, штампует RECEIVED
     const hits = [tn, tn + .55, tn + 1.1].filter(q => q < x.d - .1), last = hits.filter(q => t >= q).pop(), lift = clamp(Math.min(...hits.map(q => Math.abs(t - q))) / .16);
     ctx.save(); shake(ctx, cam); MS.room(ctx, v, 'R', 0, solo); if (!solo) sign(ctx, v, 'MEGASPEED', 1);
     if (!solo) for (let i = 0; i < hits.length; i++) { const P = toS(v, [1200 + i * 14, 700 - i * 2]); ctx.save(); ctx.translate(P[0], P[1]); ctx.scale(1, .45); PA.sheet(ctx, 0, 0, 70 * v.k, .1 * i, []); if (last != null && t >= hits[i]) PA.stampMark(ctx, 0, 0, 60 * v.k, 'RECEIVED', -.15, t - hits[i]); ctx.restore(); }
@@ -154,19 +158,19 @@ export const SHOTS = {
       held: { R: (c, h, s) => PA.stampTool(c, h[0], h[1] - 8 * s, s * 1.1) } });
     ctx.restore(); },
   // ---------- карта, клиенты ----------
-  '4|Not one chip had to enter China': x => { const { ctx, t, cam, solo } = x, tn = Math.max(.12, W_(x, 'Not', 0) + .12), v = camView({ cx: 920, cy: 300, k: 2.4 }, cam, .1);   // ВСТАВКА карта на стене офиса: на «Not» на Китай бьёт штамп NOT ONE CHIP, Китай темнеет; толчок
+  '4|Not one chip had to enter China': x => { const { ctx, t, cam, solo } = x, tn = Math.max(.12, W_(x, 'Not', 0) + .12), v = camA({ cx: 920, cy: 300, k: 2.4 }, cam);   // ВСТАВКА карта на стене офиса: на «Not» на Китай бьёт штамп NOT ONE CHIP, Китай темнеет; толчок
     ctx.save(); shake(ctx, cam); MS.room(ctx, v, 'R', 8, solo);
-    if (!solo) { const z = cam.z; ctx.save(); ctx.translate(W / 2, H / 2); ctx.scale(z, z); PA.wallMap(ctx, 0, -20, 1040, { dark: clamp((t - tn) / .4) * .8 }); PA.stampMark(ctx, 180, -300, 480, 'NOT ONE CHIP', -.08, t - tn); ctx.restore(); }
+    if (!solo) { const z = Math.min(cam.z, 1.22); ctx.save(); ctx.translate(W / 2, H / 2); ctx.scale(z, z); PA.wallMap(ctx, 0, -20, 1040, { dark: clamp((t - tn) / .4) * .8 }); PA.stampMark(ctx, 180, -300, 480, 'NOT ONE CHIP', -.08, t - tn); ctx.restore(); }
     ctx.restore(); },
   '4|According to the Financial Times': x => { const { ctx, t, cam, solo } = x, ta = W_(x, 'Alibaba', 4.78), v = { cx: 330, cy: 600, k: 1.4 };   // ВСТАВКА монитор: список клиентов MEGASPEED; на «Alibaba» первая строка подсвечивается
     ctx.save(); shake(ctx, cam); MS.room(ctx, v, 'O', 8, solo);
-    if (!solo) { const z = cam.z; ctx.save(); ctx.translate(W / 2, H / 2); ctx.scale(z, z); ctx.translate(-W / 2, -H / 2); PA.monitor(ctx, 960, 480, 1080, (c, w, h) => PA.clientList(c, w, h, clamp((t - ta) / .2))); ctx.restore(); }
+    if (!solo) { const z = cam.z; ctx.save(); zoomAt(ctx, z, [960, 285], [960, 370]); PA.monitor(ctx, 960, 480, 1080, (c, w, h) => PA.clientList(c, w, h, clamp((t - ta) / .2))); ctx.restore(); }
     ctx.restore(); },
   // ---------- аренда: покупатель на видеосвязи и представитель ----------
-  '4|RENTER: Can we buy your chips': x => { const { ctx, t, T, cam, solo } = x, tc = W_(x, 'chips', .9);   // КРУПНО покупатель на мониторе: подносит к веб-камере чемодан денег
+  '4|RENTER: Can we buy your chips': x => { const { ctx, t, T, cam, solo } = x, tc = W_(x, 'chips', .9), tbuy = W_(x, 'buy', .5);   // КРУПНО покупатель на мониторе: подносит к веб-камере чемодан денег; на «buy» на чемодане бирка CASH
     if (solo) { ctx.fillStyle = '#000'; return; }
-    ctx.save(); shake(ctx, cam); callMonitor(ctx, { cx: 960, cy: 540, k: 1 }, t, T, cam, { case: E.outBack(clamp((t - (tc - .45)) / .45)) }); ctx.restore(); },
-  '4|REP: No. You can borrow them': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 760, cy: 600, k: 1.7 }, cam, .15), tb = W_(x, 'borrow', 1.08), tn = W_(x, 'No', 0);   // ОБРАТНАЯ представитель: на «No» качает головой; на «borrow» поднимает к камере ценник RENT · PER HOUR
+    ctx.save(); shake(ctx, cam); callMonitor(ctx, { cx: 960, cy: 540, k: 1 }, t, T, cam, { case: E.outBack(clamp((t - (tc - .45)) / .45)), tag: Math.max(0, (t - Math.max(tbuy, tc)) / .15) }); ctx.restore(); },
+  '4|REP: No. You can borrow them': x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 760, cy: 600, k: 1.7 }, cam), tb = W_(x, 'borrow', 1.08), tn = W_(x, 'No', 0);   // ОБРАТНАЯ представитель: на «No» качает головой; на «borrow» поднимает к камере ценник RENT · PER HOUR
     const shakeK = clamp((t - tn) / .1) * clamp((tn + .6 - t) / .15), up = E.inOutCubic(clamp((t - (tb - .35)) / .45)), tagHand = u => { const g = MS.deskGeo([760, 820], .55); return [760 + lerp(40, 110, u) * .55, lerp(g.yb + 30 * .55, g.yf - 4 * .55, u)]; };
     ctx.save(); shake(ctx, cam);
     MS.deskShot(ctx, v, t, T, { C: RP, bg: 'R', seat: [760, 820], fs: .55, sp: 'REP', keys: [[0, 'smug']], look: [.35 * Math.sin(t * 16) * shakeK, .05], solo,
@@ -177,8 +181,9 @@ export const SHOTS = {
     ctx.restore(); },
   '4|RENTER: For how long': x => { const { ctx, t, T, cam, solo } = x, tl = W_(x, 'long', .32);   // ВСТАВКА монитор видеозвонка: покупатель наклоняется к веб-камере
     if (solo) return;
-    ctx.save(); shake(ctx, cam); callMonitor(ctx, { cx: 960, cy: 540, k: 1 }, t, T, { ...cam, z: cam.z * 1.12 }, { lean: E.inOutCubic(clamp((t - .05) / Math.max(.3, tl + .2))) }); ctx.restore(); },
-  '4|REP: By the hour. Or the year.': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 700, cy: 600, k: 1.7 }, cam, .15), th = W_(x, 'hour', .3), ty = W_(x, 'year', 1.66);   // ОБРАТНАЯ представитель: щёлкает таймером; на «year» табло 1 HR → 1 YR, за стеклом загораются ряды серверов
+    ctx.save(); shake(ctx, cam); callMonitor(ctx, { cx: 960, cy: 540, k: 1 }, t, T, { ...cam, z: cam.z * 1.12 }, { lean: E.inOutCubic(clamp((t - .05) / Math.max(.3, tl + .2))) });
+    plaqueA(ctx, 'HOW LONG?', 330, 170, t - tl, 'chalk'); ctx.restore(); },   // маркером над окном звонка — слева над полкой, не на лбу (место подписи ядра занято лицом)
+  '4|REP: By the hour. Or the year.': x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 700, cy: 600, k: 1.7 }, cam), th = W_(x, 'hour', .3), ty = W_(x, 'year', 1.66);   // ОБРАТНАЯ представитель: щёлкает таймером; на «year» табло 1 HR → 1 YR, за стеклом загораются ряды серверов
     const taps = [th, ty], last = taps.filter(q => t >= q - .05).pop(), press = Math.max(...taps.map(q => gauss(t, q, .07)));
     const seat = [760, 820], fs = .55, g = MS.deskGeo(seat, fs), tp = g.on(110, .42);
     ctx.save(); shake(ctx, cam);
@@ -189,7 +194,7 @@ export const SHOTS = {
     ctx.restore(); },
   // ---------- Алиса уходит с поста ----------
   '4|After eight months': x => { const { ctx, t, T, cam, solo } = x, ts = W_(x, 'stepped', 1.8), tb = W0(x, 'but') ?? 4.16, tr = W_(x, 'role', 5.88);   // ВСТАВКА табличка директора на двери: на «stepped» её откручивают — остаются две дырки; к «role» — Алиса в своём кресле, спиной, не двигается
-    const pan = E.inOutCubic(clamp((t - tb) / .9)), v = camView(lerpView({ cx: 664, cy: 420, k: 3.0 }, { cx: 1270, cy: 620, k: 2.1 }, pan), cam, .1);
+    const pan = E.inOutCubic(clamp((t - tb) / .9)), v = camA(lerpView({ cx: 664, cy: 420, k: 3.0 }, { cx: 1270, cy: 620, k: 2.1 }, pan), cam);
     ctx.save(); shake(ctx, cam); MS.room(ctx, v, 'R', 0, solo);
     if (!solo) { const [px, py, w] = MS.CFG.door.plaque, u = clamp((t - ts) / .5);
       PA.screwHoles(ctx, ...toS(v, [px, py]), w * 1.55 * v.k);
@@ -198,7 +203,7 @@ export const SHOTS = {
     if (pan > .02) MS.inChairR(ctx, AL, v, t, T, { solo });
     void tr; ctx.restore(); },
   '4|CLERK: New title for Alice': x => { const { ctx, t, T, cam, solo, s, d } = x, tw = s.whip?.t ?? 1.68, tt = W_(x, 'title', .2), to = W_(x, 'office', 1.96);   // КРУПНО клерк с пустой табличкой → вип-пан → сотрудник кивает на то же кресло (Алиса в нём)
-    const wu = whipU(t, tw), v = camView(lerpView({ cx: 520, cy: 560, k: 2.0 }, { cx: 1080, cy: 590, k: 1.85 }, wu), { ...cam, dx: 0 }, .1);
+    const wu = whipU(t, tw), v = camA(lerpView({ cx: 520, cy: 560, k: 2.0 }, { cx: 1080, cy: 590, k: 1.85 }, wu), { ...cam, dx: 0 });
     const up = E.outBack(clamp((t - (tt - .25)) / .35)), nod = gauss(t, to + .15, .14) + .6 * gauss(t, to + .45, .12);
     ctx.save(); shake(ctx, cam); MS.room(ctx, v, 'R', 0, solo); if (!solo) sign(ctx, v, 'MEGASPEED', 1);
     MS.inChairR(ctx, AL, v, t, T, { solo });
@@ -209,7 +214,7 @@ export const SHOTS = {
       R: { k: .3 + .7 * clamp((t - to + .3) / .3), to: [1150, 700] } });
   },
   '4|Not the kind whose people': x => { const { ctx, t, T, cam, solo } = x, tp = W_(x, 'photos', 1.6), tb = W_(x, 'boss', 2.58);   // СРЕДНИЙ Алиса за столом: на столе пустая фоторамка; на «boss» рамка поворачивается к камере — пустая
-    const seat = [840, 830], fs = .55, g = MS.deskGeo(seat, fs), fp = g.on(260, .55), push = E.inOutCubic(clamp(t / 3.2)), v = camView(lerpView({ cx: 840, cy: 640, k: 1.6 }, { cx: lerp(840, fp[0], .55), cy: lerp(640, fp[1], .5), k: 2.0 }, push), cam, .1);
+    const seat = [840, 830], fs = .55, g = MS.deskGeo(seat, fs), fp = g.on(260, .55), push = E.inOutCubic(clamp(t / 3.2)), v = camA(lerpView({ cx: 840, cy: 640, k: 1.6 }, { cx: lerp(840, fp[0], .55), cy: lerp(640, fp[1], .5), k: 2.0 }, push), cam);
     ctx.save(); shake(ctx, cam);
     MS.deskShot(ctx, v, t, T, { C: AL, bg: 'R', seat, fs, keys: [[0, 'smug']], look: [lerp(.1, .55, clamp((t - tp) / .4)), .3], solo,
       deskTop: (c, vv) => { const P = toS(vv, fp); PA.photoFrame(c, P[0], P[1], 120 * vv.k * fs * 1.6, E.inOutCubic(clamp((t - (tb - .25)) / .45))); } });
@@ -244,9 +249,9 @@ export const OVER = {
   },
 };
 export const SKIP_PROPS = {
-  '4|a small Singapore company called 7Road': /7ROAD/, '4|got a new name: Megaspeed': /MEGASPEED|7ROAD/, '4|Its new managing director': /MANAGING/,
-  '4|CLERK: Previous business': /PREVIOUS/, '4|CLERK: New business': /NEW BUSINESS/, "4|That's the perfect business": /CLOUD/, '4|and nobody asks why': /RECEIVED/,
-  '4|Not one chip had to enter China': /NOT ONE CHIP/, '4|According to the Financial Times': /ALIBABA|MEGASPEED/, '4|REP: No. You can borrow them': /RENT/, '4|REP: By the hour. Or the year.': /1 HR|1 YR/,
+  '4|a small Singapore company called 7Road': /7ROAD|MARCH/, '4|got a new name: Megaspeed': /MEGASPEED|7ROAD/, '4|Its new managing director': /MANAGING/,
+  '4|CLERK: Previous business': /PREVIOUS/, '4|CLERK: New business': /NEW BUSINESS/, '4|CLERK: Big change': /APPROVED/, "4|That's the perfect business": /CLOUD/, '4|and nobody asks why': /RECEIVED/,
+  '4|Not one chip had to enter China': /NOT ONE CHIP/, '4|According to the Financial Times': /ALIBABA|MEGASPEED/, '4|REP: No. You can borrow them': /RENT/, '4|RENTER: Can we buy your chips': /CASH/, '4|RENTER: For how long': /HOW LONG/, '4|REP: By the hour. Or the year.': /1 HR|1 YR/,
   '4|After eight months': /MANAGING/,
 };
 export const RAIN = s => (/L09|L10|L12/.test(s.loc) ? false : undefined);   // в офисе, баре и на таможне дождя поверх кадра нет (дождь нарисован за стеклом)

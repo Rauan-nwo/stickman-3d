@@ -5,6 +5,7 @@ import { clamp, lerp, E, gesture, ell } from 'engine';
 import { W, H, camView, toS, lerpView, cover, soft } from '../staging/common.js';
 import * as PR from '../props.js';
 import { inOutExpo, gauss, env, W_, W0, shake, whipPlates, focusBox, freezeFrame, candle, V, WHIP_DUR, wordAt, lineSpan } from './common.js';
+import { camA } from '../staging/camA.js';
 import * as MS from '../staging/megaspeed.js';
 import * as BR from '../staging/bar.js';
 import * as PA from '../props_A.js';
@@ -50,12 +51,12 @@ const chipSticker = (c, x, y, w) => { c.save(); c.translate(x, y); c.fillStyle =
 const flashW = (ctx, u) => { if (u <= 0 || u > 1) return; ctx.save(); ctx.fillStyle = `rgba(255,255,255,${(1 - u) * .95})`; ctx.fillRect(0, 0, W, H); ctx.restore(); };
 
 export const SHOTS = {
-  '5|That same month, at a party': x => { const { ctx, t, T, cam, solo } = x, v = camView(BR.views.wide, cam, .3), tp = W_(x, 'party', 1.32);   // ОБЩИЙ бар: Дженсен с виски среди гостей; на «party» поднимает бокал
+  '5|That same month, at a party': x => { const { ctx, t, T, cam, solo } = x, v = camA(BR.views.wide, cam), tp = W_(x, 'party', 1.32);   // ОБЩИЙ бар: Дженсен с виски среди гостей; на «party» поднимает бокал
     ctx.save(); shake(ctx, cam); barScene(ctx, v, t, T, { pose: 'party', raise: .2, jRaise: E.outBack(clamp((t - (tp - .3)) / .35)), alice: false, solo }); ctx.restore(); },
   '5|a camera flashed': x => { const { ctx, t, T, cam, solo } = x, tf = W_(x, 'flashed', .44), ts = W_(x, 'standing', 2.17);   // ВСТАВКА фото в рамке: вспышка -> отпечаток в такой же рамке, что пустая на столе Алисы; наезд на Алису рядом с Дженсеном
-    if (t < tf + .06) { const v = camView(BR.views.group, cam, .2); barScene(ctx, v, t, T, { pose: 'photo', solo }); flashW(ctx, (t - tf) / .3); return; }
+    if (t < tf + .06) { const v = camA(BR.views.group, cam); barScene(ctx, v, t, T, { pose: 'photo', solo }); flashW(ctx, (t - tf) / .3); return; }
     if (solo) return;
-    const push = E.inOutCubic(clamp((t - (ts - .4)) / 1.2)), z = cam.z;
+    const push = E.inOutCubic(clamp((t - (ts - .4)) / 1.2)), z = Math.min(cam.z, 1.12);   // наезд в отпечаток уже ×1.9 — полный наезд ядра срезал головы
     BR.bar(ctx, { cx: 960, cy: 540, k: 1.4 }, 10);
     ctx.save(); ctx.translate(W / 2, H / 2); ctx.scale(z * lerp(1, 1.9, push), z * lerp(1, 1.9, push)); ctx.translate(lerp(0, -150, push), lerp(0, 40, push));
     PA.photoFrame(ctx, 0, 330, 640, 1, (c, w, h) => { c.save(); c.translate(w / 2, h / 2); c.scale(h / 1080 * 1.05, h / 1080 * 1.05); c.drawImage(partyPhoto(T), -960 - 120, -540); c.restore(); });
@@ -63,7 +64,7 @@ export const SHOTS = {
     ctx.save(); ctx.fillStyle = '#F2E8CC'; ctx.globalAlpha = clamp((t - tf - .4) / .3) * (1 - push); PA.label(ctx, 'COMPUTEX PARTY · JUNE 2024', W / 2, H - 70, 40, '#F2E8CC'); ctx.restore();
     flashW(ctx, (t - tf) / .3); },
   '5|PHOTOGRAPHER: Everyone, squeeze in': x => { const { ctx, t, T, cam, solo, s } = x, tw = s.whip?.t ?? 1.5, tf = W_(x, 'front', 2.36);   // КРУПНО фотограф машет «сдвиньтесь» -> вип-пан -> Дженсен подталкивает гостей; на «front» Алиса выходит вперёд
-    const wu = whipU(t, tw), v = camView(lerpView({ cx: 600, cy: 560, k: 1.9 }, { cx: 1000, cy: 560, k: 1.85 }, wu), { ...cam, dx: 0 }, .1);
+    const wu = whipU(t, tw), v = camA(lerpView({ cx: 600, cy: 560, k: 1.9 }, { cx: 1000, cy: 560, k: 1.85 }, wu), { ...cam, dx: 0 });
     const fwd = E.inOutCubic(clamp((t - (tf - .25)) / .3)), wave = clamp(t / .2) * (1 - clamp((t - tw) / .3));
     ctx.save(); shake(ctx, cam);
     barScene(ctx, v, t, T, { pose: 'party', raise: .2, aliceFwd: fwd, jsp: 'JENSEN', jKeys: 'talk', jRaise: .3, jWave: env(t, tw + .1, x.d + 1, .3) * (1 - fwd * .5), solo });
@@ -71,7 +72,7 @@ export const SHOTS = {
       L: { k: .5 + .5 * wave, to: [430 + 30 * Math.sin(t * 14) * wave, 640] }, R: { k: 1, to: [610, 760] }, held: { R: (c, h, sc) => PA.camera(c, h[0] + 30 * sc, h[1] - 10 * sc, sc * 1.1, 0) } });
     BR.stools(ctx, v, solo);
     ctx.restore(); },
-  '5|PHOTOGRAPHER: Say "GPU"': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 990, cy: 520, k: 2.0 }, cam, .1);   // POV видоискатель фотографа: Дженсен и Алиса рядом в рамке
+  '5|PHOTOGRAPHER: Say "GPU"': x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 990, cy: 520, k: 2.0 }, cam);   // POV видоискатель фотографа: Дженсен и Алиса рядом в рамке
     barScene(ctx, v, t, T, { pose: 'photo', solo });
     if (!solo) { const a = toS(v, [900, 500]), b = toS(v, [1075, 500]); focusBox(ctx, (a[0] + b[0]) / 2, a[1] - 40, 520, 560, t > (x.s.snap ?? .25) ? 1 : 0); x.API.viewfinder(ctx, t); } },
   '5|CROWD: GPU! GPU!': x => { const { ctx, t, T, solo } = x, tf = W_(x, 'GPU', 0) + .05 + 1.27;   // ОБЩИЙ (статично): все кричат «GPU!»; вспышка — и ровно тот же стоп-кадр, что на отпечатке
@@ -103,12 +104,12 @@ export const SHOTS = {
       ctx.restore(); }
     ctx.restore(); },
   // ---------- L11 зал (staging/eventhall.js) ----------
-  '5|Jensen Huang is not hard to meet': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 960, cy: 585, k: 1.75 }, cam, .25), th = W_(x, 'hard', 1.18);   // СРЕДНИЙ Дженсен у ступеней сцены машет «заходите» (в плейте нет дверей — проход зала)
+  '5|Jensen Huang is not hard to meet': x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 960, cy: 585, k: 1.75 }, cam), th = W_(x, 'hard', 1.18);   // СРЕДНИЙ Дженсен у ступеней сцены машет «заходите» (в плейте нет дверей — проход зала)
     const wave = clamp(t / .3), beck = Math.sin(t * 9) * .5 + .5;
     ctx.save(); shake(ctx, cam); EH.plate(ctx, v, 'wide', 0, solo);
     EH.standing(ctx, JH, v, t, T, { at: [960, 835], f: 1, view: null, keys: [[0, 'smile'], [th - .1, 'laugh']], look: [0, .05], solo, R: { k: wave, to: [1010 + 20 * beck, 690 - 30 * beck] } });
     ctx.restore(); },
-  '5|He shakes every hand': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 960, cy: 610, k: 1.3 }, cam, .25), th = W_(x, 'hand', .56), ts = W_(x, 'selfie', 2.24), tc = W_(x, 'customers', 3.64);   // ОБЩИЙ зал: очередь к Дженсену; на «hand» рукопожатие; на «selfie» вспышка телефона; на «customers» рукопожатие двумя руками, бейдж CUSTOMER
+  '5|He shakes every hand': x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 960, cy: 610, k: 1.3 }, cam), th = W_(x, 'hand', .56), ts = W_(x, 'selfie', 2.24), tc = W_(x, 'customers', 3.64);   // ОБЩИЙ зал: очередь к Дженсену; на «hand» рукопожатие; на «selfie» вспышка телефона; на «customers» рукопожатие двумя руками, бейдж CUSTOMER
     const shk = env(t, th - .25, ts - .5, .25, .3), sel = env(t, ts - .4, tc - .45, .3, .3), two = env(t, tc - .3, x.d + 1, .3), bob = Math.sin(t * 22) * 6;
     ctx.save(); shake(ctx, cam); EH.plate(ctx, v, 'wide', 0, solo);
     EH.standing(ctx, Q[1], v, t, T, { at: [1150, 846], view: 'back', f: 1, solo, seed: 2, R: { k: sel, to: [1185, 650] }, held: sel > .3 ? { R: (c, h, s) => PA.phone(c, h[0], h[1] - 30 * s, s * 1.4, 0, null, gauss(t, ts + .05, .06)) } : null });
@@ -118,7 +119,7 @@ export const SHOTS = {
     const P = EH.standing(ctx, Q[2], v, t, T, { at: [680, 836], f: 1, keys: [[0, 'smile']], look: [.6, 0], solo, seed: 3, R: { k: two, to: [800, 722 + bob * two] } });
     if (!solo) { BR.chestBadge(ctx, P, v, 'NVIDIA EVENT', 'CUSTOMER', 1.3); EH.crowd(ctx, v, t, { n: 6, phones: 1, flashes: [ts + .05], seed: 1, y: H * .9 }); }
     ctx.restore(); },
-  '5|FAN: Can I get a selfie': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 960, cy: 545, k: 2.2 }, cam, .1), ts = W_(x, 'selfie', .44);   // КРУПНО фанат поднимает телефон
+  '5|FAN: Can I get a selfie': x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 960, cy: 545, k: 2.2 }, cam), ts = W_(x, 'selfie', .44);   // КРУПНО фанат поднимает телефон
     const up = E.outBack(clamp((t - (ts - .35)) / .35));
     ctx.save(); shake(ctx, cam); EH.plate(ctx, v, 'wide', 4, solo);
     EH.standing(ctx, FN, v, t, T, { at: [960, 1000], f: 1, view: null, sp: 'FAN', keys: [[0, 'smile']], look: [.2, -.1], solo, R: { k: .3 + .7 * up, to: [1110, 560] }, held: { R: (c, h, s) => PA.phone(c, h[0], h[1] - 40 * s, s * 1.8, -.1) } });
@@ -138,7 +139,7 @@ export const SHOTS = {
     if (!solo) { const hl = toS(v, hlP), hr = toS(v, hrP), s = EH.fsAt(1000) * v.k;
       PA.laptop(ctx, (hl[0] + hr[0]) / 2, (hl[1] + hr[1]) / 2 - 40 * s, s * 2.6 * (.85 + .15 * out), 0); PA.marker(ctx, hr[0] + 20 * s, hr[1] - 60 * s, s * 1.6, .5);
       for (const h of [hl, hr]) ell(ctx, h[0], h[1], 12 * s, 12 * s, F2.spec.colors.ink, null); } },
-  '5|JENSEN: Only if it has our chip': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 590, cy: 535, k: 4.2 }, cam, .1), tc = W_(x, 'chip', 1.08);   // ВСТАВКА ноутбук на трибуне: Дженсен расписывается маркером на крышке
+  '5|JENSEN: Only if it has our chip': x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 590, cy: 535, k: 4.2 }, cam, 220, { t: 410 }), tc = W_(x, 'chip', 1.08);   // ВСТАВКА ноутбук на трибуне: Дженсен расписывается маркером на крышке
     const sign = clamp((t - .25) / Math.max(.4, tc - .15)), hx = lerp(570, 615, sign) + Math.sin(sign * 40) * 3, hy = 551 + Math.sin(sign * 28) * 2;
     ctx.save(); shake(ctx, cam); EH.plate(ctx, v, 'wide', 0, solo);
     const P = EH.podium(ctx, JH, v, t, T, { at: [538, 682], f: 1, view: null, sp: 'JENSEN', keys: [[0, 'smile']], look: [.1, .6], solo, R: { k: 1, to: [hx, hy] }, L: { k: 1, to: [560, 556] } });
@@ -146,7 +147,7 @@ export const SHOTS = {
     drawP(ctx, P, v, 'front'); if (!solo) { const h = toS(v, [hx, hy]), s = .29 * v.k; PA.marker(ctx, h[0], h[1] - 6 * s, s * 1.3, .5); ell(ctx, h[0], h[1], 12 * s, 12 * s, JH.spec.colors.ink, null); }
     ctx.restore(); },
   '5|In early 2024, she turned up': x => { const { ctx, t, T, cam, solo } = x, tm = W_(x, 'Megaspeed', 5.1);   // ОБРАТНАЯ зал: Алиса с бейджем в первом ряду; на «Megaspeed» бейдж крупно, по сцене проходит Дженсен в кожанке
-    const push = E.inOutCubic(clamp((t - (tm - .6)) / .6)), v = camView(lerpView({ cx: 900, cy: 660, k: 1.25 }, { cx: 701, cy: 720, k: 3.2 }, push), cam, .15);
+    const push = E.inOutCubic(clamp((t - (tm - .6)) / .6)), v = camA(lerpView({ cx: 900, cy: 660, k: 1.25 }, { cx: 701, cy: 720, k: 3.2 }, push), cam, 220, { t: 572, b: 782, mt: 290 });   // макушка Алисы ниже плашки EARLY 2024 · CALIFORNIA, бейдж в кадре
     ctx.save(); shake(ctx, cam); EH.plate(ctx, v, 'rev', 0, solo);
     EH.seatedRev(ctx, Q[0], v, t, T, { seat: [367, 846], keys: [[0, 'smile']], look: [0, -.1], seed: 1, solo });
     EH.seatedRev(ctx, Q[2], v, t, T, { seat: [533, 846], keys: [[0, 'smile']], look: [0, -.1], seed: 3, solo });
@@ -155,7 +156,7 @@ export const SHOTS = {
     if (!solo) { BR.chestBadge(ctx, r.P, v, 'NVIDIA EVENT', 'MEGASPEED', 1.15);
       const u = (t - (tm - .9)) / 1.6; if (u > 0 && u < 1) soft(ctx, 14, c => { EH.standing(c, JH, { cx: 960, cy: 540, k: 1 }, t, T, { at: [lerp(2400, -500, u), 2050], which: 'rev', f: -1, view: 'threeQuarter', keys: [[0, 'smile']], shadow: false }); }, 1, .35); }
     ctx.restore(); },
-  '5|the giant computer show': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 960, cy: 545, k: 1.5 }, cam, .25), tj = W_(x, 'Jensen', 1.4);   // ОБЩИЙ из зала (вместо обратной): Дженсен на сцене, на экране COMPUTEX 2024; на переднем плане поднятые телефоны и вспышки
+  '5|the giant computer show': x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 960, cy: 545, k: 1.5 }, cam), tj = W_(x, 'Jensen', 1.4);   // ОБЩИЙ из зала (вместо обратной): Дженсен на сцене, на экране COMPUTEX 2024; на переднем плане поднятые телефоны и вспышки
     const up = E.outBack(clamp((t - (tj - .2)) / .35));
     ctx.save(); shake(ctx, cam); EH.plate(ctx, v, 'wide', 0, solo);
     if (!solo) EH.screen(ctx, v, ['COMPUTEX 2024', 'TAIPEI'], clamp(t / .3));
@@ -163,7 +164,7 @@ export const SHOTS = {
     if (!solo) EH.crowd(ctx, v, t, { n: 7, phones: 1, flashes: [.3, tj, 2.6], seed: 2, y: H * .88 });
     ctx.restore(); },
   // ---------- бухгалтерия Megaspeed ----------
-  '5|ACCOUNTANT: Another order from Malaysia': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 900, cy: 600, k: 1.7 }, cam, .15), tm = W_(x, 'Malaysia', 1.0);   // КРУПНО бухгалтер 1: отрывает лист заказа и показывает — PURCHASE ORDER · FROM: MEGASPEED (MALAYSIA) · SERVERS
+  '5|ACCOUNTANT: Another order from Malaysia': x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 900, cy: 600, k: 1.7 }, cam), tm = W_(x, 'Malaysia', 1.0);   // КРУПНО бухгалтер 1: отрывает лист заказа и показывает — PURCHASE ORDER · FROM: MEGASPEED (MALAYSIA) · SERVERS
     const up = E.outBack(clamp((t - (tm - .6)) / .4)), seat = [900, 830], fs = .55, g = MS.deskGeo(seat, fs);
     ctx.save(); shake(ctx, cam);
     MS.deskShot(ctx, v, t, T, { C: AC, bg: 'O', seat, fs, sp: 'ACCOUNTANT', keys: [[0, 'neutral']], look: [lerp(-.4, .1, up), lerp(.5, .1, up)], light: [-1, -.3], solo,
@@ -171,7 +172,7 @@ export const SHOTS = {
       deskTop: (c, vv) => { const P = toS(vv, g.on(-300, .3)); PA.printer(c, P[0], P[1], 260 * fs * vv.k, .3, t); },
       over: (c, vv) => { if (up < .05) return; const a = toS(vv, [seat[0] + 250 * fs * up, g.yb - 120 * fs * up + 20 * fs]); PA.sheet(c, a[0], a[1], 300 * fs * vv.k * (.7 + .3 * up), .06, ['PURCHASE ORDER', 'FROM: MEGASPEED', '(MALAYSIA)', 'SERVERS'], { h: 330 * fs * vv.k }); } });
     ctx.restore(); },
-  "5|ACCOUNTANT 2: Didn't they order": x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 960, cy: 620, k: 1.7 }, cam, .25), seat = [960, 840], fs = .55, g = MS.deskGeo(seat, fs);   // ОБРАТНАЯ бухгалтер 2: завалена бумагой, поднимает голову
+  "5|ACCOUNTANT 2: Didn't they order": x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 960, cy: 620, k: 1.7 }, cam), seat = [960, 840], fs = .55, g = MS.deskGeo(seat, fs);   // ОБРАТНАЯ бухгалтер 2: завалена бумагой, поднимает голову
     const lift = E.outCubic(clamp((t - .05) / .35));
     ctx.save(); shake(ctx, cam);
     MS.deskShot(ctx, v, t, T, { C: A2, bg: 'R', seat, fs, sp: 'ACCOUNTANT 2', keys: [[0, 'neutral']], look: [.1, lerp(.9, .1, lift)], tilt: lerp(.12, 0, lift), lean: lerp(.08, 0, lift), solo,
@@ -187,7 +188,7 @@ export const SHOTS = {
     ctx.restore(); },
   // ---------- банкиры у стекла серверной ----------
   '5|BANKER: Last year, a small firm': x => { const { ctx, t, T, cam, solo, s } = x, tw = s.whip?.t ?? 2.0, wu = whipU(t, tw);   // СРЕДНИЙ банкиры у стекла -> вип-пан -> банкир 2 поворачивает голову
-    const v = camView(lerpView({ cx: 1150, cy: 560, k: 1.75 }, { cx: 1420, cy: 560, k: 1.85 }, wu), { ...cam, dx: 0 }, .1), turn = E.inOutCubic(clamp((t - tw) / .3));
+    const v = camA(lerpView({ cx: 1150, cy: 560, k: 1.75 }, { cx: 1420, cy: 560, k: 1.85 }, wu), { ...cam, dx: 0 }), turn = E.inOutCubic(clamp((t - tw) / .3));
     ctx.save(); shake(ctx, cam); MS.room(ctx, v, 'O', 0, solo);
     if (!solo) { glassBoxes(ctx, v, 1, t); glassOver(ctx, v, MS.A()); }
     MS.stand(ctx, BK, v, t, T, { at: [1130, 1020], f: 1, light: [1, -.2], sp: 'BANKER', keys: [[0, 'neutral']], look: [.7, -.15], solo, seed: 1 });
@@ -196,18 +197,18 @@ export const SHOTS = {
   '5|BANKER: Ninety times bigger': x => { const { ctx, t, cam, solo } = x, tb = W_(x, 'bigger', .7);   // ВСТАВКА планшет банкира: столбики 2023 и 2024, подпись ×90
     if (solo) return; const z = cam.z; MS.room(ctx, { cx: 1450, cy: 560, k: 1.5 }, 'O', 8);
     ctx.save(); ctx.translate(W / 2, H / 2); ctx.scale(z, z); PA.tabletChart(ctx, 0, 20, 1180, E.outBack(clamp((t - .1) / Math.max(.3, tb - .1)))); ctx.restore(); },
-  '5|BANKER 2: Did they sell a hit game': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 1430, cy: 500, k: 2.2 }, cam, .1), td = (x.s.snap ?? .86);   // КРУПНО банкир 2: роняет ручку
+  '5|BANKER 2: Did they sell a hit game': x => { const { ctx, t, T, cam, solo } = x, v = camA({ cx: 1430, cy: 500, k: 2.2 }, cam, 220, { b: 700, mb: 60 }), td = (x.s.snap ?? .86);   // кисть с ручкой в кадре: падение ручки видно   // КРУПНО банкир 2: роняет ручку
     const fall = clamp((t - td) / .45);
     ctx.save(); shake(ctx, cam); MS.room(ctx, v, 'O', 4, solo);
     const P = MS.stand(ctx, B2, v, t, T, { at: [1440, 1050], f: -1, light: [1, -.2], sp: 'BANKER 2', keys: [[0, 'neutral'], [td, 'shock']], look: [-.2, 0], solo,
-      R: { k: 1, to: [1470, 735] }, held: fall <= 0 ? { R: (c, h, s) => PA.penTool(c, h[0], h[1] - 4 * s, s * 1.2, -1.2) } : null });
-    if (fall > 0 && !solo) { const h = toS(v, [1470, 735]), s = MS.fsAt(1050) * v.k; PA.penTool(ctx, h[0] + 30 * s * fall, h[1] + 900 * fall * fall * s, s * 1.2, -1.2 + fall * 5); }
+      R: { k: 1, to: [1500, 640] }, held: fall <= 0 ? { R: (c, h, s) => PA.penTool(c, h[0], h[1] - 4 * s, s * 1.2, -1.2) } : null });
+    if (fall > 0 && !solo) { const h = toS(v, [1500, 640]), s = MS.fsAt(1050) * v.k; PA.penTool(ctx, h[0] + 30 * s * fall, h[1] + 900 * fall * fall * s, s * 1.2, -1.2 + fall * 5); }
     void P; ctx.restore(); },
-  '5|pledging the whole business as collateral': x => { const { ctx, t, cam, solo } = x, tc = W_(x, 'collateral', 1.24), v = camView({ cx: 667, cy: 270, k: 2.4 }, cam, .1);   // ВСТАВКА вывеска MEGASPEED над дверью: на «collateral» штамп COLLATERAL: ENTIRE BUSINESS, толчок
+  '5|pledging the whole business as collateral': x => { const { ctx, t, cam, solo } = x, tc = W_(x, 'collateral', 1.24), v = camA({ cx: 667, cy: 270, k: 2.4 }, cam);   // ВСТАВКА вывеска MEGASPEED над дверью: на «collateral» штамп COLLATERAL: ENTIRE BUSINESS, толчок
     ctx.save(); shake(ctx, cam); MS.room(ctx, v, 'R', 0, solo);
     if (!solo) { sign(ctx, v, 'MEGASPEED', 1); const P = toS(v, [690, 330]); PA.stampMark(ctx, P[0], P[1], 320 * v.k, ['COLLATERAL:', 'ENTIRE BUSINESS'], -.1, t - tc); }
     ctx.restore(); },
-  '5|So where was all that hardware': x => { const { ctx, t, cam, solo } = x, tf = W_(x, 'from', 1.5), v = camView({ cx: 1700, cy: 560, k: 1.6 }, cam, .1);   // ВСТАВКА ящик в серверной с биркой FROM: ________; на «from» бирка качается
+  '5|So where was all that hardware': x => { const { ctx, t, cam, solo } = x, tf = W_(x, 'from', 1.5), v = camA({ cx: 1700, cy: 560, k: 1.6 }, cam);   // ВСТАВКА ящик в серверной с биркой FROM: ________; на «from» бирка качается
     ctx.save(); shake(ctx, cam); MS.room(ctx, v, 'O', 8, solo);
     if (!solo) { const z = cam.z; ctx.save(); ctx.translate(W / 2, H / 2 + 60); ctx.scale(z, z); PA.carton(ctx, 0, 420, 900, 640, { side: .18 }); const sw = Math.sin((t - tf) * 9) * Math.exp(-(t - tf) * 2.5) * .45 * (t > tf ? 1 : 0) + .04 * Math.sin(t * 2);
       PA.hangTag(ctx, -120, -240, 360, sw, 'FROM: ______'); ctx.restore(); }

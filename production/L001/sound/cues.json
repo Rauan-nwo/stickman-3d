@@ -1,7 +1,7 @@
 {
  "note": "sound/cues.mjs — не править руками; правки — в cues_manual.mjs",
  "fps": 30,
- "total": 1066.774,
+ "total": 1071.274,
  "chapters": [
   {
    "ch": 0,
@@ -67,7 +67,7 @@
    "ch": 10,
    "title": "The Office",
    "start": 1056.156,
-   "end": 1066.774
+   "end": 1071.274
   }
  ],
  "marks": [
@@ -2835,6 +2835,18 @@
     345,
     346,
     347
+   ]
+  },
+  {
+   "shot": 348,
+   "ch": 10,
+   "start": 1066.774,
+   "end": 1071.274,
+   "bed": "city",
+   "gain": 0,
+   "loc": "3D-city",
+   "shots": [
+    348
    ]
   }
  ],
@@ -22072,6 +22084,55 @@
    "vt": 1066.334,
    "id": "c1173",
    "frame": 31990
+  },
+  {
+   "shot": 348,
+   "ch": 10,
+   "loc": "3D-city",
+   "gain": 0,
+   "pan": 0,
+   "align": "apex",
+   "t": 1066.8073,
+   "vt": 1066.774,
+   "snd": "whoosh.air",
+   "kind": "transition",
+   "what": "склейка #347→#348: в 3D",
+   "vis": "cut",
+   "id": "c1174",
+   "frame": 32004
+  },
+  {
+   "shot": 348,
+   "ch": 10,
+   "loc": "3D-city",
+   "gain": 0,
+   "pan": 0,
+   "align": "onset",
+   "t": 1068.664,
+   "snd": "switch.click",
+   "kind": "foley",
+   "what": "после того как лампа гаснет — склейка на ночной Сингапур: тот самый ресторан с п",
+   "vis": "slot",
+   "approx": true,
+   "vt": 1068.664,
+   "id": "c1175",
+   "frame": 32060
+  },
+  {
+   "shot": 348,
+   "ch": 10,
+   "loc": "3D-city",
+   "gain": -4,
+   "pan": 0,
+   "align": "onset",
+   "t": 1070.284,
+   "snd": "hit.event",
+   "kind": "event",
+   "what": "толчок камеры: остановка на панораме (3D city: singapore, rev=1 — влёт из г",
+   "vis": "motion",
+   "vt": 1070.284,
+   "id": "c1176",
+   "frame": 32109
   }
  ]
 }

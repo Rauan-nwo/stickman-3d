@@ -7,7 +7,7 @@ import os, subprocess, glob
 D = os.path.dirname(os.path.abspath(__file__)); S = os.path.join(os.path.dirname(D), 'scenes')
 FPS = 12
 CLIPS = {'kitchen': 'kitchen/out/kitchen.mp4', 'city_singapore': 'city/out/city_singapore.mp4', 'city_washington': 'city/out/city_washington.mp4',
-         'city_taipei': 'city/out/city_taipei.mp4', 'city_final': 'city/out/city_final.mp4', 'desk3d': 'desk3d/out/desk3d.mp4',
+         'city_taipei': 'city/out/city_taipei.mp4', 'city_final': 'city/out/city_final.mp4', 'desk3d': 'desk3d/out/desk3d.mp4', 'city_sg_out': 'city/out/city_sg_out.mp4',
          'conveyor': '../animatic/tmp/conv/conveyor_dur.mp4',   # перерендер с --set dur=<длина плана>
          'city_towers': 'city/out/city_towers.mp4', 'city_towers_5t': 'city/out/city_towers_5t.mp4', 'city_alaska': 'city/out/city_alaska.mp4', 'dc': 'dc_inspection/out/dc_inspection.mp4', 'hq': 'hq_corridor/out/hq_corridor.mp4',
          'probe': 'dialogue_probe/out/dialogue_probe.mp4'}

@@ -109,7 +109,7 @@ export function makeHall(stage, o, { flipsAt, bigAt = null, shade = [.25, -1] } 
       const hb = P(cx - w * .5, h * .7, zf), he = P(cx + w * .5, h * .7, zf); ctx.beginPath(); ctx.moveTo(hb[0], hb[1]); ctx.lineTo(he[0], he[1]); ctx.lineWidth = lw * 1.6; ctx.strokeStyle = mix([200, 170, 120], k); ctx.stroke();
       for (const kx of [-.6, -.3, .3, .6]) { const q = P(cx + w * kx, h * .9, zf); ctx.beginPath(); ctx.arc(q[0], q[1], ppm * .025, 0, Math.PI * 2); ctx.fillStyle = mix([230, 160, 70], k); ctx.fill(); }
       const fc = P(cx - .1, h, (zb + zf) / 2 - .05), r = ppm * .16;     // огонь под сковородой
-      const fl = .75 + .25 * Math.sin(t * 31 + cx * 3 + cz);
+      const fl = .9 + .1 * Math.sin(t * 2.4 + cx * 3 + cz);   // огонь «дышит» медленно (≤0.4 Гц, правило мерцания), не дрожит 5 раз в секунду
       ctx.save(); ctx.globalCompositeOperation = 'lighter'; const g = ctx.createRadialGradient(fc[0], fc[1], 0, fc[0], fc[1], r * 1.4);
       g.addColorStop(0, `rgba(255,170,70,${.55 * fl * (1 - k)})`); g.addColorStop(.5, `rgba(80,140,255,${.35 * fl * (1 - k)})`); g.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.fillStyle = g; ctx.beginPath(); ctx.ellipse(fc[0], fc[1], r * 1.4, r * .5, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();

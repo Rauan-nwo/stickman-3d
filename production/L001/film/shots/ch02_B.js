@@ -59,7 +59,7 @@ export const s54 = x => { const { ctx, t, T, cam, solo, s } = x, v = DN.view('wi
   const enter = E.outCubic(clamp(t / 1.3)), take = up(t, ti - .2, .35);
   ctx.save(); shake(ctx, cam);
   const r = DN.booth(ctx, v, t, T, { solo, aisle: {
-    R: { C: WT, keys: [[0, 'neutral']], look: [-.6, .2], L: { k: 1 - take * .3, to: [lerp(1260, 1060, take), 980] }, heldL: take < .6 ? (c, P, sc) => menu(c, [P[0] - 20 * sc, P[1] - 40 * sc], sc, -.2) : null },
+    R: { C: WT, keys: [[0, 'neutral']], look: [-.6, .2], L: { k: 1 - take, to: [lerp(1260, 1060, take), 980] }, heldL: take < .6 ? (c, P, sc) => menu(c, [P[0] - 20 * sc, P[1] - 40 * sc], sc, -.2) : null },
     L: { C: J93, at: [lerp(-260, 330, enter), 1480 + 14 * Math.abs(Math.sin(t * 7)) * (1 - enter)], keys: [[0, 'smile']], look: [.6, .1], R: { k: take, to: [980, 980] }, heldR: take >= .6 ? (c, P, sc) => menu(c, [P[0] + 20 * sc, P[1] - 40 * sc], sc, .15) : null } } });
   if (!solo) bell(ctx, [1780, 70], 1.2, .5 * Math.sin(t * 14) * Math.exp(-t * 2.5) * clamp(t / .05));
   ctx.restore(); };
@@ -112,9 +112,9 @@ export const s56 = x => { const { ctx, t, cam, solo } = x, t3 = W_(x, '3D', 2.36
   const sq = clamp((t - .2) / 1.0), cube = clamp((t - 1.3) / .7), P = toS(v, [960, 500]); napkin(ctx, P, v.k * 1.7, sq, cube, clamp((t - t3) / .2), 1);
   const pen = sq < 1 ? (() => { const n = sq * 4, i = Math.min(3, Math.floor(n)), k = n - i, pts = [[-36, -10], [26, -10], [26, 52], [-36, 52], [-36, -10]]; return [lerp(pts[i][0], pts[i + 1][0], k), lerp(pts[i][1], pts[i + 1][1], k)]; })() : [26 + 30 * cube, -10 - 30 * cube];
   const Tp = [P[0] + pen[0] * 1.7 * v.k, P[1] + pen[1] * 1.7 * v.k], Hd = [Tp[0] + 32, Tp[1] + 10];          // кончик ручки — на линии рисунка; кисть чуть выше по ручке
-  B.insertSleeve(ctx, Hd, [Hd[0] + 150, H + 140], 26, ['#5f8a74', '#3a6050', '#1c3428']);                      // рука Дженсена-1993: зелёное поло, белая манжета, снизу справа
-  ctx.save(); ctx.lineCap = 'round'; ctx.strokeStyle = '#141014'; ctx.lineWidth = 14; ctx.beginPath(); ctx.moveTo(Tp[0], Tp[1]); ctx.lineTo(Tp[0] + 96, Tp[1] + 30); ctx.stroke();   // ручка поверх руки: тёмный корпус,
-  ctx.strokeStyle = '#2b3a66'; ctx.lineWidth = 9; ctx.stroke(); ctx.strokeStyle = '#d8d4c8'; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(Tp[0], Tp[1]); ctx.lineTo(Tp[0] + 9, Tp[1] + 3); ctx.stroke();   // светлый наконечник
+  B.insertSleeve(ctx, Hd, [Hd[0] + 170, H + 140], 18, ['#5f8a74', '#3a6050', '#1c3428']);                      // рука Дженсена-1993: зелёное поло, белая манжета, снизу справа
+  ctx.save(); ctx.lineCap = 'round'; ctx.strokeStyle = '#141014'; ctx.lineWidth = 18; ctx.beginPath(); ctx.moveTo(Tp[0], Tp[1]); ctx.lineTo(Tp[0] + 150, Tp[1] + 46); ctx.stroke();   // ручка поверх руки: тёмный корпус,
+  ctx.strokeStyle = '#c9a54a'; ctx.lineWidth = 12; ctx.stroke(); ctx.strokeStyle = '#d8d4c8'; ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(Tp[0], Tp[1]); ctx.lineTo(Tp[0] + 14, Tp[1] + 4); ctx.stroke();   // светлый наконечник
   ctx.fillStyle = '#141014'; ctx.beginPath(); ctx.arc(Hd[0], Hd[1], 15, 0, Math.PI * 2); ctx.fill(); ctx.restore();                                  // кисть-точка поверх ручки
   ctx.restore(); };
 // вещь родителей сверху (рисунок в стиле: контур туши, плоские заливки): kind 0..5

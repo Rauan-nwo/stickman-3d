@@ -146,12 +146,13 @@ export function useTiming(t) { timing = t; NIGHT_1997 = (t.shots.find(x => /^Whe
 function CLIP_OF(s) {
   const f = s.framing;
   if (s.loc === '3D-kitchen') return /монитор/.test(f) ? ['kitchen', 0, 2.204] : /один повар/.test(f) ? ['kitchen', 2.204, 7.168] : ['kitchen', 7.168, 13.65];
+  if (s.loc === '3D-city' && /Марина-Бэй/.test(f)) return ['city_sg_out', 0, 4.5, 1];        // #348 финал гл. 10: влёт гл. 0 задом наперёд (city: singapore, rev=1)
   if (s.loc === '3D-city' && /\$5T/.test(f)) return ['city_towers_5t', 0, 5.8];
   if (s.loc === '3D-city' && /башен/.test(f)) return ['city_towers', 0, 2.2];
   if (s.loc === '3D-city' && /Аляск/.test(f)) return ['city_alaska', 0, 3.6];
   if (s.loc === '3D-city') return /Вашингтон/.test(f) ? ['city_washington', 0, 4.9] : /Тайбэ/.test(f) ? (s.dur < 2.5 ? ['city_taipei', 3.3 - s.dur, 3.3] : ['city_taipei', 0, 3.3])
     : /отъезд над городом/.test(f) ? ['city_final', 0, 4.4] : /Сингапур/.test(f) ? ['city_singapore', 0, 3] : null;
-  if (s.loc === '3D-phone-desk') return /папка/.test(f) ? ['desk3d', 3.6, 6] : ['desk3d', 0, 6, 1];
+  if (s.loc === '3D-phone-desk') return /папка/.test(f) ? ['desk3d', 3.767, 6.067, 1] : ['desk3d', 0, 3.767, 1];   // один дубль 6.07 с (#29 + #30): влёт, наезд, падение на папку
   if (s.loc === '3D-conveyor') return ['conveyor', 0, 99, 1];                       // сцена перерендерена с --set dur = длина плана (animatic/tmp/conv/), 1:1
   if (s.loc === '3D-hq-corridor') return ['hq', 0, 6.7];
   if (s.loc === '3D-datacenter') return /пролёт ДЦ|суперкомпьютер|ворота/.test(f) ? ['dc', 0, 6] : /пустые стойки/.test(f) ? ['dc', 6, 9.5] : /коробки в плёнке/.test(f) ? ['dc', 7.5, 9.5]

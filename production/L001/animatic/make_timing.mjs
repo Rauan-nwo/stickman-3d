@@ -113,7 +113,10 @@ for (const s of shots) {
     if (bi === 0) minPrev(s, s.wi);
     s.start = words[s.wi].s + shift; s.box = { from: BOXSEG[bi][0], to: BOXSEG[bi][1] }; continue;
   }
-  if (s.n === LAST) { s.start = voiceEnd + shift + .4; continue; }
+  // хвост без голоса после последней реплики (каскад #347, отъезд над Сингапуром #348): первый — через 0.4 с после голоса,
+  // следующие — подряд по своей длине из шотлиста
+  const ti = shots.indexOf(s), tail = shots.findIndex((x, k) => shots.slice(k).every(y => y.wi == null && /^—/.test(y.text)));
+  if (tail >= 0 && ti >= tail) { s.start = ti === tail ? voiceEnd + shift + .4 : shots[ti - 1].start + shots[ti - 1].listDur; continue; }
   if (s.n === 1) { s.start = 0; continue; }
   if (s.wi == null && /^—/.test(s.text)) {   // план без голоса (музыка): тишина длиной listDur перед следующей строкой
     const nx = shots.slice(shots.indexOf(s) + 1).find(x => x.wi != null); minPrev(s, nx.wi, true); const prevE = nx.wi > 0 ? words[nx.wi - 1].e : 0;
@@ -131,7 +134,7 @@ for (const s of shots) {
   if (/^But first,/.test(s.text)) insertBefore(s.wi, TITLE_GAP, 'название ролика', true);
   s.start = words[s.wi].s + shift;
 }
-const total = shots[shots.length - 1].start + 2.0;
+const total = shots[shots.length - 1].start + (shots[shots.length - 1].listDur || 2.0);
 shots.forEach((s, i) => { s.end = i + 1 < shots.length ? shots[i + 1].start : total; s.dur = s.end - s.start; });
 // текст, который реально звучит на плане (слова от его первого до первого слова следующего плана с текстом)
 for (let i = 0; i < shots.length; i++) {

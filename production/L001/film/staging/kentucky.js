@@ -251,9 +251,9 @@ export function cheque(ctx, x, y, w, a) { const h = w * .42; ctx.save(); ctx.tra
   ctx.strokeStyle = '#5f8a62'; ctx.lineWidth = w * .008; ctx.strokeRect(-w / 2 + w * .02, -h / 2 + w * .02, w - w * .04, h - w * .04);
   const T = (str, tx, ty, sz, al = 'left', col = '#1e2a22', wt = 700) => { ctx.font = `${wt} ${Math.round(sz)}px ${NOIR_FONT.type}`; ctx.fillStyle = col; ctx.textAlign = al; ctx.textBaseline = 'middle'; ctx.fillText(str, tx, ty); };
   T('PAY TO THE', -w * .44, -h * .2, w * .03); T('ORDER OF', -w * .44, -h * .08, w * .03);
-  T('ONEIDA BAPTIST', -w * .26, -h * .2, w * .04, 'left', '#141014'); T('INSTITUTE', -w * .26, -h * .08, w * .04, 'left', '#141014');   // получатель в две строки — не налезает на сумму
-  ctx.strokeStyle = '#1e2a22'; ctx.lineWidth = w * .003; ctx.beginPath(); ctx.moveTo(-w * .27, -h * .0); ctx.lineTo(w * .12, -h * .0); ctx.stroke();
-  ctx.strokeStyle = INK; ctx.lineWidth = w * .006; ctx.strokeRect(w * .17, -h * .24, w * .28, h * .26); T('$2,000,000', w * .31, -h * .11, w * .05, 'center', '#141014', 800);
+  T('ONEIDA BAPTIST', -w * .2, -h * .2, w * .036, 'left', '#141014'); T('INSTITUTE', -w * .2, -h * .08, w * .036, 'left', '#141014');   // получатель в две строки — не налезает на сумму
+  ctx.strokeStyle = '#1e2a22'; ctx.lineWidth = w * .003; ctx.beginPath(); ctx.moveTo(-w * .21, -h * .0); ctx.lineTo(w * .12, -h * .0); ctx.stroke();
+  ctx.strokeStyle = INK; ctx.lineWidth = w * .006; ctx.strokeRect(w * .16, -h * .25, w * .3, h * .28); T('$2,000,000', w * .31, -h * .11, w * .04, 'center', '#141014', 800);
   T('TWO MILLION AND 00/100 DOLLARS', -w * .44, h * .14, w * .03);
   ctx.beginPath(); ctx.moveTo(w * .1, h * .36); ctx.lineTo(w * .44, h * .36); ctx.stroke();
   ctx.restore(); }

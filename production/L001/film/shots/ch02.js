@@ -1,6 +1,6 @@
 // film/shots/ch02.js — постановка гл. 2 (владелец: ведущий). Ключ плана — 'глава|начало текста' (film/keys.js).
 // Контракт рабочего — film/README.md, «Работа по главам». Рисовальщик плана: x => {...}, x = { ctx, s, t, d, T, cam, camAt, solo, API }.
-import { clamp, lerp, E, gesture } from 'engine';
+import { clamp, lerp, E, gesture, NOIR_FONT } from 'engine';
 import { W, H, camView, toS, lerpView, cover, plate } from '../staging/common.js';
 import * as R from '../staging/restaurant.js';
 import * as CAR from '../staging/car.js';
@@ -91,11 +91,13 @@ export const OVER = {
   // на «ran» — правое: взрослый Дженсен за трибуной на сцене, руки в стороны. Надпись DECADES LATER — ядро (вещь-подпись).
   "2|Decades later he'd put it simply": (ctx, s, t, d) => { const T = s.start + t, x = { s }, tb = W_(x, 'bathrooms', 2.82), tr = W_(x, 'ran', 4.52), pw = W / 2;
     const pane = (i, fn, k) => { ctx.save(); ctx.fillStyle = '#07070a'; ctx.fillRect(i * pw, 0, pw, H); ctx.beginPath(); ctx.rect(i * pw + 4, 0, (pw - 8) * k, H); ctx.clip(); ctx.translate(i * pw + pw / 2 - W / 2, 0); fn(); ctx.restore(); };
-    pane(0, () => { const v = cover({ cx: 905, cy: 610, k: 1.55 + .02 * t }); KY.bathMid(ctx, v, t, T, { drop: 99, grab: 99, look: [.3, -.3], keys: [[0, 'neutral']] }); }, E.inOutCubic(clamp((t - tb + .15) / .35)));
+    pane(0, () => { const v = cover({ cx: 905, cy: 610, k: 1.55 + .02 * t }); KY.bathMid(ctx, v, t, T, { drop: tb - .25, grab: tb + .55, look: [.3, -.3] }); }, E.inOutCubic(clamp(t / .35)));   // окно «тогда» открыто с начала: на «bathrooms» швабра падает в ведро, мальчик тянется за ней
     pane(1, () => { const v = cover({ cx: 600, cy: 520, k: 2.3 + .02 * t }), g = E.outBack(clamp((t - tr) / .4));
       A_EH.plate(ctx, v, 'wide', 0, false);
       A_EH.podium(ctx, A_JH, v, t, T, { f: 1, view: null, keys: [[0, 'smile']], look: [0, -.1], L: { k: g, to: [582 - 125, 682 - 190] }, R: { k: g, to: [582 + 125, 682 - 190] } }); }, E.inOutCubic(clamp((t - tr + .15) / .35)));
-    ctx.fillStyle = '#000'; ctx.fillRect(pw - 4, 0, 8, H); },
+    ctx.fillStyle = '#000'; ctx.fillRect(pw - 4, 0, 8, H);
+    const u = E.outCubic(clamp(t / .4)); if (u > 0) { ctx.save(); ctx.globalAlpha = u; ctx.font = `700 46px ${NOIR_FONT.label}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';   // надпись DECADES LATER (в шаблоне сплита её нет)
+      const tw = ctx.measureText('DECADES LATER').width + 60; ctx.fillStyle = '#0c0b10'; ctx.fillRect(W / 2 - tw / 2, 40, tw, 76); ctx.strokeStyle = '#c9a54a'; ctx.lineWidth = 3; ctx.strokeRect(W / 2 - tw / 2, 40, tw, 76); ctx.fillStyle = '#f2e8cc'; ctx.fillText('DECADES LATER', W / 2, 80); ctx.restore(); } },
 };
 export const SKIP_PROPS = { '2|Every single day': /MON|TUE|WED|THU|FRI|SAT|SUN/, '2|who picked a boarding school in rural Kentucky': /BAPTIST/, '2|Years later he gave the school two million': /2,000,000|HUANG HALL/, /* --- B --- */ '2|In a booth in San Jose': /SAN JOSE/, '2|Thirty years later': /BOOTH/, '2|He started at the sink': /BUSBOY/, '2|At fifteen he took the night shift': /2:00/, '2|JENSEN: One month': /PAYROLL/, '2|CHRIS: How long can we last': /PAYROLL|1997/, '2|AUNT: Oneida Baptist Institute': /VERY STRICT/, '2|and the family had chosen it by mistake': /TROUBLED/, '2|planned a company that would build chips': /3D/, };
 export const RAIN = null;   // или s => true/false/undefined — переопределение дождя для планов главы

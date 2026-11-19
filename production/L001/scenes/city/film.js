@@ -1,5 +1,6 @@
 // film.js: L001 — 3D-пролёты над ночным городом («Стикман Нуар», тип C). 1920x1080, 30 fps.
 //   --set shot=singapore|washington|taipei|final|towers|alaska   (#6, #85, #153 и #227, #298, #2 и #79, #300)
+//   --set rev=1                                      (пролёт задом наперёд: отъезд; singapore+rev — финал гл. 10, отъезд от ресторана над Марина-Бэй)
 //   --set one=1                                      (towers: в конце на короне зелёной башни загорается «#1»)
 //   --set dur=<сек>                                  (1.5–7; по умолчанию — длительность плана из шотлиста; Сингапур 3 с — в монтаж идут последние 1.8 с)
 // 2.5D-мультиплан: набор engine/src/sets/noirCity.js (paintedRow, coverage); раскладки: shots.js; плиты GPT:
@@ -12,15 +13,16 @@ const DEF = { singapore: 3, washington: 4.9, taipei: 3.3, final: 4.4, towers: 2.
 
 export default {
   fps: 30, size: [1920, 1080],
-  options: { shot: 'singapore', dur: '', camT: '', one: '' },   // camT — отладка: камера замерла в момент camT (с)
+  options: { shot: 'singapore', dur: '', camT: '', one: '', rev: '' },   // camT — отладка: камера замерла в момент camT (с)
   setup(stage, o) {
     const shot = SHOTS[o.shot] ? o.shot : 'singapore';
     const dur = Math.min(7, Math.max(1.5, parseFloat(o.dur) || DEF[shot]));
     stage.setVignette({ alpha: .55, color: '3,5,14', inner: .4, outer: 1.05, cy: .5 });
     const S = SHOTS[shot](stage, A, dur, { one: o.one === '1' || o.one === 'true' });
+    const REVF = .66;   // rev: отъезд начинается с 66 % пути влёта (фасад ресторана со столом целиком), до самого верха; smootherstep — без рывка
     return {
       duration: dur,
-      scenes: [{ id: shot, from: 0, to: dur, set: S.set, camera: o.camT !== '' ? () => S.camera(parseFloat(o.camT)) : S.camera, update: S.update, over: S.over }],
+      scenes: [{ id: shot, from: 0, to: dur, set: S.set, camera: o.camT !== '' ? () => S.camera(parseFloat(o.camT)) : o.rev === '1' ? t => { const u = Math.min(1, Math.max(0, t / dur)), e = u * u * u * (u * (u * 6 - 15) + 10); return S.camera(dur * REVF * (1 - e)); } : S.camera, update: S.update, over: S.over }],
     };
   },
 };

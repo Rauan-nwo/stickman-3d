@@ -2,7 +2,7 @@
 
 Сгенерирован `node production/L001/sound/cues.mjs` из `animatic/timing.json`, `animatic/words.json`, `animatic/conf.js` и ручной постановки `cues_manual.mjs`. Не править руками.
 
-Всего звуков: **1173**; по типам: caption 8, foley 154, camera 320, transition 231, template 182, event 252, title 26. Подложек (сегментов амбиенса): 215.
+Всего звуков: **1176**; по типам: caption 8, foley 155, camera 320, transition 232, template 182, event 253, title 26. Подложек (сегментов амбиенса): 216.
 
 ## По главам
 
@@ -18,7 +18,7 @@
 | 7 | The Real Prize | 11:20.98–13:25.89 | 146 | 70.1 |
 | 8 | The Memo | 13:25.89–14:51.76 | 76 | 53.1 |
 | 9 | The Empty Chair | 14:51.76–17:36.16 | 175 | 63.9 |
-| 10 | The Office | 17:36.16–17:46.77 | 23 | 130.0 |
+| 10 | The Office | 17:36.16–17:51.27 | 26 | 103.2 |
 
 ## Подложки, главы 0
 

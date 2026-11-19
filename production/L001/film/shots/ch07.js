@@ -25,7 +25,7 @@ import { BJ } from '../staging/beijing.js';
 import { silhouette } from '../staging/desk.js';
 import { official, officer } from '../chars.js';
 import { jensen, alice, NOIR_FONT as F, ell } from 'engine';
-import { plate, img, lazy, blurred, masked, polyMask, chair } from '../staging/common.js';
+import { plate, img, lazy, blurred, masked, polyMask, chair, canvas } from '../staging/common.js';
 import barPlate from '../../assets/bg_taipei_bar_dry.png';
 import streetPlate from '../../assets/bg_singapore_street.png';
 import taipeiPlate from '../assets/B_taipei_street.png';   // ночная улица Тайбэя без машины (GPT Image, prompts/B_taipei_street.txt)
@@ -99,30 +99,60 @@ function sleeveArm(ctx, Ep, Hp, r, col) { const mx = lerp(Ep[0], Hp[0], .72), my
 const TPI = { p: img(taipeiPlate) }, TPA = lazy([TPI.p], () => ({ p: TPI.p }));
 const SED = { x0: 760, y: 850, L: 820 };                                // задний край машины (экран), низ колёс, длина
 const carPt = (u, w, dx = 0) => [SED.x0 + dx + u * SED.L, SED.y + w * SED.L];
-function sedan(ctx, dx, door, wheel) {
+// седан в стиле «Стикман Нуар»: контур туши, cel-заливки в 3 тона (свет сверху-слева от вывесок), блик на стекле, фары и фонари со свечением,
+// отражение в мокром асфальте (перевёрнутая копия, мягко) и контактная тень. dx — сдвиг (отъезд), door 0..1 — проём задней двери, wheel — поворот колёс
+let SEDB = null;
+function sedanBody(ctx, dx, door, wheel) {
   const P = (u, w) => carPt(u, w, dx), poly = pts => { ctx.beginPath(); pts.forEach(([u, w], i) => { const q = P(u, w); i ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]); }); ctx.closePath(); };
-  ctx.save(); ctx.lineJoin = 'round'; ctx.strokeStyle = '#06060a'; ctx.lineWidth = 6;
-  ctx.fillStyle = 'rgba(0,0,0,.45)'; ctx.beginPath(); ctx.ellipse(...P(.5, -.005), SED.L * .55, SED.L * .03, 0, 0, Math.PI * 2); ctx.fill();   // тень под машиной
-  poly([[0, -.075], [0, -.2], [.05, -.225], [.24, -.24], [.32, -.355], [.43, -.385], [.63, -.385], [.73, -.27], [.93, -.25], [1, -.205], [1, -.075]]);
-  const g = ctx.createLinearGradient(0, P(0, -.39)[1], 0, P(0, -.07)[1]); g.addColorStop(0, '#3a3e4a'); g.addColorStop(.5, '#1a1c24'); g.addColorStop(1, '#0c0d12'); ctx.fillStyle = g; ctx.fill(); ctx.stroke();
-  poly([[.335, -.27], [.335, -.345], [.43, -.37], [.505, -.37], [.505, -.27]]); ctx.fillStyle = '#2a3446'; ctx.fill(); ctx.stroke();   // заднее окно двери
-  poly([[.525, -.27], [.525, -.37], [.625, -.37], [.70, -.275]]); ctx.fillStyle = '#2a3446'; ctx.fill(); ctx.stroke();               // переднее
-  ctx.strokeStyle = 'rgba(160,200,255,.25)'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(...P(.012, -.21)); ctx.lineTo(...P(.97, -.215)); ctx.stroke();   // блик по борту
-  ctx.strokeStyle = '#06060a'; ctx.lineWidth = 4; for (const u of [.33, .515, .715]) { ctx.beginPath(); ctx.moveTo(...P(u, -.27)); ctx.lineTo(...P(u + .01, -.085)); ctx.stroke(); }   // швы дверей
-  ctx.fillStyle = '#ff3a2a'; ctx.fillRect(...P(.005, -.19), 10, 22); ctx.fillStyle = '#fff2c0'; ctx.fillRect(...P(.985, -.19), 10, 18);       // фонари
-  if (door > 0) {                                                                                                                         // задняя дверь открыта: проём и полотно к камере
-    poly([[.335, -.085], [.335, -.355], [.43, -.375], [.51, -.375], [.51, -.085]]); ctx.fillStyle = '#07070b'; ctx.fill();
-  }
-  for (const u of [.18, .82]) { const c = P(u, -.075), r = SED.L * .075; ctx.fillStyle = '#0a0a0e'; ctx.beginPath(); ctx.arc(c[0], c[1], r, 0, Math.PI * 2); ctx.fill(); ctx.fillStyle = '#5a5e68'; ctx.beginPath(); ctx.arc(c[0], c[1], r * .55, 0, Math.PI * 2); ctx.fill();
-    ctx.strokeStyle = '#1a1c22'; ctx.lineWidth = 4; for (let i = 0; i < 5; i++) { const a = wheel + i * 1.2566; ctx.beginPath(); ctx.moveTo(c[0], c[1]); ctx.lineTo(c[0] + Math.cos(a) * r * .5, c[1] + Math.sin(a) * r * .5); ctx.stroke(); } }
+  const ink = '#08080c', lw = 6;
+  ctx.save(); ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  const body = [[0, -.075], [-.008, -.15], [0, -.2], [.05, -.225], [.24, -.245], [.32, -.355], [.43, -.385], [.63, -.385], [.73, -.27], [.93, -.252], [1.005, -.21], [1.01, -.14], [1, -.075]];
+  poly(body); ctx.fillStyle = '#1c2230'; ctx.fill();                                                                    // тон 1 — основной
+  ctx.save(); poly(body); ctx.clip();
+  ctx.fillStyle = '#2f3a50'; ctx.beginPath(); ctx.moveTo(...P(-.02, -.21)); ctx.lineTo(...P(1.02, -.215)); ctx.lineTo(...P(1.02, -.17)); ctx.lineTo(...P(-.02, -.165)); ctx.closePath(); ctx.fill();   // тон 2 — освещённая полоса борта
+  ctx.fillStyle = '#10131c'; ctx.fillRect(P(-.05, 0)[0], P(0, -.12)[1], SED.L * 1.1, SED.L * .06);                     // тон 3 — тень низа борта
+  ctx.fillStyle = '#3c4862'; ctx.beginPath(); ctx.moveTo(...P(.33, -.35)); ctx.lineTo(...P(.43, -.38)); ctx.lineTo(...P(.62, -.38)); ctx.lineTo(...P(.62, -.36)); ctx.lineTo(...P(.34, -.335)); ctx.closePath(); ctx.fill();   // крыша в свете
   ctx.restore();
+  poly(body); ctx.lineWidth = lw; ctx.strokeStyle = ink; ctx.stroke();
+  // стёкла: тёмно-синие с вертикальным градиентом и косым бликом
+  for (const win of [[[.335, -.27], [.335, -.345], [.43, -.37], [.505, -.37], [.505, -.27]], [[.525, -.27], [.525, -.37], [.625, -.37], [.70, -.275]]]) {
+    poly(win); const g = ctx.createLinearGradient(0, P(0, -.37)[1], 0, P(0, -.27)[1]); g.addColorStop(0, '#5a6e94'); g.addColorStop(1, '#1e2638'); ctx.fillStyle = g; ctx.fill();
+    ctx.save(); poly(win); ctx.clip(); ctx.fillStyle = 'rgba(220,235,255,.35)'; const a = P(win[0][0], -.27), b = P(win[2][0], -.37); ctx.beginPath(); ctx.moveTo(a[0] + 20, a[1]); ctx.lineTo(b[0] + 10, b[1]); ctx.lineTo(b[0] + 34, b[1]); ctx.lineTo(a[0] + 44, a[1]); ctx.closePath(); ctx.fill(); ctx.restore();
+    poly(win); ctx.lineWidth = 5; ctx.strokeStyle = ink; ctx.stroke(); }
+  ctx.strokeStyle = 'rgba(210,225,255,.55)'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(...P(.04, -.205)); ctx.lineTo(...P(.97, -.21)); ctx.stroke();   // хромированный молдинг
+  ctx.strokeStyle = ink; ctx.lineWidth = 4; for (const u of [.33, .515, .715]) { ctx.beginPath(); ctx.moveTo(...P(u, -.27)); ctx.lineTo(...P(u + .01, -.09)); ctx.stroke(); }   // швы дверей
+  for (const u of [.44, .63]) { ctx.fillStyle = '#9aa4b8'; ctx.beginPath(); ctx.roundRect(...P(u, -.235), 26, 7, 3); ctx.fill(); ctx.strokeStyle = ink; ctx.lineWidth = 2; ctx.stroke(); }   // ручки дверей
+  if (door > 0) { poly([[.335, -.09], [.335, -.355], [.43, -.375], [.51, -.375], [.51, -.09]]); ctx.fillStyle = '#05050a'; ctx.fill(); ctx.strokeStyle = ink; ctx.lineWidth = 4; ctx.stroke(); }
+  // фонари и фары: корпус + свечение
+  const tl = P(.004, -.19), hl = P(.99, -.19);
+  ctx.fillStyle = '#ff3a2a'; ctx.beginPath(); ctx.roundRect(tl[0] - 4, tl[1], 16, 24, 3); ctx.fill(); ctx.strokeStyle = ink; ctx.lineWidth = 3; ctx.stroke();
+  ctx.fillStyle = '#fff2c0'; ctx.beginPath(); ctx.roundRect(hl[0] - 10, hl[1], 18, 20, 3); ctx.fill(); ctx.stroke();
+  ctx.globalCompositeOperation = 'screen';
+  for (const [q, c, r] of [[[tl[0] + 4, tl[1] + 12], '255,60,40', 60], [[hl[0], hl[1] + 10], '255,240,190', 90]]) { const g = ctx.createRadialGradient(q[0], q[1], 0, q[0], q[1], r); g.addColorStop(0, `rgba(${c},.75)`); g.addColorStop(1, `rgba(${c},0)`); ctx.fillStyle = g; ctx.fillRect(q[0] - r, q[1] - r, 2 * r, 2 * r); }
+  ctx.globalCompositeOperation = 'source-over';
+  // колёса: шина, диск, ступица, спицы
+  for (const u of [.18, .82]) { const c = P(u, -.075), r = SED.L * .075;
+    ctx.fillStyle = '#0a0a0e'; ctx.beginPath(); ctx.arc(c[0], c[1], r * 1.12, Math.PI, 0); ctx.fill();               // арка
+    ctx.fillStyle = '#121216'; ctx.beginPath(); ctx.arc(c[0], c[1], r, 0, Math.PI * 2); ctx.fill(); ctx.strokeStyle = ink; ctx.lineWidth = 4; ctx.stroke();
+    const g = ctx.createRadialGradient(c[0] - r * .2, c[1] - r * .2, 0, c[0], c[1], r * .6); g.addColorStop(0, '#c8ccd6'); g.addColorStop(1, '#6a707c'); ctx.fillStyle = g; ctx.beginPath(); ctx.arc(c[0], c[1], r * .58, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = '#3a3e48'; ctx.lineWidth = 5; for (let i = 0; i < 5; i++) { const a = wheel + i * 1.2566; ctx.beginPath(); ctx.moveTo(c[0] + Math.cos(a) * r * .14, c[1] + Math.sin(a) * r * .14); ctx.lineTo(c[0] + Math.cos(a) * r * .5, c[1] + Math.sin(a) * r * .5); ctx.stroke(); }
+    ctx.fillStyle = '#2a2e36'; ctx.beginPath(); ctx.arc(c[0], c[1], r * .14, 0, Math.PI * 2); ctx.fill(); }
+  ctx.restore();
+}
+function sedan(ctx, dx, door, wheel) {
+  if (!SEDB) SEDB = canvas(); const b = SEDB.getContext('2d'); b.setTransform(1, 0, 0, 1, 0, 0); b.clearRect(0, 0, W, H); sedanBody(b, dx, door, wheel);
+  const yG = SED.y;                                                                                                       // линия асфальта
+  ctx.save(); ctx.globalAlpha = .28; ctx.filter = 'blur(6px)'; ctx.translate(0, 2 * yG); ctx.scale(1, -1); ctx.drawImage(SEDB, 0, 0); ctx.restore();   // отражение в мокром асфальте
+  ctx.save(); const c = carPt(.5, 0, dx); const g = ctx.createRadialGradient(c[0], c[1], 0, c[0], c[1], SED.L * .6); g.addColorStop(0, 'rgba(0,0,0,.6)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = g; ctx.beginPath(); ctx.ellipse(c[0], c[1] + 4, SED.L * .58, SED.L * .035, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();   // контактная тень
+  ctx.drawImage(SEDB, 0, 0);
 }
 // полотно открытой задней двери (петли у стойки — u .51): свободный край идёт к камере — ниже и левее, полотно шире
 function doorLeaf(ctx, dx, door) {
   if (door <= 0) return; const a = door * 1.2, hinge = [carPt(.51, -.375, dx), carPt(.51, -.085, dx)], w = SED.L * .175, fx = -Math.cos(a) * w - Math.sin(a) * w * .25, fy = Math.sin(a) * w * .18, gr = 1 + .22 * Math.sin(a);
   const top = [hinge[0][0] + fx, hinge[0][1] - 10 * Math.sin(a) + fy * .3], bot = [hinge[1][0] + fx, hinge[1][1] + fy * gr];
   ctx.save(); ctx.lineJoin = 'round'; ctx.beginPath(); ctx.moveTo(...hinge[0]); ctx.lineTo(...top); ctx.lineTo(...bot); ctx.lineTo(...hinge[1]); ctx.closePath();
-  ctx.fillStyle = '#16181f'; ctx.fill(); ctx.strokeStyle = '#06060a'; ctx.lineWidth = 6; ctx.stroke();
+  ctx.fillStyle = '#232b3c'; ctx.fill(); ctx.strokeStyle = '#08080c'; ctx.lineWidth = 6; ctx.stroke();
   const m = (q, r, k) => [lerp(q[0], r[0], k), lerp(q[1], r[1], k)], w0 = m(hinge[0], hinge[1], .35), w1 = m(top, bot, .35);
   ctx.beginPath(); ctx.moveTo(...hinge[0]); ctx.lineTo(...top); ctx.lineTo(...w1); ctx.lineTo(...w0); ctx.closePath(); ctx.fillStyle = '#2a3446'; ctx.fill(); ctx.stroke(); ctx.restore();
 }
@@ -135,7 +165,7 @@ const STEP = 300;                                                      // дли
 function taipeiFootage(ctx, t, d, tc, cam) {
   const a = TPA(); if (!a) return; const z = 1 + (cam.z - 1) * .4; ctx.save(); ctx.translate(W / 2, H / 2); ctx.scale(z, z); ctx.translate(-W / 2, -H / 2);
   plate(ctx, a.p, { cx: 960, cy: 540, k: 1 });
-  const s = .4, tW = tc - 1.6, dOpen = E.inOutCubic(clamp((t - tW) / .3)) * (1 - E.inOutCubic(clamp((t - (tc - .35)) / .25))), go = Math.pow(clamp((t - tc) / .65), 2), dx = go * 1500;
+  const s = .3, tW = tc - 1.6, dOpen = E.inOutCubic(clamp((t - tW) / .3)) * (1 - E.inOutCubic(clamp((t - (tc - .35)) / .25))), go = Math.pow(clamp((t - tc) / .65), 2), dx = go * 1500;
   const doorX = carPt(.40, 0)[0], feetY = SED.y + 26;
   const fig = (C, lead, tIn) => {                                       // lead — отставание по пути (px), tIn — начало посадки
     const xEnd = doorX - lead * .15, x0 = xEnd - 620 - lead, walkT = clamp(t / Math.max(.3, tW)), x = lerp(x0, xEnd, walkT), ph = (x - x0) / (STEP * s);
@@ -149,11 +179,18 @@ function taipeiFootage(ctx, t, d, tc, cam) {
   doorLeaf(ctx, dx, dOpen);
   ctx.restore();
 }
-// «телевизионный» вид: тон, строки развёртки, СТАТИЧНОЕ зерно (без «кипения» по кадрам — правило мерцания), логотип канала
-function tvLook(ctx, t, bug) { ctx.save(); ctx.globalCompositeOperation = 'saturation'; ctx.fillStyle = 'rgba(120,120,120,.55)'; ctx.fillRect(0, 0, W, H); ctx.restore();
-  ctx.save(); ctx.fillStyle = 'rgba(255,255,255,.05)'; for (let y = 0; y < H; y += 4) ctx.fillRect(0, y, W, 1); let k = 7919 + 3; const r = () => (k = (k * 16807) % 2147483647) / 2147483647;
+// «телевизионная хроника»: тон, строки развёртки, СТАТИЧНОЕ зерно (правило мерцания), скруглённая виньетка кинескопа,
+// плашка канала (условное имя, не настоящий логотип) и подпись ARCHIVE FOOTAGE, снизу — титр хроники
+function tvLook(ctx, t, bug, chyron) { ctx.save(); ctx.globalCompositeOperation = 'saturation'; ctx.fillStyle = 'rgba(120,120,120,.5)'; ctx.fillRect(0, 0, W, H); ctx.restore();
+  ctx.save(); ctx.fillStyle = 'rgba(0,0,0,.16)'; for (let y = 0; y < H; y += 4) ctx.fillRect(0, y, W, 2);                                   // строки развёртки (заметные)
+  let k = 7919 + 3; const r = () => (k = (k * 16807) % 2147483647) / 2147483647;
   for (let i = 0; i < 900; i++) { ctx.fillStyle = `rgba(${r() > .5 ? 255 : 0},${r() > .5 ? 255 : 0},${r() > .5 ? 255 : 0},.06)`; ctx.fillRect(r() * W, r() * H, 3, 3); }
-  if (bug) B.txt(ctx, bug, 70, 80, 40, { col: 'rgba(255,255,255,.8)', font: F.label, w: 800 }); ctx.restore(); }
+  const g = ctx.createRadialGradient(W / 2, H / 2, H * .45, W / 2, H / 2, H * 1.05); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,.6)'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  if (bug) { ctx.fillStyle = 'rgba(12,22,48,.85)'; ctx.beginPath(); ctx.roundRect(56, 52, 330, 70, 8); ctx.fill(); ctx.fillStyle = '#d23a2a'; ctx.beginPath(); ctx.roundRect(56, 52, 70, 70, [8, 0, 0, 8]); ctx.fill();
+    B.txt(ctx, '24', 91, 88, 38, { col: '#fff', font: F.label, w: 900, align: 'center' }); B.txt(ctx, bug, 140, 88, 34, { col: '#fff', font: F.label, w: 800 });
+    ctx.fillStyle = 'rgba(0,0,0,.6)'; ctx.fillRect(56, 128, 330, 40); B.txt(ctx, 'ARCHIVE FOOTAGE', 72, 149, 24, { col: '#ffd84a', font: F.label, w: 800 }); }
+  if (chyron) { const y = H - 170; ctx.fillStyle = '#f1ece0'; ctx.fillRect(110, y, W - 220, 84); ctx.fillStyle = '#b3121b'; ctx.fillRect(110, y, 18, 84); B.txt(ctx, chyron, 160, y + 43, 40, { font: F.label, w: 800 }); }
+  ctx.restore(); }
 
 // шахматная доска на пекинском столе (пиксели плейта: центр 1060, 846): фигурки, стул (chair 0..1 — офицер 2 ставит), hand — кисть офицера 2 (экран)
 function chessOnDesk(ctx, v, t, o = {}) {
@@ -374,10 +411,10 @@ export const SHOTS = {
     ctx.restore(); },
   '7|Footage aired later by a Taiwanese': x => { const { ctx, t, cam, solo, s } = x;   // вставка: монитор в баре — на экране кадр ТВ: улица, машина
     if (solo) return; const a = PAa(); if (!a) return; ctx.save(); shake(ctx, cam); plate(ctx, a.bar, cover({ cx: 960, cy: 540, k: 1.3 }));
-    const z = 1 + (cam.z - 1) * .6; B.tv(ctx, W / 2, H * .5, 1280 * z, -.01, t, { scene: (c, w, h) => { c.save(); c.scale(w / W, h / H); taipeiFootage(c, 1.6, 9, 9, { z: 1 }); tvLook(c, t, 'TV'); c.restore(); }, chyron: 'TAIPEI · GROUP DINNER', chyronK: up(t, .3) });
+    const z = 1 + (cam.z - 1) * .6; B.tv(ctx, W / 2, H * .5, 1280 * z, -.01, t, { scene: (c, w, h) => { c.save(); c.scale(w / W, h / H); taipeiFootage(c, 1.6, 9, 9, { z: 1 }); tvLook(c, t, 'CITY NEWS'); c.restore(); }, chyron: 'TAIPEI · GROUP DINNER', chyronK: up(t, .3) });
     ctx.restore(); },
   '7|leaving a group dinner in Taipei': x => { const { ctx, t, cam, solo } = x, tc = W_(x, 'car', 3.7);   // кадр ТВ-хроники: двое садятся в одну машину, дверь хлопает
-    if (solo) return; ctx.save(); taipeiFootage(ctx, t, x.d, tc, cam); tvLook(ctx, t, 'TV'); ctx.restore(); },
+    if (solo) return; ctx.save(); taipeiFootage(ctx, t, x.d, tc, cam); tvLook(ctx, t, 'CITY NEWS', 'TAIPEI · GROUP DINNER'); ctx.restore(); },
 
 };
 export const OVER = {
