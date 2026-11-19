@@ -151,3 +151,6 @@ touched: production/L001/publish/{upload.md,make_thumbs.py,thumb_A..C.{png,jpg},
 
 ## [2026-11-19 23:30] ingest | идея лонга I005: Маск — сооснователь OpenAI (2015), ушёл (2018), xAI, иск к OpenAI и Альтману (2024), суд 2026; факт-чек не сделан
 touched: wiki/ideas/I005-musk-vs-altman-openai.md, index.md
+
+## [2026-11-19 23:50] video | L002 «Маск и Anthropic: враг платит врагу» — замысел и сюжет по 9 главам утверждены Рауаном (с линией FTX/Бэнкман-Фрида); запущен факт-чек
+touched: production/L002/outline.md
