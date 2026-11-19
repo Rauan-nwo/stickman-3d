@@ -1,0 +1,2307 @@
+1
+00:00:00,000 --> 00:00:00,800
+Picture this.
+
+2
+00:00:00,924 --> 00:00:03,024
+In Singapore, the man who runs the most
+
+3
+00:00:03,044 --> 00:00:05,344
+valuable company on Earth sits down to
+
+4
+00:00:05,364 --> 00:00:07,084
+dinner across from a woman American
+
+5
+00:00:07,104 --> 00:00:09,694
+intelligence believes is a Chinese spy.
+
+6
+00:00:10,072 --> 00:00:12,012
+He's Jensen Huang, the man in the leather
+
+7
+00:00:12,032 --> 00:00:13,442
+jacket who runs Nvidia.
+
+8
+00:00:13,824 --> 00:00:14,734
+She's Alice Huang.
+
+9
+00:00:15,124 --> 00:00:16,954
+Same last name, no relation.
+
+10
+00:00:17,454 --> 00:00:18,774
+Her company is one of his biggest
+
+11
+00:00:18,794 --> 00:00:19,924
+customers in Asia.
+
+12
+00:00:20,202 --> 00:00:21,132
+To the next shipment.
+
+13
+00:00:21,409 --> 00:00:22,209
+To good partners.
+
+14
+00:00:22,707 --> 00:00:24,407
+Her company buys his chips by the
+
+15
+00:00:24,427 --> 00:00:25,227
+warehouse,
+
+16
+00:00:25,487 --> 00:00:27,937
+the exact kind China is forbidden to have.
+
+17
+00:00:28,108 --> 00:00:29,908
+And across the street, someone is
+
+18
+00:00:29,928 --> 00:00:30,699
+listening.
+
+19
+00:00:30,719 --> 00:00:32,619
+American intelligence has been tapping her
+
+20
+00:00:32,639 --> 00:00:34,069
+calls for more than a year.
+
+21
+00:00:34,256 --> 00:00:36,126
+She's talking to an American.
+
+22
+00:00:36,532 --> 00:00:37,332
+Which American?
+
+23
+00:00:38,032 --> 00:00:39,202
+The one in the jacket.
+
+24
+00:00:39,648 --> 00:00:40,898
+Jensen has no idea.
+
+25
+00:00:41,185 --> 00:00:42,135
+Do we warn him?
+
+26
+00:00:42,348 --> 00:00:43,148
+Not tonight.
+
+27
+00:00:44,527 --> 00:00:45,327
+Evening.
+
+28
+00:00:45,427 --> 00:00:47,397
+Mind the box, it's expensive.
+
+29
+00:00:48,147 --> 00:00:50,917
+Inside, the most wanted chips on Earth.
+
+30
+00:00:51,087 --> 00:00:53,467
+Thirty grand apiece, by the maker's own
+
+31
+00:00:53,487 --> 00:00:54,287
+count.
+
+32
+00:00:54,397 --> 00:00:56,617
+And the man at that table held the key to
+
+33
+00:00:56,637 --> 00:00:57,647
+every one of them.
+
+34
+00:00:57,760 --> 00:00:59,640
+So how did China get someone into the seat
+
+35
+00:00:59,660 --> 00:01:00,460
+next to him?
+
+36
+00:01:00,589 --> 00:01:02,339
+It starts with a decision in Washington.
+
+37
+00:01:04,337 --> 00:01:06,327
+But first, meet the man at the table.
+
+38
+00:01:06,643 --> 00:01:08,723
+His first job in America was scrubbing
+
+39
+00:01:08,743 --> 00:01:09,893
+toilets in Kentucky.
+
+40
+00:01:12,550 --> 00:01:14,120
+Jensen was born in Taiwan.
+
+41
+00:01:14,632 --> 00:01:16,752
+At nine, his parents sent him and his
+
+42
+00:01:16,772 --> 00:01:18,602
+older brother to relatives in America,
+
+43
+00:01:19,172 --> 00:01:20,632
+who picked a boarding school in rural
+
+44
+00:01:20,652 --> 00:01:21,452
+Kentucky.
+
+45
+00:01:21,650 --> 00:01:23,910
+To pay for it, according to biographer Tae
+
+46
+00:01:23,930 --> 00:01:26,350
+Kim, his parents sold nearly everything
+
+47
+00:01:26,370 --> 00:01:27,170
+they owned.
+
+48
+00:01:27,223 --> 00:01:28,713
+Oneida Baptist Institute.
+
+49
+00:01:29,063 --> 00:01:29,863
+Very strict.
+
+50
+00:01:30,119 --> 00:01:31,629
+Strict sounds perfect.
+
+51
+00:01:31,979 --> 00:01:33,309
+It was strict, all right.
+
+52
+00:01:33,779 --> 00:01:35,919
+It was a school for troubled kids, and the
+
+53
+00:01:35,939 --> 00:01:37,689
+family had chosen it by mistake.
+
+54
+00:01:38,057 --> 00:01:39,837
+The older boys were sent out to do farm
+
+55
+00:01:39,857 --> 00:01:40,410
+work.
+
+56
+00:01:40,430 --> 00:01:42,610
+Jensen, one of the youngest, got the
+
+57
+00:01:42,630 --> 00:01:43,430
+bathrooms.
+
+58
+00:01:43,630 --> 00:01:44,900
+Every bathroom in the dorm.
+
+59
+00:01:45,239 --> 00:01:46,249
+Every single day.
+
+60
+00:01:46,539 --> 00:01:48,719
+His roommate was seventeen, covered in
+
+61
+00:01:48,739 --> 00:01:51,119
+tattoos and knife scars, and he couldn't
+
+62
+00:01:51,139 --> 00:01:51,899
+read.
+
+63
+00:01:51,919 --> 00:01:53,109
+So they made a trade.
+
+64
+00:01:53,719 --> 00:01:54,809
+You teach me to read.
+
+65
+00:01:55,203 --> 00:01:56,933
+You teach me the bench press.
+
+66
+00:01:57,384 --> 00:01:57,904
+Deal.
+
+67
+00:01:57,924 --> 00:01:58,724
+Reading first.
+
+68
+00:01:58,980 --> 00:02:00,710
+Decades later he'd put it simply:
+
+69
+00:02:01,260 --> 00:02:03,480
+he used to clean bathrooms, and later he
+
+70
+00:02:03,500 --> 00:02:05,420
+ran one of the most valuable companies on
+
+71
+00:02:05,440 --> 00:02:06,009
+Earth.
+
+72
+00:02:06,029 --> 00:02:08,009
+Years later he gave the school two million
+
+73
+00:02:08,029 --> 00:02:10,469
+dollars, and its new girls' dorm is called
+
+74
+00:02:10,489 --> 00:02:11,299
+Huang Hall.
+
+75
+00:02:11,619 --> 00:02:13,379
+At fifteen he took the night shift at
+
+76
+00:02:13,399 --> 00:02:14,709
+Denny's, washing dishes.
+
+77
+00:02:15,119 --> 00:02:17,119
+He started at the sink and worked his way
+
+78
+00:02:17,139 --> 00:02:18,029
+up to busboy.
+
+79
+00:02:18,273 --> 00:02:21,513
+In 1993 he walked back into one, this time
+
+80
+00:02:21,533 --> 00:02:22,333
+as a customer.
+
+81
+00:02:22,600 --> 00:02:23,750
+In a booth in San Jose,
+
+82
+00:02:24,220 --> 00:02:25,880
+he and two engineer friends, Chris
+
+83
+00:02:25,900 --> 00:02:28,340
+Malachowsky and Curtis Priem, planned a
+
+84
+00:02:28,360 --> 00:02:30,400
+company that would build chips for 3D
+
+85
+00:02:30,420 --> 00:02:31,220
+graphics.
+
+86
+00:02:31,289 --> 00:02:32,399
+What can I get you?
+
+87
+00:02:32,653 --> 00:02:34,383
+Coffee, and a new industry.
+
+88
+00:02:34,685 --> 00:02:35,675
+Coffee's on the menu.
+
+89
+00:02:36,185 --> 00:02:38,345
+Thirty years later, Denny's hung a plaque
+
+90
+00:02:38,365 --> 00:02:40,685
+over that booth, calling it the booth that
+
+91
+00:02:40,705 --> 00:02:42,335
+launched a trillion-dollar company.
+
+92
+00:02:42,610 --> 00:02:44,910
+They named it Nvidia, and it came very
+
+93
+00:02:44,930 --> 00:02:45,860
+close to dying.
+
+94
+00:02:46,213 --> 00:02:47,793
+When its make-or-break chip finally
+
+95
+00:02:47,813 --> 00:02:49,383
+shipped in 1997,
+
+96
+00:02:50,013 --> 00:02:51,873
+the company had cash for about one more
+
+97
+00:02:51,893 --> 00:02:52,823
+month of salaries.
+
+98
+00:02:53,180 --> 00:02:54,310
+How long can we last?
+
+99
+00:02:54,701 --> 00:02:55,501
+One month.
+
+100
+00:02:56,201 --> 00:02:57,391
+And if the chip flops?
+
+101
+00:02:57,670 --> 00:02:58,840
+Then we save on lunch.
+
+102
+00:02:59,202 --> 00:03:01,282
+He's said ever since that Nvidia is always
+
+103
+00:03:01,302 --> 00:03:03,232
+thirty days from going out of business.
+
+104
+00:03:03,669 --> 00:03:04,699
+The chip was a hit.
+
+105
+00:03:04,969 --> 00:03:06,409
+And the trick inside it changed
+
+106
+00:03:06,429 --> 00:03:07,229
+everything.
+
+107
+00:03:07,400 --> 00:03:09,280
+An ordinary processor is like one
+
+108
+00:03:09,300 --> 00:03:11,460
+brilliant cook preparing a banquet plate
+
+109
+00:03:11,480 --> 00:03:12,280
+by plate.
+
+110
+00:03:12,497 --> 00:03:14,357
+Nvidia's chip is like a kitchen with
+
+111
+00:03:14,377 --> 00:03:15,547
+thousands of cooks,
+
+112
+00:03:16,057 --> 00:03:18,437
+each doing one tiny job at exactly the
+
+113
+00:03:18,457 --> 00:03:19,257
+same moment.
+
+114
+00:03:19,416 --> 00:03:22,526
+In 2006, Jensen made his biggest bet.
+
+115
+00:03:22,806 --> 00:03:24,846
+He released software called CUDA, so
+
+116
+00:03:24,866 --> 00:03:26,786
+scientists could put all those cooks to
+
+117
+00:03:26,806 --> 00:03:29,536
+work on any kind of math, not just games.
+
+118
+00:03:29,992 --> 00:03:31,522
+Wall Street didn't get it.
+
+119
+00:03:31,792 --> 00:03:33,402
+Who exactly is this for?
+
+120
+00:03:33,576 --> 00:03:34,806
+People who don't know yet.
+
+121
+00:03:35,105 --> 00:03:36,545
+For years it looked like an expensive
+
+122
+00:03:36,565 --> 00:03:37,365
+hobby.
+
+123
+00:03:37,387 --> 00:03:39,827
+Then AI turned out to need exactly that
+
+124
+00:03:39,847 --> 00:03:42,547
+math, and every AI lab on Earth wanted
+
+125
+00:03:42,567 --> 00:03:43,637
+Nvidia chips.
+
+126
+00:03:44,019 --> 00:03:46,399
+ChatGPT itself was trained on a Microsoft
+
+127
+00:03:46,419 --> 00:03:48,959
+supercomputer built from tens of thousands
+
+128
+00:03:48,979 --> 00:03:50,089
+of Nvidia chips.
+
+129
+00:03:50,418 --> 00:03:51,508
+How soon can you deliver?
+
+130
+00:03:51,918 --> 00:03:53,668
+How patient are you?
+
+131
+00:03:53,841 --> 00:03:57,101
+In October 2025, Nvidia became the first
+
+132
+00:03:57,121 --> 00:03:59,921
+company ever worth five trillion dollars,
+
+133
+00:03:59,941 --> 00:04:01,871
+and Jensen became the man with the key.
+
+134
+00:04:02,185 --> 00:04:03,665
+When he talked about who should be allowed
+
+135
+00:04:03,685 --> 00:04:05,645
+to buy them, Washington picked up the
+
+136
+00:04:05,665 --> 00:04:06,307
+phone.
+
+137
+00:04:06,327 --> 00:04:08,657
+So, it turned out, did Beijing.
+
+138
+00:04:09,123 --> 00:04:10,453
+Get me Jensen Huang.
+
+139
+00:04:10,775 --> 00:04:12,185
+Find out who else calls him.
+
+140
+00:04:12,422 --> 00:04:14,342
+That made him the one man China most
+
+141
+00:04:14,362 --> 00:04:15,772
+wanted to get close to.
+
+142
+00:04:15,983 --> 00:04:18,703
+Because in October 2022, Washington
+
+143
+00:04:18,723 --> 00:04:19,833
+slammed a door.
+
+144
+00:04:22,121 --> 00:04:24,181
+That autumn, the US government banned
+
+145
+00:04:24,201 --> 00:04:26,821
+sales of Nvidia's most powerful AI chips
+
+146
+00:04:26,841 --> 00:04:27,641
+to China.
+
+147
+00:04:27,818 --> 00:04:30,518
+The worry was simple: chips that train AI
+
+148
+00:04:30,538 --> 00:04:32,168
+can also help an army.
+
+149
+00:04:32,379 --> 00:04:34,169
+Your best chips can't go to China.
+
+150
+00:04:34,457 --> 00:04:35,867
+Which ones count as best?
+
+151
+00:04:36,211 --> 00:04:37,101
+The ones they want.
+
+152
+00:04:37,711 --> 00:04:39,971
+Nvidia designed slower versions just for
+
+153
+00:04:39,991 --> 00:04:40,701
+China.
+
+154
+00:04:40,721 --> 00:04:42,821
+Washington tightened the rules, and those
+
+155
+00:04:42,841 --> 00:04:43,851
+were blocked too.
+
+156
+00:04:44,131 --> 00:04:46,301
+So Nvidia made an even slower one.
+
+157
+00:04:46,529 --> 00:04:47,719
+In April 2025,
+
+158
+00:04:48,429 --> 00:04:50,569
+that one was blocked as well, and Nvidia
+
+159
+00:04:50,589 --> 00:04:52,129
+took a five-and-a-half-billion-dollar
+
+160
+00:04:52,149 --> 00:04:52,949
+charge.
+
+161
+00:04:53,283 --> 00:04:54,213
+What about this one?
+
+162
+00:04:54,783 --> 00:04:55,733
+Absolutely not.
+
+163
+00:04:56,283 --> 00:04:57,273
+It's really slow.
+
+164
+00:04:57,783 --> 00:04:58,583
+Still no.
+
+165
+00:04:59,283 --> 00:05:00,943
+China had been one of Nvidia's biggest
+
+166
+00:05:00,963 --> 00:05:01,763
+markets.
+
+167
+00:05:01,965 --> 00:05:04,025
+Nvidia's own filings showed seventeen
+
+168
+00:05:04,045 --> 00:05:06,285
+billion dollars of sales in China in one
+
+169
+00:05:06,305 --> 00:05:07,003
+year.
+
+170
+00:05:07,023 --> 00:05:08,273
+In Jensen's own words,
+
+171
+00:05:08,783 --> 00:05:10,903
+Nvidia's share of China's AI chip market
+
+172
+00:05:10,923 --> 00:05:13,573
+went from ninety-five percent to zero.
+
+173
+00:05:13,785 --> 00:05:14,875
+Here's our China business.
+
+174
+00:05:15,269 --> 00:05:16,279
+I don't see anything.
+
+175
+00:05:16,609 --> 00:05:17,419
+That's the chart.
+
+176
+00:05:18,109 --> 00:05:19,899
+Jensen didn't hide how he felt.
+
+177
+00:05:20,188 --> 00:05:22,488
+On stage after stage, he argued that the
+
+178
+00:05:22,508 --> 00:05:24,848
+rules were hurting American companies and
+
+179
+00:05:24,868 --> 00:05:26,758
+handing the market to Chinese rivals.
+
+180
+00:05:27,241 --> 00:05:29,311
+Let American chips compete everywhere.
+
+181
+00:05:29,650 --> 00:05:31,260
+They're nanoseconds behind us.
+
+182
+00:05:31,499 --> 00:05:33,109
+So here was Beijing's problem.
+
+183
+00:05:33,481 --> 00:05:34,951
+China couldn't buy the chips.
+
+184
+00:05:35,358 --> 00:05:37,038
+But it could try to get close to the man
+
+185
+00:05:37,058 --> 00:05:37,868
+who made them,
+
+186
+00:05:38,398 --> 00:05:40,438
+the same man arguing with Washington about
+
+187
+00:05:40,458 --> 00:05:41,668
+who gets to buy them.
+
+188
+00:05:41,871 --> 00:05:43,671
+Why pick a lock when the locksmith takes
+
+189
+00:05:43,691 --> 00:05:44,491
+meetings?
+
+190
+00:05:44,540 --> 00:05:45,670
+We can't buy his chips.
+
+191
+00:05:46,040 --> 00:05:47,250
+Then become his customer.
+
+192
+00:05:47,540 --> 00:05:49,250
+And for that, you would need a company.
+
+193
+00:05:51,572 --> 00:05:54,752
+In March 2023, a small Singapore company
+
+194
+00:05:54,772 --> 00:05:56,952
+called 7Road International, registered
+
+195
+00:05:56,972 --> 00:05:59,892
+back in 2015 as the overseas arm of a
+
+196
+00:05:59,912 --> 00:06:02,132
+Chinese video game business, got a new
+
+197
+00:06:02,152 --> 00:06:03,662
+name: Megaspeed.
+
+198
+00:06:03,844 --> 00:06:06,294
+Its new managing director was Alice Huang.
+
+199
+00:06:06,563 --> 00:06:07,393
+Previous business?
+
+200
+00:06:08,063 --> 00:06:08,953
+Video games.
+
+201
+00:06:09,563 --> 00:06:10,363
+New business?
+
+202
+00:06:11,063 --> 00:06:12,653
+Now, supercomputers.
+
+203
+00:06:13,087 --> 00:06:13,887
+Big change.
+
+204
+00:06:14,587 --> 00:06:16,097
+Bigger electricity bill.
+
+205
+00:06:16,399 --> 00:06:18,589
+Megaspeed called itself a cloud company.
+
+206
+00:06:18,870 --> 00:06:20,430
+That's the perfect business for buying
+
+207
+00:06:20,450 --> 00:06:22,630
+chips, because a cloud company needs
+
+208
+00:06:22,650 --> 00:06:25,100
+mountains of them and nobody asks why.
+
+209
+00:06:25,364 --> 00:06:27,364
+The data centers sat in Malaysia and
+
+210
+00:06:27,384 --> 00:06:28,184
+Indonesia.
+
+211
+00:06:28,353 --> 00:06:30,083
+Not one chip had to enter China.
+
+212
+00:06:30,394 --> 00:06:32,294
+Chinese customers could simply rent the
+
+213
+00:06:32,314 --> 00:06:33,984
+computing power over the internet.
+
+214
+00:06:34,317 --> 00:06:36,217
+According to the Financial Times, its
+
+215
+00:06:36,237 --> 00:06:38,277
+biggest customer from the start was the
+
+216
+00:06:38,297 --> 00:06:39,707
+Chinese giant Alibaba.
+
+217
+00:06:40,294 --> 00:06:41,734
+Imagine you're not allowed to own a
+
+218
+00:06:41,754 --> 00:06:42,554
+certain book.
+
+219
+00:06:42,739 --> 00:06:44,719
+So your neighbor buys it, keeps it in his
+
+220
+00:06:44,739 --> 00:06:46,479
+house, and lets you read it through the
+
+221
+00:06:46,499 --> 00:06:49,029
+window, one page at a time, for a fee.
+
+222
+00:06:49,316 --> 00:06:50,726
+The book never leaves his house.
+
+223
+00:06:51,048 --> 00:06:52,378
+You still read every word.
+
+224
+00:06:52,591 --> 00:06:53,961
+Can we buy your chips?
+
+225
+00:06:54,389 --> 00:06:55,089
+No.
+
+226
+00:06:55,109 --> 00:06:56,179
+You can borrow them.
+
+227
+00:06:56,326 --> 00:06:57,126
+For how long?
+
+228
+00:06:57,826 --> 00:06:58,426
+By the hour.
+
+229
+00:06:58,446 --> 00:06:59,836
+Or the year.
+
+230
+00:07:00,058 --> 00:07:02,498
+On paper, renting computing power isn't
+
+231
+00:07:02,518 --> 00:07:04,858
+exporting chips, and Megaspeed has always
+
+232
+00:07:04,878 --> 00:07:06,268
+said it follows the law.
+
+233
+00:07:06,563 --> 00:07:08,663
+After eight months, Alice Huang stepped
+
+234
+00:07:08,683 --> 00:07:10,033
+down as managing director,
+
+235
+00:07:10,723 --> 00:07:12,423
+but by most accounts she kept a leading
+
+236
+00:07:12,443 --> 00:07:13,139
+role.
+
+237
+00:07:13,159 --> 00:07:14,449
+New title for Alice?
+
+238
+00:07:14,841 --> 00:07:16,031
+Same office, though.
+
+239
+00:07:16,349 --> 00:07:19,009
+At the end of 2023, the company's filings
+
+240
+00:07:19,029 --> 00:07:20,669
+showed about thirty-three million dollars
+
+241
+00:07:20,689 --> 00:07:21,619
+in assets.
+
+242
+00:07:22,082 --> 00:07:23,982
+Not the kind whose people end up in photos
+
+243
+00:07:24,002 --> 00:07:25,472
+next to the boss of Nvidia.
+
+244
+00:07:25,834 --> 00:07:26,984
+That was about to change.
+
+245
+00:07:30,342 --> 00:07:32,312
+Jensen Huang is not hard to meet.
+
+246
+00:07:32,568 --> 00:07:34,788
+He shakes every hand, poses for every
+
+247
+00:07:34,808 --> 00:07:37,028
+selfie, and treats big customers like
+
+248
+00:07:37,048 --> 00:07:38,178
+regulars at a diner.
+
+249
+00:07:38,515 --> 00:07:40,635
+Nvidia later said meeting customers is
+
+250
+00:07:40,655 --> 00:07:43,055
+simply part of his job, thousands of them
+
+251
+00:07:43,075 --> 00:07:43,751
+a year.
+
+252
+00:07:43,771 --> 00:07:44,641
+Can I get a selfie?
+
+253
+00:07:45,271 --> 00:07:46,071
+Of course.
+
+254
+00:07:46,771 --> 00:07:47,821
+Can you sign my laptop?
+
+255
+00:07:48,271 --> 00:07:49,781
+Only if it has our chip.
+
+256
+00:07:50,045 --> 00:07:51,955
+Alice Huang was one of those thousands.
+
+257
+00:07:52,415 --> 00:07:53,585
+In early 2024,
+
+258
+00:07:54,195 --> 00:07:55,995
+she turned up at an Nvidia event in
+
+259
+00:07:56,015 --> 00:07:58,465
+California, representing Megaspeed.
+
+260
+00:07:58,696 --> 00:08:02,436
+In June 2024, Taipei hosted Computex, the
+
+261
+00:08:02,456 --> 00:08:04,296
+giant computer show where Jensen is
+
+262
+00:08:04,316 --> 00:08:05,546
+treated like a rock star.
+
+263
+00:08:05,817 --> 00:08:08,637
+That same month, at a party in the city, a
+
+264
+00:08:08,657 --> 00:08:09,457
+camera flashed.
+
+265
+00:08:09,870 --> 00:08:11,610
+In the photo, standing right beside
+
+266
+00:08:11,630 --> 00:08:13,360
+Jensen, is Alice Huang.
+
+267
+00:08:13,667 --> 00:08:14,917
+Everyone, squeeze in!
+
+268
+00:08:15,171 --> 00:08:16,401
+Customers in the front!
+
+269
+00:08:16,780 --> 00:08:17,580
+Say "GPU"!
+
+270
+00:08:18,280 --> 00:08:19,080
+GPU!
+
+271
+00:08:19,600 --> 00:08:20,400
+GPU!
+
+272
+00:08:20,931 --> 00:08:22,941
+A company later posted the picture online.
+
+273
+00:08:23,440 --> 00:08:25,700
+To everyone in that room, it was one more
+
+274
+00:08:25,720 --> 00:08:27,910
+snapshot from one more busy night.
+
+275
+00:08:28,200 --> 00:08:29,530
+Nobody looked at it twice.
+
+276
+00:08:29,949 --> 00:08:31,699
+Later, a lot of people would.
+
+277
+00:08:31,923 --> 00:08:33,983
+Because that same month, Megaspeed's
+
+278
+00:08:34,003 --> 00:08:36,093
+sister company in Malaysia started buying.
+
+279
+00:08:36,439 --> 00:08:37,239
+A lot.
+
+280
+00:08:37,939 --> 00:08:39,349
+Another order from Malaysia.
+
+281
+00:08:39,698 --> 00:08:40,788
+Didn't they order yesterday?
+
+282
+00:08:41,262 --> 00:08:42,472
+That was the small one.
+
+283
+00:08:42,762 --> 00:08:45,342
+By the end of 2024, the little company's
+
+284
+00:08:45,362 --> 00:08:47,262
+assets had jumped to about three billion
+
+285
+00:08:47,282 --> 00:08:48,093
+dollars.
+
+286
+00:08:48,143 --> 00:08:50,220
+Its revenue that year: about two hundred
+
+287
+00:08:50,240 --> 00:08:51,493
+ninety-four million.
+
+288
+00:08:51,803 --> 00:08:53,533
+Last year, a small firm.
+
+289
+00:08:53,803 --> 00:08:54,603
+And this year?
+
+290
+00:08:54,788 --> 00:08:55,898
+Ninety times bigger.
+
+291
+00:08:56,288 --> 00:08:57,598
+Did they sell a hit game?
+
+292
+00:08:57,861 --> 00:08:59,861
+The Financial Times later reported that
+
+293
+00:08:59,881 --> 00:09:01,741
+its Malaysian arm had borrowed from an
+
+294
+00:09:01,761 --> 00:09:03,031
+Alibaba subsidiary,
+
+295
+00:09:03,541 --> 00:09:05,211
+pledging the whole business as collateral.
+
+296
+00:09:05,681 --> 00:09:07,521
+If a corner bakery grew like that in a
+
+297
+00:09:07,541 --> 00:09:09,421
+year, the neighbors would start asking
+
+298
+00:09:09,441 --> 00:09:10,251
+about the flour.
+
+299
+00:09:10,644 --> 00:09:12,124
+So where was all that hardware coming
+
+300
+00:09:12,144 --> 00:09:12,944
+from?
+
+301
+00:09:14,805 --> 00:09:16,485
+Much of it came from a company called
+
+302
+00:09:16,505 --> 00:09:17,305
+Aivres.
+
+303
+00:09:17,493 --> 00:09:20,253
+Aivres is the American arm of Inspur, a
+
+304
+00:09:20,273 --> 00:09:22,173
+Chinese server giant that the United
+
+305
+00:09:22,193 --> 00:09:24,143
+States had put on its trade blacklist.
+
+306
+00:09:24,705 --> 00:09:26,995
+Inspur couldn't buy Nvidia's best chips.
+
+307
+00:09:27,398 --> 00:09:29,578
+Its American branch could, and it built
+
+308
+00:09:29,598 --> 00:09:31,728
+them into servers and shipped them abroad.
+
+309
+00:09:31,996 --> 00:09:32,576
+Inspur?
+
+310
+00:09:32,596 --> 00:09:34,066
+You're blacklisted.
+
+311
+00:09:34,403 --> 00:09:35,333
+I'm Aivres.
+
+312
+00:09:35,383 --> 00:09:36,183
+California.
+
+313
+00:09:36,303 --> 00:09:37,793
+Then welcome, Aivres.
+
+314
+00:09:38,070 --> 00:09:39,040
+Follow one box.
+
+315
+00:09:39,428 --> 00:09:41,648
+It's packed in a factory, loaded onto a
+
+316
+00:09:41,668 --> 00:09:43,318
+ship, cleared through customs,
+
+317
+00:09:43,828 --> 00:09:45,228
+and delivered to a data center in
+
+318
+00:09:45,248 --> 00:09:46,018
+Malaysia.
+
+319
+00:09:46,038 --> 00:09:47,448
+Every step has paperwork.
+
+320
+00:09:47,827 --> 00:09:48,997
+Every step looks legal.
+
+321
+00:09:49,347 --> 00:09:50,517
+Destination, please?
+
+322
+00:09:50,874 --> 00:09:51,744
+Malaysia, sir.
+
+323
+00:09:52,374 --> 00:09:53,264
+Final destination?
+
+324
+00:09:53,730 --> 00:09:54,530
+Still Malaysia.
+
+325
+00:09:54,853 --> 00:09:55,903
+Enjoy your stay.
+
+326
+00:09:56,353 --> 00:09:58,353
+One count put the haul at nearly two
+
+327
+00:09:58,373 --> 00:10:00,653
+billion dollars of Nvidia's most advanced
+
+328
+00:10:00,673 --> 00:10:01,473
+chips.
+
+329
+00:10:01,533 --> 00:10:03,773
+A later look at trade records found more
+
+330
+00:10:03,793 --> 00:10:05,693
+than four point eight billion dollars of
+
+331
+00:10:05,713 --> 00:10:07,643
+AI equipment with Nvidia inside,
+
+332
+00:10:08,273 --> 00:10:10,733
+all flowing to one company most people had
+
+333
+00:10:10,753 --> 00:10:11,583
+never heard of.
+
+334
+00:10:11,731 --> 00:10:15,071
+Late in 2024, inspectors from the US
+
+335
+00:10:15,091 --> 00:10:17,011
+Commerce Department walked into one of
+
+336
+00:10:17,031 --> 00:10:18,581
+those Malaysian data centers.
+
+337
+00:10:18,807 --> 00:10:20,787
+A data center is supposed to hum with busy
+
+338
+00:10:20,807 --> 00:10:21,607
+servers.
+
+339
+00:10:21,776 --> 00:10:24,216
+What they found were servers still sealed
+
+340
+00:10:24,236 --> 00:10:25,086
+in their packaging.
+
+341
+00:10:25,513 --> 00:10:26,523
+Is it switched on?
+
+342
+00:10:27,013 --> 00:10:27,813
+It's still wrapped.
+
+343
+00:10:28,513 --> 00:10:29,313
+Since when?
+
+344
+00:10:30,013 --> 00:10:30,813
+Since delivery.
+
+345
+00:10:31,513 --> 00:10:33,903
+Still, on paper, nothing was wrong.
+
+346
+00:10:34,173 --> 00:10:36,383
+Every sale went to Singapore or Malaysia,
+
+347
+00:10:36,733 --> 00:10:37,563
+never to China.
+
+348
+00:10:37,929 --> 00:10:40,149
+Megaspeed said every review found no
+
+349
+00:10:40,169 --> 00:10:40,969
+violations.
+
+350
+00:10:41,367 --> 00:10:43,687
+Jensen later said Nvidia had studied all
+
+351
+00:10:43,707 --> 00:10:44,507
+its deployments.
+
+352
+00:10:44,831 --> 00:10:45,981
+We counted every one.
+
+353
+00:10:46,466 --> 00:10:48,296
+That's what made it so hard to catch.
+
+354
+00:10:48,670 --> 00:10:50,950
+Ordinary smugglers sweat at customs, and
+
+355
+00:10:50,970 --> 00:10:51,820
+some get caught.
+
+356
+00:10:52,134 --> 00:10:55,314
+In 2023, Hong Kong customs found seventy
+
+357
+00:10:55,334 --> 00:10:57,944
+graphics cards packed among live lobsters.
+
+358
+00:10:58,259 --> 00:11:01,209
+Another ring, broken up in December 2025,
+
+359
+00:11:01,639 --> 00:11:03,019
+had moved at least a hundred and sixty
+
+360
+00:11:03,039 --> 00:11:05,229
+million dollars of Nvidia chips.
+
+361
+00:11:05,596 --> 00:11:07,836
+Prosecutors charged one Chinese national
+
+362
+00:11:07,856 --> 00:11:10,136
+over nine hundred and seventeen smuggled
+
+363
+00:11:10,156 --> 00:11:10,956
+servers.
+
+364
+00:11:11,113 --> 00:11:12,963
+This operation never had to sweat.
+
+365
+00:11:13,235 --> 00:11:15,175
+Every box was exactly where the paperwork
+
+366
+00:11:15,195 --> 00:11:16,105
+said it was.
+
+367
+00:11:16,400 --> 00:11:18,230
+But in the eyes of American intelligence,
+
+368
+00:11:18,720 --> 00:11:20,430
+the chips were never the real prize.
+
+369
+00:11:22,883 --> 00:11:25,223
+Nvidia insists its customers never get
+
+370
+00:11:25,243 --> 00:11:26,563
+anything that matters for national
+
+371
+00:11:26,583 --> 00:11:27,383
+security.
+
+372
+00:11:27,721 --> 00:11:29,271
+The prize was influence.
+
+373
+00:11:29,847 --> 00:11:31,487
+Because Washington could not make up its
+
+374
+00:11:31,507 --> 00:11:32,218
+mind.
+
+375
+00:11:32,238 --> 00:11:33,528
+In April 2025,
+
+376
+00:11:34,138 --> 00:11:36,058
+the China chip was blocked, and Nvidia
+
+377
+00:11:36,078 --> 00:11:38,138
+wrote off billions in chips it suddenly
+
+378
+00:11:38,158 --> 00:11:38,988
+couldn't sell.
+
+379
+00:11:39,285 --> 00:11:41,805
+In August came a deal: sales could resume
+
+380
+00:11:41,825 --> 00:11:43,715
+if the government got fifteen percent.
+
+381
+00:11:44,114 --> 00:11:46,194
+In December, the president went further
+
+382
+00:11:46,214 --> 00:11:48,074
+and allowed a stronger chip, for
+
+383
+00:11:48,094 --> 00:11:49,064
+twenty-five percent.
+
+384
+00:11:49,406 --> 00:11:50,206
+China chip:
+
+385
+00:11:50,706 --> 00:11:51,451
+blocked.
+
+386
+00:11:51,471 --> 00:11:52,271
+Understood.
+
+387
+00:11:52,451 --> 00:11:53,194
+Blocked.
+
+388
+00:11:53,214 --> 00:11:54,014
+Now allowed.
+
+389
+00:11:54,754 --> 00:11:56,064
+Fifteen percent, please.
+
+390
+00:11:56,409 --> 00:11:57,129
+Wait.
+
+391
+00:11:57,149 --> 00:11:57,943
+Understood?
+
+392
+00:11:57,963 --> 00:11:59,133
+Stronger chip allowed.
+
+393
+00:11:59,823 --> 00:12:00,623
+Bigger cut.
+
+394
+00:12:00,651 --> 00:12:02,261
+Does anyone have a calendar?
+
+395
+00:12:02,602 --> 00:12:04,682
+Later, when the New York Times checked one
+
+396
+00:12:04,702 --> 00:12:06,562
+of the Chinese firms cleared to handle
+
+397
+00:12:06,582 --> 00:12:08,962
+that chip, its Beijing address was an
+
+398
+00:12:08,982 --> 00:12:10,012
+empty building.
+
+399
+00:12:10,287 --> 00:12:12,487
+Through every twist, Jensen made the same
+
+400
+00:12:12,507 --> 00:12:13,577
+case, loudly.
+
+401
+00:12:14,024 --> 00:12:16,284
+In Taipei that May, he told reporters
+
+402
+00:12:16,304 --> 00:12:18,134
+exactly what he thought of the rules.
+
+403
+00:12:18,505 --> 00:12:20,155
+The export control was a failure.
+
+404
+00:12:20,437 --> 00:12:22,437
+He warned that China's AI market was
+
+405
+00:12:22,457 --> 00:12:24,777
+heading toward fifty billion dollars, and
+
+406
+00:12:24,797 --> 00:12:26,827
+American companies were locked out of it.
+
+407
+00:12:26,988 --> 00:12:29,128
+Footage aired later by a Taiwanese channel
+
+408
+00:12:29,148 --> 00:12:31,328
+shows the two Huangs leaving a group
+
+409
+00:12:31,348 --> 00:12:33,868
+dinner in Taipei that same month, in the
+
+410
+00:12:33,888 --> 00:12:34,698
+same car.
+
+411
+00:12:34,963 --> 00:12:36,293
+Now look at it from Beijing.
+
+412
+00:12:36,732 --> 00:12:38,022
+One chip is valuable.
+
+413
+00:12:38,442 --> 00:12:40,422
+But one conversation between Jensen and
+
+414
+00:12:40,442 --> 00:12:42,802
+the White House could open or close an
+
+415
+00:12:42,822 --> 00:12:43,872
+entire market.
+
+416
+00:12:44,137 --> 00:12:45,787
+Which would you rather sit next to?
+
+417
+00:12:45,943 --> 00:12:47,473
+A chip, or a conversation?
+
+418
+00:12:47,878 --> 00:12:48,678
+The conversation.
+
+419
+00:12:48,918 --> 00:12:49,718
+It's cheaper.
+
+420
+00:12:49,780 --> 00:12:52,020
+Then Megaspeed suddenly went quiet and
+
+421
+00:12:52,040 --> 00:12:53,190
+stopped placing orders.
+
+422
+00:12:53,530 --> 00:12:55,950
+Nvidia later said it had cut Megaspeed off
+
+423
+00:12:55,970 --> 00:12:56,737
+itself.
+
+424
+00:12:56,757 --> 00:12:59,377
+That October, Senator Tom Cotton asked the
+
+425
+00:12:59,397 --> 00:13:01,657
+Commerce Department to investigate it, and
+
+426
+00:13:01,677 --> 00:13:03,517
+Singapore police opened a case of their
+
+427
+00:13:03,537 --> 00:13:04,159
+own.
+
+428
+00:13:04,179 --> 00:13:06,039
+Then the Commerce probe was handed over to
+
+429
+00:13:06,059 --> 00:13:06,989
+the Justice Department.
+
+430
+00:13:07,355 --> 00:13:08,585
+Look into Megaspeed.
+
+431
+00:13:08,838 --> 00:13:09,545
+We're looking.
+
+432
+00:13:09,565 --> 00:13:10,535
+We'll take it from here.
+
+433
+00:13:11,065 --> 00:13:13,705
+In early 2026, Bloomberg reported,
+
+434
+00:13:13,725 --> 00:13:16,085
+Megaspeed's Malaysian landlord, a
+
+435
+00:13:16,105 --> 00:13:18,475
+data-center firm backed by Bain Capital,
+
+436
+00:13:18,765 --> 00:13:20,315
+gave its space to another tenant.
+
+437
+00:13:20,654 --> 00:13:22,714
+And by then, the people listening to Alice
+
+438
+00:13:22,734 --> 00:13:24,874
+Huang's calls had put everything in
+
+439
+00:13:24,894 --> 00:13:25,694
+writing.
+
+440
+00:13:27,767 --> 00:13:30,567
+In the spring of 2026, a highly classified
+
+441
+00:13:30,587 --> 00:13:32,487
+memo was written under the watch of
+
+442
+00:13:32,507 --> 00:13:34,357
+Secretary of State Marco Rubio.
+
+443
+00:13:34,730 --> 00:13:36,730
+It was built on electronic surveillance of
+
+444
+00:13:36,750 --> 00:13:37,550
+Alice Huang.
+
+445
+00:13:37,739 --> 00:13:38,539
+Its conclusion:
+
+446
+00:13:38,959 --> 00:13:41,239
+China's Ministry of State Security had
+
+447
+00:13:41,259 --> 00:13:43,179
+recruited her to gather information on
+
+448
+00:13:43,199 --> 00:13:45,979
+American AI chips, and to nudge Jensen to
+
+449
+00:13:45,999 --> 00:13:47,569
+keep lobbying for looser rules.
+
+450
+00:13:47,892 --> 00:13:48,862
+According to CNN,
+
+451
+00:13:49,312 --> 00:13:51,552
+the intercepts first referred only to "a
+
+452
+00:13:51,572 --> 00:13:51,812
+U.S.
+
+453
+00:13:51,832 --> 00:13:52,632
+person."
+
+454
+00:13:53,232 --> 00:13:54,732
+Officials asked for the name to be
+
+455
+00:13:54,752 --> 00:13:55,622
+unmasked.
+
+456
+00:13:55,700 --> 00:13:57,330
+It was Jensen Huang.
+
+457
+00:13:57,675 --> 00:13:59,995
+The Ministry of State Security is China's
+
+458
+00:14:00,015 --> 00:14:02,915
+main spy service, working both abroad and
+
+459
+00:14:02,935 --> 00:14:03,648
+at home.
+
+460
+00:14:03,668 --> 00:14:04,598
+Who gets a copy?
+
+461
+00:14:05,168 --> 00:14:06,478
+Only the top clearances.
+
+462
+00:14:06,821 --> 00:14:08,131
+Does Jensen get one?
+
+463
+00:14:08,348 --> 00:14:09,148
+He's in it.
+
+464
+00:14:09,848 --> 00:14:11,308
+The memo went around before the
+
+465
+00:14:11,328 --> 00:14:13,118
+president's trip to Beijing in May.
+
+466
+00:14:13,407 --> 00:14:15,227
+According to Axios, even Commerce
+
+467
+00:14:15,247 --> 00:14:17,597
+Secretary Howard Lutnick got a copy.
+
+468
+00:14:17,834 --> 00:14:19,994
+CNN reported that Rubio briefed the
+
+469
+00:14:20,014 --> 00:14:22,344
+president himself aboard Air Force One.
+
+470
+00:14:22,602 --> 00:14:24,182
+The president has said he hadn't heard
+
+471
+00:14:24,202 --> 00:14:24,979
+about it.
+
+472
+00:14:24,999 --> 00:14:28,999
+Then, on October 29, 2026, the New York
+
+473
+00:14:29,019 --> 00:14:30,409
+Times broke the story.
+
+474
+00:14:30,695 --> 00:14:31,885
+China called it a smear.
+
+475
+00:14:32,233 --> 00:14:34,033
+Jensen said his contacts with her were
+
+476
+00:14:34,053 --> 00:14:34,853
+about business.
+
+477
+00:14:35,066 --> 00:14:36,956
+Completely normal and not unusual.
+
+478
+00:14:37,312 --> 00:14:39,512
+In early November, the Times got hold of
+
+479
+00:14:39,532 --> 00:14:40,462
+the memo's details.
+
+480
+00:14:40,937 --> 00:14:42,567
+And the memo said one more thing:
+
+481
+00:14:43,217 --> 00:14:45,267
+the relationship had gone beyond business.
+
+482
+00:14:45,655 --> 00:14:46,605
+Beyond business?
+
+483
+00:14:47,045 --> 00:14:48,155
+Read page two.
+
+484
+00:14:48,414 --> 00:14:50,594
+That left one question that still has no
+
+485
+00:14:50,614 --> 00:14:51,414
+good answer.
+
+486
+00:14:53,611 --> 00:14:54,981
+Why did nobody tell Jensen?
+
+487
+00:14:55,375 --> 00:14:57,475
+When American spies find a foreign agent
+
+488
+00:14:57,495 --> 00:14:59,675
+getting close to an American, there's a
+
+489
+00:14:59,695 --> 00:15:01,145
+tool for exactly this.
+
+490
+00:15:01,434 --> 00:15:02,844
+It's called a defensive briefing.
+
+491
+00:15:03,287 --> 00:15:05,487
+Agents quietly explain who your new friend
+
+492
+00:15:05,507 --> 00:15:06,307
+works for.
+
+493
+00:15:06,458 --> 00:15:07,268
+Got a minute?
+
+494
+00:15:07,613 --> 00:15:08,423
+Am I in trouble?
+
+495
+00:15:08,778 --> 00:15:09,578
+No.
+
+496
+00:15:09,698 --> 00:15:11,728
+Your new friend is.
+
+497
+00:15:11,760 --> 00:15:12,770
+It has happened before.
+
+498
+00:15:13,560 --> 00:15:16,540
+In 2015, the FBI gave exactly that
+
+499
+00:15:16,560 --> 00:15:19,000
+briefing to a California congressman about
+
+500
+00:15:19,020 --> 00:15:21,290
+a suspected Chinese spy in his circle.
+
+501
+00:15:21,632 --> 00:15:23,022
+Jensen never got that knock.
+
+502
+00:15:23,194 --> 00:15:25,344
+The people who knew listened to the calls,
+
+503
+00:15:25,714 --> 00:15:27,354
+wrote the memo, and briefed the White
+
+504
+00:15:27,374 --> 00:15:28,094
+House.
+
+505
+00:15:28,114 --> 00:15:30,164
+Nobody told the man at the table.
+
+506
+00:15:30,433 --> 00:15:33,113
+That May, he even boarded Air Force One in
+
+507
+00:15:33,133 --> 00:15:34,913
+Alaska, for the last leg of the
+
+508
+00:15:34,933 --> 00:15:36,183
+president's trip to China.
+
+509
+00:15:36,539 --> 00:15:38,919
+On November 8, Jensen wrote a letter to
+
+510
+00:15:38,939 --> 00:15:39,739
+his staff.
+
+511
+00:15:39,808 --> 00:15:42,148
+In it, he admitted he had been unfaithful
+
+512
+00:15:42,168 --> 00:15:42,968
+to his wife.
+
+513
+00:15:43,113 --> 00:15:44,123
+He didn't name anyone.
+
+514
+00:15:44,488 --> 00:15:45,478
+The press soon did.
+
+515
+00:15:45,643 --> 00:15:47,253
+I was unfaithful to my wife.
+
+516
+00:15:47,510 --> 00:15:49,660
+I am proud and grateful to be an American.
+
+517
+00:15:50,112 --> 00:15:51,642
+Then everything moved at once.
+
+518
+00:15:51,949 --> 00:15:52,989
+We're opening an independent
+
+519
+00:15:53,009 --> 00:15:53,959
+investigation.
+
+520
+00:15:54,345 --> 00:15:56,015
+We'd like a closed-door briefing.
+
+521
+00:15:56,308 --> 00:15:57,108
+Alice Huang?
+
+522
+00:15:57,488 --> 00:15:58,338
+Entry denied.
+
+523
+00:15:58,772 --> 00:16:00,712
+President Trump said the FBI was looking
+
+524
+00:16:00,732 --> 00:16:01,532
+into it.
+
+525
+00:16:01,575 --> 00:16:04,335
+On November 12, Jensen Huang resigned as
+
+526
+00:16:04,355 --> 00:16:06,725
+CEO, president, and board member,
+
+527
+00:16:07,015 --> 00:16:08,285
+effective immediately.
+
+528
+00:16:08,722 --> 00:16:11,142
+Thirty-three years at the top, over in one
+
+529
+00:16:11,162 --> 00:16:11,962
+press release.
+
+530
+00:16:12,208 --> 00:16:14,108
+Chief financial officer Colette Kress
+
+531
+00:16:14,128 --> 00:16:15,838
+became interim CEO.
+
+532
+00:16:16,296 --> 00:16:17,246
+Any reason given?
+
+533
+00:16:17,796 --> 00:16:18,596
+None at all.
+
+534
+00:16:19,296 --> 00:16:21,476
+In San Jose, the Denny's where Nvidia
+
+535
+00:16:21,496 --> 00:16:23,586
+began took down its plaque that day.
+
+536
+00:16:23,846 --> 00:16:25,966
+A day later, Denny's said it would put it
+
+537
+00:16:25,986 --> 00:16:26,575
+back.
+
+538
+00:16:26,595 --> 00:16:28,975
+That day, Nvidia's stock fell as much as
+
+539
+00:16:28,995 --> 00:16:29,905
+fourteen percent.
+
+540
+00:16:30,316 --> 00:16:31,906
+It wasn't even its worst day.
+
+541
+00:16:32,233 --> 00:16:34,553
+When China's DeepSeek released a cheap AI
+
+542
+00:16:34,573 --> 00:16:37,043
+model in January 2025,
+
+543
+00:16:37,693 --> 00:16:39,733
+Nvidia lost nearly six hundred billion
+
+544
+00:16:39,753 --> 00:16:41,303
+dollars in a single day.
+
+545
+00:16:41,546 --> 00:16:43,746
+And its next earnings report was due five
+
+546
+00:16:43,766 --> 00:16:44,566
+days later.
+
+547
+00:16:44,709 --> 00:16:45,919
+What did the affair cost?
+
+548
+00:16:46,275 --> 00:16:47,425
+About fourteen percent.
+
+549
+00:16:47,739 --> 00:16:48,455
+Of him?
+
+550
+00:16:48,475 --> 00:16:49,625
+Of your retirement fund.
+
+551
+00:16:49,975 --> 00:16:52,095
+Nvidia is one of the largest companies in
+
+552
+00:16:52,115 --> 00:16:55,435
+the S&P 500, the index behind millions of
+
+553
+00:16:55,455 --> 00:16:56,325
+retirement savings.
+
+554
+00:16:56,833 --> 00:16:58,243
+Nobody has charged Jensen,
+
+555
+00:16:58,953 --> 00:17:01,083
+Nvidia, or Alice Huang with any crime.
+
+556
+00:17:01,430 --> 00:17:03,790
+Megaspeed now says she left the company in
+
+557
+00:17:03,810 --> 00:17:04,980
+August 2025.
+
+558
+00:17:05,616 --> 00:17:07,876
+CNN later reported that US intelligence
+
+559
+00:17:07,896 --> 00:17:10,236
+isn't sure she spied at all, though
+
+560
+00:17:10,256 --> 00:17:11,626
+sources call her a risk.
+
+561
+00:17:11,887 --> 00:17:13,927
+Singapore has barred her from entering the
+
+562
+00:17:13,947 --> 00:17:14,656
+country.
+
+563
+00:17:14,676 --> 00:17:16,926
+Where she is now, nobody will say.
+
+564
+00:17:17,242 --> 00:17:18,772
+Go back to that dinner in Singapore.
+
+565
+00:17:19,177 --> 00:17:19,977
+The candles.
+
+566
+00:17:20,194 --> 00:17:21,644
+The toast to good partners.
+
+567
+00:17:22,107 --> 00:17:23,497
+Both chairs are empty now.
+
+568
+00:17:23,711 --> 00:17:25,711
+America watched that table for more than a
+
+569
+00:17:25,731 --> 00:17:27,591
+year and never said a word to the man
+
+570
+00:17:27,611 --> 00:17:28,561
+sitting at it.
+
+571
+00:17:28,730 --> 00:17:30,750
+So the next time someone friendly pulls up
+
+572
+00:17:30,770 --> 00:17:32,370
+a chair beside the people building
+
+573
+00:17:32,390 --> 00:17:33,340
+America's AI,
+
+574
+00:17:33,870 --> 00:17:35,160
+who's going to warn them?
+
+575
+00:17:36,155 --> 00:17:38,665
+Some keys are too heavy to carry.
+
+576
+00:17:39,225 --> 00:17:41,015
+So this one goes in the safe.
+
+577
+00:17:41,675 --> 00:17:44,225
+The question is who opens it next.

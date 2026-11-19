@@ -145,3 +145,6 @@ touched: engine/src/chars/{presetsLong.js,stickman.js}, production/L001/sound/{c
 
 ## [2026-11-19 20:37] video | L001 смех и добор звука: смех не был слышен (записи испорчены затуханием с 0 с, уровень −26 дБ к голосу) — Дженсен смеётся своим голосом (дубли Fish, laugh.jensen), смех FEATURED, −7…−10 дБ к голосу; ещё 30 звуков в планах без звука действия (cues_extra.mjs, 128 групп); full_sound.mp4 20:37, синхрон 3.4 мс
 touched: production/L001/sound/{render.py,cues.mjs,cues_extra.mjs,cues_manual.mjs,palette_*.json}, production/L001/HANDOFF.md
+
+## [2026-11-19 21:30] publish | L001 упаковка для YouTube: 3 названия (реком. «How a Suspected Chinese Spy Got Close to Jensen Huang»), описание с главами, дисклеймером, источниками и атрибуцией музыки CC BY, 20 тегов, категория Education, 3 обложки для «Тест и сравнение» (из кадров фильма, формула лидеров Paper Billions), английские субтитры по разметке слов
+touched: production/L001/publish/{upload.md,make_thumbs.py,thumb_A..C.{png,jpg},L001_en.srt}, raw/donors/2026-11-19-paperbillions-meta/
