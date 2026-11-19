@@ -51,7 +51,7 @@ def banner(bg_path, title_box, layout=None):
     im = place(src, *layout) if layout else cover(src, BW, BH)
     x0, x1 = title_box; y0, y1 = SAFE[1], SAFE[3]
     # мягкая тёмная подложка под текст (читаемость на любом фоне)
-    m = Image.new('L', (BW, BH), 0); md = ImageDraw.Draw(m); md.rounded_rectangle((x0 - 40, y0 + 20, x1 + 40, y1 - 20), 60, fill=150)
+    m = Image.new('L', (BW, BH), 0); md = ImageDraw.Draw(m); md.rounded_rectangle((x0 - 40, y0 + 20, x1 + 40, y1 - 20), 60, fill=PLATE)
     m = m.filter(ImageFilter.GaussianBlur(60)); im = Image.composite(Image.new('RGB', (BW, BH), (6, 5, 8)), im, m)
     d = ImageDraw.Draw(im)
     title, slogan = 'huh?', 'The money stories nobody told you.'
@@ -63,7 +63,7 @@ def banner(bg_path, title_box, layout=None):
     f2 = ImageFont.truetype(FONT2, s2); sb = d.textbbox((0, 0), slogan, font=f2)
     th, sh, gap = tb[3] - tb[1], sb[3] - sb[1], 28
     BTN = 92 + 34 if SUBSCRIBE else 0          # кнопка + отступ — в общей высоте блока
-    while th + gap + sh + BTN > (y1 - y0) - 50 and size > 120:   # блок целиком влезает в зону всех устройств
+    while th + gap + sh + BTN > (y1 - y0) - 110 and size > 120:   # блок целиком влезает в зону всех устройств
         size -= 8; f = ImageFont.truetype(FONT, size); tb = d.textbbox((0, 0), title, font=f); th = tb[3] - tb[1]
     ty = y0 + ((y1 - y0) - (th + gap + sh + BTN)) // 2 - tb[1]
     tx = x0 + ((x1 - x0) - (tb[2] - tb[0])) // 2 - tb[0]
@@ -84,6 +84,7 @@ def banner(bg_path, title_box, layout=None):
 
 
 SUBSCRIBE = False
+PLATE = 150    # тёмная подложка под текстом (0 — без неё)
 
 
 def zones(im):

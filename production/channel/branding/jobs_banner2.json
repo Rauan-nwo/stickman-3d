@@ -1,0 +1,20 @@
+[
+ {
+  "out": "banner_gpt_full.png",
+  "promptFile": "prompts/banner_gpt_full.txt",
+  "refs": [
+   "refs/host_safe.png",
+   "refs/host_cu.png"
+  ],
+  "refMode": "match"
+ },
+ {
+  "out": "banner_green_sofa_v2.png",
+  "promptFile": "prompts/banner_green_sofa_v2.txt",
+  "refs": [
+   "refs/host_safe.png",
+   "refs/host_cu.png"
+  ],
+  "refMode": "match"
+ }
+]
