@@ -52,9 +52,9 @@ export const MANUAL = [
     { t: Math.min(.8, s.dur - .55), snd: 'glasses.tick', gain: -6, what: 'Алиса поправляет очки' },
   ] }) },
   { m: F(0, 'L01-restaurant', /^средний Алиса/), f: (s, h) => { const tc = s.snap ?? 1.6, tOne = h.W('one', .55), tBig = h.W('biggest', 1.1); return { replace: ['foley', 'shake', 'props'], cues: [
-    { t: tOne + .06, vt: tOne, snd: 'crate.set', pan: -.2, what: 'первый ящик ставят у её стула', vis: 'appear' },
+    { t: tOne + .06, vt: tOne, snd: 'box.set', pan: -.2, what: 'первый ящик ставят у её стула (box.set: хвост записи crate.set со скрипом + гитара + зал давали AST «Hoot/Owl» 0.15, 19.11)', vis: 'appear' },
     { t: tBig + .06, vt: tBig, snd: 'crate.set', gain: -1, pan: .3, what: 'второй ящик', vis: 'appear' },
-    { t: tc, snd: 'tag.pop', what: 'бирка «VIP CUSTOMER»', vis: 'appear' },
+    { t: tc, snd: 'paper.place', gain: -4, what: 'бирка «VIP CUSTOMER» (бумага: tag.pop и tag.slap в сумме с ящиками и нотой гитары давали AST «Owl» 0.10–0.16, проверка 19.11)', vis: 'appear' },
     { t: tc - .45, snd: 'paper.slide', align: 'span', dur: .6, gain: -5, what: 'папка с заказом едет к Дженсену' },
   ] }; } },
   { m: F(0, 'L01-restaurant', /бокал/), f: (s, h) => { const tw = s.whip?.t ?? s.dur * .5, al = h.lineSpan('ALICE', s.start, s.end), tClink = Math.max((al ? al[1] - s.start : tw + .8) + .12, s.dur - .62);

@@ -91,6 +91,12 @@ DESC = {
     "fx_crowd_gasp_b": "a crowd gasping in surprise",
     "amb_newsroom_b": "a busy office ambience, people talking, phones and typing",
     "fx_stamp_b": "a rubber stamp thumped onto paper on a desk",
+    "fx_laugh_man": "a single man laughing briefly, a short amused chuckle, dry close recording",
+    "fx_laugh_woman": "a single woman laughing briefly, a short amused giggle, dry close recording",
+    "fx_laugh_group": "a small group of people laughing together in a room",
+    "fx_pen_click": "a ballpoint pen clicked once",
+    "fx_finger_tap": "fingers tapping on a wooden table",
+    "fx_printer": "an office printer printing a page, paper feeding out",
 }
 
 # need -> Kenney globs (relative to lib/_dl/kenney)

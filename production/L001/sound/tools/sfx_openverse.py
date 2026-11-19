@@ -112,6 +112,13 @@ NEEDS = {
     "fx_crowd_gasp_b": (3, "spot", ["audience gasp", "crowd shock"], 0.3, 60),
     "amb_newsroom_b": (3, "amb", ["office ambience", "call center ambience", "newsroom"], 20, 1200),
     "fx_stamp_b": (3, "spot", ["date stamp", "stamp ink pad"], 0.1, 60),
+    # ---------------- priority 4: L001 проход по звуку 19.11 (смех героев, ручка, пальцы, принтер)
+    "fx_laugh_man": (4, "spot", ["man laughing", "male chuckle"], 0.4, 20),
+    "fx_laugh_woman": (4, "spot", ["woman laughing", "female giggle"], 0.4, 20),
+    "fx_laugh_group": (4, "spot", ["group laughing", "people laughing"], 1, 30),
+    "fx_pen_click": (4, "spot", ["pen click", "ballpoint pen"], 0.05, 20),
+    "fx_finger_tap": (4, "spot", ["finger tapping table", "fingers drumming"], 0.3, 40),
+    "fx_printer": (4, "spot", ["printer printing", "dot matrix printer"], 1, 90),
 }
 
 

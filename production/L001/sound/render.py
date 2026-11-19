@@ -67,6 +67,9 @@ LEVEL = {
     'phone.ring': -9, 'phone.pickup': -10, 'water.splash': -12, 'wood.knock': -14, 'knock': -8, 'door.slam': -6, 'door.open': -14,
     'lock.click': -10, 'timer.click': -10, 'pin.push': -14, 'page.turn': -16, 'paper.handle': -18, 'pen.drop': -12, 'drip': -18,
     'cash': -12, 'fax': -16, 'keyboard': -18, 'applause': -10, 'crowd.react': -14, 'crane.clank': -12, 'pour': -16, 'dishes': -14,
+    # 19.11 проход по звуку: смех героев (записи CC0), ручка, пальцы, принтер, винт, тележка
+    'laugh.man': -12, 'laugh.woman': -12, 'laugh.group': -13, 'pen.click': -12, 'finger.tap': -12, 'printer': -16,
+    'screw.turn': -16, 'cart.roll': -20,
 }
 FEATURED = {'stamp', 'sting.chapter', 'sting.title', 'riser.title', 'hit.reveal', 'glass.clink', 'water.splash', 'hit.punch',
             'door.slam', 'alarm.hit', 'hit.number', 'hit.card', 'shutter'}
@@ -78,13 +81,14 @@ WIDE = {'sting.title', 'sting.chapter', 'hit.reveal', 'hit.card', 'hit.bloom', '
 # плотность (--density): full — всё из листа; mid (по умолчанию) — без декоративной «жизни кадра» и без рывков-свистов,
 # прижатых к более важному звуку (≈ 50–60 звуков в минуту, только смысловые события); lean — ещё и без переходов-свистов на смене места,
 # бликов, мелкого фоли (≈ 45 в минуту). Подложка: full +3 дБ, mid 0, lean −2 (к уровням BEDS).
-MID_SKIP = {'cloth.rustle', 'cloth.slide', 'headphone', 'dust.puff', 'glasses.tick', 'glass.lift', 'servo', 'lamp.flicker', 'tape.clack', 'air.move',
-            'hit.event', 'tag.tick', 'clip.snap', 'glint', 'body.pass', 'string.taut', 'whoosh.small', 'chair.creak', 'chair.scrape', 'page.turn', 'paper.handle', 'hit.kick'}
+MID_SKIP = {'air.move', 'hit.event', 'tag.tick', 'glint', 'body.pass', 'whoosh.small', 'hit.kick', 'cloth.slide', 'glass.lift', 'glasses.tick', 'servo'}
+# (19.11, проход по звуку по просьбе Рауана: в mid вернулись осмысленные фоли — страница, бумага, стул, рукопожатие, пыль, стропы,
+#  щелчок, наушники, лампа; выкидываются только декоративные толчки/блики/«воздух»)
 AMB_BY_DENSITY = {'full': 3.0, 'mid': 0.0, 'lean': -2.0}
 LEAN_SKIP = {'cloth.rustle', 'cloth.slide', 'headphone', 'dust.puff', 'glasses.tick', 'glass.lift', 'servo', 'lamp.buzz', 'lamp.flicker', 'tape.clack',
              'air.move', 'hit.event', 'chair.creak', 'chair.scrape', 'tag.tick', 'clip.snap', 'whoosh.cut', 'glint', 'motor.hum', 'box.lid', 'af.beep',
              'thunder.far', 'whoosh.small', 'body.pass', 'string.taut', 'riser.tower', 'ui.slide', 'type.run'}
-VARY = {'snap', 'snap.soft', 'whoosh.cut', 'whoosh.whip', 'whoosh.air', 'whoosh.small', 'photo.drop', 'tag.pop', 'paper.place', 'hit.event', 'box.tap',
+VARY = {'laugh.man', 'laugh.woman', 'laugh.group', 'pen.click', 'finger.tap', 'snap', 'snap.soft', 'whoosh.cut', 'whoosh.whip', 'whoosh.air', 'whoosh.small', 'photo.drop', 'tag.pop', 'paper.place', 'hit.event', 'box.tap',
         'pin.pop', 'crate.set', 'stamp', 'shutter', 'key.jingle'}
 
 # реверберация места для звуков мира: room_size, damping, wet

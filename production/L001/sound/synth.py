@@ -489,6 +489,16 @@ def wind(dur=10.0, seed=1):
     return norm(bp(noise(n, seed, 'pink'), 150, 1500) * g, .35)
 
 
+def _screw(seed, dur=.5):
+    """отвёртка/винт: 4-6 сухих щелчков храповика"""
+    import numpy as _np
+    n = int(dur * SR); y = _np.zeros(n); rng = _np.random.default_rng(seed); k = 5
+    for i in range(k):
+        c = click(seed + i, 2600 + 400 * rng.random(), .002, 1800, .006, .04); a = int(i * n / k)
+        y[a:a + len(c)] += c[:max(0, n - a)] * (.7 + .3 * rng.random())
+    return y
+
+
 GEN = {   # имя -> (функция(seed) -> массив); длительные (span) получают dur
     'snap': lambda s, d=None: snap(s),
     'snap.soft': lambda s, d=None: snap(s, .2),
@@ -590,6 +600,11 @@ GEN = {   # имя -> (функция(seed) -> массив); длительны
     'pen.drop': lambda s, d=None: knock(s, 1200, 2, .09),
     'cash': lambda s, d=None: key_jingle(s, .2),
     'fax': lambda s, d=1.5: fax_feed(d or 1.5, s),
+    # 19.11 проход по звуку: заготовки синтеза (записи — через palette_rec.json, если есть)
+    'pen.click': lambda s, d=None: click(s, 5200, .002, 3100, .008, .06),
+    'printer': lambda s, d=1.4: fax_feed(d or 1.4, s),
+    'cart.roll': lambda s, d=1.0: motor(d or 1.0, s),
+    'screw.turn': lambda s, d=.5: _screw(s, d or .5),
     'keyboard': lambda s, d=1.0: type_run(max(4, int((d or 1) * 9)), d or 1.0, s),
     'applause': lambda s, d=2.5: rain_synth(d or 2.5, s, 400, 5000),
     'crowd.react': lambda s, d=1.5: lp(noise(int((d or 1.5) * SR), s, 'pink'), 1200) * np.sin(np.pi * tvec(d or 1.5) / (d or 1.5)),

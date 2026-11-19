@@ -1488,5 +1488,145 @@
   "ov": "9c3c38c5",
   "len": 15,
   "note": "на холостых, исходник 20 с"
+ },
+ {
+  "id": "laugh_man_01",
+  "need": "fx_laugh_man",
+  "class": "laugh.man",
+  "cat": "foley",
+  "ov": "f75c4b5b",
+  "start": 0.126,
+  "end": 1.135,
+  "note": "короткий смешок (19.11, смех героев)"
+ },
+ {
+  "id": "laugh_man_02",
+  "need": "fx_laugh_man",
+  "class": "laugh.man",
+  "cat": "foley",
+  "ov": "f75c4b5b",
+  "start": 4.372,
+  "end": 5.285,
+  "note": "смешок 2"
+ },
+ {
+  "id": "laugh_man_03",
+  "need": "fx_laugh_man",
+  "class": "laugh.man",
+  "cat": "foley",
+  "ov": "f75c4b5b",
+  "start": 7.047,
+  "end": 7.915,
+  "note": "смешок 3"
+ },
+ {
+  "id": "laugh_man_04",
+  "need": "fx_laugh_man",
+  "class": "laugh.man",
+  "cat": "foley",
+  "ov": "c3b99410",
+  "start": 2.2,
+  "end": 3.125,
+  "note": "смешок 4"
+ },
+ {
+  "id": "laugh_woman_01",
+  "need": "fx_laugh_woman",
+  "class": "laugh.woman",
+  "cat": "foley",
+  "ov": "13ec253d",
+  "note": "короткий женский смешок"
+ },
+ {
+  "id": "laugh_woman_02",
+  "need": "fx_laugh_woman",
+  "class": "laugh.woman",
+  "cat": "foley",
+  "ov": "3c739376",
+  "note": "женский смех"
+ },
+ {
+  "id": "laugh_woman_03",
+  "need": "fx_laugh_woman",
+  "class": "laugh.woman",
+  "cat": "foley",
+  "ov": "b5bf3154",
+  "note": "женский смех, длиннее"
+ },
+ {
+  "id": "laugh_group_01",
+  "need": "fx_laugh_group",
+  "class": "laugh.group",
+  "cat": "foley",
+  "ov": "8121a295",
+  "start": 3.472,
+  "end": 6.25,
+  "note": "компания смеётся"
+ },
+ {
+  "id": "laugh_group_02",
+  "need": "fx_laugh_group",
+  "class": "laugh.group",
+  "cat": "foley",
+  "ov": "d97d553e",
+  "start": 1.925,
+  "end": 3.41,
+  "note": "небольшая группа смеётся"
+ },
+ {
+  "id": "laugh_group_03",
+  "need": "fx_laugh_group",
+  "class": "laugh.group",
+  "cat": "foley",
+  "ov": "59ec46bf",
+  "start": 0.66,
+  "end": 2.413,
+  "note": "смех в зале"
+ },
+ {
+  "id": "pen_click_01",
+  "need": "fx_pen_click",
+  "class": "pen.click",
+  "cat": "foley",
+  "ov": "3214bac4",
+  "note": "щелчок ручки"
+ },
+ {
+  "id": "pen_click_02",
+  "need": "fx_pen_click",
+  "class": "pen.click",
+  "cat": "foley",
+  "ov": "c5f33309",
+  "note": "щелчок ручки туда-обратно"
+ },
+ {
+  "id": "finger_tap_01",
+  "need": "fx_finger_tap",
+  "class": "finger.tap",
+  "cat": "foley",
+  "ov": "ae4abe04",
+  "start": 0.0,
+  "end": 1.61,
+  "note": "пальцы стучат по столу"
+ },
+ {
+  "id": "finger_tap_02",
+  "need": "fx_finger_tap",
+  "class": "finger.tap",
+  "cat": "foley",
+  "ov": "bc8a3ce6",
+  "start": 0.0,
+  "end": 1.6,
+  "note": "стук пальцами по столу"
+ },
+ {
+  "id": "printer_01",
+  "need": "fx_printer",
+  "class": "printer",
+  "cat": "foley",
+  "ov": "4aa3a8ed",
+  "start": 0.0,
+  "end": 2.17,
+  "note": "принтер печатает лист"
  }
 ]

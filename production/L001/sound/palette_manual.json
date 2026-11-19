@@ -1089,5 +1089,107 @@
    "name": "water_splash_02",
    "z": 4.55
   }
+ ],
+ "laugh.man": [
+  {
+   "path": "sound/lib/rec/foley/laugh_man_01.wav",
+   "src": "rec",
+   "name": "laugh_man_01",
+   "gain_db": 0
+  },
+  {
+   "path": "sound/lib/rec/foley/laugh_man_02.wav",
+   "src": "rec",
+   "name": "laugh_man_02",
+   "gain_db": 0
+  },
+  {
+   "path": "sound/lib/rec/foley/laugh_man_03.wav",
+   "src": "rec",
+   "name": "laugh_man_03",
+   "gain_db": 0
+  },
+  {
+   "path": "sound/lib/rec/foley/laugh_man_04.wav",
+   "src": "rec",
+   "name": "laugh_man_04",
+   "gain_db": 0
+  }
+ ],
+ "laugh.woman": [
+  {
+   "path": "sound/lib/rec/foley/laugh_woman_01.wav",
+   "src": "rec",
+   "name": "laugh_woman_01",
+   "gain_db": 0
+  },
+  {
+   "path": "sound/lib/rec/foley/laugh_woman_02.wav",
+   "src": "rec",
+   "name": "laugh_woman_02",
+   "gain_db": 0
+  },
+  {
+   "path": "sound/lib/rec/foley/laugh_woman_03.wav",
+   "src": "rec",
+   "name": "laugh_woman_03",
+   "gain_db": 0
+  }
+ ],
+ "laugh.group": [
+  {
+   "path": "sound/lib/rec/foley/laugh_group_01.wav",
+   "src": "rec",
+   "name": "laugh_group_01",
+   "gain_db": 0
+  },
+  {
+   "path": "sound/lib/rec/foley/laugh_group_02.wav",
+   "src": "rec",
+   "name": "laugh_group_02",
+   "gain_db": 0
+  },
+  {
+   "path": "sound/lib/rec/foley/laugh_group_03.wav",
+   "src": "rec",
+   "name": "laugh_group_03",
+   "gain_db": 0
+  }
+ ],
+ "pen.click": [
+  {
+   "path": "sound/lib/rec/foley/pen_click_01.wav",
+   "src": "rec",
+   "name": "pen_click_01",
+   "gain_db": 0
+  },
+  {
+   "path": "sound/lib/rec/foley/pen_click_02.wav",
+   "src": "rec",
+   "name": "pen_click_02",
+   "gain_db": 0
+  }
+ ],
+ "finger.tap": [
+  {
+   "path": "sound/lib/rec/foley/finger_tap_01.wav",
+   "src": "rec",
+   "name": "finger_tap_01",
+   "gain_db": 0
+  },
+  {
+   "path": "sound/lib/rec/foley/finger_tap_02.wav",
+   "src": "rec",
+   "name": "finger_tap_02",
+   "gain_db": 0
+  }
+ ],
+ "printer": [
+  {
+   "path": "sound/lib/rec/foley/printer_01.wav",
+   "src": "rec",
+   "name": "printer_01",
+   "gain_db": 0
+  }
  ]
 }

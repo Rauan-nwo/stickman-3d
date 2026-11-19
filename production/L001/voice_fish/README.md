@@ -241,3 +241,10 @@ chips, key), temperature 0.5 / top_p 0.55; дубль режется по сло
 
 - `production/L001/narration.txt`, `production/L001/narration_ru.txt`, `production/L001/script.md`
 - голоса — публичная библиотека Fish Audio (`GET https://api.fish.audio/model`), документация меток — docs.fish.audio
+
+## Смена голоса роли без сдвига шкалы (2026-11-19)
+
+`python production/L001/voice_fish/recast.py en [РОЛЬ,…]` → `fish_voice.py assemble en`. Роли и новые голоса — `RECAST` в
+`recast.py` (пишутся в `cast.json`), толпа — `CROWD_VOICES`. Дубль подгоняется темпом (×0.80…×1.25) под прежнее окно реплики,
+поэтому `assemble` оставляет start/end/слова как были (19.11: «lines with new length: none»). Прежняя дорожка —
+`out/voice_fish_en.before_recast.mp3`. Сменены: BANKER 2, EDITOR, GUIDE (→ мужские), BOARD, ANALYST 2 (→ женские), CROWD.

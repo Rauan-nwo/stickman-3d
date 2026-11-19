@@ -590,7 +590,7 @@ function headShade(x, S, h, VW, p, hd, hr, hx) {
   const [A, a] = buf(0); sil(a);                                                   // силуэт
   if ((H.k ?? .4) > 0) {
     const [B, b] = buf(1); b.drawImage(A, 0, 0); b.globalCompositeOperation = 'destination-out';
-    const sh = H.shiftU ?? R * .42; sil(b, dx * sh, dy * sh, H.cutY);                                     // минус сдвинутый к свету
+    const sh = H.shiftU ?? R * .42; sil(b, dx * sh, dy * sh, H.cutY ?? S.hat?.shadeCutY);                                     // минус сдвинутый к свету
     b.globalCompositeOperation = 'source-in'; b.fillStyle = H.color || '#55507e'; b.fillRect(0, 0, W, Hh);
     x.save(); x.setTransform(1, 0, 0, 1, 0, 0); x.globalAlpha = H.k ?? .4; x.globalCompositeOperation = 'multiply'; x.drawImage(B, 0, 0); x.restore();
   }

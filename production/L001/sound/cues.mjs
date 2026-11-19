@@ -14,6 +14,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { TRANS, LOWER, YEAR, DOCS, MAPS, BOARDS, NUMBERS } from '../animatic/conf.js';
 import { MANUAL, BED_OVERRIDE, setTiming } from './cues_manual.mjs';
+import { EXTRA } from './cues_extra.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url)), L = join(HERE, '..');
 const argv0 = process.argv.slice(2), arg0 = (k, d) => { const i = argv0.indexOf(k); return i >= 0 ? argv0[i + 1] : d; };
@@ -38,7 +39,7 @@ const SKIP_PROPS = (() => {   // ключи — номер плана или 'г
 
 const args = process.argv.slice(2), arg = (k, d) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : d; };
 const CH = arg('--ch', '0,1').split(',').map(Number);
-const CUT_ALL = args.includes('--cut-all');   // звук и на склейках внутри одной сцены (по умолчанию они немые: их держит подложка)
+const CUT_ALL = !args.includes('--no-cut-all');   // 19.11: по умолчанию ВКЛ (Рауан: «переходы — везде»); тихий свист −8 дБ к whoosh.cut   // звук и на склейках внутри одной сцены (по умолчанию они немые: их держит подложка)
 
 // ---------- слова ----------
 const norm = w => w.toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9$%]/g, '');
@@ -132,6 +133,20 @@ const FOLEY = [
   [/обвод|рисуется красн\w* круг/, 'marker.circle', 0, { dur: .7 }],
   [/подчёркива/, 'marker.line', 0, { dur: .35 }],
   [/тикер|табло\w* (щёлка|переворач|меня)|щёлкает «/, 'flip.board', 0, { dur: .6 }],
+  // --- проход по звуку 19.11 (Рауан: «смех, стук, надписи, печать — везде, где не хватает») ---
+  [/смеются|хохочут|смех за столом/, 'laugh.group', 0],
+  [/смеётся|хохочет|рассмеялся/, 'laugh.man', 0, { not: /не смеётся/ }],
+  [/щёлкает ручкой|щёлкает авторучк/, 'pen.click', 0],
+  [/(вписывает|пишет|пишется|расписывается|выводит|рисует (на|маркер|ручк)|ручка вписывает)/, 'marker.write', 0, { dur: .6, not: /пишмашин/ }],
+  [/(печатается|впечатывается|набивается|печатает «)/, 'type.run', 0, { dur: .6 }],
+  [/штампует|ставит штамп|штамп [A-Z]/, 'stamp', .1],
+  [/принтер|выходит из печати|лента бумаги/, 'printer', 0, { dur: 1.4 }],
+  [/(откручива|привинчива|прикручива|отвинчива)/, 'screw.turn', 0, { dur: .5 }],
+  [/кивает на|хлопает по/, 'photo.pat', 0, { not: /ладонь/ }],
+  [/песочн\w* час/, 'box.set', 0],
+  [/(погрузчик|тележк)\w*.{0,20}(везёт|тормозит|ввозит)|ввозит/, 'cart.roll', 0, { dur: 1.0 }],
+  [/стропы|кран поднимает/, 'crane.clank', 0],
+  [/фонар\w* (ведёт|светит|щёлка)|светит фонар/, 'switch.click', 0],
 ];
 
 // ---------- подложка (амбиенс) по месту ----------
@@ -171,7 +186,7 @@ export function bedOf(s) {
 const isPlace = loc => !/^T-/.test(loc) || loc === 'T-desk';   // T-desk — вид сверху на настоящее место (стол ресторана), а не графика
 
 // ---------- генерация ----------
-const cues = [], beds = [], marks = [], manualHits = [];
+const cues = [], beds = [], marks = [], manualHits = [], extraHits = [];
 const shots = timing.shots;
 let prevBed = 'room';
 // vt — кадр события на картинке (по нему сверка), t — точка звука; они расходятся там, где звук намеренно сдвинут (пик свиста после склейки, удар штампа на приземлении)
@@ -226,7 +241,7 @@ shots.forEach((s, i) => {
   // 3) события «на слово» и в слотах: вещи-подписи (штамп / маркер / бирка) + фоли по словам + толчок камеры
   const ev = evList(s), ct = confText(s);
   for (const e of ev) {
-    const props = e.quotes.slice(0, 2).filter(q => q !== YEAR[s.n] && (e.kind === 'stamp' || (s.loc !== 'T-number' && !ct.includes(q.toUpperCase()))) && !(SKIP_PROPS[s.n] && SKIP_PROPS[s.n].test(q)));
+    const props = e.quotes.slice(0, 2).filter(q => q !== YEAR[s.n] && (e.kind === 'stamp' || (s.loc !== 'T-number' && !ct.includes(q.toUpperCase()))));   // SKIP_PROPS — только «ядро не рисует, рисует постановка»; звук вещи остаётся (раньше выкидывался вместе с рисунком — немые штампы/таблички в планах с героями, проход по звуку 19.11)
     if (!drop.has('props')) props.forEach((q, k) => {
       const t0 = T + e.t + (k && props.length > 1 ? .45 : 0);
       if (e.kind === 'stamp') add(s, { t: t0 + .1, vt: t0, snd: 'stamp', kind: 'event', what: `штамп «${q}»`, vis: 'appear' });
@@ -234,7 +249,7 @@ shots.forEach((s, i) => {
       else add(s, { t: t0, snd: 'tag.pop', kind: 'event', what: `бирка/плашка «${q}»`, vis: 'appear' });
     });
     let hit = 0;   // до двух разных фоли на часть события; бирки/таблички не дублируют вещь-подпись
-    if (!drop.has('foley')) for (const [re, snd, off, o = {}] of FOLEY) if (re.test(e.x) && !(o.not && o.not.test(e.x)) && hit < 2 && !(props.length && /^(tag|paper|flip)/.test(snd))) {
+    if (!drop.has('foley')) for (const [re, snd, off, o = {}] of FOLEY) if (re.test(e.x) && !(o.not && o.not.test(e.x)) && hit < 2 && !(props.length && /^(tag|paper|flip|stamp)/.test(snd))) {
       add(s, { t: T + e.t + off + hit * .05, snd, align: o.dur ? 'span' : 'onset', dur: o.dur, kind: 'foley', what: e.x.slice(0, 80), vis: e.timed ? 'formula' : 'slot', approx: !e.timed });
       hit++;
     }
@@ -300,6 +315,13 @@ shots.forEach((s, i) => {
 
   // 6) ручная постановка (герои): добавочные звуки по формулам shots.js
   if (man) for (const c of man.cues) add(s, { kind: 'foley', vis: 'formula', ...c, t: T + c.t, vt: c.vt != null ? T + c.vt : undefined });
+  // добавочный звук (cues_extra.mjs): ключ 'глава|начало текста'
+  for (const [key, list] of EXTRA) { const k = key.indexOf('|'); if (+key.slice(0, k) !== s.ch || !s.text.startsWith(key.slice(k + 1))) continue;
+    extraHits.push(key);
+    for (const c of list) { const { w, dt = 0, fb, f, ...o } = c; let t;
+      if (w) { const a = wordAt(w, s.start - .05, s.end + .05); t = a != null ? a + dt : fb != null ? T + fb * d : null; if (a == null) console.warn(`EXTRA ${key}: слова «${w}» нет${fb != null ? ' — доля ' + fb : ' — пропущено'}`); }
+      else t = T + (f != null ? f * d : (c.t ?? 0));
+      if (t != null) add(s, { kind: 'foley', vis: 'formula', what: `доп.: ${o.snd}`, ...o, t: Math.min(Math.max(t, T), s.end - .02) }); } }
 });
 
 // ---------- прорежение: ближе 70 мс к более важному звуку — рывок/толчок тише ----------

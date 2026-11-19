@@ -173,7 +173,7 @@ HATS.L_alice = overlay((x, H, S, G) => {
 export function alice(over = {}) {
   return figure({
     name: 'alice', ink: '#1A1216', shoe: '#B3121F', rx: 98, colors: { hair: '#141015', mouth: '#A3172A', mouthIn: '#6B1222' },
-    hat: { type: 'L_alice' },
+    hat: { type: 'L_alice', shadeCutY: -40 },   // пряди каре ниже чёлки не выкусывают светлую дыру в тени лица — во ВСЕХ сценах (было только в ресторане; замечание Рауана 19.11, офис Megaspeed)
     face: { restMouth: 'smirkS', browCol: '#141015' },
     body: {
       topK: .8,
