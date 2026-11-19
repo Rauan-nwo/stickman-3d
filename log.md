@@ -148,3 +148,6 @@ touched: production/L001/sound/{render.py,cues.mjs,cues_extra.mjs,cues_manual.mj
 
 ## [2026-11-19 21:30] publish | L001 упаковка для YouTube: 3 названия (реком. «How a Suspected Chinese Spy Got Close to Jensen Huang»), описание с главами, дисклеймером, источниками и атрибуцией музыки CC BY, 20 тегов, категория Education, 3 обложки для «Тест и сравнение» (из кадров фильма, формула лидеров Paper Billions), английские субтитры по разметке слов
 touched: production/L001/publish/{upload.md,make_thumbs.py,thumb_A..C.{png,jpg},L001_en.srt}, raw/donors/2026-11-19-paperbillions-meta/
+
+## [2026-11-19 23:30] ingest | идея лонга I005: Маск — сооснователь OpenAI (2015), ушёл (2018), xAI, иск к OpenAI и Альтману (2024), суд 2026; факт-чек не сделан
+touched: wiki/ideas/I005-musk-vs-altman-openai.md, index.md
