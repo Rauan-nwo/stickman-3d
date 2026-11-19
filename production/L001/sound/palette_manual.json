@@ -1092,21 +1092,9 @@
  ],
  "laugh.man": [
   {
-   "path": "sound/lib/rec/foley/laugh_man_01.wav",
-   "src": "rec",
-   "name": "laugh_man_01",
-   "gain_db": 0
-  },
-  {
-   "path": "sound/lib/rec/foley/laugh_man_02.wav",
-   "src": "rec",
-   "name": "laugh_man_02",
-   "gain_db": 0
-  },
-  {
-   "path": "sound/lib/rec/foley/laugh_man_03.wav",
-   "src": "rec",
-   "name": "laugh_man_03",
+   "path": "sound/lib/rec/foley/laugh_fan_01.wav",
+   "src": "fish",
+   "name": "laugh_fan_01",
    "gain_db": 0
   },
   {
@@ -1117,12 +1105,6 @@
   }
  ],
  "laugh.woman": [
-  {
-   "path": "sound/lib/rec/foley/laugh_woman_01.wav",
-   "src": "rec",
-   "name": "laugh_woman_01",
-   "gain_db": 0
-  },
   {
    "path": "sound/lib/rec/foley/laugh_woman_02.wav",
    "src": "rec",
@@ -1137,12 +1119,6 @@
   }
  ],
  "laugh.group": [
-  {
-   "path": "sound/lib/rec/foley/laugh_group_01.wav",
-   "src": "rec",
-   "name": "laugh_group_01",
-   "gain_db": 0
-  },
   {
    "path": "sound/lib/rec/foley/laugh_group_02.wav",
    "src": "rec",
@@ -1189,6 +1165,20 @@
    "path": "sound/lib/rec/foley/printer_01.wav",
    "src": "rec",
    "name": "printer_01",
+   "gain_db": 0
+  }
+ ],
+ "laugh.jensen": [
+  {
+   "path": "sound/lib/rec/foley/laugh_jensen_01.wav",
+   "src": "fish",
+   "name": "laugh_jensen_01",
+   "gain_db": 0
+  },
+  {
+   "path": "sound/lib/rec/foley/laugh_jensen_02.wav",
+   "src": "fish",
+   "name": "laugh_jensen_02",
    "gain_db": 0
   }
  ]

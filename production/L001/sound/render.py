@@ -68,10 +68,11 @@ LEVEL = {
     'lock.click': -10, 'timer.click': -10, 'pin.push': -14, 'page.turn': -16, 'paper.handle': -18, 'pen.drop': -12, 'drip': -18,
     'cash': -12, 'fax': -16, 'keyboard': -18, 'applause': -10, 'crowd.react': -14, 'crane.clank': -12, 'pour': -16, 'dishes': -14,
     # 19.11 проход по звуку: смех героев (записи CC0), ручка, пальцы, принтер, винт, тележка
-    'laugh.man': -12, 'laugh.woman': -12, 'laugh.group': -13, 'pen.click': -12, 'finger.tap': -12, 'printer': -16,
+    # смех героя — «главный» звук (FEATURED, не приглушается речью): при −12 и приглушении он шёл на 26 дБ ниже голоса, Рауан не слышал (19.11)
+    'laugh.jensen': -2, 'laugh.man': -2, 'laugh.woman': -2, 'laugh.group': -3, 'pen.click': -9, 'finger.tap': -9, 'printer': -14,
     'screw.turn': -16, 'cart.roll': -20,
 }
-FEATURED = {'stamp', 'sting.chapter', 'sting.title', 'riser.title', 'hit.reveal', 'glass.clink', 'water.splash', 'hit.punch',
+FEATURED = {'laugh.jensen', 'laugh.man', 'laugh.woman', 'laugh.group', 'pen.click', 'finger.tap', 'knock', 'stamp', 'sting.chapter', 'sting.title', 'riser.title', 'hit.reveal', 'glass.clink', 'water.splash', 'hit.punch',
             'door.slam', 'alarm.hit', 'hit.number', 'hit.card', 'shutter'}
 NONDIEG = {'snap', 'snap.soft', 'whoosh.cut', 'whoosh.whip', 'whoosh.wipe', 'whoosh.air', 'whoosh.zoomin', 'whoosh.photo', 'whoosh.speed', 'whoosh.through',
            'hit.punch', 'riser.white', 'hit.bloom', 'hit.card', 'hit.soft', 'hit.event', 'hit.kick', 'air.move', 'sting.chapter', 'sting.title',
@@ -88,7 +89,7 @@ AMB_BY_DENSITY = {'full': 3.0, 'mid': 0.0, 'lean': -2.0}
 LEAN_SKIP = {'cloth.rustle', 'cloth.slide', 'headphone', 'dust.puff', 'glasses.tick', 'glass.lift', 'servo', 'lamp.buzz', 'lamp.flicker', 'tape.clack',
              'air.move', 'hit.event', 'chair.creak', 'chair.scrape', 'tag.tick', 'clip.snap', 'whoosh.cut', 'glint', 'motor.hum', 'box.lid', 'af.beep',
              'thunder.far', 'whoosh.small', 'body.pass', 'string.taut', 'riser.tower', 'ui.slide', 'type.run'}
-VARY = {'laugh.man', 'laugh.woman', 'laugh.group', 'pen.click', 'finger.tap', 'snap', 'snap.soft', 'whoosh.cut', 'whoosh.whip', 'whoosh.air', 'whoosh.small', 'photo.drop', 'tag.pop', 'paper.place', 'hit.event', 'box.tap',
+VARY = {'pen.click', 'finger.tap', 'snap', 'snap.soft', 'whoosh.cut', 'whoosh.whip', 'whoosh.air', 'whoosh.small', 'photo.drop', 'tag.pop', 'paper.place', 'hit.event', 'box.tap',
         'pin.pop', 'crate.set', 'stamp', 'shutter', 'key.jingle'}
 
 # реверберация места для звуков мира: room_size, damping, wet

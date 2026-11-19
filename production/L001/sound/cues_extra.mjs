@@ -3,11 +3,11 @@
 // Ключ плана — 'глава|начало текста' (как film/keys.js). Время звука:
 //   w: 'слово' — момент слова голоса в этом плане (+ dt), fb — доля плана, если слова нет;  f — доля плана;  t — секунды от начала плана.
 // Остальные поля — как у любого звука листа: snd, gain, align ('onset'|'span'|'apex'|'end'), dur, pan, what.
-// Смех — только там, где герой смеётся в постановке (film/shots: keys 'laugh' — на тех же словах).
+// Смех — только там, где герой смеётся в постановке; Дженсен смеётся СВОИМ голосом (laugh.jensen — дубли Fish его голоса) (film/shots: keys 'laugh' — на тех же словах).
 export const EXTRA = [
   // ---------- гл. 0–1 ----------
-  ["0|He's Jensen Huang", [{ f: .15, snd: 'laugh.man', what: 'Дженсен смеётся' }]],
-  ['0|Jensen has no idea', [{ f: .15, snd: 'laugh.man', what: 'Дженсен смеётся, откидывается' }]],
+  ["0|He's Jensen Huang", [{ f: .15, snd: 'laugh.jensen', what: 'Дженсен смеётся' }]],
+  ['0|Jensen has no idea', [{ f: .15, snd: 'laugh.jensen', what: 'Дженсен смеётся, откидывается' }]],
   ['1|But first, meet the man', [{ w: 'man', snd: 'paper.handle', gain: -4, what: 'камера падает на папку' }, { w: 'table', snd: 'whoosh.through', what: 'пролёт сквозь снимок' }]],
   // ---------- гл. 2 ----------
   ['2|Jensen was born in Taiwan', [{ w: 'nine', snd: 'tag.pop', what: 'бирка AGE 9' }, { w: 'brother', snd: 'tag.pop', gain: -3, what: 'брат встаёт рядом' }]],
@@ -48,11 +48,11 @@ export const EXTRA = [
   ['4|CLERK: New title for Alice', [{ w: 'title', snd: 'paper.handle', what: 'клерк поднимает пустую табличку' }]],
   ['4|Not the kind whose people', [{ w: 'boss', fb: .7, snd: 'box.set', gain: -6, what: 'фоторамка поворачивается' }]],
   // ---------- гл. 5 ----------
-  ['5|Jensen Huang is not hard to meet', [{ w: 'hard', dt: -.1, snd: 'laugh.man', what: 'Дженсен смеётся, машет «заходите»' }]],
-  ['5|He shakes every hand', [{ w: 'selfie', dt: -.3, snd: 'laugh.man', gain: -2, what: 'Дженсен смеётся на селфи' }]],
+  ['5|Jensen Huang is not hard to meet', [{ w: 'hard', dt: -.1, snd: 'laugh.jensen', what: 'Дженсен смеётся, машет «заходите»' }]],
+  ['5|He shakes every hand', [{ w: 'selfie', dt: -.3, snd: 'laugh.jensen', gain: -2, what: 'Дженсен смеётся на селфи' }]],
   ['5|JENSEN: Of course', [{ w: 'course', snd: 'laugh.man', gain: -3, what: 'фанат смеётся на селфи' }]],
   ['5|FAN 2: Can you sign', [{ f: .3, snd: 'box.set', gain: -6, what: 'протягивает ноутбук' }, { f: .75, snd: 'pen.click', what: 'колпачок маркера' }]],
-  ['5|the giant computer show', [{ w: 'Jensen', snd: 'laugh.man', what: 'Дженсен на сцене смеётся' }, { f: .5, snd: 'crowd.react', gain: -6, what: 'зал' }]],
+  ['5|the giant computer show', [{ w: 'Jensen', snd: 'laugh.jensen', what: 'Дженсен на сцене смеётся' }, { f: .5, snd: 'crowd.react', gain: -6, what: 'зал' }]],
   ['5|That same month, at a party', [{ f: .3, snd: 'laugh.group', what: 'гости вечеринки смеются' }, { f: .7, snd: 'glass.clink', gain: -6, what: 'бокалы' }]],
   ['5|PHOTOGRAPHER: Everyone, squeeze', [{ f: .25, snd: 'laugh.group', gain: -3, what: 'гости смеются, сдвигаются' }]],
   ['5|A company later posted', [{ f: .6, snd: 'ui.slide', what: 'палец пролистывает ленту' }]],
@@ -101,7 +101,7 @@ export const EXTRA = [
   ['9|Agents quietly explain', [{ f: .01, snd: 'knock', what: 'стук в дверь' }]],
   ['9|AGENT: No. Your new friend', [{ f: .4, snd: 'photo.drop', gain: -6, what: 'агент протягивает фото' }]],
   ['9|about a suspected Chinese spy', [{ w: 'spy', snd: 'photo.drop', what: 'фото силуэта на стол' }, { w: 'circle', snd: 'marker.circle', align: 'span', dur: .7, what: 'красный круг' }]],
-  ['9|Nobody told the man at the table', [{ f: .2, snd: 'laugh.man', what: 'Дженсен смеётся, поднимает бокал' }]],
+  ['9|Nobody told the man at the table', [{ f: .2, snd: 'laugh.jensen', what: 'Дженсен смеётся, поднимает бокал' }]],
   ['9|Then everything moved at once', [{ f: .3, snd: 'paper.place', what: 'папка совета на стол' }]],
   ["9|CONGRESSMAN: We'd like", [{ f: .2, snd: 'door.slam', gain: -4, what: 'дверь CLOSED BRIEFING' }]],
   ['9|President Trump said the FBI', [{ w: 'FBI', snd: 'type.run', align: 'span', dur: .8, gain: -6, what: 'бегущая строка' }]],
@@ -113,4 +113,34 @@ export const EXTRA = [
   ['9|So the next time someone friendly', [{ f: .8, snd: 'chair.scrape', gain: -4, what: 'силуэт подтаскивает стул' }]],
   ['10|too heavy to carry', [{ w: 'heavy', snd: 'key.jingle', what: 'ладонь с ключом опускается' }, { w: 'carry', snd: 'lamp.flicker', what: 'лампа мигает' }]],
   ['10|HOST: The question is who opens', [{ w: 'question', snd: 'timer.click', what: 'крышка карманных часов' }, { w: 'opens', snd: 'lock.click', what: 'ручка сейфа, щелчок замка' }, { w: 'next', snd: 'lamp.flicker', what: 'лампа вздрагивает' }]],
+  // ---------- раунд 2 (19.11 вечер): планы без единого звука действия; намеренно тихие (#100, #102, #309, #340) — без добавок ----------
+  ['0|Picture this', [{ f: .5, snd: 'glass.clink', gain: -10, what: 'ресторан: бокалы за кадром' }]],
+  ['2|The older boys were sent out', [{ f: .2, snd: 'steps', align: 'span', dur: 1.6, gain: -6, what: 'колонна старших уходит в поле' }]],
+  ['2|ROOMMATE: You teach me to read', [{ f: .15, snd: 'paper.handle', what: 'протягивает книгу' }]],
+  ['2|In 2006, Jensen made his biggest bet', [{ w: 'released', snd: 'hit.reveal', gain: -6, what: 'слайд CUDA вспыхивает' }, { f: .85, snd: 'applause', align: 'span', dur: 1.0, gain: -12, what: 'редкие хлопки полупустого зала' }]],
+  ['2|INVESTOR: Who exactly is this for', [{ f: .3, snd: 'chair.creak', what: 'инвестор зевает в кресле' }]],
+  ['2|SALESMAN: How patient are you', [{ f: .25, snd: 'box.set', gain: -4, what: 'переворачивает песочные часы' }, { f: .45, snd: 'pour', align: 'span', dur: 1.0, gain: -10, what: 'песок сыплется' }]],
+  ['2|When he talked about who should be allowed', [{ w: 'allowed', snd: 'lock.click', what: 'турникет пропускает первого' }, { w: 'allowed', dt: .45, snd: 'hit.punch', gain: -10, what: 'планка опускается перед вторым' }]],
+  ['2|So, it turned out, did Beijing', [{ w: 'Beijing', snd: 'switch.click', what: 'лампа над столом вспыхивает' }]],
+  ['3|China had been one of', [{ f: .4, snd: 'chip.glow', gain: -6, what: 'столбик CHINA светится' }]],
+  ["3|ASSISTANT: Here's our China business", [{ f: .15, snd: 'paper.handle', what: 'ассистент поднимает пустой график' }]],
+  ["3|Jensen didn't hide how he felt", [{ f: .1, snd: 'switch.click', what: 'прожектор включается' }, { f: .15, snd: 'lamp.buzz', align: 'span', dur: 1.6, gain: 8, what: 'гул прожектора' }]],
+  ['3|On stage after stage', [{ f: .35, snd: 'switch.click', what: 'баннер сменяется' }, { f: .7, snd: 'switch.click', gain: -2, what: 'баннер сменяется ещё раз' }]],
+  ['3|and handing the market to Chinese rivals', [{ f: .45, snd: 'ui.slide', what: 'пирог рынка переезжает к красному чипу' }]],
+  ['4|STAFFER: Bigger electricity bill', [{ f: .25, snd: 'ticker.run', align: 'span', dur: .6, gain: -4, what: 'стрелка счётчика улетает вправо' }]],
+  ['5|FAN: Can I get a selfie', [{ f: .2, snd: 'cloth.rustle', what: 'поднимает телефон' }]],
+  ['5|So where was all that hardware', [{ w: 'from', snd: 'tag.pop', gain: -6, what: 'бирка FROM качается' }]],
+  ['6|CUSTOMS: Destination, please', [{ f: 0, snd: 'motor.hum', align: 'span', dur: 1.3, gain: 6, what: 'грузовик подъезжает к шлагбауму' }]],
+  ['6|A data center is supposed to hum', [{ f: .02, snd: 'switch.click', what: 'фонарь' }]],
+  ['6|INSPECTOR: Since when', [{ f: .2, snd: 'steps', align: 'span', dur: 1.0, gain: -6, what: 'шаги в пустом зале' }]],
+  ["6|That's what made it so hard to catch", [{ f: .5, snd: 'case.creak', what: 'раздутый чемодан' }]],
+  ['7|JENSEN: Understood. Blocked', [{ f: .3, snd: 'box.lid', what: 'ящик стола' }, { f: .5, snd: 'box.set', gain: -4, what: 'коробочка чипа ложится в ящик' }]],
+  ['7|JENSEN: Wait. Understood', [{ f: .2, snd: 'box.lid', what: 'достаёт коробочку обратно' }]],
+  ['7|JENSEN: Does anyone have a calendar', [{ f: .2, snd: 'page.turn', what: 'календарь перелистывается' }, { f: .4, snd: 'page.turn', gain: -2, what: 'ещё лист' }, { f: .6, snd: 'page.turn', gain: -3, what: 'до DEC' }]],
+  ['7|Now look at it from Beijing', [{ f: .3, snd: 'chair.creak', what: 'офицер садится к доске' }]],
+  ['7|OFFICER: A chip, or a conversation', [{ f: .2, snd: 'box.set', gain: -6, what: 'поднимает фигуру-чип' }, { f: .75, snd: 'box.set', gain: -6, what: 'ставит крошечный пустой стул' }]],
+  ['8|Officials asked for the name', [{ w: 'unmasked', snd: 'paper.handle', what: 'тянет чёрную плашку вверх' }]],
+  ['8|REPORTER: Beyond business', [{ f: .7, snd: 'page.turn', what: 'редактор переворачивает страницу' }]],
+  ['9|AGENT: Got a minute', [{ f: .7, snd: 'glass.clink', gain: -12, what: 'кружка дрожит' }]],
+  ['9|ANALYST 2: About fourteen percent', [{ f: .2, snd: 'chair.creak', what: 'разворачивается на стуле' }]],
 ];
