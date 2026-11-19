@@ -55,6 +55,8 @@ function seatedRev(ctx, C, v, t, T, o = {}) {
   const arm = sd => { const xs = [290, 445, 622, 780], i = xs.findIndex(x => x > seat[0]); return [sd > 0 ? xs[i] - 6 : xs[i - 1] + 6, 806]; };
   const P = pose(C, t, T, { at: seat, fs, pin: 'seat', f: o.f ?? 1, view: front ? null : o.view, stance: front ? 'stand' : (o.f > 0 ? 'sitR' : 'sitL'), keys: o.keys, look: o.look, lean: o.lean, tilt: o.tilt, sp: o.sp, seed: o.seed, shade: shadeOf(CFG.light.rev),
     L: o.L || { k: 1, to: arm(-1) }, R: o.R || { k: 1, to: arm(1) } });
+  if (front) { const hy = C.spec.rig.hipY;   // анфас сидя: колени чуть врозь и согнуты у края подушки, голени вниз к полу (прямые ноги-палки от сиденья читались как «стоит перед креслом»)
+    P.p.legs = [-1, 1].flatMap(sd => [{ layer: 'back', pts: [[sd * 26, hy + 6], [sd * 60, hy + 64]] }, { layer: 'back', pts: [[sd * 60, hy + 64], [sd * 50, -36]] }, { layer: 'back', pts: [[sd * 50, -34], [sd * 70, -32]], w: 22, col: '#141014' }]); }
   drawP(ctx, P, v);
   { const a = A(); if (a && !o.solo) plate(ctx, a.armsRev, cover(v)); }
   return { P, hl: handS(P, v, 'L'), hr: handS(P, v, 'R'), s: fs * v.k };

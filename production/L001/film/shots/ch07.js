@@ -9,7 +9,7 @@ import * as KY from '../staging/kentucky.js';
 import * as IN from '../staging/inserts.js';
 import * as DT from '../staging/desktop.js';
 import * as PR from '../props.js';
-import { inOutExpo, gauss, env, W_, W0, shake, whipPlates, focusBox, freezeFrame, candle, V, WHIP_DUR, wordAt, lineSpan } from './common.js';
+import { inOutExpo, gauss, env, W_, W0, shake, whipPlates, focusBox, freezeFrame, candle, V, WHIP_DUR, wordAt, lineSpan, deskSleeve } from './common.js';
 import * as NR from '../staging/newsroom.js';
 import { person } from '../chars_B.js';
 import * as B from '../props_B.js';
@@ -34,7 +34,7 @@ import { gait } from 'engine/chars/gaits.js';
 const fixArms = C => { C.spec.rig = { ...C.spec.rig, plantLegs: .02, armLayer: 'front' }; return C; };
 const JH7 = fixArms(jensen()), PRESS = [0, 1, 2, 3, 4].map(i => fixArms(guestA(i + 2)));
 const WHI = { p: img(warehousePlate) }, WHA = lazy([WHI.p], () => ({ p: WHI.p }));
-const OFFICIAL = official(), SENATOR = official({ hair: 'dark', tie: ['#24407a', '#18305e'] }), COMMERCE = official({ hair: 'bald', tie: ['#2f6a3a', '#22502c'], suit: ['#6a6458', '#463f36', '#221e18'] }), JUSTICE = official({ hair: 'grey', glasses: true, tie: ['#4a2a6a', '#361e50'], suit: ['#3e4250', '#262a36', '#121418'] });
+const OFFICIAL = official({ hair: 'brown', moustache: true }), SENATOR = official({ hair: 'dark', tie: ['#24407a', '#18305e'] }), COMMERCE = official({ hair: 'bald', tie: ['#2f6a3a', '#22502c'], suit: ['#6a6458', '#463f36', '#221e18'] }), JUSTICE = official({ hair: 'dark', glasses: true, tie: ['#4a2a6a', '#361e50'], suit: ['#3e4250', '#262a36', '#121418'] });
 const JH = jensen(), OFF1 = officer(), OFF2 = officer(); JH.spec.rig = { ...JH.spec.rig, armLayer: 'front', plantLegs: .02 };
 const PI = { bar: img(barPlate), street: img(streetPlate) }, PAa = lazy([PI.bar, PI.street], () => ({ bar: blurred(PI.bar, 6), street: PI.street, streetB: blurred(PI.street, 2) }));
 const up = (t, t0, d = .3) => E.outCubic(clamp((t - t0) / d));
@@ -237,8 +237,8 @@ export const SHOTS = {
   '7|he told reporters exactly': x => { const { ctx, t, T, cam, solo, d } = x, v = cover({ cx: 800, cy: 560, k: 1.9 * (1 + (cam.z - 1) * .4) });   // чистая крупность по пояс: нижний край кадра — по сиденьям, ног нет   // обратная: со сцены в зал — ряды прессы, поднятые телефоны, вспышки по залу
     ctx.save(); shake(ctx, cam); EH.plate(ctx, v, 'rev', 0, solo);
     const seats = [[372, 850], [541, 848], [712, 846], [1060, 846], [1230, 848]];
-    seats.forEach((st, i) => { const up = clamp((t - .1 - i * .12) / .3); EH.seatedRev(ctx, PRESS[i], v, t, T, { seat: st, keys: [[0, 'neutral']], look: [0, -.2], seed: i + 1, solo, R: { k: up, to: [st[0] + 30, st[1] - 260] },
-      held: up > .4 ? { R: (c, h, s) => PA.phone(c, h[0], h[1] - 30 * s, s * 1.4, 0, null, 0) } : null }); });
+    seats.forEach((st, i) => { const up = clamp((t - .1 - i * .12) / .3), r = EH.seatedRev(ctx, PRESS[i], v, t, T, { seat: st, keys: [[0, 'neutral']], look: [0, -.2], seed: i + 1, solo, R: { k: up, to: [st[0] + 95, st[1] - 250] } });   // рука с телефоном сбоку от головы, не поперёк лица
+      if (!solo && up > .4) { PA.phone(ctx, r.hr[0], r.hr[1] - 30 * r.s, r.s * 1.4, 0, null, 0); ctx.fillStyle = '#141014'; ctx.beginPath(); ctx.arc(r.hr[0], r.hr[1], 12 * r.s, 0, Math.PI * 2); ctx.fill(); } });   // поднятый телефон (seatedRev не рисует held — телефонов не было)
     EH.stageFront(ctx, v, solo);
     ctx.restore(); },
   '7|JENSEN: The export control was a failure': x => { const { ctx, t, T, cam, solo } = x, tf = W_(x, 'failure', 1.2), ts = Math.min(t, tf + .05), v = camView({ cx: 585, cy: 470, k: 3.2 }, { ...cam, z: x.camAt(ts).z }, .1);   // крупно Дженсен у букета микрофонов, на заднике COMPUTEX; на «failure» вспышка и стоп-кадр
@@ -424,9 +424,9 @@ export const OVER = {
     pane(0, () => { const v = { cx: 330, cy: 470, k: 1.5 + .03 * t }; WA.revPlate(ctx, v, 0, false);
       marker(ctx, v, '25%', [150, 380], 64, clamp((t - tc + .1) / .4), '#d0302a', -.06);
       person(ctx, v, t, T, { C: OFFICIAL, at: [420, 800], fs: .5, view: 'threeQuarter', facing: -1, sp: 'OFFICIAL', light: [-1, -.2], shadow: true, keys: [[0, 'neutral']], look: [-.6, -.2],
-        L: { k: 1, to: [400, 430] }, heldL: (c, P, sc) => PR.handsetHeld(c, P, sc, -1), R: { k: env(t, tc - .3, d + 1, .25), to: [250, 390] } }); WA.revFront(ctx, v, 0, false); });
+        handset: 'R', L: { k: env(t, tc - .3, d + 1, .25), to: [250, 390] } }); WA.revFront(ctx, v, 0, false); });   // трубка у уха (затылочная сторона, правая кисть на её низу); 25% пишет левой
     pane(1, () => { const v = NV.view('cu', { z: 1 + .03 * t, dx: 0, dy: 0 }), k = E.outBack(clamp((t - tS) / .35));
-      NV.seated(ctx, v, t, T, { C: JH, sp: 'JENSEN', blur: 3, keys: [[0, 'neutral']], phone: 'L', phoneK: 1, look: [.3, -.2 * k], R: { k: .6 + .4 * k, to: [1050, lerp(600, 470, k)] }, heldR: (c, P, sc) => PR.chip(c, P[0] + 10 * sc, P[1] - 50 * sc, 1.1 * sc, 0, .8 + .4 * k) }); });
+      NV.seated(ctx, v, t, T, { C: JH, sp: 'JENSEN', blur: 3, keys: [[0, 'neutral']], phone: 'L', phoneK: 1, look: [.3, -.2 * k], R: { k: .6 + .4 * k, to: [1050, lerp(600, 470, k)] }, heldR: (c, P, sc) => { deskSleeve(c, v, P, sc, JH.spec, NV.cfg.sit); PR.chip(c, P[0] + 10 * sc, P[1] - 50 * sc, 1.1 * sc, 0, .8 + .4 * k); } }); });   // рукав кожанки с манжетой, кисть держит чип за нижний край
     ctx.fillStyle = '#000'; ctx.fillRect(pw - 4, 0, 8, H); },
 
   '7|Later, when the New York Times': B.plaquesAt(1460, 120),

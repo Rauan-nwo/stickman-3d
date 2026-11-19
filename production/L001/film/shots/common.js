@@ -1,7 +1,7 @@
 // film/shots/common.js — общие помощники постановки планов (владелец — ведущий агент; рабочие только читают).
 // Время событий — по словам (W_ / W0, words.json), не по доле плана: перетайминг и склейка/разрезка планов не ломают постановку.
-import { clamp, lerp, E } from 'engine';
-import { W, H, cover } from '../staging/common.js';
+import { clamp, lerp, E, elbowIK, shoulder } from 'engine';
+import { W, H, cover, toS, toPlate } from '../staging/common.js';
 import * as R from '../staging/restaurant.js';
 import { wordAt, lineSpan } from '../words.js';
 import { WHIP_DUR } from '../../animatic/core.js';
@@ -44,3 +44,13 @@ export function candle(ctx, fx, fy, k, a) {
 
 // дождь аниматика: только общий план улицы; в ресторане и салоне дождь нарисован за стеклом. Главы могут переопределить (RAIN в модуле главы)
 export const RAIN_DEFAULT = s => (s.loc === 'L02-sg-street' ? /общий/.test(s.framing) : s.loc !== 'L01-restaurant');
+
+// рукав кожанки с манжетой на поднятой руке сидящего за столом (deskLocation: sit = { seat, fs }): плечо -> локоть -> кисть P (экран),
+// локоть — как у движка (elbowIK, armL 228, правая рука); толстый рукав поверх руки-трубки, манжета у кисти. s — пикселей экрана на ед. фигуры
+export const deskSleeve = (c, v, P, s, S, sit, col = '#2a2530') => { const sh = toS(v, toPlate(S, sit.seat, sit.fs, shoulder(S, 1), 'seat')), e = elbowIK(sh, P, 228 * s, 1).e;
+  const dx = P[0] - e[0], dy = P[1] - e[1], l = Math.hypot(dx, dy) || 1, ux = dx / l, uy = dy / l, cf = [P[0] - ux * 20 * s, P[1] - uy * 20 * s];   // манжета чуть ниже кисти
+  c.save(); c.lineCap = 'round'; c.lineJoin = 'round'; c.beginPath(); c.moveTo(sh[0], sh[1]); c.lineTo(e[0], e[1]); c.lineTo(cf[0], cf[1]);
+  c.lineWidth = 40 * s; c.strokeStyle = '#141014'; c.stroke(); c.lineWidth = 31 * s; c.strokeStyle = col; c.stroke();
+  c.lineWidth = 6 * s; c.strokeStyle = 'rgba(255,255,255,.16)'; c.beginPath(); c.moveTo(e[0] - 8 * s, e[1] - 4 * s); c.lineTo(cf[0] - 10 * s, cf[1] - 2 * s); c.stroke();   // блик кожи
+  c.translate(cf[0], cf[1]); c.rotate(Math.atan2(uy, ux)); c.fillStyle = '#1a171d'; c.strokeStyle = '#141014'; c.lineWidth = 4 * s; c.beginPath(); c.roundRect(-8 * s, -22 * s, 16 * s, 44 * s, 4 * s); c.fill(); c.stroke();   // манжета
+  c.strokeStyle = '#9a9ea8'; c.lineWidth = 2 * s; c.beginPath(); c.moveTo(0, -16 * s); c.lineTo(0, 16 * s); c.stroke(); c.restore(); };

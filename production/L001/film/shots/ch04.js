@@ -30,7 +30,7 @@ export const doorPlaque = (ctx, v, lines, o = {}) => { const [x, y, w] = MS.CFG.
 export function glassBoxes(ctx, v, grow, t) {
   const rows = Math.round(lerp(0, 9, clamp(grow))), cols = [[1640, 150], [1790, 150], [1940, 150]], mid = [[1440, 110]];
   for (let r = 0; r < rows; r++) for (const [x, w] of cols) { if (r < 2 && x < 1900) continue; const P = toS(v, [x, 780 - r * 82]); PA.carton(ctx, P[0], P[1], w * v.k * .98, 80 * v.k, { side: .12, dark: .05 }); }
-  for (let r = 0; r < Math.max(0, rows - 3); r++) for (const [x, w] of mid) { const P = toS(v, [x, 735 - r * 72]); PA.carton(ctx, P[0], P[1], w * v.k, 70 * v.k, { side: .12, dark: .2 }); }
+  for (let r = 0; r < Math.max(0, rows - 3); r++) for (const [x, w] of mid) { const P = toS(v, [x, 795 - r * 72]); PA.carton(ctx, P[0], P[1], w * v.k, 70 * v.k, { side: .12, dark: .2 }); }   // низ колонны — на полу за стеклом (было 735: колонна висела над полом)
   void t;
 }
 // стекло серверной поверх коробок: бирюзовый тон, блик и рамы плейта
@@ -237,8 +237,8 @@ export const OVER = {
   '4|and lets you read it through the window': (ctx, s, t, d) => { const wt = (re, fb) => { const a = wordAt(re, s.start, s.end); return a == null ? fb : a - s.start; };   // ребёнок светит фонариком в окно, сосед прижимает страницу к стеклу; на «fee» монета падает в банку PER PAGE
     const tw = wt('window', 1.1), tp = wt('page', 1.88), tf = wt('fee', 3.28), snap = 1 + .1 * E.outCubic(clamp((t - tp) / .17)), push = 1 + .06 * clamp(t / d);
     const v = { cx: 960, cy: 560, k: 1.12 * snap * push }, lit = E.outCubic(clamp((t - tw) / .25)), pg = E.outBack(clamp((t - .2) / .5));
-    JK.house(ctx, v, t, c => { const P = JK_person(c, NB, v, t, s.start + t, { at: [960, 1110], fs: .85, f: 1, view: null, keys: [[0, 'smile']], look: [0, .1], L: { k: 1, to: [860, 470] }, R: { k: 1, to: [1060, 470] } });
-      const b = toS(v, [960, lerp(560, 470, pg)]); JK.book(c, b[0], b[1], 150 * v.k, 0, { open: 1, lit }); for (const sd of ['L', 'R']) { const h = handS(P, v, sd); ell(c, h[0], h[1], 11 * .85 * v.k, 11 * .85 * v.k, NB.spec.colors.ink, null); } });
+    JK.house(ctx, v, t, c => { const P = JK_person(c, NB, v, t, s.start + t, { at: [960, 1110], fs: .85, f: 1, view: null, keys: [[0, 'smile']], look: [0, .1], L: { k: 1, to: [796, 640] }, R: { k: 1, to: [1124, 640] } });   // книга под подбородком, кисти на краях книги (кисти-точки посреди страниц читались как глаза сквозь книгу)
+      const b = toS(v, [960, lerp(700, 620, pg)]); JK.book(c, b[0], b[1], 150 * v.k, 0, { open: 1, lit }); for (const sd of ['L', 'R']) { const h = handS(P, v, sd); ell(c, h[0], h[1], 11 * .85 * v.k, 11 * .85 * v.k, NB.spec.colors.ink, null); } });
     const J = toS(v, [1210, 760]); JK.jar(ctx, J[0], J[1], 90 * v.k, t > tf + .35 ? 4 : 3);
     const cu = (t - tf) / .35; if (cu > 0 && cu < 1) { const c0 = toS(v, [1210, lerp(560, 740, cu * cu)]); ell(ctx, c0[0], c0[1], 14 * v.k, 6 * v.k + 4 * Math.abs(Math.sin(cu * 12)) * v.k, '#E8C04A', '#141014', 2); }
     // ребёнок на переднем плане (по грудь), фонарик в правой руке; луч — на страницу

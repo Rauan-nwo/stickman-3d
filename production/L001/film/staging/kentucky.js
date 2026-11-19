@@ -8,6 +8,7 @@ import { W, H, toS, plate, img, lazy, fig, contact } from './common.js';
 import dormPlate from '../../assets/bg_dorm_room.png';
 import bathPlate from '../assets/bath_nomop.png';                 // санузел без нарисованной швабры (make_plates.py): швабру играет 2D-швабра
 import { polyMask, masked } from './common.js';
+import { mouth } from '../words.js';
 
 export const CFG = {
   dorm: { feet: [760, 958], fs: .58, trunk: [985, 962, 440, 1000], light: [.45, -.9] },   // сундук: низ-центр x, y, ширина и высота в ед. фигуры
@@ -102,7 +103,7 @@ export function bathMid(ctx, v, t, T, o = {}) {
 import { roommate } from '../chars.js';
 CFG.bathWin = [702, 196, 1190, 426];                 // стекло окна санузла (плейт bath): x0, y0, x1, y1; линия поля ~ y 380
 CFG.stalls = [1250, 40, 1920, 1000];                 // кадр кабинок справа (плейт bath) — источник для «ряда до горизонта»
-CFG.roomBed = { seat: [420, 706], fs: .86, light: [.45, -.9], sag: [400, 712, 190] };   // нижняя койка слева (bg_dorm_room): сиденье, масштаб, прогиб (x, y, ширина)
+CFG.roomBed = { seat: [455, 672], fs: .68, floor: 885, light: [.45, -.9], sag: [462, 664, 170] };   // нижняя койка слева (bg_dorm_room): бёдра на краю матраса, пол перед боковиной койки (y), масштаб, прогиб (x, y, ширина)
 CFG.barbell = [1270, 770];                           // штанга на полу спальни
 const RM = roommate(); RM.spec.shade = noirShade(CFG.roomBed.light, { warm: '#ffd89a' });
 export const CAST2 = { RM };
@@ -136,23 +137,16 @@ export function boyByBucket(ctx, v, t, T, o = {}) {
   p.arms = [{ to: restHand(S, -1), w: 11 }, { to: o.handTo ? arcHand(shR, restHand(S, 1), toFig(o.handTo), 1) : restHand(S, 1), w: 11 }];
   fig(ctx, YB, p, v, c.feet, c.fs, 'feet');
 }
-// «каждый санузел»: кабинки справа повторяются, уменьшаясь к окну (ряд до горизонта); двери хлопают по очереди от дальней к ближней
-export function stallRow(ctx, v, t, n = 7, t0 = .05, dt = .16) {
-  const a = A(); if (!a) return; const [sx0, sy0, sx1, sy1] = CFG.stalls, VP = toS(v, [940, 330]);
-  for (let i = n - 1; i >= 1; i--) {
-    const k = Math.pow(.6, i), D0 = toS(v, [sx0, sy0]), D1 = toS(v, [sx1, sy1]);
-    const x0 = VP[0] + (D0[0] - VP[0]) * k, y0 = VP[1] + (D0[1] - VP[1]) * k, w = (D1[0] - D0[0]) * k, h = (D1[1] - D0[1]) * k;
-    const ts = t0 + (n - 1 - i) * dt, u = (t - ts) / .2, j = u > 0 && u < 1 ? Math.sin(u * 30) * (1 - u) * 6 * k * v.k : 0;
-    ctx.drawImage(stallDark(a, i), x0 + j, y0, w, h);                                                       // дальние — темнее (воздух); затемнение только внутри копии, без прямоугольника
-  }
+// «каждый санузел»: камера медленно идёт вдоль нарисованного ряда кабинок плейта; на каждой двери по очереди появляется галочка «вымыто»
+// (копии кабинок с мягкими краями убраны — читались как размазанный копипаст). Двери плейта bath: центры галочек в пикселях плейта.
+CFG.stallTicks = [[1335, 445], [1418, 430], [1530, 400]];   // три кабинки ряда (четвёртая, ближняя, — у края кадра, без галочки)
+export function stallTicks(ctx, v, t, times) {
+  CFG.stallTicks.forEach((q, i) => { const u = clamp((t - times[i]) / .22); if (u <= 0) return; const P = toS(v, q), s = v.k * E.outBack(u);
+    ctx.save(); ctx.translate(P[0], P[1]); ctx.scale(s, s); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.beginPath(); ctx.moveTo(-30, 2); ctx.lineTo(-8, 26); ctx.lineTo(34, -30);
+    ctx.lineWidth = 22; ctx.strokeStyle = INK; ctx.stroke(); ctx.lineWidth = 12; ctx.strokeStyle = '#7ed492'; ctx.stroke();   // галочка: тёмный контур, зелёная середина
+    ctx.restore(); });
 }
-// копия кабинок с мягкими краями слева и сверху (без шва-прямоугольника у копий)
-let SF = null; function stallSoft(a) { if (SF) return SF; const [sx0, sy0, sx1, sy1] = CFG.stalls, w = sx1 - sx0, h = sy1 - sy0; SF = document.createElement('canvas'); SF.width = w; SF.height = h; const x = SF.getContext('2d'); x.drawImage(a.bath, sx0, sy0, w, h, 0, 0, w, h);
-  x.globalCompositeOperation = 'destination-in'; let g = x.createLinearGradient(0, 0, w * .3, 0); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,1)'); x.fillStyle = g; x.fillRect(0, 0, w, h);
-  g = x.createLinearGradient(0, 0, 0, h * .15); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,1)'); x.fillStyle = g; x.fillRect(0, 0, w, h);
-  g = x.createLinearGradient(0, h * .82, 0, h); g.addColorStop(0, 'rgba(0,0,0,1)'); g.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = g; x.fillRect(0, 0, w, h); return SF; }   // и снизу: шов по полу не виден
-const SD = {}; function stallDark(a, i) { if (SD[i]) return SD[i]; const src = stallSoft(a), c = document.createElement('canvas'); c.width = src.width; c.height = src.height; const x = c.getContext('2d');
-  x.drawImage(src, 0, 0); x.globalCompositeOperation = 'source-atop'; x.fillStyle = `rgba(30,24,20,${(.18 + .1 * i).toFixed(2)})`; x.fillRect(0, 0, c.width, c.height); return (SD[i] = c); }
 // отрывной календарь на стене: дни MON..SUN срываются по одному с tA до tB; на tB падает SUN
 export function dayPad(ctx, P, w, t, tA, tB) {
   const days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'], h = w * 1.2, n = days.length;
@@ -164,24 +158,43 @@ export function dayPad(ctx, P, w, t, tA, tB) {
   if (t >= tA && idx < n - 1) page(days[idx], w * 1.4 * u * u, w * 2.6 * u * u, 1.2 * u, 1 - u); else if (t < tA) page(days[0], 0, 0, 0, 1);
   if (t >= tB) { const u2 = clamp((t - tB) / .35); page('SUN', 0, w * 3 * u2 * u2, .3 * u2, 1 - u2 * .2); }
 }
-// сосед садится на нижнюю койку, койка прогибается. o = { sit 0..1, keys, look, R: {k, to} — правая кисть к точке плейта, book (кисть держит книгу) }
+// сосед садится на нижнюю койку, койка прогибается. o = { sit 0..1, keys, look, sp, R: {k, to} — правая кисть к точке плейта }
+// Посадка: бёдра на краю матраса, спина к стене, бёдра вдоль матраса, голени вниз ПЕРЕД боковиной, ступни на полу (тень);
+// длина голени считается от сиденья до пола плейта — ступни стоят на полу при любом прогибе и при посадке.
 export function roommateBed(ctx, v, t, T, o = {}) {
   const a = A(), c = CFG.roomBed; if (!a) return {};
-  if (!o.solo) plate(ctx, a.dorm, v);
-  const sit = clamp(o.sit ?? 1), bounce = sit >= 1 ? Math.sin(Math.min(1, (t - (o.tSit ?? 0)) * 3) * Math.PI) * 6 * Math.exp(-(t - (o.tSit ?? 0)) * 2) : 0, sag = 22 * sit + bounce;
-  if (!o.solo) { const P = toS(v, [c.sag[0], c.sag[1]]), w = c.sag[2] * v.k; ctx.save(); ctx.fillStyle = 'rgba(40,20,10,.35)'; ctx.beginPath(); ctx.ellipse(P[0], P[1] + sag * .3 * v.k, w * .6, sag * .8 * v.k + 1, 0, 0, Math.PI); ctx.fill(); ctx.restore(); }   // прогиб матраса
-  const seat = [c.seat[0], c.seat[1] + sag * .6 - 60 * (1 - sit)], S = RM.spec;
-  const p = act(t, o.keys || [[0, 'neutral']]); Object.assign(p, { blink: blinkAt(t, 4), view: 'threeQuarter', facing: 1, stance: 'sitR', look: o.look || [.5, .1] }); if (p.mouth === 'smile' || !p.mouth) p.mouth = 'flat';   // хмурый, не улыбается
-  p.bob = (p.bob || 0) * .3; p.sq = (p.sq || 0) * .3; p.lean = (p.lean || 0) * .3 + .05; p.tilt = (p.tilt || 0) * .4;
-  const toFig = P => [(P[0] - seat[0]) / c.fs, (P[1] - seat[1]) / c.fs], shR = shoulder(S, 1), shL = shoulder(S, -1);
+  if (!o.solo && !o.noPlate) plate(ctx, a.dorm, v);
+  const sit = clamp(o.sit ?? 1), bounce = sit >= 1 ? Math.sin(Math.min(1, (t - (o.tSit ?? 0)) * 3) * Math.PI) * 6 * Math.exp(-(t - (o.tSit ?? 0)) * 2) : 0, sag = 14 * sit + bounce;
+  if (!o.solo) { const P = toS(v, [c.sag[0], c.sag[1]]), w = c.sag[2] * v.k; ctx.save(); ctx.fillStyle = 'rgba(40,20,10,.3)'; ctx.beginPath(); ctx.ellipse(P[0], P[1] + sag * .3 * v.k, w * .6, sag * .7 * v.k + 1, 0, 0, Math.PI); ctx.fill(); ctx.restore(); }   // прогиб матраса
+  const seat = [c.seat[0], c.seat[1] + sag * .6 - 50 * (1 - sit)], S = RM.spec, f = 1;
+  const p = act(t, o.keys || [[0, 'neutral']]); Object.assign(p, { blink: blinkAt(t, 4), view: 'threeQuarter', facing: f, stance: 'sitR', look: o.look || [.5, .1] }); if (p.mouth === 'smile' || !p.mouth) p.mouth = 'flat';   // хмурый, не улыбается
+  if (o.sp) p.mouth = mouth(o.sp, T, p.mouth, 2);
+  p.bob = (p.bob || 0) * .3; p.sq = (p.sq || 0) * .3; p.lean = (p.lean || 0) * .3 + .06; p.tilt = (p.tilt || 0) * .4;
+  const hipY = S.rig.hipY, gy = S.pins.seat[1] + (c.floor - seat[1]) / c.fs;   // пол в координатах фигуры
+  p.legs = [{ layer: 'back', pts: [[-f * 14, hipY + 8], [f * 118, hipY + 20]] }, { layer: 'back', pts: [[f * 118, hipY + 20], [f * 126, gy - 10]] }, { layer: 'back', pts: [[f * 124, gy - 9], [f * 152, gy - 7]], w: 22, col: S.shoe || '#2a2420' },
+    { layer: 'mid', pts: [[f * 16, hipY + 4], [f * 150, hipY + 14]] }, { layer: 'mid', pts: [[f * 150, hipY + 14], [f * 160, gy - 4]] }, { layer: 'mid', pts: [[f * 158, gy - 3], [f * 188, gy - 1]], w: 22, col: S.shoe || '#2a2420' }];
+  const toFig = P => [(P[0] - seat[0]) / c.fs, (P[1] - seat[1]) / c.fs + S.pins.seat[1]], shR = shoulder(S, 1);
   const R = o.R && o.R.k > .001 ? arcHand(shR, restHand(S, 1), toFig(o.R.to), o.R.k) : restHand(S, 1);
   p.arms = [{ to: restHand(S, -1), w: 13 }, { to: R, w: 13 }];
+  if (!o.solo) { const F = toS(v, [seat[0] + 160 * c.fs, c.floor]); contact(ctx, F[0], F[1], 120 * c.fs * v.k, 18 * c.fs * v.k, .55, .2); }   // тень под ступнями
   fig(ctx, RM, p, v, seat, c.fs, 'seat');
-  if (!o.solo) { const F = toS(v, [seat[0] + 70, 905]); contact(ctx, F[0], F[1], 160 * c.fs * v.k, 20 * c.fs * v.k, .5, .2); }
   const hp = q => toS(v, [seat[0] + (q[0] - S.pins.seat[0]) * c.fs, seat[1] + (q[1] - S.pins.seat[1]) * c.fs]);
   const out = { hl: hp(p.arms[0].to), hr: hp(R), s: c.fs * v.k };
   bandage(ctx, out.hl, out.s);
   return out;
+}
+// юный Дженсен стоит в спальне (без плейта и сундука): o = { at: ступни, facing, look, keys, sp, point: точка плейта, pointK }
+export function youngInDorm(ctx, v, t, T, o = {}) {
+  const c = CFG.dorm, at = o.at || c.feet, fs = o.fs || c.fs, F = toS(v, at), s = fs * v.k, f = o.facing ?? 1;
+  if (!o.solo) contact(ctx, F[0], F[1] + 3 * s, 140 * s, 20 * s, .55, .2);
+  const S = YJ.spec, p = act(t, o.keys || [[0, 'neutral']]);
+  Object.assign(p, { blink: blinkAt(t + 1.7, 6), view: 'threeQuarter', facing: f, stance: 'stand', look: o.look || [-.4, -.3] });
+  if (o.sp) p.mouth = mouth(o.sp, T, p.mouth, 6);
+  p.bob = (p.bob || 0) * .4; p.sq = (p.sq || 0) * .4; p.lean = (p.lean || 0) * .4; p.tilt = (p.tilt || 0) * .5;
+  const toFigD = P => [(P[0] - at[0]) / fs, (P[1] - at[1]) / fs], side = o.pointSide ?? 1, sh = shoulder(S, side);
+  const pt = o.point && (o.pointK ?? 0) > .001 ? arcHand(sh, restHand(S, side), toFigD(o.point), clamp(o.pointK)) : restHand(S, side);
+  p.arms = side > 0 ? [{ to: restHand(S, -1), w: 11 }, { to: pt, w: 11 }] : [{ to: pt, w: 11 }, { to: restHand(S, 1), w: 11 }];
+  fig(ctx, YJ, p, v, at, fs, 'feet');
 }
 // бинт на запястье (левая кисть соседа): белая манжета-повязка у кисти
 export function bandage(ctx, P, s) { ctx.save(); ctx.translate(P[0], P[1] - 22 * s); ctx.fillStyle = '#f4f1ea'; ctx.strokeStyle = INK; ctx.lineWidth = 3 * s; ctx.beginPath(); ctx.roundRect(-15 * s, -12 * s, 30 * s, 22 * s, 5 * s); ctx.fill(); ctx.stroke();

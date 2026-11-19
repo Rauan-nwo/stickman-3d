@@ -162,15 +162,16 @@ export function youngJensen() {
 // Общие для глав 2–9 (владелец — ведущий; рабочие импортируют, не правят)
 // =====================================================================================================
 // official — чиновник Вашингтона (OFFICIAL гл. 3 и 7, клерк чёрного списка гл. 6; Минторг, Минюст, конгрессмен — варианты):
-//   седая стрижка на пробор, круглые очки, костюм; o = { suit: [свет, тень, низ], tie: [галстук, узел], hair: 'grey'|'dark'|'bald', glasses }
+//   седая стрижка на пробор, круглые очки, костюм; o = { suit: [свет, тень, низ], tie: [галстук, узел], hair: 'grey'|'dark'|'brown'|'bald', glasses, moustache }
 HATS.L_official_grey = (x, H, S, VW, p) => { sleekHair(x, S, VW, p, { light: '#E4E6EA', mid: '#A9AEB6', dark: '#6D727B', gloss: .5 }); if (S.glasses !== false) roundGlasses(x, S, VW, p); };
 HATS.L_official_dark = (x, H, S, VW, p) => { sleekHair(x, S, VW, p, { light: '#5a4c48', mid: '#33282a', dark: '#1a1416', gloss: .3 }); if (S.glasses) roundGlasses(x, S, VW, p); };
+HATS.L_official_brown = (x, H, S, VW, p) => { sleekHair(x, S, VW, p, { light: '#a8774a', mid: '#6e4626', dark: '#3a2212', gloss: .35 }); if (S.glasses) roundGlasses(x, S, VW, p); };   // каштановый зачёс (чиновник гл. 3/7 — не путать с седым Дженсеном в очках)
 HATS.L_official_bald = (x, H, S, VW, p) => { if (!isBack(VW)) for (const sd of [-1, 1]) poly(x, [[sd * 131, -40], [sd * 122, -66], [sd * 112, 4], [sd * 128, 12]], '#8d8f95', null); if (S.glasses !== false) roundGlasses(x, S, VW, p); };
 export function official(o = {}) {
   const [l, m, d] = o.suit || ['#5e6472', '#383d49', '#1b1e26'], [tie, knot] = o.tie || ['#7A1B28', '#5E1520'];
   const c = detective({
-    name: o.name || 'official', hat: { type: 'L_official_' + (o.hair || 'grey') }, colors: { hair: '#A9AEB6' }, shoe: '#121010',
-    face: { restEye: 'dot', restMouth: 'flat', browCol: o.hair === 'dark' ? '#2A2024' : '#8d9097', eyes: [{ x: -44, y: -16, rx: 8.5, ry: 11, lw: 6, tilt: 0 }, { x: 44, y: -16, rx: 8.5, ry: 11, lw: 6, tilt: 0 }] },
+    name: o.name || 'official', hat: { type: 'L_official_' + (o.hair || 'grey') }, colors: { hair: '#A9AEB6', ...(o.moustache ? { stache: o.stache || '#4a2e18' } : {}) }, shoe: '#121010',
+    face: { restEye: 'dot', restMouth: 'flat', browCol: o.hair === 'dark' ? '#2A2024' : o.hair === 'brown' ? '#4a2e18' : '#8d9097', ...(o.moustache ? { moustache: true, stacheK: .8 } : {}), eyes: [{ x: -44, y: -16, rx: 8.5, ry: 11, lw: 6, tilt: 0 }, { x: 44, y: -16, rx: 8.5, ry: 11, lw: 6, tilt: 0 }] },
     body: { fillRadial: { at: [-44, -76], r0: 12, to: [-8, -10], r1: 205, stops: [[0, l], [.45, m], [1, d]] },
       inside: [suit({ lapel: m, lapelHi: 'rgba(220,225,240,.25)', tie, tieKnot: knot, tieHi: 'rgba(255,255,255,.2)' })] },
   });

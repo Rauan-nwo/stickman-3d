@@ -275,11 +275,12 @@ export function toastIn(ctx, v, t, tClink, r) {
   const slosh = t < tClink ? 0 : Math.sin((t - tClink) * 14) * Math.exp(-(t - tClink) * 3.2) * .16;
   wineGlass(ctx, xJ, yJ, g, -.08 - jit, '#141014', undefined, slosh);
   // рука Дженсена из-за левого края: рукав его кожанки (читается, чья рука — продолжение тоста с прошлой точки), кисть-точка на ножке
-  const s = r.s, ex = xJ - 150 * s, ey = yJ + 230 * s;
+  const s = r.s, ex = xJ - 44 * s, ey = yJ + 70 * s;   // рукав доходит почти до кисти (была длинная голая палка-предплечье — замечание 2026-11-19)
   ctx.save(); ctx.lineCap = 'round';
   ctx.beginPath(); ctx.moveTo(-120, H + 120); ctx.lineTo(ex, ey); ctx.lineWidth = 70 * s; ctx.strokeStyle = '#141014'; ctx.stroke();
   ctx.lineWidth = 58 * s; ctx.strokeStyle = '#23202a'; ctx.stroke();
   ctx.beginPath(); ctx.moveTo(-100, H + 100); ctx.lineTo(ex + 10 * s, ey - 16 * s); ctx.lineWidth = 8 * s; ctx.strokeStyle = 'rgba(255,255,255,.2)'; ctx.stroke();
+  { const a = Math.atan2(ey - (H + 120), ex + 120); ctx.save(); ctx.translate(ex, ey); ctx.rotate(a); ctx.fillStyle = '#1a171d'; ctx.strokeStyle = '#141014'; ctx.lineWidth = 5 * s; ctx.beginPath(); ctx.roundRect(-16 * s, -33 * s, 22 * s, 66 * s, 5 * s); ctx.fill(); ctx.stroke(); ctx.restore(); }   // манжета
   ctx.beginPath(); ctx.moveTo(ex, ey); ctx.lineTo(xJ, yJ + 4 * s); ctx.lineWidth = ARMW * s; ctx.strokeStyle = '#141014'; ctx.stroke();
   ctx.restore();
   ell(ctx, xJ, yJ + 4 * r.s, 12 * r.s, 12 * r.s, '#141014', null);

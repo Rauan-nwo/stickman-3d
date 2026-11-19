@@ -204,9 +204,18 @@ function rectGlasses(x, S, VW, p) {
   for (const [ex, ey] of E2) { x.beginPath(); x.roundRect(ex - 36, ey - 22, 72, 44, 9); x.fillStyle = 'rgba(175,205,225,.18)'; x.fill(); x.lineWidth = 6; x.strokeStyle = ink; x.stroke(); path(x, [[ex - 20, ey - 8], [ex - 8, ey - 16]], 3.5, 'rgba(255,255,255,.35)'); }
   path(x, [[E2[0][0] + 36, E2[0][1] - 6], [(E2[0][0] + E2[1][0]) / 2, E2[0][1] - 16, E2[1][0] - 36, E2[1][1] - 6]], 5, ink);
 }
-// борода (Крис): по низу лица, вокруг рта
-function beard(x, S, VW, p) { if (isBack(VW)) return; const o = offOf(VW, p) * .9; x.beginPath(); x.moveTo(-112 + o * .3, 10); x.quadraticCurveTo(-96 + o, 120, o, 128); x.quadraticCurveTo(96 + o, 120, 112 + o * .3, 10);
-  x.quadraticCurveTo(70 + o, 70, o, 62); x.quadraticCurveTo(-70 + o, 70, -112 + o * .3, 10); x.closePath(); x.fillStyle = '#5a3a24'; x.fill(); x.lineWidth = S.lw * .8; x.strokeStyle = S.colors.ink; x.stroke(); }
+// борода (Крис): короткая, по линии челюсти — от висков к подбородку, внутри контура головы; рот открыт (внутренний край ниже рта),
+// над ртом — узкие усы. Прежняя (тёмный серп на пол-лица, закрывал рот) — замечание Рауана 2026-11-19.
+function beard(x, S, VW, p) { if (isBack(VW)) return; const o = offOf(VW, p), h = S.head, rx = h.rx, ry = h.ry, ix = o * .25, y0 = 26, ic = [ix, 0, rx - 22, ry - 34];
+  x.save(); x.beginPath(); x.ellipse(0, 0, rx - 3, ry - 3, 0, 0, Math.PI * 2); x.clip();
+  // полоса вдоль челюсти: низ головы (ниже y0) минус внутренний эллипс — бакенбарды ~27 ед. (сверху сходят на нет), подбородок ~34; почти симметрично и в 3/4; рот внутри чистой зоны
+  const g = x.createLinearGradient(0, y0, 0, y0 + 18); g.addColorStop(0, 'rgba(94,65,40,0)'); g.addColorStop(1, 'rgba(94,65,40,1)');
+  x.beginPath(); x.rect(-rx - 6, y0, rx * 2 + 12, ry + 12); x.ellipse(ic[0], ic[1], ic[2], ic[3], 0, 0, Math.PI * 2); x.fillStyle = g; x.fill('evenodd');
+  x.beginPath(); x.ellipse(ic[0], ic[1], ic[2], ic[3], 0, Math.PI * .18, Math.PI * .82); x.lineWidth = 3; x.strokeStyle = 'rgba(40,24,14,.45)'; x.stroke();   // мягкий внутренний край у подбородка
+  for (let i = 0; i < 9; i++) { const a = Math.PI * (.2 + i * .075), px = ic[0] + Math.cos(a) * (rx - 10), py = Math.sin(a) * (ry - 14); x.fillStyle = 'rgba(30,18,10,.35)'; x.beginPath(); x.arc(px, py, 3, 0, Math.PI * 2); x.fill(); }   // ворс
+  x.restore();
+  x.beginPath(); x.moveTo(-34 + o, 40); x.quadraticCurveTo(-14 + o, 28, o, 34); x.quadraticCurveTo(14 + o, 28, 34 + o, 40); x.quadraticCurveTo(o, 44, -34 + o, 40); x.closePath();   // усы над ртом
+  x.fillStyle = '#5e4128'; x.fill(); x.lineWidth = 2.5; x.strokeStyle = 'rgba(40,24,14,.6)'; x.stroke(); }
 const both = (...fns) => (x, S, VW, p) => fns.forEach(f => f(x, S, VW, p));
 HATS.LB_j93 = H({ style: 'part', light: '#3c3a44', mid: '#16141a', dark: '#060508', gloss: .4 }, rectGlasses);
 HATS.LB_teen = H({ style: 'messy', light: '#3a3640', mid: '#1a181e', dark: '#0a090c', gloss: .25 });

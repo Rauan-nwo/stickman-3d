@@ -29,6 +29,7 @@ import noCarPlate from '../../assets/bg_street_no_car.png';
 
 import * as DNS from '../staging/dennys.js';   // L07 Denny's — общий конфиг (табличка [118, 440, 190])
 const DN = { plaque: DNS.CFG.plaque }, DNA = () => { const a = DNS.A(); return a && { p: a.day }; }, holes = DNS.holes, screwsOut = (c, v, u) => DNS.screws(c, v, u, 'out');
+const AN2_SEAT = [1350, 828];   // аналитик 2 — в кресле плейта (бёдра на подушке, спина к спинке); было [1250, 838] — «сидел» в воздухе перед креслом
 const IMM = customs(), JH = jensen(), BOARD = boardMember(), SPOKES = spokesman(), KRESS = aide2(), FBI = fieldAgent2();
 JH.spec.rig = { ...JH.spec.rig, armLayer: 'front', plantLegs: .02 };
 const CONG15 = official({ hair: 'grey', glasses: false, tie: ['#2f5a8a', '#22446a'], suit: ['#5a5650', '#3a3632', '#1c1a18'] }), CONG = official({ hair: 'dark', tie: ['#8a1a24', '#6a121a'], suit: ['#4a5060', '#2e3240', '#16181e'] });
@@ -118,11 +119,11 @@ export const SHOTS = {
   '9|Jensen never got that knock': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 1300, cy: 470, k: 1.6 }, cam, .2);   // та же плита, дом Дженсена: на почтовом ящике HUANG, за стеклом кожанка; фонарь горит, никто не стучит, мотылёк у лампы
     ctx.save(); shake(ctx, cam); PO.porch(ctx, v, t, T, { solo, huang: true, moth: true }); ctx.restore(); },
   // ---------------- L04: конгрессмен 2015 и агент; конгрессмен у двери ----------------
-  '9|about a suspected Chinese spy': x => { const { ctx, t, T, cam, solo } = x, v = WA.view('mid', cam), ts = W_(x, 'spy', 1.54), tc = W_(x, 'circle', 2.44);   // средний: агент ФБР кладёт на стол фото силуэта с плашкой; на «circle» вокруг силуэта красный круг
+  '9|about a suspected Chinese spy': x => { const { ctx, t, T, cam, solo } = x, v = WA.view('mid', cam), ts = W_(x, 'spy', 1.54), tc = W_(x, 'circle', 2.44);   // средний: агент ФБР кладёт на стол фото силуэта с плашкой; на «circle» вокруг силуэта красный круг. Агент стоит ЗА столом на полу: низ корпуса у линии столешницы (было at y 880 — ноги стояли на стопке книг, замечание Рауана)
     const put = E.outCubic(clamp((t - ts + .4) / .4));
     ctx.save(); shake(ctx, cam); WA.widePlate(ctx, v, 0, solo);
     ctx.save(); { const yc = toS(v, [0, 764])[1]; ctx.beginPath(); ctx.rect(0, 0, W, yc); ctx.clip(); }   // агент стоит ЗА столом: ниже столешницы и стопки книг его не видно
-    const r = person(ctx, v, t, T, { C: FBI, at: [1255, 880], fs: .6, view: 'threeQuarter', facing: -1, light: [-1, .1], keys: [[0, 'neutral']], look: [-.6, .5], lean: -.08 * (1 - put * .5), L: { k: 1 - put * .6, to: [1060, 800] } }); ctx.restore();
+    const r = person(ctx, v, t, T, { C: FBI, at: [1255, 955], fs: .6, view: 'threeQuarter', facing: -1, light: [-1, .1], keys: [[0, 'neutral']], look: [-.6, .5], lean: -.08 * (1 - put * .5), L: { k: 1 - put * .6, to: [1060, 800] } }); ctx.restore();
     WA.seated(ctx, v, t, T, { C: CONG15, solo, noPlate: true, keys: [[0, 'neutral'], [ts + .3, 'nervous']], look: [.2, .6],
       deskTop: (c, vv) => { const P = toS(vv, [lerp(1080, 1010, put), lerp(770, 812, put)]); c.save(); c.translate(P[0], P[1]); c.scale(1, lerp(.8, .5, put)); B.photo(c, 0, 0, 150 * vv.k, .08, spyPic(clamp((t - tc) / .5))); c.restore(); } });
     ctx.restore(); },
@@ -182,6 +183,7 @@ export const SHOTS = {
     const step = E.outCubic(clamp(t / .9));
     ctx.save(); shake(ctx, cam); NV.revPlate(ctx, v, 0, solo);
     silhouette(ctx, c => person(c, v, t, T, { C: KRESS, at: [lerp(500, 540, step), lerp(640, 652, step)], fs: .4, view: 'front', facing: 1, light: [-1, .2], keys: [[0, 'neutral']], blinkOff: true }), { col: '#0c0a10', rim: 'rgba(255,200,140,.6)', rimDir: [0, -1] });
+    if (!solo) { ctx.save(); ctx.beginPath(); [[383, 668], [392, 600], [404, 560], [400, 515], [440, 510], [445, 552], [470, 550], [512, 565], [548, 604], [558, 631], [530, 653], [440, 676]].forEach((q, i) => { const P = toS(v, q); i ? ctx.lineTo(P[0], P[1]) : ctx.moveTo(P[0], P[1]); }); ctx.closePath(); ctx.clip(); NV.revPlate(ctx, v, 0, solo); ctx.restore(); }   // абажур настольной лампы — передний план поверх ног силуэта (ноги стояли на абажуре)
     NV.revFront(ctx, v, 0, solo);
     ctx.restore(); },
   '9|SPOKESMAN: None at all': x => { const { ctx, t, T, cam, solo, d } = x, v = NV.view('front', cam, .2);   // средний: пресс-секретарь Nvidia в кабинете с зелёной полосой опускает телефон
@@ -204,10 +206,10 @@ export const SHOTS = {
     ctx.save(); ctx.translate(380, 160); B.deskCalendar(ctx, 720, 620, clamp((t - te) / .45), clamp((t - tf) / .3)); ctx.restore();
     ctx.save(); ctx.translate(1180, 300); B.tickerPanel(ctx, 600, 150); ctx.restore(); ctx.restore(); },
   '9|ANALYST: What did the affair cost': x => { const { ctx, t, T, cam, solo } = x, v = TD.view('a1', cam, .2);   // крупно аналитик 1: стена красных тикеров
-    ctx.save(); shake(ctx, cam); TD.desk(ctx, v, t, T, { solo, blur: 3, an1: { look: [.6, -.05] }, an2: { look: [-.6, 0] } }); ctx.restore(); },
+    ctx.save(); shake(ctx, cam); TD.desk(ctx, v, t, T, { solo, blur: 3, an1: { look: [.6, -.05] }, an2: { at: AN2_SEAT, look: [-.6, 0] } }); ctx.restore(); },
   '9|ANALYST 2: About fourteen percent': x => { const { ctx, t, T, cam, solo, s, d } = x, tw = s.whip?.t ?? d * .6, wu = inOutExpo((t - tw + .1) / WHIP_DUR);   // средний: аналитик 2 разворачивается на стуле -> вип-пан -> аналитик 1 моргает
     const v = lerpView(TD.view('a2', { ...cam, dx: 0 }), TD.view('a1', { ...cam, dx: 0 }), clamp(wu)), sw = E.inOutCubic(clamp(t / .45)), bl = gauss(t, tw + .35, .06) > .5;
-    ctx.save(); shake(ctx, cam); TD.desk(ctx, v, t, T, { solo, blur: 3, an2: { view: sw < .5 ? 'back' : 'threeQuarter', look: [-.6, 0] }, an1: { look: [.6, 0], eyes: bl ? 'closed' : undefined, blinkOff: true } }); ctx.restore(); },
+    ctx.save(); shake(ctx, cam); TD.desk(ctx, v, t, T, { solo, blur: 3, an2: { at: AN2_SEAT, view: sw < .5 ? 'back' : 'threeQuarter', look: [-.6, 0] }, an1: { look: [.6, 0], eyes: bl ? 'closed' : undefined, blinkOff: true } }); ctx.restore(); },
   '9|ANALYST 2: Of your retirement fund': x => { const { ctx, t, cam, solo } = x, tr = W_(x, 'retirement', .25);   // вставка монитор: YOUR RETIREMENT ACCOUNT — S&P 500; кусок NVDA краснеет −14 %, палец стучит по нему
     if (solo) return; ctx.save(); shake(ctx, cam); const a = TD.A(); if (a) plate(ctx, a.b6, cover({ cx: 1330, cy: 560, k: 2.6 }));
     let P = [0, 0]; B.tv(ctx, W / 2, H * .48, 1500 * (1 + (cam.z - 1) * .5), 0, t, { scene: (c, w, h) => { P = B.retirementScreen(c, w, h, { red: clamp((t - tr) / .35), tap: t - tr - .55 }); } });
@@ -235,9 +237,9 @@ export const OVER = {
       const P = toS(v, [1420, 660]); ctx.save(); ctx.translate(P[0], P[1]); ctx.scale(1, .6); B.sheet(ctx, 0, 0, 120 * v.k, 160 * v.k, .1, (c, w, h) => { c.fillStyle = '#1e2a4a'; c.fillRect(0, 0, w, h * .18); B.txt(c, 'PASSPORT', w / 2, h * .09, h * .08, { col: '#e8d08a', font: F.label, w: 800, align: 'center' }); B.stamp(c, w / 2, h * .55, 'DENIED', h * .14, t - td, -.15); }); ctx.restore(); });
     ctx.fillStyle = '#000'; ctx.fillRect(pw - 4, 0, 8, H); ctx.fillRect(2 * pw - 4, 0, 8, H); },
 
-  '9|about a suspected Chinese spy': B.plaquesAt(560, 110),
+  '9|about a suspected Chinese spy': B.plaquesAt(1120, 985),   // плашка у фото на столе (была слева вверху — поверх волос конгрессмена)
   '9|Chief financial officer Colette Kress': B.plaquesAt(1380, 130),
 };
 export const SKIP_PROPS = { "9|In San Jose, the Denny's where Nvidia": /BOOTH/, '9|IMMIGRATION: Alice Huang?': /./, '9|Where she is now, nobody will say': /MANAGING/, '9|Megaspeed now says she left': /./, '9|about a suspected Chinese spy': /./, "9|CONGRESSMAN: We'd like a closed-door": /CLOSED/, '9|Jensen never got that knock': /HUANG/, '9|On November 8, Jensen wrote a letter': /./, '9|In it, he admitted he had been': /./,
   '9|Chief financial officer Colette Kress': /./, '9|President Trump said the FBI': /./, "9|When China's DeepSeek released": /./, '9|CNN later reported that US intelligence': /./, '9|And its next earnings report': /./, '9|ANALYST 2: Of your retirement fund': /./, '9|the index behind millions': /./ };
-export const RAIN = null;   // или s => true/false/undefined — переопределение дождя для планов главы
+export const RAIN = s => (/L09|L10|L12/.test(s.loc) ? false : undefined);   // офис Megaspeed, бар, таможня — в помещении дождя поверх кадра нет (как в гл. 4–6; была штриховка «////» в офисе)

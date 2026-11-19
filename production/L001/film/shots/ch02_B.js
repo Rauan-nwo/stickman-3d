@@ -14,6 +14,7 @@ import deskTop from '../../assets/bg_desk_topdown.png';
 import dishPlate from '../../assets/bg_dennys_dishpit.png';
 import porchPlate from '../../assets/bg_relatives_porch.png';
 
+const R1AT = [1645, 935];   // Крис на правой скамье: бёдра на подушке сиденья (было [1625, 905] — у нижнего края спинки, «висел» над подушкой); голова ниже, как у сидящих напротив
 const J93 = jensen93(), J97 = jensen97(), TJ = teenJensen(), CH = chris(), CU = curtis(), WT = waitress(), AU = aunt(), UN = uncle(), BR = brother(), YJ = youngJensen();
 YJ.spec.rig = { ...YJ.spec.rig, plantLegs: .02, armLayer: 'front' };
 const I = { top: img(dennysTop), desk: img(deskTop), dish: img(dishPlate), porch: img(porchPlate) };
@@ -66,12 +67,12 @@ export const s54 = x => { const { ctx, t, T, cam, solo, s } = x, v = DN.view('wi
 export const s55 = x => { const { ctx, t, T, cam, solo } = x, v = DN.view('wide', cam, .3);   // трое садятся в кабинку; на стекле SAN JOSE; подписи по очереди (ядро)
   const sit = q => ({ dy: -110 * (1 - E.outBack(clamp((t - q) / .45))) });
   ctx.save(); shake(ctx, cam);
-  DN.booth(ctx, v, t, T, { solo, under: (c, vv) => glassText(c, vv, 'SAN JOSE', [960, 120]), seated: { L1: { C: J93, keys: [[0, 'smile']], look: [.5, 0], pose: sit(.1) }, L2: { C: CU, keys: [[0, 'smile']], look: [.6, .1], pose: sit(.35) }, R1: { C: CH, keys: [[0, 'neutral']], look: [-.6, 0], pose: sit(.6) } } });   // кружки — нарисованные на плейте
+  DN.booth(ctx, v, t, T, { solo, under: (c, vv) => glassText(c, vv, 'SAN JOSE', [960, 120]), seated: { L1: { C: J93, keys: [[0, 'smile']], look: [.5, 0], pose: sit(.1) }, L2: { C: CU, keys: [[0, 'smile']], look: [.6, .1], pose: sit(.35) }, R1: { C: CH, at: R1AT, keys: [[0, 'neutral']], look: [-.6, 0], pose: sit(.6) } } });   // кружки — нарисованные на плейте
   ctx.restore(); };
 export const s57 = x => { const { ctx, t, T, cam, solo, s, d } = x, tw = s.whip?.t ?? d * .45, wu = inOutExpo((t - tw + .1) / WHIP_DUR);   // официантка щёлкает ручкой над блокнотом -> вип-пан -> Дженсен стучит пальцем по салфетке с кубом
   const v = lerpView(DN.view('aisleR', { ...cam, dx: 0 }), DN.view('L1', { ...cam, dx: 0 }), clamp(wu)), click = gauss(t, .45, .05) > .5, tap = Math.abs(Math.sin(Math.max(0, t - tw - .2) * 10)) * (t > tw + .2 ? 1 : 0);
   ctx.save(); shake(ctx, cam);
-  DN.booth(ctx, v, t, T, { solo, blur: true, seated: { L1: { C: J93, keys: [[0, 'smile']], look: [.6, .4], R: { k: 1, to: [575, 825 - 22 * tap] } }, L2: { C: CU, look: [.5, .3] }, R1: { C: CH, look: [-.5, .3] } },
+  DN.booth(ctx, v, t, T, { solo, blur: true, seated: { L1: { C: J93, keys: [[0, 'smile']], look: [.6, .4], R: { k: 1, to: [575, 825 - 22 * tap] } }, L2: { C: CU, look: [.5, .3] }, R1: { C: CH, at: R1AT, look: [-.5, .3] } },
     onTable: (c, vv) => { napkin(c, toS(vv, [575, 835]), vv.k * .8); mugAt(c, toS(vv, [1260, 830]), vv.k * .9, 0); },
     aisle: { R: { C: WT, keys: [[0, 'neutral']], look: [-.4, .5], L: { k: 1, to: [1520, 1010] }, R: { k: 1, to: [1580, 975 - (click ? 8 : 0)] },
       heldL: (c, P, sc) => { c.fillStyle = '#f8f6ee'; c.strokeStyle = '#141014'; c.lineWidth = 3 * sc; c.beginPath(); c.roundRect(P[0] - 10 * sc, P[1] - 90 * sc, 80 * sc, 100 * sc, 4 * sc); c.fill(); c.stroke(); },
@@ -93,7 +94,7 @@ export const s59 = x => { const { ctx, t, cam, solo } = x, tp = W_(x, 'plaque', 
 export const s62 = x => { const { ctx, t, T, cam, solo } = x, v = DN.view('wide', cam, .3);   // кабинка ночью, 1997: гора пустых кружек, почти пустая банка PAYROLL; Крис вертит пустую чашку
   ctx.save(); shake(ctx, cam);
   DN.booth(ctx, v, t, T, { solo, night: true, under: (c, vv) => glassText(c, vv, '1997', [960, 120]),
-    seated: { L1: { C: J97, keys: [[0, 'neutral']], look: [.5, .3] }, L2: { C: CU, keys: [[0, 'neutral']], look: [.4, .4] }, R1: { C: CH, sp: 'CHRIS', keys: [[0, 'neutral']], look: [-.5, .3], R: { k: 1, to: [1400, 900] } } },
+    seated: { L1: { C: J97, keys: [[0, 'neutral']], look: [.5, .3] }, L2: { C: CU, keys: [[0, 'neutral']], look: [.4, .4] }, R1: { C: CH, at: R1AT, sp: 'CHRIS', keys: [[0, 'neutral']], look: [-.5, .3], R: { k: 1, to: [1400, 900] } } },
     onTable: (c, vv) => { for (const [px, py] of [[560, 840], [690, 900], [800, 830], [1130, 830], [1240, 900], [1350, 850]]) mugAt(c, toS(vv, [px, py]), vv.k * 1.25, 0, 0);   // гора пустых кружек — стоят на столешнице
       payroll(c, toS(vv, [960, 920]), vv.k * 1.1); mugAt(c, toS(vv, [1420, 940]), vv.k * 1.25, 0, .25 * Math.sin(t * 3)); } });
   ctx.restore(); };
@@ -103,7 +104,7 @@ export const s64 = x => { const { ctx, t, T, cam, solo, s, d } = x, tw = s.whip?
   const v = lerpView(DN.view('R1', { ...cam, dx: 0 }), DN.view('L1', { ...cam, dx: 0 }), clamp(wu)), push = E.inOutCubic(clamp((t - tw - .25) / .6)), brow = up(t, .3, .25);
   ctx.save(); shake(ctx, cam);
   DN.booth(ctx, v, t, T, { solo, night: true, blur: true,
-    seated: { L1: { C: J97, sp: 'JENSEN', keys: [[0, 'neutral']], look: [.6, .3], R: { k: 1, to: [lerp(578, 718, push), 836] } } /* кисть на левом краю тарелки, двигает её */, L2: { C: CU, look: [.4, .3] }, R1: { C: CH, sp: 'CHRIS', keys: [[0, 'neutral']], look: [-.5, 0], brows: [lerp(0, 34, brow), -.2] } },
+    seated: { L1: { C: J97, sp: 'JENSEN', keys: [[0, 'neutral']], look: [.6, .3], R: { k: 1, to: [lerp(578, 718, push), 836] } } /* кисть на левом краю тарелки, двигает её */, L2: { C: CU, look: [.4, .3] }, R1: { C: CH, at: R1AT, sp: 'CHRIS', keys: [[0, 'neutral']], look: [-.5, 0], brows: [lerp(0, 34, brow), -.2] } },
     onTable: (c, vv) => { pancakes(c, toS(vv, [lerp(640, 780, push), 838]), vv.k * .8); for (const [px, py] of [[1150, 800], [1250, 830]]) mugAt(c, toS(vv, [px, py]), vv.k * .8, 0); } });
   ctx.restore(); };
 // ---------- T-desk: стол Denny's сверху (#56), вещи родителей (#36) ----------

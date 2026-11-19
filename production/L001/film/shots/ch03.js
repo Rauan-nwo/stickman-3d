@@ -19,9 +19,10 @@ import { official, aide, officer } from '../chars.js';
 import { person } from '../chars_B.js';
 import { jensen, noirShade } from 'engine';
 
-const OFFICIAL = official(), JH = jensen(), OFF1 = officer(), OFF2 = officer(), ASSIST = aide();
-for (const C of [JH]) C.spec.rig = { ...C.spec.rig, armLayer: 'front' };
-import { inOutExpo, gauss, env, W_, W0, shake, whipPlates, focusBox, freezeFrame, candle, V, WHIP_DUR, wordAt, lineSpan } from './common.js';
+const OFFICIAL = official({ hair: 'brown', moustache: true }),   // каштановый зачёс, усы, без очков, красный галстук — не путать с Дженсеном (седой, прямоугольные очки, кожанка); так же в ch07.js
+      JH = jensen(), OFF1 = officer(), OFF2 = officer(), ASSIST = aide();
+for (const C of [JH]) { C.spec.rig = { ...C.spec.rig, armLayer: 'front' }; C.spec.hairFit = true; }   // hairFit — волосы не съезжают с головы в 3/4
+import { inOutExpo, gauss, env, W_, W0, shake, whipPlates, focusBox, freezeFrame, candle, V, WHIP_DUR, wordAt, lineSpan, deskSleeve } from './common.js';
 
 
 // ---- Пекин/Вашингтон: точки плейтов и мелочи (ведущий) ----
@@ -67,7 +68,7 @@ export const SHOTS = {
   '3|OFFICIAL: The ones they want': x => { const { ctx, t, T, cam, solo } = x, v = WA.view('revDoor', cam);   // ОБРАТНАЯ: чиновник стоит у двери с навесным замком, трубка у уха
     ctx.save(); shake(ctx, cam);
     WA.revPlate(ctx, v, 0, solo);
-    WA.standing(ctx, v, t, T, { C: OFFICIAL, rev: true, at: 'door', sp: 'OFFICIAL', solo, view: 'threeQuarter', facing: -1, look: [-.3, 0], R: { k: 1, to: [1092, 452] }, heldR: (c, P, s) => PR.handsetHeld(c, P, s, 1) });   // трубка у уха на затылочной стороне, лицо открыто
+    { const pt = WA.cfg.revStand.door; person(ctx, v, t, T, { C: OFFICIAL, at: pt.feet, fs: pt.fs, light: pt.light, shadow: !solo, sp: 'OFFICIAL', solo, view: 'threeQuarter', facing: -1, look: [-.3, 0], keys: [[0, 'neutral']], handset: 'R' }); }   // трубка у уха на затылочной стороне (не на лбу), кисть держит её низ; лицо открыто
     WA.revFront(ctx, v, 0, solo);
     ctx.restore(); },
   '3|OFFICIAL: Absolutely not': x => { const { ctx, t, T, cam, solo } = x, v = WA.view('mid', cam);   // СРЕДНИЙ чиновник: качает головой, трубка у уха
@@ -252,13 +253,13 @@ export const SHOTS = {
     const up = E.outBack(clamp((t - .05) / .3));
     ctx.save(); shake(ctx, cam);
     NV.seated(ctx, v, t, T, { C: A_JH, sp: 'JENSEN', solo, blur: 5, keys: [[0, 'neutral']], look: [.4, -.1], phone: 'L', phoneK: 1, R: { k: up, to: [1000, 520] },
-      heldR: up > .2 ? (c, P, s) => { PR.chip(c, P[0] - 4 * s, P[1] - 52 * s, .12 * s * 4, .2, .6); handDot(c, P, s); } : null });   // кисть-точка на нижнем крае чипа, поверх
+      heldR: up > .2 ? (c, P, s) => { jSleeve(c, v, P, s); PR.chip(c, P[0] - 4 * s, P[1] - 52 * s, .12 * s * 4, .2, .6); handDot(c, P, s); } : null });   // рукав кожанки с манжетой до кисти; кисть-точка на нижнем крае чипа, поверх
     ctx.restore(); },
   "3|JENSEN: It's really slow": x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 955, cy: 490, k: 3.4 }, cam, .1), tb = .9;   // КРУПНО Дженсен дует на чип
     const blow = env(t, tb, x.d + 1, .15);
     ctx.save(); shake(ctx, cam);
     NV.seated(ctx, v, t, T, { C: A_JH, sp: 'JENSEN', solo, blur: 5, keys: [[0, 'neutral']], look: [.3, .1], phone: 'L', phoneK: 1, R: { k: 1, to: [985, 512] }, mouthOverride: blow > .3 ? 'O' : null,
-      heldR: (c, P, s) => { PR.chip(c, P[0] - 4 * s, P[1] - 52 * s, .12 * s * 4, .2, .6); handDot(c, P, s); if (blow > .1) { const m = toS(v, [945, 505]); c.save(); c.strokeStyle = `rgba(230,240,255,${.7 * blow})`; c.lineWidth = 3 * s; for (let i = 0; i < 3; i++) { const ph = ((t * 2.4 + i / 3) % 1); c.beginPath(); c.moveTo(m[0] + 20 * s + ph * 60 * s, m[1] + (i - 1) * 10 * s); c.lineTo(m[0] + 46 * s + ph * 60 * s, m[1] + (i - 1) * 12 * s); c.stroke(); } c.restore(); } } });
+      heldR: (c, P, s) => { jSleeve(c, v, P, s); PR.chip(c, P[0] - 4 * s, P[1] - 52 * s, .12 * s * 4, .2, .6); handDot(c, P, s); if (blow > .1) { const m = toS(v, [945, 505]); c.save(); c.strokeStyle = `rgba(230,240,255,${.7 * blow})`; c.lineWidth = 3 * s; for (let i = 0; i < 3; i++) { const ph = ((t * 2.4 + i / 3) % 1); c.beginPath(); c.moveTo(m[0] + 20 * s + ph * 60 * s, m[1] + (i - 1) * 10 * s); c.lineTo(m[0] + 46 * s + ph * 60 * s, m[1] + (i - 1) * 12 * s); c.stroke(); } c.restore(); } } });
     ctx.restore(); },
   "3|China had been one of Nvidia's biggest m": x => { const { ctx, t, cam, solo } = x, tb = W_(x, 'biggest', 1.48), v = camView({ cx: 1430, cy: 650, k: 2.6 }, cam, .1);   // ВСТАВКА график продаж по регионам: столбик CHINA высокий и светится
     if (solo) return; ctx.save(); shake(ctx, cam); NV.widePlate(ctx, v, 4, false); A_easel(ctx, v, 1, gauss(t, tb + .1, .25) + .25 * clamp((t - tb) / .3)); ctx.restore(); },
@@ -295,7 +296,7 @@ export const OVER = {
   '3|JENSEN: Which ones count as best': (ctx, s, t, d) => { const T = s.start + t, pw = W / 2;
     const pane = (i, fn) => { ctx.save(); ctx.beginPath(); ctx.rect(i * pw + 4, 0, pw - 8, H); ctx.clip(); ctx.translate(i * pw + pw / 2 - W / 2, 0); fn(); ctx.restore(); };
     pane(0, () => { const v = { cx: 330, cy: 470, k: 1.5 + .03 * t }; WA.revPlate(ctx, v, 0, false);
-      person(ctx, v, t, T, { C: OFFICIAL, at: [420, 800], fs: .5, view: 'threeQuarter', facing: -1, light: [-1, -.2], shadow: true, keys: [[0, 'neutral']], look: [-.6, -.2], R: { k: 1, to: [462, 496] }, heldR: (c, P, sc) => PR.handsetHeld(c, P, sc, 1) });   // трубка у щеки, не на глазу
+      person(ctx, v, t, T, { C: OFFICIAL, at: [420, 800], fs: .5, view: 'threeQuarter', facing: -1, light: [-1, -.2], shadow: true, keys: [[0, 'neutral']], look: [-.6, -.2], handset: 'R' });   // трубка у уха (затылочная сторона), кисть-точка на нижней части трубки
       WA.revFront(ctx, v, 0, false); });
     pane(1, () => { const v = NV.view('cu', { z: 1 + .03 * t, dx: 0, dy: 0 }); NV.seated(ctx, v, t, T, { C: JH, sp: 'JENSEN', blur: 3, keys: [[0, 'neutral']], phone: 'L', phoneK: 1, look: [.3, -.1] }); });
     ctx.fillStyle = '#000'; ctx.fillRect(pw - 4, 0, 8, H); },
@@ -310,10 +311,11 @@ import { WH as A_WH } from '../staging/warehouse.js';
 import * as A_PA from '../props_A.js';
 import { person as A_person, figS as A_figS, shadeOf as A_shadeOf, investor as A_investor, scientist as A_scientist, salesman as A_salesman, assistant as A_assistant } from '../chars_A.js';
 import { ell as A_ell, jensen as A_jensen } from 'engine';
-const A_fix = C => { C.spec.rig = { ...C.spec.rig, plantLegs: .02, armLayer: 'front' }; return C; };
+const A_fix = C => { C.spec.rig = { ...C.spec.rig, plantLegs: .02, armLayer: 'front' }; C.spec.hairFit = true; return C; };   // hairFit — только Дженсену (L_jensen), у остальных шапок флаг не читается
 const A_JH = A_fix(A_jensen()), A_INV = A_investor(), A_SALES = A_salesman(), A_ASS = A_assistant(), A_SCI = [0, 1, 2, 3, 4, 5, 6, 7].map(A_scientist);
 // экран зала WIDE (x 560–1370, y 255–590): рисовальщик fn(ctx, w, h) в координатах экрана
 // трибуна и микрофон плейта WIDE — передний план: после любой картинки на экране рисуются заново (иначе экран ложится поверх трибуны и микрофон «просвечивает»)
+const jSleeve = (c, v, P, s) => deskSleeve(c, v, P, s, A_JH.spec, NV.cfg.sit);   // рукав кожанки с манжетой на поднятой руке (#99, #101)
 const handDot = (c, P, s) => { c.fillStyle = '#141014'; c.beginPath(); c.arc(P[0], P[1], 12 * s, 0, Math.PI * 2); c.fill(); };   // правило хвата: кисть-точка поверх края предмета
 // луч прожектора на сцене WIDE (плейт x = bx): сцена вокруг затемнена, светлое пятно на полу у ног и мягкий конус сверху (без мерцания)
 function A_spot(ctx, v, bx) { const F = toS(v, [bx, 690]), T0 = toS(v, [bx, 120]), R = 260 * v.k; ctx.save();

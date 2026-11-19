@@ -40,6 +40,13 @@ export const jensenMicsPic = (x, w, h) => { const g = x.createLinearGradient(0, 
   const s = h / 1000; B.miniFig(x, B.CAST_MINI.J, w * .5, h * .3 + 712 * s, s, { view: 'front', mouth: 'open' });
   for (let i = 0; i < 7; i++) { x.save(); x.translate(w * .5, h * 1.02); x.rotate(-.6 + i * .2); x.fillStyle = '#121216'; x.fillRect(-w * .01, -h * .42, w * .02, h * .42); x.fillStyle = ['#d0302a', '#2a2a30', '#3a6ad0', '#e0c040', '#2a2a30', '#ffffff', '#d0302a'][i]; x.beginPath(); x.ellipse(0, -h * .44, w * .035, h * .05, 0, 0, Math.PI * 2); x.fill(); x.restore(); } };
 // Air Force One: иллюминатор на стене кабинета-салона; wing 0..1 — в нём крыло с надписью
+// стенка салона борта №1 поверх окна кабинета (плейт Вашингтона: окно x 690–1510, y 0–612), кресло плейта остаётся поверх стенки
+function cabinWall(ctx, v) { const q = P => toS(v, P), A = q([690, -10]), B = q([1510, 612]);
+  ctx.save(); ctx.beginPath(); ctx.rect(A[0], A[1], B[0] - A[0], B[1] - A[1]);
+  [[775, 800], [770, 600], [800, 525], [900, 498], [1060, 498], [1160, 518], [1196, 590], [1200, 800]].forEach((P, i) => { const S = q(P); i ? ctx.lineTo(S[0], S[1]) : ctx.moveTo(S[0], S[1]); }); ctx.closePath(); ctx.clip('evenodd');
+  const g = ctx.createLinearGradient(0, A[1], 0, B[1]); g.addColorStop(0, '#1c2232'); g.addColorStop(.5, '#2a3246'); g.addColorStop(1, '#1e2434'); ctx.fillStyle = g; ctx.fillRect(A[0], A[1], B[0] - A[0], B[1] - A[1]);
+  ctx.strokeStyle = 'rgba(0,0,0,.45)'; ctx.lineWidth = 3 * v.k; for (const y of [150, 330]) { const L = q([690, y]), R = q([1510, y]); ctx.beginPath(); ctx.moveTo(L[0], L[1]); ctx.lineTo(R[0], R[1]); ctx.stroke(); }   // швы панелей обшивки
+  ctx.restore(); }
 export function porthole(ctx, v, P, r, wing) {
   const S = toS(v, P), R = r * v.k; ctx.save(); ctx.translate(S[0], S[1]);
   ctx.fillStyle = '#d8dce4'; ctx.beginPath(); ctx.ellipse(0, 0, R * 1.18, R * 1.4, 0, 0, Math.PI * 2); ctx.fill(); ctx.strokeStyle = '#141014'; ctx.lineWidth = 3 * v.k; ctx.stroke();
@@ -72,7 +79,7 @@ export const SHOTS = {
     if (solo) return; mssBuilding(ctx, t, cam, clamp((t - ta) / .6), clamp((t - th) / .5)); },
   '8|CNN reported that Rubio briefed': x => { const { ctx, t, T, cam, solo } = x, v = WA.view('mid', cam), ta = W_(x, 'Air', 3.4);   // салон борта №1: госсекретарь за столом с папкой; на «Air» в иллюминаторе крыло UNITED STATES OF AMERICA
     ctx.save(); shake(ctx, cam);
-    if (!solo) { WA.widePlate(ctx, v, 0, solo); porthole(ctx, v, [1330, 520], 70, clamp((t - ta + .1) / .45)); porthole(ctx, v, [520, 520], 70, 0); }
+    if (!solo) { WA.widePlate(ctx, v, 0, solo); cabinWall(ctx, v); porthole(ctx, v, [1330, 520], 70, clamp((t - ta + .1) / .45)); porthole(ctx, v, [520, 520], 70, 0); }   // окно с Капитолием закрыто стенкой салона: в кадре борт, а не кабинет
     WA.seated(ctx, v, t, T, { C: RUBIO, solo, noPlate: true, keys: [[0, 'neutral']], look: [.35, .35], R: { k: 1, to: [1010, 812] },
       deskTop: (c, vv) => { const P = toS(vv, [1000, 818]); c.save(); c.translate(P[0], P[1]); c.scale(1, .45); c.translate(-105 * vv.k, -80 * vv.k); B.tsFolder(c, 210 * vv.k, 160 * vv.k, { open: 0 }); c.restore(); } });
     ctx.restore(); },
@@ -170,7 +177,7 @@ export const SHOTS = {
     ctx.restore(); },
 };
 export const OVER = {
-  '8|CNN reported that Rubio briefed': B.plaquesAt(560, 110, { skip: /UNITED STATES/ }),
+  '8|CNN reported that Rubio briefed': B.plaquesAt(560, 800, { skip: /UNITED STATES/, dy: 96 }),   // плашки внизу слева — не на лице
   '8|That left one question': (ctx, s, t, d) => { const t0 = d * .6 - .2; if (t < t0 + .2) return;   // ядро гасит лампу на 0.6 длины плана (core lampOff)   // лампа ядра погасла: снимок остаётся в холодном свете окна
     const k = clamp((t - t0 - .2) / .3); ctx.save(); ctx.globalCompositeOperation = 'screen'; ctx.globalAlpha = .55 * k; ctx.fillStyle = 'rgba(110,150,210,1)';
     ctx.beginPath(); ctx.moveTo(560, 250); ctx.lineTo(1420, 300); ctx.lineTo(1380, 860); ctx.lineTo(540, 820); ctx.closePath(); ctx.filter = 'blur(30px)'; ctx.fill(); ctx.restore();

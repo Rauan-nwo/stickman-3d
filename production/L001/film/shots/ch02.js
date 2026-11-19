@@ -34,17 +34,17 @@ export const SHOTS = {
     ctx.save(); shake(ctx, cam);
     KY.bathMid(ctx, v, t, T, { solo, drop: -5, grab: 99, look: [.45, -.8], keys: [[0, 'neutral'], [tg - .1, 'nervous']] });
     ctx.restore(); },
-  '2|Every bathroom in the dorm': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 1180, cy: 560, k: 1.2 }, cam, .2);   // ОБЩИЙ: ряд кабинок до горизонта, двери хлопают по очереди; Дженсен со шваброй у ближней
+  '2|Every bathroom in the dorm': x => { const { ctx, t, T, cam, solo, d } = x, u = E.inOutCubic(clamp(t / d)), v = camView(lerpView({ cx: 1000, cy: 590, k: 1.45 }, { cx: 1258, cy: 590, k: 1.45 }, u), cam, .2);   // ОБЩИЙ: камера медленно идёт вдоль нарисованного ряда кабинок; на каждой двери по очереди галочка «вымыто»; Дженсен со шваброй у ведра (без копий кабинок)
     ctx.save(); shake(ctx, cam);
-    if (!solo) { const a = KY.A(); if (a) plateK(ctx, a.bath, v); KY.stallRow(ctx, v, t, 7, .05, .17); }
-    KY.bathMid(ctx, v, t, T, { solo, noPlate: true, drop: 99, grab: 99, look: [.6, -.2], keys: [[0, 'neutral']] });
+    KY.bathMid(ctx, v, t, T, { solo, drop: 99, grab: 99, look: [.6, -.2], keys: [[0, 'neutral']] });
+    if (!solo) KY.stallTicks(ctx, v, t, [.18, .42, .66].map(q => q * d));
     ctx.restore(); },
   '2|Every single day': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 860, cy: 600, k: 1.5 }, cam, .2), te = W_(x, 'Every', .05), td = W_(x, 'day', 1.0);   // СРЕДНИЙ: Дженсен со шваброй у кабинки, над ним отрывной календарь: MON…SUN слетают по одному, на «day» падает SUN
     ctx.save(); shake(ctx, cam);
     KY.bathMid(ctx, v, t, T, { solo, drop: 99, grab: 99, look: [-.3, -.6], keys: [[0, 'neutral'], [td, 'nervous']] });
     if (!solo) KY.dayPad(ctx, toS(v, [640, 420]), 120 * v.k, t, te, td);
     ctx.restore(); },
-  '2|His roommate was seventeen': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 760, cy: 560, k: 1.15 }, cam, .25), ts = W_(x, 'seventeen', 1.0), sit = E.inOutCubic(clamp((t - ts + .4) / .5));   // ОБЩИЙ спальня: огромный подросток с перевязанной рукой садится на койку, койка прогибается
+  '2|His roommate was seventeen': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 780, cy: 560, k: 1.25 }, cam, .25), ts = W_(x, 'seventeen', 1.0), sit = E.inOutCubic(clamp((t - ts + .4) / .5));   // ОБЩИЙ спальня: крупный хмурый подросток садится на край нижней койки (бёдра на матрасе, ступни на полу перед боковиной), матрас прогибается
     ctx.save(); shake(ctx, cam);
     KY.roommateBed(ctx, v, t, T, { solo, sit, tSit: ts + .1, keys: [[0, 'neutral']], look: [.6, .15] });
     ctx.restore(); },
@@ -56,12 +56,12 @@ export const SHOTS = {
     KY.insertArm(ctx, [380, H + 120], [C[0] - bw * .44, C[1] + 170], 1.6, 'big'); KY.insertArm(ctx, [1540, H + 120], [C[0] + bw * .44, C[1] + 170], 1.6, 'big');
     const kid = env(t, tf - .35, tf + .55, .3, .3); if (kid > .01) KY.insertArm(ctx, [W + 80, C[1] - 260], [lerp(W + 80, C[0] + bw * .34, kid), lerp(C[1] - 260, C[1] - 150 + 120 * flip, kid)], 1.3, 'kid');
     ctx.restore(); },
-  '2|ROOMMATE: You teach me to read': x => { const { ctx, t, T, cam, solo, s, d } = x, tw = s.whip?.t ?? d * .55;   // КРУПНО сосед протягивает книгу -> вип-пан -> юный Дженсен показывает на штангу в углу
+  '2|ROOMMATE: You teach me to read': x => { const { ctx, t, T, cam, solo, s, d } = x, tw = s.whip?.t ?? d * .55, wu = inOutExpo((t - (tw - .1)) / WHIP_DUR);   // ДВОЙНОЙ план в одной комнате: сосед на койке протягивает книгу Дженсену -> вип-пан на Дженсена (сосед остаётся в кадре слева) -> Дженсен показывает на штангу
+    const v = camView(lerpView({ cx: 660, cy: 600, k: 1.5 }, { cx: 900, cy: 600, k: 1.3 }, clamp(wu)), cam, .15), JA = [1010, 935];
     ctx.save(); shake(ctx, cam);
-    const vA = camView({ cx: 600, cy: 650, k: 1.6 }, cam, .15), vB = camView({ cx: 1080, cy: 620, k: 1.6 }, cam, .15);
-    whipPlates(ctx, t, tw,
-      () => { const r = KY.roommateBed(ctx, vA, t, T, { solo, sit: 1, tSit: -9, keys: [[0, 'neutral']], look: [.7, 0], R: { k: E.outCubic(clamp(t / .4)), to: [700, 600] } }); if (!solo && r.hr) KY.book(ctx, [r.hr[0] + 40 * vA.k, r.hr[1] - 10 * vA.k], 150 * vA.k, -.1); },
-      () => { KY.dorm(ctx, vB, t, T, { solo, noTrunk: true, look: [.7, .3], point: KY.CFG.barbell, pointK: E.outBack(clamp((t - tw - .1) / .3)), keys: [[0, 'neutral']] }); });
+    const r = KY.roommateBed(ctx, v, t, T, { solo, sit: 1, tSit: -9, sp: 'ROOMMATE', keys: [[0, 'neutral']], look: [.7, 0], R: { k: E.outCubic(clamp(t / .4)), to: [640, 610] } });
+    if (!solo && r.hr) KY.book(ctx, [r.hr[0] + 46 * r.s, r.hr[1] - 14 * r.s], 150 * r.s * 1.1, -.1);   // книга в правой кисти, протянута к Дженсену
+    KY.youngInDorm(ctx, v, t, T, { solo, at: JA, facing: -1, sp: 'YOUNG JENSEN', look: [-.6, -.35], keys: [[0, 'neutral']], point: KY.CFG.barbell, pointK: E.outBack(clamp((t - tw - .1) / .3)) });
     ctx.restore(); },
   '2|ROOMMATE: Deal': x => { const { ctx, t, cam, solo } = x, sh = t > .3 ? Math.sin((t - .3) * 7) * 18 * clamp((x.d - t) / .4) : 0;   // ВСТАВКА рукопожатие: огромная рука в бинте и маленькая жмут друг другу руки над книгой — сделка
     if (solo) return; ctx.save(); shake(ctx, cam); const a = KY.A(); if (a) plateK(ctx, a.dorm, cover({ cx: 500, cy: 700, k: 3 }), 8);
@@ -104,4 +104,4 @@ export const RAIN = null;   // или s => true/false/undefined — переоп
 import * as B2 from './ch02_B.js';   // --- B --- рисовальщики рабочего B
 import { EH as A_EH } from '../staging/eventhall.js';
 import { jensen as A_jensen } from 'engine';
-const A_JH = A_jensen(); A_JH.spec.rig = { ...A_JH.spec.rig, plantLegs: .02, armLayer: 'front' };   // взрослый Дженсен на сцене (как в ch03.js)
+const A_JH = A_jensen(); A_JH.spec.rig = { ...A_JH.spec.rig, plantLegs: .02, armLayer: 'front' }; A_JH.spec.hairFit = true;   // взрослый Дженсен на сцене (как в ch03.js)

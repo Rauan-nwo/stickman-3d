@@ -20,7 +20,7 @@ import { aivresRep, customs, driver, smuggler, raider, person, shadeOf, pose, dr
 import { bodyPt } from '../staging/desk.js';
 
 const CS = customs(), CS2 = customs(), DR = driver(), SM = smuggler(), RD = [0, 1, 2].map(raider), AV = aivresRep();
-const CLERK = official({ name: 'blacklist', hair: 'bald', suit: ['#5a6070', '#343a48', '#1a1e28'], tie: ['#22304e', '#141c30'] });
+const CLERK = official({ name: 'blacklist', hair: 'bald', glasses: false, moustache: true, stache: '#6d727b',   /* без круглых очков и с усами — не путать с Дженсеном */ suit: ['#5a6070', '#343a48', '#1a1e28'], tie: ['#22304e', '#141c30'] });
 const JH = jensen(); JH.spec.rig = { ...JH.spec.rig, armLayer: 'front' };
 const whipU = (t, tw) => clamp(inOutExpo((t - tw + .1) / WHIP_DUR));
 const SRC = { cx: 960, cy: 540, k: 1 };                                   // «вид 1:1»: координаты плейта = экран (для собранных кадров)
@@ -128,7 +128,7 @@ export const SHOTS = {
     const grab = E.outBack(clamp((t - tc + .05) / .25)), burst = clamp((t - tc) / .5);
     ctx.save(); shake(ctx, cam); CU.gate(ctx, v, 4, solo);
     const r = CU.officer(ctx, CS, v, t, T, { solo, f: -1, look: [-.6, .2], at: [1470, 770], out: 'L', L: { k: grab, to: [1335, 640] } });
-    const P = CU.standAt(ctx, SM, v, t, T, { at: [1290, 800], f: 1, keys: [[0, 'nervous'], [tc + .05, 'shock']], look: [lerp(-.2, .5, grab), .1], solo, shadow: false,
+    const P = CU.standAt(ctx, SM, v, t, T, { at: [1290, 800], f: 1, keys: [[0, 'nervous'], [tc + .05, 'shock']], look: [lerp(-.2, .5, grab), .1], solo, shadow: false, hatDy: 0,   /* кепка не подлетает на испуге: вместе с ней отрывались пряди у висков */
       R: { k: 1, to: [1330, 700] }, held: { R: (c, h, s) => PA.waybill(c, h[0] + 20 * s, h[1] - 40 * s, 120 * s, .15) } });
     if (!solo) { for (let i = 0; i < 4; i++) { const ph = ((t * .9 + i * .27) % 1), q = toS(v, [1262 + i * 16, 560 + ph * 30]); PA.drop(ctx, q[0], q[1], 9 * (1 - ph * .5)); }
       const u = (t - ts) / .5; if (u > 0 && u < 1) { const q = toS(v, [1300, lerp(565, 680, u * u)]); PA.drop(ctx, q[0], q[1], 16); }

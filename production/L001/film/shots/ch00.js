@@ -1,6 +1,6 @@
 // film/shots/ch00.js — постановка гл. 0 (владелец: ведущий). Ключ плана — 'глава|начало текста' (film/keys.js).
 // Контракт рабочего — film/README.md, «Работа по главам». Рисовальщик плана: x => {...}, x = { ctx, s, t, d, T, cam, camAt, solo, API }.
-import { clamp, lerp, E, gesture } from 'engine';
+import { clamp, lerp, E, gesture, NOIR_FONT } from 'engine';
 import { W, H, camView, toS, lerpView, cover } from '../staging/common.js';
 import * as R from '../staging/restaurant.js';
 import * as CAR from '../staging/car.js';
@@ -83,7 +83,7 @@ export const SHOTS = {
     const wu = inOutExpo((t - tw + .1) / WHIP_DUR), a1s = lineSpan('AGENT', s.start, s.end), tClose = a1s ? a1s[1] - s.start + .15 : d - .5;
     const draw = (vv) => CAR.car(ctx, vv, t, T, { solo, reelsAng: T * 3.2,
       a2: { keys: [[0, 'neutral']], look: [-.3, .5], phones: E.inOutCubic(clamp((t - 1.05) / .35)), press: env(t, .85, 1.35, .2, .25),
-        hold: { k: env(t, 0, d + 1, .2), at: [-150, -470] }, held: (c, P, sc) => CAR.tablet(c, P[0] - 110 * sc, P[1] - 20 * sc, 300 * sc, -.12, IN.snapPic, clamp((t - .12) / .5)) },
+        hold: { k: env(t, 0, d + 1, .2), at: [-150, -470] }, held: (c, P, sc) => { CAR.tablet(c, P[0] - 110 * sc, P[1] - 20 * sc, 300 * sc, -.12, IN.snapPic, clamp((t - .12) / .5)); warnBtn(c, P[0] - 110 * sc, P[1] - 20 * sc, 300 * sc, -.12, E.outBack(clamp((t - W_(x, 'warn', .9)) / .2))); } },   // кнопка SEND WARNING — на экране планшета (подпись ядра висела над головами)
       a1: { keys: [[0, 'neutral']], look: [.5, .35], hold: { k: env(t, tw - .2, d + 1, .25), at: [170, -420] }, held: (c, P, sc) => CAR.subjectFolder(c, P[0] + 125 * sc, P[1] - 10 * sc, 320 * sc, .1, 1 - E.inOutCubic(clamp((t - tClose) / .3)), IN.snapPic) } });
     ctx.save(); shake(ctx, cam);
     const va = camView(CAR.views.a2, { ...cam, dx: 0 }), vb = camView(CAR.views.a1m, { ...cam, dx: 0 });
@@ -99,5 +99,9 @@ export const OVER = {
     ctx.save(); ctx.translate(W * .7, H * .6 + fall); ctx.rotate(.07); polaroidAt(ctx, 0, 0, 380, 0); ctx.restore();
     ctx.save(); ctx.translate(W * .7 - 120, H * .6 - 150 + fall); ctx.rotate(.07); ctx.strokeStyle = '#B9BEC6'; ctx.lineWidth = 7; ctx.beginPath(); ctx.roundRect(-14, -40, 28, 110, 14); ctx.stroke(); ctx.beginPath(); ctx.roundRect(-6, -26, 12, 80, 6); ctx.stroke(); ctx.restore(); },
 };
-export const SKIP_PROPS = { '0|American intelligence believes': /SUBJECT/, "0|He's Jensen Huang": /JENSEN HUANG/, "0|She's Alice Huang": /ALICE HUANG/, '0|Her company is one of': /VIP/, '0|American intelligence has been tapping': /JAN/, '0|AGENT 2: Do we warn him': /SUBJECT/ };
+// кнопка «SEND WARNING» на экране планшета (центр x, y, ширина w, поворот a как у tablet), k 0..1 — всплывает
+function warnBtn(c, x, y, w, a, k) { if (k <= 0) return; c.save(); c.translate(x, y); c.rotate(a); c.translate(0, w * .2); c.scale(k, k);
+  c.beginPath(); c.roundRect(-w * .36, -w * .07, w * .72, w * .14, w * .03); c.fillStyle = '#c0302a'; c.fill(); c.lineWidth = w * .012; c.strokeStyle = '#f4e8d8'; c.stroke();
+  c.fillStyle = '#fff6ea'; c.font = `700 ${Math.round(w * .075)}px ${NOIR_FONT.label}`; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('SEND WARNING', 0, w * .004); c.restore(); }
+export const SKIP_PROPS = { '0|American intelligence believes': /SUBJECT/, "0|He's Jensen Huang": /JENSEN HUANG/, "0|She's Alice Huang": /ALICE HUANG/, '0|Her company is one of': /VIP/, '0|American intelligence has been tapping': /JAN/, '0|AGENT 2: Do we warn him': /SUBJECT|SEND/ };
 export const RAIN = null;   // или s => true/false/undefined — переопределение дождя для планов главы
