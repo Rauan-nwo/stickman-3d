@@ -92,9 +92,9 @@ export const OVER = {
   "2|Decades later he'd put it simply": (ctx, s, t, d) => { const T = s.start + t, x = { s }, tb = W_(x, 'bathrooms', 2.82), tr = W_(x, 'ran', 4.52), pw = W / 2;
     const pane = (i, fn, k) => { ctx.save(); ctx.fillStyle = '#07070a'; ctx.fillRect(i * pw, 0, pw, H); ctx.beginPath(); ctx.rect(i * pw + 4, 0, (pw - 8) * k, H); ctx.clip(); ctx.translate(i * pw + pw / 2 - W / 2, 0); fn(); ctx.restore(); };
     pane(0, () => { const v = cover({ cx: 905, cy: 610, k: 1.55 + .02 * t }); KY.bathMid(ctx, v, t, T, { drop: tb - .25, grab: tb + .55, look: [.3, -.3] }); }, E.inOutCubic(clamp(t / .35)));   // окно «тогда» открыто с начала: на «bathrooms» швабра падает в ведро, мальчик тянется за ней
-    pane(1, () => { const v = cover({ cx: 600, cy: 520, k: 2.3 + .02 * t }), g = E.outBack(clamp((t - tr) / .4));
+    pane(1, () => { const v = cover({ cx: 650, cy: 540, k: 2.3 + .02 * t }), g = E.inOutCubic(clamp((t - tr) / .35));   // Дженсен на сцене РЯДОМ с трибуной (микрофон на трибуне — не перед лицом): левая кисть на краю трибуны, правая — открытый жест, локоть согнут
       A_EH.plate(ctx, v, 'wide', 0, false);
-      A_EH.podium(ctx, A_JH, v, t, T, { f: 1, view: null, keys: [[0, 'smile']], look: [0, -.1], L: { k: g, to: [582 - 125, 682 - 190] }, R: { k: g, to: [582 + 125, 682 - 190] } }); }, E.inOutCubic(clamp((t - tr + .15) / .35)));
+      A_EH.standing(ctx, A_JH, v, t, T, { at: [700, 690], which: 'stage', f: -1, view: 'threeQuarter', keys: [[0, 'smile']], look: [-.2, -.05], L: { k: 1, to: [628, 560] }, R: { k: g, to: [752, 612 - 10 * g] } }); }, E.inOutCubic(clamp((t - tr + .15) / .35)));
     ctx.fillStyle = '#000'; ctx.fillRect(pw - 4, 0, 8, H);
     const u = E.outCubic(clamp(t / .4)); if (u > 0) { ctx.save(); ctx.globalAlpha = u; ctx.font = `700 46px ${NOIR_FONT.label}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';   // надпись DECADES LATER (в шаблоне сплита её нет)
       const tw = ctx.measureText('DECADES LATER').width + 60; ctx.fillStyle = '#0c0b10'; ctx.fillRect(W / 2 - tw / 2, 40, tw, 76); ctx.strokeStyle = '#c9a54a'; ctx.lineWidth = 3; ctx.strokeRect(W / 2 - tw / 2, 40, tw, 76); ctx.fillStyle = '#f2e8cc'; ctx.fillText('DECADES LATER', W / 2, 80); ctx.restore(); } },

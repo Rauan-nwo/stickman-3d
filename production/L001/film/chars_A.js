@@ -89,7 +89,7 @@ HATS.L_A_acct2 = (x, H, S, VW, p) => { const c = { light: '#7a7068', mid: '#4c44
 HATS.L_A_banker = (x, H, S, VW, p) => shortHair(x, S, VW, p, { light: '#7c8088', mid: '#4a4e56', dark: '#22252a' });
 HATS.L_A_banker2 = (x, H, S, VW, p) => { if (isBack(VW)) { poly(x, [[-134, 10], [-150, -60], [-120, -60, -100, 0], [100, 0], [120, -60, 150, -60], [134, 10], [0, 40, -134, 10]], '#4a4048', S.colors.ink, S.lw); return; }
   for (const sd of [-1, 1]) poly(x, [[sd * 134, 14], [sd * 146, -50, sd * 126, -86], [sd * 100, -70], [sd * 112, -30, sd * 110, 14]], lgrad(x, -140, -80, 140, 20, [[0, '#6a6068'], [1, '#2a2228']]), S.colors.ink, S.lw);
-  path(x, [[-60, -134], [-20, -146]], 8, 'rgba(255,255,255,.55)'); specs(x, S, VW, p, { round: true, frame: '#8a6a2a' }); };
+  specs(x, S, VW, p, { round: true, frame: '#8a6a2a' }); };   // блик лысины убран: висел полупрозрачной чертой над головой (#179, #181)
 HATS.L_A_courier = (x, H, S, VW, p) => peakCap(x, S, VW, p, { crown: '#7a5530', band: null, peak: '#4a3018', flat: true });
 HATS.L_A_recep = (x, H, S, VW, p) => { const c = { light: '#3a2c30', mid: '#1c1418', dark: '#0a0608' }; shortHair(x, S, VW, p, c);
   const o = offOf(VW, p) * .3, f = VW && VW.facing ? -VW.facing : -1; poly(x, [[f * 110 + o, -110], [f * 190 + o, -60, f * 170 + o, 60], [f * 130 + o, 30], [f * 140 + o, -40, f * 90 + o, -90]], lgrad(x, -150, -120, 150, 60, [[0, c.light], [1, c.dark]]), S.colors.ink, S.lw); };

@@ -162,7 +162,7 @@ export const s53 = x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 
   ctx.restore(); };
 
 // ---------- L15 крыльцо родственников (bg_relatives_porch) ----------
-const RP = { aunt: { at: [835, 690], fs: .5 },   // тётя сидит НА скамье (сиденье y≈688, высота сиденья ≈90 px плейта) — масштаб под скамью
+const RP = { aunt: { at: [770, 805], fs: .5 },   // тётя сидит НА скамье (сиденье y≈688, высота сиденья ≈90 px плейта) — масштаб под скамью
    uncle: { at: [1330, 905], fs: .7 }, kids: [[360, 1000], [560, 1010]], kfs: .48, case: [[360, 1000], [560, 1010]], light: [.6, -.8] };
 function suitcase(ctx, P, s) { ctx.save(); ctx.translate(P[0], P[1]); ctx.fillStyle = '#7a4a24'; ctx.strokeStyle = '#141014'; ctx.lineWidth = 4 * s; ctx.beginPath(); ctx.roundRect(-110 * s, -120 * s, 220 * s, 120 * s, 10 * s); ctx.fill(); ctx.stroke();
   ctx.fillStyle = '#c9a54a'; ctx.fillRect(-90 * s, -70 * s, 16 * s, 14 * s); ctx.fillRect(74 * s, -70 * s, 16 * s, 14 * s); ctx.strokeStyle = '#3a2412'; ctx.lineWidth = 8 * s; ctx.beginPath(); ctx.moveTo(-110 * s, -40 * s); ctx.lineTo(110 * s, -40 * s); ctx.stroke(); ctx.restore(); }
@@ -176,8 +176,8 @@ function porch(ctx, v, t, T, o) {
   const a = A(); if (!a) return {}; if (!o.solo) plate(ctx, o.blur ? a.porchB : a.porch, v);
   if (!o.solo) for (const P of RP.case) suitcase(ctx, toS(v, P), .75 * v.k);
   const out = {};
-  out.aunt = person(ctx, v, t, T, { C: AU, at: RP.aunt.at, fs: RP.aunt.fs, pin: 'seat', stance: 'sitL', view: 'threeQuarter', facing: -1, sp: 'AUNT', light: RP.light, keys: [[0, 'smile']], look: [-.2, .4], ...(o.aunt || {}),
-    L: { k: 1, to: [828, 600] }, R: { k: 1, to: [880, 604] }, heldR: (c, P, s) => brochure(c, [P[0] - 40 * s, P[1] - 60 * s], 150 * s, -.1, o.line || 0) });
+  out.aunt = person(ctx, v, t, T, { C: AU, at: RP.aunt.at, fs: RP.aunt.fs, pin: 'feet', stance: 'stand', view: 'threeQuarter', facing: -1, sp: 'AUNT', light: RP.light, keys: [[0, 'smile']], look: [-.2, .4], shadow: !o.solo, ...(o.aunt || {}),   // тётя СТОИТ перед скамьёй (посадка на скамье читалась двусмысленно)
+    L: { k: 1, to: [748, 640] }, R: { k: 1, to: [800, 644] }, heldR: (c, P, s) => brochure(c, [P[0] - 40 * s, P[1] - 60 * s], 150 * s, -.1, o.line || 0) });
   RP.kids.forEach((P, i) => { out['k' + i] = person(ctx, v, t, T, { C: i ? BR : YJ, at: [P[0], P[1] - 120 * .75], fs: RP.kfs, pin: 'seat', stance: 'sitR', view: 'threeQuarter', facing: 1, light: RP.light, keys: [[0, o.kidsEmo || 'smile']], look: [.6, -.2], seed: 4 + i }); });
   out.uncle = person(ctx, v, t, T, { C: UN, at: RP.uncle.at, fs: RP.uncle.fs, view: 'threeQuarter', facing: -1, sp: 'UNCLE', light: RP.light, keys: [[0, 'smile']], shadow: !o.solo, look: [-.5, .2], ...(o.uncle || {}) });
   return out;
@@ -185,10 +185,10 @@ function porch(ctx, v, t, T, o) {
 export const s37 = x => { const { ctx, t, T, cam, solo, s, d } = x, tw = s.whip?.t ?? d * .6, wu = inOutExpo((t - tw + .1) / WHIP_DUR);   // тётя читает брошюру (белое здание, VERY STRICT); мальчики на чемоданах -> вип-пан -> дядя кивает, хлопает по чемодану
   const v = lerpView(cover({ cx: 720, cy: 640, k: 1.45 }), cover({ cx: 1180, cy: 560, k: 1.5 }), clamp(wu)), pat = Math.abs(Math.sin(Math.max(0, t - tw - .2) * 8)) * (t > tw + .2 ? 1 : 0);
   ctx.save(); shake(ctx, cam);
-  porch(ctx, v, t, T, { solo, uncle: { tilt: .06 * Math.sin(Math.max(0, t - tw) * 9), R: { k: t > tw ? 1 : 0, to: [560 + 90, 1000 - 120 * .75 - 20 * pat] } } });
+  porch(ctx, v, t, T, { solo, uncle: { tilt: .06 * Math.sin(Math.max(0, t - tw) * 9), R: { k: t > tw ? 1 : 0, to: [1215, 780 - 14 * pat] } } });   // дядя кивает и одобрительно похлопывает себя по животу (до чемоданов детей ему не дотянуться — рука висела в воздухе у кувшина) });
   ctx.restore(); };
 export const s40 = x => { const { ctx, t, T, cam, solo } = x, tm = W_(x, 'mistake', 1.44);   // улыбки застывают; на «mistake» рывок к брошюре: строка FOR TROUBLED BOYS; рука дяди замирает над чемоданом
   ctx.save(); shake(ctx, cam);
-  if (t < tm) porch(ctx, camView({ cx: 960, cy: 600, k: 1.25 }, cam, .2), t, T, { solo, aunt: { keys: [[0, 'smile'], [.5, 'nervous']] }, uncle: { keys: [[0, 'smile'], [.5, 'nervous']], R: { k: 1, to: [650, 830] } }, kidsEmo: 'neutral' });
+  if (t < tm) porch(ctx, camView({ cx: 960, cy: 600, k: 1.25 }, cam, .2), t, T, { solo, aunt: { keys: [[0, 'smile'], [.5, 'nervous']] }, uncle: { keys: [[0, 'smile'], [.5, 'nervous']], R: { k: 1, to: [1215, 780] } }, kidsEmo: 'neutral' });
   else { const a = A(); if (a && !solo) { plate(ctx, a.porchB, cover({ cx: 800, cy: 620, k: 2.6 })); brochure(ctx, [W / 2, H / 2 + 30], 620, -.05, clamp((t - tm) / .35)); } }
   ctx.restore(); };

@@ -67,7 +67,7 @@ export const SHOTS = {
   '3|OFFICIAL: The ones they want': x => { const { ctx, t, T, cam, solo } = x, v = WA.view('revDoor', cam);   // ОБРАТНАЯ: чиновник стоит у двери с навесным замком, трубка у уха
     ctx.save(); shake(ctx, cam);
     WA.revPlate(ctx, v, 0, solo);
-    WA.standing(ctx, v, t, T, { C: OFFICIAL, rev: true, at: 'door', sp: 'OFFICIAL', solo, view: 'threeQuarter', facing: -1, look: [-.3, 0], L: { k: 1, to: [1066, 456] }, heldL: (c, P, s) => PR.handsetHeld(c, P, s, -1) });
+    WA.standing(ctx, v, t, T, { C: OFFICIAL, rev: true, at: 'door', sp: 'OFFICIAL', solo, view: 'threeQuarter', facing: -1, look: [-.3, 0], R: { k: 1, to: [1092, 452] }, heldR: (c, P, s) => PR.handsetHeld(c, P, s, 1) });   // трубка у уха на затылочной стороне, лицо открыто
     WA.revFront(ctx, v, 0, solo);
     ctx.restore(); },
   '3|OFFICIAL: Absolutely not': x => { const { ctx, t, T, cam, solo } = x, v = WA.view('mid', cam);   // СРЕДНИЙ чиновник: качает головой, трубка у уха
@@ -191,7 +191,7 @@ export const SHOTS = {
   '2|When he talked about who should be allow': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 820, cy: 470, k: 1.6 }, cam, .2), ta = W_(x, 'allowed', 1.28);   // ОБЩИЙ Дженсен у трибуны; на экране очередь у турникета: на «allowed» первый проходит, перед вторым опускается планка (D16-C)
     ctx.save(); shake(ctx, cam); A_EH.plate(ctx, v, 'wide', 0, solo);
     if (!solo) A_onScreen(ctx, v, (c, w, h) => A_turnstile(c, w, h, t, ta));
-    const P = A_EH.podium(ctx, A_JH, v, t, T, { f: 1, view: null, keys: [[0, 'neutral']], look: [.4, .05], solo });
+    const P = A_EH.podium(ctx, A_JH, v, t, T, { at: [540, 682], f: 1, view: null, keys: [[0, 'neutral']], look: [.4, .05], solo });
     void P; ctx.restore(); },
   "3|Jensen didn't hide how he felt": x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 960, cy: 520, k: 1.9 }, cam, .2), tf = W_(x, 'felt', 1.42);   // СРЕДНИЙ: луч прожектора находит Дженсена на тёмной сцене
     const bx = lerp(1350, 960, E.inOutCubic(clamp(t / Math.max(.5, tf - .1))));
@@ -205,7 +205,7 @@ export const SHOTS = {
     ctx.save(); shake(ctx, cam); A_EH.plate(ctx, v, 'wide', 0, solo);
     if (!solo) A_scr(ctx, v, names[evn], 1);
     const g = gesture(t, th + .2, { lead: .2, rise: .3, hold: 1, fall: .4 });
-    A_EH.podium(ctx, A_JH, v, t, T, { f: 1, view: null, keys: [[0, 'neutral']], look: [.2, .05], solo, R: { k: g.hand, to: [640, 470] } });
+    A_EH.podium(ctx, A_JH, v, t, T, { at: [540, 682], f: 1, view: null, keys: [[0, 'neutral']], look: [.2, .05], solo, R: { k: g.hand, to: [640, 470] } });
     void ts2; ctx.restore(); },
   '3|and handing the market to Chinese rivals': x => { const { ctx, t, cam, solo } = x, tc = W_(x, 'Chinese', 1.64), v = camView(A_EH.views.screen, cam, .1);   // ВСТАВКА экран: пирог рынка переезжает от зелёного чипа к безымянному красному
     if (solo) return; ctx.save(); shake(ctx, cam); A_EH.plate(ctx, v, 'wide', 0, false);
@@ -215,13 +215,13 @@ export const SHOTS = {
   '3|Let American chips compete everywhere': x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 660, cy: 470, k: 3.6 }, cam, .1), tc = W_(x, 'compete', .92), te = W_(x, 'everywhere', 1.4);   // КРУПНО Дженсен у микрофона (строку читает рассказчик, D17-C); на «compete» на экране печатается COMPETE; на «everywhere» экран зеленеет картой мира, вспышки из зала
     ctx.save(); shake(ctx, cam); A_EH.plate(ctx, v, 'wide', 0, solo);
     if (!solo) A_onScreen(ctx, v, (c, w, h) => { const m = E.outBack(clamp((t - te) / .3)); const n = Math.ceil(7 * clamp((t - tc) / .4)); if (n > 0) A_PA.label(c, 'COMPETE'.slice(0, n), w * .25, h * .4, h * .15, '#ffffff', { weight: 900, font: "Bahnschrift, 'Segoe UI', sans-serif" }); if (m > 0) A_globe(c, w * .25, h * .74, h * .14 * m); });   // всё — в видимой части экрана (крупный план срезает его правую половину); на «everywhere» — глобус, не полупрозрачные пятна
-    A_EH.podium(ctx, A_JH, v, t, T, { f: 1, view: null, keys: [[0, 'smile']], look: [.3, .05], solo });
+    A_EH.podium(ctx, A_JH, v, t, T, { at: [540, 682], f: 1, view: null, keys: [[0, 'smile']], look: [.3, .05], solo });
     if (!solo) { A_EH.flash(ctx, W * .82, H * .3, (t - te - .05) / .1, 300); A_EH.flash(ctx, W * .12, H * .55, (t - te - .45) / .1, 260); }   // вспышки камер — 3 кадра, не заливают кадр
     ctx.restore(); },
   "3|JENSEN: They're nanoseconds behind us": x => { const { ctx, t, T, cam, solo } = x, v = camView({ cx: 680, cy: 480, k: 2.8 }, cam, .1), tn = W_(x, 'nanoseconds', .14);   // СРЕДНИЙ Дженсен у микрофона; на «nanoseconds» на экране секундомер 0.000000001 s
     ctx.save(); shake(ctx, cam); A_EH.plate(ctx, v, 'wide', 0, solo);
     if (!solo) A_onScreen(ctx, v, (c, w, h) => { if (t < tn) return; c.fillStyle = '#0a140c'; c.fillRect(0, 0, w, h); A_stopwatch(c, w * .15, h * .5, h * .2, t - tn); A_PA.label(c, '0.000000001 s', w * .4, h * .5, h * .085, '#7dff9a', { weight: 900, font: "Bahnschrift, 'Segoe UI', sans-serif" }); });   // секундомер и число — в видимой части экрана
-    A_EH.podium(ctx, A_JH, v, t, T, { f: 1, view: null, sp: 'JENSEN', keys: [[0, 'smug']], look: [.2, .05], solo });
+    A_EH.podium(ctx, A_JH, v, t, T, { at: [540, 682], f: 1, view: null, sp: 'JENSEN', keys: [[0, 'smug']], look: [.2, .05], solo });
     ctx.restore(); },
   // ---------- L06 кабинет Nvidia (staging/nvidia.js — NV) ----------
   '2|and every AI lab on Earth wanted Nvidia': x => { const { ctx, t, T, cam, solo } = x, tn = W_(x, 'Nvidia', 1.88);   // ОБРАТНАЯ: от двери кабинета вдоль коридора — очередь учёных в халатах до точки схода, бейджи разных лабораторий
@@ -295,7 +295,7 @@ export const OVER = {
   '3|JENSEN: Which ones count as best': (ctx, s, t, d) => { const T = s.start + t, pw = W / 2;
     const pane = (i, fn) => { ctx.save(); ctx.beginPath(); ctx.rect(i * pw + 4, 0, pw - 8, H); ctx.clip(); ctx.translate(i * pw + pw / 2 - W / 2, 0); fn(); ctx.restore(); };
     pane(0, () => { const v = { cx: 330, cy: 470, k: 1.5 + .03 * t }; WA.revPlate(ctx, v, 0, false);
-      person(ctx, v, t, T, { C: OFFICIAL, at: [420, 800], fs: .5, view: 'threeQuarter', facing: -1, light: [-1, -.2], shadow: true, keys: [[0, 'neutral']], look: [-.6, -.2], L: { k: 1, to: [458, 500] }, heldL: (c, P, sc) => PR.handsetHeld(c, P, sc, -1) });   // трубка у щеки, не на глазу
+      person(ctx, v, t, T, { C: OFFICIAL, at: [420, 800], fs: .5, view: 'threeQuarter', facing: -1, light: [-1, -.2], shadow: true, keys: [[0, 'neutral']], look: [-.6, -.2], R: { k: 1, to: [462, 496] }, heldR: (c, P, sc) => PR.handsetHeld(c, P, sc, 1) });   // трубка у щеки, не на глазу
       WA.revFront(ctx, v, 0, false); });
     pane(1, () => { const v = NV.view('cu', { z: 1 + .03 * t, dx: 0, dy: 0 }); NV.seated(ctx, v, t, T, { C: JH, sp: 'JENSEN', blur: 3, keys: [[0, 'neutral']], phone: 'L', phoneK: 1, look: [.3, -.1] }); });
     ctx.fillStyle = '#000'; ctx.fillRect(pw - 4, 0, 8, H); },
