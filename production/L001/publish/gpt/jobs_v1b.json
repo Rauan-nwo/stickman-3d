@@ -1,0 +1,12 @@
+[
+ {
+  "out": "gpt/v1b_dinner_nobody_told_him.png",
+  "promptFile": "gpt/prompts/v1b_dinner_nobody_told_him.txt",
+  "refs": [
+   "refs/jensen_glass.png",
+   "refs/alice.png",
+   "refs/style_restaurant.png"
+  ],
+  "refMode": "match"
+ }
+]

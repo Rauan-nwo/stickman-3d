@@ -1,0 +1,39 @@
+[
+ {
+  "out": "gpt/v1_dinner_nobody_told_him.png",
+  "promptFile": "gpt/prompts/v1_dinner_nobody_told_him.txt",
+  "refs": [
+   "refs/jensen_glass.png",
+   "refs/alice.png",
+   "refs/style_restaurant.png"
+  ],
+  "refMode": "match"
+ },
+ {
+  "out": "gpt/v2_watched_for_a_year.png",
+  "promptFile": "gpt/prompts/v2_watched_for_a_year.txt",
+  "refs": [
+   "refs/jensen.png",
+   "refs/style_restaurant.png"
+  ],
+  "refMode": "match"
+ },
+ {
+  "out": "gpt/v3_vip_customer_chips.png",
+  "promptFile": "gpt/prompts/v3_vip_customer_chips.txt",
+  "refs": [
+   "refs/alice.png",
+   "refs/style_restaurant.png"
+  ],
+  "refMode": "match"
+ },
+ {
+  "out": "gpt/v4_he_was_in_the_memo.png",
+  "promptFile": "gpt/prompts/v4_he_was_in_the_memo.txt",
+  "refs": [
+   "refs/jensen.png",
+   "refs/style_restaurant.png"
+  ],
+  "refMode": "match"
+ }
+]
