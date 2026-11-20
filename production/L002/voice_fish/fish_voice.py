@@ -71,6 +71,9 @@ def load(lang):
     directed = [l.strip() for l in open(os.path.join(D, b), encoding='utf-8') if l.strip()]
     assert len(plain) == len(directed), (lang, len(plain), len(directed))
     cast = json.load(open(os.path.join(D, CAST[lang]), encoding='utf-8'))
+    pv = os.path.join(D, '..', '..', '..', 'raw', '_secrets', 'l002_cast_private.json')   # приватные id голосов (не в git)
+    if os.path.exists(pv):
+        for r, v in json.load(open(pv, encoding='utf-8')).items(): cast.setdefault(r, {}).update(v)
     rows = []
     for i, (p, d) in enumerate(zip(plain, directed), 1):
         m = SPK.match(p); sp, text = (m[1], m[2]) if m else ('NARRATOR', p)

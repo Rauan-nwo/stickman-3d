@@ -27,11 +27,10 @@
   "f0_track_hz": 108
  },
  "MUSK": {
-  "id": "03397b4c4be74759b72533b663fbd001",
-  "name": "Elon Musk (Noise reduction)",
+  "id": "PRIVATE",
+  "name": "mature male (private)",
   "speed": 1.0,
-  "note": "голос-двойник из публичной библиотеки Fish, выбран Рауаном 2026-11-20 (проба A из L002_musk_voices_ABCD.mp3); в YouTube — «Altered or synthetic content: Yes», в описании — драматизация, синтезированные голоса",
-  "prev": "Jordan 79d0bd3e4e5444b18f7b6d89b5927bf1"
+  "note": "голос выбран Рауаном 2026-11-20; id — в raw/_secrets/l002_cast_private.json (не в git)"
  },
  "DARIO": {
   "id": "fbac16744ffa49a9a51c29b1bf19242a",
