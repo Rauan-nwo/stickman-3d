@@ -27,12 +27,11 @@
   "f0_track_hz": 108
  },
  "MUSK": {
-  "id": "79d0bd3e4e5444b18f7b6d89b5927bf1",
-  "name": "Jordan",
+  "id": "03397b4c4be74759b72533b663fbd001",
+  "name": "Elon Musk (Noise reduction)",
   "speed": 1.0,
-  "f0_hz": 101,
-  "note": "мужской, ~55, зрелый, напористый (Fish preset «A motivational speaker»), сухие реплики звучат невозмутимо",
-  "f0_track_hz": 106
+  "note": "голос-двойник из публичной библиотеки Fish, выбран Рауаном 2026-11-20 (проба A из L002_musk_voices_ABCD.mp3); в YouTube — «Altered or synthetic content: Yes», в описании — драматизация, синтезированные голоса",
+  "prev": "Jordan 79d0bd3e4e5444b18f7b6d89b5927bf1"
  },
  "DARIO": {
   "id": "fbac16744ffa49a9a51c29b1bf19242a",

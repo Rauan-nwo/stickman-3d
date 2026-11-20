@@ -139,3 +139,10 @@ Natasa (ж, 232). Повторы голосов из L001 — только дл�
 - `production/L002/script.md`, `production/L002/narration.txt`
 - конвейер — `production/L001/voice_fish/` (README, cast.json, fishlib/fish_voice/fish_mix/check_dropouts)
 - голоса — публичная библиотека Fish Audio (`GET https://api.fish.audio/model`), документация меток — docs.fish.audio
+
+## Решение Рауана 2026-11-20: голос Маска
+MUSK переозвучен голосом-двойником из публичной библиотеки Fish «Elon Musk (Noise reduction)»
+(`03397b4c4be74759b72533b663fbd001`, проба A из `L002_musk_voices_ABCD.mp3`; было — Jordan). 32 реплики, брак Whisper
+(строки 69, 261, 347, 371) перезаписан; шкала пересобрана `--retime` (15:07.9), раскадровка пересчитана (15:57.8).
+**Обязательно при публикации:** YouTube Studio → «Altered or synthetic content» = **Yes**; в описании — «сценки —
+драматизация, голоса синтезированы». Реплики Маска — только пересказ его публичных слов или явная шутка.
