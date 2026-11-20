@@ -598,3 +598,5 @@ HOST: And the receipt goes where all good receipts go.
 HOST: Some words get deleted. These ones got invoiced.
 
 [SCENE: the safe closes; the lamp dims. End card.]
+
+<!-- SCRIPT END -->

@@ -160,3 +160,6 @@ touched: raw/research/2026-11-19-l002-factcheck.md, production/L002/{script.md,s
 
 ## [2026-11-20 03:30] video | L002 голос EN (Fish, 380 строк, 15:13, 41 роль, каст по рисунку, без клонов реальных людей), 23 фона (13 приняты, 10 на перегенерации — сингапурский пейзаж из эталона), герои по фото
 touched: production/L002/{voice_fish/,narration.txt,make_narration.py,prompts/,assets/}
+
+## [2026-11-20 06:00] video | L002 раскадровка: 345 планов, 16:02 по голосу Fish, 21.5 склеек/мин, 0 повторов крупности, 0 планов > 8 с; герои, голоса и 23 локации утверждены Рауаном
+touched: production/L002/{shotlist.md,animatic/make_shotlist.py,animatic/make_timing.mjs,animatic/shotlist_tool.mjs,animatic/summary.py,animatic/timing.json,script.md}
